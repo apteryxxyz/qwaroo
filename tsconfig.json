@@ -1,0 +1,4 @@
+{
+    "extends": "ts-config-apteryx",
+    "exclude": ["node_modules"]
+}

@@ -1,0 +1,14 @@
+{
+    "extends": ["apteryx/common", "apteryx/node", "apteryx/typescript", "apteryx/prettier"],
+    "rules": {
+        "@typescript-eslint/promise-function-async": "off",
+            "@typescript-eslint/no-confusing-void-expression": "off",
+            "@typescript-eslint/sort-type-union-intersection-members": "off",
+            "typescript-sort-keys/interface": "off",
+            "no-promise-executor-return": "off",
+            "no-warning-comments": "off",
+            "promise/prefer-await-to-callbacks": "off",
+            "prefer-named-capture-group": "off",
+            "@typescript-eslint/dot-notation": "off"
+    }
+}
