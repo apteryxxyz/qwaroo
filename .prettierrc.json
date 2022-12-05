@@ -4,7 +4,7 @@
 
     "tabWidth": 4,
     "useTabs": false,
-    
+
     "trailingComma": "es5",
     "semi": true,
 
@@ -17,6 +17,12 @@
     "arrowParens": "avoid",
 
     "overrides": [
+        {
+            "files": ["*.yaml", "*.yml"],
+            "options": {
+                "tabWidth": 2
+            }
+        },
         {
             "files": ["*.json"],
             "options": {

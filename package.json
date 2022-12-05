@@ -1,10 +1,7 @@
 {
-    "name": "games",
+    "name": "owenii",
     "private": true,
-    "workspaces": [
-        "packages/*",
-        "apps/*"
-    ],
+    "workspaces": ["packages/*", "apps/*"],
     "scripts": {
         "prepare": "husky install"
     },
