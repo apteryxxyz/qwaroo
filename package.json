@@ -3,7 +3,10 @@
     "private": true,
     "workspaces": ["packages/*", "apps/*"],
     "scripts": {
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "lint": "npm run lint --workspaces --if-present",
+        "format": "npm run format --workspaces --if-present",
+        "build": "npm run build --workspaces --if-present"
     },
     "devDependencies": {
         "@commitlint/cli": "^17.3.0",

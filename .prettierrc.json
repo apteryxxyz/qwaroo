@@ -13,7 +13,7 @@
     "quoteProps": "as-needed",
 
     "bracketSpacing": true,
-    "jsxBracketSameLine": false,
+    "bracketSameLine": false,
     "arrowParens": "avoid",
 
     "overrides": [
