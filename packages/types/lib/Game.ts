@@ -1,5 +1,7 @@
 import type { HigherOrLower } from './modes/HigherOrLower';
 
+export * from './modes/HigherOrLower';
+
 export namespace Game {
     export enum Type {
         HigherOrLower = 1,
