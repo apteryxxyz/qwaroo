@@ -6,7 +6,7 @@
     "scripts": {
         "lint": "eslint --ext .js,.ts lib",
         "format": "prettier --write \"lib/**/*.{js,ts}\" && npm run lint -- --fix",
-        "build": "npx tsup lib/index.ts --dts"
+        "build": "tsup lib/index.ts --dts"
     },
     "devDependencies": {
         "tsup": "^6.5.0",
