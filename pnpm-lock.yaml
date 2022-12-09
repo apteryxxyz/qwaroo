@@ -73,6 +73,7 @@ importers:
       eslint: ^8.28.0
       eslint-config-apteryx: ^2.0.3
       express: ^4.18.2
+      fuzzysort: ^2.0.4
       passport: ^0.6.0
       passport-discord: ^0.1.4
       rate-limiter-flexible: ^2.4.1
@@ -90,6 +91,7 @@ importers:
       dotenv: 16.0.3
       dotenv-expand: 9.0.0
       express: 4.18.2
+      fuzzysort: 2.0.4
       passport: 0.6.0
       passport-discord: 0.1.4
       rate-limiter-flexible: 2.4.1
@@ -3560,6 +3562,10 @@ packages:
   /functions-have-names/1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
+
+  /fuzzysort/2.0.4:
+    resolution: {integrity: sha512-Api1mJL+Ad7W7vnDZnWq5pGaXJjyencT+iKGia2PlHUcSsSzWwIQ3S1isiMpwpavjYtGd2FzhUIhnnhOULZgDw==}
+    dev: false
 
   /get-caller-file/2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
