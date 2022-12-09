@@ -15,7 +15,13 @@ export function handle(
         } catch (error) {
             const apiError =
                 error instanceof APIError ? error : new APIError(500);
+
             if (apiError.status === 500) console.error(error);
+
+            if (apiError.headers)
+                for (const [key, value] of Object.entries(apiError.headers))
+                    res.setHeader(key, value);
+
             res.status(apiError.status).json({
                 success: false,
                 ...apiError.toJSON(),
