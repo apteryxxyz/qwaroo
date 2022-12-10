@@ -10,12 +10,19 @@ export function useToken(
     return handle(async (req, _res, next) => {
         const isRequired = requiredMethods.includes(req.method);
         const isOptional = optionalMethods.includes(req.method);
-        if (!isRequired && !isOptional) return next();
+        if (!isRequired && !isOptional) {
+            next();
+            return;
+        }
 
-        const authToken = req.header('Authorization')?.replace('Bearer ', '');
+        const authToken = req.cookies.token ?? req.header('Authorization');
 
         if (!authToken) {
-            if (isOptional) return next();
+            if (isOptional) {
+                next();
+                return;
+            }
+
             throw new APIError(401, 'You must be logged in to do that');
         }
 

@@ -14,7 +14,10 @@ const TypeParsers = {
 
 export function useBody(type: 'json' | 'form', methods: string[]) {
     return handle(async (req, _, next) => {
-        if (!methods.includes(req.method)) return next();
+        if (!methods.includes(req.method)) {
+            next();
+            return;
+        }
 
         const contentType = req.header('content-type');
         const isJson = contentType?.includes(ContentType[type]);

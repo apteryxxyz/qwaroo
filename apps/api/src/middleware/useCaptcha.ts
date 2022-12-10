@@ -5,13 +5,19 @@ import { handle } from '#/utilities/routeHandler';
 
 export function useCaptcha(methods: string[]) {
     return handle(async (req, _, next) => {
-        if (!methods.includes(req.method)) return next();
+        if (!methods.includes(req.method)) {
+            next();
+            return;
+        }
 
         const token = req.header('X-Captcha-Token');
         const remoteIp = req.header('X-Real-IP') ?? req.ip;
 
         if (!token) throw new APIError(401, 'No captcha token was provided');
-        if (token === process.env['CAPTCHA_ALWAYS_PASS']) return next();
+        if (token === process.env['CAPTCHA_ALWAYS_PASS']) {
+            next();
+            return;
+        }
 
         const data = new URLSearchParams({
             secret: process.env['CAPTCHA_SECRET']!,
@@ -27,7 +33,11 @@ export function useCaptcha(methods: string[]) {
         });
 
         const json = await response.json();
-        if (json.success) return next();
-        else throw new APIError(400, 'Captcha verification failed');
+        if (json.success) {
+            next();
+            return;
+        }
+
+        throw new APIError(400, 'Captcha verification failed');
     });
 }
