@@ -56,6 +56,7 @@ importers:
     specifiers:
       '@owenii/database': workspace:^0.0.0
       '@owenii/games': workspace:^0.0.0
+      '@owenii/routes': workspace:^0.0.0
       '@owenii/types': workspace:^0.0.0
       '@owenii/validators': workspace:^0.0.0
       '@types/co-body': ^6.1.0
@@ -86,6 +87,7 @@ importers:
     dependencies:
       '@owenii/database': link:../../packages/database
       '@owenii/games': link:../../packages/games
+      '@owenii/routes': link:../../packages/routes
       '@owenii/types': link:../../packages/types
       '@owenii/validators': link:../../packages/validators
       co-body: 6.1.0
@@ -129,6 +131,7 @@ importers:
       eslint: ^8.28.0
       eslint-config-apteryx: ^2.0.2
       next: ^13.0.6
+      next-themes: ^0.2.1
       postcss: ^8.4.19
       prettier: ^2.8.0
       prettier-config-apteryx: ^2.0.2
@@ -145,6 +148,7 @@ importers:
       '@owenii/validators': link:../../packages/validators
       autoprefixer: 10.4.13_postcss@8.4.19
       next: 13.0.6_biqbaboplfbrettd7655fr4n2y
+      next-themes: 0.2.1_6jx7hpii6hgsrmhxgqrmo3277u
       postcss: 8.4.19
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -195,6 +199,23 @@ importers:
       '@types/underscore': 1.11.4
       tsup: 6.5.0_typescript@4.9.3
       typescript: 4.9.3
+
+  packages/routes:
+    specifiers:
+      '@owenii/types': workspace:^0.0.0
+      '@owenii/validators': workspace:^0.0.0
+      mongodb-memory-server: ^8.10.1
+      mongoose: ^6.7.5
+      tsup: ^6.5.0
+      typescript: ^4.9.3
+    dependencies:
+      '@owenii/types': link:../types
+      '@owenii/validators': link:../validators
+      mongodb-memory-server: 8.10.1
+      mongoose: 6.7.5
+    devDependencies:
+      tsup: 6.5.0_typescript@4.9.4
+      typescript: 4.9.4
 
   packages/types:
     specifiers:
@@ -4839,6 +4860,18 @@ packages:
       - supports-color
     dev: false
 
+  /next-themes/0.2.1_6jx7hpii6hgsrmhxgqrmo3277u:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.0.6_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /next/13.0.6_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-COvigvms2LRt1rrzfBQcMQ2GZd86Mvk1z+LOLY5pniFtL4VrTmhZ9salrbKfSiXbhsD01TrDdD68ec3ABDyscA==}
     engines: {node: '>=14.6.0'}
@@ -6090,6 +6123,42 @@ packages:
       sucrase: 3.29.0
       tree-kill: 1.2.2
       typescript: 4.9.3
+    transitivePeerDependencies:
+      - supports-color
+      - ts-node
+    dev: true
+
+  /tsup/6.5.0_typescript@4.9.4:
+    resolution: {integrity: sha512-36u82r7rYqRHFkD15R20Cd4ercPkbYmuvRkz3Q1LCm5BsiFNUgpo36zbjVhCOgvjyxNBWNKHsaD5Rl8SykfzNA==}
+    engines: {node: '>=14'}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': ^1
+      postcss: ^8.4.12
+      typescript: ^4.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      postcss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      bundle-require: 3.1.2_esbuild@0.15.18
+      cac: 6.7.14
+      chokidar: 3.5.3
+      debug: 4.3.4
+      esbuild: 0.15.18
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      postcss-load-config: 3.1.4
+      resolve-from: 5.0.0
+      rollup: 3.6.0
+      source-map: 0.8.0-beta.0
+      sucrase: 3.29.0
+      tree-kill: 1.2.2
+      typescript: 4.9.4
     transitivePeerDependencies:
       - supports-color
       - ts-node

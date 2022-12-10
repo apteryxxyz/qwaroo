@@ -1,3 +1,7 @@
 {
-    "extends": ["apteryx/common", "apteryx/typescript", "apteryx/prettier"]
+    "extends": ["apteryx/common", "apteryx/typescript", "apteryx/prettier"],
+    "rules": {
+        "no-warning-comments": "off",
+        "@typescript-eslint/dot-notation": "off"
+    }
 }

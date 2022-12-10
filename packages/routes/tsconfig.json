@@ -1,0 +1,10 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": ".",
+        "lib": ["esnext", "dom"],
+        "moduleResolution": "node"
+    },
+    "include": ["api.ts"]
+}
