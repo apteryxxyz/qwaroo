@@ -2,12 +2,15 @@ import type { Connection as ConnectionEntity } from '@owenii/types';
 import { Validate } from '@owenii/validators';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
+import { User, type UserDocument } from './User';
 
 export interface ConnectionDocument extends ConnectionEntity, Document {
     id: string;
 }
 
-export interface ConnectionMethods {}
+export interface ConnectionMethods {
+    getUser(): Promise<UserDocument>;
+}
 
 export interface ConnectionModel
     extends Model<ConnectionEntity, {}, ConnectionMethods> {}
@@ -66,6 +69,10 @@ const ConnectionSchema = new Schema<
         virtuals: true,
     }
 );
+
+ConnectionSchema.method('getUser', function _(this: ConnectionDocument) {
+    return User.findOne({ id: this.userId }).exec();
+});
 
 export const Connection = model<ConnectionEntity, ConnectionModel>(
     'Connection',
