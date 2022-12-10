@@ -70,7 +70,7 @@ const ConnectionSchema = new Schema<
 );
 
 ConnectionSchema.method('getUser', function getUser(this: ConnectionDocument) {
-    return User.findOne({ id: this.userId }).exec();
+    return User.findById(this.userId).exec();
 });
 
 export const Connection = model<ConnectionEntity, ConnectionModel>(

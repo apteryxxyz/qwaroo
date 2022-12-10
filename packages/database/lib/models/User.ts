@@ -70,7 +70,7 @@ UserSchema.method(
 UserSchema.method(
     'getConnection',
     function getConnection(this: UserDocument, id: string) {
-        return Connection.findOne({ id }).exec();
+        return Connection.findById(id).exec();
     }
 );
 
