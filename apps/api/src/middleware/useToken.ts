@@ -20,8 +20,7 @@ export function useToken(
             return;
         }
 
-        const authToken = req.cookies.token ?? req.header('Authorization');
-
+        const authToken = req.header('Authorization');
         if (!authToken) {
             if (isOptional) {
                 next();
