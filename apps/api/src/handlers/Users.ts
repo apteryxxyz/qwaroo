@@ -6,10 +6,10 @@ export class Users extends null {
     /** Get an existing user by their ID. */
     public static async getUser(id: string) {
         const isValidId = Validate.ObjectId.test(id);
-        if (!isValidId) throw new APIError(422, 'User ID is not valid');
+        if (!isValidId) throw new APIError(422, 'User ID is invalid');
 
         const user = await User.findById(id).exec();
-        if (!user) throw new APIError(404, 'User does not exist');
+        if (!user) throw new APIError(404, 'User was not found');
 
         return user;
     }

@@ -37,7 +37,7 @@ export class Authentication extends null {
 
         const user = await User.findById(data.uid).exec();
         if (!user)
-            throw new APIError(401, 'Authorisation token user does not exist');
+            throw new APIError(401, 'Authorisation token user was not found');
 
         const isRevoked = user.revokeToken !== data.rvt;
         if (isRevoked)

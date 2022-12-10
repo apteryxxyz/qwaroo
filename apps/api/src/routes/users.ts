@@ -2,7 +2,6 @@ import { Routes } from '@owenii/routes/api';
 import { Router } from 'express';
 import { Users } from '#/handlers/Users';
 import { useAtMe } from '#/middleware/useAtMe';
-import { useBody } from '#/middleware/useBody';
 import { useMethods } from '#/middleware/useMethods';
 import { useToken } from '#/middleware/useToken';
 import { handle } from '#/utilities/routeHandler';
@@ -13,7 +12,6 @@ export default () => {
     router.all(
         Routes.users(),
         useMethods(['GET']),
-        useToken([], ['GET']),
         handle(async (req, res) => {
             const term = String(req.query['term'] ?? '') || '';
             const page = Number(req.query['page'] ?? 1);
@@ -25,23 +23,19 @@ export default () => {
 
     router.all(
         Routes.user(':userId'),
-        useMethods(['GET', 'PATCH', 'DELETE']),
-        useBody('json', ['PATCH']),
-        useToken(['PATCH', 'DELETE'], ['GET']),
+        useMethods(['GET']),
+        useToken([], ['GET']),
         useAtMe('userId'),
         handle(async (req, res) => {
-            if (req.method === 'GET') {
-                const user = await Users.getUser(req.params['userId']);
-                res.status(200).json({ success: true, ...user.toJSON() });
-            }
-
-            // TODO: Add PATCH and DELETE
+            const user = await Users.getUser(req.params['userId']);
+            res.status(200).json({ success: true, ...user.toJSON() });
         })
     );
 
     router.all(
         Routes.userConnections(':userId'),
         useMethods(['GET']),
+        useToken([], ['GET']),
         useAtMe('userId'),
         handle(async (req, res) => {
             const user = await Users.getUser(req.params['userId']);

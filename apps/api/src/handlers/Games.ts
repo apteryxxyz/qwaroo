@@ -48,10 +48,10 @@ export class Games extends null {
     /** Get the meta information for a game. */
     public static getGameMeta(slug: string) {
         const isValidSlug = Validate.Slug.test(slug);
-        if (!isValidSlug) throw new APIError(422, 'Game slug is not valid');
+        if (!isValidSlug) throw new APIError(422, 'Game slug is invalid');
 
         const game = games.getGames().find(game => game.slug === slug);
-        if (!game) throw new APIError(404, 'Game does not exist');
+        if (!game) throw new APIError(404, 'Game was not found');
 
         return game.getMeta(games.basePath);
     }
@@ -63,7 +63,7 @@ export class Games extends null {
         page = 1
     ) {
         const isValidSlug = Validate.Slug.test(slug);
-        if (!isValidSlug) throw new APIError(422, 'Game slug is not valid');
+        if (!isValidSlug) throw new APIError(422, 'Game slug is invalid');
 
         if (typeof seed !== 'string')
             throw new APIError(422, 'Seed must be a string');
@@ -73,7 +73,7 @@ export class Games extends null {
         if (page < 1) throw new APIError(422, 'Page must be greater than 0');
 
         const game = games.getGames().find(game => game.slug === slug);
-        if (!game) throw new APIError(404, 'Game does not exist');
+        if (!game) throw new APIError(404, 'Game was not found');
 
         const items = await game.getItems(games.basePath);
         const shuffledItems = shuffle(items, seed);
