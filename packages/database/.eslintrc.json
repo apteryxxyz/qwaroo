@@ -1,3 +1,6 @@
 {
-    "extends": ["apteryx/node", "../../.eslintrc.json"]
+    "extends": ["apteryx/node", "../../.eslintrc.json"],
+    "rules": {
+        "prefer-arrow-callback": "off"
+    }
 }

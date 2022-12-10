@@ -10,6 +10,7 @@ export interface UserDocument extends UserEntity, Document {
 
 export interface UserMethods {
     getConnections(): Promise<ConnectionDocument[]>;
+    getConnection(id: string): Promise<ConnectionDocument | null>;
 }
 
 export interface UserModel extends Model<UserEntity, {}, UserMethods> {}
@@ -61,6 +62,10 @@ const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
 
 UserSchema.method('getConnections', function _(this: UserDocument) {
     return Connection.find({ userId: this.id }).exec();
+});
+
+UserSchema.method('getConnection', function _(this: UserDocument, id: string) {
+    return Connection.findOne({ id }).exec();
 });
 
 export const User = model<UserEntity, UserModel>('User', UserSchema);
