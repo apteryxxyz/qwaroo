@@ -60,12 +60,18 @@ const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
     }
 );
 
-UserSchema.method('getConnections', function _(this: UserDocument) {
-    return Connection.find({ userId: this.id }).exec();
-});
+UserSchema.method(
+    'getConnections',
+    function getConnections(this: UserDocument) {
+        return Connection.find({ userId: this.id }).exec();
+    }
+);
 
-UserSchema.method('getConnection', function _(this: UserDocument, id: string) {
-    return Connection.findOne({ id }).exec();
-});
+UserSchema.method(
+    'getConnection',
+    function getConnection(this: UserDocument, id: string) {
+        return Connection.findOne({ id }).exec();
+    }
+);
 
 export const User = model<UserEntity, UserModel>('User', UserSchema);

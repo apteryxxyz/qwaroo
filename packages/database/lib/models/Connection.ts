@@ -66,11 +66,10 @@ const ConnectionSchema = new Schema<
                 return ret;
             },
         },
-        virtuals: true,
     }
 );
 
-ConnectionSchema.method('getUser', function _(this: ConnectionDocument) {
+ConnectionSchema.method('getUser', function getUser(this: ConnectionDocument) {
     return User.findOne({ id: this.userId }).exec();
 });
 
