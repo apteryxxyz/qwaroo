@@ -1,5 +1,7 @@
+import { Routes } from '@owenii/routes/api';
 import { Router } from 'express';
 import { Users } from '#/handlers/Users';
+import { useAtMe } from '#/middleware/useAtMe';
 import { useBody } from '#/middleware/useBody';
 import { useMethods } from '#/middleware/useMethods';
 import { useToken } from '#/middleware/useToken';
@@ -9,7 +11,7 @@ export default () => {
     const router = Router();
 
     router.all(
-        '/users',
+        Routes.users(),
         useMethods(['GET']),
         useToken([], ['GET']),
         handle(async (req, res) => {
@@ -22,13 +24,14 @@ export default () => {
     );
 
     router.all(
-        '/users/:id',
+        Routes.user(':userId'),
         useMethods(['GET', 'PATCH', 'DELETE']),
         useBody('json', ['PATCH']),
-        useToken(['PATCH', 'DELETE'], []),
+        useToken(['PATCH', 'DELETE'], ['GET']),
+        useAtMe('userId'),
         handle(async (req, res) => {
             if (req.method === 'GET') {
-                const user = await Users.getUser(req.params['id']);
+                const user = await Users.getUser(req.params['userId']);
                 res.status(200).json({ success: true, ...user.toJSON() });
             }
 
@@ -37,10 +40,11 @@ export default () => {
     );
 
     router.all(
-        '/users/:id/connections',
+        Routes.userConnections(':userId'),
         useMethods(['GET']),
+        useAtMe('userId'),
         handle(async (req, res) => {
-            const user = await Users.getUser(req.params['id']);
+            const user = await Users.getUser(req.params['userId']);
             const connections = await user.getConnections();
             res.status(200).json({ success: true, items: connections });
         })

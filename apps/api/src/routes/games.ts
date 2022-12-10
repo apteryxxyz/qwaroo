@@ -1,3 +1,4 @@
+import { Routes } from '@owenii/routes/api';
 import { Router } from 'express';
 import { Games } from '#/handlers/Games';
 import { useMethods } from '#/middleware/useMethods';
@@ -7,7 +8,7 @@ export default () => {
     const router = Router();
 
     router.all(
-        '/categories',
+        Routes.categories(),
         useMethods(['GET']),
         handle(async (_req, res) => {
             const categories = Games.getCategories();
@@ -16,7 +17,7 @@ export default () => {
     );
 
     router.all(
-        '/games',
+        Routes.games(),
         useMethods(['GET']),
         handle(async (req, res) => {
             const term = String(req.params['term'] ?? '') || '';
@@ -28,20 +29,20 @@ export default () => {
     );
 
     router.all(
-        '/games/:slug',
+        Routes.game(':gameSlug'),
         useMethods(['GET']),
         handle(async (req, res) => {
-            const slug = String(req.params['slug'] ?? '') || '';
+            const slug = String(req.params['gameSlug'] ?? '') || '';
             const meta = await Games.getGameMeta(slug);
             res.status(200).json({ success: true, ...meta });
         })
     );
 
     router.all(
-        '/games/:slug/items',
+        Routes.gameItems(':gameSlug'),
         useMethods(['GET']),
         handle(async (req, res) => {
-            const slug = String(req.params['slug'] ?? '') || '';
+            const slug = String(req.params['gameSlug'] ?? '') || '';
             const seed =
                 String(req.query['seed'] ?? '') || Date.now().toString();
             const page = Number(req.query['page'] ?? 1);

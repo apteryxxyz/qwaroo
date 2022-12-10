@@ -8,6 +8,11 @@ export function useToken(
     optionalMethods: string[] = []
 ) {
     return handle(async (req, _res, next) => {
+        if (req.user) {
+            next();
+            return;
+        }
+
         const isRequired = requiredMethods.includes(req.method);
         const isOptional = optionalMethods.includes(req.method);
         if (!isRequired && !isOptional) {

@@ -1,5 +1,6 @@
 import process from 'node:process';
 import { URL } from 'node:url';
+import { Routes } from '@owenii/routes/api';
 import { Router } from 'express';
 import passport from 'passport';
 import { Authentication } from '#/handlers/Authentication';
@@ -12,10 +13,10 @@ export default () => {
     const discord = new DiscordPassport();
     passport.initialize();
 
-    router.all('/auth/discord/login', useMethods(['GET']), discord.login());
+    router.all(Routes.discordLogin(), useMethods(['GET']), discord.login());
 
     router.all(
-        '/auth/discord/callback',
+        Routes.discordCallback(),
         useMethods(['GET']),
         discord.callback(),
         handle(async (req, res) => {
