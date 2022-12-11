@@ -31,8 +31,8 @@
         "class",
         "className",
         "ngClass",
-        "onHover",
-        "onActive"
+        "whileHover",
+        "whileActive"
     ],
     "todohighlight.keywords": [
         {
@@ -70,5 +70,5 @@
     ],
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "typescript.preferences.autoImportFileExcludePatterns": ["**/index.*"],
-    "typescript.tsdk": "node_modules\\.pnpm\\typescript@4.8.4\\node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }

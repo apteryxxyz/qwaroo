@@ -2,52 +2,49 @@ import type { HigherOrLower } from './modes/HigherOrLower';
 
 export * from './modes/HigherOrLower';
 
+export interface Game<T extends Game.Type = Game.Type> {
+    // Identifers
+    /** The unique identifier for this game. */
+    id: string;
+    /** Short slug, intended to be easier to type. */
+    slug: string;
+
+    // Creator
+    /** ID of the user that created this game. */
+    creatorId: string;
+
+    // Updater
+    /** ID of the source generatoer/updater to use. */
+    sourceId: string;
+    /** Options to pass to the generator. */
+    sourceOptions: Record<string, unknown>;
+
+    // Information
+    /** What type of game this is. */
+    type: T;
+    /** A title for this game. */
+    title: string;
+    /** A short description for this game. */
+    shortDescription: string;
+    /** A long description for this game. */
+    longDescription: string;
+    /** URL to an image. */
+    thumbnailUrl: string;
+    /** The categories this game would belong to. */
+    categories: string[];
+    /** Data for the game, such as strings. */
+    data: Game.Data<T>;
+
+    // Timestamps
+    /** When this game was created. */
+    createdTimestamp: number;
+    /** When this game was last updated. */
+    updatedTimestamp: number;
+}
+
 export namespace Game {
     export enum Type {
         HigherOrLower = 1,
-    }
-
-    export interface Meta<T extends Type> {
-        /** The unique identifier for this game. */
-        slug: string;
-        /** What type of game this is. */
-        type: T;
-        /** A title for this game. */
-        title: string;
-        /** A description for this game. */
-        description: string;
-        /** URL to an image. */
-        imageUrl: string;
-        /** The categories this game would belong to. */
-        categories: string[];
-
-        /** SEO information for this game. */
-        seo: Seo;
-        /** Data for the game, such as strings. */
-        data: Data<T>;
-
-        /** When this game was created. */
-        createdTimestamp: number;
-        /** When this game was last updated. */
-        updatedTimestamp: number;
-    }
-
-    export interface Seo {
-        /** The title of the page. */
-        title?: string;
-        /** The description of the page. */
-        description?: string;
-        /** The image of the page. */
-        banner?: {
-            /** The URL to the image. */
-            url: string;
-            /** The width of the image. */
-            width: number;
-            /** The height of the image. */
-            height: number;
-        };
-        /** The keywords of the page. */
-        keywords?: string[];
     }
 
     export type Data<T extends Type> = T extends Type.HigherOrLower

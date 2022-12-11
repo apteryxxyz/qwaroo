@@ -15,6 +15,10 @@ export namespace Validate {
 
     // Game
     export const Slug = StringWithLength(3, 32, 'a-z0-9-');
+    export const Title = StringWithLength(3, 32);
+    export const ShortDescription = StringWithLength(3, 64);
+    export const LongDescription = StringWithLength(3, 256);
+    export const ThumbnailUrl = /^(http|https):\/\/[^ "]+$/;
 }
 
 export function createRegExp(pattern: string, scoped = false, flags = '') {

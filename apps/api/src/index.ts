@@ -4,7 +4,6 @@ import '@owenii/types';
 
 import process from 'node:process';
 import { Database } from '@owenii/database';
-import { Games } from '@owenii/games';
 import { Server } from './Server';
 
 let PORT = Number(process.env['PORT']);
@@ -13,16 +12,14 @@ if (Number.isNaN(PORT)) {
     PORT = 3_001;
 }
 
-const games = new Games();
 const database = new Database();
 const server = new Server(PORT);
 
 void main();
 async function main() {
-    games.setBasePath('data');
-    await games.ensureGames();
     await database.connect();
+    // TODO: Get games from database and ensure their local items are up to date
     await server.listen();
 }
 
-export { games, database, server };
+export { database, server };

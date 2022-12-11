@@ -10,8 +10,8 @@
     },
     "dependencies": {
         "@owenii/database": "workspace:^0.0.0",
-        "@owenii/games": "workspace:^0.0.0",
         "@owenii/routes": "workspace:^0.0.0",
+        "@owenii/sources": "workspace:^0.0.0",
         "@owenii/types": "workspace:^0.0.0",
         "@owenii/validators": "workspace:^0.0.0",
         "co-body": "^6.1.0",
