@@ -55,8 +55,8 @@ importers:
   apps/api:
     specifiers:
       '@owenii/database': workspace:^0.0.0
-      '@owenii/games': workspace:^0.0.0
       '@owenii/routes': workspace:^0.0.0
+      '@owenii/sources': workspace:^0.0.0
       '@owenii/types': workspace:^0.0.0
       '@owenii/validators': workspace:^0.0.0
       '@types/co-body': ^6.1.0
@@ -86,8 +86,8 @@ importers:
       underscore: ^1.13.6
     dependencies:
       '@owenii/database': link:../../packages/database
-      '@owenii/games': link:../../packages/games
       '@owenii/routes': link:../../packages/routes
+      '@owenii/sources': link:../../packages/sources
       '@owenii/types': link:../../packages/types
       '@owenii/validators': link:../../packages/validators
       co-body: 6.1.0
