@@ -9,6 +9,16 @@ export interface Game<T extends Game.Type = Game.Type> {
     /** Short slug, intended to be easier to type. */
     slug: string;
 
+    // Creator
+    /** ID of the user that created this game. */
+    creatorId: string;
+
+    // Updater
+    /** ID of the source generatoer/updater to use. */
+    sourceId: string;
+    /** Options to pass to the generator. */
+    sourceOptions: Record<string, unknown>;
+
     // Information
     /** What type of game this is. */
     type: T;

@@ -13,13 +13,33 @@ export interface GameModel extends Model<GameEntity, {}, GameMethods> {}
 
 const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
     {
+        // Identifers
         slug: {
             type: String,
             required: true,
             unique: true,
-            validate: Validate.Slug,
+            match: Validate.Slug,
         },
 
+        // Creator
+        creatorId: {
+            type: String,
+            required: true,
+            match: Validate.ObjectId,
+        },
+
+        // Updater
+        sourceId: {
+            type: String,
+            required: true,
+        },
+
+        sourceOptions: {
+            type: Schema.Types.Mixed,
+            required: true,
+        },
+
+        // Information
         type: {
             type: Number,
             required: true,
@@ -28,25 +48,25 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
         title: {
             type: String,
             required: true,
-            validate: Validate.Title,
+            match: Validate.Title,
         },
 
         shortDescription: {
             type: String,
             required: true,
-            validate: Validate.ShortDescription,
+            match: Validate.ShortDescription,
         },
 
         longDescription: {
             type: String,
             required: true,
-            validate: Validate.LongDescription,
+            match: Validate.LongDescription,
         },
 
         thumbnailUrl: {
             type: String,
             required: true,
-            validate: Validate.ThumbnailUrl,
+            match: Validate.ThumbnailUrl,
         },
 
         categories: {
@@ -59,6 +79,7 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
             required: true,
         },
 
+        // Timestamps
         createdTimestamp: {
             type: Number,
             required: true,
