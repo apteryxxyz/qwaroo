@@ -123,6 +123,7 @@ importers:
       '@fortawesome/free-brands-svg-icons': ^6.2.1
       '@fortawesome/free-solid-svg-icons': ^6.2.1
       '@fortawesome/react-fontawesome': ^0.2.0
+      '@owenii/client': workspace:^0.0.0
       '@owenii/types': workspace:^0.0.0
       '@owenii/validators': workspace:^0.0.0
       '@types/react': ^18.0.26
@@ -130,6 +131,7 @@ importers:
       autoprefixer: ^10.4.13
       eslint: ^8.28.0
       eslint-config-apteryx: ^2.0.2
+      framer-motion: ^7.6.19
       next: ^13.0.6
       next-themes: ^0.2.1
       postcss: ^8.4.19
@@ -144,9 +146,11 @@ importers:
       '@fortawesome/free-brands-svg-icons': 6.2.1
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@fortawesome/react-fontawesome': 0.2.0_z27bm67dtmuyyvss23ckjdrcuy
+      '@owenii/client': link:../../packages/client
       '@owenii/types': link:../../packages/types
       '@owenii/validators': link:../../packages/validators
       autoprefixer: 10.4.13_postcss@8.4.19
+      framer-motion: 7.6.19_biqbaboplfbrettd7655fr4n2y
       next: 13.0.6_biqbaboplfbrettd7655fr4n2y
       next-themes: 0.2.1_6jx7hpii6hgsrmhxgqrmo3277u
       postcss: 8.4.19
@@ -161,6 +165,23 @@ importers:
       prettier: 2.8.0
       prettier-config-apteryx: 2.0.2
       typescript: 4.9.3
+
+  packages/client:
+    specifiers:
+      '@discordjs/collection': ^1.3.0
+      '@owenii/routes': workspace:^0.0.0
+      '@owenii/types': workspace:^0.0.0
+      '@owenii/validators': workspace:^0.0.0
+      tsup: ^6.5.0
+      typescript: ^4.9.3
+    dependencies:
+      '@discordjs/collection': 1.3.0
+      '@owenii/routes': link:../routes
+      '@owenii/types': link:../types
+      '@owenii/validators': link:../validators
+    devDependencies:
+      tsup: 6.5.0_typescript@4.9.4
+      typescript: 4.9.4
 
   packages/database:
     specifiers:
@@ -181,6 +202,42 @@ importers:
 
   packages/games:
     specifiers:
+      '@owenii/generators': workspace:^0.0.0
+      '@owenii/types': workspace:^0.0.0
+      tsup: ^6.5.0
+      typescript: ^4.9.3
+    dependencies:
+      '@owenii/generators': link:../generators
+      '@owenii/types': link:../types
+    devDependencies:
+      tsup: 6.5.0_typescript@4.9.3
+      typescript: 4.9.3
+
+  packages/generators:
+    specifiers:
+      '@owenii/types': workspace:^0.0.0
+      '@owenii/validators': workspace:^0.0.0
+      '@types/node': ^18.11.10
+      '@types/underscore': ^1.11.4
+      cheerio: 1.0.0-rc.12
+      jimp: ^0.16.2
+      tsup: ^6.5.0
+      typescript: ^4.9.3
+      underscore: ^1.13.6
+    dependencies:
+      '@owenii/types': link:../types
+      '@owenii/validators': link:../validators
+      cheerio: 1.0.0-rc.12
+      jimp: 0.16.2
+      underscore: 1.13.6
+    devDependencies:
+      '@types/node': 18.11.10
+      '@types/underscore': 1.11.4
+      tsup: 6.5.0_typescript@4.9.4
+      typescript: 4.9.4
+
+  packages/item-generators:
+    specifiers:
       '@owenii/types': workspace:^0.0.0
       '@types/node': ^18.11.10
       '@types/underscore': ^1.11.4
@@ -197,8 +254,8 @@ importers:
     devDependencies:
       '@types/node': 18.11.10
       '@types/underscore': 1.11.4
-      tsup: 6.5.0_typescript@4.9.3
-      typescript: 4.9.3
+      tsup: 6.5.0_typescript@4.9.4
+      typescript: 4.9.4
 
   packages/routes:
     specifiers:
@@ -214,6 +271,23 @@ importers:
       mongodb-memory-server: 8.10.1
       mongoose: 6.7.5
     devDependencies:
+      tsup: 6.5.0_typescript@4.9.4
+      typescript: 4.9.4
+
+  packages/sources:
+    specifiers:
+      '@owenii/types': workspace:^0.0.0
+      '@types/node': ^18.11.10
+      cheerio: 1.0.0-rc.12
+      jimp: ^0.16.2
+      tsup: ^6.5.0
+      typescript: ^4.9.3
+    dependencies:
+      '@owenii/types': link:../types
+      cheerio: 1.0.0-rc.12
+      jimp: 0.16.2
+    devDependencies:
+      '@types/node': 18.11.10
       tsup: 6.5.0_typescript@4.9.4
       typescript: 4.9.4
 
@@ -1251,6 +1325,24 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
+  /@discordjs/collection/1.3.0:
+    resolution: {integrity: sha512-ylt2NyZ77bJbRij4h9u/wVy7qYw/aDqQLWnadjvDqW/WoWCxrsX6M3CIw9GVP5xcGCDxsrKj5e0r5evuFYwrKg==}
+    engines: {node: '>=16.9.0'}
+    dev: false
+
+  /@emotion/is-prop-valid/0.8.8:
+    resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
+    requiresBuild: true
+    dependencies:
+      '@emotion/memoize': 0.7.4
+    dev: false
+    optional: true
+
+  /@emotion/memoize/0.7.4:
+    resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    dev: false
+    optional: true
+
   /@es-joy/jsdoccomment/0.36.1:
     resolution: {integrity: sha512-922xqFsTpHs6D0BUiG4toiyPOMc8/jafnWKxz1KWgS4XzKPy2qXf1Pe6UFuNSCQqt6tOuhAWXBNuuyUhJmw9Vg==}
     engines: {node: ^14 || ^16 || ^17 || ^18 || ^19}
@@ -1756,6 +1848,53 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
+
+  /@motionone/animation/10.15.1:
+    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}
+    dependencies:
+      '@motionone/easing': 10.15.1
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      tslib: 2.4.1
+    dev: false
+
+  /@motionone/dom/10.13.1:
+    resolution: {integrity: sha512-zjfX+AGMIt/fIqd/SL1Lj93S6AiJsEA3oc5M9VkUr+Gz+juRmYN1vfvZd6MvEkSqEjwPQgcjN7rGZHrDB9APfQ==}
+    dependencies:
+      '@motionone/animation': 10.15.1
+      '@motionone/generators': 10.15.1
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      hey-listen: 1.0.8
+      tslib: 2.4.1
+    dev: false
+
+  /@motionone/easing/10.15.1:
+    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
+    dependencies:
+      '@motionone/utils': 10.15.1
+      tslib: 2.4.1
+    dev: false
+
+  /@motionone/generators/10.15.1:
+    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==}
+    dependencies:
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      tslib: 2.4.1
+    dev: false
+
+  /@motionone/types/10.15.1:
+    resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==}
+    dev: false
+
+  /@motionone/utils/10.15.1:
+    resolution: {integrity: sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==}
+    dependencies:
+      '@motionone/types': 10.15.1
+      hey-listen: 1.0.8
+      tslib: 2.4.1
+    dev: false
 
   /@next/env/13.0.6:
     resolution: {integrity: sha512-yceT6DCHKqPRS1cAm8DHvDvK74DLIkDQdm5iV+GnIts8h0QbdHvkUIkdOvQoOODgpr6018skbmSQp12z5OWIQQ==}
@@ -3877,6 +4016,29 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: false
 
+  /framer-motion/7.6.19_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-U+ogwGwNw6Y+pdq6GZB5xvnvLDlq3FTmcKaG5MCUjXuqRLrjKbKTqN4iwZISv3ajwUfgNHM6+tu31LRbYfF9YQ==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@motionone/dom': 10.13.1
+      framesync: 6.1.2
+      hey-listen: 1.0.8
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      style-value-types: 5.1.2
+      tslib: 2.4.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /framesync/6.1.2:
+    resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
   /fresh/0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
@@ -4107,6 +4269,10 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+
+  /hey-listen/1.0.8:
+    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
+    dev: false
 
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
@@ -5863,6 +6029,13 @@ packages:
     dev: false
     optional: true
 
+  /style-value-types/5.1.2:
+    resolution: {integrity: sha512-Vs9fNreYF9j6W2VvuDTP7kepALi7sk0xtk2Tu8Yxi9UoajJdEVpNpCov0HsLTqXvNGKX+Uv09pkozVITi1jf3Q==}
+    dependencies:
+      hey-listen: 1.0.8
+      tslib: 2.4.0
+    dev: false
+
   /styled-jsx/5.1.0_react@18.2.0:
     resolution: {integrity: sha512-/iHaRJt9U7T+5tp6TRelLnqBqiaIT0HsO0+vgyj8hK2KUk7aejFqRrumqPUlAqDwAj8IbS/1hk3IhBAAK/FCUQ==}
     engines: {node: '>= 12.0.0'}
@@ -6087,6 +6260,10 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+
+  /tslib/2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: false
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}

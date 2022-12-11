@@ -1,5 +1,5 @@
 {
-    "name": "@owenii/games",
+    "name": "@owenii/sources",
     "version": "0.0.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -8,16 +8,14 @@
         "format": "prettier --write \"lib/**/*.{js,ts}\" && npm run lint -- --fix",
         "build": "tsup lib/index.ts --dts"
     },
-    "devDependencies": {
-        "@types/node": "^18.11.10",
-        "@types/underscore": "^1.11.4",
-        "tsup": "^6.5.0",
-        "typescript": "^4.9.3"
-    },
     "dependencies": {
         "@owenii/types": "workspace:^0.0.0",
         "cheerio": "1.0.0-rc.12",
-        "jimp": "^0.16.2",
-        "underscore": "^1.13.6"
+        "jimp": "^0.16.2"
+    },
+    "devDependencies": {
+        "@types/node": "^18.11.10",
+        "tsup": "^6.5.0",
+        "typescript": "^4.9.3"
     }
 }
