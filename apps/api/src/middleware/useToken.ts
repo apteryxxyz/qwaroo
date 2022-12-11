@@ -32,6 +32,9 @@ export function useToken(
 
         await Authentication.loginWithToken(authToken) //
             .then((user: UserDocument) => {
+                user.seenTimestamp = Date.now();
+                void user.save();
+
                 req.user = user;
                 next();
             });

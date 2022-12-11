@@ -17,14 +17,6 @@ export const Routes = {
         return '/games' as const;
     },
 
-    game(slug: string) {
-        return `/games/${slug}` as const;
-    },
-
-    gameItems(slug: string) {
-        return `/games/${slug}/items` as const;
-    },
-
     // Users
     users() {
         return '/users' as const;
