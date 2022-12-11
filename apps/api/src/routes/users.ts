@@ -13,6 +13,7 @@ export default () => {
     router.all(
         Routes.users(),
         useMethods(['GET']),
+        useToken([], ['GET']),
         handle(async (req, res) => {
             const term = String(req.query['term'] ?? '') || '';
             const page = Number(req.query['page'] ?? 1);
