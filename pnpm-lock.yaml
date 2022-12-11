@@ -200,63 +200,6 @@ importers:
       tsup: 6.5.0_typescript@4.9.3
       typescript: 4.9.3
 
-  packages/games:
-    specifiers:
-      '@owenii/generators': workspace:^0.0.0
-      '@owenii/types': workspace:^0.0.0
-      tsup: ^6.5.0
-      typescript: ^4.9.3
-    dependencies:
-      '@owenii/generators': link:../generators
-      '@owenii/types': link:../types
-    devDependencies:
-      tsup: 6.5.0_typescript@4.9.3
-      typescript: 4.9.3
-
-  packages/generators:
-    specifiers:
-      '@owenii/types': workspace:^0.0.0
-      '@owenii/validators': workspace:^0.0.0
-      '@types/node': ^18.11.10
-      '@types/underscore': ^1.11.4
-      cheerio: 1.0.0-rc.12
-      jimp: ^0.16.2
-      tsup: ^6.5.0
-      typescript: ^4.9.3
-      underscore: ^1.13.6
-    dependencies:
-      '@owenii/types': link:../types
-      '@owenii/validators': link:../validators
-      cheerio: 1.0.0-rc.12
-      jimp: 0.16.2
-      underscore: 1.13.6
-    devDependencies:
-      '@types/node': 18.11.10
-      '@types/underscore': 1.11.4
-      tsup: 6.5.0_typescript@4.9.4
-      typescript: 4.9.4
-
-  packages/item-generators:
-    specifiers:
-      '@owenii/types': workspace:^0.0.0
-      '@types/node': ^18.11.10
-      '@types/underscore': ^1.11.4
-      cheerio: 1.0.0-rc.12
-      jimp: ^0.16.2
-      tsup: ^6.5.0
-      typescript: ^4.9.3
-      underscore: ^1.13.6
-    dependencies:
-      '@owenii/types': link:../types
-      cheerio: 1.0.0-rc.12
-      jimp: 0.16.2
-      underscore: 1.13.6
-    devDependencies:
-      '@types/node': 18.11.10
-      '@types/underscore': 1.11.4
-      tsup: 6.5.0_typescript@4.9.4
-      typescript: 4.9.4
-
   packages/routes:
     specifiers:
       '@owenii/types': workspace:^0.0.0
@@ -2221,10 +2164,6 @@ packages:
   /@types/tmp/0.2.3:
     resolution: {integrity: sha512-dDZH/tXzwjutnuk4UacGgFRwV+JSLaXL1ikvidfJprkb7L9Nx1njcRHHmi3Dsvt7pgqqTEeucQuOrWHPFgzVHA==}
     dev: false
-
-  /@types/underscore/1.11.4:
-    resolution: {integrity: sha512-uO4CD2ELOjw8tasUrAhvnn2W4A0ZECOvMjCivJr4gA9pGgjv+qxKWY9GLTMVEK8ej85BxQOocUyE7hImmSQYcg==}
-    dev: true
 
   /@types/webidl-conversions/7.0.0:
     resolution: {integrity: sha512-xTE1E+YF4aWPJJeUzaZI5DRntlkY3+BCVJi0axFptnjGmAoWxkyREIh/XMrfxVLejwQxMCfDXdICo0VLxThrog==}
