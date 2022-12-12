@@ -19,6 +19,7 @@ void main();
 async function main() {
     await database.connect();
     // TODO: Get games from database and ensure their local items are up to date
+    await import('./temp');
     await server.listen();
 }
 
