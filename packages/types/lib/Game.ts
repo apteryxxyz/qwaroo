@@ -47,15 +47,15 @@ export namespace Game {
         HigherOrLower = 1,
     }
 
-    export type Data<T extends Type> = T extends Type.HigherOrLower
+    export type Data<T extends Type = Type> = T extends Type.HigherOrLower
         ? HigherOrLower.Data
         : Record<string, unknown>;
 
-    export type Item<T extends Type> = T extends Type.HigherOrLower
+    export type Item<T extends Type = Type> = T extends Type.HigherOrLower
         ? HigherOrLower.Item
         : Record<string, unknown>;
 
-    export type Save<T extends Type> = T extends Type.HigherOrLower
+    export type Save<T extends Type = Type> = T extends Type.HigherOrLower
         ? HigherOrLower.Save
         : Record<string, unknown>;
 }
