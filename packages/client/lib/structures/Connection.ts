@@ -49,6 +49,10 @@ export class Connection extends Base {
         );
     }
 
+    public fetch() {
+        return this.user.connections.fetch(this.id);
+    }
+
     public override toJSON() {
         return {
             id: this.id,

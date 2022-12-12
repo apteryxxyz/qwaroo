@@ -24,7 +24,15 @@ export class ConnectionManager extends BaseManager<string, Connection> {
         return entry;
     }
 
-    public async fetch() {
+    public async fetch(connection?: ConnectionResolvable) {
+        const id = this.resolveId(connection ?? '');
+
+        if (id) {
+            const path = Routes.userConnection(this.user.id, id);
+            const data = await this.client.rest.get(path);
+            return this.add(data);
+        }
+
         const path = Routes.userConnections(this.user.id);
         const data = await this.client.rest.get(path);
         return data.items.map((dt: Connection.Entity) => this.add(dt));
@@ -37,7 +45,7 @@ export class ConnectionManager extends BaseManager<string, Connection> {
     public resolveId(connection: ConnectionResolvable) {
         if (typeof connection === 'string') return connection;
         if (connection instanceof Connection) return connection.id;
-        return connection.id;
+        return connection?.id;
     }
 }
 

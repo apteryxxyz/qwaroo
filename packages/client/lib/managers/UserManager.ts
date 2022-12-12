@@ -29,7 +29,7 @@ export class UserManager extends BaseManager<string, User> {
     public resolveId(user: UserResolvable) {
         if (typeof user === 'string') return user;
         if (user instanceof User) return user.id;
-        return user.id;
+        return user?.id;
     }
 }
 
