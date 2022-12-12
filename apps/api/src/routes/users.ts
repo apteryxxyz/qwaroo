@@ -59,7 +59,7 @@ export default () => {
             const connection = await user.getConnection(connectionId);
             if (!connection)
                 throw new APIError(404, 'Connection was not found');
-            res.status(200).json({ success: true, ...connection });
+            res.status(200).json({ success: true, ...connection.toJSON() });
         })
     );
 
