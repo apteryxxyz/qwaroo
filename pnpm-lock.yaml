@@ -80,6 +80,7 @@ importers:
       fuzzysort: ^2.0.4
       passport: ^0.6.0
       passport-discord: ^0.1.4
+      passport-github2: ^0.1.12
       rate-limiter-flexible: ^2.4.1
       shuffle-seed: ^1.1.6
       tsup: ^6.5.0
@@ -100,6 +101,7 @@ importers:
       fuzzysort: 2.0.4
       passport: 0.6.0
       passport-discord: 0.1.4
+      passport-github2: 0.1.12
       rate-limiter-flexible: 2.4.1
       shuffle-seed: 1.1.6
       underscore: 1.13.6
@@ -5278,6 +5280,13 @@ packages:
 
   /passport-discord/0.1.4:
     resolution: {integrity: sha512-VJWPYqSOmh7SaCLw/C+k1ZqCzJnn2frrmQRx1YrcPJ3MQ+Oa31XclbbmqFICSvl8xv3Fqd6YWQ4H4p1MpIN9rA==}
+    dependencies:
+      passport-oauth2: 1.6.1
+    dev: false
+
+  /passport-github2/0.1.12:
+    resolution: {integrity: sha512-3nPUCc7ttF/3HSP/k9sAXjz3SkGv5Nki84I05kSQPo01Jqq1NzJACgMblCK0fGcv9pKCG/KXU3AJRDGLqHLoIw==}
+    engines: {node: '>= 0.8.0'}
     dependencies:
       passport-oauth2: 1.6.1
     dev: false

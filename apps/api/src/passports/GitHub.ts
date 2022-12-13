@@ -1,18 +1,18 @@
 import process from 'node:process';
 import { Connection, User, type UserDocument } from '@owenii/database';
 import passport from 'passport';
-import { Strategy as DiscordStrategy } from 'passport-discord';
 import type { VerifyCallback } from 'passport-oauth2';
+// No types
+const { Strategy } = require('passport-github2');
 
-export class DiscordPassport {
+export class GitHubPassport {
     public constructor() {
         passport.use(
-            new DiscordStrategy(
+            new Strategy(
                 {
-                    clientID: process.env['DISCORD_APPLICATION_ID']!,
-                    clientSecret: process.env['DISCORD_OAUTH2_SECRET']!,
-                    callbackURL: process.env['DISCORD_OAUTH2_CALLBACK_URL']!,
-                    scope: ['identify'],
+                    clientID: process.env['GITHUB_APPLICATION_ID']!,
+                    clientSecret: process.env['GITHUB_OAUTH2_SECRET']!,
+                    callbackURL: process.env['GITHUB_OAUTH2_CALLBACK_URL']!,
                 },
                 this._findOrCreate.bind(this)
             )
@@ -23,11 +23,11 @@ export class DiscordPassport {
     }
 
     public login() {
-        return passport.authenticate('discord', { session: false });
+        return passport.authenticate('github', { session: false });
     }
 
     public callback() {
-        return passport.authenticate('discord', {
+        return passport.authenticate('github', {
             failureRedirect: '/login',
             session: false,
         });
@@ -36,11 +36,13 @@ export class DiscordPassport {
     private async _findOrCreate(
         _accessToken: string,
         refreshToken: string,
-        profile: DiscordStrategy.Profile,
+        profile: Record<string, unknown>,
         done: VerifyCallback
     ) {
+        profile = profile['_json'] as Record<string, unknown>;
+
         const connection = await Connection.findOne({
-            accountId: profile.id,
+            accountId: String(profile['id']),
         }).exec();
 
         if (connection) {
@@ -55,15 +57,15 @@ export class DiscordPassport {
         }
 
         const newUser = new User({
-            displayName: profile.username,
-            avatarUrl: this._createUserAvatarUrl(profile),
+            displayName: profile['name'] ?? profile['login'],
+            avatarUrl: profile['avatar_url'],
         });
 
         const newConnection = new Connection({
             userId: newUser.id,
-            providerName: 'discord',
-            accountId: profile.id,
-            accountUsername: this._createUserTag(profile),
+            providerName: 'github',
+            accountId: String(profile['id']),
+            accountUsername: profile['login'],
             refreshToken,
         });
 
@@ -83,20 +85,5 @@ export class DiscordPassport {
         done: (err: Error | null, user?: UserDocument) => void
     ) {
         void User.findById(id, done);
-    }
-
-    private _createUserAvatarUrl(profile: DiscordStrategy.Profile) {
-        if (profile.avatar === null) {
-            const defaultAvatarNumber =
-                Number.parseInt(profile.discriminator, 10) % 5;
-            return `https://cdn.discordapp.com/embed/avatars/${defaultAvatarNumber}.png`;
-        } else {
-            const format = profile.avatar.startsWith('a_') ? 'gif' : 'png';
-            return `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.${format}`;
-        }
-    }
-
-    private _createUserTag(profile: DiscordStrategy.Profile) {
-        return `${profile.username}#${profile.discriminator}`;
     }
 }

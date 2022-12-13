@@ -5,12 +5,16 @@ import { Router } from 'express';
 import passport from 'passport';
 import { Authentication } from '#/handlers/Authentication';
 import { useMethods } from '#/middleware/useMethods';
-import { DiscordPassport } from '#/passports/DiscordPassport';
+import { DiscordPassport } from '#/passports/Discord';
+import { GitHubPassport } from '#/passports/GitHub';
 import { handle } from '#/utilities/routeHandler';
+
+// TODO: Combine these routes into a two single routes
 
 export default () => {
     const router = Router();
     const discord = new DiscordPassport();
+    const github = new GitHubPassport();
     passport.initialize();
 
     router.all(Routes.discordLogin(), useMethods(['GET']), discord.login());
@@ -22,6 +26,32 @@ export default () => {
         handle(async (req, res) => {
             if (!req.user) {
                 res.redirect('/auth/discord/login');
+                return;
+            }
+
+            const { id, revokeToken } = req.user;
+            const token = Authentication.createToken(id, revokeToken);
+
+            const redirectUrl = new URL(
+                '/auth/callback',
+                process.env['WEB_URL']
+            );
+            redirectUrl.searchParams.set('uid', id);
+            redirectUrl.searchParams.set('token', token);
+
+            res.redirect(redirectUrl.toString());
+        })
+    );
+
+    router.all(Routes.githubLogin(), useMethods(['GET']), github.login());
+
+    router.all(
+        Routes.githubCallback(),
+        useMethods(['GET']),
+        github.callback(),
+        handle(async (req, res) => {
+            if (!req.user) {
+                res.redirect('/auth/github/login');
                 return;
             }
 

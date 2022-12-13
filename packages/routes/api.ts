@@ -8,6 +8,14 @@ export const Routes = {
         return '/auth/discord/callback' as const;
     },
 
+    githubLogin() {
+        return '/auth/github/login' as const;
+    },
+
+    githubCallback() {
+        return '/auth/github/callback' as const;
+    },
+
     // Games
     categories() {
         return '/categories' as const;

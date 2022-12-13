@@ -23,6 +23,7 @@
         "fuzzysort": "^2.0.4",
         "passport": "^0.6.0",
         "passport-discord": "^0.1.4",
+        "passport-github2": "^0.1.12",
         "rate-limiter-flexible": "^2.4.1",
         "shuffle-seed": "^1.1.6",
         "underscore": "^1.13.6"
