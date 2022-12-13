@@ -1,16 +1,16 @@
 import { StatusCodes } from './StatusCodes';
 
 export class ServerError extends Error {
-    public readonly status: number;
+    public readonly status: keyof typeof StatusCodes;
     public readonly details?: string;
     public readonly headers?: Record<string, string>;
 
     public constructor(
-        code: number,
+        code: keyof typeof StatusCodes,
         details?: string,
         headers?: Record<string, string>
     ) {
-        super(StatusCodes[code as unknown as keyof typeof StatusCodes]);
+        super(StatusCodes[code]);
 
         this.status = code;
         this.details = details;

@@ -2,12 +2,11 @@ import type { ServerError } from './ServerError';
 import { StatusCodes } from './StatusCodes';
 
 export class ClientError extends Error {
-    public readonly status: number;
+    public readonly status: keyof typeof StatusCodes;
     public readonly details?: string;
-    public readonly headers?: Record<string, string>;
 
-    public constructor(code: number, details?: string) {
-        super(StatusCodes[code as unknown as keyof typeof StatusCodes]);
+    public constructor(code: keyof typeof StatusCodes, details?: string) {
+        super(StatusCodes[code]);
 
         this.status = code;
         this.details = details;
