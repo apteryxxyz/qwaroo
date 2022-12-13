@@ -1,4 +1,5 @@
-import { User } from '@owenii/database';
+import { User, type UserDocument } from '@owenii/database';
+import type { Pagination } from '@owenii/types';
 import { Validate, createRegExp } from '@owenii/validators';
 import { APIError } from '#/utilities/APIError';
 
@@ -44,6 +45,6 @@ export class Users extends null {
             pageCount,
             itemCount: total,
             items: users,
-        };
+        } as Pagination<UserDocument>;
     }
 }

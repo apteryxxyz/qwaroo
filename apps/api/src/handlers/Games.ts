@@ -1,4 +1,5 @@
-import { Game } from '@owenii/database';
+import { Game, type GameDocument } from '@owenii/database';
+import type { Pagination } from '@owenii/types';
 import { Validate, createRegExp } from '@owenii/validators';
 import { APIError } from '#/utilities/APIError';
 
@@ -59,6 +60,6 @@ export class Games extends null {
             pageCount,
             itemCount: total,
             items: users,
-        };
+        } as Pagination<GameDocument>;
     }
 }
