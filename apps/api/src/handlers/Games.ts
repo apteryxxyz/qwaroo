@@ -1,6 +1,8 @@
-import { Game } from '@owenii/database';
+import { Game, type GameDocument } from '@owenii/database';
 import { ServerError as Error } from '@owenii/errors';
+import { loadItems } from '@owenii/sources';
 import { Validate, createRegExp } from '@owenii/validators';
+import { shuffle } from 'shuffle-seed';
 
 export class Games extends null {
     /** Get a list of all the game categories. */
@@ -57,5 +59,27 @@ export class Games extends null {
             .exec();
 
         return [{ total, limit, skip }, games] as const;
+    }
+
+    /** Get a list of all the items within a game. */
+    public static async getGameItems(
+        game: GameDocument,
+        seed: string,
+        limit = 100,
+        skip = 0
+    ) {
+        if (typeof limit !== 'number' || Number.isNaN(limit))
+            throw new Error(422, 'Limit must be a number');
+        if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
+
+        if (typeof skip !== 'number' || Number.isNaN(skip))
+            throw new Error(422, 'Skip must be a number');
+        if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
+
+        const list = shuffle(loadItems(game.slug), seed);
+        const total = list.length;
+        const items = list.slice(skip, skip + limit);
+
+        return [{ total, seed, limit, skip }, items] as const;
     }
 }

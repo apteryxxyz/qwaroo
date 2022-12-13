@@ -21,6 +21,10 @@ export const Routes = {
         return `/games/${gameId}` as const;
     },
 
+    gameItems(gameId: string) {
+        return `/games/${gameId}/items` as const;
+    },
+
     // Users
     users() {
         return '/users' as const;
