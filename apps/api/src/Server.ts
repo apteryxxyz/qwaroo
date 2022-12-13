@@ -1,8 +1,8 @@
+import { ServerError as Error } from '@owenii/errors';
 import cors from 'cors';
 import type { Response } from 'express';
 import express from 'express';
 import { useRateLimiter } from './middleware/useRateLimiter';
-import { APIError } from './utilities/APIError';
 
 export class Server {
     public app: express.Application;
@@ -25,7 +25,7 @@ export class Server {
         this.app.use((_req, res) => {
             res.status(404).json({
                 success: false,
-                ...new APIError(404).toJSON(),
+                ...new Error(404).toJSON(),
             });
         });
 
@@ -33,7 +33,7 @@ export class Server {
             (error: Error, _req: unknown, res: Response, _next: unknown) => {
                 console.error(error);
                 const apiError =
-                    error instanceof APIError ? error : new APIError(500);
+                    error instanceof Error ? error : new Error(500);
                 res.status(apiError.status).json({
                     success: false,
                     ...apiError.toJSON(),

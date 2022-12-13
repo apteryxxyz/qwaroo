@@ -1,6 +1,6 @@
 import process from 'node:process';
 import { URLSearchParams } from 'node:url';
-import { APIError } from '#/utilities/APIError';
+import { ServerError as Error } from '@owenii/errors';
 import { handle } from '#/utilities/routeHandler';
 
 export function useCaptcha(methods: string[]) {
@@ -13,7 +13,7 @@ export function useCaptcha(methods: string[]) {
         const token = req.header('X-Captcha-Token');
         const remoteIp = req.header('X-Real-IP') ?? req.ip;
 
-        if (!token) throw new APIError(401, 'No captcha token was provided');
+        if (!token) throw new Error(401, 'No captcha token was provided');
         if (token === process.env['CAPTCHA_ALWAYS_PASS']) {
             next();
             return;
@@ -38,6 +38,6 @@ export function useCaptcha(methods: string[]) {
             return;
         }
 
-        throw new APIError(400, 'Captcha verification failed');
+        throw new Error(400, 'Captcha verification failed');
     });
 }

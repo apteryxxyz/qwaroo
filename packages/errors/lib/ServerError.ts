@@ -1,6 +1,6 @@
-import { STATUS_CODES } from 'node:http';
+import { StatusCodes } from './StatusCodes';
 
-export class APIError extends Error {
+export class ServerError extends Error {
     public readonly status: number;
     public readonly details?: string;
     public readonly headers?: Record<string, string>;
@@ -10,7 +10,7 @@ export class APIError extends Error {
         details?: string,
         headers?: Record<string, string>
     ) {
-        super(STATUS_CODES[code]);
+        super(StatusCodes[code as unknown as keyof typeof StatusCodes]);
 
         this.status = code;
         this.details = details;

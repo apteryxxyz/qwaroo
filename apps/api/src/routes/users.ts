@@ -1,10 +1,10 @@
+import { ServerError as Error } from '@owenii/errors';
 import { Routes } from '@owenii/routes/api';
 import { Router } from 'express';
 import { Users } from '#/handlers/Users';
 import { useMe, useMustBeMe } from '#/middleware/useMe';
 import { useMethods } from '#/middleware/useMethods';
 import { useToken } from '#/middleware/useToken';
-import { APIError } from '#/utilities/APIError';
 import { handle } from '#/utilities/routeHandler';
 
 export default () => {
@@ -57,8 +57,7 @@ export default () => {
             const user = await Users.getUser(req.params['userId']);
             const connectionId = String(req.params['connectionId'] ?? '');
             const connection = await user.getConnection(connectionId);
-            if (!connection)
-                throw new APIError(404, 'Connection was not found');
+            if (!connection) throw new Error(404, 'Connection was not found');
             res.status(200).json({ success: true, ...connection.toJSON() });
         })
     );

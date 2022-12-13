@@ -1,5 +1,5 @@
+import { ServerError as Error } from '@owenii/errors';
 import type { NextFunction, Request, Response } from 'express';
-import { APIError } from '#/utilities/APIError';
 
 /** A simple function to catch route errors. */
 export function handle(
@@ -13,8 +13,7 @@ export function handle(
         try {
             await fn(req, res, next);
         } catch (error) {
-            const apiError =
-                error instanceof APIError ? error : new APIError(500);
+            const apiError = error instanceof APIError ? error : new Error(500);
 
             if (apiError.status === 500) console.error(error);
 

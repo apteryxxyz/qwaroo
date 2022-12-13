@@ -1,5 +1,5 @@
+import { ServerError as Error } from '@owenii/errors';
 import parse from 'co-body';
-import { APIError } from '#/utilities/APIError';
 import { handle } from '#/utilities/routeHandler';
 
 const ContentType = {
@@ -24,7 +24,7 @@ export function useBody(type: 'json' | 'form', methods: string[]) {
         const isForm = contentType?.includes(ContentType[type]);
 
         if (!isJson && !isForm) {
-            throw new APIError(415);
+            throw new Error(415);
         } else {
             const parser = TypeParsers[type];
             await parser(req, { limit: '1mb' })
@@ -33,7 +33,7 @@ export function useBody(type: 'json' | 'form', methods: string[]) {
                     next();
                 })
                 .catch(() => {
-                    throw new APIError(400, 'Could not parse body');
+                    throw new Error(400, 'Could not parse body');
                 });
         }
     });

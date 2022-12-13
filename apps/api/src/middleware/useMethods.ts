@@ -1,4 +1,4 @@
-import { APIError } from '#/utilities/APIError';
+import { ServerError as Error } from '@owenii/errors';
 import { handle } from '#/utilities/routeHandler';
 
 export function useMethods(methods: string[]) {
@@ -8,6 +8,6 @@ export function useMethods(methods: string[]) {
             return;
         }
 
-        throw new APIError(405);
+        throw new Error(405);
     });
 }

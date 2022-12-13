@@ -1,6 +1,6 @@
 import type { UserDocument } from '@owenii/database';
+import { ServerError as Error } from '@owenii/errors';
 import { Authentication } from '#/handlers/Authentication';
-import { APIError } from '#/utilities/APIError';
 import { handle } from '#/utilities/routeHandler';
 
 export function useToken(
@@ -27,7 +27,7 @@ export function useToken(
                 return;
             }
 
-            throw new APIError(401, 'You must be logged in to do that');
+            throw new Error(401, 'You must be logged in to do that');
         }
 
         await Authentication.loginWithToken(authToken) //

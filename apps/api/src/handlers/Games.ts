@@ -1,7 +1,7 @@
 import { Game, type GameDocument } from '@owenii/database';
+import { ServerError as Error } from '@owenii/errors';
 import type { Pagination } from '@owenii/types';
 import { Validate, createRegExp } from '@owenii/validators';
-import { APIError } from '#/utilities/APIError';
 
 export class Games extends null {
     /** Get a list of all the game categories. */
@@ -14,10 +14,10 @@ export class Games extends null {
     /** Get a single game by its ID. */
     public static async getGameById(id: string) {
         const isValidId = Validate.ObjectId.test(id);
-        if (!isValidId) throw new APIError(422, 'Game ID is invalid');
+        if (!isValidId) throw new Error(422, 'Game ID is invalid');
 
         const game = await Game.findById(id).exec();
-        if (!game) throw new APIError(404, 'Game was not found');
+        if (!game) throw new Error(404, 'Game was not found');
 
         return game;
     }
@@ -25,10 +25,10 @@ export class Games extends null {
     /** Get a single game by its slug. */
     public static async getGameBySlug(slug: string) {
         const isValidSlug = Validate.Slug.test(slug);
-        if (!isValidSlug) throw new APIError(422, 'Game slug is invalid');
+        if (!isValidSlug) throw new Error(422, 'Game slug is invalid');
 
         const game = await Game.findOne({ slug }).exec();
-        if (!game) throw new APIError(404, 'Game was not found');
+        if (!game) throw new Error(404, 'Game was not found');
 
         return game;
     }
@@ -36,8 +36,8 @@ export class Games extends null {
     /** Get a list of games using pages. */
     public static async getPaginatedGames(term?: string, page = 1) {
         if (typeof page !== 'number' || Number.isNaN(page))
-            throw new APIError(422, 'Page must be a number');
-        if (page < 1) throw new APIError(422, 'Page must be greater than 0');
+            throw new Error(422, 'Page must be a number');
+        if (page < 1) throw new Error(422, 'Page must be greater than 0');
 
         const query = Game.find(
             term ? { title: createRegExp(term, false, 'i') } : {}

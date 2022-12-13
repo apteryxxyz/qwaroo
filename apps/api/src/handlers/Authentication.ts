@@ -1,6 +1,6 @@
 import { User } from '@owenii/database';
+import { ServerError as Error } from '@owenii/errors';
 import { Encryption } from './Encryption';
-import { APIError } from '#/utilities/APIError';
 
 export class Authentication extends null {
     /** Create a new unique auth token for a user. */
@@ -29,19 +29,18 @@ export class Authentication extends null {
     /** Login to the system with an auth token. */
     public static async loginWithToken(token: string) {
         const data = this.parseToken(token);
-        if (!data) throw new APIError(401, 'Authorisation token is invalid');
+        if (!data) throw new Error(401, 'Authorisation token is invalid');
 
         const isExpired = data.exp < Date.now();
-        if (isExpired)
-            throw new APIError(401, 'Authorisation token is expired');
+        if (isExpired) throw new Error(401, 'Authorisation token is expired');
 
         const user = await User.findById(data.uid).exec();
         if (!user)
-            throw new APIError(401, 'Authorisation token user was not found');
+            throw new Error(401, 'Authorisation token user was not found');
 
         const isRevoked = user.revokeToken !== data.rvt;
         if (isRevoked)
-            throw new APIError(401, 'Authorisation token has been revoked');
+            throw new Error(401, 'Authorisation token has been revoked');
 
         user.seenTimestamp = Date.now();
         return user.save();
