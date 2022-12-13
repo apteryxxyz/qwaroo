@@ -39,9 +39,9 @@ export default () => {
         useToken([], ['GET']),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
-            const game = Validate.Slug.test(gameId)
-                ? await Games.getGameBySlug(gameId)
-                : await Games.getGameById(gameId);
+            const game = Validate.ObjectId.test(gameId)
+                ? await Games.getGameById(gameId)
+                : await Games.getGameBySlug(gameId);
             res.status(200).json({ success: true, ...game.toJSON() });
         })
     );
@@ -52,9 +52,9 @@ export default () => {
         useToken([], ['GET']),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
-            const game = Validate.Slug.test(gameId)
-                ? await Games.getGameBySlug(gameId)
-                : await Games.getGameById(gameId);
+            const game = Validate.ObjectId.test(gameId)
+                ? await Games.getGameById(gameId)
+                : await Games.getGameBySlug(gameId);
 
             let seed = String(req.query['seed'] ?? '');
             const limit = Number(req.query['limit'] ?? 5);
