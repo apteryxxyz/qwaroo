@@ -15,9 +15,9 @@ export interface Game<T extends Game.Type = Game.Type> {
 
     // Updater
     /** ID of the source generatoer/updater to use. */
-    sourceId: string;
+    sourceId?: string;
     /** Options to pass to the generator. */
-    sourceOptions: Record<string, unknown>;
+    sourceOptions?: Record<string, unknown>;
 
     // Information
     /** What type of game this is. */

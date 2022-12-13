@@ -31,12 +31,10 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
         // Updater
         sourceId: {
             type: String,
-            required: true,
         },
 
         sourceOptions: {
             type: Schema.Types.Mixed,
-            required: true,
         },
 
         // Information
