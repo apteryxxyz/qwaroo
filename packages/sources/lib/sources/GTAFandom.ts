@@ -1,30 +1,34 @@
 import { Buffer } from 'node:buffer';
 import { URL } from 'node:url';
-import { Game } from '@owenii/types';
+import { Game, Source } from '@owenii/types';
 import * as cheerio from 'cheerio';
 import Jimp from 'jimp';
-import { Source } from './Source';
 
-export class GTAFandomHigherOrLower extends Source<
-    keyof GTAFandom.Options,
-    GTAFandom.Options,
-    Game.Item<Game.Type.HigherOrLower>
-> {
-    public for = Game.Type.HigherOrLower;
-    public slug = 'hol_gta-fandom';
-    public name = 'GTA Fandom';
-    public description =
-        'GTA Fandom is a wiki about the Grand Theft Auto series, that anyone can edit.';
+export interface Options {
+    fandomUrlWithTable: string;
+    shouldCheckImages: boolean;
+    tableSelector: string;
+    displaySelector: string;
+    valueSelector: string;
+    imageSourceSelector: string;
+    captionSelector: string;
+}
 
-    public props = {
+export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
+    for: Game.Type.HigherOrLower,
+    slug: 'hol.gta_fandom',
+    name: 'GTA Fandom',
+    description:
+        'GTA Fandom is a wiki about the Grand Theft Auto series, that anyone can edit.',
+    props: {
         fandomUrlWithTable: {
-            type: 'string',
+            type: Source.Prop.Type.URL,
             description: 'The URL of the GTA Fandom page with the table.',
             required: true,
         },
 
         shouldCheckImages: {
-            type: 'boolean',
+            type: Source.Prop.Type.Boolean,
             description:
                 'Whether to check if the images are available. This will slow down the process.',
             required: false,
@@ -32,7 +36,7 @@ export class GTAFandomHigherOrLower extends Source<
         },
 
         tableSelector: {
-            type: 'string',
+            type: Source.Prop.Type.String,
             description:
                 'The CSS selector of the table. This is useful if the table is not the first table on the page.',
             required: false,
@@ -40,7 +44,7 @@ export class GTAFandomHigherOrLower extends Source<
         },
 
         displaySelector: {
-            type: 'string',
+            type: Source.Prop.Type.String,
             description:
                 'The CSS selector of the name. This is the item name that will be displayed to the user.',
             required: false,
@@ -48,7 +52,7 @@ export class GTAFandomHigherOrLower extends Source<
         },
 
         valueSelector: {
-            type: 'string',
+            type: Source.Prop.Type.String,
             description:
                 'The CSS selector of the value. The found value will be parsed to a number and used for comparison.',
             required: false,
@@ -56,7 +60,7 @@ export class GTAFandomHigherOrLower extends Source<
         },
 
         imageSourceSelector: {
-            type: 'string',
+            type: Source.Prop.Type.String,
             description:
                 "The CSS selector of the image source. The found element's 'src' will be used as the items source image.",
             required: false,
@@ -64,86 +68,120 @@ export class GTAFandomHigherOrLower extends Source<
         },
 
         captionSelector: {
-            type: 'string',
+            type: Source.Prop.Type.String,
             description:
                 'The CSS selector of the caption. This is the text that will be displayed below the item name.',
             required: false,
         },
-    };
+    },
 
-    public async fetchItems() {
-        const $ = await this._fetchCheerio(this.options.fandomUrlWithTable);
+    prepareOptions(options) {
+        for (const [_key, prop] of Object.entries(this.props)) {
+            const key = _key as keyof Options;
+
+            if (!options[key] && prop.default) options[key] = prop.default;
+            if (prop.required && !options[key])
+                throw new Error(`Missing required option: ${key}`);
+
+            // TODO: Move these to a the validators package
+            if (prop.type === Source.Prop.Type.URL) {
+                try {
+                    const asStr = String(options[key] ?? '') || undefined;
+                    const asUrl = new URL(asStr!, 'https://gta.fandom.com');
+                    options[key] = asUrl.pathname + asUrl.search + asUrl.hash;
+                } catch {
+                    throw new Error(`Invalid URL: ${options[key]}`);
+                }
+            }
+
+            if (prop.type === Source.Prop.Type.String) {
+                options[key] = String(options[key] ?? '') || undefined;
+            }
+
+            if (prop.type === Source.Prop.Type.Number) {
+                const asNum = Number(options[key]);
+                if (Number.isNaN(asNum))
+                    throw new Error(`Invalid number: ${options[key]}`);
+                options[key] = asNum;
+            }
+
+            if (prop.type === Source.Prop.Type.Boolean) {
+                options[key] = Boolean(options[key]);
+            }
+        }
+
+        return options as Options;
+    },
+
+    async fetchItems(options) {
+        const $ = await _fetchCheerio(options.fandomUrlWithTable);
         const itemsPath = Array.from(
-            $(this.options.tableSelector as '.wikitable td li a')
+            $(options.tableSelector as '.wikitable td li a')
         ).map(el => el.attribs['href']);
 
         const items: Game.Item<Game.Type.HigherOrLower>[] = [];
 
         for (const path of itemsPath) {
-            const item = await this._fetchItem(path);
+            const item = await _fetchItem(path, options);
             if (item) items.push(item);
         }
 
         return items;
+    },
+};
+
+async function _fetchItem(
+    path: string,
+    options: Options
+): Promise<Game.Item<Game.Type.HigherOrLower> | null> {
+    console.log(`Fetching item from ${path}`);
+    const $ = await _fetchCheerio(path);
+
+    // eslint-disable-next-line max-statements-per-line
+    const [display, value, imageSource] = await Promise.all([
+        _getDisplay($, options.displaySelector),
+        _getValue($, options.valueSelector),
+        _getImageSource($, options.imageSourceSelector),
+    ]).catch(() => [null, null, null]);
+    if (!display || !value || !imageSource) return null;
+
+    let imageFrame: 'fill' | 'fit' = 'fill';
+    if (options.shouldCheckImages) {
+        const imageBlob = await fetch(imageSource).then(res => res.blob());
+        const imageBuffer = await imageBlob.arrayBuffer();
+        const jimpImage = await Jimp.read(Buffer.from(imageBuffer));
+        if (jimpImage.hasAlpha()) imageFrame = 'fit';
     }
 
-    private async _fetchCheerio(fandomUrl: string) {
-        const url = new URL(fandomUrl, 'https://gta.fandom.com');
-        const content = await fetch(url).then(res => res.text());
-        return cheerio.load(content);
-    }
-
-    private async _fetchItem(fandomUrl: string) {
-        console.log('Getting item from', fandomUrl);
-        const $ = await this._fetchCheerio(fandomUrl);
-
-        const display = this._getDisplay($);
-        const value = this._getValue($);
-        const imageSource = this._getImageSource($);
-        console.log(display, value, imageSource);
-        if (!display || !value || !imageSource) return null;
-
-        let imageFrame: 'fill' | 'fit' = 'fill';
-        if (this.options.shouldCheckImages) {
-            const imageBlob = await fetch(imageSource).then(res => res.blob());
-            const imageBuffer = await imageBlob.arrayBuffer();
-            const jimpImage = await Jimp.read(Buffer.from(imageBuffer));
-            if (jimpImage.hasAlpha()) imageFrame = 'fit';
-        }
-
-        return {
-            display,
-            value,
-            imageSource,
-            imageFrame,
-        } as Game.Item<Game.Type.HigherOrLower>;
-    }
-
-    private _getDisplay($: cheerio.CheerioAPI) {
-        return $(this.options.displaySelector).text();
-    }
-
-    private _getValue($: cheerio.CheerioAPI) {
-        const text = $(this.options.valueSelector).text();
-        const prices = /\$[\d,.]+/.exec(text);
-        if (!prices || prices.length === 0) return 0;
-        return Number(prices[0].replaceAll(/[$,]/g, ''));
-    }
-
-    private _getImageSource($: cheerio.CheerioAPI) {
-        const src = $(this.options.imageSourceSelector).attr('src');
-        return src ? src.split('/revision')[0] : undefined;
-    }
+    return { display, value, imageSource, imageFrame };
 }
 
-export namespace GTAFandom {
-    export interface Options {
-        fandomUrlWithTable: string;
-        shouldCheckImages: boolean;
-        tableSelector: string;
-        displaySelector: string;
-        valueSelector: string;
-        imageSourceSelector: string;
-        captionSelector?: string;
-    }
+async function _fetchCheerio(path: string) {
+    const url = new URL(path, 'https://gta.fandom.com');
+    const content = await fetch(url.href).then(res => res.text());
+    return cheerio.load(content);
+}
+
+function getElement($: cheerio.CheerioAPI, selector: string) {
+    const element = $(selector);
+    if (element.length === 0)
+        throw new Error(`No element found for selector: ${selector}`);
+    return element;
+}
+
+async function _getDisplay($: cheerio.CheerioAPI, selector: string) {
+    return getElement($, selector).text();
+}
+
+async function _getValue($: cheerio.CheerioAPI, selector: string) {
+    const text = getElement($, selector).text();
+    const numbers = /[\d,.]+/.exec(text);
+    if (!numbers || numbers.length === 0)
+        throw new Error(`No numbers found in value: ${text}`);
+    return Number(numbers[0].replaceAll(',', ''));
+}
+
+async function _getImageSource($: cheerio.CheerioAPI, selector: string) {
+    const src = getElement($, selector).attr('src');
+    return src ? src.split('/revision')[0] : undefined;
 }
