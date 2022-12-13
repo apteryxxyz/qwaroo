@@ -6,6 +6,7 @@ export * from './client/REST';
 export * from './managers/BaseManager';
 export * from './managers/ConnectionManager';
 export * from './managers/GameManager';
+export * from './managers/ItemManager';
 export * from './managers/UserManager';
 
 // Structures

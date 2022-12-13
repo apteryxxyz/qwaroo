@@ -1,6 +1,7 @@
-import type { Game as GameEntity } from '@owenii/types';
+import { Game as GameEntity } from '@owenii/types';
 import { Base } from './Base';
 import type { Client } from '#/client/Client';
+import { ItemManager } from '#/managers/ItemManager';
 
 export class Game extends Base {
     public slug!: string;
@@ -83,6 +84,12 @@ export class Game extends Base {
         return this.client.users.fetch(this.creatorId);
     }
 
+    public async fetchItems() {
+        const items = new ItemManager(this);
+        await items.fetchMore();
+        return items;
+    }
+
     public override toJSON() {
         return {
             id: this.id,
@@ -118,6 +125,14 @@ export class Game extends Base {
 }
 
 export namespace Game {
-    export type Entity = GameEntity;
+    export type Entity<T extends Entity.Type = Entity.Type> = GameEntity<T>;
+    export namespace Entity {
+        export const Type = GameEntity.Type;
+        export type Type = GameEntity.Type;
+        export type Data<T extends Type = Type> = GameEntity.Data<T>;
+        export type Item<T extends Type = Type> = GameEntity.Item<T>;
+        export type Save<T extends Type = Type> = GameEntity.Save<T>;
+    }
+
     export type Resolvable = Game | Entity | string;
 }

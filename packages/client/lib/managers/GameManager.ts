@@ -1,9 +1,9 @@
 import { Routes } from '@owenii/routes/api';
-import { BaseManager } from './BaseManager';
+import { MapManager } from './BaseManager';
 import { Game } from '#/structures/Game';
 
-export class GameManager extends BaseManager<string, Game> {
-    public add(data: Game.Entity) {
+export class GameManager extends MapManager<string, Game> {
+    private _add(data: Game.Entity) {
         const existing = this.get(data.id);
 
         if (existing) {
@@ -28,12 +28,12 @@ export class GameManager extends BaseManager<string, Game> {
     private async _fetchSingle(game: Game.Resolvable) {
         const id = Game.resolveId(game) ?? 'unknown';
         const data = await this.client.rest.get(Routes.game(id));
-        return this.add(data);
+        return this._add(data);
     }
 
     private async _fetchMany(options: GameManager.FetchManyOptions) {
         const data = await this.client.rest.get(Routes.games(), options);
-        return data.items.map((dt: Game.Entity) => this.add(dt));
+        return data.items.map((dt: Game.Entity) => this._add(dt));
     }
 }
 
