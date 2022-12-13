@@ -2,18 +2,18 @@ export namespace HigherOrLower {
     export const version = 0;
 
     export interface Data {
-        /** Text to appear on the left above the item value. */
-        aboveValue: string;
-        /** Text to appear on the left below the item value. */
-        belowValue: string;
-        /** Text to appear on the right above the action buttons. */
-        aboveActions: string;
-        /** Text to appear on the right below the action buttons. */
-        belowActions: string;
-        /** String for the Lower action button. */
-        lower: string;
-        /** String for the Higher action button. */
+        /** The verb, for example "costs". */
+        verb: string;
+        /** The noun, for example "dollars". */
+        noun: string;
+        /** String that appears before the value. */
+        prefix: string;
+        /** String that appears after the value. */
+        suffix: string;
+        /** String used to represent "Higher". */
         higher: string;
+        /** String used to represent "Lower". */
+        lower: string;
     }
 
     export interface Item {
