@@ -13,6 +13,7 @@ export interface GameModel extends Model<GameEntity, {}, GameMethods> {}
 
 const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
     {
+        // TODO: Default should be a slugified version of the title
         // Identifers
         slug: {
             type: String,
@@ -29,7 +30,7 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
         },
 
         // Updater
-        sourceId: {
+        sourceSlug: {
             type: String,
         },
 

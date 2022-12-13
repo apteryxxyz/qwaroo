@@ -16,7 +16,7 @@ export interface Options {
 
 export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
     for: Game.Type.HigherOrLower,
-    slug: 'hol.gta_fandom',
+    slug: 'hol.gta-fandom',
     name: 'GTA Fandom',
     description:
         'GTA Fandom is a wiki about the Grand Theft Auto series, that anyone can edit.',

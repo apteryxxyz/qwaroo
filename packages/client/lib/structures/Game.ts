@@ -5,7 +5,7 @@ import type { Client } from '#/client/Client';
 export class Game extends Base {
     public slug!: string;
     public creatorId!: string;
-    public sourceId?: string;
+    public sourceSlug?: string;
     public sourceOptions?: Record<string, unknown>;
     public type!: GameEntity.Type;
     public title!: string;
@@ -29,7 +29,7 @@ export class Game extends Base {
         if (data.id) this.id = data.id;
         if (data.slug) this.slug = data.slug;
         if (data.creatorId) this.creatorId = data.creatorId;
-        if (data.sourceId) this.sourceId = data.sourceId;
+        if (data.sourceSlug) this.sourceSlug = data.sourceSlug;
         if (data.sourceOptions) this.sourceOptions = data.sourceOptions;
         if (data.type) this.type = data.type;
         if (data.title) this.title = data.title;
@@ -88,7 +88,7 @@ export class Game extends Base {
             id: this.id,
             slug: this.slug,
             creatorId: this.creatorId,
-            sourceId: this.sourceId,
+            sourceSlug: this.sourceSlug,
             sourceOptions: this.sourceOptions,
             type: this.type,
             title: this.title,

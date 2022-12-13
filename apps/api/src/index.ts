@@ -25,10 +25,10 @@ async function main() {
 }
 
 async function ensureGameItems() {
-    const games = await Game.find({ sourceId: { $ne: null } });
+    const games = await Game.find({ sourceSlug: { $ne: null } });
     await Promise.all(
         games.map(gm =>
-            saveAndFetchItems(gm.slug, gm.sourceId!, gm.sourceOptions!)
+            saveAndFetchItems(gm.slug, gm.sourceSlug!, gm.sourceOptions!)
         )
     );
 }
