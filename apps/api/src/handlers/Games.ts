@@ -1,6 +1,5 @@
-import { Game, type GameDocument } from '@owenii/database';
+import { Game } from '@owenii/database';
 import { ServerError as Error } from '@owenii/errors';
-import type { Pagination } from '@owenii/types';
 import { Validate, createRegExp } from '@owenii/validators';
 
 export class Games extends null {
@@ -33,33 +32,30 @@ export class Games extends null {
         return game;
     }
 
-    /** Get a list of games using pages. */
-    public static async getPaginatedGames(term?: string, page = 1) {
-        if (typeof page !== 'number' || Number.isNaN(page))
-            throw new Error(422, 'Page must be a number');
-        if (page < 1) throw new Error(422, 'Page must be greater than 0');
+    /** Get a list of all games. */
+    public static async getGames(term?: string, limit = 100, skip = 0) {
+        if (term && term.length < 1)
+            throw new Error(422, 'Search term must be at least 1 character');
 
-        const query = Game.find(
-            term ? { title: createRegExp(term, false, 'i') } : {}
-        );
+        if (typeof limit !== 'number' || Number.isNaN(limit))
+            throw new Error(422, 'Limit must be a number');
+        if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
+
+        if (typeof skip !== 'number' || Number.isNaN(skip))
+            throw new Error(422, 'Skip must be a number');
+        if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
+
+        const query = term
+            ? Game.where('title').regex(createRegExp(term ?? '', false, 'i'))
+            : Game.find({});
+
         const total = await query.countDocuments().exec();
-        const users = await Game.find()
+        const games = await Game.find()
             .merge(query)
-            .skip((page - 1) * 20)
-            .limit(20)
+            .limit(limit)
+            .skip(skip)
             .exec();
 
-        const pageCount = Math.ceil(total / 20);
-        const previousPage = page > 1 ? page - 1 : null;
-        const nextPage = page < pageCount ? page + 1 : null;
-
-        return {
-            previousPage,
-            currentPage: page,
-            nextPage,
-            pageCount,
-            itemCount: total,
-            items: users,
-        } as Pagination<GameDocument>;
+        return [{ total, limit, skip }, games] as const;
     }
 }

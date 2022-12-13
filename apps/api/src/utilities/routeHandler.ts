@@ -13,7 +13,7 @@ export function handle(
         try {
             await fn(req, res, next);
         } catch (error) {
-            const apiError = error instanceof APIError ? error : new Error(500);
+            const apiError = error instanceof Error ? error : new Error(500);
 
             if (apiError.status === 500) console.error(error);
 

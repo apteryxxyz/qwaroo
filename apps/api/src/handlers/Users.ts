@@ -1,6 +1,5 @@
-import { User, type UserDocument } from '@owenii/database';
+import { User } from '@owenii/database';
 import { ServerError as Error } from '@owenii/errors';
-import type { Pagination } from '@owenii/types';
 import { Validate, createRegExp } from '@owenii/validators';
 
 export class Users extends null {
@@ -15,36 +14,30 @@ export class Users extends null {
         return user;
     }
 
-    /** Get a list of users using pages. */
-    public static async getPaginatedUsers(term: string, page = 1) {
+    /** Get a list of all users. */
+    public static async getUsers(term: string, limit = 100, skip = 0) {
         if (!term) throw new Error(422, 'Search term is required');
         if (term.length < 1)
             throw new Error(422, 'Search term must be at least 1 character');
 
-        if (typeof page !== 'number' || Number.isNaN(page))
-            throw new Error(422, 'Page must be a number');
-        if (page < 1) throw new Error(422, 'Page must be greater than 0');
+        if (typeof limit !== 'number' || Number.isNaN(limit))
+            throw new Error(422, 'Limit must be a number');
+        if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
+
+        if (typeof skip !== 'number' || Number.isNaN(skip))
+            throw new Error(422, 'Skip must be a number');
+        if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
 
         const displayName = createRegExp(term, false, 'i');
-        const query = User.find({ displayName });
+        const query = User.where('displayName').regex(displayName);
+
         const total = await query.countDocuments().exec();
         const users = await User.find()
             .merge(query)
-            .skip((page - 1) * 20)
-            .limit(20)
+            .limit(limit)
+            .skip(skip)
             .exec();
 
-        const pageCount = Math.ceil(total / 20);
-        const previousPage = page > 1 ? page - 1 : null;
-        const nextPage = page < pageCount ? page + 1 : null;
-
-        return {
-            previousPage,
-            currentPage: page,
-            nextPage,
-            pageCount,
-            itemCount: total,
-            items: users,
-        } as Pagination<UserDocument>;
+        return [{ total, limit, skip }, users] as const;
     }
 }
