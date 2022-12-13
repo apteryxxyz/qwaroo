@@ -1,22 +1,25 @@
-import { REST, type RESTOptions } from './REST';
+import { REST } from './REST';
+import { GameManager } from '#/managers/GameManager';
 import { UserManager } from '#/managers/UserManager';
 import { User } from '#/structures/User';
-
-interface ClientOptions extends RESTOptions {}
 
 export class Client<Ready extends boolean = boolean> {
     public rest: REST;
     public id!: Ready extends true ? string : undefined;
-    public users: UserManager;
 
-    public constructor(options: ClientOptions) {
+    public users: UserManager;
+    public games: GameManager;
+
+    public constructor(options: Client.Options) {
         this.rest = new REST(options);
+
         this.users = new UserManager(this);
+        this.games = new GameManager(this);
     }
 
     public get me(): Ready extends true ? User : undefined {
         // @ts-expect-error 2322
-        return this.users.get(this.id ?? '');
+        return this.id && this.users.get(this.id);
     }
 
     public isLoggedIn(): this is Client<true> {
@@ -37,8 +40,11 @@ export class Client<Ready extends boolean = boolean> {
 
     public async logout() {
         this.rest.setToken(undefined);
-        this.users.clear();
         // @ts-expect-error 2322
         this.id = undefined;
     }
+}
+
+export namespace Client {
+    export interface Options extends REST.Options {}
 }

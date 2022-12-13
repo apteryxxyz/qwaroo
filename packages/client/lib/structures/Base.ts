@@ -24,6 +24,10 @@ export class Base {
         return clone;
     }
 
+    public equals(other: Base | { id: string }) {
+        return other.id === this.id;
+    }
+
     public toJSON() {
         return { id: this.id };
     }

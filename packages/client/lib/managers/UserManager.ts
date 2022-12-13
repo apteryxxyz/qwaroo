@@ -16,21 +16,32 @@ export class UserManager extends BaseManager<string, User> {
         return entry;
     }
 
-    public async fetch(user: UserResolvable) {
-        const id = this.resolveId(user);
+    public fetch(options: User.Resolvable): Promise<User>;
+    public fetch(options: UserManager.FetchManyOptions): Promise<User[]>;
+    public async fetch(
+        options: User.Resolvable | UserManager.FetchManyOptions
+    ) {
+        if (User.isResolvable(options)) return this._fetchSingle(options);
+        else return this._fetchMany(options);
+    }
+
+    private async _fetchSingle(user: User.Resolvable) {
+        const id = User.resolveId(user) ?? 'unknown';
         const data = await this.client.rest.get(Routes.user(id));
         return this.add(data);
     }
 
-    public resolve(user: UserResolvable) {
-        return this.get(this.resolveId(user));
-    }
-
-    public resolveId(user: UserResolvable) {
-        if (typeof user === 'string') return user;
-        if (user instanceof User) return user.id;
-        return user?.id;
+    private async _fetchMany(options: UserManager.FetchManyOptions) {
+        const data = await this.client.rest.get(Routes.users(), options);
+        const items = data.items.map((dt: User.Entity) => this.add(dt));
+        return items as User[];
     }
 }
 
-export type UserResolvable = User | User.Entity | string;
+export namespace UserManager {
+    export interface FetchManyOptions {
+        term: string;
+        limit?: number;
+        skip?: number;
+    }
+}

@@ -9,17 +9,15 @@ export class User extends Base {
     public joinedTimestamp!: number;
     public seenTimestamp!: number;
 
-    public connections = new ConnectionManager(this);
-
     public constructor(
         client: Client,
-        data: Partial<UserEntity> & { id: string }
+        data: Partial<User.Entity> & { id: string }
     ) {
         super(client, data);
         this._patch(data);
     }
 
-    public override _patch(data: Partial<UserEntity> & { id: string }) {
+    public override _patch(data: Partial<User.Entity> & { id: string }) {
         if (data.id) this.id = data.id;
         if (data.displayName) this.displayName = data.displayName;
         if (data.avatarUrl) this.avatarUrl = data.avatarUrl;
@@ -41,20 +39,24 @@ export class User extends Base {
         return new Date(this.seenTimestamp);
     }
 
-    public equals(user: User | UserEntity) {
+    public override equals(other: User | User.Entity) {
         return (
-            user.id === this.id &&
-            user.displayName === this.displayName &&
-            user.avatarUrl === this.avatarUrl &&
-            user.joinedTimestamp === this.joinedTimestamp &&
-            user.seenTimestamp === this.seenTimestamp
+            other.id === this.id &&
+            other.displayName === this.displayName &&
+            other.avatarUrl === this.avatarUrl &&
+            other.joinedTimestamp === this.joinedTimestamp &&
+            other.seenTimestamp === this.seenTimestamp
         );
     }
 
     public async fetch() {
-        await this.client.users.fetch(this.id);
-        await this.connections.fetch();
-        return this;
+        return this.client.users.fetch(this.id);
+    }
+
+    public async fetchConnections() {
+        const connections = new ConnectionManager(this);
+        await connections.fetch();
+        return connections;
     }
 
     public override toJSON() {
@@ -66,12 +68,23 @@ export class User extends Base {
             seenTimestamp: this.seenTimestamp,
         };
     }
+
+    public static isResolvable(value: unknown): value is User.Resolvable {
+        return (
+            typeof value === 'string' ||
+            value instanceof User ||
+            Reflect.has(value ?? {}, 'id')
+        );
+    }
+
+    public static resolveId(value: unknown) {
+        if (User.isResolvable(value))
+            return typeof value === 'string' ? value : value.id;
+        return null;
+    }
 }
 
 export namespace User {
     export type Entity = UserEntity;
+    export type Resolvable = User | Entity | string;
 }
-
-/*
-var id = '6394aafbf92ba0f9dde98a04', token = '8a11178bd8a306b17da44d992f2e036a-ba1c54acac04b1bea7166d9e63fe9dd0c8eed424985fd7396c9b136ba38638b461139932ddc5648d2dbcb380fa7365fcd00cfe81044b64ed495055d507575c4c9f57fa54726f6df6e373c4e96dff6b7f5fc985ede547aae39de228a2eb5d5d0e', url = 'http://localhost:3001';
-*/

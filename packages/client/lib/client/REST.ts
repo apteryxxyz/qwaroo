@@ -1,46 +1,53 @@
-export interface RESTOptions {
-    url: string;
-}
+import { ClientError as Error } from '@owenii/errors';
 
 export class REST {
-    public url: URL;
-    public token?: string;
+    public apiHost: string | URL;
+    public apiToken?: string;
 
-    public constructor(options: RESTOptions) {
-        this.url = new URL(options.url);
+    public constructor(options: REST.Options) {
+        this.apiHost = new URL('', options.apiHost);
     }
 
     public setToken(token?: string) {
-        this.token = token;
+        this.apiToken = token;
         return this;
     }
 
-    public get(path: string) {
-        return this.request(path, 'GET');
+    public get(path: string, query = {}) {
+        return this._request(path, 'GET', query);
     }
 
-    public put(path: string, body: unknown) {
-        return this.request(path, 'PUT', body);
+    public post(path: string, query = {}, body = {}) {
+        return this._request(path, 'POST', query, body);
     }
 
-    public post(path: string, body: unknown) {
-        return this.request(path, 'POST', body);
+    public put(path: string, query = {}, body = {}) {
+        return this._request(path, 'PUT', query, body);
     }
 
-    public patch(path: string, body: unknown) {
-        return this.request(path, 'PATCH', body);
+    public patch(path: string, query = {}, body = {}) {
+        return this._request(path, 'PATCH', query, body);
     }
 
-    public delete(path: string) {
-        return this.request(path, 'DELETE');
+    public delete(path: string, query = {}) {
+        return this._request(path, 'DELETE', query);
     }
 
-    public async request(path: string, method: string, body?: unknown) {
-        const url = new URL(path, this.url);
+    private async _request(
+        path: string,
+        method: string,
+        query?: Record<string, unknown>,
+        body?: Record<string, unknown>
+    ) {
+        const url = new URL(path, this.apiHost);
+        if (query)
+            for (const [key, value] of Object.entries(query))
+                url.searchParams.set(key, String(value ?? ''));
+
         const response = await fetch(url, {
             method,
             headers: {
-                Authorization: this.token ?? '',
+                Authorization: this.apiToken ?? '',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(body),
@@ -48,6 +55,12 @@ export class REST {
 
         const data = await response.json();
         if (response.ok) return data;
-        throw new Error(data.details ?? data.message);
+        throw Error.fromServer(data);
+    }
+}
+
+export namespace REST {
+    export interface Options {
+        apiHost: string | URL;
     }
 }

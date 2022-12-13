@@ -24,29 +24,23 @@ export class ConnectionManager extends BaseManager<string, Connection> {
         return entry;
     }
 
-    public async fetch(connection?: ConnectionResolvable) {
-        const id = this.resolveId(connection ?? '');
+    public fetch(options: Connection.Resolvable): Promise<Connection>;
+    public fetch(): Promise<Connection[]>;
+    public fetch(options?: Connection.Resolvable) {
+        if (Connection.isResolvable(options)) return this._fetchSingle(options);
+        else return this._fetchMany();
+    }
 
-        if (id) {
-            const path = Routes.userConnection(this.user.id, id);
-            const data = await this.client.rest.get(path);
-            return this.add(data);
-        }
+    private async _fetchSingle(connection: Connection.Resolvable) {
+        const id = Connection.resolveId(connection) ?? 'unknown';
+        const path = Routes.userConnection(this.user.id, id);
+        const data = await this.client.rest.get(path);
+        return this.add(data);
+    }
 
+    private async _fetchMany() {
         const path = Routes.userConnections(this.user.id);
         const data = await this.client.rest.get(path);
         return data.items.map((dt: Connection.Entity) => this.add(dt));
     }
-
-    public resolve(connection: ConnectionResolvable) {
-        return this.get(this.resolveId(connection));
-    }
-
-    public resolveId(connection: ConnectionResolvable) {
-        if (typeof connection === 'string') return connection;
-        if (connection instanceof Connection) return connection.id;
-        return connection?.id;
-    }
 }
-
-export type ConnectionResolvable = Connection | Connection.Entity | string;
