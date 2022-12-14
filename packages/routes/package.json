@@ -8,8 +8,8 @@
         }
     },
     "scripts": {
-        "lint": "eslint --ext .js,.ts lib",
-        "format": "prettier --write \"lib/**/*.{js,ts}\" && npm run lint -- --fix",
+        "lint": "eslint --ext .js,.ts",
+        "format": "prettier --write \"**/*.{js,ts}\" && npm run lint -- --fix",
         "build": "tsc"
     },
     "dependencies": {
