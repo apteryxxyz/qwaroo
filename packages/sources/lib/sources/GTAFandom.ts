@@ -16,12 +16,18 @@ export interface Options {
     captionSelector: string;
 }
 
-export const source: Source<keyof Options, Game.Type.HigherOrLower> = {
+export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
     for: Game.Type.HigherOrLower,
     slug: 'hol.gta-fandom',
     name: 'GTA Fandom',
     description:
-        'GTA Fandom is a wiki about the Grand Theft Auto series, that anyone can edit.',
+        'Scrap data from the GTA Fandom page.\n' +
+        `This source will find the first table on the page, then extract
+        each of the items URLs from the page. It will then fetch each of
+        the items and extract the name, value, image and caption. The
+        value will be parsed to a number and used for comparison.
+        `.replaceAll(/\s+/g, ' '),
+
     props: {
         fandomUrlWithTable: {
             type: Source.Prop.Type.URL,
@@ -77,9 +83,11 @@ export const source: Source<keyof Options, Game.Type.HigherOrLower> = {
         },
     },
 
-    async fetchItems(_options) {
-        const options = prepareOptions<Options>(this.props, _options);
+    prepareOptions(options) {
+        return prepareOptions(this.props, options);
+    },
 
+    async fetchItems(options) {
         const $ = await _fetchCheerio(options.fandomUrlWithTable);
         const itemsPath = Array.from(
             $(options.tableSelector as '.wikitable td li a')

@@ -23,7 +23,7 @@ function _validateValue(
     value: unknown,
     options: ValidateOptions
 ) {
-    if (!value && options.default) return options.default;
+    if (!value && options.default !== undefined) return options.default;
     if (!value && options.required) throw _error(prop, String(options.type));
     return value;
 }

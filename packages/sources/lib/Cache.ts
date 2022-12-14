@@ -1,5 +1,5 @@
 import type { Game } from '@owenii/types';
-import { sources } from './sources';
+import sources from './sources';
 
 export async function saveAndFetchItems<
     S extends keyof typeof sources = keyof typeof sources
@@ -16,7 +16,11 @@ export async function saveAndFetchItems<
     if (existsSync(path)) return loadItems(gameSlug);
 
     const source = sources[sourceSlug];
-    const items = await source.fetchItems(sourceOptions);
+    if (!source) throw new Error(`Source "${sourceSlug}" not found.`);
+
+    const options = source.prepareOptions(sourceOptions);
+    const fetcher = Reflect.get(source, 'fetchItems') as Function;
+    const items = await fetcher.bind(source)(options);
 
     const data = JSON.stringify(items, null, 4);
     writeFileSync(path, data, 'utf8');
