@@ -2,7 +2,6 @@ import type { Game } from '@owenii/types';
 
 export interface Source<
     K extends string | number | symbol,
-    O extends {} = Record<K, unknown>,
     F extends Game.Type = Game.Type
 > {
     for: F;
@@ -11,33 +10,23 @@ export interface Source<
     description: string;
     props: Record<K, Source.Prop>;
 
-    prepareOptions(options: Record<K, unknown>): O;
-    fetchItems(options: O): Promise<Game.Item<F>[]>;
+    fetchItems(options: Record<K, unknown>): Promise<Game.Item<F>[]>;
 }
 
 export namespace Source {
     export interface Prop<T extends Prop.Type = Prop.Type> {
-        type: T;
+        type: T | [T];
         description: string;
         required: boolean;
-        default?: T extends Prop.Type.String | Prop.Type.URL
-            ? string
-            : T extends Prop.Type.Number
-            ? number
-            : T extends Prop.Type.Boolean
-            ? boolean
-            : never;
+        default?: unknown;
     }
 
     export namespace Prop {
         export enum Type {
-            String,
-            Number,
-            Boolean,
-            URL,
-            StringArray,
-            NumberArray,
-            URLArray,
+            String = 'string',
+            Number = 'number',
+            Boolean = 'boolean',
+            URL = 'url',
         }
     }
 }

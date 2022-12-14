@@ -4,6 +4,7 @@ import { Game } from '@owenii/types';
 import * as cheerio from 'cheerio';
 import Jimp from 'jimp';
 import { Source } from '#/Source';
+import { prepareOptions } from '#/validators/prepareOptions';
 
 export interface Options {
     fandomUrlWithTable: string;
@@ -15,7 +16,7 @@ export interface Options {
     captionSelector: string;
 }
 
-export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
+export const source: Source<keyof Options, Game.Type.HigherOrLower> = {
     for: Game.Type.HigherOrLower,
     slug: 'hol.gta-fandom',
     name: 'GTA Fandom',
@@ -76,45 +77,9 @@ export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
         },
     },
 
-    prepareOptions(options) {
-        for (const [_key, prop] of Object.entries(this.props)) {
-            const key = _key as keyof Options;
+    async fetchItems(_options) {
+        const options = prepareOptions<Options>(this.props, _options);
 
-            if (!options[key] && prop.default) options[key] = prop.default;
-            if (prop.required && !options[key])
-                throw new Error(`Missing required option: ${key}`);
-
-            // TODO: Move these to a the validators package
-            if (prop.type === Source.Prop.Type.URL) {
-                try {
-                    const asStr = String(options[key] ?? '') || undefined;
-                    const asUrl = new URL(asStr!, 'https://gta.fandom.com');
-                    options[key] = asUrl.pathname + asUrl.search + asUrl.hash;
-                } catch {
-                    throw new Error(`Invalid URL: ${options[key]}`);
-                }
-            }
-
-            if (prop.type === Source.Prop.Type.String) {
-                options[key] = String(options[key] ?? '') || undefined;
-            }
-
-            if (prop.type === Source.Prop.Type.Number) {
-                const asNum = Number(options[key]);
-                if (Number.isNaN(asNum))
-                    throw new Error(`Invalid number: ${options[key]}`);
-                options[key] = asNum;
-            }
-
-            if (prop.type === Source.Prop.Type.Boolean) {
-                options[key] = Boolean(options[key]);
-            }
-        }
-
-        return options as Options;
-    },
-
-    async fetchItems(options) {
         const $ = await _fetchCheerio(options.fandomUrlWithTable);
         const itemsPath = Array.from(
             $(options.tableSelector as '.wikitable td li a')
