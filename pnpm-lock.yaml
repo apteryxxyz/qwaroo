@@ -242,10 +242,12 @@ importers:
       jimp: ^0.16.2
       tsup: ^6.5.0
       typescript: ^4.9.3
+      ytpl: github:apteryxxyz/node-ytpl
     dependencies:
       '@owenii/types': link:../types
       cheerio: 1.0.0-rc.12
       jimp: 0.16.2
+      ytpl: github.com/apteryxxyz/node-ytpl/f0b1803211df87cbaf11f1dca861636a1b97e52f
     devDependencies:
       '@types/node': 18.11.10
       tsup: 6.5.0_typescript@4.9.4
@@ -4846,6 +4848,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /miniget/4.2.2:
+    resolution: {integrity: sha512-a7voNL1N5lDMxvTMExOkg+Fq89jM2vY8pAi9ZEWzZtfNmdfP6RXkvUtFnCAXoCv2T9k1v/fUJVaAEuepGcvLYA==}
+    engines: {node: '>=12'}
+    dev: false
+
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -6647,3 +6654,12 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  github.com/apteryxxyz/node-ytpl/f0b1803211df87cbaf11f1dca861636a1b97e52f:
+    resolution: {tarball: https://codeload.github.com/apteryxxyz/node-ytpl/tar.gz/f0b1803211df87cbaf11f1dca861636a1b97e52f}
+    name: ytpl
+    version: 0.0.0-development
+    engines: {node: '>=8'}
+    dependencies:
+      miniget: 4.2.2
+    dev: false
