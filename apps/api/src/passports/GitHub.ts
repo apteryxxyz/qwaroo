@@ -12,7 +12,8 @@ export class GitHubPassport {
                 {
                     clientID: process.env['GITHUB_APPLICATION_ID']!,
                     clientSecret: process.env['GITHUB_OAUTH2_SECRET']!,
-                    callbackURL: process.env['GITHUB_OAUTH2_CALLBACK_URL']!,
+                    callbackURL:
+                        process.env['API_URL']! + '/auth/github/callback',
                 },
                 this._findOrCreate.bind(this)
             )

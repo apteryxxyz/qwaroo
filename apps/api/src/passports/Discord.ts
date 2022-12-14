@@ -11,7 +11,8 @@ export class DiscordPassport {
                 {
                     clientID: process.env['DISCORD_APPLICATION_ID']!,
                     clientSecret: process.env['DISCORD_OAUTH2_SECRET']!,
-                    callbackURL: process.env['DISCORD_OAUTH2_CALLBACK_URL']!,
+                    callbackURL:
+                        process.env['API_URL']! + '/auth/discord/callback',
                     scope: ['identify'],
                 },
                 this._findOrCreate.bind(this)
