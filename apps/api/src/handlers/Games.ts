@@ -34,6 +34,9 @@ export class Games extends null {
         return game;
     }
 
+    // TODO: Add ways to sort the games on the server.
+    // IDEA: Sort by creation, sort by updated at (default)
+    // IDEA: Filter by category and game type
     /** Get a list of all games. */
     public static async getGames(term?: string, limit = 100, skip = 0) {
         if (term && term.length < 1)
