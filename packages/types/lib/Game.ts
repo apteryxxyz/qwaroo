@@ -44,7 +44,7 @@ export interface Game<T extends Game.Type = Game.Type> {
 
 export namespace Game {
     export enum Type {
-        HigherOrLower = 1,
+        HigherOrLower = 'higher-or-lower',
     }
 
     export type Data<T extends Type = Type> = T extends Type.HigherOrLower

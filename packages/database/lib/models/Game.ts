@@ -1,4 +1,4 @@
-import type { Game as GameEntity } from '@owenii/types';
+import { Game as GameEntity } from '@owenii/types';
 import { Validate } from '@owenii/validators';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
@@ -40,7 +40,8 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
 
         // Information
         type: {
-            type: Number,
+            type: String,
+            enum: GameEntity.Type,
             required: true,
         },
 
