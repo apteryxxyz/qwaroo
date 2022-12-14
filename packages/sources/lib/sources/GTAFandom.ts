@@ -1,8 +1,9 @@
 import { Buffer } from 'node:buffer';
 import { URL } from 'node:url';
-import { Game, Source } from '@owenii/types';
+import { Game } from '@owenii/types';
 import * as cheerio from 'cheerio';
 import Jimp from 'jimp';
+import { Source } from '#/Source';
 
 export interface Options {
     fandomUrlWithTable: string;

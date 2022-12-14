@@ -1,4 +1,4 @@
-import type { Game } from './Game';
+import type { Game } from '@owenii/types';
 
 export interface Source<
     K extends string | number | symbol,
@@ -31,10 +31,13 @@ export namespace Source {
 
     export namespace Prop {
         export enum Type {
-            URL,
             String,
             Number,
             Boolean,
+            URL,
+            StringArray,
+            NumberArray,
+            URLArray,
         }
     }
 }
