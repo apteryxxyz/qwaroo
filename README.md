@@ -2,7 +2,7 @@
 
 Hello to whoever may be reading this, welcome to what is currently code named **Owenii**.
 
-Owenii is a site containing a bunch of guessing, statistics and fun browser baed games.
+Owenii is a site containing a bunch of guessing, statistics and fun browser based games.
 
 ## Repository Structure
 
@@ -22,16 +22,14 @@ The repository is structured as follows:
 
 ### Packages
 
+- [`packages/common`](packages/common) - Utilities and functions used throughout the API and clients.
+
 - [`packages/client`](packages/client) - A client used to handle making requests to the API from any form of client, be it web or mobile.
 
 - [`packages/database`](packages/database) - Mongoose database models and connectability functionality.
-
-- [`packages/errors`](packages/errors) - Custom errors used throughout the API and clients.
 
 - [`packages/routes`](packages/routes) - Express routes that point to endpoints on the API.
 
 - [`packages/sources`](packages/sources) - Generators for automatically generating item lists for games.
 
 - [`packages/types`](packages/types) - TypeScript types used throughout the API and clients.
-
-- [`packages/validators`](packages/validators) - Utilities used for validating data.
