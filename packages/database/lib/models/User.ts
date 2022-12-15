@@ -3,6 +3,8 @@ import type { User as UserEntity } from '@owenii/types';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
 import { Connection, type ConnectionDocument } from './Connection';
+import { Game, type GameDocument } from './Game';
+import { Score, type ScoreDocument } from './Score';
 
 export interface UserDocument extends UserEntity, Document {
     id: string;
@@ -11,6 +13,10 @@ export interface UserDocument extends UserEntity, Document {
 export interface UserMethods {
     getConnections(): Promise<ConnectionDocument[]>;
     getConnection(id: string): Promise<ConnectionDocument | null>;
+    getGames(): Promise<GameDocument[]>;
+    getGame(id: string): Promise<GameDocument | null>;
+    getScores(): Promise<ScoreDocument[]>;
+    getScore(id: string): Promise<ScoreDocument | null>;
 }
 
 export interface UserModel extends Model<UserEntity, {}, UserMethods> {}
@@ -73,5 +79,17 @@ UserSchema.method(
         return Connection.findById(id).exec();
     }
 );
+
+UserSchema.method('getGames', function getGames(this: UserDocument) {
+    return Game.find({ userId: this.id }).exec();
+});
+
+UserSchema.method('getGame', function getGame(this: UserDocument, id: string) {
+    return Game.findById(id).exec();
+});
+
+UserSchema.method('getScores', function getScores(this: UserDocument) {
+    return Score.find({ userId: this.id }).exec();
+});
 
 export const User = model<UserEntity, UserModel>('User', UserSchema);

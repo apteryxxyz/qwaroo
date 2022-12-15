@@ -2,12 +2,17 @@ import { Validate, createSlugWithTransliteration } from '@owenii/common';
 import { Game as GameEntity } from '@owenii/types';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
+import { Score, type ScoreDocument } from './Score';
+import { User, type UserDocument } from './User';
 
 export interface GameDocument extends GameEntity, Document {
     id: string;
 }
 
-export interface GameMethods {}
+export interface GameMethods {
+    getCreator(): Promise<UserDocument>;
+    getScores(): Promise<ScoreDocument[]>;
+}
 
 export interface GameModel extends Model<GameEntity, {}, GameMethods> {}
 
@@ -106,5 +111,13 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
         },
     }
 );
+
+GameSchema.method('getCreator', function getCreator(this: GameDocument) {
+    return User.findById(this.creatorId).exec();
+});
+
+GameSchema.method('getScores', function getScores(this: GameDocument) {
+    return Score.find({ gameId: this.id }).exec();
+});
 
 export const Game = model<GameEntity, GameModel>('Game', GameSchema);
