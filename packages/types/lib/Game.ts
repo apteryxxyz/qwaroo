@@ -3,23 +3,19 @@ import type { HigherOrLower } from './modes/HigherOrLower';
 export * from './modes/HigherOrLower';
 
 export interface Game<T extends Game.Type = Game.Type> {
-    // Identifers
     /** The unique identifier for this game. */
     id: string;
-    /** Short slug, intended to be easier to type. */
+    /** Short unique slug, intended to be easier to type. */
     slug: string;
 
-    // Creator
     /** ID of the user that created this game. */
     creatorId: string;
 
-    // Updater
-    /** ID of the source generatoer/updater to use. */
+    /** ID of the source generator/updater to use. */
     sourceSlug?: string;
     /** Options to pass to the generator. */
     sourceOptions?: Record<string, unknown>;
 
-    // Information
     /** What type of game this is. */
     type: T;
     /** A title for this game. */
@@ -28,14 +24,13 @@ export interface Game<T extends Game.Type = Game.Type> {
     shortDescription: string;
     /** A long description for this game. */
     longDescription: string;
-    /** URL to an image. */
+    /** URL to a thumbnail image. */
     thumbnailUrl: string;
     /** The categories this game would belong to. */
     categories: string[];
     /** Data for the game, such as strings. */
     data: Game.Data<T>;
 
-    // Timestamps
     /** When this game was created. */
     createdTimestamp: number;
     /** When this game was last updated. */
@@ -43,18 +38,22 @@ export interface Game<T extends Game.Type = Game.Type> {
 }
 
 export namespace Game {
+    /** Game type identifier. */
     export enum Type {
         HigherOrLower = 'higher-or-lower',
     }
 
+    /** Game data structure. */
     export type Data<T extends Type = Type> = T extends Type.HigherOrLower
         ? HigherOrLower.Data
         : Record<string, unknown>;
 
+    /** Game item data structure. */
     export type Item<T extends Type = Type> = T extends Type.HigherOrLower
         ? HigherOrLower.Item
         : Record<string, unknown>;
 
+    /** Game save data structure. */
     export type Save<T extends Type = Type> = T extends Type.HigherOrLower
         ? HigherOrLower.Save
         : Record<string, unknown>;

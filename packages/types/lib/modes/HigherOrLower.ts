@@ -1,6 +1,5 @@
 export namespace HigherOrLower {
-    export const version = 0;
-
+    /** Higher or lower game data structure. */
     export interface Data {
         /** The verb, for example "costs". */
         verb: string;
@@ -16,6 +15,7 @@ export namespace HigherOrLower {
         lower: string;
     }
 
+    /** Higher or lower game item data structure. */
     export interface Item {
         /** This items display name. */
         display: string;
@@ -29,6 +29,7 @@ export namespace HigherOrLower {
         imageFrame?: ImageFrame;
     }
 
+    /** Higher or lower game save data structure. */
     export interface Save {
         /** The slug for the game. */
         slug: string;
@@ -38,7 +39,9 @@ export namespace HigherOrLower {
         steps: Decision[];
     }
 
+    /** How to image should fit the page. */
     export type ImageFrame = 'fit' | 'fill';
 
+    /** Higher or lower. */
     export type Decision = 1 | -1;
 }
