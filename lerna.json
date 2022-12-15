@@ -1,0 +1,5 @@
+{
+    "$schema": "https://unpkg.com/lerna@latest/schemas/lerna-schema.json",
+    "useWorkspaces": true,
+    "version": "0.0.0"
+}

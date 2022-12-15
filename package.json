@@ -1,15 +1,18 @@
 {
     "name": "owenii",
     "private": true,
-    "workspaces": [
-        "packages/*",
-        "apps/*"
-    ],
+    "workspaces": ["packages/*", "apps/*"],
     "scripts": {
         "prepare": "husky install",
-        "lint": "npm run lint --workspaces --if-present",
-        "format": "npm run format --workspaces --if-present",
-        "build": "npm run build --workspaces --if-present"
+        "lint": "lerna run lint",
+        "lint:packages": "lerna run lint --scope @owenii/*",
+        "format": "lerna run format",
+        "format:packages": "lerna run format --scope @owenii/*",
+        "build": "lerna run build",
+        "build:packages": "lerna run build --scope @owenii/*",
+        "start": "lerna run start",
+        "dev": "lerna run dev",
+        "graph": "nx graph"
     },
     "prettier": "prettier-config-apteryx",
     "devDependencies": {
@@ -32,6 +35,8 @@
         "eslint-plugin-typescript-sort-keys": "^2.1.0",
         "eslint-plugin-unicorn": "^45.0.1",
         "husky": "^8.0.2",
+        "lerna": "^6.1.0",
+        "nx": "^15.3.3",
         "prettier": "^2.8.1",
         "prettier-config-apteryx": "^2.0.3",
         "ts-config-apteryx": "^2.0.0",
