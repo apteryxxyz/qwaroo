@@ -36,6 +36,7 @@ const ConnectionSchema = new Schema<
         accountId: {
             type: String,
             required: true,
+            unique: true,
         },
 
         accountUsername: {
@@ -51,9 +52,7 @@ const ConnectionSchema = new Schema<
 
         refreshToken: {
             type: String,
-            required(this: ConnectionDocument) {
-                return this.providerName === 'discord';
-            },
+            required: true,
         },
     },
     {
