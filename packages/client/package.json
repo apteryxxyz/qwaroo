@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@discordjs/collection": "^1.3.0",
-        "@owenii/errors": "workspace:^0.0.0",
+        "@owenii/common": "workspace:^0.0.0",
         "@owenii/routes": "workspace:^0.0.0",
         "@owenii/types": "workspace:^0.0.0"
     },

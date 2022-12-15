@@ -1,5 +1,5 @@
+import { ServerError as Error } from '@owenii/common';
 import { User } from '@owenii/database';
-import { ServerError as Error } from '@owenii/errors';
 import { Encryption } from './Encryption';
 
 export class Authentication extends null {

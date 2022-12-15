@@ -10,12 +10,11 @@
         "dev": "npm run build && npm run start"
     },
     "dependencies": {
+        "@owenii/common": "workspace:^0.0.0",
         "@owenii/database": "workspace:^0.0.0",
-        "@owenii/errors": "workspace:^0.0.0",
         "@owenii/routes": "workspace:^0.0.0",
         "@owenii/sources": "workspace:^0.0.0",
         "@owenii/types": "workspace:^0.0.0",
-        "@owenii/validators": "workspace:^0.0.0",
         "co-body": "^6.1.0",
         "cors": "^2.8.5",
         "dotenv": "^16.0.3",
@@ -48,12 +47,20 @@
     "nx": {
         "targets": {
             "format": {
-                "dependsOn": ["^format"],
-                "outputs": ["{projectRoot}/src"]
+                "dependsOn": [
+                    "^format"
+                ],
+                "outputs": [
+                    "{projectRoot}/src"
+                ]
             },
             "build": {
-                "dependsOn": ["^build"],
-                "outputs": ["{projectRoot}/dist"]
+                "dependsOn": [
+                    "^build"
+                ],
+                "outputs": [
+                    "{projectRoot}/dist"
+                ]
             }
         }
     }

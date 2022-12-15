@@ -1,4 +1,4 @@
-import { ServerError as Error } from '@owenii/errors';
+import { ServerError as Error } from '@owenii/common';
 import { Routes } from '@owenii/routes/api';
 import { Router } from 'express';
 import { Users } from '#/handlers/Users';

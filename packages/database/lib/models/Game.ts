@@ -1,5 +1,5 @@
+import { Validate, createSlugWithTransliteration } from '@owenii/common';
 import { Game as GameEntity } from '@owenii/types';
-import { Validate } from '@owenii/validators';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
 
@@ -20,6 +20,9 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
             required: true,
             unique: true,
             match: Validate.Slug,
+            default(this: GameDocument) {
+                return createSlugWithTransliteration(this.title);
+            },
         },
 
         // Creator
@@ -66,7 +69,7 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
         thumbnailUrl: {
             type: String,
             required: true,
-            match: Validate.ThumbnailUrl,
+            match: Validate.ThumbnailURL,
         },
 
         categories: {

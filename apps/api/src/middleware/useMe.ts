@@ -1,4 +1,4 @@
-import { ServerError as Error } from '@owenii/errors';
+import { ServerError as Error } from '@owenii/common';
 import { handle } from '#/utilities/routeHandler';
 
 export function useMe(property: string) {

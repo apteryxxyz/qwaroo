@@ -9,8 +9,8 @@
         "build": "tsup lib/index.ts --dts"
     },
     "dependencies": {
+        "@owenii/common": "workspace:^0.0.0",
         "@owenii/types": "workspace:^0.0.0",
-        "@owenii/validators": "workspace:^0.0.0",
         "mongodb-memory-server": "^8.10.1",
         "mongoose": "^6.7.5"
     },

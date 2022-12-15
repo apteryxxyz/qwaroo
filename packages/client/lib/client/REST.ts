@@ -1,4 +1,4 @@
-import { ClientError as Error } from '@owenii/errors';
+import { ClientError as Error } from '@owenii/common';
 
 export class REST {
     public apiHost: string | URL;

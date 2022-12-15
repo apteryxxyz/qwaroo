@@ -1,4 +1,4 @@
-import { ServerError as Error } from '@owenii/errors';
+import { ServerError as Error } from '@owenii/common';
 import { RateLimiterMemory, type RateLimiterRes } from 'rate-limiter-flexible';
 import { handle } from '#/utilities/routeHandler';
 

@@ -1,5 +1,5 @@
+import { Validate } from '@owenii/common';
 import type { User as UserEntity } from '@owenii/types';
-import { Validate } from '@owenii/validators';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
 import { Connection, type ConnectionDocument } from './Connection';
@@ -32,7 +32,7 @@ const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
         avatarUrl: {
             type: String,
             required: true,
-            match: Validate.AvatarUrl,
+            match: Validate.AvatarURL,
         },
 
         joinedTimestamp: {

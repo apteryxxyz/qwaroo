@@ -1,4 +1,4 @@
-import { ServerError as Error } from '@owenii/errors';
+import { ServerError as Error } from '@owenii/common';
 import type { NextFunction, Request, Response } from 'express';
 
 /** A simple function to catch route errors. */

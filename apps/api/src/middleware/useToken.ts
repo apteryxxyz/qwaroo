@@ -1,5 +1,5 @@
+import { ServerError as Error } from '@owenii/common';
 import type { UserDocument } from '@owenii/database';
-import { ServerError as Error } from '@owenii/errors';
 import { Authentication } from '#/handlers/Authentication';
 import { handle } from '#/utilities/routeHandler';
 

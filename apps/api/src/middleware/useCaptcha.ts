@@ -1,6 +1,6 @@
 import process from 'node:process';
 import { URLSearchParams } from 'node:url';
-import { ServerError as Error } from '@owenii/errors';
+import { ServerError as Error } from '@owenii/common';
 import { handle } from '#/utilities/routeHandler';
 
 export function useCaptcha(methods: string[]) {

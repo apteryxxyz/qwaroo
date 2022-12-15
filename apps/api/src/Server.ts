@@ -1,5 +1,5 @@
 import process from 'node:process';
-import { ServerError as Error } from '@owenii/errors';
+import { ServerError as Error } from '@owenii/common';
 import cors from 'cors';
 import type { Response } from 'express';
 import express from 'express';

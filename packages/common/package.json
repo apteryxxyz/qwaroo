@@ -1,5 +1,5 @@
 {
-    "name": "@owenii/errors",
+    "name": "@owenii/common",
     "version": "0.0.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -11,8 +11,5 @@
     "devDependencies": {
         "tsup": "^6.5.0",
         "typescript": "^4.9.3"
-    },
-    "dependencies": {
-        "@types/node": "^18.11.10"
     }
 }
