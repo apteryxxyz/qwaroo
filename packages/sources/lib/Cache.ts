@@ -27,7 +27,7 @@ export async function saveAndFetchItems<
     return loadItems(gameSlug);
 }
 
-export function loadItems<T extends Game.Type = Game.Type>(gameSlug: string) {
+export function loadItems<T extends Game.Mode = Game.Mode>(gameSlug: string) {
     const { existsSync, readFileSync } = require('node:fs');
     const { resolve } = require('node:path');
 

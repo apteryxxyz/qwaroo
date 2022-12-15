@@ -50,7 +50,7 @@ export class Games extends null {
         if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
 
         const query = term
-            ? Game.where('title').regex(createRegExp(term ?? '', false, 'i'))
+            ? Game.where({ title: createRegExp(term, false, 'i') })
             : Game.find({});
 
         const total = await query.countDocuments().exec();

@@ -3,7 +3,7 @@ import type { Game } from '@owenii/types';
 export interface Source<
     K extends string | number | symbol,
     O extends {} = Record<K, unknown>,
-    F extends Game.Type = Game.Type
+    F extends Game.Mode = Game.Mode
 > {
     for: F;
     slug: string;

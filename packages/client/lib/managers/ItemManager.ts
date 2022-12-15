@@ -1,10 +1,10 @@
-import { Routes } from '@owenii/routes/api';
+import { Routes } from '@owenii/types';
 import { ArrayManager } from './BaseManager';
 import type { Game } from '#/structures/Game';
 
 export class ItemManager<
-    T extends Game.Entity.Type = Game.Entity.Type
-> extends ArrayManager<Game.Entity<T>> {
+    M extends Game.Entity.Mode = Game.Entity.Mode
+> extends ArrayManager<Game.Entity.Item<M>> {
     public game: Game;
     public seed!: string;
     public total!: number;
@@ -14,7 +14,7 @@ export class ItemManager<
         this.game = game;
     }
 
-    private _add(data: Game.Entity<T>) {
+    private _add(data: Game.Entity.Item<M>) {
         this.push(data);
         return data;
     }
@@ -29,7 +29,7 @@ export class ItemManager<
 
         if (!this.seed) this.seed = data.seed;
         if (!this.total) this.total = data.total;
-        return data.items.map((dt: Game.Entity<T>) => this._add(dt));
+        return data.items.map((dt: Game.Entity.Item<M>) => this._add(dt));
     }
 }
 

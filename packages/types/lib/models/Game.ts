@@ -1,9 +1,7 @@
 import type { HigherOrLower } from './modes/HigherOrLower';
 
-export * from './modes/HigherOrLower';
-
 /** A game data structure. */
-export interface Game<T extends Game.Type = Game.Type> {
+export interface Game<M extends Game.Mode = Game.Mode> {
     /** The unique identifier for this game. */
     id: string;
     /** Short unique slug, intended to be easier to type. */
@@ -17,8 +15,8 @@ export interface Game<T extends Game.Type = Game.Type> {
     /** Options to pass to the generator. */
     sourceOptions?: Record<string, unknown>;
 
-    /** What type of game this is. */
-    type: T;
+    /** What mode this game is. */
+    mode: M;
     /** A title for this game. */
     title: string;
     /** A short description for this game. */
@@ -30,7 +28,7 @@ export interface Game<T extends Game.Type = Game.Type> {
     /** The categories this game would belong to. */
     categories: string[];
     /** Data for the game, such as strings. */
-    data: Game.Data<T>;
+    data: Game.Data<M>;
 
     /** When this game was created. */
     createdTimestamp: number;
@@ -39,23 +37,24 @@ export interface Game<T extends Game.Type = Game.Type> {
 }
 
 export namespace Game {
-    /** Game type identifier. */
-    export enum Type {
+    export enum Mode {
         HigherOrLower = 'higher-or-lower',
     }
 
     /** Game data structure. */
-    export type Data<T extends Type = Type> = T extends Type.HigherOrLower
+    export type Data<M extends Mode = Mode> = M extends Mode.HigherOrLower
         ? HigherOrLower.Data
         : Record<string, unknown>;
 
     /** Game item data structure. */
-    export type Item<T extends Type = Type> = T extends Type.HigherOrLower
+    export type Item<M extends Mode = Mode> = M extends Mode.HigherOrLower
         ? HigherOrLower.Item
         : Record<string, unknown>;
 
-    /** Game save data structure. */
-    export type Save<T extends Type = Type> = T extends Type.HigherOrLower
-        ? HigherOrLower.Save
+    /** Game step data structure. */
+    export type Step<M extends Mode = Mode> = M extends Mode.HigherOrLower
+        ? HigherOrLower.Step
         : Record<string, unknown>;
 }
+
+export * from './modes/HigherOrLower';

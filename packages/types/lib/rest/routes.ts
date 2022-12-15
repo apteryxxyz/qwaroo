@@ -42,11 +42,21 @@ export const Routes = {
         return `/users/${userId}` as const;
     },
 
+    // Connections
     userConnections(userId: string | '@me') {
         return `/users/${userId}/connections` as const;
     },
 
     userConnection(userId: string | '@me', connectionId: string) {
         return `/users/${userId}/connections/${connectionId}` as const;
+    },
+
+    // Scores
+    userScores(userId: string | '@me') {
+        return `/users/${userId}/scores` as const;
+    },
+
+    userScore(userId: string | '@me', scoreId: string) {
+        return `/users/${userId}/scores/${scoreId}` as const;
     },
 };

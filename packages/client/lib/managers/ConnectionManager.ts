@@ -1,4 +1,4 @@
-import { Routes } from '@owenii/routes/api';
+import { Routes } from '@owenii/types';
 import { MapManager } from './BaseManager';
 import { Connection } from '#/structures/Connection';
 import type { User } from '#/structures/User';

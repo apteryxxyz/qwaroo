@@ -9,8 +9,8 @@ export interface Options {
     minimumViews: number;
 }
 
-export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
-    for: Game.Type.HigherOrLower,
+export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
+    for: Game.Mode.HigherOrLower,
     slug: 'hol.yt-channel',
     name: 'YouTube Channel',
     description:
@@ -49,7 +49,7 @@ export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
 
     async fetchItems(partialOptions) {
         const options = prepareOptions<Options>(this.props, partialOptions);
-        const items: Game.Item<Game.Type.HigherOrLower>[] = [];
+        const items: Game.Item<Game.Mode.HigherOrLower>[] = [];
 
         for (const channelId of options.channelIds) {
             const channel = await _getChannelInfo(channelId);
@@ -72,7 +72,7 @@ async function _getChannelInfo(channelId: string) {
 async function _getChannelVideos(
     channel: Awaited<ReturnType<typeof _getChannelInfo>>,
     options: Options
-): Promise<Game.Item<Game.Type.HigherOrLower>[]> {
+): Promise<Game.Item<Game.Mode.HigherOrLower>[]> {
     const result = await ytpl(channel.id, { limit: options.videoCount });
 
     return result.items

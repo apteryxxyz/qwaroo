@@ -1,5 +1,5 @@
 import { ServerError as Error } from '@owenii/common';
-import { Routes } from '@owenii/routes/api';
+import { Routes } from '@owenii/types';
 import { Router } from 'express';
 import { Users } from '#/handlers/Users';
 import { useMe, useMustBeMe } from '#/middleware/useMe';

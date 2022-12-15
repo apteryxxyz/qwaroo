@@ -28,8 +28,6 @@ This repository includes the following apps/packages:
 
 - [`Database`](packages/database) - Mongoose database models and connectability functionality.
 
-- [`Routes`](packages/routes) - Express routes that point to endpoints on the API.
-
 - [`Sources`](packages/sources) - Generators for automatically generating item lists for games.
 
 - [`Types`](packages/types) - TypeScript types used throughout the API and clients.

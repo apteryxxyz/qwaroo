@@ -47,9 +47,9 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
         },
 
         // Information
-        type: {
+        mode: {
             type: String,
-            enum: GameEntity.Type,
+            enum: GameEntity.Mode,
             required: true,
         },
 

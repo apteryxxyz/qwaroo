@@ -26,22 +26,9 @@ export namespace HigherOrLower {
         /** Item image URL. */
         imageSource?: string;
         /** How to image should fit the page. */
-        imageFrame?: ImageFrame;
+        imageFrame?: 'fit' | 'fill';
     }
-
-    /** Higher or lower game save data structure. */
-    export interface Save {
-        /** The slug for the game. */
-        slug: string;
-        /** Unique seed used to shuffle the items. */
-        seed: string;
-        /** The steps that were made during the game. */
-        steps: Decision[];
-    }
-
-    /** How to image should fit the page. */
-    export type ImageFrame = 'fit' | 'fill';
 
     /** Higher or lower. */
-    export type Decision = 1 | -1;
+    export type Step = 1 | -1;
 }

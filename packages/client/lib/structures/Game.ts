@@ -3,36 +3,36 @@ import { Base } from './Base';
 import type { Client } from '#/client/Client';
 import { ItemManager } from '#/managers/ItemManager';
 
-export class Game extends Base {
+export class Game<M extends GameEntity.Mode = GameEntity.Mode> extends Base {
     public slug!: string;
     public creatorId!: string;
     public sourceSlug?: string;
     public sourceOptions?: Record<string, unknown>;
-    public type!: GameEntity.Type;
+    public mode!: M;
     public title!: string;
     public shortDescription!: string;
     public longDescription!: string;
     public thumbnailUrl!: string;
     public categories!: string[];
-    public data!: GameEntity.Data<GameEntity.Type>;
+    public data!: GameEntity.Data<M>;
     public createdTimestamp!: number;
     public updatedTimestamp!: number;
 
     public constructor(
         client: Client,
-        data: Partial<Game.Entity> & { id: string }
+        data: Partial<Game.Entity<M>> & { id: string }
     ) {
         super(client, data);
         this._patch(data);
     }
 
-    public override _patch(data: Partial<Game.Entity> & { id: string }) {
+    public override _patch(data: Partial<Game.Entity<M>> & { id: string }) {
         if (data.id) this.id = data.id;
         if (data.slug) this.slug = data.slug;
         if (data.creatorId) this.creatorId = data.creatorId;
         if (data.sourceSlug) this.sourceSlug = data.sourceSlug;
         if (data.sourceOptions) this.sourceOptions = data.sourceOptions;
-        if (data.type) this.type = data.type;
+        if (data.mode) this.mode = data.mode;
         if (data.title) this.title = data.title;
         if (data.shortDescription)
             this.shortDescription = data.shortDescription;
@@ -64,7 +64,7 @@ export class Game extends Base {
         return (
             other.id === this.id &&
             other.slug === this.slug &&
-            other.type === this.type &&
+            other.mode === this.mode &&
             other.title === this.title &&
             other.shortDescription === this.shortDescription &&
             other.longDescription === this.longDescription &&
@@ -77,7 +77,7 @@ export class Game extends Base {
     }
 
     public async fetch() {
-        return this.client.games.fetch(this);
+        return this.client.games.fetch(this.id);
     }
 
     public async fetchCreator() {
@@ -85,9 +85,10 @@ export class Game extends Base {
     }
 
     public async fetchItems() {
-        const items = new ItemManager(this);
-        await items.fetchMore();
-        return items;
+        // Idk why but it doesn't work without the type assertion
+        const manager = new ItemManager<M>(this) as ItemManager<M>;
+        await manager.fetchMore();
+        return manager;
     }
 
     public override toJSON() {
@@ -97,7 +98,7 @@ export class Game extends Base {
             creatorId: this.creatorId,
             sourceSlug: this.sourceSlug,
             sourceOptions: this.sourceOptions,
-            type: this.type,
+            mode: this.mode,
             title: this.title,
             shortDescription: this.shortDescription,
             longDescription: this.longDescription,
@@ -125,13 +126,13 @@ export class Game extends Base {
 }
 
 export namespace Game {
-    export type Entity<T extends Entity.Type = Entity.Type> = GameEntity<T>;
+    export type Entity<M extends Entity.Mode = Entity.Mode> = GameEntity<M>;
     export namespace Entity {
-        export const Type = GameEntity.Type;
-        export type Type = GameEntity.Type;
-        export type Data<T extends Type = Type> = GameEntity.Data<T>;
-        export type Item<T extends Type = Type> = GameEntity.Item<T>;
-        export type Save<T extends Type = Type> = GameEntity.Save<T>;
+        export const Mode = GameEntity.Mode;
+        export type Mode = GameEntity.Mode;
+        export type Data<M extends Mode = Mode> = GameEntity.Data<M>;
+        export type Item<M extends Mode = Mode> = GameEntity.Item<M>;
+        export type Step<M extends Mode = Mode> = GameEntity.Step<M>;
     }
 
     export type Resolvable = Game | Entity | string;

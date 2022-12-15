@@ -12,7 +12,6 @@
     "dependencies": {
         "@owenii/common": "workspace:^0.0.0",
         "@owenii/database": "workspace:^0.0.0",
-        "@owenii/routes": "workspace:^0.0.0",
         "@owenii/sources": "workspace:^0.0.0",
         "@owenii/types": "workspace:^0.0.0",
         "co-body": "^6.1.0",

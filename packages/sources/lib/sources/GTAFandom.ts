@@ -16,8 +16,8 @@ export interface Options {
     captionSelector: string;
 }
 
-export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
-    for: Game.Type.HigherOrLower,
+export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
+    for: Game.Mode.HigherOrLower,
     slug: 'hol.gta-fandom',
     name: 'GTA Fandom',
     description:
@@ -93,7 +93,7 @@ export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
             $(options.tableSelector as '.wikitable td li a')
         ).map(el => el.attribs['href']);
 
-        const items: Game.Item<Game.Type.HigherOrLower>[] = [];
+        const items: Game.Item<Game.Mode.HigherOrLower>[] = [];
 
         for (const path of itemsPath) {
             const item = await _fetchItem(path, options);
@@ -107,7 +107,7 @@ export const source: Source<keyof Options, Options, Game.Type.HigherOrLower> = {
 async function _fetchItem(
     path: string,
     options: Options
-): Promise<Game.Item<Game.Type.HigherOrLower> | null> {
+): Promise<Game.Item<Game.Mode.HigherOrLower> | null> {
     console.log(`Fetching item from ${path}`);
     const $ = await _fetchCheerio(path);
 

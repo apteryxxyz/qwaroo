@@ -2,4 +2,4 @@
 
 # Types
 
-TypeScript interfaces, types and enums used throughout the API and clients, consists of things such as database models and some API body interfaces.
+TypeScript interfaces, types, enums and routes used throughout the API and clients, consists of things such as database models and some API body interfaces.
