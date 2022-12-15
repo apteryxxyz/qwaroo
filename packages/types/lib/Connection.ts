@@ -1,3 +1,4 @@
+/** A connection data structure. */
 export interface Connection {
     /** The unique identifier for this connection. */
     id: string;

@@ -2,6 +2,7 @@ import type { HigherOrLower } from './modes/HigherOrLower';
 
 export * from './modes/HigherOrLower';
 
+/** A game data structure. */
 export interface Game<T extends Game.Type = Game.Type> {
     /** The unique identifier for this game. */
     id: string;
