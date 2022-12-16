@@ -1,4 +1,4 @@
-import { Routes } from '@owenii/types';
+import { type FetchGamesOptions, Routes } from '@owenii/types';
 import { MapManager } from './BaseManager';
 import { Game } from '#/structures/Game';
 
@@ -16,11 +16,14 @@ export class GameManager extends MapManager<string, Game> {
         return entry;
     }
 
+    public async fetchCategories(): Promise<string[]> {
+        const data = await this.client.rest.get(Routes.categories());
+        return data.items;
+    }
+
     public fetch(options: Game.Resolvable): Promise<Game>;
-    public fetch(options: GameManager.FetchManyOptions): Promise<Game[]>;
-    public async fetch(
-        options: Game.Resolvable | GameManager.FetchManyOptions
-    ) {
+    public fetch(options: FetchGamesOptions): Promise<Game[]>;
+    public async fetch(options: Game.Resolvable | FetchGamesOptions) {
         if (Game.isResolvable(options)) return this._fetchSingle(options);
         else return this._fetchMany(options);
     }
@@ -31,16 +34,8 @@ export class GameManager extends MapManager<string, Game> {
         return this._add(data);
     }
 
-    private async _fetchMany(options: GameManager.FetchManyOptions) {
+    private async _fetchMany(options: FetchGamesOptions) {
         const data = await this.client.rest.get(Routes.games(), options);
         return data.items.map((dt: Game.Entity) => this._add(dt));
-    }
-}
-
-export namespace GameManager {
-    export interface FetchManyOptions {
-        term?: string;
-        limit?: number;
-        skip?: number;
     }
 }

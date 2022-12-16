@@ -1,6 +1,7 @@
 import { ServerError as Error, Validate, createRegExp } from '@owenii/common';
 import { Game, type GameDocument } from '@owenii/database';
 import { loadItems } from '@owenii/sources';
+import type { FetchGamesOptions } from '@owenii/types';
 import { shuffle } from 'shuffle-seed';
 
 export class Games extends null {
@@ -33,32 +34,52 @@ export class Games extends null {
         return game;
     }
 
-    // TODO: Add ways to sort the games on the server.
-    // IDEA: Sort by creation, sort by updated at (default)
-    // IDEA: Filter by category and game type
     /** Get a list of all games. */
-    public static async getGames(term?: string, limit = 100, skip = 0) {
+    public static async getGames(options: FetchGamesOptions = {}) {
+        const { term, limit = 100, skip = 0 } = options;
         if (term && term.length < 1)
             throw new Error(422, 'Search term must be at least 1 character');
-
         if (typeof limit !== 'number' || Number.isNaN(limit))
             throw new Error(422, 'Limit must be a number');
         if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
-
         if (typeof skip !== 'number' || Number.isNaN(skip))
             throw new Error(422, 'Skip must be a number');
         if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
 
-        const query = term
-            ? Game.where({ title: createRegExp(term, false, 'i') })
-            : Game.find({});
+        // TODO: Add popular sort
+        const { sort = 'created', order = 'desc' } = options;
+        if (sort !== 'created' && sort !== 'updated')
+            throw new Error(422, 'Sort must be "created", or "updated"');
+        if (order !== 'asc' && order !== 'desc')
+            throw new Error(422, 'Order must be "asc" or "desc"');
 
-        const total = await query.countDocuments().exec();
-        const games = await Game.find()
-            .merge(query)
-            .limit(limit)
-            .skip(skip)
-            .exec();
+        const { slugs, categories, modes } = options;
+        if (slugs && !Array.isArray(slugs))
+            throw new Error(422, 'IDs must be an array of strings');
+        if (categories && !Array.isArray(categories))
+            throw new Error(422, 'Categories must be an array of strings');
+        if (modes && !Array.isArray(modes))
+            throw new Error(422, 'Modes must be an array of strings');
+
+        let query = Game.find();
+
+        if (term) {
+            const title = createRegExp(term, false, 'i');
+            query = query.where({ title });
+        }
+
+        if (sort && order) {
+            const direction = order === 'asc' ? 1 : -1;
+            query = query.sort({ [`${sort}Timestamp`]: direction });
+        }
+
+        if (categories?.length)
+            query = query.where({ categories: { $all: categories } });
+        if (slugs?.length) query = query.where({ slug: { $in: slugs } });
+        if (modes?.length) query = query.where({ mode: { $in: modes } });
+
+        const total = await Game.find().merge(query).countDocuments().exec();
+        const games = await query.limit(limit).skip(skip).exec();
 
         return [{ total, limit, skip }, games] as const;
     }
@@ -84,4 +105,10 @@ export class Games extends null {
 
         return [{ total, seed, limit, skip }, items] as const;
     }
+}
+
+export interface GameSearchOptions {
+    term?: string;
+    limit?: number;
+    skip?: number;
 }

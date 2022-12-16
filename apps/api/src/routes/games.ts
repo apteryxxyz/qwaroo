@@ -24,11 +24,21 @@ export default () => {
         useMethods(['GET']),
         useToken([], ['GET']),
         handle(async (req, res) => {
-            const term = String(req.query['term'] ?? '');
-            const limit = Number(req.query['limit'] ?? 10);
-            const skip = Number(req.query['skip'] ?? 0);
+            const opts: Record<string, unknown> = {};
+            opts['term'] = String(req.query['term'] ?? '');
+            opts['limit'] = Number(req.query['limit'] ?? 10);
+            opts['skip'] = Number(req.query['skip'] ?? 0);
+            opts['sort'] = String(req.query['sort'] ?? 'created');
+            opts['order'] = String(req.query['order'] ?? 'asc');
 
-            const [data, items] = await Games.getGames(term, limit, skip);
+            const slugs = String(req.query['slugs'] ?? '');
+            if (slugs) opts['slugs'] = slugs.split(',');
+            const categories = String(req.query['categories'] ?? '');
+            if (categories) opts['categories'] = categories.split(',');
+            const modes = String(req.query['modes'] ?? '');
+            if (modes) opts['modes'] = modes.split(',');
+
+            const [data, items] = await Games.getGames(opts);
             res.status(200).json({ success: true, ...data, items });
         })
     );
