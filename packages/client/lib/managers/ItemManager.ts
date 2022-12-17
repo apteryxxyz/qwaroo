@@ -26,7 +26,7 @@ export class ItemManager<
     }
 
     public async fetchMany(options: FetchGameItemsOptions = {}) {
-        if (options.seed) this.seed = options.seed;
+        if (this.seed) options.seed = this.seed;
         const path = Routes.gameItems(this.game.id);
         const data = await this.client.rest.get(path, options);
         if (!this.seed) this.seed = data.seed;
