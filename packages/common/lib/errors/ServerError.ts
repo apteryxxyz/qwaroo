@@ -1,4 +1,4 @@
-import { StatusCodes } from './StatusCodes';
+import { StatusCodes } from '../constants/StatusCodes';
 
 export class ServerError extends Error {
     public readonly status: keyof typeof StatusCodes;

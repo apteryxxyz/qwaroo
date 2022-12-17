@@ -1,5 +1,5 @@
 import type { ServerError } from './ServerError';
-import { StatusCodes } from './StatusCodes';
+import { StatusCodes } from '../constants/StatusCodes';
 
 export class ClientError extends Error {
     public readonly status: keyof typeof StatusCodes;
