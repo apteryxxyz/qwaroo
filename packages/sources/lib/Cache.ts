@@ -1,7 +1,8 @@
 import type { Game } from '@owenii/types';
 import sources from './sources';
 
-export async function saveAndFetchItems<
+/** Fetch all the items for a game, then save them to the local file system. */
+export async function fetchAndSaveItems<
     S extends keyof typeof sources = keyof typeof sources
 >(
     gameSlug: string,
@@ -19,6 +20,7 @@ export async function saveAndFetchItems<
     if (!source) throw new Error(`Source "${sourceSlug}" not found.`);
 
     const options = source.prepareOptions(sourceOptions);
+    // Bypass type checking
     const fetcher = Reflect.get(source, 'fetchItems') as Function;
     const items = await fetcher.bind(source)(options);
 
@@ -27,6 +29,7 @@ export async function saveAndFetchItems<
     return loadItems(gameSlug);
 }
 
+/** Load the items for a game from the local file system. */
 export function loadItems<T extends Game.Mode = Game.Mode>(gameSlug: string) {
     const { existsSync, readFileSync } = require('node:fs');
     const { resolve } = require('node:path');

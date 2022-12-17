@@ -57,6 +57,7 @@ export function validateArray(...args: ValidateArgs) {
     return asArr;
 }
 
+/** Validate that a properties value is valid. */
 export function validateValue(...args: ValidateArgs): unknown {
     if (Array.isArray(args[2].type)) {
         const array = validateArray(...args);

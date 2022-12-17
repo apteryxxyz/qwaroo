@@ -1,6 +1,7 @@
 import { validateValue } from './validateValue';
 import type { Source } from '#/Source';
 
+/** Prepare an options object for fetching. */
 export function prepareOptions<O = Record<symbol | string, unknown>>(
     props: Record<keyof O, Source.Prop>,
     options: Partial<Record<keyof O, unknown>>

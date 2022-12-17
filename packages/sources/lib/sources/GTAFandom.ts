@@ -111,7 +111,7 @@ async function _fetchItem(
     console.log(`Fetching item from ${path}`);
     const $ = await _fetchCheerio(path);
 
-    // eslint-disable-next-line max-statements-per-line
+    // TODO: Add support for captions
     const [display, value, imageSource] = await Promise.all([
         _getDisplay($, options.displaySelector),
         _getValue($, options.valueSelector),
@@ -121,6 +121,8 @@ async function _fetchItem(
 
     let imageFrame: 'fill' | 'fit' = 'fill';
     if (options.shouldCheckImages) {
+        // Checks if the image has a transparent background
+        // If so, use 'fit' instead of 'fill'
         const imageBlob = await fetch(imageSource).then(res => res.blob());
         const imageBuffer = await imageBlob.arrayBuffer();
         const jimpImage = await Jimp.read(Buffer.from(imageBuffer));
