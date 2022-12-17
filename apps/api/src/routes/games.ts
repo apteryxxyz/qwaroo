@@ -25,11 +25,11 @@ export default () => {
         useToken([], ['GET']),
         handle(async (req, res) => {
             const opts: Record<string, unknown> = {};
-            opts['term'] = String(req.query['term'] ?? '');
-            opts['limit'] = Number(req.query['limit'] ?? 10);
-            opts['skip'] = Number(req.query['skip'] ?? 0);
-            opts['sort'] = String(req.query['sort'] ?? 'created');
-            opts['order'] = String(req.query['order'] ?? 'asc');
+            opts['term'] = String(req.query['term'] ?? '') || undefined;
+            opts['limit'] = Number(req.query['limit'] ?? 0) || undefined;
+            opts['skip'] = Number(req.query['skip'] ?? 0) || undefined;
+            opts['sort'] = String(req.query['sort'] ?? '') || undefined;
+            opts['order'] = String(req.query['order'] ?? '') || undefined;
 
             const slugs = String(req.query['slugs'] ?? '');
             if (slugs) opts['slugs'] = slugs.split(',');
@@ -66,12 +66,12 @@ export default () => {
                 ? await Games.getGameById(gameId)
                 : await Games.getGameBySlug(gameId);
 
-            let seed = String(req.query['seed'] ?? '');
-            const limit = Number(req.query['limit'] ?? 5);
-            const skip = Number(req.query['skip'] ?? 0);
+            let seed = String(req.query['seed'] ?? '') || undefined;
+            const limit = Number(req.query['limit'] ?? 0) || undefined;
+            const skip = Number(req.query['skip'] ?? 0) || undefined;
 
             // Prevent a custom seed from being used
-            if (skip === 0) seed = Date.now().toString();
+            if (!seed || skip === 0) seed = Math.random().toString(36).slice(2);
 
             const args = [game, seed, limit, skip] as const;
             const [data, items] = await Games.getGameItems(...args);

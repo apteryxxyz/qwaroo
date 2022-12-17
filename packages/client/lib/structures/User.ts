@@ -1,9 +1,10 @@
-import type { User as UserEntity } from '@owenii/types';
+import type { APIUser, User as UserEntity } from '@owenii/types';
 import { Base } from './Base';
 import type { Client } from '#/client/Client';
 import { ConnectionManager } from '#/managers/ConnectionManager';
+import { ScoreManager } from '#/managers/ScoreManager';
 
-export class User extends Base {
+export class User extends Base implements APIUser {
     public displayName!: string;
     public avatarUrl!: string;
     public joinedTimestamp!: number;
@@ -50,13 +51,19 @@ export class User extends Base {
     }
 
     public async fetch() {
-        return this.client.users.fetch(this.id);
+        return this.client.users.fetchOne(this.id);
     }
 
     public async fetchConnections() {
         const connections = new ConnectionManager(this);
-        await connections.fetch();
+        await connections.fetchAll();
         return connections;
+    }
+
+    public async fetchScores() {
+        const scores = new ScoreManager(this);
+        await scores.fetchAll();
+        return scores;
     }
 
     public override toJSON() {

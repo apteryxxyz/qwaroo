@@ -5,13 +5,13 @@ import { Schema, model } from 'mongoose';
 import { Score, type ScoreDocument } from './Score';
 import { User, type UserDocument } from './User';
 
-export interface GameDocument extends GameEntity, Document {
-    id: string;
-}
-
 export interface GameMethods {
     getCreator(): Promise<UserDocument>;
     getScores(): Promise<ScoreDocument[]>;
+}
+
+export interface GameDocument extends GameEntity, GameMethods, Document {
+    id: string;
 }
 
 export interface GameModel extends Model<GameEntity, {}, GameMethods> {}

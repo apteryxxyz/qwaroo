@@ -1,4 +1,4 @@
-import { Routes } from '@owenii/types';
+import { type FetchGameItemsOptions, Routes } from '@owenii/types';
 import { ArrayManager } from './BaseManager';
 import type { Game } from '#/structures/Game';
 
@@ -7,7 +7,7 @@ export class ItemManager<
 > extends ArrayManager<Game.Entity.Item<M>> {
     public game: Game;
     public seed!: string;
-    public total!: number;
+    public total = 0;
 
     public constructor(game: Game) {
         super(game.client);
@@ -19,24 +19,18 @@ export class ItemManager<
         return data;
     }
 
-    public async fetchMore(options: ItemManager.FetchMoreOptions = {}) {
-        if (this.seed) options.seed = this.seed;
+    public async fetchMore(options: FetchGameItemsOptions = {}) {
         if (options.limit === undefined) options.limit = 5;
         if (options.skip === undefined) options.skip = this.length;
+        return this.fetchMany(options);
+    }
 
+    public async fetchMany(options: FetchGameItemsOptions = {}) {
+        if (options.seed) this.seed = options.seed;
         const path = Routes.gameItems(this.game.id);
         const data = await this.client.rest.get(path, options);
-
         if (!this.seed) this.seed = data.seed;
         if (!this.total) this.total = data.total;
         return data.items.map((dt: Game.Entity.Item<M>) => this._add(dt));
-    }
-}
-
-export namespace ItemManager {
-    export interface FetchMoreOptions {
-        seed?: string;
-        limit?: number;
-        skip?: number;
     }
 }

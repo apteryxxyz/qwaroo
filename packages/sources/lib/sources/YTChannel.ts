@@ -83,9 +83,7 @@ async function _getChannelVideos(
             imageSource: (item.durationSec ?? 0 > 60
                 ? item.bestThumbnail.url?.replace('hqdefault', 'maxresdefault')
                 : item.bestThumbnail.url) as string,
-            imageFrame: ((item.durationSec ?? 0) > 60 ? 'fill' : 'fit') as
-                | 'fill'
-                | 'fit',
+            imageFrame: 'fill',
             caption:
                 options.channelIds.length > 1
                     ? `On ${channel.name}`

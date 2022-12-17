@@ -36,7 +36,7 @@ export class Games extends null {
 
     /** Get a list of all games. */
     public static async getGames(options: FetchGamesOptions = {}) {
-        const { term, limit = 100, skip = 0 } = options;
+        const { term, limit = 20, skip = 0 } = options;
         if (term && term.length < 1)
             throw new Error(422, 'Search term must be at least 1 character');
         if (typeof limit !== 'number' || Number.isNaN(limit))
@@ -47,9 +47,10 @@ export class Games extends null {
         if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
 
         // TODO: Add popular sort
-        const { sort = 'created', order = 'desc' } = options;
-        if (sort !== 'created' && sort !== 'updated')
-            throw new Error(422, 'Sort must be "created", or "updated"');
+        const sorts = ['createdTimestamp', 'updatedTimestamp'];
+        const { sort = 'createdTimestamp', order = 'desc' } = options;
+        if (!sorts.includes(sort))
+            throw new Error(422, `Sort must be one of "${sorts.join('", "')}"`);
         if (order !== 'asc' && order !== 'desc')
             throw new Error(422, 'Order must be "asc" or "desc"');
 
@@ -70,7 +71,7 @@ export class Games extends null {
 
         if (sort && order) {
             const direction = order === 'asc' ? 1 : -1;
-            query = query.sort({ [`${sort}Timestamp`]: direction });
+            query = query.sort({ [sort]: direction });
         }
 
         if (categories?.length)
@@ -88,7 +89,7 @@ export class Games extends null {
     public static async getGameItems(
         game: GameDocument,
         seed: string,
-        limit = 100,
+        limit = 5,
         skip = 0
     ) {
         if (typeof limit !== 'number' || Number.isNaN(limit))

@@ -21,6 +21,7 @@ export class Server {
 
         this.app.use(require('./routes/auth').default());
         this.app.use(require('./routes/games').default());
+        this.app.use(require('./routes/scores').default());
         this.app.use(require('./routes/users').default());
 
         this.app.use((_req, res) => {

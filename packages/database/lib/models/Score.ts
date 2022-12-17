@@ -5,13 +5,13 @@ import { Schema, model } from 'mongoose';
 import { Game, type GameDocument } from './Game';
 import { User, type UserDocument } from './User';
 
-export interface ScoreDocument extends ScoreEntity, Document {
-    id: string;
-}
-
 export interface ScoreMethods {
     getUser(): Promise<UserDocument>;
     getGame(): Promise<GameDocument>;
+}
+
+export interface ScoreDocument extends ScoreEntity, ScoreMethods, Document {
+    id: string;
 }
 
 export interface ScoreModel extends Model<ScoreEntity, {}, ScoreMethods> {}
@@ -35,22 +35,19 @@ const ScoreSchema = new Schema<
             match: Validate.ObjectId,
         },
 
-        highestScore: {
+        highScore: {
             type: Number,
-            required: true,
-            default: 0,
+            required: false,
         },
 
-        highestScoreTime: {
+        highScoreTime: {
             type: Number,
-            required: true,
-            default: 0,
+            required: false,
         },
 
-        highestScoreTimestamp: {
+        highScoreTimestamp: {
             type: Number,
-            required: true,
-            default: 0,
+            required: false,
         },
 
         totalScore: {

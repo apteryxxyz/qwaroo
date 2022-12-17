@@ -4,12 +4,15 @@ import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
 import { User, type UserDocument } from './User';
 
-export interface ConnectionDocument extends ConnectionEntity, Document {
-    id: string;
-}
-
 export interface ConnectionMethods {
     getUser(): Promise<UserDocument>;
+}
+
+export interface ConnectionDocument
+    extends ConnectionEntity,
+        ConnectionMethods,
+        Document {
+    id: string;
 }
 
 export interface ConnectionModel

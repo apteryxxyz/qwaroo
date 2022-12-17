@@ -1,9 +1,12 @@
-import { Game as GameEntity } from '@owenii/types';
+import { type APIGame, Game as GameEntity } from '@owenii/types';
 import { Base } from './Base';
 import type { Client } from '#/client/Client';
 import { ItemManager } from '#/managers/ItemManager';
 
-export class Game<M extends GameEntity.Mode = GameEntity.Mode> extends Base {
+export class Game<M extends GameEntity.Mode = GameEntity.Mode>
+    extends Base
+    implements APIGame<M>
+{
     public slug!: string;
     public creatorId!: string;
     public sourceSlug?: string;
@@ -77,11 +80,11 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode> extends Base {
     }
 
     public async fetch() {
-        return this.client.games.fetch(this.id);
+        return this.client.games.fetchOne(this.id);
     }
 
     public async fetchCreator() {
-        return this.client.users.fetch(this.creatorId);
+        return this.client.users.fetchOne(this.creatorId);
     }
 
     public async fetchItems() {

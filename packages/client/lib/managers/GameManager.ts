@@ -21,21 +21,16 @@ export class GameManager extends MapManager<string, Game> {
         return data.items;
     }
 
-    public fetch(options: Game.Resolvable): Promise<Game>;
-    public fetch(options: FetchGamesOptions): Promise<Game[]>;
-    public async fetch(options: Game.Resolvable | FetchGamesOptions) {
-        if (Game.isResolvable(options)) return this._fetchSingle(options);
-        else return this._fetchMany(options);
-    }
-
-    private async _fetchSingle(game: Game.Resolvable) {
+    public async fetchOne(game: Game.Resolvable) {
         const id = Game.resolveId(game) ?? 'unknown';
-        const data = await this.client.rest.get(Routes.game(id));
+        const path = Routes.game(id);
+        const data = await this.client.rest.get(path);
         return this._add(data);
     }
 
-    private async _fetchMany(options: FetchGamesOptions) {
-        const data = await this.client.rest.get(Routes.games(), options);
+    public async fetchMany(options: FetchGamesOptions = {}) {
+        const path = Routes.games();
+        const data = await this.client.rest.get(path, options);
         return data.items.map((dt: Game.Entity) => this._add(dt));
     }
 }

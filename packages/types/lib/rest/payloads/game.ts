@@ -8,9 +8,15 @@ export interface FetchGamesOptions {
     term?: string;
     limit?: number;
     skip?: number;
-    sort?: 'popular' | 'created' | 'updated';
+    sort?: 'createdTimestamp' | 'updatedTimestamp';
     order?: 'asc' | 'desc';
     slugs?: string[];
     categories?: string[];
     modes?: Game.Mode[];
+}
+
+export interface FetchGameItemsOptions {
+    seed?: string;
+    limit?: number;
+    skip?: number;
 }

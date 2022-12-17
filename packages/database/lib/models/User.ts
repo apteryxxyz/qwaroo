@@ -6,10 +6,6 @@ import { Connection, type ConnectionDocument } from './Connection';
 import { Game, type GameDocument } from './Game';
 import { Score, type ScoreDocument } from './Score';
 
-export interface UserDocument extends UserEntity, Document {
-    id: string;
-}
-
 export interface UserMethods {
     getConnections(): Promise<ConnectionDocument[]>;
     getConnection(id: string): Promise<ConnectionDocument | null>;
@@ -17,6 +13,10 @@ export interface UserMethods {
     getGame(id: string): Promise<GameDocument | null>;
     getScores(): Promise<ScoreDocument[]>;
     getScore(id: string): Promise<ScoreDocument | null>;
+}
+
+export interface UserDocument extends UserEntity, UserMethods, Document {
+    id: string;
 }
 
 export interface UserModel extends Model<UserEntity, {}, UserMethods> {}

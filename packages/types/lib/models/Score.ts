@@ -1,5 +1,5 @@
 /** The score data structure. */
-export interface Score {
+export interface Score<H extends boolean = boolean> {
     /** The unique identifier for this score. */
     id: string;
     /** The ID of the user that this score belongs to. */
@@ -8,11 +8,11 @@ export interface Score {
     gameId: string;
 
     /** The highest score the user has gotten. */
-    highestScore: number;
+    highScore: H extends true ? number : undefined;
     /** The time it took to get the highest score. */
-    highestScoreTime: number;
+    highScoreTime: H extends true ? number : undefined;
     /** The timestamp when the highest score was achieved. */
-    highestScoreTimestamp: number;
+    highScoreTimestamp: H extends true ? number : undefined;
 
     /** The total score. */
     totalScore: number;

@@ -1,6 +1,6 @@
-export interface APIPagination<I> {
+export interface APIItems<I> {
     total: number;
     limit: number;
-    offset: number;
+    skip: number;
     items: I[];
 }

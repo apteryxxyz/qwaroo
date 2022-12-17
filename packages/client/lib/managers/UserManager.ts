@@ -1,4 +1,4 @@
-import { Routes } from '@owenii/types';
+import { type FetchUsersOptions, Routes } from '@owenii/types';
 import { MapManager } from './BaseManager';
 import { User } from '#/structures/User';
 
@@ -16,32 +16,15 @@ export class UserManager extends MapManager<string, User> {
         return entry;
     }
 
-    public fetch(options: User.Resolvable): Promise<User>;
-    public fetch(options: UserManager.FetchManyOptions): Promise<User[]>;
-    public async fetch(
-        options: User.Resolvable | UserManager.FetchManyOptions
-    ) {
-        if (User.isResolvable(options)) return this._fetchSingle(options);
-        else return this._fetchMany(options);
-    }
-
-    private async _fetchSingle(user: User.Resolvable) {
+    public async fetchOne(user: User.Resolvable) {
         const id = User.resolveId(user) ?? 'unknown';
-        const data = await this.client.rest.get(Routes.user(id));
+        const path = Routes.user(id);
+        const data = await this.client.rest.get(path);
         return this._add(data);
     }
 
-    private async _fetchMany(options: UserManager.FetchManyOptions) {
+    public async fetchMany(options: FetchUsersOptions) {
         const data = await this.client.rest.get(Routes.users(), options);
-        const items = data.items.map((dt: User.Entity) => this._add(dt));
-        return items as User[];
-    }
-}
-
-export namespace UserManager {
-    export interface FetchManyOptions {
-        term: string;
-        limit?: number;
-        skip?: number;
+        return data.items.map((dt: User.Entity) => this._add(dt));
     }
 }

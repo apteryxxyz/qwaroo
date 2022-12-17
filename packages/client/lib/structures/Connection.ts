@@ -1,21 +1,24 @@
-import type { Connection as ConnectionEntity } from '@owenii/types';
+import type {
+    APIConnection,
+    Connection as ConnectionEntity,
+} from '@owenii/types';
 import { Base } from './Base';
-import type { User } from './User';
+import type { ConnectionManager } from '#/managers/ConnectionManager';
 
-export class Connection extends Base {
-    public user: User;
+export class Connection extends Base implements APIConnection {
+    public connections: ConnectionManager;
     public userId!: string;
-    public providerName!: string;
+    public providerName!: APIConnection['providerName'];
     public accountId!: string;
     public accountUsername!: string;
     public linkedTimestamp!: number;
 
     public constructor(
-        user: User,
+        connections: ConnectionManager,
         data: Partial<Connection.Entity> & { id: string }
     ) {
-        super(user.client, data);
-        this.user = user;
+        super(connections.client, data);
+        this.connections = connections;
         this._patch(data);
     }
 
@@ -47,6 +50,14 @@ export class Connection extends Base {
             other.accountUsername === this.accountUsername &&
             other.linkedTimestamp === this.linkedTimestamp
         );
+    }
+
+    public fetch() {
+        return this.connections.fetchOne(this.id);
+    }
+
+    public fetchUser() {
+        return this.connections.user.fetch();
     }
 
     public override toJSON() {
