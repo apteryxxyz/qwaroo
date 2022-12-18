@@ -10,7 +10,7 @@
         "format:packages": "lerna run format --scope @owenii/*",
         "build": "lerna run build",
         "build:packages": "lerna run build --scope @owenii/*",
-        "start": "lerna run start",
+        "start": "pm2 startOrRestart ecosystem.config.js",
         "dev": "lerna run dev",
         "graph": "nx graph"
     },
@@ -40,6 +40,7 @@
         "prettier": "^2.8.1",
         "prettier-config-apteryx": "^2.0.3",
         "ts-config-apteryx": "^2.0.0",
+        "tsup": "^6.5.0",
         "typescript": "^4.9.4"
     }
 }

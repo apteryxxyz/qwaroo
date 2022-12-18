@@ -23,7 +23,7 @@ export class Database {
 
     /** Get the connection URI for the MongoDB server. */
     public async generateDatabaseUri() {
-        if (process.env['APP_ENV'] === 'production') {
+        if (process.env['NODE_ENV'] === 'production') {
             console.info('Using production database');
             return process.env['MONGODB_URI'] as string;
         } else {

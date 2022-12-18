@@ -6,7 +6,7 @@
         "lint": "eslint pages lib --ext .ts,.tsx",
         "format": "prettier --write **/*.{ts,tsx,json,md} && eslint --fix pages lib --ext .ts,.tsx",
         "build": "next build",
-        "prod": "next start",
+        "start": "next start",
         "dev": "next dev"
     },
     "dependencies": {

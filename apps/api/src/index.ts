@@ -1,11 +1,13 @@
-import 'dotenv/config';
-import 'dotenv-expand/config';
 import '@owenii/types';
-
 import process from 'node:process';
 import { Database, Game } from '@owenii/database';
 import { fetchAndSaveItems } from '@owenii/sources';
+import dotenv = require('dotenv');
+import dotenvExpand = require('dotenv-expand');
 import { Server } from './Server';
+
+const env = dotenv.config();
+dotenvExpand.expand(env);
 
 let PORT = Number(process.env['PORT']);
 if (Number.isNaN(PORT)) {

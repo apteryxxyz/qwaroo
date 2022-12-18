@@ -46,20 +46,12 @@
     "nx": {
         "targets": {
             "format": {
-                "dependsOn": [
-                    "^format"
-                ],
-                "outputs": [
-                    "{projectRoot}/src"
-                ]
+                "dependsOn": ["^format"],
+                "outputs": ["{projectRoot}/src"]
             },
             "build": {
-                "dependsOn": [
-                    "^build"
-                ],
-                "outputs": [
-                    "{projectRoot}/dist"
-                ]
+                "dependsOn": ["^build"],
+                "outputs": ["{projectRoot}/dist"]
             }
         }
     }
