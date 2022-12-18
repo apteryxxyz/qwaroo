@@ -1,7 +1,6 @@
+import process from 'node:process';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { type Connection, connect } from 'mongoose';
-
-// TODO: Add support for real MongoDB server
 
 /** Database connection. */
 export class Database {
@@ -24,7 +23,13 @@ export class Database {
 
     /** Get the connection URI for the MongoDB server. */
     public async generateDatabaseUri() {
-        const server = await MongoMemoryServer.create();
-        return server.getUri();
+        if (process.env['APP_ENV'] === 'production') {
+            console.info('Using production database');
+            return process.env['MONGODB_URI'] as string;
+        } else {
+            console.info('Using in-memory database');
+            const server = await MongoMemoryServer.create();
+            return server.getUri();
+        }
     }
 }
