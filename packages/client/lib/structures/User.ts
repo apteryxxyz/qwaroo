@@ -50,8 +50,8 @@ export class User extends Base implements APIUser {
         );
     }
 
-    public async fetch() {
-        return this.client.users.fetchOne(this.id);
+    public async fetch(force = true) {
+        return this.client.users.fetchOne(this.id, force);
     }
 
     public async fetchConnections() {

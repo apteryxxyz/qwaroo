@@ -29,8 +29,14 @@ export class ScoreManager extends MapManager<string, Score> {
         return entry;
     }
 
-    public async fetchOne(score: Score.Resolvable) {
+    public async fetchOne(score: Score.Resolvable, force = false) {
         const id = Score.resolveId(score) ?? 'unknown';
+
+        if (!force) {
+            const existing = this.get(id);
+            if (existing) return existing;
+        }
+
         const path = Routes.userScore(this.user.id, id);
         const data = await this.client.rest.get(path);
         return this._add(data);
@@ -48,7 +54,7 @@ export class ScoreManager extends MapManager<string, Score> {
         return this.fetchMany({ ...options, limit: data.total, skip: 0 });
     }
 
-    public async fetchMany(options: FetchScoresOptions = {}) {
+    public async fetchMany(options: FetchScoresOptions = {}): Promise<Score[]> {
         const path = Routes.userScores(this.user.id);
         const data = await this.client.rest.get(path, options);
         return data.items.map((dt: Score.Entity) => this._add(dt));

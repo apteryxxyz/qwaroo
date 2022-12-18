@@ -90,16 +90,16 @@ export class Score<H extends boolean = boolean>
         );
     }
 
-    public fetch() {
-        return this.scores.fetchOne(this.id);
+    public fetch(force = true) {
+        return this.scores.fetchOne(this.id, force);
     }
 
-    public fetchUser() {
-        return this.scores.user.fetch();
+    public fetchUser(force = true) {
+        return this.scores.user.fetch(force);
     }
 
-    public fetchGame() {
-        return this.client.games.fetchOne(this.gameId);
+    public fetchGame(force = true) {
+        return this.client.games.fetchOne(this.gameId, force);
     }
 
     public override toJSON() {

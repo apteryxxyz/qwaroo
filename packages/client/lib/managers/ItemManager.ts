@@ -25,7 +25,9 @@ export class ItemManager<
         return this.fetchMany(options);
     }
 
-    public async fetchMany(options: FetchGameItemsOptions = {}) {
+    public async fetchMany(
+        options: FetchGameItemsOptions = {}
+    ): Promise<Game.Entity.Item<M>[]> {
         if (this.seed) options.seed = this.seed;
         const path = Routes.gameItems(this.game.id);
         const data = await this.client.rest.get(path, options);

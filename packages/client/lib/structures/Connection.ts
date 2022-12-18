@@ -52,12 +52,12 @@ export class Connection extends Base implements APIConnection {
         );
     }
 
-    public fetch() {
-        return this.connections.fetchOne(this.id);
+    public fetch(force = true) {
+        return this.connections.fetchOne(this.id, force);
     }
 
-    public fetchUser() {
-        return this.connections.user.fetch();
+    public fetchUser(force = true) {
+        return this.connections.user.fetch(force);
     }
 
     public override toJSON() {

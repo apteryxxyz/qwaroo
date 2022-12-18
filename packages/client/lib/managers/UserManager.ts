@@ -16,14 +16,20 @@ export class UserManager extends MapManager<string, User> {
         return entry;
     }
 
-    public async fetchOne(user: User.Resolvable) {
+    public async fetchOne(user: User.Resolvable, force = false) {
         const id = User.resolveId(user) ?? 'unknown';
+
+        if (!force) {
+            const existing = this.get(id);
+            if (existing) return existing;
+        }
+
         const path = Routes.user(id);
         const data = await this.client.rest.get(path);
         return this._add(data);
     }
 
-    public async fetchMany(options: FetchUsersOptions) {
+    public async fetchMany(options: FetchUsersOptions): Promise<User[]> {
         const data = await this.client.rest.get(Routes.users(), options);
         return data.items.map((dt: User.Entity) => this._add(dt));
     }

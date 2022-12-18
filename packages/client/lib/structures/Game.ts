@@ -79,12 +79,12 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         );
     }
 
-    public async fetch() {
-        return this.client.games.fetchOne(this.id);
+    public async fetch(force = true) {
+        return this.client.games.fetchOne(this.id, force);
     }
 
-    public async fetchCreator() {
-        return this.client.users.fetchOne(this.creatorId);
+    public async fetchCreator(force = true) {
+        return this.client.users.fetchOne(this.creatorId, force);
     }
 
     public async fetchItems() {

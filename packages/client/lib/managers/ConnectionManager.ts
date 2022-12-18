@@ -24,14 +24,20 @@ export class ConnectionManager extends MapManager<string, Connection> {
         return entry;
     }
 
-    public async fetchOne(connection: Connection.Resolvable) {
+    public async fetchOne(connection: Connection.Resolvable, force = false) {
         const id = Connection.resolveId(connection) ?? 'unknown';
+
+        if (!force) {
+            const existing = this.get(id);
+            if (existing) return existing;
+        }
+
         const path = Routes.userConnection(this.user.id, id);
         const data = await this.client.rest.get(path);
         return this._add(data);
     }
 
-    public async fetchAll() {
+    public async fetchAll(): Promise<Connection[]> {
         const path = Routes.userConnections(this.user.id);
         const data = await this.client.rest.get(path);
         return data.items.map((dt: Connection.Entity) => this._add(dt));
