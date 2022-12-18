@@ -4,7 +4,7 @@ import '@owenii/types';
 
 import process from 'node:process';
 import { Database, Game } from '@owenii/database';
-import { saveAndFetchItems } from '@owenii/sources';
+import { fetchAndSaveItems } from '@owenii/sources';
 import { Server } from './Server';
 
 let PORT = Number(process.env['PORT']);
@@ -28,7 +28,7 @@ async function ensureGameItems() {
     const games = await Game.find({ sourceSlug: { $ne: null } });
     await Promise.all(
         games.map(gm =>
-            saveAndFetchItems(gm.slug, gm.sourceSlug!, gm.sourceOptions!)
+            fetchAndSaveItems(gm.slug, gm.sourceSlug!, gm.sourceOptions!)
         )
     );
 }

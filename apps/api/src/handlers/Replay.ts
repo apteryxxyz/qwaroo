@@ -46,7 +46,6 @@ export class Replay extends null {
             const previousItem = items[i];
             const currentItem = items[i + 1];
 
-            // FIXME: This sometimes fails, idk why
             if (
                 i === save.steps.length - 1 ||
                 (decision === 1 && previousItem.value <= currentItem.value) ||
