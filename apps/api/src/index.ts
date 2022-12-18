@@ -21,7 +21,6 @@ const server = new Server(PORT);
 void main();
 async function main() {
     await database.connect();
-    await import('./temp').then(md => md.default());
     await ensureGameItems();
     await server.listen();
 }
