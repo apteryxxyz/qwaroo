@@ -83,7 +83,7 @@ async function _getChannelVideos(
             // Shorts do not have a maxresdefault thumbnail
             // NOTE: Not sure if this will work for all videos on all channels
             // But I don't want to make to request the image to check if it exists
-            imageSource: (item.durationSec ?? 0 > 60
+            imageSource: ((item.durationSec ?? 0) > 60
                 ? item.bestThumbnail.url?.replace('hqdefault', 'maxresdefault')
                 : item.bestThumbnail.url) as string,
             imageFrame: 'fill',
