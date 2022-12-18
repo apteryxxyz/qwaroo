@@ -12,7 +12,7 @@ This repository includes the following apps/packages:
 
 - [`API`](apps/api) - The API for the site, it is the brains of the site, and handles all the backend logic for the users and games. It is written in TypeScript and uses the Express framework.
 
-- [`Web`](apps/web) - (Not yet implemented) The web client for the site. It is written in TypeScript and uses the NextJS framework.
+- [`Web`](apps/web) - The web client for the site. It is written in TypeScript and uses the NextJS framework.
 
 #### Possible Future Apps
 

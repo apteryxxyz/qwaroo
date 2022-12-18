@@ -1,0 +1,45 @@
+.bubbles {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    animation-name: Rise, Shake;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    animation-play-state: running, running
+}
+
+@keyframes Rise {
+    0% {
+        top: 100%
+    }
+
+    100% {
+        top: -10%
+    }
+}
+
+@keyframes Shake {
+    0% {
+        transform: translateX(0px)
+    }
+
+    50% {
+        transform: translateX(80px)
+    }
+
+    100% {
+        transform: translateX(0px)
+    }
+}
