@@ -11,8 +11,7 @@
         "graph": "nx graph",
         "lint": "lerna run lint",
         "lint:packages": "lerna run lint --scope @owenii/*",
-        "nginx:build": "node scripts/nginx.js && sudo cp .nginx/* /etc/nginx/sites-available/",
-        "nginx:start": "sudo nginx -t && sudo systemctl reload nginx",
+        "nginx": "node scripts/nginx.js && sudo cp .nginx/* /etc/nginx/sites-available/",
         "prepare": "husky install",
         "pull": "git reset --hard HEAD && git pull",
         "start": "pm2 startOrRestart ecosystem.config.js"
