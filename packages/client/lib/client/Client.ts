@@ -3,11 +3,15 @@ import { GameManager } from '#/managers/GameManager';
 import { UserManager } from '#/managers/UserManager';
 import { User } from '#/structures/User';
 
-export class Client<Ready extends boolean = boolean> {
+/** The API client, used to make connecting to the API easier. */
+export class Client<R extends boolean = boolean> {
+    /** The REST manager. */
     public rest: REST;
-    public id!: Ready extends true ? string : undefined;
-
+    /** ID of the currently logged in user if at all. */
+    public id!: R extends true ? string : undefined;
+    /** The users manager. */
     public users: UserManager;
+    /** The games manager. */
     public games: GameManager;
 
     public constructor(options: Client.Options) {
@@ -17,15 +21,18 @@ export class Client<Ready extends boolean = boolean> {
         this.games = new GameManager(this);
     }
 
-    public get me(): Ready extends true ? User : undefined {
+    /** The currently logged in user. */
+    public get me(): R extends true ? User : undefined {
         // @ts-expect-error 2322
         return this.id && this.users.get(this.id);
     }
 
+    /** Whether the client is logged in. */
     public isLoggedIn(): this is Client<true> {
         return this.me !== undefined;
     }
 
+    /** Initialise this client. */
     public async login(id: string, token: string) {
         // @ts-expect-error 2322
         this.id = id as string;
@@ -38,6 +45,7 @@ export class Client<Ready extends boolean = boolean> {
         return this;
     }
 
+    /** Uninitialise this client. */
     public async logout() {
         this.rest.setToken(undefined);
         // @ts-expect-error 2322

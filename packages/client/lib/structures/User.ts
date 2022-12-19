@@ -5,6 +5,7 @@ import { ConnectionManager } from '#/managers/ConnectionManager';
 import { GameManager } from '#/managers/GameManager';
 import { ScoreManager } from '#/managers/ScoreManager';
 
+/** A user. */
 export class User extends Base implements APIUser {
     public displayName!: string;
     public avatarUrl!: string;
@@ -29,14 +30,17 @@ export class User extends Base implements APIUser {
         return data;
     }
 
+    /** Check if the user has been fetched. */
     public get partial() {
         return this.displayName === undefined;
     }
 
+    /** The date the user joined. */
     public get joinedAt() {
         return new Date(this.joinedTimestamp);
     }
 
+    /** The date the user was last seen. */
     public get seenAt() {
         return new Date(this.seenTimestamp);
     }
@@ -51,27 +55,32 @@ export class User extends Base implements APIUser {
         );
     }
 
+    /** Fetch the user. */
     public async fetch(force = true) {
         return this.client.users.fetchOne(this.id, force);
     }
 
+    /** Fetch the user's connections. */
     public async fetchConnections() {
         const connections = new ConnectionManager(this);
         await connections.fetchAll();
         return connections;
     }
 
+    /** Fetch the first set of the user's scores. */
     public async fetchScores() {
         const scores = new ScoreManager(this);
-        await scores.fetchAll();
+        await scores.fetchMany();
         return scores;
     }
 
+    /** Fetch the user's game categories. */
     public async fetchGameCategories() {
         const games = new GameManager(this);
         return games.fetchCategories();
     }
 
+    /** Fetch the first set of the user's games. */
     public async fetchGames() {
         const games = new GameManager(this);
         await games.fetchMany();

@@ -1,5 +1,6 @@
 import type { Client } from '#/client/Client';
 
+/** A base class for all structures. */
 export class Base {
     public client: Client;
     public id!: string;

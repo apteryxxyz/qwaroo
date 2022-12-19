@@ -2,11 +2,14 @@ import type { Score as ScoreEntity } from '@owenii/types';
 import { Base } from './Base';
 import type { ScoreManager } from '#/managers/ScoreManager';
 
+/** A game score. */
 export class Score<H extends boolean = boolean>
     extends Base
     implements Score.Entity<H>
 {
+    /** The manager of the score. */
     public scores: ScoreManager;
+
     public userId!: string;
     public gameId!: string;
     public highScore!: H extends true ? number : undefined;
@@ -56,20 +59,24 @@ export class Score<H extends boolean = boolean>
         return data;
     }
 
+    /** Check if the score has been fetched. */
     public get partial() {
         return this.userId === undefined;
     }
 
+    /** The date the high score was achieved. */
     public get highScoreAt() {
         return this.highScoreTimestamp
             ? new Date(this.highScoreTimestamp)
-            : null;
+            : undefined;
     }
 
+    /** The date of the first play. */
     public get firstPlayedAt() {
         return new Date(this.firstPlayedTimestamp);
     }
 
+    /** The date of the last play. */
     public get lastPlayedAt() {
         return new Date(this.lastPlayedTimestamp);
     }
@@ -90,14 +97,17 @@ export class Score<H extends boolean = boolean>
         );
     }
 
+    /** Fetch the score. */
     public fetch(force = true) {
         return this.scores.fetchOne(this.id, force);
     }
 
+    /** Fetch this scores user. */
     public fetchUser(force = true) {
         return this.scores.user.fetch(force);
     }
 
+    /** Fetch this scores game. */
     public fetchGame(force = true) {
         return this.client.games.fetchOne(this.gameId, force);
     }

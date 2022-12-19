@@ -3,7 +3,9 @@ import { MapManager } from './BaseManager';
 import { Connection } from '#/structures/Connection';
 import type { User } from '#/structures/User';
 
+/** A manager for connections. */
 export class ConnectionManager extends MapManager<string, Connection> {
+    /** The user the connections belong to. */
     public user: User;
 
     public constructor(user: User) {
@@ -24,6 +26,7 @@ export class ConnectionManager extends MapManager<string, Connection> {
         return entry;
     }
 
+    /** Fetch a single connection. */
     public async fetchOne(connection: Connection.Resolvable, force = false) {
         const id = Connection.resolveId(connection) ?? 'unknown';
 
@@ -37,6 +40,7 @@ export class ConnectionManager extends MapManager<string, Connection> {
         return this._add(data);
     }
 
+    /** Fetch all connections. */
     public async fetchAll(): Promise<Connection[]> {
         const path = Routes.userConnections(this.user.id);
         const data = await this.client.rest.get(path);

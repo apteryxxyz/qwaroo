@@ -2,6 +2,7 @@ import { type FetchUsersOptions, Routes } from '@owenii/types';
 import { MapManager } from './BaseManager';
 import { User } from '#/structures/User';
 
+/** A manager for users. */
 export class UserManager extends MapManager<string, User> {
     private _add(data: User.Entity) {
         const existing = this.get(data.id);
@@ -16,6 +17,7 @@ export class UserManager extends MapManager<string, User> {
         return entry;
     }
 
+    /** Fetch a single user. */
     public async fetchOne(user: User.Resolvable, force = false) {
         const id = User.resolveId(user) ?? 'unknown';
 
@@ -29,6 +31,7 @@ export class UserManager extends MapManager<string, User> {
         return this._add(data);
     }
 
+    /** Fetch many users. */
     public async fetchMany(options: FetchUsersOptions): Promise<User[]> {
         const data = await this.client.rest.get(Routes.users(), options);
         return data.items.map((dt: User.Entity) => this._add(dt));

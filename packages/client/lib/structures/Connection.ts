@@ -5,8 +5,11 @@ import type {
 import { Base } from './Base';
 import type { ConnectionManager } from '#/managers/ConnectionManager';
 
+/** A connection. */
 export class Connection extends Base implements APIConnection {
+    /** The manager of the connection. */
     public connections: ConnectionManager;
+
     public userId!: string;
     public providerName!: APIConnection['providerName'];
     public accountId!: string;
@@ -33,10 +36,12 @@ export class Connection extends Base implements APIConnection {
         return data;
     }
 
+    /** Check if the connection has been fetched. */
     public get partial() {
         return this.providerName === undefined;
     }
 
+    /** The date the connection was linked. */
     public get linkedAt() {
         return new Date(this.linkedTimestamp);
     }
@@ -52,10 +57,12 @@ export class Connection extends Base implements APIConnection {
         );
     }
 
+    /** Fetch the connection. */
     public fetch(force = true) {
         return this.connections.fetchOne(this.id, force);
     }
 
+    /** Fetch the user of this connection. */
     public fetchUser(force = true) {
         return this.connections.user.fetch(force);
     }

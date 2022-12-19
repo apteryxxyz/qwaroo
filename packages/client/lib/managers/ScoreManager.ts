@@ -8,7 +8,9 @@ import { Game } from '#/structures/Game';
 import { Score } from '#/structures/Score';
 import type { User } from '#/structures/User';
 
+/** A manager for scores. */
 export class ScoreManager extends MapManager<string, Score> {
+    /** The user the scores belong to. */
     public user: User;
 
     public constructor(user: User) {
@@ -29,6 +31,7 @@ export class ScoreManager extends MapManager<string, Score> {
         return entry;
     }
 
+    /** Fetch a single score. */
     public async fetchOne(score: Score.Resolvable, force = false) {
         const id = Score.resolveId(score) ?? 'unknown';
 
@@ -42,24 +45,28 @@ export class ScoreManager extends MapManager<string, Score> {
         return this._add(data);
     }
 
+    /** Fetch a page of scores. */
     public async fetchMore(options: FetchScoresOptions = {}) {
-        if (options.limit === undefined) options.limit = 100;
+        if (options.limit === undefined) options.limit = 20;
         if (options.skip === undefined) options.skip = this.size;
         return this.fetchMany(options);
     }
 
+    /** Fetch all scores. */
     public async fetchAll(options: FetchScoresOptions = {}) {
         const path = Routes.userScores(this.user.id);
         const data = await this.client.rest.get(path, options);
         return this.fetchMany({ ...options, limit: data.total, skip: 0 });
     }
 
+    /** Fetch many scores. */
     public async fetchMany(options: FetchScoresOptions = {}): Promise<Score[]> {
         const path = Routes.userScores(this.user.id);
         const data = await this.client.rest.get(path, options);
         return data.items.map((dt: Score.Entity) => this._add(dt));
     }
 
+    /** Submit a score. */
     public async submit(
         game: Game.Resolvable,
         save: Omit<APIScoreSave<Game.Entity.Mode>, 'game'>

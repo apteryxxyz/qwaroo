@@ -1,38 +1,48 @@
 import { ClientError as Error } from '@owenii/common';
 
+/** The REST manager, handles making requests. */
 export class REST {
+    /** The host of the api. */
     public apiHost: string | URL;
+    /** The token to use for requests. */
     public apiToken?: string;
 
     public constructor(options: REST.Options) {
         this.apiHost = new URL('', options.apiHost);
     }
 
+    /** Set the token to use for requests. */
     public setToken(token?: string) {
         this.apiToken = token;
         return this;
     }
 
+    /** Make a GET request. */
     public get(path: string, query = {}) {
         return this._request(path, 'GET', query);
     }
 
+    /** Make a POST request. */
     public post(path: string, query = {}, body = {}) {
         return this._request(path, 'POST', query, body);
     }
 
+    /** Make a PUT request. */
     public put(path: string, query = {}, body = {}) {
         return this._request(path, 'PUT', query, body);
     }
 
+    /** Make a PATCH request. */
     public patch(path: string, query = {}, body = {}) {
         return this._request(path, 'PATCH', query, body);
     }
 
+    /** Make a DELETE request. */
     public delete(path: string, query = {}) {
         return this._request(path, 'DELETE', query);
     }
 
+    /** Make a request. */
     private async _request(
         path: string,
         method: string,

@@ -1,12 +1,16 @@
 import { type APIGame, Game as GameEntity } from '@owenii/types';
 import { Base } from './Base';
-import type { Client } from '#/client/Client';
+import type { GameManager } from '#/managers/GameManager';
 import { ItemManager } from '#/managers/ItemManager';
 
+/** A game. */
 export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     extends Base
     implements APIGame<M>
 {
+    /** The manager of the game. */
+    public games: GameManager;
+
     public slug!: string;
     public creatorId!: string;
     public sourceSlug?: string;
@@ -22,10 +26,11 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     public updatedTimestamp!: number;
 
     public constructor(
-        client: Client,
+        games: GameManager,
         data: Partial<Game.Entity<M>> & { id: string }
     ) {
-        super(client, data);
+        super(games.client, data);
+        this.games = games;
         this._patch(data);
     }
 
@@ -51,14 +56,17 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         return data;
     }
 
+    /** Check if the game has been fetched. */
     public get partial() {
         return this.slug === undefined;
     }
 
+    /** The date the game was created. */
     public get createdAt() {
         return new Date(this.createdTimestamp);
     }
 
+    /** The date the game was last updated. */
     public get updatedAt() {
         return new Date(this.updatedTimestamp);
     }
@@ -79,14 +87,17 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         );
     }
 
+    /** Fetch the game. */
     public async fetch(force = true) {
-        return this.client.games.fetchOne(this.id, force);
+        return this.games.fetchOne(this.id, force);
     }
 
+    /** Fetch the creator of this game. */
     public async fetchCreator(force = true) {
         return this.client.users.fetchOne(this.creatorId, force);
     }
 
+    /** Fetch the first set items of this game. */
     public async fetchItems() {
         // Idk why but it doesn't work without the type assertion
         const manager = new ItemManager<M>(this) as ItemManager<M>;

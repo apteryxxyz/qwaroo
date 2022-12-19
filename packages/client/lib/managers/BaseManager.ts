@@ -2,6 +2,7 @@
 import { Collection } from '@discordjs/collection';
 import { Client } from '#/client/Client';
 
+/** A cache manager to handle key and value caches. */
 export class MapManager<K, V> extends Collection<K, V> {
     public client: Client;
 
@@ -12,6 +13,7 @@ export class MapManager<K, V> extends Collection<K, V> {
     }
 }
 
+/** A cache manager to handle value only caches. */
 export class ArrayManager<V> extends Array<V> {
     public client: Client;
 
