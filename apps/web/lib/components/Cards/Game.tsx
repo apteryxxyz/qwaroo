@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 export namespace GameCard {
     export interface Props {
         game: Game;
-        creator: User;
+        creator?: User;
 
         linkProps?: LinkProps;
         badgeText?: string;

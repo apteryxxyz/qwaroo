@@ -43,7 +43,9 @@ export default () => {
             setShareUrl(path);
 
             const games = await client.games.fetchMany(query);
-            await Promise.all(games.map(g => g.fetchCreator(false)));
+            for (const game of games)
+                await game.fetchCreator(false).catch(() => null);
+
             setGames(games);
             setIsLoading(false);
         })();
