@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { GameCard } from '#/components/Cards/Game';
 import { Display } from '#/components/Display';
+import { Loading } from '#/components/Display/Loading';
 import { Button } from '#/components/Input/Button';
 import { Textbox } from '#/components/Input/Textbox';
 import { useClient } from '#/contexts/ClientContext';
@@ -17,6 +18,7 @@ export default () => {
     const client = useClient();
 
     const [games, setGames] = useState<Game[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [categories, setCategories] = useState<string[]>([]);
     const [query, setQuery] = useState<FetchGamesOptions>({
         limit: 10,
@@ -43,6 +45,7 @@ export default () => {
             const games = await client.games.fetchMany(query);
             await Promise.all(games.map(g => g.fetchCreator(false)));
             setGames(games);
+            setIsLoading(false);
         })();
     }, [query]);
 
@@ -108,15 +111,17 @@ export default () => {
             </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {isLoading && <Loading />}
+
+        {!isLoading && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {games.map(game => <GameCard
                 key={game.slug}
                 game={game}
                 creator={client.users.get(game.creatorId)!}
             />)}
-        </div>
+        </div>}
 
-        {games.length === 0 && <Display
+        {!isLoading && games.length === 0 && <Display
             title="No games found."
             description="Try searching for something else."
         />}
