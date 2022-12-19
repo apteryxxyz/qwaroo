@@ -18,6 +18,7 @@ jobs:
     uses: ./.github/workflows/build.yml
 
   deploy:
+    name: Deploy
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -33,4 +34,8 @@ jobs:
           envs: PROJECT_PATH
           script: |
             cd $PROJECT_PATH
-            scripts/deploy.sh
+            exec bash
+            pnpm pull
+            pnpm install
+            pnpm build
+            pnpm start
