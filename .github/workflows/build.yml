@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
