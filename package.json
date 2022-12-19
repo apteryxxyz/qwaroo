@@ -12,6 +12,7 @@
         "build:packages": "lerna run build --scope @owenii/*",
         "start": "pm2 startOrRestart ecosystem.config.js",
         "dev": "lerna run dev",
+        "pull": "git reset --hard HEAD && git pull",
         "graph": "nx graph"
     },
     "prettier": "prettier-config-apteryx",
