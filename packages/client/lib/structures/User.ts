@@ -2,6 +2,7 @@ import type { APIUser, User as UserEntity } from '@owenii/types';
 import { Base } from './Base';
 import type { Client } from '#/client/Client';
 import { ConnectionManager } from '#/managers/ConnectionManager';
+import { GameManager } from '#/managers/GameManager';
 import { ScoreManager } from '#/managers/ScoreManager';
 
 export class User extends Base implements APIUser {
@@ -64,6 +65,17 @@ export class User extends Base implements APIUser {
         const scores = new ScoreManager(this);
         await scores.fetchAll();
         return scores;
+    }
+
+    public async fetchGameCategories() {
+        const games = new GameManager(this);
+        return games.fetchCategories();
+    }
+
+    public async fetchGames() {
+        const games = new GameManager(this);
+        await games.fetchMany();
+        return games;
     }
 
     public override toJSON() {
