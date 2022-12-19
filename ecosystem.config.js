@@ -1,8 +1,11 @@
+const script = process.platform === 'win32'
+    ? '../../scripts/npm.js' : 'npm';
+
 module.exports = [
     {
         name: 'Owenii API',
         cwd: './apps/api',
-        script: './scripts/npm.js',
+        script,
         args: 'start',
         instances: 1,
         autorestart: true,
@@ -11,7 +14,7 @@ module.exports = [
     {
         name: 'Owenii Web',
         cwd: './apps/web',
-        script: './scripts/npm.js',
+        script,
         args: 'start',
         instances: 1,
         autorestart: true,
