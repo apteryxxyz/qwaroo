@@ -2,6 +2,7 @@ import process from 'node:process';
 import { Connection, User, type UserDocument } from '@owenii/database';
 import passport from 'passport';
 import type { VerifyCallback } from 'passport-oauth2';
+import { Encryption } from '#/handlers/Encryption';
 // No types
 const { Strategy } = require('passport-github2');
 
@@ -67,7 +68,7 @@ export class GitHubPassport {
             providerName: 'github',
             accountId: String(profile['id']),
             accountUsername: profile['login'],
-            refreshToken,
+            refreshToken: Encryption.encryptString(refreshToken),
         });
 
         await Promise.all([newUser.save(), newConnection.save()]);

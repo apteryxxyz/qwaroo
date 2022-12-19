@@ -3,6 +3,7 @@ import { Connection, User, type UserDocument } from '@owenii/database';
 import passport from 'passport';
 import { Strategy } from 'passport-discord';
 import type { VerifyCallback } from 'passport-oauth2';
+import { Encryption } from '#/handlers/Encryption';
 
 export class DiscordPassport {
     public constructor() {
@@ -65,7 +66,7 @@ export class DiscordPassport {
             providerName: 'discord',
             accountId: profile.id,
             accountUsername: this._createUserTag(profile),
-            refreshToken,
+            refreshToken: Encryption.encryptString(refreshToken)
         });
 
         await Promise.all([newUser.save(), newConnection.save()]);
