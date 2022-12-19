@@ -11,6 +11,8 @@ importers:
       '@rushstack/eslint-patch': ^1.2.0
       '@typescript-eslint/eslint-plugin': ^5.46.0
       '@typescript-eslint/parser': ^5.46.0
+      dotenv: ^16.0.3
+      dotenv-expand: ^9.0.0
       eslint: ^8.29.0
       eslint-config-apteryx: ^2.0.4
       eslint-config-prettier: ^8.5.0
@@ -38,6 +40,8 @@ importers:
       '@rushstack/eslint-patch': 1.2.0
       '@typescript-eslint/eslint-plugin': 5.46.0_5mle7isnkfgjmrghnnczirv6iy
       '@typescript-eslint/parser': 5.46.0_ha6vam6werchizxrnqvarmz2zu
+      dotenv: 16.0.3
+      dotenv-expand: 9.0.0
       eslint: 8.29.0
       eslint-config-apteryx: 2.0.4
       eslint-config-prettier: 8.5.0_eslint@8.29.0
@@ -4799,7 +4803,6 @@ packages:
   /dotenv-expand/9.0.0:
     resolution: {integrity: sha512-uW8Hrhp5ammm9x7kBLR6jDfujgaDarNA02tprvZdyrJ7MpdzD1KyrIHG4l+YoC2fJ2UcdFdNWNWIjt+sexBHJw==}
     engines: {node: '>=12'}
-    dev: false
 
   /dotenv/10.0.0:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}

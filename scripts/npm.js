@@ -1,5 +1,8 @@
-// This file is used to run npm commands in PM2
-const { execSync } = require("child_process");
+// This file is used to run npm commands in PM2 on Windows
+const { exec } = require("node:child_process");
 
-const [_0, _1, ...args] = process.argv;
-execSync(`npm ${args.join(" ")}`, { windowsHide: true, stdio: "inherit" });
+void main(process.argv.length, process.argv);
+async function main(_, [_0, _1, ...args]) {
+    const command = `npm ${args.join(" ")}`;
+    await exec.__promisify__(command, { windowsHide: true, stdio: "inherit" });
+}
