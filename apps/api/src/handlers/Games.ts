@@ -1,41 +1,55 @@
 import { ServerError as Error, Validate, createRegExp } from '@owenii/common';
-import { Game, type GameDocument } from '@owenii/database';
+import { Game, type GameDocument, type UserDocument } from '@owenii/database';
 import { loadItems } from '@owenii/sources';
 import type { FetchGamesOptions } from '@owenii/types';
 import { shuffle } from 'shuffle-seed';
 
 export class Games extends null {
     /** Get a list of all the game categories. */
-    public static async getCategories() {
-        const games = await Game.find({}).exec();
+    public static async getCategories(user?: UserDocument) {
+        const obj = user ? { creatorId: user.id } : {};
+        const games = await Game.find(obj).exec();
         const categories = games.flatMap(game => game.categories ?? []);
         return Array.from(new Set(categories));
     }
 
     /** Get a single game by its ID. */
-    public static async getGameById(id: string) {
+    public static async getGameById(
+        user: UserDocument | undefined,
+        id: string
+    ) {
         const isValidId = Validate.ObjectId.test(id);
         if (!isValidId) throw new Error(422, 'Game ID is invalid');
 
-        const game = await Game.findById(id).exec();
+        let query = Game.findById(id);
+        if (user) query = query.where({ creatorId: user.id });
+        const game = await query.exec();
         if (!game) throw new Error(404, 'Game was not found');
 
         return game;
     }
 
     /** Get a single game by its slug. */
-    public static async getGameBySlug(slug: string) {
+    public static async getGameBySlug(
+        user: UserDocument | undefined,
+        slug: string
+    ) {
         const isValidSlug = Validate.Slug.test(slug);
         if (!isValidSlug) throw new Error(422, 'Game slug is invalid');
 
-        const game = await Game.findOne({ slug }).exec();
+        let query = Game.findOne({ slug });
+        if (user) query = query.where({ creatorId: user.id });
+        const game = await query.exec();
         if (!game) throw new Error(404, 'Game was not found');
 
         return game;
     }
 
     /** Get a list of all games. */
-    public static async getGames(options: FetchGamesOptions = {}) {
+    public static async getGames(
+        user?: UserDocument,
+        options: FetchGamesOptions = {}
+    ) {
         const { term, limit = 20, skip = 0 } = options;
         if (term && term.length < 1)
             throw new Error(422, 'Search term must be at least 1 character');
@@ -63,6 +77,10 @@ export class Games extends null {
             throw new Error(422, 'Modes must be an array of strings');
 
         let query = Game.find();
+
+        if (user) {
+            query = query.where({ creatorId: user.id });
+        }
 
         if (term) {
             const title = createRegExp(term, false, 'i');

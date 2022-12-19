@@ -33,6 +33,23 @@ export const Routes = {
         return `/games/${gameId}/items` as const;
     },
 
+    // User Games
+    userCategories(userId: string | '@me') {
+        return `/users/${userId}/categories` as const;
+    },
+
+    userGames(userId: string | '@me') {
+        return `/users/${userId}/games` as const;
+    },
+
+    userGame(userId: string | '@me', gameId: string) {
+        return `/users/${userId}/games/${gameId}` as const;
+    },
+
+    userGameItems(userId: string | '@me', gameId: string) {
+        return `/users/${userId}/games/${gameId}/items` as const;
+    },
+
     // Users
     users() {
         return '/users' as const;

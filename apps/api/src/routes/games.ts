@@ -2,6 +2,8 @@ import { Validate } from '@owenii/common';
 import { Routes } from '@owenii/types';
 import { Router } from 'express';
 import { Games } from '#/handlers/Games';
+import { Users } from '#/handlers/Users';
+import { useMe } from '#/middleware/useMe';
 import { useMethods } from '#/middleware/useMethods';
 import { useToken } from '#/middleware/useToken';
 import { handle } from '#/utilities/routeHandler';
@@ -10,19 +12,24 @@ export default () => {
     const router = Router();
 
     router.all(
-        Routes.categories(),
+        [Routes.categories(), Routes.userCategories(':userId')],
         useMethods(['GET']),
         useToken([], ['GET']),
-        handle(async (_req, res) => {
-            const categories = await Games.getCategories();
+        useMe('userId'),
+        handle(async (req, res) => {
+            const userId = String(req.params['userId'] ?? '') || undefined;
+            const user = userId ? await Users.getUser(userId) : undefined;
+
+            const categories = await Games.getCategories(user);
             res.status(200).json({ success: true, items: categories });
         })
     );
 
     router.all(
-        Routes.games(),
+        [Routes.games(), Routes.userGames(':userId')],
         useMethods(['GET']),
         useToken([], ['GET']),
+        useMe('userId'),
         handle(async (req, res) => {
             const opts: Record<string, unknown> = {};
             opts['term'] = String(req.query['term'] ?? '') || undefined;
@@ -38,33 +45,46 @@ export default () => {
             const modes = String(req.query['modes'] ?? '');
             if (modes) opts['modes'] = modes.split(',');
 
-            const [data, items] = await Games.getGames(opts);
+            const userId = String(req.params['userId'] ?? '') || undefined;
+            const user = userId ? await Users.getUser(userId) : undefined;
+
+            const [data, items] = await Games.getGames(user, opts);
             res.status(200).json({ success: true, ...data, items });
         })
     );
 
     router.all(
-        Routes.game(':gameId'),
+        [Routes.game(':gameId'), Routes.userGame(':userId', ':gameId')],
         useMethods(['GET']),
         useToken([], ['GET']),
+        useMe('userId'),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
+            const userId = String(req.params['userId'] ?? '');
+            const user = userId ? await Users.getUser(userId) : undefined;
+
             const game = Validate.ObjectId.test(gameId)
-                ? await Games.getGameById(gameId)
-                : await Games.getGameBySlug(gameId);
+                ? await Games.getGameById(user, gameId)
+                : await Games.getGameBySlug(user, gameId);
             res.status(200).json({ success: true, ...game.toJSON() });
         })
     );
 
     router.all(
-        Routes.gameItems(':gameId'),
+        [
+            Routes.gameItems(':gameId'),
+            Routes.userGameItems(':userId', ':gameId'),
+        ],
         useMethods(['GET']),
         useToken([], ['GET']),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
+            const userId = String(req.params['userId'] ?? '');
+            const user = userId ? await Users.getUser(userId) : undefined;
+
             const game = Validate.ObjectId.test(gameId)
-                ? await Games.getGameById(gameId)
-                : await Games.getGameBySlug(gameId);
+                ? await Games.getGameById(user, gameId)
+                : await Games.getGameBySlug(user, gameId);
 
             let seed = String(req.query['seed'] ?? '') || undefined;
             const limit = Number(req.query['limit'] ?? 0) || undefined;
