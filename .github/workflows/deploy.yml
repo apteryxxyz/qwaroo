@@ -1,12 +1,12 @@
 name: Deploy
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - 'apps/**'
-  #     - 'packages/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/**'
+      - 'packages/**'
   workflow_dispatch:
 
 concurrency:
