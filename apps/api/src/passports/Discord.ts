@@ -66,7 +66,7 @@ export class DiscordPassport {
             providerName: 'discord',
             accountId: profile.id,
             accountUsername: this._createUserTag(profile),
-            refreshToken: Encryption.encryptString(refreshToken)
+            refreshToken: Encryption.encryptString(refreshToken),
         });
 
         await Promise.all([newUser.save(), newConnection.save()]);

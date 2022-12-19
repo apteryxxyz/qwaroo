@@ -41,8 +41,8 @@ export default () => {
             if (req.method === 'POST') {
                 const gameId = String(req.body['game'] ?? '');
                 const game = Validate.ObjectId.test(gameId)
-                    ? await Games.getGameById(gameId)
-                    : await Games.getGameBySlug(gameId);
+                    ? await Games.getGameById(undefined, gameId)
+                    : await Games.getGameBySlug(undefined, gameId);
 
                 const score = await Scores.ensureScore(user, game);
                 await Scores.updateScore(score, req.body);
