@@ -136,6 +136,7 @@ importers:
       '@types/react': ^18.0.26
       '@types/react-dom': ^18.0.9
       autoprefixer: ^10.4.13
+      dotenv: ^16.0.3
       eslint: ^8.28.0
       eslint-config-apteryx: ^2.0.2
       framer-motion: ^7.6.19
@@ -174,6 +175,7 @@ importers:
     devDependencies:
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
+      dotenv: 16.0.3
       eslint: 8.29.0
       eslint-config-apteryx: 2.0.4
       prettier: 2.8.1
@@ -4807,7 +4809,6 @@ packages:
   /dotenv/16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
-    dev: false
 
   /duplexer/0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
