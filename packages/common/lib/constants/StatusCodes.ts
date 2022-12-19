@@ -1,3 +1,4 @@
+/** HTTP status codes. */
 export const StatusCodes = {
     100: 'Continue',
     101: 'Switching Protocols',

@@ -1,4 +1,6 @@
 /* eslint-disable id-length */
+
+/** A character map used to convert non Latin characters into Latin. */
 export const TransliterationMap = {
     '3': 'Ξξ',
     '8': 'Θθ',

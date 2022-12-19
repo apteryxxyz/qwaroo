@@ -1,6 +1,9 @@
 import { StatusCodes } from '../constants/StatusCodes';
 import type { ServerError } from './ServerError';
 
+/**
+ * Basically the same as ServerError, but is to be thrown from the client.
+ */
 export class ClientError extends Error {
     public readonly status: keyof typeof StatusCodes;
     public readonly details?: string;

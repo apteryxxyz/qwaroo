@@ -1,5 +1,6 @@
 import { TransliterationMap } from '#/constants/TransliterationMap';
 
+/** Simple method of converting a string into a slug. */
 export function createSlug(input: string) {
     return input
         .toLowerCase()
@@ -8,6 +9,7 @@ export function createSlug(input: string) {
         .replaceAll(/^-|-$/g, '');
 }
 
+/** More advanced method of converting a string into a slug. */
 export function createSlugWithTransliteration(input: string) {
     return input
         .toLowerCase()

@@ -1,10 +1,14 @@
 import { CharacterList } from '#/constants/CharacterList';
 
+/**
+ * Convert a regular string into an regex, escaping all of the needed characters.
+ */
 export function createRegExp(pattern: string, scoped = false, flags = '') {
     const escaped = pattern.replaceAll(/[$()*+./?[\\\]^{|}-]/g, '\\$&');
     return new RegExp(scoped ? `^${escaped}$` : escaped, flags);
 }
 
+/** Create  a regex that must match a length. */
 export function createStringLengthRegExp(
     min: number,
     max?: number,
