@@ -13,8 +13,7 @@ import { NavigationBar } from '#/components/NavigationBar';
 import { ClientProvider } from '#/contexts/ClientContext';
 import { useApiUrl } from '#/hooks/useEnv';
 
-const apiUrl = String(process.env['NEXT_PUBLIC_API_URL'] ?? '');
-const client = new Client({ apiHost: apiUrl });
+const client = new Client({ apiHost: useApiUrl() });
 
 export default ({ Component, pageProps }: AppProps) => {
     useEffect(() => {}, []);
