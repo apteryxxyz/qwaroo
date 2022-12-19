@@ -6,7 +6,9 @@ import { Game, type GameDocument } from './Game';
 import { User, type UserDocument } from './User';
 
 export interface ScoreMethods {
+    /** Get the user that this score belongs to. */
     getUser(): Promise<UserDocument>;
+    /** Get the game that this score is for. */
     getGame(): Promise<GameDocument>;
 }
 
@@ -23,6 +25,7 @@ const ScoreSchema = new Schema<
     ScoreMethods
 >(
     {
+        // Identifiers
         userId: {
             type: String,
             required: true,
@@ -35,6 +38,7 @@ const ScoreSchema = new Schema<
             match: Validate.ObjectId,
         },
 
+        // Highscore
         highScore: {
             type: Number,
             required: false,
@@ -50,6 +54,7 @@ const ScoreSchema = new Schema<
             required: false,
         },
 
+        // Totals
         totalScore: {
             type: Number,
             required: true,
@@ -68,6 +73,7 @@ const ScoreSchema = new Schema<
             default: 0,
         },
 
+        // Timestamps
         firstPlayedTimestamp: {
             type: Number,
             required: true,

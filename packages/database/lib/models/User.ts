@@ -7,12 +7,18 @@ import { Game, type GameDocument } from './Game';
 import { Score, type ScoreDocument } from './Score';
 
 export interface UserMethods {
+    /** Get the list of connections linked to this user. */
     getConnections(): Promise<ConnectionDocument[]>;
+    /** Get a specific connection that is linked to this user. */
     getConnection(id: string): Promise<ConnectionDocument | null>;
+
+    /** Get the games that this user has created. */
     getGames(): Promise<GameDocument[]>;
+    /** Get a specific game that this user has created. */
     getGame(id: string): Promise<GameDocument | null>;
+
+    /** Get the scores that this user has submitted. */
     getScores(): Promise<ScoreDocument[]>;
-    getScore(id: string): Promise<ScoreDocument | null>;
 }
 
 export interface UserDocument extends UserEntity, UserMethods, Document {
@@ -23,12 +29,7 @@ export interface UserModel extends Model<UserEntity, {}, UserMethods> {}
 
 const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
     {
-        revokeToken: {
-            type: String,
-            required: true,
-            default: () => new Date().getMilliseconds().toString(),
-        },
-
+        // Information
         displayName: {
             type: String,
             required: true,
@@ -41,6 +42,14 @@ const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
             match: Validate.AvatarURL,
         },
 
+        // Security
+        revokeToken: {
+            type: String,
+            required: true,
+            default: () => new Date().getMilliseconds().toString(),
+        },
+
+        // Timestamps
         joinedTimestamp: {
             type: Number,
             required: true,

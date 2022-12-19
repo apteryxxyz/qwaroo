@@ -6,7 +6,9 @@ import { Score, type ScoreDocument } from './Score';
 import { User, type UserDocument } from './User';
 
 export interface GameMethods {
+    /** Get the user that created this game. */
     getCreator(): Promise<UserDocument>;
+    /** Get all of the user scores for this game. */
     getScores(): Promise<ScoreDocument[]>;
 }
 
@@ -16,9 +18,10 @@ export interface GameDocument extends GameEntity, GameMethods, Document {
 
 export interface GameModel extends Model<GameEntity, {}, GameMethods> {}
 
+// TODO: Add a total play count property to games to use to sort by popularity
+
 const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
     {
-        // TODO: Default should be a slugified version of the title
         // Identifers
         slug: {
             type: String,

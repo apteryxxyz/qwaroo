@@ -5,6 +5,7 @@ import { Schema, model } from 'mongoose';
 import { User, type UserDocument } from './User';
 
 export interface ConnectionMethods {
+    /** Get the user this connection belongs to.  */
     getUser(): Promise<UserDocument>;
 }
 
@@ -25,17 +26,20 @@ const ConnectionSchema = new Schema<
     ConnectionMethods
 >(
     {
+        // Identifiers
         userId: {
             type: String,
             required: true,
             match: Validate.ObjectId,
         },
 
+        // Provider Information
         providerName: {
             type: String,
             required: true,
         },
 
+        // Account Information
         accountId: {
             type: String,
             required: true,
@@ -47,15 +51,17 @@ const ConnectionSchema = new Schema<
             required: true,
         },
 
+        // Security
+        refreshToken: {
+            type: String,
+            required: true,
+        },
+
+        // Timestamps
         linkedTimestamp: {
             type: Number,
             required: true,
             default: Date.now,
-        },
-
-        refreshToken: {
-            type: String,
-            required: true,
         },
     },
     {
