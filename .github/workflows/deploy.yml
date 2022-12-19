@@ -32,7 +32,6 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: PROJECT_PATH
           script: |
-            exec bash \-l
             cd $PROJECT_PATH
             pnpm pull
             pnpm install
