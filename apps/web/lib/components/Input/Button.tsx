@@ -1,40 +1,18 @@
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { motion } from 'framer-motion';
-import type { LinkProps } from 'next/link';
-import Link from 'next/link';
-import React from 'react';
+import { PlainButton } from './PlainButton';
 
 export namespace Button {
-    export interface Props {
-        className?: string;
+    export interface Props extends PlainButton.Props {
+        disableDefaultStyles?: boolean;
         whileHover?: string;
         whileActive?: string;
-        disableDefaultStyles?: boolean;
 
         isDisabled?: boolean;
         isActive?: boolean;
-
-        iconProp?: IconProp;
-        ariaLabel?: string;
-
-        onClick?(): void;
-        linkProps?: LinkProps;
-        children?: React.ReactNode | React.ReactNode[];
     }
 }
 
 export function Button(props: Button.Props) {
-    if (!props.linkProps && !props.onClick)
-        throw new Error('Button must have either linkProps or an onClick');
-    if (props.linkProps && props.onClick)
-        throw new Error('Button cannot have both linkProps and an onClick');
-
-    const className = `
-        flex flex-row gap-2 w-auto p-3 rounded-xl
-        items-center justify-center text-center
-        transition-all duration-200 ease-in-out
-
+    const newClassName = `
         ${
             !props.disableDefaultStyles &&
             `bg-white shadow-lg dark:bg-neutral-800
@@ -46,22 +24,11 @@ export function Button(props: Button.Props) {
             }`
         }
 
-        ${(props.isActive && (props.whileActive ?? '')) ?? ''}
+        ${(props.isActive && (props.whileActive ?? '')) || ''}
         ${prependToClass('hover', props.whileHover ?? '')}
-        ${props.className ?? ''}
-        `.replaceAll(/\s+/g, ' ');
+        ${props.className ?? ''}`;
 
-    return props.linkProps ? (
-        <Link className={className} {...props.linkProps}>
-            {props.iconProp && <FontAwesomeIcon icon={props.iconProp} />}
-            {props.children}
-        </Link>
-    ) : (
-        <motion.button className={className} onClick={props.onClick}>
-            {props.iconProp && <FontAwesomeIcon icon={props.iconProp} />}
-            {props.children}
-        </motion.button>
-    );
+    return <PlainButton {...props} className={newClassName} />;
 }
 
 function prependToClass(prefix: string, className: string) {

@@ -8,7 +8,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 //
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { Button } from './Input/Button';
+import { PlainButton } from './Input/PlainButton';
 import { LoginModal } from './Modal/Login';
 import { LogoutModal } from './Modal/Logout';
 import { useClient } from '#/contexts/ClientContext';
@@ -41,27 +41,25 @@ export function NavigationBar() {
         className="z-20 flex flex-row p-3 text-white bg-neutral-800"
     >
         <div className="max-w-7xl w-full flex flex-col md:flex-row items-center mx-auto">
-            <Button
+            <PlainButton
                 className="mx-auto md:ml-0 font-bold text-1.5xl
                     text-sky-400 hover:text-white bg-transparent"
                 linkProps={{ href: '/' }}
             >
                 APTERYX OWENII
-            </Button>
+            </PlainButton>
 
             <div className="flex flex-wrap">
-                <Button
-                    className="bg-transparent"
-                    whileHover="text-sky-400"
+                <PlainButton
+                    className="hover:text-sky-400"
                     iconProp={faGamepad}
                     linkProps={{ href: '/games' }}
                 >
                     Games
-                </Button>
+                </PlainButton>
 
-                <Button
-                    className="bg-transparent"
-                    whileHover="text-sky-400"
+                <PlainButton
+                    className="hover:text-sky-400"
                     iconProp={faMarker}
                     linkProps={userId ? { href: '/games/new' } : undefined}
                     onClick={
@@ -69,20 +67,18 @@ export function NavigationBar() {
                     }
                 >
                     Create
-                </Button>
+                </PlainButton>
 
-                {/* <Button
-                    className="bg-transparent"
-                    whileHover="text-sky-400"
+                {/* <PlainButton
+                    className="hover:text-sky-400"
                     iconProp={faFontAwesome}
                     linkProps={{ href: '/patchnotes' }}
                 >
                     Patch Notes
-                </Button> */}
+                </PlainButton> */}
 
-                <Button
-                    className="bg-transparent"
-                    whileHover="text-sky-400"
+                <PlainButton
+                    className="hover:text-sky-400"
                     iconProp={faUser}
                     linkProps={
                         userId ? { href: `/users/${userId}` } : undefined
@@ -92,35 +88,32 @@ export function NavigationBar() {
                     }
                 >
                     Profile
-                </Button>
+                </PlainButton>
 
-                {!isLoggedIn && <Button
-                    className="bg-transparent"
-                    whileHover="text-sky-400"
+                {!isLoggedIn && <PlainButton
+                    className="hover:text-sky-400"
                     iconProp={faSignIn}
                     onClick={() => setIsLoginModalOpen(true)}
                 >
                     Login
-                </Button>}
+                </PlainButton>}
 
-                {isLoggedIn && <Button
-                    className="bg-transparent"
-                    whileHover="text-sky-400"
+                {isLoggedIn && <PlainButton
+                    className="hover:text-sky-400"
                     iconProp={faSignOut}
                     onClick={() => setIsLogoutModalOpen(true)}
                 >
                     Logout
-                </Button>}
+                </PlainButton>}
 
-                <Button
-                    className="bg-transparent"
-                    whileHover="text-sky-400"
+                <PlainButton
+                    className="hover:text-sky-400"
                     iconProp={theme === 'light' ? faCloudMoon : faCloudSun}
                     ariaLabel="Toggle theme"
                     onClick={() =>
                         setTheme(theme === 'light' ? 'dark' : 'light')
                     }
-                ></Button>
+                ></PlainButton>
             </div>
         </div>
 
