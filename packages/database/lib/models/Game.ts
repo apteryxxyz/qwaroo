@@ -90,6 +90,25 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
             required: true,
         },
 
+        // Statistics
+        totalScore: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+
+        totalTime: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+
+        totalPlays: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+
         // Timestamps
         createdTimestamp: {
             type: Number,

@@ -22,6 +22,9 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     public thumbnailUrl!: string;
     public categories!: string[];
     public data!: GameEntity.Data<M>;
+    public totalScore!: number;
+    public totalTime!: number;
+    public totalPlays!: number;
     public createdTimestamp!: number;
     public updatedTimestamp!: number;
 
@@ -37,9 +40,12 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     public override _patch(data: Partial<Game.Entity<M>> & { id: string }) {
         if (data.id) this.id = data.id;
         if (data.slug) this.slug = data.slug;
+
         if (data.creatorId) this.creatorId = data.creatorId;
+
         if (data.sourceSlug) this.sourceSlug = data.sourceSlug;
         if (data.sourceOptions) this.sourceOptions = data.sourceOptions;
+
         if (data.mode) this.mode = data.mode;
         if (data.title) this.title = data.title;
         if (data.shortDescription)
@@ -48,6 +54,11 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         if (data.thumbnailUrl) this.thumbnailUrl = data.thumbnailUrl;
         if (data.categories) this.categories = data.categories;
         if (data.data) this.data = data.data;
+
+        if (data.totalScore) this.totalScore = data.totalScore;
+        if (data.totalTime) this.totalTime = data.totalTime;
+        if (data.totalPlays) this.totalPlays = data.totalPlays;
+
         if (data.createdTimestamp)
             this.createdTimestamp = data.createdTimestamp;
         if (data.updatedTimestamp)
@@ -71,17 +82,22 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         return new Date(this.updatedTimestamp);
     }
 
-    public override equals(other: Game) {
+    public override equals(other: Game | Game.Entity) {
         return (
             other.id === this.id &&
             other.slug === this.slug &&
+            other.creatorId === this.creatorId &&
+            other.sourceSlug === this.sourceSlug &&
+            JSON.stringify(other.sourceOptions) ===
+                JSON.stringify(this.sourceOptions) &&
             other.mode === this.mode &&
             other.title === this.title &&
             other.shortDescription === this.shortDescription &&
             other.longDescription === this.longDescription &&
             other.thumbnailUrl === this.thumbnailUrl &&
-            other.categories === this.categories &&
-            other.data === this.data &&
+            JSON.stringify(other.categories) ===
+                JSON.stringify(this.categories) &&
+            JSON.stringify(other.data) === JSON.stringify(this.data) &&
             other.createdTimestamp === this.createdTimestamp &&
             other.updatedTimestamp === this.updatedTimestamp
         );

@@ -30,6 +30,13 @@ export interface Game<M extends Game.Mode = Game.Mode> {
     /** Data for the game, such as strings. */
     data: Game.Data<M>;
 
+    /** The total score. */
+    totalScore: number;
+    /** The total time. */
+    totalTime: number;
+    /** The total number of plays. */
+    totalPlays: number;
+
     /** When this game was created. */
     createdTimestamp: number;
     /** When this game was last updated. */
