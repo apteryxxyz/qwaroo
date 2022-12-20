@@ -39,8 +39,8 @@ export class Scores extends null {
         if (order !== 'asc' && order !== 'desc')
             throw new Error(422, 'Order must be "asc" or "desc"');
 
-        const { slugs } = options;
-        if (slugs && !Array.isArray(slugs))
+        const { ids } = options;
+        if (ids && !Array.isArray(ids))
             throw new Error(422, 'IDs must be an array of strings');
 
         let query = Score.find({ userId: user.id });
@@ -55,7 +55,10 @@ export class Scores extends null {
             query = query.sort({ [sort]: direction });
         }
 
-        if (slugs?.length) query = query.where({ slug: { $in: slugs } });
+        if (ids?.length)
+            query = query.where({
+                $or: [{ _id: { $in: ids } }, { slug: { $in: ids } }],
+            });
 
         const total = await Score.find().merge(query).countDocuments().exec();
         const scores = await query.limit(limit).skip(skip).exec();

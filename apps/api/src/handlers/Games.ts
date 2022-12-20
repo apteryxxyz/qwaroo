@@ -75,8 +75,8 @@ export class Games extends null {
         if (order !== 'asc' && order !== 'desc')
             throw new Error(422, 'Order must be "asc" or "desc"');
 
-        const { slugs, categories, modes } = options;
-        if (slugs && !Array.isArray(slugs))
+        const { ids, categories, modes } = options;
+        if (ids && !Array.isArray(ids))
             throw new Error(422, 'IDs must be an array of strings');
         if (categories && !Array.isArray(categories))
             throw new Error(422, 'Categories must be an array of strings');
@@ -101,7 +101,10 @@ export class Games extends null {
 
         if (categories?.length)
             query = query.where({ categories: { $all: categories } });
-        if (slugs?.length) query = query.where({ slug: { $in: slugs } });
+        if (ids?.length)
+            query = query.where({
+                $or: [{ _id: { $in: ids } }, { slug: { $in: ids } }],
+            });
         if (modes?.length) query = query.where({ mode: { $in: modes } });
 
         const total = await Game.find().merge(query).countDocuments().exec();

@@ -29,8 +29,8 @@ export default () => {
             opts['sort'] = String(req.query['sort'] ?? '') || undefined;
             opts['order'] = String(req.query['oreder'] ?? '') || undefined;
 
-            const slugs = String(req.query['slugs'] ?? '');
-            if (slugs) opts['slugs'] = slugs.split(',');
+            const ids = String(req.query['ids'] ?? '');
+            if (ids) opts['ids'] = ids.split(',');
 
             const [data, items] = await Scores.getScores(user, opts);
             res.status(200).json({ success: true, ...data, items });

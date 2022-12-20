@@ -23,5 +23,5 @@ export interface FetchScoresOptions {
         | 'firstPlayedTimestamp'
         | 'lastPlayedTimestamp';
     order?: 'asc' | 'desc';
-    slugs?: string[];
+    ids?: string[];
 }
