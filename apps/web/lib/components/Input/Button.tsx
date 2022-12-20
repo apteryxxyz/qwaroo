@@ -24,8 +24,8 @@ export function Button(props: Button.Props) {
             }`
         }
 
-        ${(props.isActive && (props.whileActive ?? '')) || ''}
         ${prependToClass('hover', props.whileHover ?? '')}
+        ${(props.isActive && (props.whileActive ?? '')) || ''}
         ${props.className ?? ''}`;
 
     return <PlainButton {...props} className={newClassName} />;

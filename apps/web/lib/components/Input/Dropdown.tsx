@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { Button } from './Button';
 
 export namespace Dropdown {
     export interface Props {
+        disableDefaultStyles?: boolean;
         className?: string;
 
-        label: string;
-        options: { label: string; value: string }[] | string[];
-        defaultOption?: string;
+        options: ({ label: string; value: string } | string)[];
+        currentValue?: string;
         isDisabled?: boolean;
 
         onChange?(value: string): void;
@@ -14,39 +18,131 @@ export namespace Dropdown {
 }
 
 export function Dropdown(props: Dropdown.Props) {
-    const [id, setId] = useState('');
-
     const options = props.options.map(option => {
         if (typeof option === 'string') return { label: option, value: option };
         else return option;
     });
+    const currentValue = props.currentValue ?? options[0].value;
 
-    useEffect(() => {
-        setId(`dropdown-${Math.random().toString(36).slice(2, 11)}`);
-    }, []);
+    const [isHover, setHover] = useState(false);
 
-    return <div className="flex flex-col gap-3 text-lg font-semibold">
-        <label htmlFor={id} className="text-lg font-semibold">
-            {props.label}
-        </label>
+    function outsideListener(event: MouseEvent) {
+        if (
+            event.target instanceof Element &&
+            !event.target.closest('.dropdown')
+        ) {
+            setHover(false);
+            window.removeEventListener('click', outsideListener);
+        }
+    }
 
-        <select
-            className="p-2 rounded-md border-2 border-gray-300 cursor-pointer"
-            disabled={props.isDisabled}
-            id={id}
-            defaultValue={props.defaultOption}
-            onChange={e => {
-                console.log(e.target.value);
-                props.onChange?.(e.target.value);
+    function toggleHover() {
+        if (props.isDisabled) return;
+        setHover(!isHover);
+        window.addEventListener('click', outsideListener);
+        return () => window.removeEventListener('click', outsideListener);
+    }
+
+    return <div className="dropdown">
+        <Button
+            disableDefaultStyles={props.disableDefaultStyles}
+            className={props.className}
+            isDisabled={props.isDisabled}
+            onClick={() => toggleHover()}
+            iconProp={isHover ? faChevronUp : faChevronDown}
+        >
+            {options.find(option => option.value === currentValue)!.label}
+        </Button>
+
+        <motion.div
+            className="absolute z-10"
+            initial="exit"
+            animate={isHover ? 'enter' : 'exit'}
+            variants={{
+                enter: {
+                    opacity: 1,
+                    rotateX: 0,
+                    transition: {
+                        duration: 0.1,
+                    },
+                    display: 'block',
+                },
+                exit: {
+                    opacity: 0,
+                    rotateX: -15,
+                    transition: {
+                        duration: 0.1,
+                    },
+                    transitionEnd: {
+                        display: 'none',
+                    },
+                },
             }}
         >
-            {options.map(opt => <option
-                key={opt.value}
-                className="cursor-pointer"
-                value={opt.value}
+            {options.map((option, i) => <Button
+                key={option.value}
+                disableDefaultStyles
+                className={`min-w-[200px] !justify-start bg-white dark:bg-neutral-800 rounded-none
+                    ${
+                        i === 0
+                            ? 'rounded-t-xl'
+                            : i === options.length - 1
+                            ? 'rounded-b-xl'
+                            : ''
+                    }`}
+                whileHover="bg-neutral-100 dark:brightness-125"
+                isActive={option.value === currentValue}
+                whileActive="text-white bg-sky-400 hover:bg-sky-400 hover:brightness-125"
+                onClick={() => {
+                    toggleHover();
+                    props.onChange?.(option.value);
+                }}
             >
-                {opt.label}
-            </option>)}
-        </select>
+                {option.label}
+            </Button>)}
+        </motion.div>
     </div>;
 }
+
+/*
+export function Dropdown(props: Dropdown.Props) {
+    return <div className="dropdown">
+        <motion.div
+            className="absolute z-10 w-full"
+            initial="exit"
+            animate={isHover ? 'enter' : 'exit'}
+            variants={{
+                enter: {
+                    opacity: 1,
+                    rotateX: 0,
+                    transition: {
+                        duration: 0.1,
+                    },
+                    display: 'block',
+                },
+                exit: {
+                    opacity: 0,
+                    rotateX: -15,
+                    transition: {
+                        duration: 0.1,
+                    },
+                    transitionEnd: {
+                        display: 'none',
+                    },
+                },
+            }}
+        >
+            {options.map(option => <Button
+                disableDefaultStyles={props.disableDefaultStyles}
+                className="w-full"
+                onClick={() => {
+                    toggleHover();
+                    props.onChange?.(option.value);
+                }}
+            >
+                {option.label}
+            </Button>)}
+        </motion.div>
+    </div>;
+}
+*/

@@ -172,8 +172,8 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
     if (status === 'finished')
         return <Display
             header="Game Over"
-            title={`You scored ${score} points`}
-            description="You can play again or browse other games"
+            title={`You scored ${score} points.`}
+            description="You can play again or browse other games."
             showSocials
         >
             <Button onClick={() => window.location.reload()}>Play again</Button>
@@ -314,24 +314,27 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
             <h2 className="text-xl font-bold">Game Settings</h2>
 
             <div className="flex flex-col gap-3">
-                <Dropdown
-                    label="Item Image Size"
-                    options={[
-                        { label: 'Unset', value: '' },
-                        { label: 'Fill', value: 'fill' },
-                        { label: 'Contain', value: 'fit' },
-                    ]}
-                    defaultOption={settings.imageFrame ?? ''}
-                    onChange={v =>
-                        setSettings(s => ({
-                            ...s,
-                            imageFrame: (v || undefined) as
-                                | 'fit'
-                                | 'fill'
-                                | undefined,
-                        }))
-                    }
-                />
+                <div className="flex flex-col justify-center items-center">
+                    <span className="text-lg font-semibold">Image Frame</span>
+                    <Dropdown
+                        className="min-w-[200px]"
+                        options={[
+                            { label: 'Auto', value: '' },
+                            { label: 'Fill', value: 'fill' },
+                            { label: 'Fit', value: 'fit' },
+                        ]}
+                        currentValue={settings.imageFrame ?? ''}
+                        onChange={v =>
+                            setSettings(s => ({
+                                ...s,
+                                imageFrame: (v || undefined) as
+                                    | 'fit'
+                                    | 'fill'
+                                    | undefined,
+                            }))
+                        }
+                    />
+                </div>
             </div>
         </Modal>
     </>;

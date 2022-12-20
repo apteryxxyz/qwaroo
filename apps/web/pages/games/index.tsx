@@ -1,14 +1,17 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { faShareNodes } from '@fortawesome/free-solid-svg-icons/faShareNodes';
+import { faSortAmountAsc } from '@fortawesome/free-solid-svg-icons/faSortAmountAsc';
+import { faSortAmountDesc } from '@fortawesome/free-solid-svg-icons/faSortAmountDesc';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons/faTrashCan';
 import type { Game } from '@owenii/client';
 import type { FetchGamesOptions } from '@owenii/types';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { GameCard } from '#/components/Cards/Game';
-import { Display } from '#/components/Display';
 import { Loading } from '#/components/Display/Loading';
 import { Button } from '#/components/Input/Button';
+import { Dropdown } from '#/components/Input/Dropdown';
 import { Textbox } from '#/components/Input/Textbox';
 import { PageSeo } from '#/components/Seo/Page';
 import { useClient } from '#/contexts/ClientContext';
@@ -63,30 +66,32 @@ export default () => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap gap-1 my-3">
-            {(categories ?? []).map(category => <Button
-                whileActive="bg-sky-400 dark:bg-sky-400
+            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg">
+                {(categories ?? []).map(category => <Button
+                    whileActive="bg-sky-400 dark:bg-sky-400
                     text-white hover:brightness-125 hover:bg-sky-400"
-                isActive={query.categories?.includes(category)}
-                key={category}
-                onClick={() => {
-                    if (query.categories?.includes(category))
-                        setQuery(q => ({
-                            ...q,
-                            categories: q.categories?.filter(
-                                c => c !== category
-                            ),
-                        }));
-                    else
-                        setQuery(q => ({
-                            ...q,
-                            categories: [...(q.categories ?? []), category],
-                        }));
-                }}
-            >
-                {category}
-            </Button>)}
+                    isActive={query.categories?.includes(category)}
+                    key={category}
+                    onClick={() => {
+                        if (query.categories?.includes(category))
+                            setQuery(q => ({
+                                ...q,
+                                categories: q.categories?.filter(
+                                    c => c !== category
+                                ),
+                            }));
+                        else
+                            setQuery(q => ({
+                                ...q,
+                                categories: [...(q.categories ?? []), category],
+                            }));
+                    }}
+                >
+                    {category}
+                </Button>)}
+            </div>
 
-            <div className="flex flex-row gap-1 [&>*]:shadow-lg">
+            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg">
                 <Textbox
                     placeHolder="Search"
                     iconProp={faSearch}
@@ -114,8 +119,41 @@ export default () => {
                         const url = new URL(shareUrl, useWebUrl());
                         if (navigator.clipboard)
                             void navigator.clipboard.writeText(url.toString());
+                        else console.info(url.toString());
                     }}
                     ariaLabel="Share search"
+                />
+            </div>
+
+            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg">
+                <Dropdown
+                    className="w-[200px]"
+                    options={[
+                        { label: 'Most Played', value: 'totalPlays' },
+                        {
+                            label: 'Recently Updated',
+                            value: 'updatedTimestamp',
+                        },
+                    ]}
+                    currentValue={query.sort ?? 'totalPlays'}
+                    onChange={(value: 'totalPlays') =>
+                        setQuery(q => ({ ...q, sort: value }))
+                    }
+                />
+
+                <Button
+                    iconProp={
+                        query.order === 'asc'
+                            ? faSortAmountAsc
+                            : faSortAmountDesc
+                    }
+                    onClick={() =>
+                        setQuery(q => ({
+                            ...q,
+                            order: q.order === 'asc' ? 'desc' : 'asc',
+                        }))
+                    }
+                    ariaLabel="Change sort order"
                 />
             </div>
         </div>
@@ -128,11 +166,40 @@ export default () => {
                 game={game}
                 creator={client.users.get(game.creatorId)!}
             />)}
+            <Link
+                href="/discord"
+                target="_blank"
+                className="flex flex-col w-auto h-auto aspect-square rounded-xl
+            transition-all duration-300 ease-in-out text-white
+            hover:shadow-lg hover:scale-105 hover:brightness-125"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.3),
+                rgba(0,0,0,0.3)),url(https://assets-global.website-files.com/5f9072399b2640f14d6a2bf4/6348685d7c7b4e693020de8c_macro%20hero-blog%20header%402x-p-800.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+                onMouseEnter={event => {
+                    const element = event.currentTarget;
+                    element.style.rotate = `${
+                        Math.round(Math.random()) === 0 ? -1 : 1
+                    }deg`;
+                }}
+                onMouseLeave={event => {
+                    const element = event.currentTarget;
+                    element.style.rotate = '0deg';
+                }}
+            >
+                <div
+                    className="flex flex-col justify-end w-full min-h-[30%] mt-auto p-3
+                bg-gradient-to-t from-black to-transparent rounded-b-xl"
+                >
+                    <h2 className="text-1.5xl font-semibold">Suggest A Game</h2>
+                    <p className="overflow-hidden">
+                        Have an idea for a game? Join the Discord server and
+                        suggest it!
+                    </p>
+                </div>
+            </Link>
         </div>}
-
-        {!isLoading && games.length === 0 && <Display
-            title="No games found."
-            description="Try searching for something else."
-        />}
     </>;
 };

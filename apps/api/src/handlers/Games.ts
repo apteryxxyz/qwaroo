@@ -69,7 +69,7 @@ export class Games extends null {
             'createdTimestamp',
             'updatedTimestamp',
         ];
-        const { sort = 'createdTimestamp', order = 'desc' } = options;
+        const { sort = 'totalPlays', order = 'desc' } = options;
         if (!sorts.includes(sort))
             throw new Error(422, `Sort must be one of "${sorts.join('", "')}"`);
         if (order !== 'asc' && order !== 'desc')
