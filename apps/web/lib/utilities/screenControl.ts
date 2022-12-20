@@ -9,7 +9,7 @@ export function goFullscreen() {
     document.body.style.overflow = 'hidden';
 }
 
-export function goMimised() {
+export function goMinimised() {
     for (const selector of ['#navigation-bar', '#footer-bar']) {
         const element = document.querySelector(selector);
         if (element) element.classList.remove('hidden');

@@ -10,6 +10,7 @@ import { Display } from '#/components/Display';
 import { Loading } from '#/components/Display/Loading';
 import { Button } from '#/components/Input/Button';
 import { Textbox } from '#/components/Input/Textbox';
+import { PageSeo } from '#/components/Seo/Page';
 import { useClient } from '#/contexts/ClientContext';
 import { useWebUrl } from '#/hooks/useEnv';
 
@@ -52,6 +53,12 @@ export default () => {
     }, [query]);
 
     return <>
+        <PageSeo
+            title="Games"
+            description="A collection of fun guessing and statistics based browser games. Play games such as YouTuber Higher or Lower."
+            url="/games"
+        />
+
         <h1 className="font-bold text-3xl">Games</h1>
 
         {/* Filter bar */}

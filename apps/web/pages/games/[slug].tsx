@@ -1,32 +1,37 @@
 import { Game } from '@owenii/client';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { Loading } from '#/components/Display/Loading';
-import { NotFound } from '#/components/Display/NotFound';
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { HigherOrLower } from '#/components/Modes/HigherOrLower';
+import { PageSeo } from '#/components/Seo/Page';
 import { useClient } from '#/contexts/ClientContext';
 
-export default () => {
-    const client = useClient();
-    const router = useRouter();
-    const [game, setGame] = useState<Game | undefined | null>(undefined);
+export default ({
+    mode,
+    slug,
+    ...props
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    return <>
+        <PageSeo {...props} url={`/games/${slug}`} />
 
-    useEffect(() => {
-        const slug = String(router.query['slug'] ?? '');
+        {mode === Game.Entity.Mode.HigherOrLower && <HigherOrLower
+            slug={slug}
+        />}
+    </>;
+};
 
-        if (slug)
-            client.games
-                .fetchOne(slug)
-                .then(game => setGame(game))
-                .catch(() => setGame(null));
-    }, [router.isReady]);
+export const getServerSideProps: GetServerSideProps<{
+    slug: string;
+    mode: Game.Entity.Mode;
+    title: string;
+    description: string;
+}> = async ({ params }) => {
+    const slug = String(params?.['slug'] ?? '');
+    if (!slug) return { notFound: true };
 
-    if (game === undefined) return <Loading />;
-    if (game === null) return <NotFound />;
+    const game = await useClient(true)
+        .games.fetchOne(slug)
+        .catch(() => null);
+    if (!game) return { notFound: true };
 
-    return game.mode === Game.Entity.Mode.HigherOrLower ? (
-        <HigherOrLower game={game} />
-    ) : (
-        <NotFound />
-    );
+    const { title, mode, longDescription } = game.toJSON();
+    return { props: { slug, title, mode, description: longDescription } };
 };
