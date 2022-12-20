@@ -41,6 +41,8 @@ export interface Game<M extends Game.Mode = Game.Mode> {
     createdTimestamp: number;
     /** When this game was last updated. */
     updatedTimestamp: number;
+    /** The timestamp when this game was last played. */
+    lastPlayedTimestamp: number;
 }
 
 export namespace Game {

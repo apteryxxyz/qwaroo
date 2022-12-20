@@ -121,6 +121,12 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
             required: true,
             default: Date.now,
         },
+
+        lastPlayedTimestamp: {
+            type: Number,
+            required: true,
+            default: Date.now,
+        },
     },
     {
         toJSON: {

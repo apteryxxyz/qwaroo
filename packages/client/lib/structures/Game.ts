@@ -27,6 +27,7 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     public totalPlays!: number;
     public createdTimestamp!: number;
     public updatedTimestamp!: number;
+    public lastPlayedTimestamp!: number;
 
     public constructor(
         games: GameManager,
@@ -63,6 +64,8 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
             this.createdTimestamp = data.createdTimestamp;
         if (data.updatedTimestamp)
             this.updatedTimestamp = data.updatedTimestamp;
+        if (data.lastPlayedTimestamp)
+            this.lastPlayedTimestamp = data.lastPlayedTimestamp;
 
         return data;
     }
@@ -99,7 +102,8 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
                 JSON.stringify(this.categories) &&
             JSON.stringify(other.data) === JSON.stringify(this.data) &&
             other.createdTimestamp === this.createdTimestamp &&
-            other.updatedTimestamp === this.updatedTimestamp
+            other.updatedTimestamp === this.updatedTimestamp &&
+            other.lastPlayedTimestamp === this.lastPlayedTimestamp
         );
     }
 
