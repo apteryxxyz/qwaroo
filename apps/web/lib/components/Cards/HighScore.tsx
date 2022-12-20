@@ -1,40 +1,37 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import type { Game, Score } from '@owenii/client';
 import { ms } from 'enhanced-ms';
-import Link from 'next/link';
 import { PlainButton } from '../Input/PlainButton';
 
 export namespace HighScoreCard {
     export interface Props {
         game: Game;
         score: Score;
+        isMe?: boolean;
     }
 }
 
-export function HighScoreCard({ game, score }: HighScoreCard.Props) {
+export function HighScoreCard({ game, score, isMe }: HighScoreCard.Props) {
     return <div className="flex p-6 rounded-xl bg-white dark:bg-neutral-800">
-        <Link
-            href={`/games/${game.slug}`}
-            className="hidden sm:block md:hidden lg:block w-32 h-32"
-        >
-            <picture>
-                <img
-                    src={game.thumbnailUrl}
-                    className="w-auto h-auto aspect-square rounded-xl bg-cover bg-center"
-                />
-            </picture>
-        </Link>
+        <picture className="hidden sm:block md:hidden lg:block">
+            <img
+                src={game.thumbnailUrl}
+                className="w-32 h-32 object-cover rounded-xl"
+            />
+        </picture>
 
         <div className="flex flex-col ml-5 justify-center">
-            <h5 className="font-bold">{game.title}</h5>
+            <h5 className="text-xl font-semibold">{game.title}</h5>
 
-            <span className="flex text-2xl font-semibold">
+            <span className="text-2xl font-semibold">
                 Highscore of {score.highScore}
             </span>
 
             <span>
-                You played {score.totalPlays} times over {ms(score.totalTime)},
-                your total score is {score.totalScore}.
+                {isMe ? 'You' : 'They'} played {score.totalPlays} time
+                {score.totalPlays === 1 ? '' : 's'} over{' '}
+                {ms(score.totalTime, { shortFormat: true })},{' '}
+                {isMe ? 'your' : 'Their'} total score is {score.totalScore}.
             </span>
         </div>
 

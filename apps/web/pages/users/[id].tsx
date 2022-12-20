@@ -2,7 +2,7 @@ import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Connection, Score, User } from '@owenii/client';
-import _ms from 'enhanced-ms';
+import ms from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useEffect, useState } from 'react';
 import { HighScoreCard } from '#/components/Cards/HighScore';
@@ -11,8 +11,6 @@ import { Loading } from '#/components/Display/Loading';
 // import { Button } from '#/components/Input/Button';
 import { PageSeo } from '#/components/Seo/Page';
 import { useClient } from '#/contexts/ClientContext';
-
-const ms = _ms({ shortFormat: true });
 
 const providerIconMap = {
     discord: faDiscord,
@@ -57,10 +55,10 @@ export default ({
         const totalTime = scores.reduce((a, s) => a + s.totalTime, 0);
 
         return [
-            ['Games Played', totalPlays],
-            ['Total Score', totalScore],
-            ['Average Score', averageScore],
-            ['Total Play Time', totalTime],
+            ['Games Played', Number.isNaN(totalPlays) ? 0 : totalPlays],
+            ['Total Score', Number.isNaN(totalScore) ? 0 : totalScore],
+            ['Average Score', Number.isNaN(averageScore) ? 0 : averageScore],
+            ['Total Time Played', Number.isNaN(totalTime) ? 0 : totalTime],
         ] as const;
     }
 
@@ -94,7 +92,10 @@ export default ({
 
                     <span>
                         Joined {user.joinedAt.toLocaleDateString()}, about{' '}
-                        {ms(Date.now() - user.joinedAt.getTime())} ago
+                        {ms(Date.now() - user.joinedAt.getTime(), {
+                            roundUp: true,
+                        })}{' '}
+                        ago
                     </span>
 
                     {connection && <span>
@@ -138,7 +139,7 @@ export default ({
                     value={value}
                     description={name}
                     formatNumber={
-                        name === 'Total Play Time'
+                        name === 'Total Time Played'
                             ? v => ms(v, { shortFormat: true }) ?? 'N/A'
                             : undefined
                     }
@@ -152,6 +153,7 @@ export default ({
                     key={score.gameId}
                     score={score}
                     game={client.games.get(score.gameId)!}
+                    isMe={user.id === client.id}
                 />)}
             </div>
         </div>}

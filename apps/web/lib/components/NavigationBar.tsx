@@ -1,7 +1,7 @@
 import { faCloudMoon } from '@fortawesome/free-solid-svg-icons/faCloudMoon';
 import { faCloudSun } from '@fortawesome/free-solid-svg-icons/faCloudSun';
 import { faGamepad } from '@fortawesome/free-solid-svg-icons/faGamepad';
-import { faMarker } from '@fortawesome/free-solid-svg-icons/faMarker';
+// import { faMarker } from '@fortawesome/free-solid-svg-icons/faMarker';
 import { faSignIn } from '@fortawesome/free-solid-svg-icons/faSignIn';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons/faSignOut';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
@@ -60,7 +60,7 @@ export function NavigationBar() {
                     Games
                 </PlainButton>
 
-                <PlainButton
+                {/* <PlainButton
                     className="hover:text-sky-400"
                     iconProp={faMarker}
                     linkProps={userId ? { href: '/games/new' } : undefined}
@@ -69,7 +69,7 @@ export function NavigationBar() {
                     }
                 >
                     Create
-                </PlainButton>
+                </PlainButton> */}
 
                 {/* <PlainButton
                     className="hover:text-sky-400"
