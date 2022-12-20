@@ -7,6 +7,7 @@ import { faSignOut } from '@fortawesome/free-solid-svg-icons/faSignOut';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 //
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { PlainButton } from './Input/PlainButton';
 import { LoginModal } from './Modal/Login';
@@ -15,6 +16,7 @@ import { useClient } from '#/contexts/ClientContext';
 
 export function NavigationBar() {
     const client = useClient();
+    const router = useRouter();
     const { theme, setTheme } = useTheme();
 
     const [isMounted, setIsMounted] = useState(false);
@@ -80,11 +82,13 @@ export function NavigationBar() {
                 <PlainButton
                     className="hover:text-sky-400"
                     iconProp={faUser}
-                    linkProps={
-                        userId ? { href: `/users/${userId}` } : undefined
-                    }
-                    onClick={
-                        userId ? undefined : () => setIsLoginModalOpen(true)
+                    onClick={() =>
+                        userId
+                            ? // If the user is already on the profile page, need to refresh
+                              router.asPath.includes('/users/')
+                                ? window.location.replace(`/users/${userId}`)
+                                : router.push(`/users/${userId}`)
+                            : setIsLoginModalOpen(true)
                     }
                 >
                     Profile

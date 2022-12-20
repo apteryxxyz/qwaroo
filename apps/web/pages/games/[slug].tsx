@@ -10,7 +10,11 @@ export default ({
     ...props
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return <>
-        <PageSeo {...props} url={`/games/${slug}`} />
+        <PageSeo
+            title={props.title}
+            description={props.longDescription}
+            url={`/games/${slug}`}
+        />
 
         {mode === Game.Entity.Mode.HigherOrLower && <HigherOrLower
             slug={slug}
@@ -22,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<{
     slug: string;
     mode: Game.Entity.Mode;
     title: string;
-    description: string;
+    longDescription: string;
 }> = async ({ params }) => {
     const slug = String(params?.['slug'] ?? '');
     if (!slug) return { notFound: true };
@@ -33,5 +37,5 @@ export const getServerSideProps: GetServerSideProps<{
     if (!game) return { notFound: true };
 
     const { title, mode, longDescription } = game.toJSON();
-    return { props: { slug, title, mode, description: longDescription } };
+    return { props: { slug, title, mode, longDescription } };
 };

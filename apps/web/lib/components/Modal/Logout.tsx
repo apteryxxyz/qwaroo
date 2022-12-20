@@ -20,7 +20,7 @@ export function LogoutModal(props: LogoutModal.Props) {
 
         <div className="w-full flex flex-col gap-3 text-lg font-semibold">
             <Button
-                className="bg-red-500 text-white"
+                className="!bg-red-500 text-white"
                 iconProp={faSignOut}
                 onClick={() => {
                     localStorage.removeItem('owenii.token');

@@ -191,12 +191,13 @@ export default () => {
             >
                 <div
                     className="flex flex-col justify-end w-full min-h-[30%] mt-auto p-3
-                bg-gradient-to-t from-black to-transparent rounded-b-xl"
+                        bg-gradient-to-t from-black to-transparent rounded-b-xl"
                 >
                     <h2 className="text-1.5xl font-semibold">Suggest A Game</h2>
+
                     <p className="overflow-hidden">
-                        Have an idea for a game? Join the Discord server and
-                        suggest it!
+                        Have an idea for a game? Click here to join the Discord
+                        server and suggest it!
                     </p>
                 </div>
             </Link>

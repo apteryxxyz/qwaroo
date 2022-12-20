@@ -19,6 +19,7 @@
         "@owenii/common": "workspace:^0.0.0",
         "@owenii/types": "workspace:^0.0.0",
         "autoprefixer": "^10.4.13",
+        "enhanced-ms": "^2.2.0",
         "framer-motion": "^7.6.19",
         "next": "^13.0.6",
         "next-themes": "^0.2.1",
