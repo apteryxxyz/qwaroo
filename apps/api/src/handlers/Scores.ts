@@ -5,7 +5,7 @@ import type {
     UserDocument,
 } from '@owenii/database';
 import { Score } from '@owenii/database';
-import type { APIScoreSave, FetchScoresOptions, Game } from '@owenii/types';
+import type { APISubmitScore, FetchScoresOptions, Game } from '@owenii/types';
 import { Replay } from './Replay';
 
 export class Scores extends null {
@@ -91,26 +91,37 @@ export class Scores extends null {
         return score;
     }
 
-    public static async updateScore(
-        scoreDoc: ScoreDocument,
-        save: APIScoreSave<Game.Mode>
+    public static async submitScore(
+        user: UserDocument | undefined,
+        game: GameDocument,
+        save: APISubmitScore<Game.Mode>
     ) {
-        const game = await scoreDoc.getGame();
-        const { score, time } = await Replay.replayGame(game, save);
+        const { score: finalScore, time } = await Replay.replayGame(game, save);
 
-        if (score > (scoreDoc.highScore ?? 0)) {
-            scoreDoc.highScore = score;
-            scoreDoc.highScoreTime = time;
-            scoreDoc.highScoreTimestamp = Date.now();
+        game.totalScore += finalScore;
+        game.totalTime += time;
+        game.totalPlays += 1;
+        game.lastPlayedTimestamp = Date.now();
+
+        await game.save();
+
+        if (user) {
+            const score = await Scores.ensureScore(user, game);
+
+            if (finalScore > (score.highScore ?? 0)) {
+                score.highScore = finalScore;
+                score.highScoreTime = time;
+                score.highScoreTimestamp = Date.now();
+            }
+
+            score.totalScore += finalScore;
+            score.totalTime += time;
+            score.totalPlays += 1;
+            score.lastPlayedTimestamp = Date.now();
+
+            return score.save();
         }
 
-        scoreDoc.totalScore += score;
-        scoreDoc.totalTime += time;
-        scoreDoc.totalPlays += 1;
-        scoreDoc.lastPlayedTimestamp = Date.now();
-
-        await scoreDoc.save();
-
-        return scoreDoc;
+        return undefined;
     }
 }

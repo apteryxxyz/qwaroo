@@ -15,40 +15,25 @@ export default () => {
 
     router.all(
         Routes.userScores(':userId'),
-        useMethods(['GET', 'POST']),
-        useBody('json', ['POST']),
-        useToken(['GET', 'POST']),
+        useMethods(['GET']),
+        useToken(['GET']),
         useMe('userId'),
         useMustBeMe('userId'),
         handle(async (req, res) => {
             const user = await Users.getUser(req.params['userId']);
 
-            if (req.method === 'GET') {
-                const opts: Record<string, unknown> = {};
-                opts['term'] = String(req.query['term'] ?? '') || undefined;
-                opts['limit'] = Number(req.query['limit'] ?? 0) || undefined;
-                opts['skip'] = Number(req.query['skip'] ?? 0) || undefined;
-                opts['sort'] = String(req.query['sort'] ?? '') || undefined;
-                opts['order'] = String(req.query['oreder'] ?? '') || undefined;
+            const opts: Record<string, unknown> = {};
+            opts['term'] = String(req.query['term'] ?? '') || undefined;
+            opts['limit'] = Number(req.query['limit'] ?? 0) || undefined;
+            opts['skip'] = Number(req.query['skip'] ?? 0) || undefined;
+            opts['sort'] = String(req.query['sort'] ?? '') || undefined;
+            opts['order'] = String(req.query['oreder'] ?? '') || undefined;
 
-                const slugs = String(req.query['slugs'] ?? '');
-                if (slugs) opts['slugs'] = slugs.split(',');
+            const slugs = String(req.query['slugs'] ?? '');
+            if (slugs) opts['slugs'] = slugs.split(',');
 
-                const [data, items] = await Scores.getScores(user, opts);
-                res.status(200).json({ success: true, ...data, items });
-            }
-
-            if (req.method === 'POST') {
-                const gameId = String(req.body['game'] ?? '');
-                const game = Validate.ObjectId.test(gameId)
-                    ? await Games.getGameById(undefined, gameId)
-                    : await Games.getGameBySlug(undefined, gameId);
-
-                const score = await Scores.ensureScore(user, game);
-                await Scores.updateScore(score, req.body);
-
-                res.status(200).json({ success: true, ...score.toJSON() });
-            }
+            const [data, items] = await Scores.getScores(user, opts);
+            res.status(200).json({ success: true, ...data, items });
         })
     );
 
@@ -63,6 +48,22 @@ export default () => {
             const scoreId = String(req.params['scoreId']);
             const score = await Scores.getScoreById(user, scoreId);
             res.status(200).json({ success: true, ...score.toJSON() });
+        })
+    );
+
+    router.all(
+        Routes.gameScore(':gameId'),
+        useMethods(['POST']),
+        useToken([], ['POST']),
+        useBody('json', ['POST']),
+        handle(async (req, res) => {
+            const gameId = String(req.params['gameId']);
+            const game = Validate.ObjectId.test(gameId)
+                ? await Games.getGameById(undefined, gameId)
+                : await Games.getGameBySlug(undefined, gameId);
+
+            await Scores.submitScore(req.user, game, req.body);
+            res.status(200).json({ success: true });
         })
     );
 

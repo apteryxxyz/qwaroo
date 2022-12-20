@@ -42,14 +42,6 @@ export const Routes = {
         return `/users/${userId}/games` as const;
     },
 
-    userGame(userId: string | '@me', gameId: string) {
-        return `/users/${userId}/games/${gameId}` as const;
-    },
-
-    userGameItems(userId: string | '@me', gameId: string) {
-        return `/users/${userId}/games/${gameId}/items` as const;
-    },
-
     // Users
     users() {
         return '/users' as const;
@@ -69,6 +61,10 @@ export const Routes = {
     },
 
     // Scores
+    gameScore(gameId: string) {
+        return `/games/${gameId}/score` as const;
+    },
+
     userScores(userId: string | '@me') {
         return `/users/${userId}/scores` as const;
     },

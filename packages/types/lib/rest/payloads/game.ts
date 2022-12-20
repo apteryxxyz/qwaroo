@@ -8,7 +8,13 @@ export interface FetchGamesOptions {
     term?: string;
     limit?: number;
     skip?: number;
-    sort?: 'createdTimestamp' | 'updatedTimestamp';
+    sort?:
+        | 'totalScore'
+        | 'totalTime'
+        | 'totalPlays'
+        | 'lastPlayedTimestamp'
+        | 'createdTimestamp'
+        | 'updatedTimestamp';
     order?: 'asc' | 'desc';
     slugs?: string[];
     categories?: string[];

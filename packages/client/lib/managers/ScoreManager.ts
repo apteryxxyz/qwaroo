@@ -1,10 +1,5 @@
-import {
-    type APIScoreSave,
-    type FetchScoresOptions,
-    Routes,
-} from '@owenii/types';
+import { type FetchScoresOptions, Routes } from '@owenii/types';
 import { MapManager } from './BaseManager';
-import { Game } from '#/structures/Game';
 import { Score } from '#/structures/Score';
 import type { User } from '#/structures/User';
 
@@ -67,13 +62,13 @@ export class ScoreManager extends MapManager<string, Score> {
     }
 
     /** Submit a score. */
-    public async submit(
-        game: Game.Resolvable,
-        save: Omit<APIScoreSave<Game.Entity.Mode>, 'game'>
-    ) {
-        Reflect.set(save, 'game', Game.resolveId(game));
-        const path = Routes.userScores(this.user.id);
-        const data = await this.client.rest.post(path, undefined, save);
-        return this._add(data);
-    }
+    // public async submit(
+    //     game: Game.Resolvable,
+    //     save: Omit<APISubmitScore<Game.Entity.Mode>, 'game'>
+    // ) {
+    //     Reflect.set(save, 'game', Game.resolveId(game));
+    //     const path = Routes.userScores(this.user.id);
+    //     const data = await this.client.rest.post(path, undefined, save);
+    //     return this._add(data);
+    // }
 }

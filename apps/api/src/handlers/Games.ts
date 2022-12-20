@@ -61,7 +61,14 @@ export class Games extends null {
         if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
 
         // TODO: Add popular sort
-        const sorts = ['createdTimestamp', 'updatedTimestamp'];
+        const sorts = [
+            'totalScore',
+            'totalTime',
+            'totalPlays',
+            'lastPlayedTimestamp',
+            'createdTimestamp',
+            'updatedTimestamp',
+        ];
         const { sort = 'createdTimestamp', order = 'desc' } = options;
         if (!sorts.includes(sort))
             throw new Error(422, `Sort must be one of "${sorts.join('", "')}"`);

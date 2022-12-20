@@ -1,4 +1,9 @@
-import { type APIGame, Game as GameEntity } from '@owenii/types';
+import {
+    type APIGame,
+    type APISubmitScore,
+    Game as GameEntity,
+    Routes,
+} from '@owenii/types';
 import { Base } from './Base';
 import type { GameManager } from '#/managers/GameManager';
 import { ItemManager } from '#/managers/ItemManager';
@@ -123,6 +128,20 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         const manager = new ItemManager<M>(this) as ItemManager<M>;
         await manager.fetchMore();
         return manager;
+    }
+
+    /** Submit a score. */
+    public async submitScore(save: APISubmitScore<M>) {
+        const path = Routes.gameScore(this.id);
+        await this.client.rest.post(path, undefined, save);
+
+        if (this.client.isLoggedIn()) {
+            const scores = await this.client.me.fetchScores();
+            const score = scores.find(s => s.gameId === this.id);
+            if (score) return score;
+        }
+
+        return undefined;
     }
 
     public override toJSON() {

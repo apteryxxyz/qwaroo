@@ -49,9 +49,7 @@ export class GameManager<U extends boolean = boolean> //
             if (existing) return existing;
         }
 
-        const path = this.user
-            ? Routes.userGame(this.user.id, id)
-            : Routes.game(id);
+        const path = Routes.game(id);
         const data = await this.client.rest.get(path);
         return this._add(data);
     }

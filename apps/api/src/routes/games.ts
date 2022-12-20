@@ -54,7 +54,7 @@ export default () => {
     );
 
     router.all(
-        [Routes.game(':gameId'), Routes.userGame(':userId', ':gameId')],
+        Routes.game(':gameId'),
         useMethods(['GET']),
         useToken([], ['GET']),
         useMe('userId'),
@@ -71,20 +71,14 @@ export default () => {
     );
 
     router.all(
-        [
-            Routes.gameItems(':gameId'),
-            Routes.userGameItems(':userId', ':gameId'),
-        ],
+        Routes.gameItems(':gameId'),
         useMethods(['GET']),
         useToken([], ['GET']),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
-            const userId = String(req.params['userId'] ?? '');
-            const user = userId ? await Users.getUser(userId) : undefined;
-
             const game = Validate.ObjectId.test(gameId)
-                ? await Games.getGameById(user, gameId)
-                : await Games.getGameBySlug(user, gameId);
+                ? await Games.getGameById(undefined, gameId)
+                : await Games.getGameBySlug(undefined, gameId);
 
             let seed = String(req.query['seed'] ?? '') || undefined;
             const limit = Number(req.query['limit'] ?? 0) || undefined;
