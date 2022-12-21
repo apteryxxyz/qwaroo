@@ -17,3 +17,15 @@ export function useWebUrl() {
         (isCI() ? 'http://localhost' : '');
     return new URL(webUrl);
 }
+
+export function useGoogleTagManagerId() {
+    return process.env['NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID'] ?? '';
+}
+
+export function useGoogleAnalyticsId() {
+    return process.env['NEXT_PUBLIC_GOOGLE_ANALYTICS_ID'] ?? '';
+}
+
+export function useGoogleAdsenseClient() {
+    return process.env['NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT'] ?? '';
+}
