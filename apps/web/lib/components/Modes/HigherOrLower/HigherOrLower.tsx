@@ -15,6 +15,7 @@ import { Dropdown } from '#/components/Input/Dropdown';
 import { Modal } from '#/components/Modal';
 import { useClient } from '#/contexts/ClientContext';
 import { useLogger } from '#/hooks/useLogger';
+import { emitEvent } from '#/utilities/googleServices';
 import {
     disableInspectElement,
     enableInspectElement,
@@ -48,10 +49,18 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
     }
 
     function startGame() {
-        logger.info('Starting game');
-        goFullscreen();
-        startTime.current = Date.now();
-        setStatus('playing');
+        if (game) {
+            logger.info('Starting game');
+            goFullscreen();
+            startTime.current = Date.now();
+            setStatus('playing');
+            emitEvent('game_start', {
+                user: client.me?.displayName ?? 'anonymous',
+                game: game.title,
+            });
+        } else {
+            logger.error('Game not ready');
+        }
     }
 
     async function endGame(final: 'lose' | 'win') {
@@ -60,12 +69,23 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         logger.info('Ending game');
         void final;
 
-        if (game)
-            await game.submitScore({
-                seed: itemsManager.current.seed,
-                steps: steps.current,
-                time: Date.now() - startTime.current!,
-            });
+        if (game) {
+            await game
+                .submitScore({
+                    seed: itemsManager.current.seed,
+                    steps: steps.current,
+                    time: Date.now() - startTime.current!,
+                })
+                .then(() =>
+                    emitEvent('game_end', {
+                        user: client.me?.displayName ?? 'anonymous',
+                        game: game.title,
+                        score,
+                        time: Date.now() - startTime.current!,
+                    })
+                )
+                .catch(() => null);
+        }
 
         await sleepSeconds(1);
         setStatus('finished');

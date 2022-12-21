@@ -8,6 +8,6 @@ export function pageView(url: string) {
 }
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export function event(name: string, params: { [key: string]: unknown }) {
+export function emitEvent(name: string, params: { [key: string]: unknown }) {
     window.gtag('event', name, params);
 }
