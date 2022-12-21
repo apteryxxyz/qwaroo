@@ -7,5 +7,6 @@ node_modules/
 # Build
 .next/
 dist/
-data/
 analyze/
+public/robots.txt
+public/sitemap.xml

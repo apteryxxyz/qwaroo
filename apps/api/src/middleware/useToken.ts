@@ -41,6 +41,16 @@ export function useToken(
     });
 }
 
+export function useStaticToken(token: string) {
+    return handle(async (req, _res, next) => {
+        const authToken = req.header('Authorization');
+        if (authToken !== token)
+            throw new Error(401, 'Authorisation token is invalid');
+
+        next();
+    });
+}
+
 declare global {
     namespace Express {
         interface User extends UserDocument {}
