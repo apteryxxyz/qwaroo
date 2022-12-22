@@ -1,7 +1,6 @@
 import '@owenii/types';
 import process from 'node:process';
-import { Database, Game } from '@owenii/database';
-import { fetchAndSaveItems } from '@owenii/sources';
+import { Database } from '@owenii/database';
 import dotenv = require('dotenv');
 import dotenvExpand = require('dotenv-expand');
 import { Server } from './Server';
@@ -21,16 +20,7 @@ const server = new Server(PORT);
 void main();
 async function main() {
     await database.connect();
-    await ensureGameItems();
     await server.listen();
-}
-
-async function ensureGameItems() {
-    const games = await Game.find({ sourceSlug: { $ne: null } });
-    for (const gm of games) {
-        if (!gm.sourceSlug || !gm.sourceOptions) continue;
-        await fetchAndSaveItems(gm.slug, gm.sourceSlug, gm.sourceOptions);
-    }
 }
 
 export { database, server };

@@ -73,7 +73,10 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
         return prepareOptions(this.props, options);
     },
 
-    async fetchItems({ displayColumn, valueColumn, ...options }) {
+    async fetchItems(
+        { displayColumn, valueColumn, ...options },
+        debug = false
+    ) {
         const $ = await _fetchCheerio(options.wikipediaUrl);
 
         const getNth = (element: cheerio.Element, index: number) =>
@@ -97,6 +100,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
                 ? baseQuery.replace('{}', item.display)
                 : `${baseQuery} ${item.display}`;
 
+            if (debug) console.log(`Searching for image with "${query}"...`);
             const imageSource = await _getGoogleImage(query);
             if (imageSource) item.imageSource = imageSource;
             await _waitFor(500);
@@ -125,7 +129,6 @@ async function _getGoogleImage(query: string) {
         return _cachedImages.get(query);
     }
 
-    console.info(`Searching for "${query}"...`);
     const results = await _googleSearch({
         searchTerm: query,
         filterOutDomains: [

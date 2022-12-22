@@ -1,22 +1,22 @@
 import process from 'node:process';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import { type Connection, connect } from 'mongoose';
+import mongoose from 'mongoose';
 
 /** Database connection. */
 export class Database {
-    public connection!: Connection;
+    public connection!: typeof mongoose;
 
     /** Connect to the MongoDB server. */
     public async connect() {
         const uri = await this.generateDatabaseUri();
-        this.connection = (await connect(uri)) as unknown as Connection;
+        this.connection = await mongoose.connect(uri);
         console.info('Connected to database');
     }
 
     /** Disconnect from the MongoDB server. */
     public async disconnect() {
         if (this.connection) {
-            await this.connection.close();
+            await this.connection.disconnect();
             console.info('Disconnected from database');
         }
     }

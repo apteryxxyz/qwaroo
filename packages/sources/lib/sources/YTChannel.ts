@@ -48,11 +48,12 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
         return prepareOptions(this.props, options);
     },
 
-    async fetchItems(partialOptions) {
-        const options = prepareOptions<Options>(this.props, partialOptions);
+    async fetchItems(options, debug = false) {
         const items: Game.Item<Game.Mode.HigherOrLower>[] = [];
 
         for (const channelId of options.channelIds) {
+            if (debug)
+                console.info(`Fetching videos for channel "${channelId}"...`);
             const channel = await _getChannelInfo(channelId);
             const videos = await _getChannelVideos(channel, options);
             items.push(...videos);

@@ -88,7 +88,10 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
         return prepareOptions(this.props, options);
     },
 
-    async fetchItems(options) {
+    async fetchItems(options, debug = false) {
+        if (debug)
+            console.info(`Fetching all items from "${options.fandomUrl}"...`);
+
         const $ = await _fetchCheerio(options.fandomUrl);
         const itemsPath = Array.from(
             $(options.tableSelector as '.wikitable td li a')
@@ -97,8 +100,10 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
         const items: Game.Item<Game.Mode.HigherOrLower>[] = [];
 
         for (const path of itemsPath) {
+            if (debug) console.log(`Fetching item from "${path}"...`);
             const item = await _fetchItem(path, options);
             if (item) items.push(item);
+            else console.warn(`Failed to fetch item from ${path}`);
         }
 
         return items;
@@ -109,7 +114,6 @@ async function _fetchItem(
     path: string,
     options: Options
 ): Promise<Game.Item<Game.Mode.HigherOrLower> | null> {
-    console.log(`Fetching item from ${path}`);
     const $ = await _fetchCheerio(path);
 
     // TODO: Add support for captions
@@ -135,7 +139,7 @@ async function _fetchItem(
 
 async function _fetchCheerio(path: string) {
     const url = new URL(path, 'https://gta.fandom.com');
-    const content = await fetch(url.href).then(res => res.text());
+    const content = await fetch(url.toString()).then(res => res.text());
     return cheerio.load(content);
 }
 
