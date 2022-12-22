@@ -56,6 +56,8 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
             startTime.current = Date.now();
             setStatus('playing');
             emitEvent('game_start', {
+                user_id: client.id ?? 'anonymous',
+                user_name: client.me?.displayName ?? 'Anonymous',
                 game_id: game.id,
                 game_title: game.title,
             });
@@ -81,6 +83,8 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
                 })
                 .then(() =>
                     emitEvent('game_end', {
+                        user_id: client.id ?? 'anonymous',
+                        user_name: client.me?.displayName ?? 'Anonymous',
                         game_id: game.id,
                         game_title: game.title,
                         final_score: score,

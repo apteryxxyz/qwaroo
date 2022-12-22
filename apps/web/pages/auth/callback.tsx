@@ -26,7 +26,10 @@ export default () => {
                 if (backTo.startsWith('/auth/callback')) backTo = '/games';
                 localStorage.removeItem('owenii.back_to');
 
-                emitEvent('sign_in', { method });
+                emitEvent('sign_in', {
+                    user_id: id,
+                    method,
+                });
 
                 router.reload();
                 void router.push(backTo);
