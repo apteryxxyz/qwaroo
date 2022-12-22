@@ -18,6 +18,10 @@ export namespace GameCard {
     }
 }
 
+const modeNameMap: Record<Game.Entity.Mode, string> = {
+    'higher-or-lower': 'Higher or Lower',
+};
+
 export function GameCard({ game, creator, ...props }: GameCard.Props) {
     const router = useRouter();
 
@@ -31,10 +35,10 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
     if (!badgeText && !props.disableBadge) {
         const sevenDays = 7 * 24 * 60 * 60 * 1_000;
         if (game.createdTimestamp > Date.now() - sevenDays) {
-            badgeText = 'NEW';
+            badgeText = 'New';
             badgeIcon = faWandMagicSparkles;
         } else if (game.updatedTimestamp > Date.now() - sevenDays) {
-            badgeText = 'UPDATED';
+            badgeText = 'Updated';
             badgeIcon = faPen;
         }
     }
@@ -62,12 +66,16 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
             element.style.rotate = '0deg';
         }}
     >
-        {badgeText && !props.disableBadge && <span
-            className="absolute mt-2 -m-2 px-5 py-2 rounded-md font-bold
-                drop-shadow-[0_4px_3px_rgba(0,0,0,.25)] bg-sky-500"
+        <div
+            className="flex flex-col gap-2 absolute mt-2 -m-2 text-sm font-bold uppercase
+            [&>*]:px-3 [&>*]:py-2 [&>*]:rounded-md [&>*]:drop-shadow-[0_4px_3px_rgba(0,0,0,.25)] [&>*]:w-fit"
         >
-            {badgeIcon && <FontAwesomeIcon icon={badgeIcon} />} {badgeText}
-        </span>}
+            {badgeText &&
+                !props.disableBadge && <span className="animated-gradient-background">
+                    {badgeIcon && <FontAwesomeIcon icon={badgeIcon} />}{' '}
+                    {badgeText}
+                </span>}
+        </div>
 
         <div
             className="flex flex-col justify-end w-full min-h-[30%] mt-auto p-3
@@ -75,14 +83,22 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
         >
             <h2 className="text-1.5xl font-semibold">{game.title}</h2>
             <p className="overflow-hidden">{game.shortDescription}</p>
-            {creator && <object>
-                <Link
-                    href={`/users/${creator.id}`}
-                    className="overflow-hidden opacity-70 transition-all hover:opacity-100"
-                >
-                    Created by {creator.displayName}
-                </Link>
-            </object>}
+
+            <span className="flex text-sm">
+                <span>{modeNameMap[game.mode]}</span>
+
+                {creator?.displayName && <>
+                    <span className="mx-1">•</span>
+                    <object>
+                        <Link
+                            href={`/users/${creator.id}`}
+                            className="opacity-80 hover:opacity-100"
+                        >
+                            Created by {creator.displayName}
+                        </Link>
+                    </object>
+                </>}
+            </span>
         </div>
     </Link>;
 }

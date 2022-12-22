@@ -13,6 +13,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
     slug: 'hol.yt-channel',
     name: 'YouTube Channel',
+    isPublic: true,
     description:
         'Get a list of videos from a YouTube channel.\n' +
         `This will fetch the latest videos from one or more channels, and

@@ -117,6 +117,9 @@ export default () => {
                     iconProp={faShareNodes}
                     onClick={() => {
                         const url = new URL(shareUrl, useWebUrl());
+                        url.searchParams.delete('limit');
+                        url.searchParams.delete('skip');
+
                         if (navigator.clipboard)
                             void navigator.clipboard.writeText(url.toString());
                         else console.info(url.toString());

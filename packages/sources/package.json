@@ -11,6 +11,7 @@
     "dependencies": {
         "@owenii/types": "workspace:^0.0.0",
         "cheerio": "1.0.0-rc.12",
+        "g-i-s": "^2.1.6",
         "jimp": "^0.16.2",
         "ytpl": "github:apteryxxyz/node-ytpl"
     },

@@ -14,7 +14,7 @@
         "nginx": "node scripts/nginx.js && sudo cp .nginx/* /etc/nginx/sites-available/",
         "prepare": "husky install",
         "pull": "git reset --hard HEAD && git pull",
-        "start": "pm2 startOrRestart ecosystem.config.js"
+        "start": "pm2 startOrReload ecosystem.config.js"
     },
     "prettier": "prettier-config-apteryx",
     "devDependencies": {

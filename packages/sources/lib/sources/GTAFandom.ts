@@ -7,7 +7,7 @@ import { Source } from '#/Source';
 import { prepareOptions } from '#/validators/prepareOptions';
 
 export interface Options {
-    fandomUrlWithTable: string;
+    fandomUrl: string;
     shouldCheckImages: boolean;
     tableSelector: string;
     displaySelector: string;
@@ -20,8 +20,9 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
     slug: 'hol.gta-fandom',
     name: 'GTA Fandom',
+    isPublic: false,
     description:
-        'Scrap data from the GTA Fandom page.\n' +
+        'Scrap data from the GTA Fandom site.\n' +
         `This source will find the first table on the page, then extract
         each of the items URLs from the page. It will then fetch each of
         the items and extract the name, value, image and caption. The
@@ -29,7 +30,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
         `.replaceAll(/\s+/g, ' '),
 
     props: {
-        fandomUrlWithTable: {
+        fandomUrl: {
             type: Source.Prop.Type.URL,
             description: 'The URL of the GTA Fandom page with the table.',
             required: true,
@@ -88,7 +89,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     },
 
     async fetchItems(options) {
-        const $ = await _fetchCheerio(options.fandomUrlWithTable);
+        const $ = await _fetchCheerio(options.fandomUrl);
         const itemsPath = Array.from(
             $(options.tableSelector as '.wikitable td li a')
         ).map(el => el.attribs['href']);
@@ -138,7 +139,7 @@ async function _fetchCheerio(path: string) {
     return cheerio.load(content);
 }
 
-function getElement($: cheerio.CheerioAPI, selector: string) {
+function _getElement($: cheerio.CheerioAPI, selector: string) {
     const element = $(selector);
     if (element.length === 0)
         throw new Error(`No element found for selector: ${selector}`);
@@ -146,11 +147,11 @@ function getElement($: cheerio.CheerioAPI, selector: string) {
 }
 
 async function _getDisplay($: cheerio.CheerioAPI, selector: string) {
-    return getElement($, selector).text();
+    return _getElement($, selector).text();
 }
 
 async function _getValue($: cheerio.CheerioAPI, selector: string) {
-    const text = getElement($, selector).text();
+    const text = _getElement($, selector).text();
     const numbers = /[\d,.]+/.exec(text);
     if (!numbers || numbers.length === 0)
         throw new Error(`No numbers found in value: ${text}`);
@@ -158,6 +159,6 @@ async function _getValue($: cheerio.CheerioAPI, selector: string) {
 }
 
 async function _getImageSource($: cheerio.CheerioAPI, selector: string) {
-    const src = getElement($, selector).attr('src');
+    const src = _getElement($, selector).attr('src');
     return src ? src.split('/revision')[0] : undefined;
 }

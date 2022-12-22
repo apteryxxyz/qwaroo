@@ -39,6 +39,6 @@ async function main(_0, _1) {
 
     console.info('Done!');
     console.info('Please run `sudo cp .nginx/* /etc/nginx/sites-available`.');
-    console.info('Then ensure the symlinks are correct in /etc/nginx/sites-enabled.');
-    console.info('And finally run `sudo nginx -t && sudo systemctl restart nginx`.');
+    console.info('Then `sudo cp /etc/nginx/sites-available/* /etc/nginx/sites-enabled`.');
+    console.info('And finally `sudo nginx -t && sudo systemctl restart nginx`.');
 }

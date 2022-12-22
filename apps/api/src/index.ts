@@ -27,11 +27,10 @@ async function main() {
 
 async function ensureGameItems() {
     const games = await Game.find({ sourceSlug: { $ne: null } });
-    await Promise.all(
-        games.map(gm =>
-            fetchAndSaveItems(gm.slug, gm.sourceSlug!, gm.sourceOptions!)
-        )
-    );
+    for (const gm of games) {
+        if (!gm.sourceSlug || !gm.sourceOptions) continue;
+        await fetchAndSaveItems(gm.slug, gm.sourceSlug, gm.sourceOptions);
+    }
 }
 
 export { database, server };

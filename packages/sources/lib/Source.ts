@@ -14,6 +14,8 @@ export interface Source<
     name: string;
     /** A short description of this source. */
     description: string;
+    /** Whether or not this source can be used publicly. */
+    isPublic: boolean;
 
     /** The properties required to fetch items from this source. */
     props: Record<K, Source.Prop>;
