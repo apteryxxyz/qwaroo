@@ -107,7 +107,6 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         const previousItem = getItem(-1);
         const currentItem = getItem(0);
         logger.info('Picked item', { decision, previousItem, currentItem });
-        steps.current.push(decision);
 
         setStatus('animating');
         await sleepSeconds(1);
@@ -120,6 +119,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
             return endGame('lose');
         }
 
+        steps.current.push(decision);
         logger.info('Correct guess');
 
         const newScore = score + 1;

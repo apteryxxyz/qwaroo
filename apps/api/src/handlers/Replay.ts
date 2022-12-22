@@ -16,7 +16,7 @@ export class Replay extends null {
             const isValid = await Replay._isValidHigherOrLowerSave(game, save);
             if (!isValid) throw new Error(422, 'Invalid save data');
 
-            score = save.steps.length - 1;
+            score = save.steps.length;
             time = save.time;
         } else {
             throw new Error(422, 'Invalid game type');
@@ -38,7 +38,7 @@ export class Replay extends null {
         const [, items] = await Games.getGameItems(
             game,
             save.seed,
-            save.steps.length + 2
+            save.steps.length + 1
         );
 
         for (const [i, decision] of save.steps.entries()) {
@@ -46,7 +46,6 @@ export class Replay extends null {
             const currentItem = items[i + 1];
 
             if (
-                i === save.steps.length - 1 ||
                 (decision === 1 && previousItem.value <= currentItem.value) ||
                 (decision === -1 && previousItem.value >= currentItem.value)
             )
@@ -58,6 +57,3 @@ export class Replay extends null {
         return true;
     }
 }
-
-// [100, 50, 25, 100, 50, 60]
-// [-1, -1, 1, -1, 1]
