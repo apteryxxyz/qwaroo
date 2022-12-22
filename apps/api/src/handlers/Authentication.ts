@@ -3,7 +3,10 @@ import { User } from '@owenii/database';
 import { Encryption } from './Encryption';
 
 export class Authentication extends null {
-    /** Create a new unique auth token for a user. */
+    /**
+     * Create a new unique auth token,
+     * which can be used to login to the system.
+     */
     public static createToken(userId: string, revokeToken: string) {
         return Encryption.encryptString(
             JSON.stringify({

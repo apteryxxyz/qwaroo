@@ -47,7 +47,7 @@ export class DiscordPassport {
 
         if (connection) {
             const user = await User.findById(connection.userId).exec();
-            // TODO: add ability to refresh a connections properties (accountUsername)
+            // TODO: Add ability to refresh a connections properties (accountUsername)
             if (user) {
                 done(null, user);
                 return;

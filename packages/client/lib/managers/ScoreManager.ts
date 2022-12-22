@@ -60,15 +60,4 @@ export class ScoreManager extends MapManager<string, Score> {
         const data = await this.client.rest.get(path, options);
         return data.items.map((dt: Score.Entity) => this._add(dt));
     }
-
-    /** Submit a score. */
-    // public async submit(
-    //     game: Game.Resolvable,
-    //     save: Omit<APISubmitScore<Game.Entity.Mode>, 'game'>
-    // ) {
-    //     Reflect.set(save, 'game', Game.resolveId(game));
-    //     const path = Routes.userScores(this.user.id);
-    //     const data = await this.client.rest.post(path, undefined, save);
-    //     return this._add(data);
-    // }
 }

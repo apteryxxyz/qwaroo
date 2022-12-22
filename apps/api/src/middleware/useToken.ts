@@ -3,6 +3,10 @@ import type { UserDocument } from '@owenii/database';
 import { Authentication } from '#/handlers/Authentication';
 import { handle } from '#/utilities/routeHandler';
 
+/**
+ * Parse and verify the auth token for an endpoint.
+ * If the token is valid, the user will be attached to the request.
+ */
 export function useToken(
     requiredMethods: string[],
     optionalMethods: string[] = []
@@ -41,6 +45,7 @@ export function useToken(
     });
 }
 
+/** Require that the auth token be the same as the parameter. */
 export function useStaticToken(token: string) {
     return handle(async (req, _res, next) => {
         const authToken = req.header('Authorization');

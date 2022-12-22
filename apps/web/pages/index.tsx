@@ -6,6 +6,7 @@ export default () => {
     const router = useRouter();
 
     useEffect(() => {
+        // No home page yet, so redirect to games
         void router.push('/games');
     }, []);
 

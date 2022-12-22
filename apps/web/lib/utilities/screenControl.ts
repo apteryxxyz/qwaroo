@@ -1,3 +1,4 @@
+/** Hide the navbar, footer and border spacing. */
 export function goFullscreen() {
     for (const selector of ['#navigation-bar', '#footer-bar']) {
         const element = document.querySelector(selector);
@@ -9,6 +10,7 @@ export function goFullscreen() {
     document.body.style.overflow = 'hidden';
 }
 
+/** Show the navbar, footer and border spacing. */
 export function goMinimised() {
     for (const selector of ['#navigation-bar', '#footer-bar']) {
         const element = document.querySelector(selector);
@@ -38,12 +40,14 @@ const inspectElementListener = (event: KeyboardEvent) => {
         event.preventDefault();
 };
 
+/** Disable the normal ways to access the dev tools. */
 export function disableInspectElement(onBlur?: () => void) {
     document.addEventListener('contextmenu', contextMenuListener);
     document.addEventListener('keydown', inspectElementListener);
     if (onBlur) window.addEventListener('blur', onBlur);
 }
 
+/** Enable the normal ways to access the dev tools. */
 export function enableInspectElement(onBlur?: () => void) {
     document.removeEventListener('contextmenu', contextMenuListener);
     document.removeEventListener('keydown', inspectElementListener);

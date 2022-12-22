@@ -5,6 +5,7 @@ import { Game as GameEntity } from '@owenii/types';
 import { Games } from './Games';
 
 export class Replay extends null {
+    /** Replay a games steps to determine whether a save is legit. */
     public static async replayGame(
         game: GameDocument,
         save: APISubmitScore<GameEntity.Mode>

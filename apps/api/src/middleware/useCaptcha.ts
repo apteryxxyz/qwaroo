@@ -3,6 +3,7 @@ import { URLSearchParams } from 'node:url';
 import { ServerError as Error } from '@owenii/common';
 import { handle } from '#/utilities/routeHandler';
 
+/** Require that the request has a valid captcha token. */
 export function useCaptcha(methods: string[]) {
     return handle(async (req, _, next) => {
         if (!methods.includes(req.method)) {
@@ -14,6 +15,8 @@ export function useCaptcha(methods: string[]) {
         const remoteIp = req.header('X-Real-IP') ?? req.ip;
 
         if (!token) throw new Error(401, 'No captcha token was provided');
+
+        // CAPTCHA_ALWAYS_PASS is a secret token that can be used to bypass the captcha
         if (token === process.env['CAPTCHA_ALWAYS_PASS']) {
             next();
             return;

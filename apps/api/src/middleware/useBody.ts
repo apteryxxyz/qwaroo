@@ -12,6 +12,7 @@ const TypeParsers = {
     form: parse.form,
 };
 
+/** Parse the body of a request and declare it on the 'body' property of the request. */
 export function useBody(type: 'json' | 'form', methods: string[]) {
     return handle(async (req, _, next) => {
         if (!methods.includes(req.method)) {

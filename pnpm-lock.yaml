@@ -142,7 +142,6 @@ importers:
       '@types/react': ^18.0.26
       '@types/react-dom': ^18.0.9
       autoprefixer: ^10.4.13
-      dotenv: ^16.0.3
       enhanced-ms: ^2.2.0
       eslint: ^8.28.0
       eslint-config-apteryx: ^2.0.2
@@ -186,7 +185,6 @@ importers:
       '@types/gtag.js': 0.0.12
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
-      dotenv: 16.0.3
       eslint: 8.29.0
       eslint-config-apteryx: 2.0.4
       next-sitemap: 3.1.43_jdkzhavjz25nuekaaa6rmvh2fe

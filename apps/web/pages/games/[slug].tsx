@@ -10,6 +10,7 @@ export default ({
     ...props
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return <>
+        {/* TODO: Create a custom GameSeo component with custom banner. */}
         <PageSeo
             title={props.title}
             description={props.longDescription}

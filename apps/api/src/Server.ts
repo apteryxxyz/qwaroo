@@ -25,6 +25,7 @@ export class Server {
         this.app.use(require('./routes/sitemap').default());
         this.app.use(require('./routes/users').default());
 
+        // When no route matches, return a 404
         this.app.use((_req, res) => {
             res.status(404).json({
                 success: false,
@@ -32,9 +33,13 @@ export class Server {
             });
         });
 
+        // Handle errors
         this.app.use(
             (error: Error, _req: unknown, res: Response, _next: unknown) => {
                 console.error(error);
+
+                // If the error is not an instance of out APIError,
+                // return an internal server error
                 const apiError =
                     error instanceof Error ? error : new Error(500);
                 res.status(apiError.status).json({

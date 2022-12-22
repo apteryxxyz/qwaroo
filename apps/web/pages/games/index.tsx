@@ -33,12 +33,12 @@ export default () => {
     const [shareUrl, setShareUrl] = useState<string>(router.asPath);
 
     useEffect(() => {
-        (async () => {
-            const cats = await client.games.fetchCategories();
-            setCategories(cats);
-            const search = new URLSearchParams(router.asPath.split('?')[1]);
-            setQuery(Object.fromEntries(search.entries()));
-        })();
+        void client.games.fetchCategories().then(c => setCategories(c));
+    }, []);
+
+    useEffect(() => {
+        const search = new URLSearchParams(router.asPath.split('?')[1]);
+        setQuery(Object.fromEntries(search.entries()));
     }, [router.isReady]);
 
     useEffect(() => {
@@ -50,7 +50,10 @@ export default () => {
 
             const games = await client.games.fetchMany(query);
             for (const game of games) {
+                // Preload the creator
                 await game.fetchCreator(false).catch(() => null);
+
+                // Get the item count to ensure the game has items
                 const items = await game.fetchItems().catch(() => null);
                 hasItems.current.set(game.id, (items?.total ?? 0) > 0);
             }
@@ -171,6 +174,7 @@ export default () => {
         {!isLoading && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {games.map(
                 game =>
+                    // If a game doesnt have items, exclude it from results
                     hasItems.current.get(game.id) && <GameCard
                         key={game.slug}
                         game={game}
@@ -181,8 +185,8 @@ export default () => {
                 href="/discord"
                 target="_blank"
                 className="flex flex-col w-auto h-auto aspect-square rounded-xl
-            transition-all duration-300 ease-in-out text-white
-            hover:shadow-lg hover:scale-105 hover:brightness-125"
+                    transition-all duration-300 ease-in-out text-white
+                    hover:shadow-lg hover:scale-105 hover:brightness-125"
                 style={{
                     backgroundImage: `linear-gradient(rgba(0,0,0,0.3),
                 rgba(0,0,0,0.3)),url(https://assets-global.website-files.com/5f9072399b2640f14d6a2bf4/6348685d7c7b4e693020de8c_macro%20hero-blog%20header%402x-p-800.png)`,

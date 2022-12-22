@@ -20,7 +20,8 @@ export default ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
 
     useEffect(() => {
-        const uid = localStorage.getItem('owenii.uid');
+        // Login the client if the user has an id and token
+        const uid = localStorage.getItem('owenii.user_id');
         const token = localStorage.getItem('owenii.token');
         if (uid && token) void client.login(uid, token);
         Reflect.set(globalThis, '__OWENII_CLIENT__', client);

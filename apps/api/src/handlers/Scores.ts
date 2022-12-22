@@ -9,6 +9,7 @@ import type { APISubmitScore, FetchScoresOptions, Game } from '@owenii/types';
 import { Replay } from './Replay';
 
 export class Scores extends null {
+    /** Get all of the scores for a user. */
     public static async getScores(
         user: UserDocument,
         options: FetchScoresOptions = {}
@@ -66,6 +67,7 @@ export class Scores extends null {
         return [{ total, limit, skip }, scores] as const;
     }
 
+    /** Get a users score by its ID. */
     public static async getScoreById(user: UserDocument, id: string) {
         const isValidId = Validate.ObjectId.test(id);
         if (!isValidId) throw new Error(422, 'Score ID is invalid');
@@ -76,6 +78,7 @@ export class Scores extends null {
         return score;
     }
 
+    /** Ensure that a user has as score document for a game. */
     public static async ensureScore(
         user: UserDocument,
         game: GameDocument
@@ -94,6 +97,7 @@ export class Scores extends null {
         return score;
     }
 
+    /** Submit a new score to the database. */
     public static async submitScore(
         user: UserDocument | undefined,
         game: GameDocument,
@@ -108,6 +112,7 @@ export class Scores extends null {
 
         await game.save();
 
+        // If the user is logged in, update their score, otherwise they are a guest
         if (user) {
             const score = await Scores.ensureScore(user, game);
 

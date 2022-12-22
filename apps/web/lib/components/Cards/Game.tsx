@@ -55,6 +55,7 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
         }}
+        // Rotate the card randomly on hover
         onMouseEnter={event => {
             const element = event.currentTarget;
             element.style.rotate = `${
@@ -89,6 +90,7 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
 
                 {creator?.displayName && <>
                     <span className="mx-1">•</span>
+                    {/* Use the object tag to bypass the a in a tag stuff */}
                     <object>
                         <Link
                             href={`/users/${creator.id}`}

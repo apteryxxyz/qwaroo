@@ -85,10 +85,6 @@ export class Games extends null {
 
         let query = Game.find();
 
-        if (user) {
-            query = query.where({ creatorId: user.id });
-        }
-
         if (term) {
             const title = createRegExp(term, false, 'i');
             query = query.where({ title });
@@ -99,6 +95,7 @@ export class Games extends null {
             query = query.sort({ [sort]: direction });
         }
 
+        if (user) query = query.where({ creatorId: user.id });
         if (categories?.length)
             query = query.where({ categories: { $all: categories } });
         if (ids?.length)

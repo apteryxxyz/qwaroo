@@ -1,6 +1,7 @@
 import { ServerError as Error } from '@owenii/common';
 import { handle } from '#/utilities/routeHandler';
 
+/** Replace the value of a parameter with the user's ID if it is @me. */
 export function useMe(property: string) {
     return handle(async (req, _res, next) => {
         const id = String(req.params[property] ?? '');
@@ -14,6 +15,7 @@ export function useMe(property: string) {
     });
 }
 
+/** Require that a user ID property must be the same as the logged in user. */
 export function useMustBeMe(property: string) {
     return handle(async (req, _res, next) => {
         const id = String(req.params[property] ?? '');

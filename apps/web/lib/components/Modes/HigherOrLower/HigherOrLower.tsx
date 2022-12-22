@@ -75,6 +75,8 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
                 .submitScore({
                     seed: itemsManager.current.seed,
                     steps: steps.current,
+                    // Time can be modified by the user, but it's not important
+                    // Prehaps we could send a request when the game starts and count the time from there
                     time: Date.now() - startTime.current!,
                 })
                 .then(() =>
@@ -128,8 +130,10 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         if (score === totalLength - 1) return endGame('win');
 
         if (currentLength - newScore < 3) {
+            // Preload more items
             const newItems = await itemsManager.current.fetchMore();
             setItems(items => [...items, ...newItems]);
+            // TODO: Should probably not log this
             logger.info('Fetched more items', { newItems });
         }
 
@@ -163,10 +167,13 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         if (!game) return;
 
         itemsManager.current = new ItemManager(game);
-        scoresManager.current = client.me ? new ScoreManager(client.me) : null;
+        scoresManager.current = client.isLoggedIn()
+            ? new ScoreManager(client.me)
+            : null;
 
         (async () => {
             if (client.isLoggedIn() && scoresManager.current) {
+                // Fetch the users high score from the database
                 await scoresManager.current.fetchAll();
                 const score = scoresManager.current //
                     .find(s => s.gameId === game.id);
@@ -175,6 +182,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
             }
 
             if (itemsManager.current) {
+                // Fetch the initial game items
                 await itemsManager.current
                     .fetchMore()
                     .then(items => setItems(items))

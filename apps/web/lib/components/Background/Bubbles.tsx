@@ -12,6 +12,8 @@ export function Bubbles({ count }: { count: number }) {
 }
 
 function Bubble({ index, count }: { index: number; count: number }) {
+    // Need to use state here because the values
+    // need to be the same on the server as the client
     const [size, setSize] = useState(0);
     const [speed, setSpeed] = useState(0);
     const [delay, setDelay] = useState(0);

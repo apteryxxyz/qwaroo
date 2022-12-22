@@ -17,9 +17,9 @@ export default () => {
             const method = url.searchParams.get('method') ?? '';
 
             if (Validate.ObjectId.test(id) && token) {
-                localStorage.setItem('owenii.uid', id);
+                localStorage.setItem('owenii.user_id', id);
                 localStorage.setItem('owenii.token', token);
-                documentCookie.setItem('owenii.uid', id, 365);
+                documentCookie.setItem('owenii.user_id', id, 365);
                 documentCookie.setItem('owenii.token', token, 365);
 
                 let backTo = localStorage.getItem('owenii.back_to') ?? '/games';

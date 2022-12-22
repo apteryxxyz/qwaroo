@@ -8,6 +8,7 @@
         color 0.2s ease-in-out;
 }
 
+/* Just here to prevent accidentally passing undefined to the class names */
 .undefined {
     border-width: 1vw;
     border-color: red;
