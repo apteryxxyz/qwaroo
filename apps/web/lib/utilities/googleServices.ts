@@ -1,3 +1,4 @@
+import { useClient } from '#/contexts/ClientContext';
 import { useGoogleAnalyticsId } from '#/hooks/useEnv';
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
@@ -9,5 +10,11 @@ export function pageView(url: string) {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export function emitEvent(name: string, params: { [key: string]: unknown }) {
-    window.gtag('event', name, params);
+    const client = useClient();
+
+    window.gtag('event', name, {
+        user_id: client.me?.id ?? 'anonymous',
+        user_name: client.me?.displayName ?? 'anonymous',
+        ...params,
+    });
 }

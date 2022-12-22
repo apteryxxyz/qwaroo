@@ -4,6 +4,7 @@ import { faSignIn } from '@fortawesome/free-solid-svg-icons/faSignIn';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Game, ItemManager, ScoreManager } from '@owenii/client';
+import { ms } from 'enhanced-ms';
 import { useEffect, useRef, useState } from 'react';
 import { ItemBlock } from './ItemBlock';
 import { CountUpNumber } from '#/components/Count/Number';
@@ -55,8 +56,8 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
             startTime.current = Date.now();
             setStatus('playing');
             emitEvent('game_start', {
-                user: client.me?.displayName ?? 'anonymous',
-                game: game.title,
+                game_id: game.id,
+                game_title: game.title,
             });
         } else {
             logger.error('Game not ready');
@@ -78,10 +79,12 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
                 })
                 .then(() =>
                     emitEvent('game_end', {
-                        user: client.me?.displayName ?? 'anonymous',
-                        game: game.title,
-                        score,
-                        time: Date.now() - startTime.current!,
+                        game_id: game.id,
+                        game_title: game.title,
+                        final_score: score,
+                        final_time: ms(Date.now() - startTime.current!, {
+                            shortFormat: true,
+                        }),
                     })
                 )
                 .catch(() => null);

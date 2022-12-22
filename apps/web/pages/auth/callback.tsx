@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Loading } from '#/components/Display/Loading';
 import { Seo } from '#/components/Seo/Seo';
 import { documentCookie } from '#/utilities/documentCookie';
+import { emitEvent } from '#/utilities/googleServices';
 
 export default () => {
     const router = useRouter();
@@ -13,6 +14,7 @@ export default () => {
             const url = new URL(router.asPath, 'http://localhost');
             const id = url.searchParams.get('uid') ?? '';
             const token = url.searchParams.get('token') ?? '';
+            const method = url.searchParams.get('method') ?? '';
 
             if (Validate.ObjectId.test(id) && token) {
                 localStorage.setItem('owenii.uid', id);
@@ -23,6 +25,8 @@ export default () => {
                 let backTo = localStorage.getItem('owenii.back_to') ?? '/games';
                 if (backTo.startsWith('/auth/callback')) backTo = '/games';
                 localStorage.removeItem('owenii.back_to');
+
+                emitEvent('sign_in', { method });
 
                 router.reload();
                 void router.push(backTo);

@@ -38,6 +38,7 @@ export default () => {
             );
             redirectUrl.searchParams.set('uid', id);
             redirectUrl.searchParams.set('token', token);
+            redirectUrl.searchParams.set('method', 'discord');
 
             res.redirect(redirectUrl.toString());
         })
@@ -64,6 +65,7 @@ export default () => {
             );
             redirectUrl.searchParams.set('uid', id);
             redirectUrl.searchParams.set('token', token);
+            redirectUrl.searchParams.set('method', 'github');
 
             res.redirect(redirectUrl.toString());
         })
