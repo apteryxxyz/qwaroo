@@ -7,7 +7,7 @@ import type { Game } from '@owenii/client';
 import type { FetchGamesOptions } from '@owenii/types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GameCard } from '#/components/Cards/Game';
 import { Loading } from '#/components/Display/Loading';
 import { Button } from '#/components/Input/Button';
@@ -22,6 +22,8 @@ export default () => {
     const client = useClient();
 
     const [games, setGames] = useState<Game[]>([]);
+    const hasItems = useRef(new Map<string, boolean>());
+
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [categories, setCategories] = useState<string[]>([]);
     const [query, setQuery] = useState<FetchGamesOptions>({
@@ -47,8 +49,11 @@ export default () => {
             setShareUrl(path);
 
             const games = await client.games.fetchMany(query);
-            for (const game of games)
+            for (const game of games) {
                 await game.fetchCreator(false).catch(() => null);
+                const items = await game.fetchItems().catch(() => null);
+                hasItems.current.set(game.id, (items?.total ?? 0) > 0);
+            }
 
             setGames(games);
             setIsLoading(false);
@@ -164,11 +169,14 @@ export default () => {
         {isLoading && <Loading />}
 
         {!isLoading && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {games.map(game => <GameCard
-                key={game.slug}
-                game={game}
-                creator={client.users.get(game.creatorId)!}
-            />)}
+            {games.map(
+                game =>
+                    hasItems.current.get(game.id) && <GameCard
+                        key={game.slug}
+                        game={game}
+                        creator={client.users.get(game.creatorId)!}
+                    />
+            )}
             <Link
                 href="/discord"
                 target="_blank"
