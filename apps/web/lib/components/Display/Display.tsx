@@ -1,6 +1,8 @@
+import { useRouter } from 'next/router';
 import { Button } from '../Input/Button';
 import { SocialButtons } from '../Input/SocialButtons';
 import styles from './Display.module.css';
+import { getBackTo } from '#/utilities/backTo';
 
 export namespace Display {
     export interface Props {
@@ -21,6 +23,8 @@ export namespace Display {
 }
 
 export function Display(props: Display.Props) {
+    const router = useRouter();
+
     return <div
         className={`flex gap-3 py-[20vh] md:py-[30vh] ${props.className ?? ''}`}
         style={{ ...props.style }}
@@ -42,13 +46,16 @@ export function Display(props: Display.Props) {
             </div>
 
             <div className="flex flex-row flex-wrap gap-3">
-                {props.showGoHome && <Button linkProps={{ href: '/' }}>
+                {props.showGoHome && <Button onClick={() => router.push('/')}>
                     Go home
                 </Button>}
 
-                {/* IDEA: I could use the 'owenii.back_to' to handle this */}
                 {props.showGoBack && <Button
-                    onClick={() => window.history.back()}
+                    onClick={() => {
+                        const backTo = getBackTo();
+                        if (backTo) void router.push(backTo);
+                        else router.back();
+                    }}
                 >
                     Go back
                 </Button>}

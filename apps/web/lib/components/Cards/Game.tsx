@@ -4,8 +4,6 @@ import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons/faWandMag
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Game, User } from '@owenii/client';
 import Link, { type LinkProps } from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 export namespace GameCard {
     export interface Props {
@@ -23,12 +21,6 @@ const modeNameMap: Record<Game.Entity.Mode, string> = {
 };
 
 export function GameCard({ game, creator, ...props }: GameCard.Props) {
-    const router = useRouter();
-
-    useEffect(() => {
-        localStorage.setItem('owenii.back_to', router.asPath);
-    }, []);
-
     let badgeText = props.badgeText;
     let badgeIcon: IconProp | null = null;
 

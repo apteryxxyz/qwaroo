@@ -1,5 +1,7 @@
 import { NotFound } from '#/components/Display/NotFound';
 
 export default () => {
-    return <NotFound />;
+    return <div id="error-404">
+        <NotFound />
+    </div>;
 };

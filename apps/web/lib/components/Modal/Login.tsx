@@ -1,11 +1,11 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
 // import { faReddit } from '@fortawesome/free-brands-svg-icons/faReddit';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../Input/Button';
 import { Modal } from './Modal';
 import { useApiUrl } from '#/hooks/useEnv';
+import { getBackTo, setBackTo } from '#/utilities/backTo';
 
 export namespace LoginModal {
     export type Props = Omit<
@@ -17,16 +17,22 @@ export namespace LoginModal {
 }
 
 export function LoginModal(props: LoginModal.Props) {
-    const router = useRouter();
+    const [previousBackTo, setPreviousBackTo] = useState<string | null>(null);
+
     useEffect(() => {
         if (props.isOpen) {
-            localStorage.setItem('owenii.back_to', router.asPath);
+            setPreviousBackTo(getBackTo());
+            setBackTo();
         }
     }, [props.isOpen]);
 
     return <Modal
         className="flex flex-col gap-3 items-center justify-center"
         {...props}
+        onClose={() => {
+            if (previousBackTo) setBackTo(previousBackTo);
+            props.onClose();
+        }}
     >
         <h2 className="text-xl font-bold">Login / Sign Up</h2>
 
@@ -70,7 +76,14 @@ export function LoginModal(props: LoginModal.Props) {
             <strong>NEVER</strong> be stored or shared by Owenii.
         </p>
 
-        <Button className="p-0" disableDefaultStyles onClick={props.onClose}>
+        <Button
+            className="p-0"
+            disableDefaultStyles
+            onClick={() => {
+                if (previousBackTo) setBackTo(previousBackTo);
+                props.onClose();
+            }}
+        >
             {props.closeLabel ?? 'Cancel'}
         </Button>
     </Modal>;

@@ -12,6 +12,7 @@ import { FooterBar } from '#/components/FooterBar';
 import { NavigationBar } from '#/components/NavigationBar';
 import { ClientProvider } from '#/contexts/ClientContext';
 import { useApiUrl } from '#/hooks/useEnv';
+import { setBackTo } from '#/utilities/backTo';
 import { pageView } from '#/utilities/googleServices';
 
 const client = new Client({ apiHost: useApiUrl() });
@@ -25,6 +26,13 @@ export default ({ Component, pageProps }: AppProps) => {
         const token = localStorage.getItem('owenii.token');
         if (uid && token) void client.login(uid, token);
         Reflect.set(globalThis, '__OWENII_CLIENT__', client);
+
+        const handleRouteChange = () => setBackTo();
+        router.events.on('routeChangeStart', handleRouteChange);
+
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange);
+        };
     }, []);
 
     useEffect(() => {
