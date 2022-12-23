@@ -18,7 +18,6 @@ export default () => {
         useMethods(['GET']),
         useToken(['GET']),
         useMe('userId'),
-        useMustBeMe('userId'),
         handle(async (req, res) => {
             const user = await Users.getUser(req.params['userId']);
 
@@ -42,7 +41,6 @@ export default () => {
         useMethods(['GET', 'PATCH', 'DELETE']),
         useToken(['GET', 'PATCH', 'DELETE']),
         useMe('userId'),
-        useMustBeMe('userId'),
         handle(async (req, res) => {
             const user = await Users.getUser(req.params['userId']);
             const scoreId = String(req.params['scoreId']);
