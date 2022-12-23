@@ -18,8 +18,6 @@ export interface GameDocument extends GameEntity, GameMethods, Document {
 
 export interface GameModel extends Model<GameEntity, {}, GameMethods> {}
 
-// TODO: Add a total play count property to games to use to sort by popularity
-
 const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
     {
         // Identifers

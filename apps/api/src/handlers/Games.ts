@@ -60,7 +60,6 @@ export class Games extends null {
             throw new Error(422, 'Skip must be a number');
         if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
 
-        // TODO: Add popular sort
         const sorts = [
             'totalScore',
             'totalTime',
