@@ -1,5 +1,7 @@
 import process from 'node:process';
+import { URL } from 'node:url';
 import { Connection, User, type UserDocument } from '@owenii/database';
+import { Routes } from '@owenii/types';
 import passport from 'passport';
 import { Strategy } from 'passport-discord';
 import type { VerifyCallback } from 'passport-oauth2';
@@ -12,8 +14,10 @@ export class DiscordPassport {
                 {
                     clientID: process.env['DISCORD_APPLICATION_ID']!,
                     clientSecret: process.env['DISCORD_OAUTH2_SECRET']!,
-                    callbackURL:
-                        process.env['API_URL']! + '/auth/discord/callback',
+                    callbackURL: new URL(
+                        Routes.authCallback('discord'),
+                        process.env['API_URL']!
+                    ).toString(),
                     scope: ['identify'],
                 },
                 this._findOrCreate.bind(this)
@@ -22,17 +26,6 @@ export class DiscordPassport {
 
         passport.serializeUser(this._serializeUser);
         passport.deserializeUser(this._deserializeUser);
-    }
-
-    public login() {
-        return passport.authenticate('discord', { session: false });
-    }
-
-    public callback() {
-        return passport.authenticate('discord', {
-            failureRedirect: '/login',
-            session: false,
-        });
     }
 
     private async _findOrCreate(

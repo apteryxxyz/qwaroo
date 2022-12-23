@@ -1,5 +1,7 @@
 import process from 'node:process';
+import { URL } from 'node:url';
 import { Connection, User, type UserDocument } from '@owenii/database';
+import { Routes } from '@owenii/types';
 import passport from 'passport';
 import type { VerifyCallback } from 'passport-oauth2';
 import { Encryption } from '#/handlers/Encryption';
@@ -13,8 +15,10 @@ export class GitHubPassport {
                 {
                     clientID: process.env['GITHUB_APPLICATION_ID']!,
                     clientSecret: process.env['GITHUB_OAUTH2_SECRET']!,
-                    callbackURL:
-                        process.env['API_URL']! + '/auth/github/callback',
+                    callbackURL: new URL(
+                        Routes.authCallback('github'),
+                        process.env['API_URL']!
+                    ).toString(),
                 },
                 this._findOrCreate.bind(this)
             )
@@ -22,17 +26,6 @@ export class GitHubPassport {
 
         passport.serializeUser(this._serializeUser);
         passport.deserializeUser(this._deserializeUser);
-    }
-
-    public login() {
-        return passport.authenticate('github', { session: false });
-    }
-
-    public callback() {
-        return passport.authenticate('github', {
-            failureRedirect: '/login',
-            session: false,
-        });
     }
 
     private async _findOrCreate(

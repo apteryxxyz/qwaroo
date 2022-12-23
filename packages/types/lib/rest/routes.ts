@@ -1,19 +1,11 @@
 export const Routes = {
     // Auth
-    discordLogin() {
-        return '/auth/discord/login' as const;
+    authLogin(provider: string) {
+        return `/auth/${provider}/login` as const;
     },
 
-    discordCallback() {
-        return '/auth/discord/callback' as const;
-    },
-
-    githubLogin() {
-        return '/auth/github/login' as const;
-    },
-
-    githubCallback() {
-        return '/auth/github/callback' as const;
+    authCallback(provider: string) {
+        return `/auth/${provider}/callback` as const;
     },
 
     // Games

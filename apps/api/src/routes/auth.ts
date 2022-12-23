@@ -9,67 +9,49 @@ import { DiscordPassport } from '#/passports/Discord';
 import { GitHubPassport } from '#/passports/GitHub';
 import { handle } from '#/utilities/routeHandler';
 
-// TODO: Combine these routes into a two single routes
-
 export default () => {
     const router = Router();
-    const discord = new DiscordPassport();
-    const github = new GitHubPassport();
+    new DiscordPassport();
+    new GitHubPassport();
     passport.initialize();
 
-    router.all(Routes.discordLogin(), useMethods(['GET']), discord.login());
+    const providers = ['discord', 'github'] as const;
 
-    router.all(
-        Routes.discordCallback(),
-        useMethods(['GET']),
-        discord.callback(),
-        handle(async (req, res) => {
-            if (!req.user) {
-                res.redirect('/auth/discord/login');
-                return;
-            }
+    for (const provider of providers) {
+        router.all(
+            Routes.authLogin(provider),
+            useMethods(['GET']),
+            passport.authenticate(provider, { session: false })
+        );
 
-            const { id, revokeToken } = req.user;
-            const token = Authentication.createToken(id, revokeToken);
+        router.all(
+            Routes.authCallback(provider),
+            useMethods(['GET']),
+            passport.authenticate(provider, {
+                failureRedirect: '/login',
+                session: false,
+            }),
+            handle(async (req, res) => {
+                if (!req.user) {
+                    res.redirect(`/auth/${provider}/login`);
+                    return;
+                }
 
-            const redirectUrl = new URL(
-                '/auth/callback',
-                process.env['WEB_URL']
-            );
-            redirectUrl.searchParams.set('uid', id);
-            redirectUrl.searchParams.set('token', token);
-            redirectUrl.searchParams.set('method', 'discord');
+                const { id, revokeToken } = req.user;
+                const token = Authentication.createToken(id, revokeToken);
 
-            res.redirect(redirectUrl.toString());
-        })
-    );
+                const redirectUrl = new URL(
+                    '/auth/callback',
+                    process.env['WEB_URL']
+                );
+                redirectUrl.searchParams.set('uid', id);
+                redirectUrl.searchParams.set('token', token);
+                redirectUrl.searchParams.set('method', provider);
 
-    router.all(Routes.githubLogin(), useMethods(['GET']), github.login());
-
-    router.all(
-        Routes.githubCallback(),
-        useMethods(['GET']),
-        github.callback(),
-        handle(async (req, res) => {
-            if (!req.user) {
-                res.redirect('/auth/github/login');
-                return;
-            }
-
-            const { id, revokeToken } = req.user;
-            const token = Authentication.createToken(id, revokeToken);
-
-            const redirectUrl = new URL(
-                '/auth/callback',
-                process.env['WEB_URL']
-            );
-            redirectUrl.searchParams.set('uid', id);
-            redirectUrl.searchParams.set('token', token);
-            redirectUrl.searchParams.set('method', 'github');
-
-            res.redirect(redirectUrl.toString());
-        })
-    );
+                res.redirect(redirectUrl.toString());
+            })
+        );
+    }
 
     return router;
 };
