@@ -26,7 +26,7 @@ export default () => {
             opts['limit'] = Number(req.query['limit'] ?? 0) || undefined;
             opts['skip'] = Number(req.query['skip'] ?? 0) || undefined;
             opts['sort'] = String(req.query['sort'] ?? '') || undefined;
-            opts['order'] = String(req.query['oreder'] ?? '') || undefined;
+            opts['order'] = String(req.query['order'] ?? '') || undefined;
 
             const ids = String(req.query['ids'] ?? '');
             if (ids) opts['ids'] = ids.split(',');

@@ -21,6 +21,7 @@ void main();
 async function main() {
     await database.connect();
     await server.listen();
+    await (await import('./temp')).default();
 }
 
 export { database, server };

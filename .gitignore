@@ -3,3 +3,7 @@ node_modules/
 
 # Build
 .nginx/
+
+# Nohup
+nohup.out
+nohup.err
