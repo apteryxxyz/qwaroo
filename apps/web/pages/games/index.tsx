@@ -53,9 +53,13 @@ export default () => {
                 // Preload the creator
                 await game.fetchCreator(false).catch(() => null);
 
-                // Get the item count to ensure the game has items
-                const items = await game.fetchItems().catch(() => null);
-                hasItems.current.set(game.id, (items?.total ?? 0) > 0);
+                // TODO: Still need to find a better way to check if the game has items
+                // This results in a lot of requests and requests the rate limit faster
+                if (!hasItems.current.has(game.id)) {
+                    // Get the item count to ensure the game has items
+                    const items = await game.fetchItems().catch(() => null);
+                    hasItems.current.set(game.id, (items?.total ?? 0) > 0);
+                }
             }
 
             setGames(games);
