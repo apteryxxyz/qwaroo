@@ -71,12 +71,12 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
 
     async function endGame(final: 'lose' | 'win') {
         setStatus(final);
-        await sleepSeconds(1);
+        await sleepSeconds(0.7);
         logger.info('Ending game');
         void final;
 
         if (game) {
-            await game
+            void game
                 .submitScore({
                     seed: itemsManager.current.seed,
                     steps: steps.current,
@@ -99,7 +99,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
                 .catch(() => null);
         }
 
-        await sleepSeconds(1);
+        await sleepSeconds(0.7);
         setStatus('finished');
     }
 
