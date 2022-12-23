@@ -101,4 +101,10 @@ UserSchema.method('getScores', function getScores(this: UserDocument) {
     return Score.find({ userId: this.id }).exec();
 });
 
+// If the user's display name is invalid, set it to their ID
+UserSchema.pre('validate', function setDisplayName(this: UserDocument) {
+    if (!Validate.DisplayName.test(this.displayName))
+        this.displayName = this.id;
+});
+
 export const User = model<UserEntity, UserModel>('User', UserSchema);
