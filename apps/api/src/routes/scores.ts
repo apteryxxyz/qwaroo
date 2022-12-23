@@ -16,7 +16,7 @@ export default () => {
     router.all(
         Routes.userScores(':userId'),
         useMethods(['GET']),
-        useToken(['GET']),
+        useToken([], ['GET']),
         useMe('userId'),
         handle(async (req, res) => {
             const user = await Users.getUser(req.params['userId']);
@@ -39,8 +39,9 @@ export default () => {
     router.all(
         Routes.userScore(':userId', ':scoreId'),
         useMethods(['GET', 'PATCH', 'DELETE']),
-        useToken(['GET', 'PATCH', 'DELETE']),
+        useToken(['PATCH', 'DELETE'], ['GET']),
         useMe('userId'),
+        useMustBeMe('userId', ['PATCH', 'DELETE']),
         handle(async (req, res) => {
             const user = await Users.getUser(req.params['userId']);
             const scoreId = String(req.params['scoreId']);
