@@ -72,6 +72,8 @@ export default ({
         {!user && <Loading />}
 
         {user && <div className="flex flex-col gap-3">
+            <h1 className="font-bold text-3xl">Profile</h1>
+
             <div className="flex gap-3 p-3 bg-white dark:bg-neutral-800 rounded-xl">
                 {/* Information */}
 
@@ -86,7 +88,7 @@ export default ({
                 </picture>
 
                 <div className="flex flex-col justify-center">
-                    <h1 className="font-bold text-3xl text-owenii-400">
+                    <h1 className="font-bold text-3xl text-owenii-gradient">
                         {displayName}
                     </h1>
 
@@ -131,6 +133,8 @@ export default ({
                 </div>} */}
             </div>
 
+            <h1 className="font-bold text-3xl">Statistics</h1>
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {/* Statistics */}
 
@@ -140,14 +144,14 @@ export default ({
                     description={name}
                     formatNumber={
                         name === 'Total Time Played'
-                            ? v => ms(v, { shortFormat: true }) ?? 'N/A'
+                            ? v => ms(v, { shortFormat: true }) ?? '0s'
                             : undefined
                     }
                 />)}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {/* Games */}
+                {/* Per Game Statistics */}
 
                 {scores.map(score => <HighScoreCard
                     key={score.gameId}
@@ -156,6 +160,8 @@ export default ({
                     isMe={user.id === client.id}
                 />)}
             </div>
+
+            {/* TODO: Show this users created games */}
         </div>}
     </>;
 };

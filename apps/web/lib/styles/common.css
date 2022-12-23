@@ -19,13 +19,13 @@
 }
 
 .bg-owenii-gradient {
-    background: linear-gradient(-45deg, rgb(56, 189, 248), rgb(56, 85, 248));
+    background: linear-gradient(-45deg, rgb(56, 189, 248), rgb(56, 123, 248));
     background-size: 400% 400%;
     animation: Gradient 15s ease infinite;
 }
 
 .text-owenii-gradient {
-    background: linear-gradient(-45deg, rgb(56, 189, 248), rgb(56, 85, 248));
+    background: linear-gradient(-45deg, rgb(56, 189, 248), rgb(56, 123, 248));
     background-size: 400% 400%;
     animation: Gradient 15s ease infinite;
     background-clip: text;
