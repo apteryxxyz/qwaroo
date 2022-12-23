@@ -40,7 +40,7 @@ export default () => {
         useMethods(['GET']),
         useToken([], ['GET']),
         useMe('userId'),
-        useMustBeMe('userId'),
+        useMustBeMe('userId', ['GET']),
         handle(async (req, res) => {
             const user = await Users.getUser(req.params['userId']);
             const connections = await user.getConnections();
@@ -53,7 +53,7 @@ export default () => {
         useMethods(['GET']),
         useToken([], ['GET']),
         useMe('userId'),
-        useMustBeMe('userId'),
+        useMustBeMe('userId', ['GET']),
         handle(async (req, res) => {
             const user = await Users.getUser(req.params['userId']);
             const connectionId = String(req.params['connectionId'] ?? '');
