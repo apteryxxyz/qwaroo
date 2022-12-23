@@ -3,19 +3,72 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import type { Game } from '@owenii/client';
 import { Button } from '#/components/Input/Button';
 
+export namespace ItemBlock {
+    export type Mode = typeof Game.Entity.Mode.HigherOrLower;
+
+    export interface Props
+        extends Omit<Game.Entity.Item<Mode>, 'value'>,
+            Game.Entity.Data<Mode> {
+        thisSide: 'left' | 'right';
+        value: string | React.ReactNode;
+
+        shouldShowValue?: boolean;
+        shouldShowActions?: boolean;
+
+        onMoreClick?(): void;
+        onLessClick?(): void;
+
+        imageCropping: 'auto' | 'crop' | 'none';
+        imageQuality: 'max' | 'reduced';
+    }
+}
+
+function croppingToFrame(
+    cropping: ItemBlock.Props['imageCropping'] = 'auto',
+    auto: 'fill' | 'fit' = 'fill'
+) {
+    switch (cropping) {
+        case 'auto':
+            return auto;
+        case 'crop':
+            return 'fill';
+        case 'none':
+            return 'fit';
+        default:
+            return auto;
+    }
+}
+
+function qualityToNumber(quality: ItemBlock.Props['imageQuality'] = 'reduced') {
+    switch (quality) {
+        case 'max':
+            return 100;
+        case 'reduced':
+            return 10;
+        default:
+            return 10;
+    }
+}
+
 export function ItemBlock({
     shouldShowValue = false,
     shouldShowActions = false,
     ...props
 }: ItemBlock.Props) {
+    const quality = qualityToNumber(props.imageQuality);
+    const cropping = croppingToFrame(props.imageCropping, props.imageFrame);
+
+    const imageUrl = new URL('https://wsrv.nl');
+    imageUrl.searchParams.set('url', props.imageSource!);
+    imageUrl.searchParams.set('q', quality.toString());
+
     return <aside
         className="h-[50vh] xl:h-screen w-screen xl:w-[50vw] bg-no-repeat text-white
             flex flex-col justify-center items-center p-10 xl:pt-[30vw] select-none"
         style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(${props.imageSource})`,
-            backgroundSize: props.imageFrame === 'fit' ? '100%' : 'cover',
-            backgroundPosition:
-                props.imageFrame === 'fit' ? '50% 50%' : 'center',
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(${imageUrl})`,
+            backgroundSize: cropping === 'fit' ? '100%' : 'cover',
+            backgroundPosition: cropping === 'fit' ? '50% 50%' : 'center',
         }}
     >
         <h2 className="text-center text-2xl xl:text-5xl font-bold">
@@ -60,22 +113,4 @@ export function ItemBlock({
 
         <span className="text-xl">{props.noun}</span>
     </aside>;
-}
-
-export namespace ItemBlock {
-    export type Mode = typeof Game.Entity.Mode.HigherOrLower;
-
-    export interface Props
-        extends Omit<Game.Entity.Item<Mode>, 'value'>,
-            Game.Entity.Data<Mode> {
-        thisSide: 'left' | 'right';
-
-        shouldShowValue?: boolean;
-        shouldShowActions?: boolean;
-
-        onMoreClick?(): void;
-        onLessClick?(): void;
-
-        value: string | React.ReactNode;
-    }
 }

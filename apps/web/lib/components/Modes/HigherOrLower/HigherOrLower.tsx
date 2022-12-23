@@ -42,7 +42,10 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
     const [score, setScore] = useState(0);
 
     const [areSettingsOpen, setAreSettingsOpen] = useState(false);
-    const [settings, setSettings] = useState<HigherOrLower.Settings>({});
+    const [settings, setSettings] = useState<HigherOrLower.Settings>({
+        imageCropping: 'auto',
+        imageQuality: 'reduced',
+    });
 
     function prepareGame() {
         logger.info('Preparing game');
@@ -244,7 +247,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
                 shouldShowValue
                 {...previousItem}
                 {...game.data}
-                imageFrame={settings.imageFrame ?? previousItem.imageFrame}
+                {...settings}
             />
 
             <ItemBlock
@@ -260,7 +263,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
                     )
                 }
                 {...game.data}
-                imageFrame={settings.imageFrame ?? currentItem.imageFrame}
+                {...settings}
                 onMoreClick={() => pickItem(1)}
                 onLessClick={() => pickItem(-1)}
             />
@@ -270,7 +273,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
                 shouldShowActions
                 {...nextItem}
                 {...game.data}
-                imageFrame={settings.imageFrame ?? nextItem.imageFrame}
+                {...settings}
                 onMoreClick={() => pickItem(1)}
                 onLessClick={() => pickItem(-1)}
             />}
@@ -350,22 +353,39 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
 
             <div className="flex flex-col gap-3">
                 <div className="flex flex-col justify-center items-center">
-                    <span className="text-lg font-semibold">Image Frame</span>
+                    <span className="text-lg font-semibold">
+                        Image Cropping
+                    </span>
                     <Dropdown
                         className="min-w-[200px]"
                         options={[
-                            { label: 'Auto', value: '' },
-                            { label: 'Fill', value: 'fill' },
-                            { label: 'Fit', value: 'fit' },
+                            { label: 'Auto', value: 'auto' },
+                            { label: 'Crop', value: 'crop' },
+                            { label: 'None', value: 'none' },
                         ]}
-                        currentValue={settings.imageFrame ?? ''}
+                        currentValue={settings.imageCropping ?? 'auto'}
                         onChange={v =>
                             setSettings(s => ({
                                 ...s,
-                                imageFrame: (v || undefined) as
-                                    | 'fit'
-                                    | 'fill'
-                                    | undefined,
+                                imageCropping:
+                                    v as HigherOrLower.Settings['imageCropping'],
+                            }))
+                        }
+                    />
+
+                    <span className="text-lg font-semibold">Image Quality</span>
+                    <Dropdown
+                        className="min-w-[200px]"
+                        options={[
+                            { label: 'Max', value: 'max' },
+                            { label: 'Reduced', value: 'reduced' },
+                        ]}
+                        currentValue={settings.imageQuality ?? 'reduced'}
+                        onChange={v =>
+                            setSettings(s => ({
+                                ...s,
+                                imageQuality:
+                                    v as HigherOrLower.Settings['imageQuality'],
                             }))
                         }
                     />
@@ -386,7 +406,8 @@ export namespace HigherOrLower {
     export type Step = Game.Entity.Step<Mode>;
 
     export interface Settings {
-        imageFrame?: 'fit' | 'fill';
+        imageCropping: 'auto' | 'crop' | 'none';
+        imageQuality: 'max' | 'reduced';
     }
 
     export type Status =

@@ -1,24 +1,24 @@
 /** Hide the navbar, footer and border spacing. */
 export function goFullscreen() {
-    for (const selector of ['#navigation-bar', '#footer-bar']) {
+    for (const selector of ['#navigation-bar', '#banner-bar', '#footer-bar']) {
         const element = document.querySelector(selector);
         if (element) element.classList.add('hidden');
     }
 
-    const main = document.querySelector('#content')!;
-    main.classList.remove('max-w-7xl', 'p-3');
+    const main = document.querySelector('#content');
+    if (main) main.classList.remove('max-w-7xl', 'p-3');
     document.body.style.overflow = 'hidden';
 }
 
 /** Show the navbar, footer and border spacing. */
 export function goMinimised() {
-    for (const selector of ['#navigation-bar', '#footer-bar']) {
+    for (const selector of ['#navigation-bar', '#banner-bar', '#footer-bar']) {
         const element = document.querySelector(selector);
         if (element) element.classList.remove('hidden');
     }
 
-    const main = document.querySelector('#content')!;
-    main.classList.add('max-w-7xl', 'p-3');
+    const main = document.querySelector('#content');
+    if (main) main.classList.add('max-w-7xl', 'p-3');
     document.body.style.overflow = 'auto';
 }
 

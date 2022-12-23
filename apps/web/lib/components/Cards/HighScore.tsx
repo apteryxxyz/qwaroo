@@ -31,7 +31,7 @@ export function HighScoreCard({ game, score, isMe }: HighScoreCard.Props) {
                 {isMe ? 'You' : 'They'} played {score.totalPlays} time
                 {score.totalPlays === 1 ? '' : 's'} over{' '}
                 {ms(score.totalTime, { shortFormat: true })},{' '}
-                {isMe ? 'your' : 'Their'} total score is {score.totalScore}.
+                {isMe ? 'your' : 'their'} total score is {score.totalScore}.
             </span>
         </div>
 

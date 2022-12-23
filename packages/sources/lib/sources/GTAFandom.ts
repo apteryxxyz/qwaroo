@@ -163,6 +163,5 @@ async function _getValue($: cheerio.CheerioAPI, selector: string) {
 }
 
 async function _getImageSource($: cheerio.CheerioAPI, selector: string) {
-    const src = _getElement($, selector).attr('src');
-    return src ? src.split('/revision')[0] : undefined;
+    return _getElement($, selector).attr('src');
 }

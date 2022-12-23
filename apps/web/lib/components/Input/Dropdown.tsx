@@ -9,7 +9,7 @@ export namespace Dropdown {
         disableDefaultStyles?: boolean;
         className?: string;
 
-        options: ({ label: string; value: string } | string)[];
+        options: { label: string; value: string }[];
         currentValue?: string;
         isDisabled?: boolean;
 
@@ -18,11 +18,7 @@ export namespace Dropdown {
 }
 
 export function Dropdown(props: Dropdown.Props) {
-    const options = props.options.map(option => {
-        if (typeof option === 'string') return { label: option, value: option };
-        else return option;
-    });
-    const currentValue = props.currentValue ?? options[0].value;
+    const currentValue = props.currentValue ?? props.options[0].value;
 
     const [isHover, setHover] = useState(false);
 
@@ -51,7 +47,8 @@ export function Dropdown(props: Dropdown.Props) {
             onClick={() => toggleHover()}
             iconProp={isHover ? faChevronUp : faChevronDown}
         >
-            {options.find(option => option.value === currentValue)!.label}
+            {props.options.find(option => option.value === currentValue)
+                ?.label ?? currentValue}
         </Button>
 
         <motion.div
@@ -79,14 +76,14 @@ export function Dropdown(props: Dropdown.Props) {
                 },
             }}
         >
-            {options.map((option, i) => <Button
+            {props.options.map((option, i) => <Button
                 key={option.value}
                 disableDefaultStyles
                 className={`min-w-[200px] !justify-start bg-white dark:bg-neutral-800 rounded-none
                     ${
                         i === 0
                             ? 'rounded-t-xl'
-                            : i === options.length - 1
+                            : i === props.options.length - 1
                             ? 'rounded-b-xl'
                             : ''
                     }`}
@@ -103,46 +100,3 @@ export function Dropdown(props: Dropdown.Props) {
         </motion.div>
     </div>;
 }
-
-/*
-export function Dropdown(props: Dropdown.Props) {
-    return <div className="dropdown">
-        <motion.div
-            className="absolute z-10 w-full"
-            initial="exit"
-            animate={isHover ? 'enter' : 'exit'}
-            variants={{
-                enter: {
-                    opacity: 1,
-                    rotateX: 0,
-                    transition: {
-                        duration: 0.1,
-                    },
-                    display: 'block',
-                },
-                exit: {
-                    opacity: 0,
-                    rotateX: -15,
-                    transition: {
-                        duration: 0.1,
-                    },
-                    transitionEnd: {
-                        display: 'none',
-                    },
-                },
-            }}
-        >
-            {options.map(option => <Button
-                disableDefaultStyles={props.disableDefaultStyles}
-                className="w-full"
-                onClick={() => {
-                    toggleHover();
-                    props.onChange?.(option.value);
-                }}
-            >
-                {option.label}
-            </Button>)}
-        </motion.div>
-    </div>;
-}
-*/
