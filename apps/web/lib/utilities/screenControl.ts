@@ -6,7 +6,7 @@ export function goFullscreen() {
     }
 
     const main = document.querySelector('#content');
-    if (main) main.classList.remove('max-w-7xl', 'p-3');
+    if (main) main.classList.remove('max-w-8xl', 'p-3');
     document.body.style.overflow = 'hidden';
 }
 
@@ -18,7 +18,7 @@ export function goMinimised() {
     }
 
     const main = document.querySelector('#content');
-    if (main) main.classList.add('max-w-7xl', 'p-3');
+    if (main) main.classList.add('max-w-8xl', 'p-3');
     document.body.style.overflow = 'auto';
 }
 

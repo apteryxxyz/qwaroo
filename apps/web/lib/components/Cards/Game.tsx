@@ -64,14 +64,14 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
             [&>*]:px-3 [&>*]:py-2 [&>*]:rounded-md [&>*]:drop-shadow-[0_4px_3px_rgba(0,0,0,.25)] [&>*]:w-fit"
         >
             {badgeText &&
-                !props.disableBadge && <span className="animated-gradient-background">
+                !props.disableBadge && <span className="bg-owenii-gradient">
                     {badgeIcon && <FontAwesomeIcon icon={badgeIcon} />}{' '}
                     {badgeText}
                 </span>}
         </div>
 
         <div
-            className="flex flex-col justify-end w-full min-h-[30%] mt-auto p-3
+            className="flex flex-col justify-end w-full min-h-[40%] mt-auto p-3
                 bg-gradient-to-t from-black to-transparent rounded-b-xl"
         >
             <h2 className="text-1.5xl font-semibold">{game.title}</h2>

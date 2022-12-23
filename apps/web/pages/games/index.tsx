@@ -80,8 +80,8 @@ export default () => {
         <div className="flex flex-wrap gap-1 my-3">
             <div className="flex flex-wrap gap-1 [&>*]:shadow-lg">
                 {(categories ?? []).map(category => <Button
-                    whileActive="bg-sky-400 dark:bg-sky-400
-                    text-white hover:brightness-125 hover:bg-sky-400"
+                    whileActive="bg-owenii-400 dark:bg-owenii-400
+                    text-white hover:brightness-125 hover:bg-owenii-400"
                     isActive={query.categories?.includes(category)}
                     key={category}
                     onClick={() => {
@@ -210,7 +210,7 @@ export default () => {
             >
                 <div
                     className="flex flex-col justify-end w-full min-h-[30%] mt-auto p-3
-                        bg-gradient-to-t from-black to-transparent rounded-b-xl"
+                        bg-owenii-gradient-to-t from-black to-transparent rounded-b-xl"
                 >
                     <h2 className="text-1.5xl font-semibold">Suggest A Game</h2>
 

@@ -89,7 +89,7 @@ export function Dropdown(props: Dropdown.Props) {
                     }`}
                 whileHover="bg-neutral-100 dark:brightness-125"
                 isActive={option.value === currentValue}
-                whileActive="text-white bg-sky-400 hover:bg-sky-400 hover:brightness-125"
+                whileActive="text-white bg-owenii-400 hover:bg-owenii-400 hover:brightness-125"
                 onClick={() => {
                     toggleHover();
                     props.onChange?.(option.value);

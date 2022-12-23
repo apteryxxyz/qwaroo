@@ -36,7 +36,7 @@ export function HighScoreCard({ game, score, isMe }: HighScoreCard.Props) {
         </div>
 
         <PlainButton
-            className="ml-auto hover:text-sky-400 text-3xl"
+            className="ml-auto hover:text-owenii-400 text-3xl"
             linkProps={{ href: `/games/${game.slug}` }}
             iconProp={faPlay}
         />

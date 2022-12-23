@@ -14,7 +14,7 @@ export function Seo({ title, noIndex, children }: Seo.Props) {
     return <Head>
         {/* Basic */}
         <title>{title}</title>
-        <meta name="theme-color" content="#38bdf8" />
+        <meta name="theme-color" content="#3884f8" />
 
         {/* Other */}
         <meta name="darkreader-lock" />

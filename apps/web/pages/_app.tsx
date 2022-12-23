@@ -67,7 +67,7 @@ export default ({ Component, pageProps }: AppProps) => {
 
                 <main
                     id="content"
-                    className="z-10 max-w-7xl w-full h-full mx-auto p-3 mb-auto
+                    className="z-10 max-w-8xl w-full h-full mx-auto p-3 mb-auto
                         text-black dark:text-white"
                 >
                     <Component {...pageProps} />

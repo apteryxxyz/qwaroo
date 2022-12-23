@@ -14,10 +14,22 @@
     border-color: red;
 }
 
-.animated-gradient-background {
-    background: linear-gradient(-45deg, rgb(56 189 248), rgb(56, 85, 248));
+:root {
+    --theme-blue: rgb(56, 132, 248);
+}
+
+.bg-owenii-gradient {
+    background: linear-gradient(-45deg, rgb(56, 189, 248), rgb(56, 85, 248));
     background-size: 400% 400%;
     animation: Gradient 15s ease infinite;
+}
+
+.text-owenii-gradient {
+    background: linear-gradient(-45deg, rgb(56, 189, 248), rgb(56, 85, 248));
+    background-size: 400% 400%;
+    animation: Gradient 15s ease infinite;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 @keyframes Gradient {

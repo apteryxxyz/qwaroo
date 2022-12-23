@@ -44,10 +44,10 @@ export function NavigationBar() {
             id="navigation-bar"
             className="z-20 flex flex-col text-white bg-neutral-800"
         >
-            <div className="max-w-7xl w-full flex flex-col md:flex-row items-center mx-auto">
+            <div className="max-w-8xl w-full flex flex-col md:flex-row items-center mx-auto">
                 <PlainButton
                     className="mx-auto md:ml-0 font-bold text-1.5xl
-                    text-sky-400 hover:text-white bg-transparent"
+                    bg-transparent text-owenii-gradient"
                     linkProps={{ href: '/' }}
                 >
                     APTERYX OWENII
@@ -55,7 +55,7 @@ export function NavigationBar() {
 
                 <div className="flex flex-wrap">
                     <PlainButton
-                        className="hover:text-sky-400"
+                        className="hover:text-owenii-400"
                         iconProp={faGamepad}
                         linkProps={{ href: '/games' }}
                     >
@@ -63,7 +63,7 @@ export function NavigationBar() {
                     </PlainButton>
 
                     {/* <PlainButton
-                        className="hover:text-sky-400"
+                        className="hover:text-owenii-400"
                         iconProp={faMarker}
                         linkProps={userId ? { href: '/games/new' } : undefined}
                         onClick={
@@ -74,7 +74,7 @@ export function NavigationBar() {
                     </PlainButton> */}
 
                     {/* <PlainButton
-                        className="hover:text-sky-400"
+                        className="hover:text-owenii-400"
                         iconProp={faFontAwesome}
                         linkProps={{ href: '/patchnotes' }}
                     >
@@ -82,7 +82,7 @@ export function NavigationBar() {
                     </PlainButton> */}
 
                     <PlainButton
-                        className="hover:text-sky-400"
+                        className="hover:text-owenii-400"
                         iconProp={faUser}
                         onClick={() =>
                             userId
@@ -99,7 +99,7 @@ export function NavigationBar() {
                     </PlainButton>
 
                     {!isLoggedIn && <PlainButton
-                        className="hover:text-sky-400"
+                        className="hover:text-owenii-400"
                         iconProp={faSignIn}
                         onClick={() => setIsLoginModalOpen(true)}
                     >
@@ -107,7 +107,7 @@ export function NavigationBar() {
                     </PlainButton>}
 
                     {isLoggedIn && <PlainButton
-                        className="hover:text-sky-400"
+                        className="hover:text-owenii-400"
                         iconProp={faSignOut}
                         onClick={() => setIsLogoutModalOpen(true)}
                     >
@@ -115,7 +115,7 @@ export function NavigationBar() {
                     </PlainButton>}
 
                     <PlainButton
-                        className="hover:text-sky-400"
+                        className="hover:text-owenii-400"
                         iconProp={theme === 'light' ? faCloudMoon : faCloudSun}
                         ariaLabel="Toggle theme"
                         onClick={() =>
@@ -126,11 +126,8 @@ export function NavigationBar() {
             </div>
         </nav>
 
-        <div
-            id="banner-bar"
-            className="z-20 animated-gradient-background shadow-xl"
-        >
-            <div className="max-w-7xl w-full items-center mx-auto p-2 text-center text-white">
+        <div id="banner-bar" className="z-20 bg-owenii-gradient shadow-xl">
+            <div className="max-w-8xl w-full items-center mx-auto p-2 text-center text-white">
                 Owenii is still in its early stages, if you find any bugs or
                 have any suggestions, please let me know over on the{' '}
                 <Link

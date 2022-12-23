@@ -31,7 +31,7 @@ export function Display(props: Display.Props) {
     >
         <div className="flex flex-col gap-3 mx-auto">
             <div>
-                {props.header && <h2 className="text-sky-400 text-xl font-bold">
+                {props.header && <h2 className="text-owenii-400 text-xl font-bold">
                     {props.header}
                 </h2>}
 

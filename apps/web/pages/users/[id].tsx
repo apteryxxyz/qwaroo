@@ -86,7 +86,7 @@ export default ({
                 </picture>
 
                 <div className="flex flex-col justify-center">
-                    <h1 className="font-bold text-3xl text-sky-400">
+                    <h1 className="font-bold text-3xl text-owenii-400">
                         {displayName}
                     </h1>
 
