@@ -141,14 +141,16 @@ export function NavigationBar() {
             </div>
         </div>
 
-        <LoginModal
-            isOpen={isLoginModalOpen}
-            onClose={() => setIsLoginModalOpen(false)}
-        />
+        <div className="z-30">
+            <LoginModal
+                isOpen={isLoginModalOpen}
+                onClose={() => setIsLoginModalOpen(false)}
+            />
 
-        <LogoutModal
-            isOpen={isLogoutModalOpen}
-            onClose={() => setIsLogoutModalOpen(false)}
-        />
+            <LogoutModal
+                isOpen={isLogoutModalOpen}
+                onClose={() => setIsLogoutModalOpen(false)}
+            />
+        </div>
     </>;
 }
