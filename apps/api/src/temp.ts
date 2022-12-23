@@ -1,6 +1,9 @@
+import process from 'node:process';
 import { Game, User } from '@owenii/database';
 
 export default async () => {
+    if (process.env['NODE_ENV'] !== 'development') return;
+
     const user = await User.create({
         displayName: 'Apteryx',
         avatarUrl: 'https://picsum.photos/300/300?random=1',
