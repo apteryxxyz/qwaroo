@@ -26,10 +26,7 @@ export default () => {
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [categories, setCategories] = useState<string[]>([]);
-    const [query, setQuery] = useState<FetchGamesOptions>({
-        limit: 10,
-        skip: 0,
-    });
+    const [query, setQuery] = useState<FetchGamesOptions | null>(null);
     const [shareUrl, setShareUrl] = useState<string>(router.asPath);
 
     useEffect(() => {
@@ -38,10 +35,19 @@ export default () => {
 
     useEffect(() => {
         const search = new URLSearchParams(router.asPath.split('?')[1]);
+        const config = Object.fromEntries(
+            search.entries()
+        ) as FetchGamesOptions;
+
+        config['limit'] = Number(config['limit'] ?? 10);
+        config['skip'] = Number(config['skip'] ?? 0);
+
         setQuery(Object.fromEntries(search.entries()));
     }, [router.isReady]);
 
     useEffect(() => {
+        if (!query) return;
+
         (async () => {
             const url = new URL(router.asPath, 'http://localhost');
             const search = new URLSearchParams(Object.entries(query));
@@ -82,20 +88,23 @@ export default () => {
                 {(categories ?? []).map(category => <Button
                     whileActive="bg-owenii-400 dark:bg-owenii-400
                     text-white hover:brightness-125 hover:bg-owenii-400"
-                    isActive={query.categories?.includes(category)}
+                    isActive={query?.categories?.includes(category)}
                     key={category}
                     onClick={() => {
-                        if (query.categories?.includes(category))
-                            setQuery(q => ({
+                        if (query?.categories?.includes(category))
+                            setQuery((q = {}) => ({
                                 ...q,
-                                categories: q.categories?.filter(
+                                categories: q!.categories?.filter(
                                     c => c !== category
                                 ),
                             }));
                         else
-                            setQuery(q => ({
+                            setQuery((q = {}) => ({
                                 ...q,
-                                categories: [...(q.categories ?? []), category],
+                                categories: [
+                                    ...(q!.categories ?? []),
+                                    category,
+                                ],
                             }));
                     }}
                 >
@@ -107,8 +116,10 @@ export default () => {
                 <Textbox
                     placeHolder="Search"
                     iconProp={faSearch}
-                    onValue={value => setQuery(q => ({ ...q, term: value }))}
-                    defaultValue={query.term}
+                    onValue={value =>
+                        setQuery((q = {}) => ({ ...q, term: value }))
+                    }
+                    defaultValue={query?.term ?? ''}
                     enableEnterKey
                     enableIconClick
                     enableInputChange
@@ -117,7 +128,7 @@ export default () => {
                 <Button
                     iconProp={faTrashCan}
                     onClick={() => {
-                        setQuery(() => ({ limit: 10, skip: query.skip }));
+                        setQuery(() => ({ limit: 10, skip: query?.skip }));
                         void router.replace('/games', undefined, {
                             shallow: true,
                         });
@@ -150,7 +161,7 @@ export default () => {
                             value: 'updatedTimestamp',
                         },
                     ]}
-                    currentValue={query.sort ?? 'totalPlays'}
+                    currentValue={query?.sort ?? 'totalPlays'}
                     onChange={(value: 'totalPlays') =>
                         setQuery(q => ({ ...q, sort: value }))
                     }
@@ -158,14 +169,14 @@ export default () => {
 
                 <Button
                     iconProp={
-                        query.order === 'asc'
+                        query?.order === 'asc'
                             ? faSortAmountAsc
                             : faSortAmountDesc
                     }
                     onClick={() =>
-                        setQuery(q => ({
+                        setQuery((q = {}) => ({
                             ...q,
-                            order: q.order === 'asc' ? 'desc' : 'asc',
+                            order: q!.order === 'asc' ? 'desc' : 'asc',
                         }))
                     }
                     ariaLabel="Change sort order"
