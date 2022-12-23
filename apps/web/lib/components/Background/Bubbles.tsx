@@ -35,7 +35,7 @@ function Bubble({ index, count }: { index: number; count: number }) {
             animationDuration: `${speed}s`,
             animationDelay: `${delay}s`,
         }}
-        className={`bg-sky-400 dark:bg-white
+        className={`animated-gradient-background dark:bg-white
             opacity-50 dark:opacity-20 ${styles['bubble']}`}
     ></span>;
 }

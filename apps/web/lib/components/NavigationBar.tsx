@@ -126,7 +126,10 @@ export function NavigationBar() {
             </div>
         </nav>
 
-        <div id="banner-bar" className="z-20 bg-sky-500 shadow-xl">
+        <div
+            id="banner-bar"
+            className="z-20 animated-gradient-background shadow-xl"
+        >
             <div className="max-w-7xl w-full items-center mx-auto p-2 text-center text-white">
                 Owenii is still in its early stages, if you find any bugs or
                 have any suggestions, please let me know over on the{' '}
