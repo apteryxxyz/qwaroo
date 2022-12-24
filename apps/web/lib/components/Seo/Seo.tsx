@@ -9,7 +9,7 @@ export namespace Seo {
 }
 
 export function Seo({ title, noIndex, children }: Seo.Props) {
-    if (!title.includes('Owenii')) title = `${title} - Owenii`;
+    if (!title.includes('Qwaroo')) title = `${title} - Qwaroo`;
 
     return <Head>
         {/* Basic */}

@@ -2,7 +2,7 @@ import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
 import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons/faWandMagicSparkles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import type { Game, User } from '@owenii/client';
+import type { Game, User } from '@qwaroo/client';
 import Link, { type LinkProps } from 'next/link';
 
 export namespace GameCard {
@@ -64,7 +64,7 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
             [&>*]:px-3 [&>*]:py-2 [&>*]:rounded-md [&>*]:drop-shadow-[0_4px_3px_rgba(0,0,0,.25)] [&>*]:w-fit"
         >
             {badgeText &&
-                !props.disableBadge && <span className="bg-owenii-gradient">
+                !props.disableBadge && <span className="bg-qwaroo-gradient">
                     {badgeIcon && <FontAwesomeIcon icon={badgeIcon} />}{' '}
                     {badgeText}
                 </span>}

@@ -1,6 +1,6 @@
 import process from 'node:process';
 import { URLSearchParams } from 'node:url';
-import { ServerError as Error } from '@owenii/common';
+import { ServerError as Error } from '@qwaroo/common';
 import { handle } from '#/utilities/routeHandler';
 
 /** Require that the request has a valid captcha token. */

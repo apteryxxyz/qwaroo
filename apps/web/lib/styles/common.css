@@ -18,13 +18,13 @@
     --theme-blue: rgb(56, 132, 248);
 }
 
-.bg-owenii-gradient {
+.bg-qwaroo-gradient {
     background: linear-gradient(-45deg, rgb(56, 189, 248), rgb(56, 123, 248));
     background-size: 400% 400%;
     animation: Gradient 15s ease infinite;
 }
 
-.text-owenii-gradient {
+.text-qwaroo-gradient {
     background: linear-gradient(-45deg, rgb(56, 189, 248), rgb(56, 123, 248));
     background-size: 400% 400%;
     animation: Gradient 15s ease infinite;

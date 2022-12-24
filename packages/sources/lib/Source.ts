@@ -1,4 +1,4 @@
-import type { Game } from '@owenii/types';
+import type { Game } from '@qwaroo/types';
 
 /** The strcuture for a data source. */
 export interface Source<

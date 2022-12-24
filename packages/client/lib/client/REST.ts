@@ -1,4 +1,4 @@
-import { ClientError as Error } from '@owenii/common';
+import { ClientError as Error } from '@qwaroo/common';
 
 /** The REST manager, handles making requests. */
 export class REST {

@@ -1,4 +1,4 @@
-import { ServerError as Error } from '@owenii/common';
+import { ServerError as Error } from '@qwaroo/common';
 import { handle } from '#/utilities/routeHandler';
 
 /** Limit an endpoint to a set of methods. */

@@ -1,5 +1,5 @@
 {
-    "name": "@owenii/sources",
+    "name": "@qwaroo/sources",
     "version": "0.0.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
         "build": "tsup lib/index.ts --dts"
     },
     "dependencies": {
-        "@owenii/types": "workspace:^0.0.0",
+        "@qwaroo/types": "workspace:^0.0.0",
         "cheerio": "1.0.0-rc.12",
         "g-i-s": "^2.1.6",
         "jimp": "^0.16.2",

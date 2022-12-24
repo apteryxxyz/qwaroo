@@ -1,6 +1,6 @@
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
-import type { Game } from '@owenii/client';
+import type { Game } from '@qwaroo/client';
 import { Button } from '#/components/Input/Button';
 
 export namespace ItemBlock {

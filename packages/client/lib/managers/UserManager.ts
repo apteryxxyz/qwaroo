@@ -1,4 +1,4 @@
-import { type FetchUsersOptions, Routes } from '@owenii/types';
+import { type FetchUsersOptions, Routes } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import { User } from '#/structures/User';
 

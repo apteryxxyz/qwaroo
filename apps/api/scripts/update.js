@@ -1,6 +1,6 @@
 const process = require('node:process');
-const { Database, Game } = require('@owenii/database');
-const { fetchAndSaveItems } = require('@owenii/sources');
+const { Database, Game } = require('@qwaroo/database');
+const { fetchAndSaveItems } = require('@qwaroo/sources');
 const dotenv = require('dotenv');
 const dotenvExpand = require('dotenv-expand');
 

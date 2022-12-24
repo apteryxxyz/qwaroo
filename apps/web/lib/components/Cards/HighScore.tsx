@@ -1,5 +1,5 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
-import type { Game, Score } from '@owenii/client';
+import type { Game, Score } from '@qwaroo/client';
 import { ms } from 'enhanced-ms';
 import { PlainButton } from '../Input/PlainButton';
 
@@ -36,7 +36,7 @@ export function HighScoreCard({ game, score, isMe }: HighScoreCard.Props) {
         </div>
 
         <PlainButton
-            className="ml-auto hover:text-owenii-400 text-3xl"
+            className="ml-auto hover:text-qwaroo-400 text-3xl"
             linkProps={{ href: `/games/${game.slug}` }}
             iconProp={faPlay}
         />

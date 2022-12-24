@@ -12,7 +12,7 @@ export default () => {
 
     return <>
         <PageSeo
-            title="Owenii"
+            title="Qwaroo"
             description="A collection of fun guessing and statistics based browser games. Play games such as YouTuber Higher or Lower."
             url="/"
         />

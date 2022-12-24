@@ -1,4 +1,4 @@
-import { Game } from '@owenii/client';
+import { Game } from '@qwaroo/client';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { HigherOrLower } from '#/components/Modes/HigherOrLower';
 import { PageSeo } from '#/components/Seo/Page';

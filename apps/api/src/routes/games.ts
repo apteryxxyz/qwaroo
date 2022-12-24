@@ -1,5 +1,5 @@
-import { Validate } from '@owenii/common';
-import { Routes } from '@owenii/types';
+import { Validate } from '@qwaroo/common';
+import { Routes } from '@qwaroo/types';
 import { Router } from 'express';
 import { Games } from '#/handlers/Games';
 import { Users } from '#/handlers/Users';

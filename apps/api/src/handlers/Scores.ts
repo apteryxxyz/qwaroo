@@ -1,11 +1,11 @@
-import { ServerError as Error, Validate, createRegExp } from '@owenii/common';
+import { ServerError as Error, Validate, createRegExp } from '@qwaroo/common';
 import type {
     GameDocument,
     ScoreDocument,
     UserDocument,
-} from '@owenii/database';
-import { Score } from '@owenii/database';
-import type { APISubmitScore, FetchScoresOptions, Game } from '@owenii/types';
+} from '@qwaroo/database';
+import { Score } from '@qwaroo/database';
+import type { APISubmitScore, FetchScoresOptions, Game } from '@qwaroo/types';
 import { Replay } from './Replay';
 
 export class Scores extends null {

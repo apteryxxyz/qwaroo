@@ -1,4 +1,4 @@
-import { type FetchGameItemsOptions, Routes } from '@owenii/types';
+import { type FetchGameItemsOptions, Routes } from '@qwaroo/types';
 import { ArrayManager } from './BaseManager';
 import type { Game } from '#/structures/Game';
 

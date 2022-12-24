@@ -1,5 +1,5 @@
 import process from 'node:process';
-import { Game, User } from '@owenii/database';
+import { Game, User } from '@qwaroo/database';
 import { Router } from 'express';
 import { useMethods } from '#/middleware/useMethods';
 import { useStaticToken } from '#/middleware/useToken';

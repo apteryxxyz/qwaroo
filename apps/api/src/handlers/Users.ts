@@ -1,5 +1,5 @@
-import { ServerError as Error, Validate, createRegExp } from '@owenii/common';
-import { User } from '@owenii/database';
+import { ServerError as Error, Validate, createRegExp } from '@qwaroo/common';
+import { User } from '@qwaroo/database';
 
 export class Users extends null {
     /** Get an existing user by their ID. */

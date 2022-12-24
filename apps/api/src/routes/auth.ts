@@ -1,6 +1,6 @@
 import process from 'node:process';
 import { URL } from 'node:url';
-import { Routes } from '@owenii/types';
+import { Routes } from '@qwaroo/types';
 import { Router } from 'express';
 import passport from 'passport';
 import { Authentication } from '#/handlers/Authentication';

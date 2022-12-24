@@ -1,4 +1,4 @@
-import type { APIUser, User as UserEntity } from '@owenii/types';
+import type { APIUser, User as UserEntity } from '@qwaroo/types';
 import { Base } from './Base';
 import type { Client } from '#/client/Client';
 import { ConnectionManager } from '#/managers/ConnectionManager';

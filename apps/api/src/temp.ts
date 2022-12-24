@@ -1,5 +1,5 @@
 import process from 'node:process';
-import { Game, User } from '@owenii/database';
+import { Game, User } from '@qwaroo/database';
 
 export default async () => {
     if (process.env['NODE_ENV'] !== 'development') return;

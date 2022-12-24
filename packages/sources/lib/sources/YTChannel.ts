@@ -1,4 +1,4 @@
-import { Game } from '@owenii/types';
+import { Game } from '@qwaroo/types';
 import ytpl from 'ytpl';
 import { Source } from '#/Source';
 import { prepareOptions } from '#/validators/prepareOptions';

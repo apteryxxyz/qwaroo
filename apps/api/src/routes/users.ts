@@ -1,5 +1,5 @@
-import { ServerError as Error } from '@owenii/common';
-import { Routes } from '@owenii/types';
+import { ServerError as Error } from '@qwaroo/common';
+import { Routes } from '@qwaroo/types';
 import { Router } from 'express';
 import { Users } from '#/handlers/Users';
 import { useMe, useMustBeMe } from '#/middleware/useMe';

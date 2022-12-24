@@ -1,4 +1,4 @@
-import { Client } from '@owenii/client';
+import { Client } from '@qwaroo/client';
 import { createContext, useContext } from 'react';
 import { useApiUrl } from '#/hooks/useEnv';
 

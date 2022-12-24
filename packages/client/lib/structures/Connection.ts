@@ -1,7 +1,7 @@
 import type {
     APIConnection,
     Connection as ConnectionEntity,
-} from '@owenii/types';
+} from '@qwaroo/types';
 import { Base } from './Base';
 import type { ConnectionManager } from '#/managers/ConnectionManager';
 

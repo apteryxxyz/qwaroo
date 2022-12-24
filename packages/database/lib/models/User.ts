@@ -1,5 +1,5 @@
-import { Validate } from '@owenii/common';
-import type { User as UserEntity } from '@owenii/types';
+import { Validate } from '@qwaroo/common';
+import type { User as UserEntity } from '@qwaroo/types';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
 import { Connection, type ConnectionDocument } from './Connection';
