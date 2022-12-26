@@ -36,7 +36,7 @@ jobs:
             cd $PROJECT_PATH
             pnpm pull
             pnpm install
-            nohup pnpm items > nohup.out 2> nohup.err < /dev/null &
             pnpm build
             pnpm nginx
             pnpm start
+            nohup pnpm items > .nohup.out 2> .nohup.err < /dev/null &
