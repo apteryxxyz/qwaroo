@@ -40,6 +40,7 @@ export namespace Source {
             Number = 'number',
             Boolean = 'boolean',
             URL = 'url',
+            URI = 'uri',
         }
     }
 }

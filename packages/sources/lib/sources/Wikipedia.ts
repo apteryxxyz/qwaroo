@@ -27,9 +27,9 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
 
     props: {
         wikipediaUrl: {
-            type: Source.Prop.Type.URL,
+            type: Source.Prop.Type.URI,
             description:
-                'The URL to the Wikipedia page with the table to scrape.',
+                'The URI to the Wikipedia page with the table to scrape.',
             required: true,
         },
 

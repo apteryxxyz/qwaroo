@@ -31,8 +31,8 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
 
     props: {
         fandomUrl: {
-            type: Source.Prop.Type.URL,
-            description: 'The URL of the GTA Fandom page with the table.',
+            type: Source.Prop.Type.URI,
+            description: 'The URI of the GTA Fandom page with the table.',
             required: true,
         },
 

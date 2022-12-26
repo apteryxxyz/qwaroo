@@ -51,6 +51,16 @@ export function validateUrl(...args: ValidateArgs) {
     }
 }
 
+export function validateUri(...args: ValidateArgs) {
+    const asStr = String(_validateValue(...args));
+    try {
+        const url = new URL(asStr, 'http://localhost');
+        return url.toString().replace('http://localhost', '');
+    } catch {
+        throw _error(args[0], 'uri', args[1]);
+    }
+}
+
 export function validateArray(...args: ValidateArgs) {
     const asArr = _validateValue(...args);
     if (!Array.isArray(asArr)) throw _error(args[0], 'array', args[1]);
