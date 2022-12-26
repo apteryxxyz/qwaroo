@@ -1,6 +1,6 @@
-import '@owenii/types';
+import '@qwaroo/types';
 import process from 'node:process';
-import { Database } from '@owenii/database';
+import { Database } from '@qwaroo/database';
 import dotenv = require('dotenv');
 import dotenvExpand = require('dotenv-expand');
 import { Server } from './Server';
@@ -21,6 +21,7 @@ void main();
 async function main() {
     await database.connect();
     await server.listen();
+    await (await import('./temp')).default();
 }
 
 export { database, server };

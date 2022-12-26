@@ -1,7 +1,7 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import type { Connection, Score, User } from '@owenii/client';
+import type { Connection, Score, User } from '@qwaroo/client';
 import ms from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useEffect, useState } from 'react';
@@ -65,14 +65,14 @@ export default ({
     return <>
         <PageSeo
             title={displayName}
-            description={`View ${displayName}'s Owenii profile, containing their statistics, achievements, created games, and more.`}
+            description={`View ${displayName}'s Qwaroo profile, containing their statistics, achievements, created games, and more.`}
             url={`/users/${id}`}
         />
 
         {!user && <Loading />}
 
         {user && <div className="flex flex-col gap-3">
-            <h1 className="font-bold text-3xl">Profile</h1>
+            <h1 className="font-bold text-3xl">User Profile</h1>
 
             <div className="flex gap-3 p-3 bg-white dark:bg-neutral-800 rounded-xl">
                 {/* Information */}
@@ -88,7 +88,7 @@ export default ({
                 </picture>
 
                 <div className="flex flex-col justify-center">
-                    <h1 className="font-bold text-3xl text-owenii-gradient">
+                    <h1 className="font-bold text-3xl text-qwaroo-gradient">
                         {displayName}
                     </h1>
 
@@ -133,7 +133,7 @@ export default ({
                 </div>} */}
             </div>
 
-            <h1 className="font-bold text-3xl">Statistics</h1>
+            <h2 className="font-bold text-3xl">Game Statistics</h2>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {/* Statistics */}

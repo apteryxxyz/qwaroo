@@ -1,6 +1,6 @@
 import { URL } from 'node:url';
 import { promisify } from 'node:util';
-import { Game } from '@owenii/types';
+import { Game } from '@qwaroo/types';
 import * as cheerio from 'cheerio';
 import { Source } from '#/Source';
 import { prepareOptions } from '#/validators/prepareOptions';

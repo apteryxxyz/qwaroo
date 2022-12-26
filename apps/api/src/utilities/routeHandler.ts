@@ -1,4 +1,4 @@
-import { ServerError as Error } from '@owenii/common';
+import { ServerError as Error } from '@qwaroo/common';
 import type { NextFunction, Request, Response } from 'express';
 
 /**

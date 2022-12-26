@@ -1,4 +1,4 @@
-import type { Score as ScoreEntity } from '@owenii/types';
+import type { Score as ScoreEntity } from '@qwaroo/types';
 import { Base } from './Base';
 import type { ScoreManager } from '#/managers/ScoreManager';
 

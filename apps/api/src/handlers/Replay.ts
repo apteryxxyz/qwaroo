@@ -1,7 +1,7 @@
-import { ServerError as Error } from '@owenii/common';
-import type { GameDocument } from '@owenii/database';
-import type { APISubmitScore } from '@owenii/types';
-import { Game as GameEntity } from '@owenii/types';
+import { ServerError as Error } from '@qwaroo/common';
+import type { GameDocument } from '@qwaroo/database';
+import type { APISubmitScore } from '@qwaroo/types';
+import { Game as GameEntity } from '@qwaroo/types';
 import { Games } from './Games';
 
 export class Replay extends null {

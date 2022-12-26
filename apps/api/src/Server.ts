@@ -1,5 +1,5 @@
-// import process from 'node:process';
-import { ServerError as Error } from '@owenii/common';
+import process from 'node:process';
+import { ServerError as Error } from '@qwaroo/common';
 import cors from 'cors';
 import type { Response } from 'express';
 import express from 'express';
@@ -16,7 +16,7 @@ export class Server {
 
     /** Make the server listen. */
     public async listen() {
-        this.app.use(cors({ origin: '*' }));
+        this.app.use(cors({ origin: process.env['WEB_URL']! }));
         this.app.use(useRateLimiter());
 
         this.app.use(require('./routes/auth').default());

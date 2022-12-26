@@ -23,7 +23,7 @@ export function LogoutModal(props: LogoutModal.Props) {
                 className="!bg-red-500 text-white"
                 iconProp={faSignOut}
                 onClick={() => {
-                    localStorage.removeItem('owenii.token');
+                    localStorage.removeItem('qwaroo.token');
                     window.location.reload();
                 }}
             >

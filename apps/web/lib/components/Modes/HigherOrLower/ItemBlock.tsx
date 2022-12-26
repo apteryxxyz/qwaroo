@@ -1,6 +1,6 @@
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
-import type { Game } from '@owenii/client';
+import type { Game } from '@qwaroo/client';
 import { Button } from '#/components/Input/Button';
 
 export namespace ItemBlock {
@@ -75,11 +75,11 @@ export function ItemBlock({
             "{props.display}"
         </h2>
 
-        {props.caption && <span>{props.caption}</span>}
+        {props.caption && <span className="text-center">{props.caption}</span>}
 
-        <span className="text-xl">{props.verb}</span>
+        <span className="text-center text-xl">{props.verb}</span>
 
-        {shouldShowValue && <span className="text-4xl xl:text-7xl font-bold">
+        {shouldShowValue && <span className="text-center text-4xl xl:text-7xl font-bold">
             {props.prefix}
             {typeof props.value === 'number'
                 ? props.value.toLocaleString()
@@ -91,7 +91,7 @@ export function ItemBlock({
             props.onMoreClick &&
             props.onLessClick && <div className="flex text-center font-bold text-lg xl:text-3xl">
                 <Button
-                    className="m-3 p-3 uppercase bg-red-500"
+                    className="text-center m-3 p-3 uppercase bg-red-500"
                     whileHover="brightness-125"
                     disableDefaultStyles
                     iconProp={faArrowUp}
@@ -101,7 +101,7 @@ export function ItemBlock({
                 </Button>
 
                 <Button
-                    className="m-3 p-3 uppercase bg-blue-500"
+                    className="text-center m-3 p-3 uppercase bg-blue-500"
                     whileHover="brightness-125"
                     disableDefaultStyles
                     iconProp={faArrowDown}

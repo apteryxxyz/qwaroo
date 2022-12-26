@@ -1,5 +1,5 @@
 {
-    "name": "@owenii/types",
+    "name": "@qwaroo/types",
     "description": "TypeScript interfaces and types used throughout the API and clients",
     "version": "0.0.0",
     "main": "dist/index.js",

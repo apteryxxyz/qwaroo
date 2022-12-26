@@ -1,8 +1,8 @@
 # Owneii
 
-Hello to whoever may be reading this, welcome to what is currently code named **Owenii**.
+Hello to whoever may be reading this, welcome to what is named **Qwaroo**.
 
-Owenii is a site containing a bunch of guessing, statistics and fun browser based games.
+Qwaroo is a site containing a bunch of guessing, statistics, quiz browser based games.
 
 ## Repository Projects
 

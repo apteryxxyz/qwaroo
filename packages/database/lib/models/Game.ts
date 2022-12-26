@@ -1,5 +1,5 @@
-import { Validate, createSlugWithTransliteration } from '@owenii/common';
-import { Game as GameEntity } from '@owenii/types';
+import { Validate, createSlugWithTransliteration } from '@qwaroo/common';
+import { Game as GameEntity } from '@qwaroo/types';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
 import { Score, type ScoreDocument } from './Score';

@@ -3,8 +3,8 @@ import { faShareNodes } from '@fortawesome/free-solid-svg-icons/faShareNodes';
 import { faSortAmountAsc } from '@fortawesome/free-solid-svg-icons/faSortAmountAsc';
 import { faSortAmountDesc } from '@fortawesome/free-solid-svg-icons/faSortAmountDesc';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons/faTrashCan';
-import type { Game } from '@owenii/client';
-import type { FetchGamesOptions } from '@owenii/types';
+import type { Game } from '@qwaroo/client';
+import type { FetchGamesOptions } from '@qwaroo/types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
@@ -60,7 +60,7 @@ export default () => {
                 await game.fetchCreator(false).catch(() => null);
 
                 // TODO: Still need to find a better way to check if the game has items
-                // This results in a lot of requests and requests the rate limit faster
+                // This results in a lot of requests and uses the rate limit faster
                 if (!hasItems.current.has(game.id)) {
                     // Get the item count to ensure the game has items
                     const items = await game.fetchItems().catch(() => null);
@@ -80,14 +80,14 @@ export default () => {
             url="/games"
         />
 
-        <h1 className="font-bold text-3xl">Games</h1>
+        <h1 className="font-bold text-3xl">Game Modes</h1>
 
         {/* Filter bar */}
         <div className="flex flex-wrap gap-1 my-3">
             <div className="flex flex-wrap gap-1 [&>*]:shadow-lg">
                 {(categories ?? []).map(category => <Button
-                    whileActive="bg-owenii-400 dark:bg-owenii-400
-                    text-white hover:brightness-125 hover:bg-owenii-400"
+                    whileActive="bg-qwaroo-400 dark:bg-qwaroo-400
+                    text-white hover:brightness-125 hover:bg-qwaroo-400"
                     isActive={query?.categories?.includes(category)}
                     key={category}
                     onClick={() => {
@@ -221,7 +221,7 @@ export default () => {
             >
                 <div
                     className="flex flex-col justify-end w-full min-h-[30%] mt-auto p-3
-                        bg-owenii-gradient-to-t from-black to-transparent rounded-b-xl"
+                        bg-qwaroo-gradient-to-t from-black to-transparent rounded-b-xl"
                 >
                     <h2 className="text-1.5xl font-semibold">Suggest A Game</h2>
 

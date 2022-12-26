@@ -71,9 +71,9 @@ export function LoginModal(props: LoginModal.Props) {
         </div>
 
         <p className="text-center text-sm opacity-50 max-w-[320px]">
-            Owenii will only ever access your display name and avatar. Your
+            Qwaroo will only ever access your display name and avatar. Your
             email address or any other personal information will{' '}
-            <strong>NEVER</strong> be stored or shared by Owenii.
+            <strong>NEVER</strong> be stored or shared by Qwaroo.
         </p>
 
         <Button

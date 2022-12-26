@@ -11,7 +11,7 @@ module.exports = {
                 '1.5xl': '1.30rem',
             },
             colors: {
-                'owenii': {
+                'qwaroo': {
                     '50': '#eff6ff',
                     '100': '#dbebfe',
                     '200': '#bedcff',
@@ -30,7 +30,7 @@ module.exports = {
     safelist: [
         {
             // colours
-            pattern: /(bg|text|border)-(neutral|owenii|sky|white|black)(-\d+0)?/,
+            pattern: /(bg|text|border)-(neutral|qwaroo|white|black)(-\d+0)?/,
             variants: ['dark', 'dark:hover', 'hover'],
         },
         {

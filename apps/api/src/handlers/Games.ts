@@ -1,7 +1,7 @@
-import { ServerError as Error, Validate, createRegExp } from '@owenii/common';
-import { Game, type GameDocument, type UserDocument } from '@owenii/database';
-import { loadItems } from '@owenii/sources';
-import type { FetchGamesOptions } from '@owenii/types';
+import { ServerError as Error, Validate, createRegExp } from '@qwaroo/common';
+import { Game, type GameDocument, type UserDocument } from '@qwaroo/database';
+import { loadItems } from '@qwaroo/sources';
+import type { FetchGamesOptions } from '@qwaroo/types';
 import { shuffle } from 'shuffle-seed';
 
 export class Games extends null {

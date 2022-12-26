@@ -1,4 +1,4 @@
-import { type FetchGamesOptions, Routes } from '@owenii/types';
+import { type FetchGamesOptions, Routes } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import type { Client } from '#/client/Client';
 import { Game } from '#/structures/Game';

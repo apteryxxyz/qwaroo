@@ -46,16 +46,16 @@ export function NavigationBar() {
         >
             <div className="max-w-8xl w-full flex flex-col md:flex-row items-center mx-auto">
                 <PlainButton
-                    className="mx-auto md:ml-0 font-bold text-1.5xl
-                    bg-transparent text-owenii-gradient"
+                    className="mx-auto md:ml-0 bg-transparent
+                    text-qwaroo-gradient font-bold text-3xl"
                     linkProps={{ href: '/' }}
                 >
-                    APTERYX OWENII
+                    QWAROO
                 </PlainButton>
 
                 <div className="flex flex-wrap">
                     <PlainButton
-                        className="hover:text-owenii-400"
+                        className="hover:text-qwaroo-400"
                         iconProp={faGamepad}
                         linkProps={{ href: '/games' }}
                     >
@@ -63,7 +63,7 @@ export function NavigationBar() {
                     </PlainButton>
 
                     {/* <PlainButton
-                        className="hover:text-owenii-400"
+                        className="hover:text-qwaroo-400"
                         iconProp={faMarker}
                         linkProps={userId ? { href: '/games/new' } : undefined}
                         onClick={
@@ -74,7 +74,7 @@ export function NavigationBar() {
                     </PlainButton> */}
 
                     {/* <PlainButton
-                        className="hover:text-owenii-400"
+                        className="hover:text-qwaroo-400"
                         iconProp={faFontAwesome}
                         linkProps={{ href: '/patchnotes' }}
                     >
@@ -82,7 +82,7 @@ export function NavigationBar() {
                     </PlainButton> */}
 
                     <PlainButton
-                        className="hover:text-owenii-400"
+                        className="hover:text-qwaroo-400"
                         iconProp={faUser}
                         onClick={() =>
                             userId
@@ -99,7 +99,7 @@ export function NavigationBar() {
                     </PlainButton>
 
                     {!isLoggedIn && <PlainButton
-                        className="hover:text-owenii-400"
+                        className="hover:text-qwaroo-400"
                         iconProp={faSignIn}
                         onClick={() => setIsLoginModalOpen(true)}
                     >
@@ -107,7 +107,7 @@ export function NavigationBar() {
                     </PlainButton>}
 
                     {isLoggedIn && <PlainButton
-                        className="hover:text-owenii-400"
+                        className="hover:text-qwaroo-400"
                         iconProp={faSignOut}
                         onClick={() => setIsLogoutModalOpen(true)}
                     >
@@ -115,7 +115,7 @@ export function NavigationBar() {
                     </PlainButton>}
 
                     <PlainButton
-                        className="hover:text-owenii-400"
+                        className="hover:text-qwaroo-400"
                         iconProp={theme === 'light' ? faCloudMoon : faCloudSun}
                         ariaLabel="Toggle theme"
                         onClick={() =>
@@ -126,14 +126,17 @@ export function NavigationBar() {
             </div>
         </nav>
 
-        <div id="banner-bar" className="z-20 bg-owenii-gradient shadow-xl">
-            <div className="max-w-8xl w-full items-center mx-auto p-2 text-center text-white">
-                Owenii is still in its early stages, if you find any bugs or
+        <div
+            id="banner-bar"
+            className="z-20 bg-qwaroo-gradient shadow-xl text-white"
+        >
+            <div className="max-w-8xl w-full items-center mx-auto p-2 text-center">
+                Qwaroo is still in its early stages, if you find any bugs or
                 have any suggestions, please let me know over on the{' '}
                 <Link
                     href="/discord"
                     target="_blank"
-                    className="text-neutral-200"
+                    className="font-bold underline hover:text-neutral-200"
                 >
                     Discord
                 </Link>

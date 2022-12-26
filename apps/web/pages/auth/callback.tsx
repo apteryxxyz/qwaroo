@@ -1,4 +1,4 @@
-import { Validate } from '@owenii/common';
+import { Validate } from '@qwaroo/common';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Loading } from '#/components/Display/Loading';
@@ -17,14 +17,13 @@ export default () => {
             const method = url.searchParams.get('method') ?? '';
 
             if (Validate.ObjectId.test(id) && token) {
-                localStorage.setItem('owenii.user_id', id);
-                localStorage.setItem('owenii.token', token);
-                documentCookie.setItem('owenii.user_id', id, 365);
-                documentCookie.setItem('owenii.token', token, 365);
+                localStorage.setItem('qwaroo.user_id', id);
+                localStorage.setItem('qwaroo.token', token);
+                documentCookie.setItem('qwaroo.user_id', id, 365);
+                documentCookie.setItem('qwaroo.token', token, 365);
 
-                let backTo = localStorage.getItem('owenii.back_to') ?? '/games';
+                let backTo = localStorage.getItem('qwaroo.back_to') ?? '/games';
                 if (backTo.startsWith('/auth/callback')) backTo = '/games';
-                localStorage.removeItem('owenii.back_to');
 
                 emitEvent('sign_in', {
                     user_id: id,

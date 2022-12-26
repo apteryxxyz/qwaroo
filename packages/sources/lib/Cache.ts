@@ -1,4 +1,4 @@
-import type { Game } from '@owenii/types';
+import type { Game } from '@qwaroo/types';
 import sources from './sources';
 
 /** Fetch all the items for a game, then save them to the local file system. */

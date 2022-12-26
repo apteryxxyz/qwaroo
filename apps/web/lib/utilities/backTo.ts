@@ -6,9 +6,11 @@ export function setBackTo(url?: string) {
 
     const backTo = url ?? window.location.href;
     const backPath = new URL(backTo, useWebUrl()).pathname;
-    localStorage.setItem('owenii.back_to', backPath);
+    if (backPath.startsWith('/auth/callback')) return;
+
+    localStorage.setItem('qwaroo.back_to', backPath);
 }
 
 export function getBackTo() {
-    return localStorage.getItem('owenii.back_to') ?? '/';
+    return localStorage.getItem('qwaroo.back_to') ?? '/';
 }

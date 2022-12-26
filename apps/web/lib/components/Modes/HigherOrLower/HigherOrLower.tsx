@@ -3,7 +3,7 @@ import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 import { faSignIn } from '@fortawesome/free-solid-svg-icons/faSignIn';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Game, ItemManager, ScoreManager } from '@owenii/client';
+import { Game, ItemManager, ScoreManager } from '@qwaroo/client';
 import { ms } from 'enhanced-ms';
 import { useEffect, useRef, useState } from 'react';
 import { ItemBlock } from './ItemBlock';
@@ -158,7 +158,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         goFullscreen();
         prepareGame();
 
-        const key = `owenii.settings_${slug}`;
+        const key = `qwaroo.settings_${slug}`;
         const rawSettings = localStorage.getItem(key);
         if (rawSettings) setSettings(JSON.parse(rawSettings));
 
@@ -200,7 +200,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
 
     useEffect(() => {
         const rawSettings = JSON.stringify(settings);
-        localStorage.setItem(`owenii.settings_${slug}`, rawSettings);
+        localStorage.setItem(`qwaroo.settings_${slug}`, rawSettings);
     }, [settings]);
 
     // Game is still loading

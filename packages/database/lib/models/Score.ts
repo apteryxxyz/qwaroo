@@ -1,5 +1,5 @@
-import { Validate } from '@owenii/common';
-import type { Score as ScoreEntity } from '@owenii/types';
+import { Validate } from '@qwaroo/common';
+import type { Score as ScoreEntity } from '@qwaroo/types';
 import type { Document, Model } from 'mongoose';
 import { Schema, model } from 'mongoose';
 import { Game, type GameDocument } from './Game';

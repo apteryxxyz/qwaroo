@@ -1,4 +1,4 @@
-import { type FetchScoresOptions, Routes } from '@owenii/types';
+import { type FetchScoresOptions, Routes } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import { Score } from '#/structures/Score';
 import type { User } from '#/structures/User';

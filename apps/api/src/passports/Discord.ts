@@ -1,7 +1,7 @@
 import process from 'node:process';
 import { URL } from 'node:url';
-import { Connection, User, type UserDocument } from '@owenii/database';
-import { Routes } from '@owenii/types';
+import { Connection, User, type UserDocument } from '@qwaroo/database';
+import { Routes } from '@qwaroo/types';
 import passport from 'passport';
 import { Strategy } from 'passport-discord';
 import type { VerifyCallback } from 'passport-oauth2';

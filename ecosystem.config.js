@@ -3,7 +3,7 @@ const script = process.platform === 'win32'
 
 module.exports = [
     {
-        name: 'Owenii API',
+        name: 'Qwaroo API',
         cwd: './apps/api',
         script,
         args: 'start',
@@ -12,7 +12,7 @@ module.exports = [
         watch: false,
     },
     {
-        name: 'Owenii Web',
+        name: 'Qwaroo Web',
         cwd: './apps/web',
         script,
         args: 'start',

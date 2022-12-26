@@ -1,4 +1,4 @@
-import { Routes } from '@owenii/types';
+import { Routes } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import { Connection } from '#/structures/Connection';
 import type { User } from '#/structures/User';

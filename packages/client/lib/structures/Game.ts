@@ -3,7 +3,7 @@ import {
     type APISubmitScore,
     Game as GameEntity,
     Routes,
-} from '@owenii/types';
+} from '@qwaroo/types';
 import { Base } from './Base';
 import type { GameManager } from '#/managers/GameManager';
 import { ItemManager } from '#/managers/ItemManager';

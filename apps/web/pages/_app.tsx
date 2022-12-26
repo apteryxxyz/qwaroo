@@ -1,7 +1,7 @@
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import '#/styles/common.css';
 
-import { Client } from '@owenii/client';
+import { Client } from '@qwaroo/client';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -22,10 +22,10 @@ export default ({ Component, pageProps }: AppProps) => {
 
     useEffect(() => {
         // Login the client if the user has an id and token
-        const uid = localStorage.getItem('owenii.user_id');
-        const token = localStorage.getItem('owenii.token');
+        const uid = localStorage.getItem('qwaroo.user_id');
+        const token = localStorage.getItem('qwaroo.token');
         if (uid && token) void client.login(uid, token);
-        Reflect.set(globalThis, '__OWENII_CLIENT__', client);
+        Reflect.set(globalThis, '__QWAROO_CLIENT__', client);
 
         const handleRouteChange = () => setBackTo();
         router.events.on('routeChangeStart', handleRouteChange);
@@ -52,7 +52,7 @@ export default ({ Component, pageProps }: AppProps) => {
         <ThemeProvider
             enableSystem={true}
             attribute="class"
-            storageKey="owenii.theme"
+            storageKey="qwaroo.theme"
         >
             <Head>
                 <link rel="preconnect" href={useApiUrl().toString()} />
