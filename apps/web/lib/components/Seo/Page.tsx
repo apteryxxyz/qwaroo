@@ -29,7 +29,7 @@ export function PageSeo({
         {/* Open Graph */}
         <meta property="og:url" content={resolveHref(url)} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="More or Less" />
+        <meta property="og:site_name" content="Qwaroo" />
         <meta property="og:title" content={props.title} />
         <meta property="og:description" content={description} />
         {banner && <>
