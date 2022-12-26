@@ -23,6 +23,6 @@ export function StatisticCard({
             )}
         </span>
 
-        <p>{description}</p>
+        <p className="text-center">{description}</p>
     </div>;
 }

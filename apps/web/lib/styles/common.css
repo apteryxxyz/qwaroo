@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,6 +32,16 @@
     animation: Gradient 15s ease infinite;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.baloo2 {
+    font-family: 'Baloo 2', cursive;
 }
 
 @keyframes Gradient {

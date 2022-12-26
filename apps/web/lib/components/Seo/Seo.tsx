@@ -21,30 +21,24 @@ export function Seo({ title, noIndex, children }: Seo.Props) {
         <meta name="robots" content={noIndex ? 'noindex' : 'index'} />
 
         {/* Branding */}
-        <link rel="manifest" href="/manifest.json" />
         <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="/branding/180x180.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/branding/16x16.png"
+            href="/apple-touch-icon.png"
         />
         <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="/branding/32x32.png"
+            href="/favicon-32x32.png"
         />
         <link
             rel="icon"
             type="image/png"
-            sizes="64x64"
-            href="/branding/64x64.png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
         />
+        <link rel="manifest" href="/site.webmanifest" />
 
         {children}
     </Head>;

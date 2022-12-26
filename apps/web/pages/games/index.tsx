@@ -60,7 +60,7 @@ export default () => {
                 await game.fetchCreator(false).catch(() => null);
 
                 // TODO: Still need to find a better way to check if the game has items
-                // This results in a lot of requests and requests the rate limit faster
+                // This results in a lot of requests and uses the rate limit faster
                 if (!hasItems.current.has(game.id)) {
                     // Get the item count to ensure the game has items
                     const items = await game.fetchItems().catch(() => null);
@@ -80,7 +80,7 @@ export default () => {
             url="/games"
         />
 
-        <h1 className="font-bold text-3xl">Games</h1>
+        <h1 className="font-bold text-3xl">Game Modes</h1>
 
         {/* Filter bar */}
         <div className="flex flex-wrap gap-1 my-3">

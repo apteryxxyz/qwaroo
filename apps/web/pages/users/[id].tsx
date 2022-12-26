@@ -133,7 +133,7 @@ export default ({
                 </div>} */}
             </div>
 
-            <h1 className="font-bold text-3xl">Game Statistics</h1>
+            <h2 className="font-bold text-3xl">Game Statistics</h2>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {/* Statistics */}
