@@ -7,12 +7,12 @@ const copyOptions = [{
     directory: 'apps/api',
     env: '.env',
     from: 'nginx.conf',
-    to: 'qwaroo-api.apteryx.xyz',
+    to: 'api.qwaroo.com',
 }, {
     directory: 'apps/web',
     env: '.env',
     from: 'nginx.conf',
-    to: 'qwaroo.apteryx.xyz',
+    to: 'qwaroo.com',
 }];
 
 void main(process.argv.length, process.argv);
