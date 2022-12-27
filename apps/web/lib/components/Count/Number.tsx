@@ -12,13 +12,13 @@ export namespace CountUpNumber {
 export function CountUpNumber({
     startValue = 0,
     endValue,
-    animationDuration = 1_000,
-    format = (value: number) => value.toLocaleString(),
+    animationDuration = endValue > 10 ? 1_000 : 500,
+    format = (value: number) =>
+        endValue > 10 ? value.toLocaleString() : value.toFixed(1),
 }: CountUpNumber.Props) {
-    const frameDuration = 1_000 / 60;
+    const frameDuration = 1_000 / 30;
     const totalFrames = Math.round(animationDuration / frameDuration);
     const easeOutQuad = (t: number) => t * (2 - t);
-
     const [count, setCount] = useState(startValue);
 
     useEffect(() => {
@@ -26,7 +26,12 @@ export function CountUpNumber({
         const counter = setInterval(() => {
             frame++;
             const progress = easeOutQuad(frame / totalFrames);
-            const currentCount = Math.round(endValue * progress);
+            const currentCount =
+                endValue < 100
+                    ? endValue * progress
+                    : Math.round(endValue * progress);
+
+            console.log(currentCount);
 
             if (count !== currentCount) {
                 setCount(currentCount);
