@@ -26,7 +26,7 @@ export interface Options {
 
 export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
-    slug: 'hol.wikipedia_table',
+    slug: 'wikipedia_table',
     name: 'Wikipedia Table',
     isPublic: false,
     description:
@@ -36,10 +36,12 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
 
     props: {
         wikipediaPath: {
-            type: Source.Prop.Type.URI,
+            type: Source.Prop.Type.String,
             description:
                 'The URI to the Wikipedia page with the table to scrape.',
+            prefix: 'https://en.wikipedia.org',
             required: true,
+            validate: /^\/wiki\/.+$/,
         },
 
         imageSearchQuery: {

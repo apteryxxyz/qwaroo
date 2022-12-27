@@ -23,16 +23,18 @@ export interface Options {
 
 export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
-    slug: 'hol.gta_fandom_table',
+    slug: 'gta_fandom_table',
     name: 'GTA Fandom',
     isPublic: false,
     description: '',
 
     props: {
         fandomPath: {
-            type: Source.Prop.Type.URI,
+            type: Source.Prop.Type.String,
             description: 'The URI of the GTA Fandom page with the table.',
+            prefix: 'https://gta.fandom.com',
             required: true,
+            validate: /^\/wiki\/.+$/,
         },
 
         shouldCheckImages: {

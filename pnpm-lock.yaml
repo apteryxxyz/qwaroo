@@ -241,6 +241,7 @@ importers:
       '@qwaroo/types': workspace:^0.0.0
       '@types/node': ^18.11.10
       cheerio: 1.0.0-rc.12
+      enhanced-ms: ^2.2.0
       g-i-s: ^2.1.6
       jimp: ^0.16.2
       tsup: ^6.5.0
@@ -249,6 +250,7 @@ importers:
     dependencies:
       '@qwaroo/types': link:../types
       cheerio: 1.0.0-rc.12
+      enhanced-ms: 2.2.0
       g-i-s: 2.1.6
       jimp: 0.16.2
       ytpl: github.com/apteryxxyz/node-ytpl/f0b1803211df87cbaf11f1dca861636a1b97e52f

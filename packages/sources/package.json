@@ -11,6 +11,7 @@
     "dependencies": {
         "@qwaroo/types": "workspace:^0.0.0",
         "cheerio": "1.0.0-rc.12",
+        "enhanced-ms": "^2.2.0",
         "g-i-s": "^2.1.6",
         "jimp": "^0.16.2",
         "ytpl": "github:apteryxxyz/node-ytpl"

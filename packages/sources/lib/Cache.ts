@@ -2,12 +2,11 @@ import type { Game } from '@qwaroo/types';
 import sources from './sources';
 
 /** Fetch all the items for a game, then save them to the local file system. */
-export async function fetchAndSaveItems<
-    S extends keyof typeof sources = keyof typeof sources
->(
+export async function fetchAndSaveItems(
     gameSlug: string,
-    sourceSlug: S,
-    sourceOptions: Record<keyof typeof sources[S]['props'], unknown>,
+    gameMode: Game.Mode,
+    sourceSlug: string,
+    sourceOptions: Record<string, unknown>,
     verbose = false
 ) {
     const { existsSync, mkdirSync, writeFileSync } = require('node:fs');
@@ -17,7 +16,8 @@ export async function fetchAndSaveItems<
     mkdirSync(dirname(path), { recursive: true });
     if (existsSync(path)) return loadItems(gameSlug);
 
-    const source = sources[sourceSlug];
+    const source = sources //
+        .find(s => s.slug === sourceSlug && s.for === gameMode);
     if (!source) throw new Error(`Source "${sourceSlug}" not found.`);
 
     const options = source.prepareOptions(sourceOptions);

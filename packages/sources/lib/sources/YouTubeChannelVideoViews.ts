@@ -16,7 +16,7 @@ export interface Options {
 
 export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
-    slug: 'hol.youtube_channel_video_views',
+    slug: 'youtube_channel_video_views',
     name: 'YouTube Channel View Count',
     isPublic: true,
     description:

@@ -30,8 +30,16 @@ export namespace Source {
     export interface Prop<T extends Prop.Type = Prop.Type> {
         type: T | [T];
         description: string;
+
+        prefix?: string;
+        suffix?: string;
+
         required: ((this: Record<string, unknown>) => boolean) | boolean;
         default?: unknown;
+        options?: unknown[];
+        validate?:
+            | ((this: Record<string, unknown>, value: unknown) => boolean)
+            | RegExp;
     }
 
     export namespace Prop {
@@ -39,8 +47,6 @@ export namespace Source {
             String = 'string',
             Number = 'number',
             Boolean = 'boolean',
-            URL = 'url',
-            URI = 'uri',
         }
     }
 }

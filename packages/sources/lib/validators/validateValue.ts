@@ -1,10 +1,13 @@
-import { URL } from 'node:url';
 import { Source } from '#/Source';
 
 export interface ValidateOptions {
     type: Source.Prop.Type | [Source.Prop.Type];
     required: ((this: Record<string, unknown>) => boolean) | boolean;
     default?: unknown;
+    options?: unknown[];
+    validate?:
+        | ((this: Record<string, unknown>, value: unknown) => boolean)
+        | RegExp;
 }
 
 export type ValidateArgs = [
@@ -15,7 +18,6 @@ export type ValidateArgs = [
 ];
 
 function _error(prop: string, type: string, value: unknown = 'empty') {
-    if (!value && !type) return new Error(`Missing ${type} for "${prop}"`);
     return new Error(`Invalid ${type} for "${prop}": ${String(value)}`);
 }
 
@@ -25,13 +27,25 @@ function _validateValue(
     value: unknown,
     options: ValidateOptions
 ) {
-    const required =
-        typeof options.required === 'function'
-            ? options.required.call(record)
-            : options.required;
+    if (value && !options.options?.includes(value))
+        throw new Error(`Invalid option for "${prop}": ${String(value)}`);
+
+    if (value && options.validate) {
+        const err = new Error(`Invalid value for "${prop}": ${String(value)}`);
+        if (options.validate instanceof RegExp) {
+            if (!options.validate.test(String(value))) throw err;
+        } else if (!options.validate.call(record, value)) throw err;
+    }
 
     if (!value && options.default !== undefined) return options.default;
-    if (!value && required) throw _error(prop, String(options.type));
+
+    if (!value && options.required) {
+        const err = new Error(`Missing required value for "${prop}"`);
+        if (typeof options.required === 'function') {
+            if (options.required.call(record)) throw err;
+        } else throw err;
+    }
+
     return value;
 }
 
@@ -60,29 +74,6 @@ export function validateBoolean(...args: ValidateArgs) {
     const asBool = String(value).toLowerCase() === 'true';
     if (typeof asBool !== 'boolean') throw _error(args[1], 'boolean', args[2]);
     return asBool;
-}
-
-export function validateUrl(...args: ValidateArgs) {
-    const value = _validateValue(...args);
-    if (value === undefined) return undefined;
-
-    try {
-        return new URL(String(value)).toString();
-    } catch {
-        throw _error(args[1], 'url', args[2]);
-    }
-}
-
-export function validateUri(...args: ValidateArgs) {
-    const value = _validateValue(...args);
-    if (value === undefined) return undefined;
-
-    try {
-        const url = new URL(String(value), 'http://localhost');
-        return url.toString().replace('http://localhost', '');
-    } catch {
-        throw _error(args[1], 'uri', args[2]);
-    }
 }
 
 export function validateArray(...args: ValidateArgs) {
@@ -116,10 +107,6 @@ export function validateValue(...args: ValidateArgs): unknown {
             return validateNumber(...args);
         case Source.Prop.Type.Boolean:
             return validateBoolean(...args);
-        case Source.Prop.Type.URL:
-            return validateUrl(...args);
-        case Source.Prop.Type.URI:
-            return validateUri(...args);
         default:
             throw new Error(`Unknown type: ${args[3].type}`);
     }
