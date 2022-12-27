@@ -18,13 +18,13 @@ async function main() {
 }
 
 async function ensureGameItems() {
-    const debug = process.env['DEBUG'] === 'true';
+    const verbose = process.env['VERBOSE'] === 'true';
     const games = await Game.find({ sourceSlug: { $ne: null } });
 
     await Promise.all(games.map(async gm => {
         if (!gm.sourceSlug || !gm.sourceOptions) return;
-        if (debug) console.info(`Ensuring items for "${gm.title}" using "${gm.sourceSlug}"...`);
-        await fetchAndSaveItems(gm.slug, gm.sourceSlug, gm.sourceOptions, debug);
-        if (debug) console.info(`Done ensuring items for "${gm.title}"!`)
+        if (verbose) console.info(`Ensuring items for "${gm.title}" using "${gm.sourceSlug}"...`);
+        await fetchAndSaveItems(gm.slug, gm.sourceSlug, gm.sourceOptions, verbose);
+        if (verbose) console.info(`Done ensuring items for "${gm.title}"!`)
     }));
 }

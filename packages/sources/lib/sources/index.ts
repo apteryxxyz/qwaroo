@@ -1,11 +1,11 @@
-import { source as GTAFandom } from './GTAFandom';
-import { source as Wikipedia } from './Wikipedia';
-import { source as YTChannel } from './YTChannel';
+import { source as GTAFandomTable } from './GTAFandomTable';
+import { source as WikipediaTable } from './WikipediaTable';
+import { source as YouTubeChannelVideoViews } from './YouTubeChannelVideoViews';
 
 const sources = {
-    [GTAFandom.slug]: GTAFandom,
-    [Wikipedia.slug]: Wikipedia,
-    [YTChannel.slug]: YTChannel,
+    [GTAFandomTable.slug]: GTAFandomTable,
+    [WikipediaTable.slug]: WikipediaTable,
+    [YouTubeChannelVideoViews.slug]: YouTubeChannelVideoViews,
 };
 
 export default sources;

@@ -15,7 +15,7 @@ let nextConfig = {
     }
 };
 
-if (process.env['ANALYSE'] === '1') {
+if (process.env['ANALYSE'] === 'true') {
     nextConfig = require('@next/bundle-analyzer')()(nextConfig);
 }
 

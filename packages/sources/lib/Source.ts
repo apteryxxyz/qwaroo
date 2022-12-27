@@ -23,7 +23,7 @@ export interface Source<
     /** Prepare the options for fetching, such as filling defaults. */
     prepareOptions(options: Partial<O>): O;
     /** Fetch the items based on passed options. */
-    fetchItems(options: O, debug: boolean): Promise<Game.Item<F>[]>;
+    fetchItems(options: O, verbose: boolean): Promise<Game.Item<F>[]>;
 }
 
 export namespace Source {

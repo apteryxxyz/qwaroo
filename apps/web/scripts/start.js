@@ -3,4 +3,4 @@ const { loadEnvConfig } = require('@next/env');
 const cli = require('next/dist/cli/next-start');
 
 const { combinedEnv } = loadEnvConfig(process.cwd());
-cli.nextStart(['-p', combinedEnv.PORT ?? 3_000]);
+cli.nextStart(['-p', combinedEnv['PORT'] ?? 3_000]);

@@ -18,7 +18,10 @@ export function useMe(property: string) {
 /** Require that a user ID property must be the same as the logged in user. */
 export function useMustBeMe(property: string, methods: string[]) {
     return handle(async (req, _res, next) => {
-        if (!methods.includes(req.method)) { next(); return; }
+        if (!methods.includes(req.method)) {
+            next();
+            return;
+        }
 
         const id = String(req.params[property] ?? '');
 

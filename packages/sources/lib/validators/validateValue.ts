@@ -36,32 +36,49 @@ function _validateValue(
 }
 
 export function validateString(...args: ValidateArgs) {
-    return String(_validateValue(...args));
+    const value = _validateValue(...args);
+    if (value === undefined) return undefined;
+
+    const asStr = String(value);
+    if (!asStr) throw _error(args[1], 'string', args[2]);
+    return asStr;
 }
 
 export function validateNumber(...args: ValidateArgs) {
-    const asNum = Number(String(_validateValue(...args)));
+    const value = _validateValue(...args);
+    if (value === undefined) return undefined;
+
+    const asNum = Number(String(value));
     if (Number.isNaN(asNum)) throw _error(args[1], 'number', args[2]);
     return asNum;
 }
 
 export function validateBoolean(...args: ValidateArgs) {
-    return Boolean(_validateValue(...args));
+    const value = _validateValue(...args);
+    if (value === undefined) return undefined;
+
+    const asBool = String(value).toLowerCase() === 'true';
+    if (typeof asBool !== 'boolean') throw _error(args[1], 'boolean', args[2]);
+    return asBool;
 }
 
 export function validateUrl(...args: ValidateArgs) {
-    const asStr = String(_validateValue(...args));
+    const value = _validateValue(...args);
+    if (value === undefined) return undefined;
+
     try {
-        return new URL(asStr).toString();
+        return new URL(String(value)).toString();
     } catch {
         throw _error(args[1], 'url', args[2]);
     }
 }
 
 export function validateUri(...args: ValidateArgs) {
-    const asStr = String(_validateValue(...args));
+    const value = _validateValue(...args);
+    if (value === undefined) return undefined;
+
     try {
-        const url = new URL(asStr, 'http://localhost');
+        const url = new URL(String(value), 'http://localhost');
         return url.toString().replace('http://localhost', '');
     } catch {
         throw _error(args[1], 'uri', args[2]);
@@ -70,6 +87,8 @@ export function validateUri(...args: ValidateArgs) {
 
 export function validateArray(...args: ValidateArgs) {
     const asArr = _validateValue(...args);
+    if (asArr === undefined) return undefined;
+
     if (!Array.isArray(asArr)) throw _error(args[1], 'array', args[2]);
     return asArr;
 }
@@ -78,12 +97,14 @@ export function validateArray(...args: ValidateArgs) {
 export function validateValue(...args: ValidateArgs): unknown {
     if (Array.isArray(args[3].type)) {
         const array = validateArray(...args);
+        if (array === undefined) return [];
+
         const options = {
             type: args[3].type[0],
             required: args[3].required,
             default: args[3].default,
         };
-        return array.map((value: unknown) =>
+        return array?.map((value: unknown) =>
             validateValue(args[0], args[1], value, options)
         );
     }
@@ -97,6 +118,8 @@ export function validateValue(...args: ValidateArgs): unknown {
             return validateBoolean(...args);
         case Source.Prop.Type.URL:
             return validateUrl(...args);
+        case Source.Prop.Type.URI:
+            return validateUri(...args);
         default:
             throw new Error(`Unknown type: ${args[3].type}`);
     }

@@ -8,7 +8,7 @@ export async function fetchAndSaveItems<
     gameSlug: string,
     sourceSlug: S,
     sourceOptions: Record<keyof typeof sources[S]['props'], unknown>,
-    debug = false
+    verbose = false
 ) {
     const { existsSync, mkdirSync, writeFileSync } = require('node:fs');
     const { dirname, resolve } = require('node:path');
@@ -23,7 +23,7 @@ export async function fetchAndSaveItems<
     const options = source.prepareOptions(sourceOptions);
     // Bypass type checking
     const fetcher = Reflect.get(source, 'fetchItems') as Function;
-    const items = await fetcher.bind(source)(options, debug);
+    const items = await fetcher.bind(source)(options, verbose);
 
     const data = JSON.stringify(items, null, 4);
     writeFileSync(path, data, 'utf8');

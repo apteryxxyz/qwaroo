@@ -11,9 +11,9 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'hol.gta-fandom',
+        sourceSlug: 'hol.gta_fandom_table',
         sourceOptions: {
-            fandomUrl: 'https://gta.fandom.com/wiki/Weapons_in_GTA_Online',
+            fandomPath: '/wiki/Weapons_in_GTA_Online',
             shouldCheckImages: true,
         },
         mode: 'higher-or-lower',
@@ -35,9 +35,9 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'hol.gta-fandom',
+        sourceSlug: 'hol.gta_fandom_table',
         sourceOptions: {
-            fandomUrl: 'https://gta.fandom.com/wiki/Vehicles_in_GTA_Online',
+            fandomPath: '/wiki/Vehicles_in_GTA_Online',
             shouldCheckImages: true,
         },
         mode: 'higher-or-lower',
@@ -59,7 +59,7 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'hol.yt-channel',
+        sourceSlug: 'hol.youtube_channel_video_views',
         sourceOptions: {
             channelIds: ['UCV6mNrW8CrmWtcxWfQXy11g'],
         },
@@ -82,10 +82,10 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'hol.wikipedia',
+        sourceSlug: 'hol.wikipedia_table',
         sourceOptions: {
-            wikipediaUrl:
-                'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population',
+            wikipediaPath:
+                '/wiki/List_of_countries_and_dependencies_by_population',
             imageSearchQuery: 'pretty photo of {}',
             skipRows: 3,
             displayColumn: 2,
@@ -104,63 +104,6 @@ export default async () => {
             noun: 'people',
             higher: 'More',
             lower: 'Less',
-        },
-    });
-
-    await Game.create({
-        creatorId: user.id,
-        sourceSlug: 'hol.wikipedia',
-        sourceOptions: {
-            wikipediaUrl:
-                'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_area',
-            imageSearchQuery: 'pretty photo of {}',
-            skipRows: 3,
-            displayColumn: 2,
-            valueColumn: 3,
-        },
-        mode: 'higher-or-lower',
-        title: 'Countries by Land Area',
-        shortDescription: 'Which country has a larger land area?',
-        longDescription:
-            'Can you guess which country has a larger land area? Find out in this edition of the classic Higher or Lower guessing game!',
-        thumbnailUrl:
-            'https://www.worldatlas.com/r/w1200/upload/4d/54/9c/shutterstock-1037535631-min.jpg',
-        categories: ['Geography'],
-        data: {
-            verb: 'has',
-            noun: 'land area',
-            suffix: 'km²',
-            higher: 'Larger',
-            lower: 'Smaller',
-        },
-    });
-
-    await Game.create({
-        creatorId: user.id,
-        sourceSlug: 'hol.wikipedia',
-        sourceOptions: {
-            wikipediaUrl:
-                'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)',
-            imageSearchQuery: 'pretty photo of {}',
-            skipRows: 3,
-            displayColumn: 2,
-            valueColumn: 4,
-        },
-        mode: 'higher-or-lower',
-        title: 'Countries by GDP',
-        shortDescription: 'Which country has a larger GDP?',
-        longDescription:
-            'Can you guess which country has a larger GDP? Find out in this edition of the classic Higher or Lower guessing game!',
-        thumbnailUrl:
-            'https://cloudfront-us-east-2.images.arcpublishing.com/reuters/IPA2VSYNHBKFJE3HXTZKE5NNHI.jpg',
-        categories: ['Geography'],
-        data: {
-            verb: 'has',
-            noun: 'GDP',
-            prefix: '$',
-            suffix: ' million',
-            higher: 'Higher',
-            lower: 'Lower',
         },
     });
 };
