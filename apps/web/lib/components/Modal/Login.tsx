@@ -1,6 +1,6 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
 // import { faReddit } from '@fortawesome/free-brands-svg-icons/faReddit';
-import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
+// import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { useEffect, useState } from 'react';
 import { Button } from '../Input/Button';
 import { Modal } from './Modal';
@@ -49,7 +49,7 @@ export function LoginModal(props: LoginModal.Props) {
                 Sign in with Discord
             </Button>
 
-            <Button
+            {/* <Button
                 className="bg-[#24292E] text-white"
                 whileHover="brightness-125"
                 disableDefaultStyles
@@ -57,7 +57,7 @@ export function LoginModal(props: LoginModal.Props) {
                 linkProps={{ href: new URL('/auth/github/login', useApiUrl()) }}
             >
                 Sign in with GitHub
-            </Button>
+            </Button> */}
 
             {/* <Button
                 className="bg-[#FF5700] text-white"
