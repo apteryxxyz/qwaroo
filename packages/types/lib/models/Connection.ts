@@ -7,7 +7,7 @@ export interface Connection {
 
     // NOTE: Ensure new provider names are added to the providerName type
     /** The name of the provider this connection is for. */
-    providerName: 'discord' | 'github';
+    providerName: 'discord' | 'reddit' | 'github';
     /** This connections identifier within the provider. */
     accountId: string;
     /** This connections username within the provider. */

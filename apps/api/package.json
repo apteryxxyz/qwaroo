@@ -24,6 +24,7 @@
         "passport": "^0.6.0",
         "passport-discord": "^0.1.4",
         "passport-github2": "^0.1.12",
+        "passport-reddit": "github:Slotos/passport-reddit#master",
         "rate-limiter-flexible": "^2.4.1",
         "shuffle-seed": "^1.1.6",
         "underscore": "^1.13.6"
@@ -47,12 +48,20 @@
     "nx": {
         "targets": {
             "format": {
-                "dependsOn": ["^format"],
-                "outputs": ["{projectRoot}/src"]
+                "dependsOn": [
+                    "^format"
+                ],
+                "outputs": [
+                    "{projectRoot}/src"
+                ]
             },
             "build": {
-                "dependsOn": ["^build"],
-                "outputs": ["{projectRoot}/dist"]
+                "dependsOn": [
+                    "^build"
+                ],
+                "outputs": [
+                    "{projectRoot}/dist"
+                ]
             }
         }
     }

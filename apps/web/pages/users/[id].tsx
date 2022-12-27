@@ -1,5 +1,6 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
+import { faReddit } from '@fortawesome/free-brands-svg-icons/faReddit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Connection, Score, User } from '@qwaroo/client';
 import ms from 'enhanced-ms';
@@ -14,6 +15,7 @@ import { useClient } from '#/contexts/ClientContext';
 
 const providerIconMap = {
     discord: faDiscord,
+    reddit: faReddit,
     github: faGithub,
 } as const;
 
@@ -79,7 +81,7 @@ export default ({
 
                 <picture>
                     <img
-                        className="rounded-xl"
+                        className="rounded-xl aspect-square"
                         src={user.avatarUrl}
                         alt={`${displayName}'s avatar`}
                         width={128}

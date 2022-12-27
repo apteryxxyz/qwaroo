@@ -1,5 +1,5 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
-// import { faReddit } from '@fortawesome/free-brands-svg-icons/faReddit';
+import { faReddit } from '@fortawesome/free-brands-svg-icons/faReddit';
 // import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { useEffect, useState } from 'react';
 import { Button } from '../Input/Button';
@@ -49,6 +49,18 @@ export function LoginModal(props: LoginModal.Props) {
                 Sign in with Discord
             </Button>
 
+            <Button
+                className="bg-[#FF5700] text-white"
+                whileHover="brightness-125"
+                disableDefaultStyles
+                iconProp={faReddit}
+                linkProps={{
+                    href: new URL('/auth/reddit/login', useApiUrl()),
+                }}
+            >
+                Sign in with Reddit
+            </Button>
+
             {/* <Button
                 className="bg-[#24292E] text-white"
                 whileHover="brightness-125"
@@ -57,16 +69,6 @@ export function LoginModal(props: LoginModal.Props) {
                 linkProps={{ href: new URL('/auth/github/login', useApiUrl()) }}
             >
                 Sign in with GitHub
-            </Button> */}
-
-            {/* <Button
-                className="bg-[#FF5700] text-white"
-                iconProp={faReddit}
-                onClick={r =>
-                    r.push(new URL('/auth/reddit/login', useApiUrl()))
-                }
-            >
-                Sign in with Reddit
             </Button> */}
         </div>
 

@@ -7,21 +7,28 @@ import { Authentication } from '#/handlers/Authentication';
 import { useMethods } from '#/middleware/useMethods';
 import { DiscordPassport } from '#/passports/Discord';
 import { GitHubPassport } from '#/passports/GitHub';
+import { RedditPassport } from '#/passports/Reddit';
 import { handle } from '#/utilities/routeHandler';
 
 export default () => {
     const router = Router();
     new DiscordPassport();
     new GitHubPassport();
+    new RedditPassport();
     passport.initialize();
 
-    const providers = ['discord', 'github'] as const;
+    const providers = ['discord', 'github', 'reddit'] as const;
 
     for (const provider of providers) {
         router.all(
             Routes.authLogin(provider),
             useMethods(['GET']),
-            passport.authenticate(provider, { session: false })
+            // @ts-expect-error 2769
+            passport.authenticate(provider, {
+                session: false,
+                state: 'qwaroo',
+                duration: 'permanent',
+            })
         );
 
         router.all(
