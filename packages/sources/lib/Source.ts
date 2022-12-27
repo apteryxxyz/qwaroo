@@ -21,7 +21,7 @@ export interface Source<
     props: Record<K, Source.Prop>;
 
     /** Prepare the options for fetching, such as filling defaults. */
-    prepareOptions(options: Partial<Record<K, unknown>>): O;
+    prepareOptions(options: Partial<O>): O;
     /** Fetch the items based on passed options. */
     fetchItems(options: O, debug: boolean): Promise<Game.Item<F>[]>;
 }
@@ -30,7 +30,7 @@ export namespace Source {
     export interface Prop<T extends Prop.Type = Prop.Type> {
         type: T | [T];
         description: string;
-        required: boolean;
+        required: ((this: Record<string, unknown>) => boolean) | boolean;
         default?: unknown;
     }
 
