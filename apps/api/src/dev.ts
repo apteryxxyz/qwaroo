@@ -1,5 +1,6 @@
 import process from 'node:process';
 import { Game, User } from '@qwaroo/database';
+import { fetchAndSaveItems } from '@qwaroo/sources';
 
 export default async () => {
     if (process.env['NODE_ENV'] !== 'development') return;
@@ -86,4 +87,27 @@ export default async () => {
             lower: 'Worse',
         },
     });
+
+    await ensureGameItems();
 };
+
+async function ensureGameItems() {
+    const verbose = process.env['VERBOSE'] === 'true';
+
+    const promises = [];
+    for (const game of await Game.find({ sourceSlug: { $ne: null } })) {
+        if (!game.sourceSlug || !game.sourceOptions) continue;
+
+        promises.push(
+            fetchAndSaveItems(
+                game.slug,
+                game.mode,
+                game.sourceSlug,
+                game.sourceOptions,
+                verbose
+            )
+        );
+    }
+
+    await Promise.all(promises);
+}
