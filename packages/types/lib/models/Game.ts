@@ -53,10 +53,10 @@ export namespace Game {
         HigherOrLower = 'higher-or-lower',
     }
 
-    export const Flags = {
-        None: 0,
-        Approved: 1 << 0,
-    };
+    export enum Flags {
+        None = 0,
+        Approved = 1 << 0,
+    }
 
     /** Game data structure. */
     export type Data<M extends Mode = Mode> = M extends Mode.HigherOrLower

@@ -6,6 +6,7 @@ export default async () => {
     if (process.env['NODE_ENV'] !== 'development') return;
 
     const user = await User.create({
+        publicFlags: (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3),
         displayName: 'Apteryx',
         avatarUrl: 'https://picsum.photos/300/300?random=1',
     });

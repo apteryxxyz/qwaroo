@@ -1,4 +1,4 @@
-import { Routes } from '@qwaroo/types';
+import { type APIConnection, Routes } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import { Connection } from '#/structures/Connection';
 import type { User } from '#/structures/User';
@@ -13,7 +13,7 @@ export class ConnectionManager extends MapManager<string, Connection> {
         this.user = user;
     }
 
-    private _add(data: Connection.Entity) {
+    private _add(data: APIConnection) {
         const existing = this.get(data.id);
 
         if (existing) {
@@ -44,6 +44,6 @@ export class ConnectionManager extends MapManager<string, Connection> {
     public async fetchAll(): Promise<Connection[]> {
         const path = Routes.userConnections(this.user.id);
         const data = await this.client.rest.get(path);
-        return data.items.map((dt: Connection.Entity) => this._add(dt));
+        return data.items.map((dt: APIConnection) => this._add(dt));
     }
 }

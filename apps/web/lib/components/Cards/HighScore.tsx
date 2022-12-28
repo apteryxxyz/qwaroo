@@ -3,7 +3,7 @@ import type { Game, Score } from '@qwaroo/client';
 import { ms } from 'enhanced-ms';
 import { PlainButton } from '../Input/PlainButton';
 
-export namespace HighScoreCard {
+export namespace HighscoreCard {
     export interface Props {
         game: Game;
         score: Score;
@@ -11,7 +11,7 @@ export namespace HighScoreCard {
     }
 }
 
-export function HighScoreCard({ game, score, isMe }: HighScoreCard.Props) {
+export function HighscoreCard({ game, score, isMe }: HighscoreCard.Props) {
     return <div className="flex p-6 rounded-xl bg-white dark:bg-neutral-800">
         <picture className="hidden sm:block md:hidden lg:block">
             <img

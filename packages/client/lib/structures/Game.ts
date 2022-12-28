@@ -186,14 +186,7 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
 }
 
 export namespace Game {
-    export type Entity<M extends Entity.Mode = Entity.Mode> = GameEntity<M>;
-    export namespace Entity {
-        export const Mode = GameEntity.Mode;
-        export type Mode = GameEntity.Mode;
-        export type Data<M extends Mode = Mode> = GameEntity.Data<M>;
-        export type Item<M extends Mode = Mode> = GameEntity.Item<M>;
-        export type Step<M extends Mode = Mode> = GameEntity.Step<M>;
-    }
-
-    export type Resolvable = Game | Entity | string;
+    export type Resolvable = Game | APIGame | string;
+    export const Flags = GameEntity.Flags;
+    export type Flags = GameEntity.Flags;
 }

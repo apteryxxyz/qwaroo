@@ -1,12 +1,17 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faReddit } from '@fortawesome/free-brands-svg-icons/faReddit';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { faCode } from '@fortawesome/free-solid-svg-icons/faCode';
+import { faHammer } from '@fortawesome/free-solid-svg-icons/faHammer';
+import { faPalette } from '@fortawesome/free-solid-svg-icons/faPalette';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//
 import type { Connection, Score, User } from '@qwaroo/client';
 import ms from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useEffect, useState } from 'react';
-import { HighScoreCard } from '#/components/Cards/HighScore';
+import { HighscoreCard } from '#/components/Cards/Highscore';
 import { StatisticCard } from '#/components/Cards/Statistic';
 import { Loading } from '#/components/Display/Loading';
 // import { Button } from '#/components/Input/Button';
@@ -18,6 +23,13 @@ const providerIconMap = {
     reddit: faReddit,
     github: faGithub,
 } as const;
+
+const badgeIconMap = {
+    Developer: faCode,
+    Moderator: faHammer,
+    Verified: faCheck,
+    Creator: faPalette,
+};
 
 export default ({
     id,
@@ -90,9 +102,25 @@ export default ({
                 </picture>
 
                 <div className="flex flex-col justify-center">
-                    <h1 className="font-bold text-3xl text-qwaroo-gradient">
-                        {displayName}
-                    </h1>
+                    <span className="flex items-center">
+                        <h1 className="text-3xl font-bold text-qwaroo-400">
+                            {displayName}
+                        </h1>
+
+                        {user.flags
+                            .toArray()
+                            .filter(
+                                (flag): flag is keyof typeof badgeIconMap =>
+                                    flag in badgeIconMap
+                            )
+                            .map(flag => <FontAwesomeIcon
+                                key={flag}
+                                icon={badgeIconMap[flag]}
+                                title={flag}
+                                className="bg-qwaroo-gradient rounded-full text-white text-lg aspect-square ml-2 p-[0.3rem]"
+                                // className="bg-qwaroo-gradient rounded-full text-white text-xl ml-2 aspect-square p-1"
+                            />)}
+                    </span>
 
                     <span>
                         Joined {user.joinedAt.toLocaleDateString()}, about{' '}
@@ -155,7 +183,7 @@ export default ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {/* Per Game Statistics */}
 
-                {scores.map(score => <HighScoreCard
+                {scores.map(score => <HighscoreCard
                     key={score.gameId}
                     score={score}
                     game={client.games.get(score.gameId)!}

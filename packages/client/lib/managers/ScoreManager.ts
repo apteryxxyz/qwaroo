@@ -1,4 +1,4 @@
-import { type FetchScoresOptions, Routes } from '@qwaroo/types';
+import { type APIScore, type FetchScoresOptions, Routes } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import { Score } from '#/structures/Score';
 import type { User } from '#/structures/User';
@@ -13,7 +13,7 @@ export class ScoreManager extends MapManager<string, Score> {
         this.user = user;
     }
 
-    private _add(data: Score.Entity) {
+    private _add(data: APIScore) {
         const existing = this.get(data.id);
 
         if (existing) {
@@ -58,6 +58,6 @@ export class ScoreManager extends MapManager<string, Score> {
     public async fetchMany(options: FetchScoresOptions = {}): Promise<Score[]> {
         const path = Routes.userScores(this.user.id);
         const data = await this.client.rest.get(path, options);
-        return data.items.map((dt: Score.Entity) => this._add(dt));
+        return data.items.map((dt: APIScore) => this._add(dt));
     }
 }

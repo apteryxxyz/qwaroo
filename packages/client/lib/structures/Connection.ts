@@ -1,7 +1,4 @@
-import type {
-    APIConnection,
-    Connection as ConnectionEntity,
-} from '@qwaroo/types';
+import type { APIConnection } from '@qwaroo/types';
 import { Base } from './Base';
 import type { ConnectionManager } from '#/managers/ConnectionManager';
 
@@ -94,6 +91,5 @@ export class Connection extends Base implements APIConnection {
 }
 
 export namespace Connection {
-    export type Entity = ConnectionEntity;
-    export type Resolvable = Connection | Entity | string;
+    export type Resolvable = Connection | APIConnection | string;
 }

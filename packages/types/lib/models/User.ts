@@ -20,12 +20,12 @@ export interface User {
 }
 
 export namespace User {
-    export const Flags = {
-        None: 0,
-        Owner: 1 << 0,
-        Moderator: 1 << 1,
-        Creator: 1 << 2,
-        Verified: 1 << 3,
-        Disabled: 1 << 4,
-    };
+    export enum Flags {
+        None = 0,
+        Developer = 1 << 0,
+        Moderator = 1 << 1,
+        Verified = 1 << 2,
+        Creator = 1 << 3,
+        Disabled = 1 << 4,
+    }
 }

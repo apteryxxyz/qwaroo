@@ -1,4 +1,4 @@
-import { type FetchGamesOptions, Routes } from '@qwaroo/types';
+import { type APIGame, type FetchGamesOptions, Routes } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import type { Client } from '#/client/Client';
 import { Game } from '#/structures/Game';
@@ -17,7 +17,7 @@ export class GameManager<U extends boolean = boolean> //
         if (parent instanceof User) this.user = parent;
     }
 
-    private _add(data: Game.Entity) {
+    private _add(data: APIGame) {
         const existing = this.get(data.id);
 
         if (existing) {
@@ -67,6 +67,6 @@ export class GameManager<U extends boolean = boolean> //
             ? Routes.userGames(this.user.id)
             : Routes.games();
         const data = await this.client.rest.get(path, options);
-        return data.items.map((dt: Game.Entity) => this._add(dt));
+        return data.items.map((dt: APIGame) => this._add(dt));
     }
 }

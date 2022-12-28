@@ -1,4 +1,9 @@
-export function BitField<F extends Record<string, number>>(flags: F) {
+interface Enum<T> {
+    [id: string]: T | string;
+    [nu: number]: string;
+}
+
+export function BitField<F extends Enum<number>>(flags: F) {
     return class BitField {
         public static Flags = flags;
 
@@ -51,6 +56,22 @@ export function BitField<F extends Record<string, number>>(flags: F) {
             return Object.freeze(this);
         }
 
+        public toArray() {
+            return Object.keys(flags).filter(it => this.has(it));
+        }
+
+        public toJSON() {
+            return this.bitfield;
+        }
+
+        public valueOf() {
+            return this.bitfield;
+        }
+
+        public *[Symbol.iterator]() {
+            yield* this.toArray();
+        }
+
         public static resolve(bit: BitField.Resolvable<F>): number {
             if (typeof bit === 'number' && bit > 0) return bit;
 
@@ -61,7 +82,8 @@ export function BitField<F extends Record<string, number>>(flags: F) {
                     .map(BitField.resolve)
                     .reduce((prev, it) => prev | it, 0);
 
-            if (typeof bit === 'string' && bit in flags) return flags[bit];
+            if (typeof bit === 'string' && bit in flags)
+                return Number(flags[bit]);
 
             return 0;
         }
@@ -69,7 +91,7 @@ export function BitField<F extends Record<string, number>>(flags: F) {
 }
 
 export namespace BitField {
-    export type Resolvable<F extends Record<string, number>> =
+    export type Resolvable<F extends Enum<number>> =
         | number
         | keyof F
         | ReturnType<typeof BitField<F>>

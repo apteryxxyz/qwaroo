@@ -1,10 +1,10 @@
-import { type FetchUsersOptions, Routes } from '@qwaroo/types';
+import { type APIUser, type FetchUsersOptions, Routes } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import { User } from '#/structures/User';
 
 /** A manager for users. */
 export class UserManager extends MapManager<string, User> {
-    private _add(data: User.Entity) {
+    private _add(data: APIUser) {
         const existing = this.get(data.id);
 
         if (existing) {
@@ -34,6 +34,6 @@ export class UserManager extends MapManager<string, User> {
     /** Fetch many users. */
     public async fetchMany(options: FetchUsersOptions): Promise<User[]> {
         const data = await this.client.rest.get(Routes.users(), options);
-        return data.items.map((dt: User.Entity) => this._add(dt));
+        return data.items.map((dt: APIUser) => this._add(dt));
     }
 }

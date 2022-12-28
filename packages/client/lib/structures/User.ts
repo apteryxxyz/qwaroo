@@ -1,4 +1,5 @@
-import type { APIUser, User as UserEntity } from '@qwaroo/types';
+import { User as UserEntity } from '@qwaroo/types';
+import type { APIUser } from '@qwaroo/types';
 import { Base } from './Base';
 import type { Client } from '#/client/Client';
 import { ConnectionManager } from '#/managers/ConnectionManager';
@@ -119,6 +120,7 @@ export class User extends Base implements APIUser {
 }
 
 export namespace User {
-    export type Entity = UserEntity;
-    export type Resolvable = User | Entity | string;
+    export type Resolvable = User | APIUser | string;
+    export const Flags = UserEntity.Flags;
+    export type Flags = UserEntity.Flags;
 }

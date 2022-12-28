@@ -1,11 +1,15 @@
-import { type FetchGameItemsOptions, Routes } from '@qwaroo/types';
+import {
+    type FetchGameItemsOptions,
+    type Game as GameEntity,
+    Routes,
+} from '@qwaroo/types';
 import { ArrayManager } from './BaseManager';
 import type { Game } from '#/structures/Game';
 
 /** A manager for game items. */
 export class ItemManager<
-    M extends Game.Entity.Mode = Game.Entity.Mode
-> extends ArrayManager<Game.Entity.Item<M>> {
+    M extends GameEntity.Mode = GameEntity.Mode
+> extends ArrayManager<GameEntity.Item<M>> {
     /** The game the items belong to. */
     public game: Game;
     /** The unique seed to get a unique list of items. */
@@ -18,7 +22,7 @@ export class ItemManager<
         this.game = game;
     }
 
-    private _add(data: Game.Entity.Item<M>) {
+    private _add(data: GameEntity.Item<M>) {
         this.push(data);
         return data;
     }
@@ -33,12 +37,12 @@ export class ItemManager<
     /** Fetch many items. */
     public async fetchMany(
         options: FetchGameItemsOptions = {}
-    ): Promise<Game.Entity.Item<M>[]> {
+    ): Promise<GameEntity.Item<M>[]> {
         if (this.seed) options.seed = this.seed;
         const path = Routes.gameItems(this.game.id);
         const data = await this.client.rest.get(path, options);
         if (!this.seed) this.seed = data.seed;
         if (!this.total) this.total = data.total;
-        return data.items.map((dt: Game.Entity.Item<M>) => this._add(dt));
+        return data.items.map((dt: GameEntity.Item<M>) => this._add(dt));
     }
 }

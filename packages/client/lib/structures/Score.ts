@@ -1,4 +1,4 @@
-import type { APIScore, Score as ScoreEntity } from '@qwaroo/types';
+import type { APIScore } from '@qwaroo/types';
 import { Base } from './Base';
 import type { ScoreManager } from '#/managers/ScoreManager';
 
@@ -134,6 +134,5 @@ export class Score<H extends boolean = boolean>
 }
 
 export namespace Score {
-    export type Entity<H extends boolean = boolean> = ScoreEntity<H>;
-    export type Resolvable = Score | Entity | string;
+    export type Resolvable = Score | APIScore | string;
 }
