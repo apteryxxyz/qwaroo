@@ -14,7 +14,7 @@ export function CountUpNumber({
     startValue = 0,
     endValue,
     animationDuration = 1_000,
-    decimalPlaces = endValue.toString().split('.')[1]?.length ?? 0,
+    decimalPlaces = Math.min(endValue.toString().split('.')[1]?.length ?? 0, 3),
     format = (value: number) =>
         value.toLocaleString(undefined, {
             minimumFractionDigits: decimalPlaces,
