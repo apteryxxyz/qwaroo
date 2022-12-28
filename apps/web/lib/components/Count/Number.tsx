@@ -5,6 +5,7 @@ export namespace CountUpNumber {
         startValue?: number;
         endValue: number;
         animationDuration?: number;
+        decimalPlaces?: number;
         format?(value: number): string;
     }
 }
@@ -12,9 +13,13 @@ export namespace CountUpNumber {
 export function CountUpNumber({
     startValue = 0,
     endValue,
-    animationDuration = endValue > 10 ? 1_000 : 500,
+    animationDuration = 1_000,
+    decimalPlaces = endValue.toString().split('.')[1]?.length ?? 0,
     format = (value: number) =>
-        endValue > 10 ? value.toLocaleString() : value.toFixed(1),
+        value.toLocaleString(undefined, {
+            minimumFractionDigits: decimalPlaces,
+            maximumFractionDigits: decimalPlaces,
+        }),
 }: CountUpNumber.Props) {
     const frameDuration = 1_000 / 30;
     const totalFrames = Math.round(animationDuration / frameDuration);
@@ -23,13 +28,11 @@ export function CountUpNumber({
 
     useEffect(() => {
         let frame = 0;
+
         const counter = setInterval(() => {
             frame++;
             const progress = easeOutQuad(frame / totalFrames);
-            const currentCount =
-                endValue < 100
-                    ? endValue * progress
-                    : Math.round(endValue * progress);
+            const currentCount = endValue * progress;
 
             if (count !== currentCount) {
                 setCount(currentCount);
@@ -39,7 +42,9 @@ export function CountUpNumber({
                 clearInterval(counter);
                 setCount(endValue);
             }
-        }, frameDuration);
+        });
+
+        return () => clearInterval(counter);
     }, []);
 
     return <>{format(count)}</>;
