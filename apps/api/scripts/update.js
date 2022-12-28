@@ -24,7 +24,7 @@ async function ensureGameItems() {
     await Promise.all(games.map(async gm => {
         if (!gm.sourceSlug || !gm.sourceOptions) return;
         if (verbose) console.info(`Ensuring items for "${gm.title}" using "${gm.sourceSlug}"...`);
-        await fetchAndSaveItems(gm.slug, gm.sourceSlug, gm.sourceOptions, verbose);
+        await fetchAndSaveItems(gm.slug, gm.mode, gm.sourceSlug, gm.sourceOptions, verbose);
         if (verbose) console.info(`Done ensuring items for "${gm.title}"!`)
     }));
 }
