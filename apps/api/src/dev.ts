@@ -12,7 +12,7 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'imdb-search-results',
+        sourceSlug: 'imdb-advanced-search',
         sourceOptions: {
             titleType: 'feature',
             sortParameter: 'moviemeter',
@@ -36,7 +36,7 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'imdb-search-results',
+        sourceSlug: 'imdb-advanced-search',
         sourceOptions: {
             titleType: 'video_game',
             sortParameter: 'moviemeter',
@@ -63,7 +63,7 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'imdb-search-results',
+        sourceSlug: 'imdb-advanced-search',
         sourceOptions: {
             titleType: 'tv_series',
             sortParameter: 'moviemeter',

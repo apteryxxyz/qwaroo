@@ -1,5 +1,5 @@
 import { source as GTAFandomTable } from './GTAFandomTable';
-import { source as IMDbSearch } from './IMDbSearch';
+import { source as IMDbSearch } from './IMDbAdvancedSearch';
 import { source as WikipediaTable } from './WikipediaTable';
 import { source as YouTubeChannelVideoViews } from './YouTubeChannelVideoViews';
 

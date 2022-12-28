@@ -30,7 +30,7 @@ export interface Options {
 
 export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
-    ...Source.meta('IMDb Search Results', ''),
+    ...Source.meta('IMDb Advanced Search', ''),
 
     props: {
         titleType: {
@@ -104,6 +104,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
             title_type: titleType,
             sort: `${sortParameter},${sortDirection}`,
             view: 'advanced',
+            count: '250',
         }).toString();
 
         const $ = await _fetchCheerio(url.toString());
