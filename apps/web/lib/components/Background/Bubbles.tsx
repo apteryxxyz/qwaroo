@@ -27,7 +27,7 @@ function Bubble({ index, count }: { index: number; count: number }) {
         setDelay(rand(-5, 0));
     }, []);
 
-    return <span
+    return <div
         style={{
             width: `${size}px`,
             height: `${size}px`,
@@ -37,5 +37,5 @@ function Bubble({ index, count }: { index: number; count: number }) {
         }}
         className={`bg-qwaroo-gradient dark:bg-white
             opacity-50 dark:opacity-20 ${styles['bubble']}`}
-    ></span>;
+    ></div>;
 }

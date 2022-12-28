@@ -24,12 +24,18 @@ const providerIconMap = {
     github: faGithub,
 } as const;
 
+const providerNameMap = {
+    discord: 'Discord',
+    reddit: 'Reddit',
+    github: 'GitHub',
+};
+
 const badgeIconMap = {
     Developer: faCode,
     Moderator: faHammer,
     Verified: faCheck,
     Creator: faPalette,
-};
+} as const;
 
 export default ({
     id,
@@ -86,110 +92,98 @@ export default ({
         {!user && <Loading />}
 
         {user && <div className="flex flex-col gap-3">
-            <h1 className="font-bold text-3xl">User Profile</h1>
+            <section>
+                <h2 className="font-bold text-3xl">User Profile</h2>
 
-            <div className="flex gap-3 p-3 bg-white dark:bg-neutral-800 rounded-xl">
-                {/* Information */}
+                <div className="flex gap-3 p-3 bg-white dark:bg-neutral-800 rounded-xl">
+                    {/* Information */}
 
-                <picture>
-                    <img
-                        className="rounded-xl aspect-square"
-                        src={user.avatarUrl}
-                        alt={`${displayName}'s avatar`}
-                        width={128}
-                        height={128}
-                    />
-                </picture>
+                    <picture>
+                        <img
+                            className="rounded-xl aspect-square"
+                            src={user.avatarUrl}
+                            alt={`${displayName}'s avatar`}
+                            title={`${displayName}'s avatar`}
+                            width={128}
+                            height={128}
+                        />
+                    </picture>
 
-                <div className="flex flex-col justify-center">
-                    <span className="flex items-center">
-                        <h1 className="text-3xl font-bold text-qwaroo-400">
-                            {displayName}
-                        </h1>
+                    <div className="flex flex-col justify-center">
+                        <span className="flex items-center">
+                            <h3 className="text-3xl font-bold text-qwaroo-400">
+                                {displayName}
+                            </h3>
 
-                        {user.flags
-                            .toArray()
-                            .filter(
-                                (flag): flag is keyof typeof badgeIconMap =>
-                                    flag in badgeIconMap
-                            )
-                            .map(flag => <FontAwesomeIcon
-                                key={flag}
-                                icon={badgeIconMap[flag]}
-                                title={flag}
-                                className="bg-qwaroo-gradient rounded-full text-white text-lg aspect-square ml-2 p-[0.3rem]"
-                                // className="bg-qwaroo-gradient rounded-full text-white text-xl ml-2 aspect-square p-1"
-                            />)}
-                    </span>
+                            {user.flags
+                                .toArray()
+                                .filter(
+                                    (flag): flag is keyof typeof badgeIconMap =>
+                                        flag in badgeIconMap
+                                )
+                                .map(flag => <FontAwesomeIcon
+                                    key={flag}
+                                    icon={badgeIconMap[flag]}
+                                    title={flag}
+                                    className="bg-qwaroo-gradient rounded-full text-white text-lg aspect-square ml-2 p-[0.3rem]"
+                                    // className="bg-qwaroo-gradient rounded-full text-white text-xl ml-2 aspect-square p-1"
+                                />)}
+                        </span>
 
-                    <span>
-                        Joined {user.joinedAt.toLocaleDateString()}, about{' '}
-                        {ms(Date.now() - user.joinedAt.getTime(), {
-                            roundUp: true,
-                        })}{' '}
-                        ago
-                    </span>
+                        <p>
+                            Joined {user.joinedAt.toLocaleDateString()}, about{' '}
+                            {ms(Date.now() - user.joinedAt.getTime(), {
+                                roundUp: true,
+                            })}{' '}
+                            ago
+                            {connection && <span>
+                                <br />
+                                via{' '}
+                                <FontAwesomeIcon
+                                    title={
+                                        providerNameMap[connection.providerName]
+                                    }
+                                    icon={
+                                        providerIconMap[connection.providerName]
+                                    }
+                                />{' '}
+                                as {connection.accountUsername}
+                            </span>}
+                            .
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-                    {connection && <span>
-                        via{' '}
-                        <FontAwesomeIcon
-                            icon={providerIconMap[connection.providerName]}
-                        />{' '}
-                        as {connection.accountUsername}
-                    </span>}
+            <section>
+                <h2 className="font-bold text-3xl">Game Statistics</h2>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {/* Statistics */}
+
+                    {getStatistics().map(([name, value]) => <StatisticCard
+                        key={name}
+                        value={value}
+                        description={name}
+                        formatNumber={
+                            name === 'Total Time Played'
+                                ? v => ms(v, { shortFormat: true }) ?? '0s'
+                                : undefined
+                        }
+                    />)}
                 </div>
 
-                {/* {user.id ===
-                    client.id && <div className="flex flex-col ml-auto p-1 border border-red-500 rounded-xl">
-                    <span className="font-bold text-red-500 text-center">
-                        DANGER ZONE
-                    </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {/* Per Game Statistics */}
 
-                    <div className="flex flex-col gap-1 text-white h-full items-center justify-center">
-                        <Button
-                            className="!bg-red-500 !w-full"
-                            onClick={() => ''}
-                        >
-                            Logout Everywhere
-                        </Button>
-
-                        <Button
-                            className="!bg-red-500 !w-full"
-                            onClick={() => ''}
-                        >
-                            Delete Account
-                        </Button>
-                    </div>
-                </div>} */}
-            </div>
-
-            <h2 className="font-bold text-3xl">Game Statistics</h2>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {/* Statistics */}
-
-                {getStatistics().map(([name, value]) => <StatisticCard
-                    key={name}
-                    value={value}
-                    description={name}
-                    formatNumber={
-                        name === 'Total Time Played'
-                            ? v => ms(v, { shortFormat: true }) ?? '0s'
-                            : undefined
-                    }
-                />)}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {/* Per Game Statistics */}
-
-                {scores.map(score => <HighscoreCard
-                    key={score.gameId}
-                    score={score}
-                    game={client.games.get(score.gameId)!}
-                    isMe={user.id === client.id}
-                />)}
-            </div>
+                    {scores.map(score => <HighscoreCard
+                        key={score.gameId}
+                        score={score}
+                        game={client.games.get(score.gameId)!}
+                        isMe={user.id === client.id}
+                    />)}
+                </div>
+            </section>
 
             {/* TODO: Show this users created games */}
         </div>}

@@ -31,7 +31,9 @@ export default () => {
                     back_to: backTo,
                 });
 
-                void router.push(backTo).then(() => router.reload());
+                void router //
+                    .push(backTo)
+                    .then(() => router.reload());
             } else {
                 void router.push('/');
             }
@@ -43,7 +45,3 @@ export default () => {
         <Loading />
     </>;
 };
-
-/*
-
-*/

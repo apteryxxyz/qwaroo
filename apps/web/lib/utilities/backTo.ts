@@ -1,8 +1,8 @@
 import { useWebUrl } from '#/hooks/useEnv';
 
 export function setBackTo(url?: string) {
-    const errors = document.querySelector('div[id^="error-"]');
-    if (!url && errors) return;
+    const error = document.querySelector('div[id^="error-"]');
+    if (!url && error) return;
 
     const backTo = url ?? window.location.href;
     const backPath = new URL(backTo, useWebUrl()).pathname;

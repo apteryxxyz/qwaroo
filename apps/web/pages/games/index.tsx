@@ -73,7 +73,7 @@ export default () => {
         })();
     }, [query]);
 
-    return <>
+    return <section>
         <PageSeo
             title="Games"
             description="A collection of fun guessing and statistics based browser games.
@@ -82,10 +82,10 @@ export default () => {
             url="/games"
         />
 
-        <h1 className="font-bold text-3xl">Game Modes</h1>
+        <h2 className="font-bold text-3xl">Game Modes</h2>
 
         {/* Filter bar */}
-        <div className="flex flex-wrap gap-1 my-3">
+        <section className="flex flex-wrap gap-1 my-3 items-center">
             <div className="flex flex-wrap gap-1 [&>*]:shadow-lg [&>*]:flex-grow">
                 {(categories ?? []).map(category => <Button
                     whileActive="bg-qwaroo-400 dark:bg-qwaroo-400
@@ -146,7 +146,7 @@ export default () => {
                 </div>
             </div>
 
-            <div className="flex gap-1 [&>*]:shadow-lg">
+            <div className="flex gap-1 w-full [&>*]:shadow-lg [&>*:first-child]:w-full">
                 <Textbox
                     placeHolder="Search"
                     iconProp={faSearch}
@@ -183,15 +183,12 @@ export default () => {
                     }}
                     ariaLabel="Share search"
                 />
-                {/* </div>
-
-            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg"> */}
             </div>
-        </div>
+        </section>
 
         {isLoading && <Loading />}
 
-        {!isLoading && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {!isLoading && <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {games.map(
                 game =>
                     // If a game doesnt have items, exclude it from results
@@ -228,7 +225,7 @@ export default () => {
                     className="flex flex-col justify-end w-full min-h-[30%] mt-auto p-3
                         bg-qwaroo-gradient-to-t from-black to-transparent rounded-b-xl"
                 >
-                    <h2 className="text-1.5xl font-semibold">Suggest A Game</h2>
+                    <h3 className="text-1.5xl font-semibold">Suggest A Game</h3>
 
                     <p className="overflow-hidden">
                         Have an idea for a game? Click here to join the Discord
@@ -236,6 +233,6 @@ export default () => {
                     </p>
                 </div>
             </Link>
-        </div>}
-    </>;
+        </section>}
+    </section>;
 };

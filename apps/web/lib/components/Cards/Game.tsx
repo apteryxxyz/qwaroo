@@ -75,11 +75,11 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
                 </span>}
         </div>
 
-        <div
+        <section
             className="flex flex-col justify-end w-full min-h-[40%] mt-auto p-3
                 bg-gradient-to-t from-black to-transparent rounded-b-xl"
         >
-            <h2 className="text-1.5xl font-semibold">{game.title}</h2>
+            <h3 className="text-1.5xl font-semibold">{game.title}</h3>
             <p className="overflow-hidden">{game.shortDescription}</p>
 
             <span className="flex text-sm">
@@ -98,6 +98,6 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
                     </object>
                 </>}
             </span>
-        </div>
+        </section>
     </Link>;
 }

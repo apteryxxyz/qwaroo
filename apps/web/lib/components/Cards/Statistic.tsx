@@ -14,7 +14,9 @@ export function StatisticCard({
     description,
     formatNumber,
 }: StatisticCard.Props) {
-    return <div className="flex flex-col items-center justify-center p-6 rounded-xl bg-white dark:bg-neutral-800">
+    return <section className="flex flex-col items-center justify-center p-6 rounded-xl bg-white dark:bg-neutral-800">
+        <h3 className="text-center">{description}</h3>
+
         <span className="text-2xl font-semibold">
             {typeof value === 'number' ? (
                 <CountUpNumber endValue={value} format={formatNumber} />
@@ -22,7 +24,5 @@ export function StatisticCard({
                 <CountUpString endValue={value} />
             )}
         </span>
-
-        <p className="text-center">{description}</p>
-    </div>;
+    </section>;
 }

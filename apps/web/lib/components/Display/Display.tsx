@@ -30,20 +30,20 @@ export function Display(props: Display.Props) {
         style={{ ...props.style }}
     >
         <div className="flex flex-col gap-3 mx-auto">
-            <div>
-                {props.header && <h2 className="text-qwaroo-400 text-xl font-bold">
+            <section>
+                {props.header && <h3 className="text-qwaroo-400 text-xl font-bold">
                     {props.header}
-                </h2>}
+                </h3>}
 
                 <span className="flex items-baseline">
-                    <h1 className="text-3xl font-bold">{props.title}</h1>
+                    <h2 className="text-3xl font-bold">{props.title}</h2>
                     {props.title === 'Loading' && <div
                         className={`ml-5 ${styles['dot-flashing']}`}
                     ></div>}
                 </span>
 
                 <p className="max-w-[600px]">{props.description}</p>
-            </div>
+            </section>
 
             <div className="flex flex-row flex-wrap gap-3">
                 {props.showGoHome && <Button onClick={() => router.push('/')}>

@@ -12,27 +12,32 @@ export namespace HighscoreCard {
 }
 
 export function HighscoreCard({ game, score, isMe }: HighscoreCard.Props) {
-    return <div className="flex p-6 rounded-xl bg-white dark:bg-neutral-800">
+    const imageUrl = new URL('https://wsrv.nl');
+    imageUrl.searchParams.set('url', game.thumbnailUrl);
+    imageUrl.searchParams.set('q', '20');
+
+    return <section className="flex p-6 rounded-xl bg-white dark:bg-neutral-800">
         <picture className="hidden sm:block md:hidden lg:block">
             <img
-                src={game.thumbnailUrl}
+                src={imageUrl.toString()}
+                alt={`Thumbnail of ${game.title}`}
                 className="w-32 h-32 object-cover rounded-xl"
             />
         </picture>
 
         <div className="flex flex-col ml-5 justify-center">
-            <h5 className="text-xl font-semibold">{game.title}</h5>
+            <h3 className="text-xl font-semibold">{game.title}</h3>
 
             <span className="text-2xl font-semibold">
                 Highscore of {score.highScore ?? 0}
             </span>
 
-            <span>
+            <p>
                 {isMe ? 'You' : 'They'} played {score.totalPlays} time
                 {score.totalPlays === 1 ? '' : 's'} over{' '}
                 {ms(score.totalTime, { shortFormat: true })},{' '}
                 {isMe ? 'your' : 'their'} total score is {score.totalScore}.
-            </span>
+            </p>
         </div>
 
         <PlainButton
@@ -40,5 +45,5 @@ export function HighscoreCard({ game, score, isMe }: HighscoreCard.Props) {
             linkProps={{ href: `/games/${game.slug}` }}
             iconProp={faPlay}
         />
-    </div>;
+    </section>;
 }

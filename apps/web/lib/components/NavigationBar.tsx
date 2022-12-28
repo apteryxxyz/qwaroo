@@ -126,7 +126,7 @@ export function NavigationBar() {
             id="banner-bar"
             className="z-20 bg-qwaroo-gradient shadow-xl text-white"
         >
-            <div className="max-w-8xl w-full items-center mx-auto p-2 text-center">
+            <p className="max-w-8xl w-full items-center mx-auto p-2 text-center">
                 Qwaroo is still in its early stages, if you find any bugs or
                 have any suggestions, please let me know over on the{' '}
                 <Link
@@ -137,7 +137,7 @@ export function NavigationBar() {
                     Discord
                 </Link>
                 .
-            </div>
+            </p>
         </div>
 
         <div className="z-30">
