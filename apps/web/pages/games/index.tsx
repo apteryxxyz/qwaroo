@@ -84,7 +84,7 @@ export default () => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap gap-1 my-3">
-            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg">
+            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg [&>*]:flex-grow">
                 {(categories ?? []).map(category => <Button
                     whileActive="bg-qwaroo-400 dark:bg-qwaroo-400
                     text-white hover:brightness-125 hover:bg-qwaroo-400"
@@ -110,9 +110,41 @@ export default () => {
                 >
                     {category}
                 </Button>)}
+
+                <div className="flex flex-row gap-1 [&>*:first-child]:w-full !shadow-none [&>*]:shadow-lg">
+                    <Dropdown
+                        className="!w-full"
+                        options={[
+                            { label: 'Most Played', value: 'totalPlays' },
+                            {
+                                label: 'Recently Updated',
+                                value: 'updatedTimestamp',
+                            },
+                        ]}
+                        currentValue={query?.sort ?? 'totalPlays'}
+                        onChange={(value: 'totalPlays') =>
+                            setQuery(q => ({ ...q, sort: value }))
+                        }
+                    />
+
+                    <Button
+                        iconProp={
+                            query?.order === 'asc'
+                                ? faSortAmountAsc
+                                : faSortAmountDesc
+                        }
+                        onClick={() =>
+                            setQuery((q = {}) => ({
+                                ...q,
+                                order: q!.order === 'asc' ? 'desc' : 'asc',
+                            }))
+                        }
+                        ariaLabel="Change sort order"
+                    />
+                </div>
             </div>
 
-            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg">
+            <div className="flex gap-1 [&>*]:shadow-lg">
                 <Textbox
                     placeHolder="Search"
                     iconProp={faSearch}
@@ -149,38 +181,9 @@ export default () => {
                     }}
                     ariaLabel="Share search"
                 />
-            </div>
+                {/* </div>
 
-            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg">
-                <Dropdown
-                    className="w-[200px]"
-                    options={[
-                        { label: 'Most Played', value: 'totalPlays' },
-                        {
-                            label: 'Recently Updated',
-                            value: 'updatedTimestamp',
-                        },
-                    ]}
-                    currentValue={query?.sort ?? 'totalPlays'}
-                    onChange={(value: 'totalPlays') =>
-                        setQuery(q => ({ ...q, sort: value }))
-                    }
-                />
-
-                <Button
-                    iconProp={
-                        query?.order === 'asc'
-                            ? faSortAmountAsc
-                            : faSortAmountDesc
-                    }
-                    onClick={() =>
-                        setQuery((q = {}) => ({
-                            ...q,
-                            order: q!.order === 'asc' ? 'desc' : 'asc',
-                        }))
-                    }
-                    ariaLabel="Change sort order"
-                />
+            <div className="flex flex-wrap gap-1 [&>*]:shadow-lg"> */}
             </div>
         </div>
 
