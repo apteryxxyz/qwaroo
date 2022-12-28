@@ -28,10 +28,10 @@ export default () => {
                 emitEvent('sign_in', {
                     user_id: id,
                     method,
+                    back_to: backTo,
                 });
 
-                router.reload();
-                void router.push(backTo);
+                void router.push(backTo).then(() => router.reload());
             } else {
                 void router.push('/');
             }
@@ -43,3 +43,7 @@ export default () => {
         <Loading />
     </>;
 };
+
+/*
+
+*/

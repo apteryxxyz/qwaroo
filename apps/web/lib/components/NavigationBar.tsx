@@ -21,7 +21,6 @@ export function NavigationBar() {
     const { theme, setTheme } = useTheme();
 
     const [isMounted, setIsMounted] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState<string | undefined>(undefined);
 
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -32,11 +31,8 @@ export function NavigationBar() {
     }, []);
 
     useEffect(() => {
-        if (client.isLoggedIn() !== isLoggedIn) {
-            setIsLoggedIn(client.isLoggedIn());
-            setUserId(client.id ?? undefined);
-        }
-    }, [client.isLoggedIn()]);
+        if (client.id !== userId) setUserId(client.id);
+    }, [client.id]);
 
     if (!isMounted) return null;
     return <>
@@ -98,7 +94,7 @@ export function NavigationBar() {
                         Profile
                     </PlainButton>
 
-                    {!isLoggedIn && <PlainButton
+                    {!userId && <PlainButton
                         className="hover:text-qwaroo-400"
                         iconProp={faSignIn}
                         onClick={() => setIsLoginModalOpen(true)}
@@ -106,7 +102,7 @@ export function NavigationBar() {
                         Login
                     </PlainButton>}
 
-                    {isLoggedIn && <PlainButton
+                    {userId && <PlainButton
                         className="hover:text-qwaroo-400"
                         iconProp={faSignOut}
                         onClick={() => setIsLogoutModalOpen(true)}
