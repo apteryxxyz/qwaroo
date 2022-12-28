@@ -17,7 +17,10 @@ export function StatisticCard({
     return <div className="flex flex-col items-center justify-center p-6 rounded-xl bg-white dark:bg-neutral-800">
         <span className="text-2xl font-semibold">
             {typeof value === 'number' ? (
-                <CountUpNumber endValue={value} format={formatNumber} />
+                <CountUpNumber
+                    endValue={value}
+                    format={formatNumber ?? (v => v.toString())}
+                />
             ) : (
                 <CountUpString endValue={value} />
             )}
