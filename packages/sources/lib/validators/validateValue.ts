@@ -10,7 +10,11 @@ export type ValidateArgs = [
 function _verifyValue(...args: ValidateArgs) {
     const [record, prop, value, options] = args;
 
-    if (value && !options.options?.find(opt => opt.value === value))
+    if (
+        value &&
+        options.options &&
+        !options.options?.find(opt => opt.value === value)
+    )
         throw new Error(`Invalid option for "${prop}": ${String(value)}`);
 
     if (value && options.validate) {
@@ -63,21 +67,23 @@ export function validateBoolean(...args: ValidateArgs) {
 }
 
 export function validateArray(...args: ValidateArgs) {
-    const value = _verifyValue(...args);
-    if (value === undefined) return undefined;
-
-    if (!Array.isArray(value))
-        throw new Error(`Invalid array for "${args[1]}": ${String(value)}`);
-    return value as unknown[];
+    if (!Array.isArray(args[2]))
+        throw new Error(`Invalid array for "${args[1]}": ${String(args[2])}`);
+    return args[2];
 }
 
 export function validateValue(...args: ValidateArgs): unknown {
+    console.log(args);
+
     if (Array.isArray(args[3].type)) {
         const array = validateArray(...args);
         if (array === undefined) return [] as const;
         return array.map(
             (value: unknown) =>
-                validateValue(args[0], args[1], value, args[3]) as unknown
+                validateValue(args[0], args[1], value, {
+                    ...args[3],
+                    type: args[3].type[0] as Source.Prop.Type,
+                }) as unknown
         );
     }
 
