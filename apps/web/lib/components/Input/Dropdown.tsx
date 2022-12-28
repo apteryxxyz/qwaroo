@@ -42,7 +42,7 @@ export function Dropdown(props: Dropdown.Props) {
     return <div className="dropdown">
         <Button
             disableDefaultStyles={props.disableDefaultStyles}
-            className={props.className}
+            className={`min-w-[200px] ${props.className}`}
             isDisabled={props.isDisabled}
             onClick={() => toggleHover()}
             iconProp={isHover ? faChevronUp : faChevronDown}
