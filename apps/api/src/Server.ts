@@ -17,7 +17,8 @@ export class Server {
     /** Make the server listen. */
     public async listen() {
         this.app.use(cors({ origin: process.env['WEB_URL']! }));
-        this.app.use(useRateLimiter());
+        if (process.env['NODE_ENV'] === 'production')
+            this.app.use(useRateLimiter());
 
         this.app.use(require('./routes/auth').default());
         this.app.use(require('./routes/games').default());
