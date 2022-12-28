@@ -144,6 +144,7 @@ importers:
       '@types/react': ^18.0.26
       '@types/react-dom': ^18.0.9
       autoprefixer: ^10.4.13
+      cross-env: ^7.0.3
       enhanced-ms: ^2.2.0
       eslint: ^8.28.0
       eslint-config-apteryx: ^2.0.2
@@ -159,6 +160,7 @@ importers:
       prettier-config-apteryx: ^2.0.2
       react: ^18.2.0
       react-dom: ^18.2.0
+      rimraf: ^3.0.2
       tailwindcss: ^3.2.4
       typescript: ^4.9.3
     dependencies:
@@ -187,11 +189,13 @@ importers:
       '@types/gtag.js': 0.0.12
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
+      cross-env: 7.0.3
       eslint: 8.29.0
       eslint-config-apteryx: 2.0.4
       next-sitemap: 3.1.43_jdkzhavjz25nuekaaa6rmvh2fe
       prettier: 2.8.1
       prettier-config-apteryx: 2.0.3
+      rimraf: 3.0.2
       typescript: 4.9.4
 
   packages/client:
@@ -4539,6 +4543,14 @@ packages:
 
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/7.0.3:

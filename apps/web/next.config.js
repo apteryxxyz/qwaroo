@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 let nextConfig = {
-    // output: 'standalone',
+    distDir: process.env['BUILD_DIR'] ?? '.next',
     reactStrictMode: false,
     poweredByHeader: false,
     swcMinify: true,
