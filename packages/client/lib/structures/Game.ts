@@ -7,6 +7,7 @@ import {
 import { Base } from './Base';
 import type { GameManager } from '#/managers/GameManager';
 import { ItemManager } from '#/managers/ItemManager';
+import { GameFlagsBitField } from '#/utilities/GameFlagsBitField';
 
 /** A game. */
 export class Game<M extends GameEntity.Mode = GameEntity.Mode>
@@ -20,6 +21,8 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     public creatorId!: string;
     public sourceSlug?: string;
     public sourceOptions?: Record<string, unknown>;
+    public publicFlags!: number;
+    public flags!: GameFlagsBitField;
     public mode!: M;
     public title!: string;
     public shortDescription!: string;
@@ -51,6 +54,11 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
 
         if (data.sourceSlug) this.sourceSlug = data.sourceSlug;
         if (data.sourceOptions) this.sourceOptions = data.sourceOptions;
+
+        if (data.publicFlags !== undefined) {
+            this.publicFlags = data.publicFlags;
+            this.flags = new GameFlagsBitField(data.publicFlags);
+        }
 
         if (data.mode) this.mode = data.mode;
         if (data.title) this.title = data.title;

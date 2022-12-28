@@ -4,9 +4,12 @@ import type { Client } from '#/client/Client';
 import { ConnectionManager } from '#/managers/ConnectionManager';
 import { GameManager } from '#/managers/GameManager';
 import { ScoreManager } from '#/managers/ScoreManager';
+import { UserFlagsBitField } from '#/utilities/UserFlagsBitField';
 
 /** A user. */
 export class User extends Base implements APIUser {
+    public publicFlags!: number;
+    public flags!: UserFlagsBitField;
     public displayName!: string;
     public avatarUrl!: string;
     public joinedTimestamp!: number;
@@ -22,6 +25,12 @@ export class User extends Base implements APIUser {
 
     public override _patch(data: Partial<User.Entity> & { id: string }) {
         if (data.id) this.id = data.id;
+
+        if (data.publicFlags !== undefined) {
+            this.publicFlags = data.publicFlags;
+            this.flags = new UserFlagsBitField(data.publicFlags);
+        }
+
         if (data.displayName) this.displayName = data.displayName;
         if (data.avatarUrl) this.avatarUrl = data.avatarUrl;
         if (data.joinedTimestamp) this.joinedTimestamp = data.joinedTimestamp;

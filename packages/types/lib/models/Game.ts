@@ -15,6 +15,9 @@ export interface Game<M extends Game.Mode = Game.Mode> {
     /** Options to pass to the generator. */
     sourceOptions?: Record<string, unknown>;
 
+    /** The flags for this game. */
+    publicFlags: number;
+
     /** What mode this game is. */
     mode: M;
     /** A title for this game. */
@@ -29,9 +32,6 @@ export interface Game<M extends Game.Mode = Game.Mode> {
     categories: string[];
     /** Data for the game, such as strings. */
     data: Game.Data<M>;
-
-    /** The flags for this game. */
-    flags: number;
 
     /** The total score. */
     totalScore: number;
@@ -53,10 +53,10 @@ export namespace Game {
         HigherOrLower = 'higher-or-lower',
     }
 
-    export enum Flag {
-        None = 0,
-        Approved = 1 << 0,
-    }
+    export const Flags = {
+        None: 0,
+        Approved: 1 << 0,
+    };
 
     /** Game data structure. */
     export type Data<M extends Mode = Mode> = M extends Mode.HigherOrLower

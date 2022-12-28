@@ -5,13 +5,13 @@ export interface User {
     /** Reset this token to revoke all created tokens. */
     revokeToken: string;
 
+    /** The flags for this user. */
+    publicFlags: number;
+
     /** A display name, does not need to be unique. */
     displayName: string;
     /** A URL to the users avatar. */
     avatarUrl: string;
-
-    /** The flags for this user. */
-    flags: number;
 
     /** The timestamp when this user joined. */
     joinedTimestamp: number;
@@ -20,12 +20,12 @@ export interface User {
 }
 
 export namespace User {
-    export enum Flag {
-        None = 0,
-        Owner = 1 << 0,
-        Moderator = 1 << 1,
-        Creator = 1 << 2,
-        Verified = 1 << 3,
-        Disabled = 1 << 4,
-    }
+    export const Flags = {
+        None: 0,
+        Owner: 1 << 0,
+        Moderator: 1 << 1,
+        Creator: 1 << 2,
+        Verified: 1 << 3,
+        Disabled: 1 << 4,
+    };
 }

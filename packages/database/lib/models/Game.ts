@@ -47,6 +47,13 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
             type: Schema.Types.Mixed,
         },
 
+        // Flags
+        publicFlags: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+
         // Information
         mode: {
             type: String,
@@ -86,13 +93,6 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
         data: {
             type: Schema.Types.Mixed,
             required: true,
-        },
-
-        // Flags
-        flags: {
-            type: Number,
-            required: true,
-            default: 0,
         },
 
         // Statistics

@@ -29,6 +29,13 @@ export interface UserModel extends Model<UserEntity, {}, UserMethods> {}
 
 const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
     {
+        // Flags
+        publicFlags: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+
         // Information
         displayName: {
             type: String,
@@ -40,13 +47,6 @@ const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
             type: String,
             required: true,
             match: Validate.AvatarURL,
-        },
-
-        // Flags
-        flags: {
-            type: Number,
-            required: true,
-            default: 0,
         },
 
         // Security
