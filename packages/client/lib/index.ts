@@ -16,3 +16,8 @@ export * from './structures/Connection';
 export * from './structures/Game';
 export * from './structures/Score';
 export * from './structures/User';
+
+// Utilities
+export * from './utilities/BitField';
+export * from './utilities/GameFlagsBitField';
+export * from './utilities/UserFlagsBitField';

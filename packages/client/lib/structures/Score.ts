@@ -1,62 +1,52 @@
-import type { Score as ScoreEntity } from '@qwaroo/types';
+import type { APIScore, Score as ScoreEntity } from '@qwaroo/types';
 import { Base } from './Base';
 import type { ScoreManager } from '#/managers/ScoreManager';
 
 /** A game score. */
 export class Score<H extends boolean = boolean>
     extends Base
-    implements Score.Entity<H>
+    implements APIScore
 {
     /** The manager of the score. */
     public scores: ScoreManager;
 
     public userId!: string;
     public gameId!: string;
+
     public highScore!: H extends true ? number : undefined;
     public highScoreTime!: H extends true ? number : undefined;
     public highScoreTimestamp!: H extends true ? number : undefined;
+
     public totalScore!: number;
     public totalTime!: number;
     public totalPlays!: number;
+
     public firstPlayedTimestamp!: number;
     public lastPlayedTimestamp!: number;
 
-    public constructor(
-        scores: ScoreManager,
-        data: Partial<ScoreEntity> & { id: string }
-    ) {
+    public constructor(scores: ScoreManager, data: APIScore) {
         super(scores.client, data);
         this.scores = scores;
         this._patch(data);
     }
 
-    public override _patch(data: Partial<ScoreEntity> & { id: string }) {
-        if (data.id) this.id = data.id;
-        if (data.userId) this.userId = data.userId;
-        if (data.gameId) this.gameId = data.gameId;
+    public override _patch(data: APIScore) {
+        this.userId = data.userId;
+        this.gameId = data.gameId;
 
-        if (data.highScore)
-            this.highScore = data.highScore as H extends true
-                ? number
-                : undefined;
-        if (data.highScoreTime)
-            this.highScoreTime = data.highScoreTime as H extends true
-                ? number
-                : undefined;
-        if (data.highScoreTimestamp)
-            this.highScoreTimestamp = data.highScoreTimestamp as H extends true
-                ? number
-                : undefined;
+        type T = H extends true ? number : undefined;
+        this.highScore = data.highScore as T;
+        this.highScoreTime = data.highScoreTime as T;
+        this.highScoreTimestamp = data.highScoreTimestamp as T;
 
-        if (data.totalScore) this.totalScore = data.totalScore;
-        if (data.totalTime) this.totalTime = data.totalTime;
-        if (data.totalPlays) this.totalPlays = data.totalPlays;
-        if (data.firstPlayedTimestamp)
-            this.firstPlayedTimestamp = data.firstPlayedTimestamp;
-        if (data.lastPlayedTimestamp)
-            this.lastPlayedTimestamp = data.lastPlayedTimestamp;
+        this.totalScore = data.totalScore;
+        this.totalTime = data.totalTime;
+        this.totalPlays = data.totalPlays;
 
-        return data;
+        this.firstPlayedTimestamp = data.firstPlayedTimestamp;
+        this.lastPlayedTimestamp = data.lastPlayedTimestamp;
+
+        return super._patch(data);
     }
 
     /** Check if the score has been fetched. */
@@ -81,19 +71,19 @@ export class Score<H extends boolean = boolean>
         return new Date(this.lastPlayedTimestamp);
     }
 
-    public override equals(other: Score | Score.Entity) {
+    public override equals(other: Score | APIScore) {
         return (
-            other.id === this.id &&
-            other.userId === this.userId &&
-            other.gameId === this.gameId &&
-            other.highScore === this.highScore &&
-            other.highScoreTime === this.highScoreTime &&
-            other.highScoreTimestamp === this.highScoreTimestamp &&
-            other.totalScore === this.totalScore &&
-            other.totalTime === this.totalTime &&
-            other.totalPlays === this.totalPlays &&
-            other.firstPlayedTimestamp === this.firstPlayedTimestamp &&
-            other.lastPlayedTimestamp === this.lastPlayedTimestamp
+            this.id === other.id &&
+            this.userId === other.userId &&
+            this.gameId === other.gameId &&
+            this.highScore === other.highScore &&
+            this.highScoreTime === other.highScoreTime &&
+            this.highScoreTimestamp === other.highScoreTimestamp &&
+            this.totalScore === other.totalScore &&
+            this.totalTime === other.totalTime &&
+            this.totalPlays === other.totalPlays &&
+            this.firstPlayedTimestamp === other.firstPlayedTimestamp &&
+            this.lastPlayedTimestamp === other.lastPlayedTimestamp
         );
     }
 

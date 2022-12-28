@@ -1,7 +1,7 @@
 import { REST } from './REST';
 import { GameManager } from '#/managers/GameManager';
 import { UserManager } from '#/managers/UserManager';
-import { User } from '#/structures/User';
+import type { User } from '#/structures/User';
 
 /** The API client, used to make connecting to the API easier. */
 export class Client<R extends boolean = boolean> {
@@ -38,7 +38,7 @@ export class Client<R extends boolean = boolean> {
         this.id = id as string;
         this.rest.setToken(token);
 
-        const user = new User(this, { id });
+        const user = await this.users.fetchOne(id);
         this.users.set(user.id, user);
         if (user.partial) await user.fetch();
 

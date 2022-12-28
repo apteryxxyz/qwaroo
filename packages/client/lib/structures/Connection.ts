@@ -11,29 +11,29 @@ export class Connection extends Base implements APIConnection {
     public connections: ConnectionManager;
 
     public userId!: string;
+
     public providerName!: APIConnection['providerName'];
     public accountId!: string;
     public accountUsername!: string;
+
     public linkedTimestamp!: number;
 
-    public constructor(
-        connections: ConnectionManager,
-        data: Partial<Connection.Entity> & { id: string }
-    ) {
+    public constructor(connections: ConnectionManager, data: APIConnection) {
         super(connections.client, data);
         this.connections = connections;
         this._patch(data);
     }
 
-    public override _patch(data: Partial<Connection.Entity> & { id: string }) {
-        if (data.id) this.id = data.id;
-        if (data.userId) this.userId = data.userId;
-        if (data.providerName) this.providerName = data.providerName;
-        if (data.accountId) this.accountId = data.accountId;
-        if (data.accountUsername) this.accountUsername = data.accountUsername;
-        if (data.linkedTimestamp) this.linkedTimestamp = data.linkedTimestamp;
+    public override _patch(data: APIConnection) {
+        this.userId = data.userId;
 
-        return data;
+        this.providerName = data.providerName;
+        this.accountId = data.accountId;
+        this.accountUsername = data.accountUsername;
+
+        this.linkedTimestamp = data.linkedTimestamp;
+
+        return super._patch(data);
     }
 
     /** Check if the connection has been fetched. */
@@ -46,14 +46,14 @@ export class Connection extends Base implements APIConnection {
         return new Date(this.linkedTimestamp);
     }
 
-    public override equals(other: Connection | Connection.Entity) {
+    public override equals(other: Connection | APIConnection) {
         return (
-            other.id === this.id &&
-            other.userId === this.userId &&
-            other.providerName === this.providerName &&
-            other.accountId === this.accountId &&
-            other.accountUsername === this.accountUsername &&
-            other.linkedTimestamp === this.linkedTimestamp
+            this.id === other.id &&
+            this.userId === other.userId &&
+            this.providerName === other.providerName &&
+            this.accountId === other.accountId &&
+            this.accountUsername === other.accountUsername &&
+            this.linkedTimestamp === other.linkedTimestamp
         );
     }
 

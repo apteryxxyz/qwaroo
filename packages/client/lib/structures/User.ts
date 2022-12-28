@@ -10,33 +10,29 @@ import { UserFlagsBitField } from '#/utilities/UserFlagsBitField';
 export class User extends Base implements APIUser {
     public publicFlags!: number;
     public flags!: UserFlagsBitField;
+
     public displayName!: string;
     public avatarUrl!: string;
+
     public joinedTimestamp!: number;
     public seenTimestamp!: number;
 
-    public constructor(
-        client: Client,
-        data: Partial<User.Entity> & { id: string }
-    ) {
+    public constructor(client: Client, data: APIUser) {
         super(client, data);
         this._patch(data);
     }
 
-    public override _patch(data: Partial<User.Entity> & { id: string }) {
-        if (data.id) this.id = data.id;
+    public override _patch(data: APIUser) {
+        this.publicFlags = data.publicFlags;
+        this.flags = new UserFlagsBitField(data.publicFlags).freeze();
 
-        if (data.publicFlags !== undefined) {
-            this.publicFlags = data.publicFlags;
-            this.flags = new UserFlagsBitField(data.publicFlags);
-        }
+        this.displayName = data.displayName;
+        this.avatarUrl = data.avatarUrl;
 
-        if (data.displayName) this.displayName = data.displayName;
-        if (data.avatarUrl) this.avatarUrl = data.avatarUrl;
-        if (data.joinedTimestamp) this.joinedTimestamp = data.joinedTimestamp;
-        if (data.seenTimestamp) this.seenTimestamp = data.seenTimestamp;
+        this.joinedTimestamp = data.joinedTimestamp;
+        this.seenTimestamp = data.seenTimestamp;
 
-        return data;
+        return super._patch(data);
     }
 
     /** Check if the user has been fetched. */
@@ -54,13 +50,14 @@ export class User extends Base implements APIUser {
         return new Date(this.seenTimestamp);
     }
 
-    public override equals(other: User | User.Entity) {
+    public override equals(other: User | APIUser) {
         return (
-            other.id === this.id &&
-            other.displayName === this.displayName &&
-            other.avatarUrl === this.avatarUrl &&
-            other.joinedTimestamp === this.joinedTimestamp &&
-            other.seenTimestamp === this.seenTimestamp
+            this.id === other.id &&
+            this.flags.equals(other.publicFlags) &&
+            this.displayName === other.displayName &&
+            this.avatarUrl === other.avatarUrl &&
+            this.joinedTimestamp === other.joinedTimestamp &&
+            this.seenTimestamp === other.seenTimestamp
         );
     }
 

@@ -15,7 +15,7 @@ export class Base {
     }
 
     public _patch(data: { id: string }) {
-        if (data.id) this.id = data.id;
+        this.id = data.id;
         return data;
     }
 

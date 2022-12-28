@@ -21,8 +21,10 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     public creatorId!: string;
     public sourceSlug?: string;
     public sourceOptions?: Record<string, unknown>;
+
     public publicFlags!: number;
     public flags!: GameFlagsBitField;
+
     public mode!: M;
     public title!: string;
     public shortDescription!: string;
@@ -30,57 +32,50 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     public thumbnailUrl!: string;
     public categories!: string[];
     public data!: GameEntity.Data<M>;
+
     public totalScore!: number;
     public totalTime!: number;
     public totalPlays!: number;
+
     public createdTimestamp!: number;
     public updatedTimestamp!: number;
     public lastPlayedTimestamp!: number;
 
-    public constructor(
-        games: GameManager,
-        data: Partial<Game.Entity<M>> & { id: string }
-    ) {
+    public constructor(games: GameManager, data: APIGame<M>) {
         super(games.client, data);
         this.games = games;
         this._patch(data);
     }
 
-    public override _patch(data: Partial<Game.Entity<M>> & { id: string }) {
-        if (data.id) this.id = data.id;
-        if (data.slug) this.slug = data.slug;
+    public override _patch(data: APIGame<M>) {
+        this.id = data.id;
+        this.slug = data.slug;
 
-        if (data.creatorId) this.creatorId = data.creatorId;
+        this.creatorId = data.creatorId;
 
-        if (data.sourceSlug) this.sourceSlug = data.sourceSlug;
-        if (data.sourceOptions) this.sourceOptions = data.sourceOptions;
+        this.sourceSlug = data.sourceSlug;
+        this.sourceOptions = data.sourceOptions;
 
-        if (data.publicFlags !== undefined) {
-            this.publicFlags = data.publicFlags;
-            this.flags = new GameFlagsBitField(data.publicFlags);
-        }
+        this.publicFlags = data.publicFlags;
+        this.flags = new GameFlagsBitField(data.publicFlags).freeze();
 
-        if (data.mode) this.mode = data.mode;
-        if (data.title) this.title = data.title;
-        if (data.shortDescription)
-            this.shortDescription = data.shortDescription;
-        if (data.longDescription) this.longDescription = data.longDescription;
-        if (data.thumbnailUrl) this.thumbnailUrl = data.thumbnailUrl;
-        if (data.categories) this.categories = data.categories;
-        if (data.data) this.data = data.data;
+        this.mode = data.mode;
+        this.title = data.title;
+        this.shortDescription = data.shortDescription;
+        this.longDescription = data.longDescription;
+        this.thumbnailUrl = data.thumbnailUrl;
+        this.categories = data.categories;
+        this.data = data.data;
 
-        if (data.totalScore) this.totalScore = data.totalScore;
-        if (data.totalTime) this.totalTime = data.totalTime;
-        if (data.totalPlays) this.totalPlays = data.totalPlays;
+        this.totalScore = data.totalScore;
+        this.totalTime = data.totalTime;
+        this.totalPlays = data.totalPlays;
 
-        if (data.createdTimestamp)
-            this.createdTimestamp = data.createdTimestamp;
-        if (data.updatedTimestamp)
-            this.updatedTimestamp = data.updatedTimestamp;
-        if (data.lastPlayedTimestamp)
-            this.lastPlayedTimestamp = data.lastPlayedTimestamp;
+        this.createdTimestamp = data.createdTimestamp;
+        this.updatedTimestamp = data.updatedTimestamp;
+        this.lastPlayedTimestamp = data.lastPlayedTimestamp;
 
-        return data;
+        return super._patch(data);
     }
 
     /** Check if the game has been fetched. */
@@ -98,25 +93,29 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         return new Date(this.updatedTimestamp);
     }
 
-    public override equals(other: Game | Game.Entity) {
+    public override equals(other: Game | APIGame) {
         return (
-            other.id === this.id &&
-            other.slug === this.slug &&
-            other.creatorId === this.creatorId &&
-            other.sourceSlug === this.sourceSlug &&
-            JSON.stringify(other.sourceOptions) ===
-                JSON.stringify(this.sourceOptions) &&
-            other.mode === this.mode &&
-            other.title === this.title &&
-            other.shortDescription === this.shortDescription &&
-            other.longDescription === this.longDescription &&
-            other.thumbnailUrl === this.thumbnailUrl &&
-            JSON.stringify(other.categories) ===
-                JSON.stringify(this.categories) &&
-            JSON.stringify(other.data) === JSON.stringify(this.data) &&
-            other.createdTimestamp === this.createdTimestamp &&
-            other.updatedTimestamp === this.updatedTimestamp &&
-            other.lastPlayedTimestamp === this.lastPlayedTimestamp
+            this.id === other.id &&
+            this.slug === other.slug &&
+            this.creatorId === other.creatorId &&
+            this.sourceSlug === other.sourceSlug &&
+            JSON.stringify(this.sourceOptions) ===
+                JSON.stringify(other.sourceOptions) &&
+            this.flags.equals(other.publicFlags) &&
+            this.mode === other.mode &&
+            this.title === other.title &&
+            this.shortDescription === other.shortDescription &&
+            this.longDescription === other.longDescription &&
+            this.thumbnailUrl === other.thumbnailUrl &&
+            JSON.stringify(this.categories) ===
+                JSON.stringify(other.categories) &&
+            JSON.stringify(this.data) === JSON.stringify(other.data) &&
+            this.totalScore === other.totalScore &&
+            this.totalTime === other.totalTime &&
+            this.totalPlays === other.totalPlays &&
+            this.createdTimestamp === other.createdTimestamp &&
+            this.updatedTimestamp === other.updatedTimestamp &&
+            this.lastPlayedTimestamp === other.lastPlayedTimestamp
         );
     }
 
