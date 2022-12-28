@@ -88,6 +88,13 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
             required: true,
         },
 
+        // Flags
+        flags: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+
         // Statistics
         totalScore: {
             type: Number,

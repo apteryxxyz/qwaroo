@@ -30,6 +30,9 @@ export interface Game<M extends Game.Mode = Game.Mode> {
     /** Data for the game, such as strings. */
     data: Game.Data<M>;
 
+    /** The flags for this game. */
+    flags: number;
+
     /** The total score. */
     totalScore: number;
     /** The total time. */
@@ -48,6 +51,11 @@ export interface Game<M extends Game.Mode = Game.Mode> {
 export namespace Game {
     export enum Mode {
         HigherOrLower = 'higher-or-lower',
+    }
+
+    export enum Flag {
+        None = 0,
+        Approved = 1 << 0,
     }
 
     /** Game data structure. */

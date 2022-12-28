@@ -42,6 +42,13 @@ const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
             match: Validate.AvatarURL,
         },
 
+        // Flags
+        flags: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+
         // Security
         revokeToken: {
             type: String,
