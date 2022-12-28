@@ -241,7 +241,8 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
             className={`flex flex-col xl:flex-row w-screen xl:w-[150vw] h-[150vh] xl:h-screen overflow-hidden
         ${
             status === 'next' &&
-            'duration-1000 translate-x-0 xl:-translate-x-1/3 -translate-y-1/3 xl:translate-y-0 transition-transform ease-[ease-in-out]'
+            `translate-x-0xl:-translate-x-1/3 -translate-y-1/3 xl:translate-y-0
+            duration-1000 motion-safe:transition-transform ease-[ease-in-out]`
         }`}
         >
             <ItemBlock

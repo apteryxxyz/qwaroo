@@ -76,7 +76,9 @@ export default ({ Component, pageProps }: AppProps) => {
                 <FooterBar />
             </div>
 
-            <Bubbles count={20} />
+            <span className="invisible md:visible motion-reduce:invisible">
+                <Bubbles count={20} />
+            </span>
         </ThemeProvider>
     </ClientProvider>;
 };
