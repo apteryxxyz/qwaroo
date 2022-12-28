@@ -36,6 +36,7 @@ jobs:
             cd $PROJECT_PATH
             pnpm pull
             pnpm install
+            pnpm stop
             pnpm build
             pnpm nginx
             pnpm start

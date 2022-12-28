@@ -41,7 +41,7 @@ h4,
 h5,
 h6,
 .baloo2 {
-    font-family: 'Baloo 2', cursive;
+    font-family: 'Baloo 2', Arial, Helvetica, sans-serif;
 }
 
 @keyframes Gradient {
