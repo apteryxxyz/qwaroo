@@ -1,4 +1,4 @@
-import { Game } from '@qwaroo/client';
+import { Game as GameEntity } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { HigherOrLower } from '#/components/Modes/HigherOrLower';
 import { PageSeo } from '#/components/Seo/Page';
@@ -17,7 +17,7 @@ export default ({
             url={`/games/${slug}`}
         />
 
-        {mode === Game.Entity.Mode.HigherOrLower && <HigherOrLower
+        {mode === GameEntity.Mode.HigherOrLower && <HigherOrLower
             slug={slug}
         />}
     </>;
@@ -25,7 +25,7 @@ export default ({
 
 export const getServerSideProps: GetServerSideProps<{
     slug: string;
-    mode: Game.Entity.Mode;
+    mode: GameEntity.Mode;
     title: string;
     longDescription: string;
 }> = async ({ params }) => {

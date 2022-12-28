@@ -3,7 +3,9 @@ import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 import { faSignIn } from '@fortawesome/free-solid-svg-icons/faSignIn';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Game, ItemManager, ScoreManager } from '@qwaroo/client';
+//
+import { type Game, ItemManager, ScoreManager } from '@qwaroo/client';
+import { Game as GameEntity } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import { useEffect, useRef, useState } from 'react';
 import { ItemBlock } from './ItemBlock';
@@ -400,10 +402,10 @@ export namespace HigherOrLower {
         slug: string;
     }
 
-    export const Mode = Game.Entity.Mode.HigherOrLower;
-    export type Mode = typeof Game.Entity.Mode.HigherOrLower;
-    export type Item = Game.Entity.Item<Mode>;
-    export type Step = Game.Entity.Step<Mode>;
+    export const Mode = GameEntity.Mode.HigherOrLower;
+    export type Mode = typeof GameEntity.Mode.HigherOrLower;
+    export type Item = GameEntity.Item<Mode>;
+    export type Step = GameEntity.Step<Mode>;
 
     export interface Settings {
         imageCropping: 'auto' | 'crop' | 'none';

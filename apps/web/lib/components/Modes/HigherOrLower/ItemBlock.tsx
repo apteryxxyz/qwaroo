@@ -1,14 +1,14 @@
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
-import type { Game } from '@qwaroo/client';
+import type { Game as GameEntity } from '@qwaroo/types';
 import { Button } from '#/components/Input/Button';
 
 export namespace ItemBlock {
-    export type Mode = typeof Game.Entity.Mode.HigherOrLower;
+    export type Mode = typeof GameEntity.Mode.HigherOrLower;
 
     export interface Props
-        extends Omit<Game.Entity.Item<Mode>, 'value'>,
-            Game.Entity.Data<Mode> {
+        extends Omit<GameEntity.Item<Mode>, 'value'>,
+            GameEntity.Data<Mode> {
         thisSide: 'left' | 'right';
         value: string | React.ReactNode;
 

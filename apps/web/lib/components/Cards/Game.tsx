@@ -3,6 +3,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
 import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons/faWandMagicSparkles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Game, User } from '@qwaroo/client';
+import type { Game as GameEntity } from '@qwaroo/types';
 import Link, { type LinkProps } from 'next/link';
 
 export namespace GameCard {
@@ -16,7 +17,7 @@ export namespace GameCard {
     }
 }
 
-const modeNameMap: Record<Game.Entity.Mode, string> = {
+const modeNameMap: Record<GameEntity.Mode, string> = {
     'higher-or-lower': 'Higher or Lower',
 };
 
