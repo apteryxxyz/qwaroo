@@ -15,7 +15,7 @@ export default () => {
             title="Qwaroo"
             description="A collection of fun guessing and statistics based browser games.
             Can you guess which country has a higher population, or which movie has a better rating on IMDb?
-            Find one today!"
+            Find out today!"
             url="/"
         />
     </>;
