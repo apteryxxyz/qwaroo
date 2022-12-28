@@ -24,7 +24,7 @@ export function HighscoreCard({ game, score, isMe }: HighscoreCard.Props) {
             <h5 className="text-xl font-semibold">{game.title}</h5>
 
             <span className="text-2xl font-semibold">
-                Highscore of {score.highScore}
+                Highscore of {score.highScore ?? 0}
             </span>
 
             <span>
