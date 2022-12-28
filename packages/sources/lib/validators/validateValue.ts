@@ -1,33 +1,16 @@
 import { Source } from '#/Source';
 
-export interface ValidateOptions {
-    type: Source.Prop.Type | [Source.Prop.Type];
-    required: ((this: Record<string, unknown>) => boolean) | boolean;
-    default?: unknown;
-    options?: unknown[];
-    validate?:
-        | ((this: Record<string, unknown>, value: unknown) => boolean)
-        | RegExp;
-}
-
 export type ValidateArgs = [
     record: Record<string, unknown>,
     prop: string,
     value: unknown,
-    options: ValidateOptions
+    options: Source.Prop
 ];
 
-function _error(prop: string, type: string, value: unknown = 'empty') {
-    return new Error(`Invalid ${type} for "${prop}": ${String(value)}`);
-}
+function _verifyValue(...args: ValidateArgs) {
+    const [record, prop, value, options] = args;
 
-function _validateValue(
-    record: Record<string, unknown>,
-    prop: string,
-    value: unknown,
-    options: ValidateOptions
-) {
-    if (value && !options.options?.includes(value))
+    if (value && !options.options?.find(opt => opt.value === value))
         throw new Error(`Invalid option for "${prop}": ${String(value)}`);
 
     if (value && options.validate) {
@@ -50,53 +33,51 @@ function _validateValue(
 }
 
 export function validateString(...args: ValidateArgs) {
-    const value = _validateValue(...args);
+    const value = _verifyValue(...args);
     if (value === undefined) return undefined;
 
     const asStr = String(value);
-    if (!asStr) throw _error(args[1], 'string', args[2]);
+    if (!asStr)
+        throw new Error(`Invalid string for "${args[1]}": ${String(value)}`);
     return asStr;
 }
 
 export function validateNumber(...args: ValidateArgs) {
-    const value = _validateValue(...args);
+    const value = _verifyValue(...args);
     if (value === undefined) return undefined;
 
     const asNum = Number(String(value));
-    if (Number.isNaN(asNum)) throw _error(args[1], 'number', args[2]);
+    if (Number.isNaN(asNum))
+        throw new Error(`Invalid number for "${args[1]}": ${String(value)}`);
     return asNum;
 }
 
 export function validateBoolean(...args: ValidateArgs) {
-    const value = _validateValue(...args);
+    const value = _verifyValue(...args);
     if (value === undefined) return undefined;
 
-    const asBool = String(value).toLowerCase() === 'true';
-    if (typeof asBool !== 'boolean') throw _error(args[1], 'boolean', args[2]);
+    const asBool = Boolean(value);
+    if (typeof asBool !== 'boolean')
+        throw new Error(`Invalid boolean for "${args[1]}": ${String(value)}`);
     return asBool;
 }
 
 export function validateArray(...args: ValidateArgs) {
-    const asArr = _validateValue(...args);
-    if (asArr === undefined) return undefined;
+    const value = _verifyValue(...args);
+    if (value === undefined) return undefined;
 
-    if (!Array.isArray(asArr)) throw _error(args[1], 'array', args[2]);
-    return asArr;
+    if (!Array.isArray(value))
+        throw new Error(`Invalid array for "${args[1]}": ${String(value)}`);
+    return value as unknown[];
 }
 
-/** Validate that a properties value is valid. */
 export function validateValue(...args: ValidateArgs): unknown {
     if (Array.isArray(args[3].type)) {
         const array = validateArray(...args);
-        if (array === undefined) return [];
-
-        const options = {
-            type: args[3].type[0],
-            required: args[3].required,
-            default: args[3].default,
-        };
-        return array?.map((value: unknown) =>
-            validateValue(args[0], args[1], value, options)
+        if (array === undefined) return [] as const;
+        return array.map(
+            (value: unknown) =>
+                validateValue(args[0], args[1], value, args[3]) as unknown
         );
     }
 
@@ -108,6 +89,6 @@ export function validateValue(...args: ValidateArgs): unknown {
         case Source.Prop.Type.Boolean:
             return validateBoolean(...args);
         default:
-            throw new Error(`Unknown type: ${args[3].type}`);
+            throw new Error(`Invalid type for "${args[1]}": ${args[3].type}`);
     }
 }

@@ -13,8 +13,8 @@ const _waitFor = promisify(setTimeout);
 // TYPES
 
 export interface Options {
-    wikipediaPath: string;
-    imageSearchQuery: `${string} {} ${string}`;
+    pagePath: string;
+    imageSearchTemplate: string;
     skipRows: number;
     tableSelector: string;
     displayColumn: number;
@@ -26,26 +26,22 @@ export interface Options {
 
 export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
-    slug: 'wikipedia_table',
-    name: 'Wikipedia Table',
-    isPublic: false,
-    description:
-        `This will scrap the data from a Wikipedia table. The table must be
-        in the standard format with the first row being the column headers.
-        `.replaceAll(/\s+/g, ' '),
+    ...Source.meta('Wikipedia Table', ''),
 
     props: {
-        wikipediaPath: {
+        pagePath: {
             type: Source.Prop.Type.String,
+            name: 'Wikipedia Path',
             description:
-                'The URI to the Wikipedia page with the table to scrape.',
+                'The path to the Wikipedia page with the table to scrape.',
             prefix: 'https://en.wikipedia.org',
             required: true,
             validate: /^\/wiki\/.+$/,
         },
 
-        imageSearchQuery: {
+        imageSearchTemplate: {
             type: Source.Prop.Type.String,
+            name: 'Image Search Template',
             description:
                 'The query to use when searching for images. Use {} to insert the item name.',
             required: true,
@@ -54,6 +50,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
 
         tableSelector: {
             type: Source.Prop.Type.String,
+            name: 'Table CSS Selector',
             description: 'The CSS selector to use to find the table to scrape.',
             required: true,
             default: 'table.wikitable',
@@ -61,6 +58,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
 
         skipRows: {
             type: Source.Prop.Type.Number,
+            name: 'Skip Rows',
             description:
                 'The number of rows to skip at the start of the table.',
             required: true,
@@ -69,20 +67,22 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
 
         displayColumn: {
             type: Source.Prop.Type.Number,
+            name: 'Display Column',
             description: 'The column index to use for the display value.',
             required: true,
         },
 
         valueColumn: {
             type: Source.Prop.Type.Number,
+            name: 'Value Column',
             description: 'The column index to use for the value.',
             required: true,
         },
 
         captionColumn: {
             type: Source.Prop.Type.Number,
+            name: 'Caption Column',
             description: 'The column index to use for the caption.',
-            required: false,
         },
     },
 
@@ -91,20 +91,14 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     },
 
     async fetchItems(
-        {
-            wikipediaPath,
-            displayColumn,
-            valueColumn,
-            captionColumn,
-            ...options
-        },
+        { pagePath, displayColumn, valueColumn, captionColumn, ...options },
         verbose = false
     ) {
         const instanceId = Math.random().toString(36).slice(2);
         const logger = useLogger(`${this.slug}(${instanceId})`);
-        if (verbose) logger.info(`Fetching items for ${wikipediaPath}...`);
+        if (verbose) logger.info(`Fetching items for ${pagePath}...`);
 
-        const $ = await _fetchCheerio(wikipediaPath);
+        const $ = await _fetchCheerio(pagePath);
         const table = $(options.tableSelector);
         if (!table) {
             if (verbose) logger.error('No table found');
@@ -130,12 +124,11 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
             .filter(item => item.value);
 
         for (const item of items) {
-            const baseQuery = options.imageSearchQuery;
+            const baseQuery = options.imageSearchTemplate;
             const query = baseQuery.includes('{}')
                 ? baseQuery.replace('{}', item.display)
                 : `${baseQuery} ${item.display}`;
 
-            await _waitFor(500);
             const imageSource = await _getImageUrl(query);
             if (imageSource) item.imageSource = imageSource;
             if (verbose) logger.info(`Found image for "${item.display}"`);
@@ -165,6 +158,7 @@ const _cachedImages = new Map<string, string>();
 async function _getImageUrl(query: string) {
     if (_cachedImages.has(query)) return _cachedImages.get(query);
 
+    await _waitFor(500);
     const results = await _googleSearch({
         searchTerm: query,
         queryStringAddition: '&tbs=itp:photo',

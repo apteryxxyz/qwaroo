@@ -238,6 +238,7 @@ importers:
 
   packages/sources:
     specifiers:
+      '@qwaroo/common': workspace:^0.0.0
       '@qwaroo/types': workspace:^0.0.0
       '@types/node': ^18.11.10
       cheerio: 1.0.0-rc.12
@@ -248,6 +249,7 @@ importers:
       typescript: ^4.9.3
       ytpl: github:apteryxxyz/node-ytpl
     dependencies:
+      '@qwaroo/common': link:../common
       '@qwaroo/types': link:../types
       cheerio: 1.0.0-rc.12
       enhanced-ms: 2.2.0

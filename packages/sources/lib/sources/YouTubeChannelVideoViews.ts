@@ -8,43 +8,38 @@ import { prepareOptions } from '#/validators/prepareOptions';
 
 export interface Options {
     channelIds: string[];
-    videoCount: number;
-    minimumViews: number;
+    maxVideoCount: number;
+    minViewCount: number;
 }
 
 // META
 
 export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
-    slug: 'youtube_channel_video_views',
-    name: 'YouTube Channel View Count',
-    isPublic: true,
-    description:
-        `This will grab the latest videos from one or more channels then filter
-        them based on the set minimum views. Shorts are always excluded.
-        The video title will be used for the display name, the thumbnail will be used
-        as the image and the view count will be used for the value.
-        `.replaceAll(/\s+/g, ' '),
+    ...Source.meta('YouTube Channel Video Views', ''),
 
     props: {
         channelIds: {
             type: [Source.Prop.Type.String],
+            name: 'Channel IDs',
             description: 'The ID(s) of the channel(s) to add to this game.',
             required: true,
         },
 
-        videoCount: {
+        maxVideoCount: {
             type: Source.Prop.Type.Number,
+            name: 'Maximum  Video Count',
             description: 'The max number of videos (per channel) to use.',
             required: true,
-            default: 200,
+            default: 250,
         },
 
-        minimumViews: {
+        minViewCount: {
             type: Source.Prop.Type.Number,
+            name: 'Minimum View Count',
             description: 'The minimum number of views a video must have.',
             required: true,
-            default: 0,
+            default: 1,
         },
     },
 
@@ -93,11 +88,13 @@ async function _getChannelName(channelId: string) {
 }
 
 async function _getChannelVideos(id: string, name: string, options: Options) {
-    const { items: allVideos } = await ytpl(id, { limit: options.videoCount });
+    const { items: allVideos } = await ytpl(id, {
+        limit: options.maxVideoCount,
+    });
 
     const filteredVideos = allVideos.filter(
         video =>
-            (video.views ?? 0) >= options.minimumViews &&
+            (video.views ?? 0) >= options.minViewCount &&
             // Shorts are too easy to guess
             (video.durationSec ?? 0) > 60
     );

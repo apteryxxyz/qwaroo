@@ -10,7 +10,7 @@ import { prepareOptions } from '#/validators/prepareOptions';
 // TYPES
 
 export interface Options {
-    fandomPath: string;
+    pagePath: string;
     shouldCheckImages: boolean;
     tableSelector: string;
     displaySelector: string;
@@ -23,15 +23,14 @@ export interface Options {
 
 export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
-    slug: 'gta_fandom_table',
-    name: 'GTA Fandom',
-    isPublic: false,
-    description: '',
+    ...Source.meta('GTA Fandom Table', ''),
 
     props: {
-        fandomPath: {
+        pagePath: {
             type: Source.Prop.Type.String,
-            description: 'The URI of the GTA Fandom page with the table.',
+            name: 'GTA Fandom Path',
+            description:
+                'The path to the GTA Fandom page with the table to scrape.',
             prefix: 'https://gta.fandom.com',
             required: true,
             validate: /^\/wiki\/.+$/,
@@ -39,6 +38,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
 
         shouldCheckImages: {
             type: Source.Prop.Type.Boolean,
+            name: 'Check Images',
             description:
                 'Whether to check if the images are available. This will slow down the process.',
             required: true,
@@ -47,41 +47,42 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
 
         tableSelector: {
             type: Source.Prop.Type.String,
-            description:
-                'The CSS selector of the table. This is useful if the table is not the first table on the page.',
+            name: 'Table CSS Selector',
+            description: 'The CSS selector to use to find the table to scrape.',
             required: true,
             default: '.wikitable td li a',
         },
 
         displaySelector: {
             type: Source.Prop.Type.String,
-            description:
-                'The CSS selector of the name. This is the item name that will be displayed to the user.',
+            name: 'Display CSS Selector',
+            description: 'The CSS selector to use to find the display name.',
             required: true,
             default: '[data-source="name"]',
         },
 
         valueSelector: {
             type: Source.Prop.Type.String,
-            description:
-                'The CSS selector of the value. The found value will be parsed to a number and used for comparison.',
+            name: 'Value CSS Selector',
+            description: 'The CSS selector to use to find the value.',
             required: true,
             default: '[data-source="price"]',
         },
 
         imageSelector: {
             type: Source.Prop.Type.String,
-            description:
-                "The CSS selector of the image source. The found element's 'src' will be used as the items source image.",
+            name: 'Image CSS Selector',
+            description: 'The CSS selector to use to find the image.',
             required: true,
             default: '.pi-image-thumbnail',
         },
 
         captionSelector: {
             type: Source.Prop.Type.String,
-            description:
-                'The CSS selector of the caption. This is the text that will be displayed below the item name.',
+            name: 'Caption CSS Selector',
+            description: 'The CSS selector to use to find the caption.',
             required: false,
+            default: '.pi-item.pi-data.pi-item-spacing.pi-border-color',
         },
     },
 
@@ -95,9 +96,9 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     ) {
         const instanceId = Math.random().toString(36).slice(2);
         const logger = useLogger(`${this.slug}(${instanceId})`);
-        if (verbose) logger.info(`Fetching items for ${options.fandomPath}...`);
+        if (verbose) logger.info(`Fetching items for ${options.pagePath}...`);
 
-        const $ = await _fetchCheerio(options.fandomPath);
+        const $ = await _fetchCheerio(options.pagePath);
         const table = _getElement($, options.tableSelector);
         if (!table) {
             if (verbose) logger.error('No table found');
@@ -119,7 +120,7 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
                 : undefined;
 
             if (!display || !value || !image) {
-                const name = display ?? options.fandomPath;
+                const name = display ?? options.pagePath;
                 if (verbose) logger.warn(`Item "${name}" is missing data`);
                 continue;
             }

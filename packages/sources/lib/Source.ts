@@ -1,3 +1,4 @@
+import { createSlug } from '@qwaroo/common';
 import type { Game } from '@qwaroo/types';
 
 /** The strcuture for a data source. */
@@ -29,14 +30,15 @@ export interface Source<
 export namespace Source {
     export interface Prop<T extends Prop.Type = Prop.Type> {
         type: T | [T];
+        name: string;
         description: string;
 
         prefix?: string;
         suffix?: string;
 
-        required: ((this: Record<string, unknown>) => boolean) | boolean;
+        required?: ((this: Record<string, unknown>) => boolean) | boolean;
         default?: unknown;
-        options?: unknown[];
+        options?: { label: string; value: unknown }[];
         validate?:
             | ((this: Record<string, unknown>, value: unknown) => boolean)
             | RegExp;
@@ -48,5 +50,15 @@ export namespace Source {
             Number = 'number',
             Boolean = 'boolean',
         }
+    }
+
+    export function meta(name: string, description: string, isPublic = false) {
+        return {
+            // NOTE: Do not change name or slug else everything will break
+            name,
+            description: description.replaceAll(/\s+/g, ' '),
+            slug: createSlug(name),
+            isPublic,
+        };
     }
 }

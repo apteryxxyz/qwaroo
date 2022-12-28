@@ -30,51 +30,60 @@ export interface Options {
 
 export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
     for: Game.Mode.HigherOrLower,
-    slug: 'imdb_search',
-    name: 'IMDb Search',
-    isPublic: false,
-    description: '',
+    ...Source.meta('IMDb Search Results', ''),
 
     props: {
         titleType: {
             type: Source.Prop.Type.String,
+            name: 'Title Type',
             description: 'The type of search to use.',
             required: true,
             options: [
-                'feature',
-                'tv_series',
-                'tv_episode',
-                'tv_special',
-                'video',
-                'video_game',
+                { label: 'Feature', value: 'feature' },
+                { label: 'TV Series', value: 'tv_series' },
+                { label: 'TV Episode', value: 'tv_episode' },
+                { label: 'TV Special', value: 'tv_special' },
+                { label: 'Video', value: 'video' },
+                { label: 'Video Game', value: 'video_game' },
             ],
         },
 
         sortParameter: {
             type: Source.Prop.Type.String,
+            name: 'Sort Parameter',
             description: 'The sort parameter to use.',
             required: true,
             options: [
-                'moviemeter',
-                'user_rating',
-                'num_votes',
-                'release_date',
-                'alpha',
+                { label: 'Popularity', value: 'moviemeter' },
+                { label: 'User Rating', value: 'user_rating' },
+                { label: 'Number of Votes', value: 'num_votes' },
+                { label: 'Release Date', value: 'release_date' },
+                { label: 'Alphabetical', value: 'alpha' },
             ],
         },
 
         sortDirection: {
             type: Source.Prop.Type.String,
+            name: 'Sort Direction',
             description: 'The sort direction to use.',
             required: true,
-            options: ['asc', 'desc'],
+            options: [
+                { label: 'Ascending', value: 'asc' },
+                { label: 'Descending', value: 'desc' },
+            ],
         },
 
         valueProperty: {
             type: Source.Prop.Type.String,
+            name: 'Value Property',
             description: 'The property to use as the value.',
             required: true,
-            options: ['rating', 'votes', 'duration', 'releaseYear'],
+            options: [
+                { label: 'Rating', value: 'rating' },
+                { label: 'Votes', value: 'votes' },
+                { label: 'Runtime', value: 'duration' },
+                { label: 'Release Year', value: 'releaseYear' },
+            ],
         },
     },
 
@@ -128,15 +137,13 @@ export const source: Source<keyof Options, Options, Game.Mode.HigherOrLower> = {
             }));
 
             items.push(...theseItems);
-            if (verbose) logger.info(`Added more ${items.length} items`);
+            if (verbose) logger.info(`Added ${theseItems.length} items`);
         }
 
         if (verbose) logger.info(`Finished fetching ${items.length} videos`);
         return items;
     },
 };
-
-// https://www.imdb.com/search/title/?title_type=video_game&view=simple&sort=user_rating,desc
 
 // UTILS
 
@@ -210,20 +217,8 @@ function _parseItem($: cheerio.CheerioAPI) {
     const rawImageUrl = _getElement($, '.lister-item-image > a > img', false);
     const imageUrl = _formatImageUrl(rawImageUrl?.attr('loadlate') ?? '');
 
-    if (!releaseYear || !genres || !rating || !votes || !imageUrl) {
-        console.warn({
-            title,
-            releaseYear,
-            certificate,
-            duration,
-            genres,
-            rating,
-            description,
-            votes,
-            imageUrl,
-        });
+    if (!releaseYear || !genres || !rating || !votes || !imageUrl)
         throw new Error('Invalid lister item');
-    }
 
     return {
         title,
