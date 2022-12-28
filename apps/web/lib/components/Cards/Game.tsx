@@ -35,6 +35,10 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
         }
     }
 
+    const imageUrl = new URL('https://wsrv.nl');
+    imageUrl.searchParams.set('url', game.thumbnailUrl);
+    imageUrl.searchParams.set('q', '20');
+
     return <Link
         href={`/games/${game.slug}`}
         {...props.linkProps}
@@ -43,7 +47,7 @@ export function GameCard({ game, creator, ...props }: GameCard.Props) {
             hover:shadow-lg hover:scale-105 hover:brightness-125"
         style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3),
-                rgba(0,0,0,0.3)),url(${game.thumbnailUrl})`,
+                rgba(0,0,0,0.3)),url(${imageUrl.toString()})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
         }}
