@@ -31,8 +31,6 @@ export function CountUpNumber({
                     ? endValue * progress
                     : Math.round(endValue * progress);
 
-            console.log(currentCount);
-
             if (count !== currentCount) {
                 setCount(currentCount);
             }
