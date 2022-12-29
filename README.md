@@ -1,4 +1,4 @@
-# Owneii
+# Qwaroo
 
 Hello to whoever may be reading this, welcome to what is named **Qwaroo**.
 
