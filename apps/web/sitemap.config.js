@@ -11,5 +11,5 @@ module.exports = {
             `${webUrl}/server-sitemap.xml`,
         ],
     },
-    exclude: ['/auth/callback', '/server-sitemap.xml'],
-}
+    exclude: ['/auth/callback', '/auth/failure', '/503', '/server-sitemap.xml'],
+};
