@@ -1,4 +1,4 @@
-import { ServerError as Error, Validate, createRegExp } from '@qwaroo/common';
+import { ServerError as Error, Validate } from '@qwaroo/common';
 import type {
     GameDocument,
     ScoreDocument,
@@ -14,9 +14,7 @@ export class Scores extends null {
         user: UserDocument,
         options: FetchScoresOptions = {}
     ) {
-        const { term, limit = 20, skip = 0 } = options;
-        if (term && term.length < 1)
-            throw new Error(422, 'Search term must be at least 1 character');
+        const { limit = 20, skip = 0 } = options;
         if (typeof limit !== 'number' || Number.isNaN(limit))
             throw new Error(422, 'Limit must be a number');
         if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
@@ -24,7 +22,7 @@ export class Scores extends null {
             throw new Error(422, 'Skip must be a number');
         if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
 
-        const sorts = [
+        const validSorts = [
             'highScore',
             'highScoreTime',
             'highScoreTimestamp',
@@ -35,31 +33,17 @@ export class Scores extends null {
             'lastPlayedTimestamp',
         ];
         const { sort = 'highScore', order = 'desc' } = options;
-        if (!sorts.includes(sort))
-            throw new Error(422, `Sort must be one of "${sorts.join('", "')}"`);
+        if (!validSorts.includes(sort))
+            throw new Error(
+                422,
+                `Sort must be one of "${validSorts.join('", "')}"`
+            );
         if (order !== 'asc' && order !== 'desc')
             throw new Error(422, 'Order must be "asc" or "desc"');
 
-        const { ids } = options;
-        if (ids && !Array.isArray(ids))
-            throw new Error(422, 'IDs must be an array of strings');
-
         let query = Score.find({ userId: user.id });
-
-        if (term) {
-            const title = createRegExp(term, false, 'i');
-            query = query.where({ title });
-        }
-
-        if (sort && order) {
-            const direction = order === 'asc' ? 1 : -1;
-            query = query.sort({ [sort]: direction });
-        }
-
-        if (ids?.length)
-            query = query.where({
-                $or: [{ _id: { $in: ids } }, { slug: { $in: ids } }],
-            });
+        if (sort && order)
+            query = query.sort({ [sort]: order === 'asc' ? 1 : -1 });
 
         const total = await Score.find().merge(query).countDocuments().exec();
         const scores = await query.limit(limit).skip(skip).exec();

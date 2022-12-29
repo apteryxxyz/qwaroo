@@ -16,7 +16,6 @@ export interface FetchGamesOptions {
         | 'createdTimestamp'
         | 'updatedTimestamp';
     order?: 'asc' | 'desc';
-    ids?: string[];
     categories?: string[];
     modes?: Game.Mode[];
 }

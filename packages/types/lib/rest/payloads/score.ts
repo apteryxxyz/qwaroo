@@ -10,7 +10,6 @@ export interface APISubmitScore<M extends Game.Mode> {
 }
 
 export interface FetchScoresOptions {
-    term?: string;
     limit?: number;
     skip?: number;
     sort?:
@@ -23,5 +22,4 @@ export interface FetchScoresOptions {
         | 'firstPlayedTimestamp'
         | 'lastPlayedTimestamp';
     order?: 'asc' | 'desc';
-    ids?: string[];
 }

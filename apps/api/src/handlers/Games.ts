@@ -50,9 +50,11 @@ export class Games extends null {
         user?: UserDocument,
         options: FetchGamesOptions = {}
     ) {
-        const { term, limit = 20, skip = 0 } = options;
+        const { term } = options;
         if (term && term.length < 1)
             throw new Error(422, 'Search term must be at least 1 character');
+
+        const { limit = 20, skip = 0 } = options;
         if (typeof limit !== 'number' || Number.isNaN(limit))
             throw new Error(422, 'Limit must be a number');
         if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
@@ -60,7 +62,7 @@ export class Games extends null {
             throw new Error(422, 'Skip must be a number');
         if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
 
-        const sorts = [
+        const validSorts = [
             'totalScore',
             'totalTime',
             'totalPlays',
@@ -69,38 +71,39 @@ export class Games extends null {
             'updatedTimestamp',
         ];
         const { sort = 'totalPlays', order = 'desc' } = options;
-        if (!sorts.includes(sort))
-            throw new Error(422, `Sort must be one of "${sorts.join('", "')}"`);
+        if (!validSorts.includes(sort))
+            throw new Error(
+                422,
+                `Sort must be one of "${validSorts.join('", "')}"`
+            );
         if (order !== 'asc' && order !== 'desc')
             throw new Error(422, 'Order must be "asc" or "desc"');
 
-        const { ids, categories, modes } = options;
-        if (ids && !Array.isArray(ids))
-            throw new Error(422, 'IDs must be an array of strings');
+        const { categories, modes } = options;
         if (categories && !Array.isArray(categories))
             throw new Error(422, 'Categories must be an array of strings');
         if (modes && !Array.isArray(modes))
             throw new Error(422, 'Modes must be an array of strings');
 
-        let query = Game.find();
+        let query = Game.find().sort();
+        // match both title, slug, shortDescription, longDescription and the categories array
+        const termRegex = createRegExp(term ?? '', false, 'i');
+        if (term)
+            query = query.where({
+                $or: [
+                    { title: termRegex },
+                    { slug: termRegex },
+                    { shortDescription: termRegex },
+                    { longDescription: termRegex },
+                    { categories: termRegex },
+                ],
+            });
 
-        if (term) {
-            const title = createRegExp(term, false, 'i');
-            query = query.where({ title });
-        }
-
-        if (sort && order) {
-            const direction = order === 'asc' ? 1 : -1;
-            query = query.sort({ [sort]: direction });
-        }
-
+        if (sort && order)
+            query = query.sort({ [sort]: order === 'asc' ? 1 : -1 });
         if (user) query = query.where({ creatorId: user.id });
         if (categories?.length)
-            query = query.where({ categories: { $all: categories } });
-        if (ids?.length)
-            query = query.where({
-                $or: [{ _id: { $in: ids } }, { slug: { $in: ids } }],
-            });
+            query = query.where({ categories: { $in: categories } });
         if (modes?.length) query = query.where({ mode: { $in: modes } });
 
         const total = await Game.find().merge(query).countDocuments().exec();
