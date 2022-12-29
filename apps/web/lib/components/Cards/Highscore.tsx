@@ -16,7 +16,7 @@ export function HighscoreCard({ game, score, isMe }: HighscoreCard.Props) {
     imageUrl.searchParams.set('url', game.thumbnailUrl);
     imageUrl.searchParams.set('q', '20');
 
-    return <section className="flex p-6 rounded-xl bg-white dark:bg-neutral-800">
+    return <section className="flex p-3 rounded-xl bg-white dark:bg-neutral-800">
         <picture className="hidden sm:block md:hidden lg:block">
             <img
                 src={imageUrl.toString()}

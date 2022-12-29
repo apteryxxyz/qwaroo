@@ -173,7 +173,7 @@ export default ({
                     />)}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
                     {/* Per Game Statistics */}
 
                     {scores.map(score => <HighscoreCard
