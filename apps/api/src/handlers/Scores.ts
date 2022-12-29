@@ -14,36 +14,27 @@ export class Scores extends null {
         user: UserDocument,
         options: FetchScoresOptions = {}
     ) {
-        const { limit = 20, skip = 0 } = options;
-        if (typeof limit !== 'number' || Number.isNaN(limit))
-            throw new Error(422, 'Limit must be a number');
-        if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
-        if (typeof skip !== 'number' || Number.isNaN(skip))
-            throw new Error(422, 'Skip must be a number');
-        if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
-
-        const validSorts = [
-            'highScore',
-            'highScoreTime',
-            'highScoreTimestamp',
-            'totalScore',
-            'totalTime',
-            'totalPlays',
-            'firstPlayedTimestamp',
-            'lastPlayedTimestamp',
-        ];
-        const { sort = 'highScore', order = 'desc' } = options;
-        if (!validSorts.includes(sort))
-            throw new Error(
-                422,
-                `Sort must be one of "${validSorts.join('", "')}"`
-            );
-        if (order !== 'asc' && order !== 'desc')
-            throw new Error(422, 'Order must be "asc" or "desc"');
-
         let query = Score.find({ userId: user.id });
-        if (sort && order)
-            query = query.sort({ [sort]: order === 'asc' ? 1 : -1 });
+
+        const sort = String(options.sort ?? 'highScore').trim();
+        // prettier-ignore
+        if (![
+            'highScore', 'highScoreTime', 'highScoreTimestamp',
+            'totalScore', 'totalTime', 'totalPlays',
+            'firstPlayedTimestamp', 'lastPlayedTimestamp',
+        ].includes(sort)) throw new Error(422, 'Sort is invalid');
+
+        const order = String(options.order ?? 'desc').trim();
+        if (!['asc', 'desc'].includes(order))
+            throw new Error(422, 'Order is invalid');
+
+        query = query.sort({ [sort]: order === 'asc' ? 1 : -1 });
+
+        const limit = Math.min(Math.max(Number(options.limit ?? 20), 1), 100);
+        if (Number.isNaN(limit)) throw new Error(422, 'Limit must be a number');
+
+        const skip = Math.max(Number(options.skip ?? 0), 0);
+        if (Number.isNaN(skip)) throw new Error(422, 'Skip must be a number');
 
         const total = await Score.find().merge(query).countDocuments().exec();
         const scores = await query.limit(limit).skip(skip).exec();

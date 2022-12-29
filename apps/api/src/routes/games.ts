@@ -32,6 +32,7 @@ export default () => {
         useMe('userId'),
         handle(async (req, res) => {
             const opts: Record<string, unknown> = {};
+
             opts['term'] = String(req.query['term'] ?? '') || undefined;
             opts['limit'] = Number(req.query['limit'] ?? 0) || undefined;
             opts['skip'] = Number(req.query['skip'] ?? 0) || undefined;
@@ -40,10 +41,13 @@ export default () => {
 
             const ids = String(req.query['ids'] ?? '');
             if (ids) opts['ids'] = ids.split(',');
-            const categories = String(req.query['categories'] ?? '');
-            if (categories) opts['categories'] = categories.split(',');
+            const slugs = String(req.query['slugs'] ?? '');
+            if (slugs) opts['slugs'] = slugs.split(',');
+
             const modes = String(req.query['modes'] ?? '');
             if (modes) opts['modes'] = modes.split(',');
+            const categories = String(req.query['categories'] ?? '');
+            if (categories) opts['categories'] = categories.split(',');
 
             const userId = String(req.params['userId'] ?? '') || undefined;
             const user = userId ? await Users.getUser(userId) : undefined;

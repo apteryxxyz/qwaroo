@@ -16,23 +16,25 @@ export class Users extends null {
 
     /** Get a list of all users. */
     public static async getUsers(options: FetchUsersOptions = {}) {
-        const { term } = options;
-        if (term && term.length < 1)
-            throw new Error(422, 'Search term must be at least 1 character');
-
-        const { limit = 20, skip = 0 } = options;
-        if (typeof limit !== 'number' || Number.isNaN(limit))
-            throw new Error(422, 'Limit must be a number');
-        if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
-        if (typeof skip !== 'number' || Number.isNaN(skip))
-            throw new Error(422, 'Skip must be a number');
-        if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
-
         let query = User.find();
-        if (term)
+
+        const term = String(options.term ?? '').trim();
+        if (term.length > 0)
             query = query
                 .where('displayName')
                 .regex(createRegExp(term, false, 'i'));
+
+        const ids = Array.from(options.ids ?? []);
+        if (ids.length > 0) {
+            const validIds = ids.filter(Validate.ObjectId.test);
+            if (validIds.length > 0) query = query.where('_id').in(validIds);
+        }
+
+        const limit = Math.min(Math.max(Number(options.limit ?? 20), 1), 100);
+        if (Number.isNaN(limit)) throw new Error(422, 'Limit must be a number');
+
+        const skip = Math.max(Number(options.skip ?? 0), 0);
+        if (Number.isNaN(skip)) throw new Error(422, 'Skip must be a number');
 
         const total = await query.countDocuments().exec();
         const users = await query.limit(limit).skip(skip).exec();

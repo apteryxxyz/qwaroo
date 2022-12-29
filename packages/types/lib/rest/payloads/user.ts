@@ -6,4 +6,5 @@ export interface FetchUsersOptions {
     term?: string;
     limit?: number;
     skip?: number;
+    ids?: string[];
 }

@@ -50,61 +50,66 @@ export class Games extends null {
         user?: UserDocument,
         options: FetchGamesOptions = {}
     ) {
-        const { term } = options;
-        if (term && term.length < 1)
-            throw new Error(422, 'Search term must be at least 1 character');
+        let query = Game.find();
 
-        const { limit = 20, skip = 0 } = options;
-        if (typeof limit !== 'number' || Number.isNaN(limit))
-            throw new Error(422, 'Limit must be a number');
-        if (limit < 1) throw new Error(422, 'Limit must be greater than 0');
-        if (typeof skip !== 'number' || Number.isNaN(skip))
-            throw new Error(422, 'Skip must be a number');
-        if (skip < 0) throw new Error(422, 'Skip must be greater than 0');
+        if (user) query = query.where({ creatorId: user.id });
 
-        const validSorts = [
-            'totalScore',
-            'totalTime',
-            'totalPlays',
-            'lastPlayedTimestamp',
-            'createdTimestamp',
-            'updatedTimestamp',
-        ];
-        const { sort = 'totalPlays', order = 'desc' } = options;
-        if (!validSorts.includes(sort))
-            throw new Error(
-                422,
-                `Sort must be one of "${validSorts.join('", "')}"`
-            );
-        if (order !== 'asc' && order !== 'desc')
-            throw new Error(422, 'Order must be "asc" or "desc"');
-
-        const { categories, modes } = options;
-        if (categories && !Array.isArray(categories))
-            throw new Error(422, 'Categories must be an array of strings');
-        if (modes && !Array.isArray(modes))
-            throw new Error(422, 'Modes must be an array of strings');
-
-        let query = Game.find().sort();
-        // match both title, slug, shortDescription, longDescription and the categories array
-        const termRegex = createRegExp(term ?? '', false, 'i');
-        if (term)
+        const term = String(options.term ?? '').trim();
+        if (term.length > 0) {
+            const regex = createRegExp(term, false, 'i');
             query = query.where({
                 $or: [
-                    { title: termRegex },
-                    { slug: termRegex },
-                    { shortDescription: termRegex },
-                    { longDescription: termRegex },
-                    { categories: termRegex },
+                    { title: { $regex: regex } },
+                    { slug: { $regex: regex } },
+                    { shortDescription: { $regex: regex } },
+                    { longDescription: { $regex: regex } },
+                    { categories: { $regex: regex } },
                 ],
             });
+        }
 
-        if (sort && order)
-            query = query.sort({ [sort]: order === 'asc' ? 1 : -1 });
-        if (user) query = query.where({ creatorId: user.id });
-        if (categories?.length)
-            query = query.where({ categories: { $in: categories } });
-        if (modes?.length) query = query.where({ mode: { $in: modes } });
+        const sort = String(options.sort ?? 'totalPlays').trim();
+        // prettier-ignore
+        if (![
+            'totalPlays', 'totalTime', 'totalScore',
+            'lastPlayedTimestamp', 'createdTimestamp', 'updatedTimestamp'
+        ].includes(sort))
+            throw new Error(422, 'Sort is invalid');
+
+        const order = String(options.order ?? 'desc').trim();
+        if (!['asc', 'desc'].includes(order))
+            throw new Error(422, 'Order is invalid');
+
+        query = query.sort({ [sort]: order === 'asc' ? 1 : -1 });
+
+        const ids = Array.from(options.ids ?? []);
+        const slugs = Array.from(options.slugs ?? []);
+
+        if (ids.length > 0 || slugs.length > 0) {
+            const validIds = ids.filter(id => Validate.ObjectId.test(id));
+            const validSlugs = slugs.filter(id => Validate.Slug.test(id));
+
+            console.log(validIds, validSlugs);
+
+            if (validIds.length > 0 || validSlugs.length > 0)
+                query = query.or([
+                    { _id: { $in: validIds } },
+                    { slug: { $in: validSlugs } },
+                ]);
+        } else {
+            const categories = Array.from(options.categories ?? []);
+            if (categories.length > 0)
+                query = query.where('categories').in(categories);
+
+            const modes = Array.from(options.modes ?? []);
+            if (modes.length > 0) query = query.where('modes').in(modes);
+        }
+
+        const limit = Math.min(Math.max(Number(options.limit ?? 20), 1), 100);
+        if (Number.isNaN(limit)) throw new Error(422, 'Limit must be a number');
+
+        const skip = Math.max(Number(options.skip ?? 0), 0);
+        if (Number.isNaN(skip)) throw new Error(422, 'Skip must be a number');
 
         const total = await Game.find().merge(query).countDocuments().exec();
         const games = await query.limit(limit).skip(skip).exec();
