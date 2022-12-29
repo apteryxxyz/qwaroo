@@ -8,6 +8,10 @@ export const Routes = {
         return `/auth/${provider}/callback` as const;
     },
 
+    authFailure(provider: string) {
+        return `/auth/${provider}/failure` as const;
+    },
+
     // Games
     categories() {
         return '/categories' as const;

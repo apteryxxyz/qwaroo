@@ -35,7 +35,7 @@ export default () => {
             Routes.authCallback(provider),
             useMethods(['GET']),
             passport.authenticate(provider, {
-                failureRedirect: '/login',
+                failureRedirect: `/auth/${provider}/failure`,
                 session: false,
             }),
             handle(async (req, res) => {
@@ -47,16 +47,25 @@ export default () => {
                 const { id, revokeToken } = req.user;
                 const token = Authentication.createToken(id, revokeToken);
 
-                const redirectUrl = new URL(
-                    '/auth/callback',
-                    process.env['WEB_URL']
-                );
+                const webUrl = process.env['WEB_URL']!;
+                const redirectUrl = new URL('/auth/callback', webUrl);
                 redirectUrl.searchParams.set('uid', id);
                 redirectUrl.searchParams.set('token', token);
-                redirectUrl.searchParams.set('method', provider);
+                redirectUrl.searchParams.set('provider', provider);
 
                 res.redirect(redirectUrl.toString());
             })
+        );
+
+        router.all(
+            Routes.authFailure(provider),
+            useMethods(['GET']),
+            (_req, res) => {
+                const webUrl = process.env['WEB_URL']!;
+                const redirectUrl = new URL('/auth/failure', webUrl);
+                redirectUrl.searchParams.set('provider', provider);
+                res.redirect(redirectUrl.toString());
+            }
         );
     }
 

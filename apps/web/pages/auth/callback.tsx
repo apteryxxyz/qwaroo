@@ -14,7 +14,7 @@ export default () => {
             const url = new URL(router.asPath, 'http://localhost');
             const id = url.searchParams.get('uid') ?? '';
             const token = url.searchParams.get('token') ?? '';
-            const method = url.searchParams.get('method') ?? '';
+            const provider = url.searchParams.get('provider') ?? '';
 
             if (Validate.ObjectId.test(id) && token) {
                 localStorage.setItem('qwaroo.user_id', id);
@@ -27,7 +27,7 @@ export default () => {
 
                 emitEvent('sign_in', {
                     user_id: id,
-                    method,
+                    provider,
                     back_to: backTo,
                 });
 
@@ -41,7 +41,7 @@ export default () => {
     }, [router.isReady]);
 
     return <>
-        <Seo title="Callback" noIndex />
+        <Seo title="Authorisation Callback" noIndex />
         <Loading />
     </>;
 };
