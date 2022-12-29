@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         ? userIds['items'].map((id: string) => ({
               loc: new URL(`/users/${id}`, useWebUrl()).toString(),
               lastmod: new Date().toISOString(),
-              changefeq: 'always',
+              changefreq: 'always' as const,
               priority: 0.6,
           }))
         : [];
@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         ? gameIds['items'].map((id: string) => ({
               loc: new URL(`/games/${id}`, useWebUrl()).toString(),
               lastmod: new Date().toISOString(),
-              changefeq: 'weekly',
+              changefreq: 'weekly' as const,
               priority: 0.8,
           }))
         : [];
