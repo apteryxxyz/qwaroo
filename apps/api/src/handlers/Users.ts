@@ -26,7 +26,7 @@ export class Users extends null {
 
         const ids = Array.from(options.ids ?? []);
         if (ids.length > 0) {
-            const validIds = ids.filter(Validate.ObjectId.test);
+            const validIds = ids.filter(id => Validate.ObjectId.test(id));
             if (validIds.length > 0) query = query.where('_id').in(validIds);
         }
 
