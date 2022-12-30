@@ -15,11 +15,16 @@ export default () => {
         useMethods(['GET']),
         useToken([], ['GET']),
         handle(async (req, res) => {
-            const term = String(req.query['term'] ?? '');
-            const limit = Number(req.query['limit'] ?? 10);
-            const skip = Number(req.query['skip'] ?? 0);
+            const opts: Record<string, unknown> = {};
 
-            const [data, items] = await Users.getUsers(term, limit, skip);
+            opts['term'] = String(req.query['term'] ?? '') || undefined;
+            opts['limit'] = Number(req.query['limit'] ?? 0) || undefined;
+            opts['skip'] = Number(req.query['skip'] ?? 0) || undefined;
+
+            const ids = String(req.query['ids'] ?? '');
+            if (ids) opts['ids'] = ids.split(',');
+
+            const [data, items] = await Users.getUsers(opts);
             res.status(200).json({ success: true, ...data, items });
         })
     );
