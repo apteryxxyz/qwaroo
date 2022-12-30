@@ -22,9 +22,10 @@ export default ({
         localStorage.setItem(reminderKey, 'true');
         // prettier-ignore
         const showToast = () => toast.info(
-            'You can optionally sign in to save your high scores and ' +
-            'statistics, and will also be able to access your account '+
-            'across multiple devices.', {
+            'Optionally, you can sign in to save your high scores and ' +
+            'statistics. You will also be able to access your account ' +
+            'across multiple devices.',
+            {
                 position: 'top-center',
                 theme: 'dark',
                 autoClose: 8_000,
