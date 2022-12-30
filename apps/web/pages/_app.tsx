@@ -1,12 +1,14 @@
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import 'react-toastify/dist/ReactToastify.css';
 import '#/styles/common.css';
 
 import { Client } from '@qwaroo/client';
-import { ThemeProvider } from 'next-themes';
+import { ThemeProvider, useTheme } from 'next-themes';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Bubbles } from '#/components/Background/Bubbles';
 import { FooterBar } from '#/components/FooterBar';
 import { NavigationBar } from '#/components/NavigationBar';
@@ -19,6 +21,7 @@ const client = new Client({ apiHost: useApiUrl() });
 
 export default ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
+    const { theme } = useTheme() as { theme: 'light' | 'dark' };
 
     useEffect(() => {
         // Login the client if the user has an id and token
@@ -76,9 +79,15 @@ export default ({ Component, pageProps }: AppProps) => {
                 <FooterBar />
             </div>
 
-            <span className="invisible md:visible motion-reduce:invisible">
+            <div className="invisible md:visible motion-reduce:invisible">
                 <Bubbles count={20} />
-            </span>
+            </div>
+
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5_000}
+                theme={theme ?? 'light'}
+            />
         </ThemeProvider>
     </ClientProvider>;
 };
