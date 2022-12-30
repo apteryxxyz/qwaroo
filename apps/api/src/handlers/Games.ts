@@ -1,7 +1,7 @@
 import { ServerError as Error, Validate, createRegExp } from '@qwaroo/common';
 import { Game, type GameDocument, type UserDocument } from '@qwaroo/database';
 import { loadItems } from '@qwaroo/sources';
-import type { FetchGamesOptions } from '@qwaroo/types';
+import { type FetchGamesOptions, Game as GameEntity } from '@qwaroo/types';
 import { shuffle } from 'shuffle-seed';
 
 export class Games extends null {
@@ -47,12 +47,18 @@ export class Games extends null {
 
     /** Get a list of all games. */
     public static async getGames(
+        me?: UserDocument,
         user?: UserDocument,
         options: FetchGamesOptions = {}
     ) {
         let query = Game.find();
 
         if (user) query = query.where({ creatorId: user.id });
+
+        if (!me || !user || me.id !== user.id)
+            query = query.where('publicFlags', {
+                $bitsAllSet: GameEntity.Flags.Approved,
+            });
 
         const term = String(options.term ?? '').trim();
         if (term.length > 0) {

@@ -52,7 +52,7 @@ export default () => {
             const userId = String(req.params['userId'] ?? '') || undefined;
             const user = userId ? await Users.getUser(userId) : undefined;
 
-            const [data, items] = await Games.getGames(user, opts);
+            const [data, items] = await Games.getGames(req.user, user, opts);
             res.status(200).json({ success: true, ...data, items });
         })
     );
