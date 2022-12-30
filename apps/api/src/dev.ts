@@ -1,5 +1,5 @@
 import process from 'node:process';
-import { Game, User } from '@qwaroo/database';
+import { /* Connection, */ Game, User } from '@qwaroo/database';
 import { fetchAndSaveItems } from '@qwaroo/sources';
 
 export default async () => {
@@ -7,9 +7,17 @@ export default async () => {
 
     const user = await User.create({
         publicFlags: (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3),
-        displayName: 'Apteryx',
+        displayName: 'Developer',
         avatarUrl: 'https://picsum.photos/300/300?random=1',
     });
+
+    // await Connection.create({
+    //     userId: user.id,
+    //     providerName: 'discord',
+    //     accountId: '548150274414608399',
+    //     accountUsername: 'Apteryx#0001',
+    //     refreshToken: '123',
+    // });
 
     await Game.create({
         creatorId: user.id,
@@ -20,6 +28,7 @@ export default async () => {
             sortDirection: 'asc',
             valueProperty: 'rating',
         },
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'IMDb Movie Ratings',
         shortDescription: 'Which popular movie on IMDb has a higher rating?',
@@ -44,7 +53,7 @@ export default async () => {
             sortDirection: 'asc',
             valueProperty: 'rating',
         },
-
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'IMDb Video Game Ratings',
         shortDescription:
@@ -71,7 +80,7 @@ export default async () => {
             sortDirection: 'asc',
             valueProperty: 'rating',
         },
-
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'IMDb TV Series Ratings',
         shortDescription:
@@ -95,7 +104,7 @@ export default async () => {
         sourceOptions: {
             valueProperty: 'population',
         },
-
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'Countries by Population',
         shortDescription: 'Which country has a higher population?',
@@ -118,7 +127,7 @@ export default async () => {
         sourceOptions: {
             valueProperty: 'landArea',
         },
-
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'Countries by Land Area',
         shortDescription: 'Which country has a larger land area?',
@@ -142,7 +151,7 @@ export default async () => {
         sourceOptions: {
             valueProperty: 'density',
         },
-
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'Countries by Population Density',
         shortDescription: 'Which country has a higher population density?',
@@ -167,7 +176,7 @@ export default async () => {
             pagePath: '/wiki/Weapons_in_GTA_Online',
             shouldCheckImages: true,
         },
-
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'GTA Online Weapon Prices',
         shortDescription: 'Which GTA Online weapon is more expensive?',
@@ -192,7 +201,7 @@ export default async () => {
             pagePath: '/wiki/Vehicles_in_GTA_Online',
             shouldCheckImages: true,
         },
-
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'GTA Online Vehicle Prices',
         shortDescription: 'Which GTA Online vehicle is more expensive?',
@@ -216,7 +225,7 @@ export default async () => {
         sourceOptions: {
             channelIds: ['UCV6mNrW8CrmWtcxWfQXy11g'],
         },
-
+        publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'DarkViperAU Video Views',
         shortDescription:
