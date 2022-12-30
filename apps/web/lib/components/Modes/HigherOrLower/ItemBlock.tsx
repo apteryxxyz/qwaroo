@@ -67,8 +67,8 @@ export function ItemBlock({
             flex flex-col justify-center items-center p-10 xl:pt-[30vw] select-none"
         style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(${imageUrl})`,
-            backgroundSize: cropping === 'fit' ? '100%' : 'cover',
-            backgroundPosition: cropping === 'fit' ? '50% 50%' : 'center',
+            backgroundSize: cropping === 'fit' ? 'contain' : 'cover',
+            backgroundPosition: 'center',
         }}
     >
         <h2 className="text-center text-2xl xl:text-5xl font-bold">
