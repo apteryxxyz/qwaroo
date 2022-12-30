@@ -8,7 +8,7 @@ let nextConfig = {
         return [
             {
                 source: '/discord',
-                destination: 'https://discord.gg/vZQbMhwsKY',
+                destination: 'https://discord.gg/C3qVXYqX8J',
                 permanent: false,
             }
         ]
