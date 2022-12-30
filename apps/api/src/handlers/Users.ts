@@ -36,7 +36,7 @@ export class Users extends null {
         const skip = Math.max(Number(options.skip ?? 0), 0);
         if (Number.isNaN(skip)) throw new Error(422, 'Skip must be a number');
 
-        const total = await User.find().merge(query).exec();
+        const total = await User.find().merge(query).countDocuments().exec();
         const users = await query.limit(limit).skip(skip).exec();
 
         return [{ total, limit, skip }, users] as const;
