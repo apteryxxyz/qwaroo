@@ -22,7 +22,7 @@ export default () => {
     const client = useClient();
 
     const [games, setGames] = useState<Game[]>([]);
-    const hasItems = useRef(new Map<string, boolean>());
+    const hasItems = useRef<Record<string, [number, boolean]>>({});
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [categories, setCategories] = useState<string[]>([]);
@@ -48,24 +48,35 @@ export default () => {
     useEffect(() => {
         if (!query) return;
 
+        const url = new URL(router.asPath, 'http://localhost');
+        const search = new URLSearchParams(Object.entries(query));
+        const path = url.pathname.split('?')[0] + '?' + search.toString();
+        setShareUrl(path);
+
+        const itemsCache = localStorage.getItem('qwaroo.has_items_cache');
+        if (itemsCache) hasItems.current = JSON.parse(itemsCache) ?? {};
+
         (async () => {
-            const url = new URL(router.asPath, 'http://localhost');
-            const search = new URLSearchParams(Object.entries(query));
-            const path = url.pathname.split('?')[0] + '?' + search.toString();
-            setShareUrl(path);
-
             const games = await client.games.fetchMany(query);
-            for (const game of games) {
-                // Preload the creator
-                await game.fetchCreator(false).catch(() => null);
 
-                // TODO: Still need to find a better way to check if the game has items
-                // This results in a lot of requests and uses the rate limit faster
-                if (!hasItems.current.has(game.id)) {
-                    // Get the item count to ensure the game has items
-                    const items = await game.fetchItems().catch(() => null);
-                    hasItems.current.set(game.id, (items?.total ?? 0) > 0);
-                }
+            // Preload the creators
+            const creatorIds = Array.from(new Set(games.map(g => g.creatorId)));
+            await client.users.fetchMany({ ids: creatorIds });
+
+            // Preload whether the games have items
+            for (const game of games) {
+                const current = hasItems.current[game.id];
+                if (current && current[0] === game.updatedTimestamp) continue;
+
+                const items = await game.fetchItems().catch(() => null);
+                hasItems.current = Object.assign(hasItems.current, {
+                    [game.id]: [game.updatedTimestamp, (items?.total ?? 0) > 0],
+                });
+
+                localStorage.setItem(
+                    'qwaroo.has_items_cache',
+                    JSON.stringify(hasItems.current)
+                );
             }
 
             setGames(games);
@@ -192,7 +203,7 @@ export default () => {
             {games.map(
                 game =>
                     // If a game doesnt have items, exclude it from results
-                    hasItems.current.get(game.id) && <GameCard
+                    hasItems.current[game.id]?.[1] && <GameCard
                         key={game.slug}
                         game={game}
                         creator={client.users.get(game.creatorId)!}
