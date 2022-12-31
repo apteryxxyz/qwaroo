@@ -96,7 +96,8 @@ export class User extends Base implements APIUser {
 
     public override toJSON() {
         return {
-            id: this.id,
+            ...super.toJSON(),
+            publicFlags: this.publicFlags,
             displayName: this.displayName,
             avatarUrl: this.avatarUrl,
             joinedTimestamp: this.joinedTimestamp,

@@ -104,7 +104,7 @@ export class Score<H extends boolean = boolean>
 
     public override toJSON() {
         return {
-            id: this.id,
+            ...super.toJSON(),
             userId: this.userId,
             gameId: this.gameId,
             highScore: this.highScore,

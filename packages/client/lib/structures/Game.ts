@@ -153,11 +153,12 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
 
     public override toJSON() {
         return {
-            id: this.id,
+            ...super.toJSON(),
             slug: this.slug,
             creatorId: this.creatorId,
             sourceSlug: this.sourceSlug,
             sourceOptions: this.sourceOptions,
+            publicFlags: this.publicFlags,
             mode: this.mode,
             title: this.title,
             shortDescription: this.shortDescription,
@@ -165,8 +166,12 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
             thumbnailUrl: this.thumbnailUrl,
             categories: this.categories,
             data: this.data,
+            totalScore: this.totalScore,
+            totalTime: this.totalTime,
+            totalPlays: this.totalPlays,
             createdTimestamp: this.createdTimestamp,
             updatedTimestamp: this.updatedTimestamp,
+            lastPlayedTimestamp: this.lastPlayedTimestamp,
         };
     }
 

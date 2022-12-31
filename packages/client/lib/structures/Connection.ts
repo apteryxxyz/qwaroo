@@ -66,7 +66,7 @@ export class Connection extends Base implements APIConnection {
 
     public override toJSON() {
         return {
-            id: this.id,
+            ...super.toJSON(),
             userId: this.userId,
             providerName: this.providerName,
             accountId: this.accountId,
