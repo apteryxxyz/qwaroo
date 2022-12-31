@@ -8,17 +8,15 @@ export namespace Seo {
     }
 }
 
-export function Seo({ title, noIndex, children }: Seo.Props) {
-    if (!title.includes('Qwaroo')) title = `${title} - Qwaroo`;
-
+export function Seo(props: Seo.Props) {
     return <Head>
         {/* Basic */}
-        <title>{title}</title>
+        <title>{`${props.title} | Qwaroo`}</title>
         <meta name="theme-color" content="#3884f8" />
 
-        {/* Other */}
+        {/* Third party */}
         <meta name="darkreader-lock" />
-        <meta name="robots" content={noIndex ? 'noindex' : 'index'} />
+        <meta name="robots" content={props.noIndex ? 'noindex' : 'index'} />
 
         {/* Branding */}
         <link
@@ -40,6 +38,6 @@ export function Seo({ title, noIndex, children }: Seo.Props) {
         />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {children}
+        {props.children}
     </Head>;
 }

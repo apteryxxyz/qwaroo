@@ -16,6 +16,7 @@ export default () => {
 
     return <>
         <Seo title="Authorisation Failure" noIndex />
+
         <Loading />
     </>;
 };

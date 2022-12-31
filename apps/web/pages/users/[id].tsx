@@ -8,13 +8,13 @@ import { faPalette } from '@fortawesome/free-solid-svg-icons/faPalette';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //
 import type { Connection, Score, User } from '@qwaroo/client';
+import type { APIUser } from '@qwaroo/types';
 import ms from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useEffect, useState } from 'react';
 import { HighscoreCard } from '#/components/Cards/Highscore';
 import { StatisticCard } from '#/components/Cards/Statistic';
 import { Loading } from '#/components/Display/Loading';
-// import { Button } from '#/components/Input/Button';
 import { PageSeo } from '#/components/Seo/Page';
 import { useClient } from '#/contexts/ClientContext';
 
@@ -40,6 +40,7 @@ const badgeIconMap = {
 export default ({
     id,
     displayName,
+    avatarUrl,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const client = useClient();
     const [user, setUser] = useState<User | null>(null);
@@ -82,11 +83,21 @@ export default ({
         ] as const;
     }
 
+    const bannerUrl = new URL('https://wsrv.nl');
+    bannerUrl.searchParams.set('url', avatarUrl);
+    bannerUrl.searchParams.set('w', '900');
+    bannerUrl.searchParams.set('h', '900');
+
     return <>
         <PageSeo
             title={displayName}
             description={`View ${displayName}'s Qwaroo profile, containing their statistics, achievements, created games, and more.`}
             url={`/users/${id}`}
+            banner={{
+                source: bannerUrl.toString(),
+                width: 900,
+                height: 900,
+            }}
         />
 
         {!user && <Loading />}
@@ -101,7 +112,7 @@ export default ({
                     <picture>
                         <img
                             className="rounded-xl aspect-square"
-                            src={user.avatarUrl}
+                            src={avatarUrl.toString()}
                             alt={`${displayName}'s avatar`}
                             title={`${displayName}'s avatar`}
                             width={128}
@@ -190,10 +201,9 @@ export default ({
     </>;
 };
 
-export const getServerSideProps: GetServerSideProps<{
-    id: string;
-    displayName: string;
-}> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<APIUser> = async ({
+    params,
+}) => {
     const id = String(params?.['id'] ?? '');
     if (!id) return { notFound: true };
 
@@ -202,5 +212,5 @@ export const getServerSideProps: GetServerSideProps<{
         .catch(() => null);
     if (!user) return { notFound: true };
 
-    return { props: { id, displayName: user.displayName } };
+    return { props: user.toJSON() };
 };

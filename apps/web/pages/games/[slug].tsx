@@ -1,17 +1,15 @@
-import { Game as GameEntity } from '@qwaroo/types';
+import { type APIGame, Game as GameEntity } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { LoginModal } from '#/components/Modal/Login';
 import { HigherOrLower } from '#/components/Modes/HigherOrLower';
-import { PageSeo } from '#/components/Seo/Page';
+import { GameSeo } from '#/components/Seo/Game';
 import { useClient } from '#/contexts/ClientContext';
 
-export default ({
-    mode,
-    slug,
-    ...props
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+export default (
+    props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
     const client = useClient();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -39,16 +37,35 @@ export default ({
         };
     }, [client.id]);
 
+    function GameScreen() {
+        switch (props.mode) {
+            case GameEntity.Mode.HigherOrLower:
+                return <HigherOrLower slug={props.slug} />;
+            default:
+                return null;
+        }
+    }
+
+    const bannerUrl = new URL('https://wsrv.nl');
+    bannerUrl.searchParams.set('url', props.thumbnailUrl);
+    bannerUrl.searchParams.set('w', '900');
+    bannerUrl.searchParams.set('h', '900');
+
     return <>
-        <PageSeo
+        <GameSeo
+            url={`/games/${props.slug}`}
             title={props.title}
             description={props.longDescription}
-            url={`/games/${slug}`}
+            categories={props.categories}
+            mode={props.mode}
+            banner={{
+                source: bannerUrl.toString(),
+                width: 900,
+                height: 900,
+            }}
         />
 
-        {mode === GameEntity.Mode.HigherOrLower && <HigherOrLower
-            slug={slug}
-        />}
+        <GameScreen />
 
         <LoginModal
             isOpen={isModalOpen}
@@ -57,12 +74,9 @@ export default ({
     </>;
 };
 
-export const getServerSideProps: GetServerSideProps<{
-    slug: string;
-    mode: GameEntity.Mode;
-    title: string;
-    longDescription: string;
-}> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<APIGame> = async ({
+    params,
+}) => {
     const slug = String(params?.['slug'] ?? '');
     if (!slug) return { notFound: true };
 
@@ -71,6 +85,5 @@ export const getServerSideProps: GetServerSideProps<{
         .catch(() => null);
     if (!game) return { notFound: true };
 
-    const { title, mode, longDescription } = game.toJSON();
-    return { props: { slug, title, mode, longDescription } };
+    return { props: game.toJSON() };
 };

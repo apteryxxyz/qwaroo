@@ -3,8 +3,8 @@ import { resolveHref } from '#/utilities/resolveHref';
 
 export namespace PageSeo {
     export interface Props extends Seo.Props {
-        description: string;
         url: string;
+        description: string;
         keywords?: string[];
 
         banner?: {
@@ -15,23 +15,20 @@ export namespace PageSeo {
     }
 }
 
-export function PageSeo({
-    description,
-    url,
-    keywords,
-    banner,
-    ...props
-}: PageSeo.Props) {
+export function PageSeo({ keywords = [], banner, ...props }: PageSeo.Props) {
+    keywords = [...keywords, 'qwaroo', 'guessing', 'game', 'quiz', 'apteryx'];
+
     return <Seo {...props}>
-        <meta name="description" content={description} />
-        <meta name="keywords" content={(keywords ?? []).join(', ')} />
+        {/* Basic */}
+        <meta name="description" content={props.description} />
+        <meta name="keywords" content={keywords.join(', ')} />
 
         {/* Open Graph */}
-        <meta property="og:url" content={resolveHref(url)} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Qwaroo" />
+        <meta property="og:url" content={resolveHref(props.url)} />
         <meta property="og:title" content={props.title} />
-        <meta property="og:description" content={description} />
+        <meta property="og:description" content={props.description} />
         {banner && <>
             <meta property="og:image" content={resolveHref(banner.source)} />
             <meta property="og:image:width" content={banner.width.toString()} />
@@ -42,11 +39,11 @@ export function PageSeo({
         </>}
 
         {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary_large" />
         <meta name="twitter:site" content="@apteryxxyz" />
         <meta name="twitter:creator" content="@apteryxxyz" />
         <meta name="twitter:title" content={props.title} />
-        <meta name="twitter:description" content={description} />
+        <meta name="twitter:description" content={props.description} />
         {banner && <>
             <meta name="twitter:image" content={resolveHref(banner.source)} />
             <meta

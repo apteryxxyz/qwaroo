@@ -42,6 +42,7 @@ export default () => {
 
     return <>
         <Seo title="Authorisation Callback" noIndex />
+
         <Loading />
     </>;
 };

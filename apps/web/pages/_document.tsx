@@ -3,7 +3,7 @@ import { Head, Html, Main, NextScript } from 'next/document';
 import { useGoogleAdsenseClient, useGoogleAnalyticsId } from '#/hooks/useEnv';
 
 export default () => {
-    return <Html>
+    return <Html lang="en">
         <Head>
             {/* Google Adsense */}
             <script

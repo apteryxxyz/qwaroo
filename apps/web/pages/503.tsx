@@ -15,7 +15,8 @@ export default () => {
     }, []);
 
     return <div id="error-updating">
-        <Seo title="Updating..." noIndex />
+        <Seo title="Updating" noIndex />
+
         <Display
             header="Updating..."
             title="We're updating the site."
