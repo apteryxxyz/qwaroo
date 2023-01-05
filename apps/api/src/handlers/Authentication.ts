@@ -14,7 +14,7 @@ export class Authentication extends null {
                 // Revoke token is used to invalidate all created tokens
                 rvt: revokeToken,
                 iat: Date.now(),
-                exp: Date.now() + 1_000 * 60 * 60 * 24 * 7,
+                exp: Date.now() + 1_000 * 60 * 60 * 24 * 365,
             })
         );
     }
