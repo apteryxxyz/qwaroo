@@ -95,8 +95,6 @@ export class Games extends null {
             const validIds = ids.filter(id => Validate.ObjectId.test(id));
             const validSlugs = slugs.filter(id => Validate.Slug.test(id));
 
-            console.log(validIds, validSlugs);
-
             if (validIds.length > 0 || validSlugs.length > 0)
                 query = query.or([
                     { _id: { $in: validIds } },

@@ -73,8 +73,6 @@ export function validateArray(...args: ValidateArgs) {
 }
 
 export function validateValue(...args: ValidateArgs): unknown {
-    console.log(args);
-
     if (Array.isArray(args[3].type)) {
         const array = validateArray(...args);
         if (array === undefined) return [] as const;
