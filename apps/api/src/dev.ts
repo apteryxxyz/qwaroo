@@ -243,6 +243,35 @@ export default async () => {
         },
     });
 
+    await Game.create({
+        creatorId: user.id,
+        sourceSlug: 'youtube-channel-video-views',
+        sourceOptions: {
+            channelIds: [
+                'UCewMTclBJZPaNEfbf-qYMGA',
+                'UCxLIJccyaRQDeyu6RzUsPuw',
+                'UCd15dSPPT-EhTXekA7_UNAQ',
+                'UCyktGLVQchOpvKgL7GShDWA',
+            ],
+        },
+        publicFlags: 1,
+        mode: 'higher-or-lower',
+        title: 'JackSucksAtLife Video Views',
+        shortDescription:
+            'Which of YouTuber JackSucksAtLifes videos has more views?',
+        longDescription:
+            'Can you guess which of YouTuber JackSucksAtLifes videos has more views? Find out in this edition of the classic Higher or Lower guessing game!',
+        thumbnailUrl:
+            'https://www.guinnessworldrecords.com/Images/jacksucksatlife-YouTube-certificate-guinness-world-records-website_tcm25-634161.jpg',
+        categories: ['Content Creators'],
+        data: {
+            verb: 'has',
+            noun: 'views',
+            higher: 'More',
+            lower: 'Less',
+        },
+    });
+
     await ensureGameItems();
 };
 
