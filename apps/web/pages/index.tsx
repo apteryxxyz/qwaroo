@@ -12,7 +12,7 @@ export default () => {
 
     return <>
         <PageSeo
-            title="Qwaroo"
+            title="Home"
             description="A collection of fun guessing and statistics based browser games.
             Can you guess which country has a higher population, or which movie has a better rating on IMDb?
             Find out today!"

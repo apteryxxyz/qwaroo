@@ -1,5 +1,4 @@
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import 'react-toastify/dist/ReactToastify.css';
 import '#/styles/common.css';
 
 import { Client } from '@qwaroo/client';

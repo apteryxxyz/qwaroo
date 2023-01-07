@@ -160,8 +160,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         goFullscreen();
         prepareGame();
 
-        const key = `qwaroo.settings_${slug}`;
-        const rawSettings = localStorage.getItem(key);
+        const rawSettings = localStorage.getItem(`qwaroo.settings_${slug}`);
         if (rawSettings) setSettings(JSON.parse(rawSettings));
 
         void client.games.fetchOne(slug).then(g => setGame(g));

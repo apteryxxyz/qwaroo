@@ -1,7 +1,6 @@
 import { type APIGame, Game as GameEntity } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { useState } from 'react';
 import { LoginModal } from '#/components/Modal/Login';
 import { HigherOrLower } from '#/components/Modes/HigherOrLower';
 import { GameSeo } from '#/components/Seo/Game';
@@ -10,32 +9,7 @@ import { useClient } from '#/contexts/ClientContext';
 export default (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-    const client = useClient();
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    useEffect(() => {
-        const reminderKey = 'qwaroo.has_seen_reminder';
-        if (client.id || localStorage.getItem(reminderKey)) return;
-
-        localStorage.setItem(reminderKey, 'true');
-        // prettier-ignore
-        const showToast = () => toast.info(
-            'Optionally, you can sign in to save your high scores and ' +
-            'statistics. You will also be able to access your account ' +
-            'across multiple devices.',
-            {
-                position: 'top-center',
-                theme: 'dark',
-                autoClose: 8_000,
-                onClick: () => setIsModalOpen(true),
-            }
-        );
-
-        const timeout = setTimeout(showToast, 1_000);
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [client.id]);
 
     function GameScreen() {
         switch (props.mode) {
