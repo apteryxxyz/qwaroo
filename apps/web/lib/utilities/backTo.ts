@@ -5,10 +5,11 @@ export function setBackTo(url?: string) {
     if (!url && error) return;
 
     const backTo = url ?? window.location.href;
-    const backPath = new URL(backTo, useWebUrl()).pathname;
-    if (backPath.startsWith('/auth/callback')) return;
+    const backPath = new URL(backTo, useWebUrl());
+    const fullPath = backPath.pathname + backPath.search;
+    if (fullPath.startsWith('/auth/callback')) return;
 
-    localStorage.setItem('qwaroo.back_to', backPath);
+    localStorage.setItem('qwaroo.back_to', fullPath);
 }
 
 export function getBackTo() {

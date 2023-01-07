@@ -18,6 +18,7 @@ import { Dropdown } from '#/components/Input/Dropdown';
 import { Modal } from '#/components/Modal';
 import { useClient } from '#/contexts/ClientContext';
 import { useLogger } from '#/hooks/useLogger';
+import { getBackTo } from '#/utilities/backTo';
 import { emitEvent } from '#/utilities/googleServices';
 import {
     disableInspectElement,
@@ -43,6 +44,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
     const [highScore, setHighScore] = useState<number | undefined>();
     const [score, setScore] = useState(0);
 
+    const [gamesPath, setGamesPath] = useState<string>('/games');
     const [areSettingsOpen, setAreSettingsOpen] = useState(false);
     const [settings, setSettings] = useState<HigherOrLower.Settings>({
         imageCropping: 'auto',
@@ -163,6 +165,9 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         const rawSettings = localStorage.getItem(`qwaroo.settings_${slug}`);
         if (rawSettings) setSettings(JSON.parse(rawSettings));
 
+        const backTo = getBackTo();
+        if (/^\/games(?!\/)/.test(backTo)) setGamesPath(backTo);
+
         void client.games.fetchOne(slug).then(g => setGame(g));
 
         return () => {
@@ -216,7 +221,7 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
             showSocials
         >
             <Button onClick={() => window.location.reload()}>Play again</Button>
-            <Button linkProps={{ href: '/games' }}>Browse other games</Button>
+            <Button linkProps={{ href: gamesPath }}>Browse other games</Button>
         </Display>;
 
     const hasPreview = score < items.length - 1;
