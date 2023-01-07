@@ -11,6 +11,7 @@ export namespace PlainButton {
 
         iconProp?: IconProp;
         ariaLabel?: string;
+        title?: string;
 
         onClick?(): void;
         linkProps?: LinkProps;
@@ -33,7 +34,7 @@ export function PlainButton(props: PlainButton.Props) {
         ${props.className ?? ''}`;
 
     return props.linkProps ? (
-        <Link className={className} {...props.linkProps}>
+        <Link className={className} title={props.title} {...props.linkProps}>
             {props.iconProp && <FontAwesomeIcon icon={props.iconProp} />}
             {props.children}
         </Link>
@@ -41,6 +42,7 @@ export function PlainButton(props: PlainButton.Props) {
         <motion.button
             className={className}
             onClick={props.onClick}
+            title={props.title}
             aria-label={props.ariaLabel}
         >
             {props.iconProp && <FontAwesomeIcon icon={props.iconProp} />}

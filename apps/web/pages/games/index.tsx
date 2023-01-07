@@ -152,6 +152,7 @@ export default () => {
                                 order: q!.order === 'asc' ? 'desc' : 'asc',
                             }))
                         }
+                        title="Change sort order"
                         ariaLabel="Change sort order"
                     />
                 </div>
@@ -178,7 +179,8 @@ export default () => {
                             shallow: true,
                         });
                     }}
-                    ariaLabel="Clear search"
+                    title="Clear search filters"
+                    ariaLabel="Clear search filters"
                 />
 
                 <Button
@@ -192,7 +194,8 @@ export default () => {
                             void navigator.clipboard.writeText(url.toString());
                         else console.info(url.toString());
                     }}
-                    ariaLabel="Share search"
+                    title="Share a link to this search"
+                    ariaLabel="Share a link to this search"
                 />
             </div>
         </section>
