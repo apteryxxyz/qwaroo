@@ -102,10 +102,9 @@ async function _getChannelVideos(id: string, name: string, options: Options) {
     return filteredVideos.map(video => ({
         display: video.title,
         value: video.views ?? 0,
-        imageSource: video.bestThumbnail.url?.replace(
-            'hqdefault',
-            'maxresdefault'
-        ) as string,
+        imageSource: video.bestThumbnail.url
+            ?.replace('hqdefault', 'maxresdefault')
+            .split('?')[0] as string,
         imageFrame: 'fill' as const,
         caption: `on ${name}, as of ${new Date().toLocaleDateString()}`,
     }));
