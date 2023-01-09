@@ -107,6 +107,6 @@ async function _getChannelVideos(id: string, name: string, options: Options) {
             'maxresdefault'
         ) as string,
         imageFrame: 'fill' as const,
-        caption: options.channelIds.length > 1 ? `On ${name}` : undefined,
+        caption: `on ${name}, as of ${new Date().toLocaleDateString()}`,
     }));
 }
