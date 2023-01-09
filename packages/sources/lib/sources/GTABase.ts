@@ -129,7 +129,7 @@ function _parseNumber(text: string) {
 }
 
 function _formatImageUrl(path: string) {
-    const url = new URL(path, 'https://www.gtabase.com');
+    const url = new URL(path, 'https://gtabase.com');
     url.pathname = url.pathname
         .replace(/\/resized/, '')
         .replaceAll(/_\d+x\d+/g, '');
