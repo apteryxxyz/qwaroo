@@ -5,13 +5,15 @@ import { PlainButton } from '../Input/PlainButton';
 
 export namespace HighscoreCard {
     export interface Props {
-        game: Game;
+        game?: Game;
         score: Score;
         isMe?: boolean;
     }
 }
 
 export function HighscoreCard({ game, score, isMe }: HighscoreCard.Props) {
+    if (!game) return null;
+
     const imageUrl = new URL('https://wsrv.nl');
     imageUrl.searchParams.set('url', game.thumbnailUrl);
     imageUrl.searchParams.set('q', '20');

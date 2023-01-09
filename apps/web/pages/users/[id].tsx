@@ -190,7 +190,7 @@ export default ({
                     {scores.map(score => <HighscoreCard
                         key={score.gameId}
                         score={score}
-                        game={client.games.get(score.gameId)!}
+                        game={client.games.get(score.gameId)}
                         isMe={user.id === client.id}
                     />)}
                 </div>
