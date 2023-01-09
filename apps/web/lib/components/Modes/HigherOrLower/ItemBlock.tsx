@@ -1,6 +1,7 @@
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import type { Game as GameEntity } from '@qwaroo/types';
+import Link from 'next/link';
 import { Button } from '#/components/Input/Button';
 
 export namespace ItemBlock {
@@ -54,12 +55,13 @@ export function ItemBlock({
     const quality = qualityToNumber(props.imageQuality);
     const cropping = croppingToFrame(props.imageCropping, props.imageFrame);
 
+    const originalImageUrl = new URL(props.imageSource!);
     const imageUrl = new URL('https://wsrv.nl');
-    imageUrl.searchParams.set('url', props.imageSource!);
+    imageUrl.searchParams.set('url', originalImageUrl.toString());
     imageUrl.searchParams.set('q', quality.toString());
 
     return <aside
-        className="h-[50vh] xl:h-screen w-screen xl:w-[50vw] bg-no-repeat text-white
+        className="relative h-[50vh] xl:h-screen w-screen xl:w-[50vw] bg-no-repeat text-white
             flex flex-col justify-center items-center p-10 xl:pt-[30vw] select-none"
         style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(${imageUrl})`,
@@ -110,5 +112,16 @@ export function ItemBlock({
             </div>}
 
         <span className="text-xl">{props.noun}</span>
+
+        <span className="absolute right-1 bottom-1 opacity-30">
+            image via{' '}
+            <Link
+                href={originalImageUrl.toString()}
+                target="_blank"
+                className="underline"
+            >
+                {originalImageUrl.hostname}
+            </Link>
+        </span>
     </aside>;
 }
