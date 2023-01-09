@@ -28,8 +28,6 @@ function croppingToFrame(
     auto: 'fill' | 'fit' = 'fill'
 ) {
     switch (cropping) {
-        case 'auto':
-            return auto;
         case 'crop':
             return 'fill';
         case 'none':
@@ -43,10 +41,8 @@ function qualityToNumber(quality: ItemBlock.Props['imageQuality'] = 'reduced') {
     switch (quality) {
         case 'max':
             return 100;
-        case 'reduced':
-            return 10;
         default:
-            return 10;
+            return 20;
     }
 }
 
@@ -75,7 +71,9 @@ export function ItemBlock({
             "{props.display}"
         </h2>
 
-        {props.caption && <span className="text-center">{props.caption}</span>}
+        {props.caption && <span className="text-center text-xl">
+            {props.caption}
+        </span>}
 
         <span className="text-center text-xl">{props.verb}</span>
 
