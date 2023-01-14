@@ -60,7 +60,8 @@ export default () => {
             const games = await client.games.fetchMany(query);
 
             // Preload the creators
-            const creatorIds = Array.from(new Set(games.map(g => g.creatorId)));
+            const creatorIds = Array.from(new Set(games.map(g => g.creatorId))) //
+                .filter(id => !client.users.has(id));
             await client.users.fetchMany({ ids: creatorIds });
 
             // Preload whether the games have items
