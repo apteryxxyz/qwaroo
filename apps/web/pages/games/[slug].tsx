@@ -37,6 +37,10 @@ export default (
                 width: 900,
                 height: 900,
             }}
+            noIndex={
+                (props.publicFlags & GameEntity.Flags.Approved) ===
+                GameEntity.Flags.Approved
+            }
         />
 
         <GameScreen />
