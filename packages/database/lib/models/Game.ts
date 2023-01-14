@@ -38,15 +38,6 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
             match: Validate.ObjectId,
         },
 
-        // Updater
-        sourceSlug: {
-            type: String,
-        },
-
-        sourceOptions: {
-            type: Schema.Types.Mixed,
-        },
-
         // Flags
         publicFlags: {
             type: Number,

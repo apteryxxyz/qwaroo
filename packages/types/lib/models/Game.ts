@@ -13,11 +13,6 @@ export interface Game<
     /** ID of the user that created this game. */
     creatorId: string;
 
-    /** ID of the source generator/updater to use. */
-    sourceSlug?: string;
-    /** Options to pass to the generator. */
-    sourceOptions?: Record<string, unknown>;
-
     /** The flags for this game. */
     publicFlags: number;
 
