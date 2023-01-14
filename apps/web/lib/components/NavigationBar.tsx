@@ -7,7 +7,7 @@ import { faSignOut } from '@fortawesome/free-solid-svg-icons/faSignOut';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 //
 import { useTheme } from 'next-themes';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { PlainButton } from './Input/PlainButton';
@@ -122,7 +122,7 @@ export function NavigationBar() {
             </div>
         </nav>
 
-        <div
+        {/* <div
             id="banner-bar"
             className="z-20 bg-qwaroo-gradient shadow-xl text-white"
         >
@@ -138,7 +138,7 @@ export function NavigationBar() {
                 </Link>
                 .
             </p>
-        </div>
+        </div> */}
 
         <div className="z-30">
             <LoginModal
