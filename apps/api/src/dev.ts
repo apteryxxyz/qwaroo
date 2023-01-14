@@ -1,5 +1,5 @@
 import process from 'node:process';
-import { /* Connection, */ Game, User } from '@qwaroo/database';
+import { Connection, Game, User } from '@qwaroo/database';
 import { fetchAndSaveItems } from '@qwaroo/sources';
 
 export default async () => {
@@ -7,115 +7,140 @@ export default async () => {
 
     const user = await User.create({
         publicFlags: (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3),
-        displayName: 'Developer',
+        displayName: 'Apteryx',
         avatarUrl: 'https://picsum.photos/300/300?random=1',
     });
 
-    // await Connection.create({
-    //     userId: user.id,
-    //     providerName: 'discord',
-    //     accountId: '548150274414608399',
-    //     accountUsername: 'Apteryx#0001',
-    //     refreshToken: '123',
-    // });
-
-    await Game.create({
-        creatorId: user.id,
-        sourceSlug: 'imdb-advanced-search',
-        sourceOptions: {
-            titleType: 'feature',
-            sortParameter: 'moviemeter',
-            sortDirection: 'asc',
-            valueProperty: 'rating',
-        },
-        publicFlags: 1,
-        mode: 'higher-or-lower',
-        title: 'IMDb Movie Ratings',
-        shortDescription: 'Which popular movie on IMDb has a higher rating?',
-        longDescription:
-            'Can you guess which popular movie on IMDb has a higher rating? Find out in this edition of the classic Higher or Lower guessing game!',
-        thumbnailUrl: 'https://wallpaperaccess.com/full/3658919.jpg',
-        categories: ['Movies'],
-        data: {
-            verb: 'has a rating of',
-            noun: 'out of 10',
-            higher: 'Better',
-            lower: 'Worse',
-        },
+    await Connection.create({
+        userId: user.id,
+        providerName: 'discord',
+        accountId: '548150274414608399',
+        accountUsername: 'Apteryx#3459',
+        refreshToken: '123',
     });
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'imdb-advanced-search',
+        sourceSlug: 'gta-base',
         sourceOptions: {
-            titleType: 'video_game',
-            sortParameter: 'moviemeter',
-            sortDirection: 'asc',
-            valueProperty: 'rating',
+            jsonPath: '/media/com_jamegafilter/en_gb/1.json',
+            gameFilter: 'gta-online',
+            ctForValue: 'ct13',
         },
         publicFlags: 1,
         mode: 'higher-or-lower',
-        title: 'IMDb Video Game Ratings',
-        shortDescription:
-            'Which popular video game on IMDb has a higher rating?',
+        title: 'GTA Online Vehicle Prices',
+        shortDescription: 'Which GTA Online vehicle is more expensive?',
         longDescription:
-            'Can you guess which popular video game on IMDb has a higher rating? Find out in this edition of the classic Higher or Lower guessing game!',
+            'Can you guess which GTA Online vehicle is more expensive? Find out in this edition of the classic Higher or Lower guessing game!',
         thumbnailUrl:
-            'https://cdn.vox-cdn.com/uploads/chorus_image/image/68510166/jbareham_201201_ecl1050_goty_2020_top_50_02.0.jpg',
+            'https://d.newsweek.com/en/full/907847/gta-online-deluxo.jpg',
         categories: ['Gaming'],
         data: {
-            verb: 'has a rating of',
-            noun: 'out of 10',
-            higher: 'Better',
-            lower: 'Worse',
+            verb: 'costs',
+            noun: 'dollars',
+            prefix: '$',
+            higher: 'More',
+            lower: 'Less',
         },
     });
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'imdb-advanced-search',
+        sourceSlug: 'gta-base',
         sourceOptions: {
-            titleType: 'tv_series',
-            sortParameter: 'moviemeter',
-            sortDirection: 'asc',
-            valueProperty: 'rating',
+            jsonPath: '/media/com_jamegafilter/en_gb/6.json',
+            gameFilter: 'gta-online',
+            ctForValue: 'ct13',
+            imageFrame: 'fit',
         },
         publicFlags: 1,
         mode: 'higher-or-lower',
-        title: 'IMDb TV Series Ratings',
-        shortDescription:
-            'Which popular TV series on IMDb has a higher rating?',
+        title: 'GTA Online Weapon Prices',
+        shortDescription: 'Which GTA Online weapon is more expensive?',
         longDescription:
-            'Can you guess which popular TV series on IMDb has a higher rating? Find out in this edition of the classic Higher or Lower guessing game!',
+            'Can you guess which GTA Online weapon is more expensive? Find out in this edition of the classic Higher or Lower guessing game!',
         thumbnailUrl:
-            'https://miro.medium.com/max/992/1*jRuU1_OQ1P98SRjniHx1Jg.jpeg',
-        categories: ['TV'],
+            'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2019/01/gta-online-lasers.jpg',
+        categories: ['Gaming'],
         data: {
-            verb: 'has a rating of',
-            noun: 'out of 10',
-            higher: 'Better',
-            lower: 'Worse',
+            verb: 'costs',
+            noun: 'dollars',
+            prefix: '$',
+            higher: 'More',
+            lower: 'Less',
         },
     });
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'worldometer-basic',
+        sourceSlug: 'gta-base',
         sourceOptions: {
-            valueProperty: 'population',
+            jsonPath: '/media/com_jamegafilter/en_gb/1.json',
+            gameFilter: 'gta-online',
+            ctForValue: 'ct132',
         },
         publicFlags: 1,
         mode: 'higher-or-lower',
-        title: 'Countries by Population',
-        shortDescription: 'Which country has a higher population?',
+        title: 'GTA Online Vehicle Top Speeds',
+        shortDescription: 'Which GTA Online vehicle is faster?',
         longDescription:
-            'Can you guess which country has a higher population? Find out in this edition of the classic Higher or Lower guessing game!',
+            'Can you guess which GTA Online vehicle is faster? Find out in this edition of the classic Higher or Lower guessing game!',
         thumbnailUrl:
-            'https://blog.ons.gov.uk/wp-content/uploads/sites/6/2021/04/shutterstock_604150523-630x470.jpg',
-        categories: ['Geography'],
+            'https://www.theloadout.com/wp-content/uploads/2021/05/fastest-cars-gta-5-br8.jpeg',
+        categories: ['Gaming'],
+        data: {
+            verb: 'goes',
+            noun: 'MPH',
+            higher: 'Faster',
+            lower: 'Slower',
+        },
+    });
+
+    await Game.create({
+        creatorId: user.id,
+        sourceSlug: 'gta-base',
+        sourceOptions: {
+            jsonPath: '/media/com_jamegafilter/en_gb/3.json',
+            ctForValue: 'ct13',
+        },
+        publicFlags: 1,
+        mode: 'higher-or-lower',
+        title: 'GTA Online Property Prices',
+        shortDescription: 'Which GTA Online property is more expensive?',
+        longDescription:
+            'Can you guess which GTA Online property is is more expensive? Find out in this edition of the classic Higher or Lower guessing game!',
+        thumbnailUrl:
+            'https://www.gtabase.com/images/jch-optimize/ng/images_gta-5_properties_apartment_full_eclipse-towers.webp',
+        categories: ['Gaming'],
+        data: {
+            verb: 'costs',
+            prefix: '$',
+            noun: 'dollars',
+            higher: 'More',
+            lower: 'Less',
+        },
+    });
+
+    await Game.create({
+        creatorId: user.id,
+        sourceSlug: 'youtube-channel-video-views',
+        sourceOptions: {
+            channelIds: ['UCV6mNrW8CrmWtcxWfQXy11g'],
+        },
+        publicFlags: 1,
+        mode: 'higher-or-lower',
+        title: 'DarkViperAU Video Views',
+        shortDescription:
+            'Which of GTA speedrunner DarkViperAUs videos has more views?',
+        longDescription:
+            'Can you guess which of GTA speedrunner DarkViperAUs videos has more views? Find out in this edition of the classic Higher or Lower guessing game!',
+        thumbnailUrl:
+            'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cd5a5964-649b-424c-b83d-6aff2736807c/dec6qdy-29ca9b08-861c-4337-b085-3dab7d836ffa.png/v1/fill/w_1280,h_1280,q_80,strp/darkviperau_fanart_celebrating_500k_subs_by_doragonroudo_dec6qdy-fullview.jpg',
+        categories: ['Content Creators'],
         data: {
             verb: 'has',
-            noun: 'people',
+            noun: 'views',
             higher: 'More',
             lower: 'Less',
         },
@@ -164,109 +189,6 @@ export default async () => {
             verb: 'has',
             noun: 'in population density',
             suffix: 'ppl/km²',
-            higher: 'More',
-            lower: 'Less',
-        },
-    });
-
-    await Game.create({
-        creatorId: user.id,
-        sourceSlug: 'gta-fandom-table',
-        sourceOptions: {
-            pagePath: '/wiki/Weapons_in_GTA_Online',
-            shouldCheckImages: true,
-        },
-        publicFlags: 1,
-        mode: 'higher-or-lower',
-        title: 'GTA Online Weapon Prices',
-        shortDescription: 'Which GTA Online weapon is more expensive?',
-        longDescription:
-            'Can you guess which GTA Online weapon is more expensive? Find out in this edition of the classic Higher or Lower guessing game!',
-        thumbnailUrl:
-            'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2019/01/gta-online-lasers.jpg',
-        categories: ['Gaming'],
-        data: {
-            verb: 'costs',
-            noun: 'dollars',
-            prefix: '$',
-            higher: 'More',
-            lower: 'Less',
-        },
-    });
-
-    await Game.create({
-        creatorId: user.id,
-        sourceSlug: 'gta-fandom-table',
-        sourceOptions: {
-            pagePath: '/wiki/Vehicles_in_GTA_Online',
-            shouldCheckImages: true,
-        },
-        publicFlags: 1,
-        mode: 'higher-or-lower',
-        title: 'GTA Online Vehicle Prices',
-        shortDescription: 'Which GTA Online vehicle is more expensive?',
-        longDescription:
-            'Can you guess which GTA Online vehicle is more expensive? Find out in this edition of the classic Higher or Lower guessing game!',
-        thumbnailUrl:
-            'https://d.newsweek.com/en/full/907847/gta-online-deluxo.jpg',
-        categories: ['Gaming'],
-        data: {
-            verb: 'costs',
-            noun: 'dollars',
-            prefix: '$',
-            higher: 'More',
-            lower: 'Less',
-        },
-    });
-
-    await Game.create({
-        creatorId: user.id,
-        sourceSlug: 'youtube-channel-video-views',
-        sourceOptions: {
-            channelIds: ['UCV6mNrW8CrmWtcxWfQXy11g'],
-        },
-        publicFlags: 1,
-        mode: 'higher-or-lower',
-        title: 'DarkViperAU Video Views',
-        shortDescription:
-            'Which of GTA speedrunner DarkViperAUs videos has more views?',
-        longDescription:
-            'Can you guess which of GTA speedrunner DarkViperAUs videos has more views? Find out in this edition of the classic Higher or Lower guessing game!',
-        thumbnailUrl:
-            'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cd5a5964-649b-424c-b83d-6aff2736807c/dec6qdy-29ca9b08-861c-4337-b085-3dab7d836ffa.png/v1/fill/w_1280,h_1280,q_80,strp/darkviperau_fanart_celebrating_500k_subs_by_doragonroudo_dec6qdy-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcL2NkNWE1OTY0LTY0OWItNDI0Yy1iODNkLTZhZmYyNzM2ODA3Y1wvZGVjNnFkeS0yOWNhOWIwOC04NjFjLTQzMzctYjA4NS0zZGFiN2Q4MzZmZmEucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.Jr-iHA0_AaomirGEv4Uv2gArcoBGUQM6LvyCR9X4YRM',
-        categories: ['Content Creators'],
-        data: {
-            verb: 'has',
-            noun: 'views',
-            higher: 'More',
-            lower: 'Less',
-        },
-    });
-
-    await Game.create({
-        creatorId: user.id,
-        sourceSlug: 'youtube-channel-video-views',
-        sourceOptions: {
-            channelIds: [
-                'UCewMTclBJZPaNEfbf-qYMGA',
-                'UCxLIJccyaRQDeyu6RzUsPuw',
-                'UCd15dSPPT-EhTXekA7_UNAQ',
-                'UCyktGLVQchOpvKgL7GShDWA',
-            ],
-        },
-        publicFlags: 1,
-        mode: 'higher-or-lower',
-        title: 'JackSucksAtLife Video Views',
-        shortDescription:
-            'Which of YouTuber JackSucksAtLifes videos has more views?',
-        longDescription:
-            'Can you guess which of YouTuber JackSucksAtLifes videos has more views? Find out in this edition of the classic Higher or Lower guessing game!',
-        thumbnailUrl:
-            'https://www.guinnessworldrecords.com/Images/jacksucksatlife-YouTube-certificate-guinness-world-records-website_tcm25-634161.jpg',
-        categories: ['Content Creators'],
-        data: {
-            verb: 'has',
-            noun: 'views',
             higher: 'More',
             lower: 'Less',
         },
