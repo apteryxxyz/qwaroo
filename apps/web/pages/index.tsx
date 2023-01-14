@@ -43,8 +43,8 @@ export default (
                 <h3 className="text-lg">Global Statistics</h3>
 
                 <span>
-                    {props.totalPlays} games plays, {props.totalScore} points
-                    earned
+                    {props.totalPlays} games played, {props.totalScore} points
+                    scored
                 </span>
 
                 <span>

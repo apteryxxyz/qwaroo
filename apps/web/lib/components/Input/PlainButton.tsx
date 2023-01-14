@@ -14,7 +14,7 @@ export namespace PlainButton {
         title?: string;
 
         onClick?(): void;
-        linkProps?: LinkProps;
+        linkProps?: LinkProps & { newTab?: boolean };
         children?: React.ReactNode | React.ReactNode[];
     }
 }
@@ -34,10 +34,26 @@ export function PlainButton(props: PlainButton.Props) {
         ${props.className ?? ''}`;
 
     return props.linkProps ? (
-        <Link className={className} title={props.title} {...props.linkProps}>
-            {props.iconProp && <FontAwesomeIcon icon={props.iconProp} />}
-            {props.children}
-        </Link>
+        props.linkProps.newTab ? (
+            <a
+                className={className}
+                title={props.title}
+                href={String(props.linkProps.href)}
+                target="_blank"
+            >
+                {props.iconProp && <FontAwesomeIcon icon={props.iconProp} />}
+                {props.children}
+            </a>
+        ) : (
+            <Link
+                className={className}
+                title={props.title}
+                {...props.linkProps}
+            >
+                {props.iconProp && <FontAwesomeIcon icon={props.iconProp} />}
+                {props.children}
+            </Link>
+        )
     ) : (
         <motion.button
             className={className}

@@ -11,7 +11,7 @@ export default () => {
     useEffect(() => {
         setTimeout(() => {
             goFullscreen();
-        }, 1);
+        }, 5);
     }, []);
 
     return <div id="error-updating">
@@ -20,7 +20,7 @@ export default () => {
         <Display
             header="Updating..."
             title="We're updating the site."
-            description="The site is currently updating, give us a couple minutes then try refreshing."
+            description="Give us a couple minutes, then try refreshing."
             showSocials
         />
     </div>;

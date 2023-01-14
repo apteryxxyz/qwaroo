@@ -18,10 +18,10 @@ export function SocialButtons(props: SocialButtons.Props) {
             whileHover="brightness-125"
             disableDefaultStyles
             iconProp={faDiscord}
-            onClick={
-                props.onDiscordClick ??
-                (() => window.open('/discord', '_blank'))
-            }
+            linkProps={{
+                href: 'https://discord.gg/C3qVXYqX8J',
+                newTab: true,
+            }}
         >
             Discord
         </Button>}
