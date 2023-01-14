@@ -9,4 +9,4 @@ node_modules/
 dist/
 analyze/
 public/robots.txt
-public/sitemap.xml
+public/sitemap*.xml

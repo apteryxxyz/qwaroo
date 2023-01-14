@@ -4,7 +4,6 @@ const webUrl = process.env['WEB_URL'];
 module.exports = {
     siteUrl: webUrl,
     generateRobotsTxt: true,
-    generateIndexSitemap: false,
     robotsTxtOptions: {
         additionalSitemaps: [
             `${webUrl}/sitemap.xml`,
