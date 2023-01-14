@@ -63,5 +63,5 @@ export const getServerSideProps: GetServerSideProps<APIGame> = async ({
         .catch(() => null);
     if (!game) return { notFound: true };
 
-    return { props: game.toJSON() };
+    return { props: JSON.parse(JSON.stringify(game)) };
 };

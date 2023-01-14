@@ -85,6 +85,12 @@ export class Scores extends null {
         game.totalPlays += 1;
         game.lastPlayedTimestamp = Date.now();
 
+        if (finalScore > (game.highScore ?? 0)) {
+            game.highScore = finalScore;
+            game.highScoreTime = time;
+            game.highScoreTimestamp = Date.now();
+        }
+
         await game.save();
 
         // If the user is logged in, update their score, otherwise they are a guest

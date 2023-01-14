@@ -1,7 +1,10 @@
 import type { HigherOrLower } from './modes/HigherOrLower';
 
 /** A game data structure. */
-export interface Game<M extends Game.Mode = Game.Mode> {
+export interface Game<
+    M extends Game.Mode = Game.Mode,
+    H extends boolean = boolean
+> {
     /** The unique identifier for this game. */
     id: string;
     /** Short unique slug, intended to be easier to type. */
@@ -32,6 +35,13 @@ export interface Game<M extends Game.Mode = Game.Mode> {
     categories: string[];
     /** Data for the game, such as strings. */
     data: Game.Data<M>;
+
+    /** The highest score the user has gotten. */
+    highScore: H extends true ? number : undefined;
+    /** The time it took to get the highest score. */
+    highScoreTime: H extends true ? number : undefined;
+    /** The timestamp when the highest score was achieved. */
+    highScoreTimestamp: H extends true ? number : undefined;
 
     /** The total score. */
     totalScore: number;

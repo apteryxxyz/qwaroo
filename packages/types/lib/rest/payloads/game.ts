@@ -1,6 +1,9 @@
 import type { Game } from '#/models/Game';
 
-export type APIGame<M extends Game.Mode = Game.Mode> = Game<M>;
+export type APIGame<
+    M extends Game.Mode = Game.Mode,
+    H extends boolean = boolean
+> = Game<M, H>;
 
 export type APIGameItem<M extends Game.Mode = Game.Mode> = Game.Item<M>;
 
@@ -9,6 +12,9 @@ export interface FetchGamesOptions {
     limit?: number;
     skip?: number;
     sort?:
+        | 'highScore'
+        | 'highScoreTime'
+        | 'highScoreTimestamp'
         | 'totalScore'
         | 'totalTime'
         | 'totalPlays'

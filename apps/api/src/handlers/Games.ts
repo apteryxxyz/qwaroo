@@ -85,6 +85,7 @@ export class Games extends null {
         const sort = String(options.sort ?? 'totalPlays').trim();
         // prettier-ignore
         if (![
+            'highScore', 'highScoreTime', 'highScoreTimestamp',
             'totalPlays', 'totalTime', 'totalScore',
             'lastPlayedTimestamp', 'createdTimestamp', 'updatedTimestamp'
         ].includes(sort))

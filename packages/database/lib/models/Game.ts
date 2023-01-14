@@ -95,6 +95,22 @@ const GameSchema = new Schema<GameEntity, GameModel, undefined, GameMethods>(
             required: true,
         },
 
+        // Highscore
+        highScore: {
+            type: Number,
+            required: false,
+        },
+
+        highScoreTime: {
+            type: Number,
+            required: false,
+        },
+
+        highScoreTimestamp: {
+            type: Number,
+            required: false,
+        },
+
         // Statistics
         totalScore: {
             type: Number,

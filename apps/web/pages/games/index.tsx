@@ -133,6 +133,10 @@ export default () => {
                                 label: 'Recently Updated',
                                 value: 'updatedTimestamp',
                             },
+                            {
+                                label: 'Recently Played',
+                                value: 'lastPlayedTimestamp',
+                            },
                         ]}
                         currentValue={query?.sort ?? 'totalPlays'}
                         onChange={(value: 'totalPlays') =>

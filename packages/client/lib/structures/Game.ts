@@ -10,7 +10,10 @@ import { ItemManager } from '#/managers/ItemManager';
 import { GameFlagsBitField } from '#/utilities/GameFlagsBitField';
 
 /** A game. */
-export class Game<M extends GameEntity.Mode = GameEntity.Mode>
+export class Game<
+        M extends GameEntity.Mode = GameEntity.Mode,
+        H extends boolean = boolean
+    >
     extends Base
     implements APIGame<M>
 {
@@ -32,6 +35,10 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
     public thumbnailUrl!: string;
     public categories!: string[];
     public data!: GameEntity.Data<M>;
+
+    public highScore!: H extends true ? number : undefined;
+    public highScoreTime!: H extends true ? number : undefined;
+    public highScoreTimestamp!: H extends true ? number : undefined;
 
     public totalScore!: number;
     public totalTime!: number;
@@ -66,6 +73,11 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         this.thumbnailUrl = data.thumbnailUrl;
         this.categories = data.categories;
         this.data = data.data;
+
+        type T = H extends true ? number : undefined;
+        this.highScore = data.highScore as T;
+        this.highScoreTime = data.highScoreTime as T;
+        this.highScoreTimestamp = data.highScoreTimestamp as T;
 
         this.totalScore = data.totalScore;
         this.totalTime = data.totalTime;
@@ -110,6 +122,9 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
             JSON.stringify(this.categories) ===
                 JSON.stringify(other.categories) &&
             JSON.stringify(this.data) === JSON.stringify(other.data) &&
+            this.highScore === other.highScore &&
+            this.highScoreTime === other.highScoreTime &&
+            this.highScoreTimestamp === other.highScoreTimestamp &&
             this.totalScore === other.totalScore &&
             this.totalTime === other.totalTime &&
             this.totalPlays === other.totalPlays &&
@@ -171,6 +186,9 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
             thumbnailUrl: this.thumbnailUrl,
             categories: this.categories,
             data: this.data,
+            highScore: this.highScore,
+            highScoreTime: this.highScoreTime,
+            highScoreTimestamp: this.highScoreTimestamp,
             totalScore: this.totalScore,
             totalTime: this.totalTime,
             totalPlays: this.totalPlays,
