@@ -21,10 +21,14 @@ export class Games extends null {
         const isValidId = Validate.ObjectId.test(id);
         if (!isValidId) throw new Error(422, 'Game ID is invalid');
 
-        let query = Game.findById(id);
-        if (user) query = query.where({ creatorId: user.id });
-        const game = await query.exec();
-        if (!game) throw new Error(404, 'Game was not found');
+        const game = await Game.findById(id).exec();
+        if (
+            !game ||
+            ((game.publicFlags & GameEntity.Flags.Approved) !== 0 &&
+                user &&
+                user.id !== game.creatorId)
+        )
+            throw new Error(404, 'Game was not found');
 
         return game;
     }
@@ -37,10 +41,14 @@ export class Games extends null {
         const isValidSlug = Validate.Slug.test(slug);
         if (!isValidSlug) throw new Error(422, 'Game slug is invalid');
 
-        let query = Game.findOne({ slug });
-        if (user) query = query.where({ creatorId: user.id });
-        const game = await query.exec();
-        if (!game) throw new Error(404, 'Game was not found');
+        const game = await Game.findOne({ slug }).exec();
+        if (
+            !game ||
+            ((game.publicFlags & GameEntity.Flags.Approved) !== 0 &&
+                user &&
+                user.id !== game.creatorId)
+        )
+            throw new Error(404, 'Game was not found');
 
         return game;
     }

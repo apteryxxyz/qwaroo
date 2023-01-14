@@ -64,12 +64,15 @@ export default () => {
         useMe('userId'),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
-            const userId = String(req.params['userId'] ?? '');
-            const user = userId ? await Users.getUser(userId) : undefined;
+            const userId = String(req.user?.id ?? '');
 
+            const user = Validate.ObjectId.test(gameId)
+                ? await Users.getUser(userId)
+                : undefined;
             const game = Validate.ObjectId.test(gameId)
                 ? await Games.getGameById(user, gameId)
                 : await Games.getGameBySlug(user, gameId);
+
             res.status(200).json({ success: true, ...game.toJSON() });
         })
     );
@@ -80,9 +83,14 @@ export default () => {
         useToken([], ['GET']),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
+            const userId = String(req.user?.id ?? '');
+
+            const user = Validate.ObjectId.test(userId)
+                ? await Users.getUser(userId)
+                : undefined;
             const game = Validate.ObjectId.test(gameId)
-                ? await Games.getGameById(undefined, gameId)
-                : await Games.getGameBySlug(undefined, gameId);
+                ? await Games.getGameById(user, gameId)
+                : await Games.getGameBySlug(user, gameId);
 
             let seed = String(req.query['seed'] ?? '') || undefined;
             const limit = Number(req.query['limit'] ?? 0) || undefined;
