@@ -129,6 +129,11 @@ export class Game<M extends GameEntity.Mode = GameEntity.Mode>
         return this.client.users.fetchOne(this.creatorId, force);
     }
 
+    /** Fetch the statistics of this game. */
+    public fetchStatistics() {
+        return this.client.games.fetchStatistics(this.id);
+    }
+
     /** Fetch the first set items of this game. */
     public async fetchItems() {
         // Idk why but it doesn't work without the type assertion

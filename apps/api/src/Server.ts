@@ -24,6 +24,7 @@ export class Server {
         this.app.use(require('./routes/games').default());
         this.app.use(require('./routes/scores').default());
         this.app.use(require('./routes/sitemap').default());
+        this.app.use(require('./routes/statistics').default());
         this.app.use(require('./routes/users').default());
 
         // When no route matches, return a 404

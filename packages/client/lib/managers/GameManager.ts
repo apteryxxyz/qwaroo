@@ -1,4 +1,5 @@
 import { type APIGame, type FetchGamesOptions, Routes } from '@qwaroo/types';
+import type { APIGameStatistics } from '@qwaroo/types';
 import { MapManager } from './BaseManager';
 import type { Client } from '#/client/Client';
 import { Game } from '#/structures/Game';
@@ -38,6 +39,12 @@ export class GameManager<U extends boolean = boolean> //
             : Routes.categories();
         const data = await this.client.rest.get(path);
         return data.items;
+    }
+
+    /** Fetch the statistics for one or all games. */
+    public fetchStatistics(gameId?: string): Promise<APIGameStatistics> {
+        const path = Routes.gameStatistics(gameId ?? '@all');
+        return this.client.rest.get(path);
     }
 
     /** Fetch a single game. */

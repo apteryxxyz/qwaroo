@@ -68,4 +68,9 @@ export const Routes = {
     userScore(userId: string | '@me', scoreId: string) {
         return `/users/${userId}/scores/${scoreId}` as const;
     },
+
+    // Statistics
+    gameStatistics(gameId: string | '@all') {
+        return `/games/${gameId}/statistics` as const;
+    },
 };
