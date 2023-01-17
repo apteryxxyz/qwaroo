@@ -27,10 +27,10 @@ export default () => {
 
             <p>
                 The privacy of our visitors is a top priority for Apteryx
-                Software and, by extension, Qwaroo ("we", "our", "us") and its
-                services. The types of information that Qwaroo gathers and
-                records, as well as how we utilise it, are detailed in this
-                privacy policy document.
+                Software ("we", "our", "us") and, by extension, Qwaroo
+                ("service") and its services. The types of information that
+                Qwaroo gathers and records, as well as how we utilise it, are
+                detailed in this privacy policy document.
             </p>
         </section>
 
@@ -38,8 +38,8 @@ export default () => {
             <h3 className="font-bold text-2xl">The information we collect</h3>
 
             <p>
-                Logging into Qwaroo can only be done using a third-party login
-                provider. When you create an account using one of those
+                Logging into our service can only be done using a third-party
+                login provider. When you create an account using one of those
                 providers, we will only collect your account's unique ID,
                 display name and avatar image. Your ID is used to identify you,
                 while your display name and avatar will be displayed on your
