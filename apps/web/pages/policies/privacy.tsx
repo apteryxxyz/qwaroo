@@ -1,8 +1,18 @@
+import { PageSeo } from '#/components/Seo/Page';
+
 export default () => {
     return <div
         className="flex flex-col gap-1 max-w-4xl mx-auto
     [&>section]:my-1 [&>section]:p-5"
     >
+        <PageSeo
+            title="Privacy Policy"
+            description="A collection of fun guessing and statistics based browser games.
+            Can you guess which country has a higher population, or which movie has a better rating on IMDb?
+            Find out today!"
+            url="/policies/privacy"
+        />
+
         <h2 className="font-bold text-4xl text-qwaroo-gradient">
             Qwaroo Privacy Policy
         </h2>
