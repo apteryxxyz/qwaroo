@@ -1,6 +1,5 @@
 import process from 'node:process';
 import { Connection, Game, User } from '@qwaroo/database';
-import { fetchAndSaveItems } from '@qwaroo/sources';
 
 export default async () => {
     if (process.env['NODE_ENV'] === 'production') return;
@@ -21,12 +20,6 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'gta-base',
-        sourceOptions: {
-            jsonPath: '/media/com_jamegafilter/en_gb/1.json',
-            gameFilter: 'gta-online',
-            ctForValue: 'ct13',
-        },
         publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'GTA Online Vehicle Prices',
@@ -47,13 +40,6 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'gta-base',
-        sourceOptions: {
-            jsonPath: '/media/com_jamegafilter/en_gb/6.json',
-            gameFilter: 'gta-online',
-            ctForValue: 'ct13',
-            imageFrame: 'fit',
-        },
         publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'GTA Online Weapon Prices',
@@ -74,12 +60,6 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'gta-base',
-        sourceOptions: {
-            jsonPath: '/media/com_jamegafilter/en_gb/1.json',
-            gameFilter: 'gta-online',
-            ctForValue: 'ct132',
-        },
         publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'GTA Online Vehicle Top Speeds',
@@ -99,11 +79,6 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'gta-base',
-        sourceOptions: {
-            jsonPath: '/media/com_jamegafilter/en_gb/3.json',
-            ctForValue: 'ct13',
-        },
         publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'GTA Online Property Prices',
@@ -124,10 +99,6 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'youtube-channel-video-views',
-        sourceOptions: {
-            channelIds: ['UCV6mNrW8CrmWtcxWfQXy11g'],
-        },
         publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'DarkViperAU Video Views',
@@ -148,10 +119,6 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'worldometer-basic',
-        sourceOptions: {
-            valueProperty: 'landArea',
-        },
         publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'Countries by Land Area',
@@ -172,10 +139,6 @@ export default async () => {
 
     await Game.create({
         creatorId: user.id,
-        sourceSlug: 'worldometer-basic',
-        sourceOptions: {
-            valueProperty: 'density',
-        },
         publicFlags: 1,
         mode: 'higher-or-lower',
         title: 'Countries by Population Density',
@@ -193,27 +156,4 @@ export default async () => {
             lower: 'Less',
         },
     });
-
-    await ensureGameItems();
 };
-
-async function ensureGameItems() {
-    const verbose = process.env['VERBOSE'] === 'true';
-
-    const promises = [];
-    for (const game of await Game.find({ sourceSlug: { $ne: null } })) {
-        if (!game.sourceSlug || !game.sourceOptions) continue;
-
-        promises.push(
-            fetchAndSaveItems(
-                game.slug,
-                game.mode,
-                game.sourceSlug,
-                game.sourceOptions,
-                verbose
-            )
-        );
-    }
-
-    await Promise.all(promises);
-}

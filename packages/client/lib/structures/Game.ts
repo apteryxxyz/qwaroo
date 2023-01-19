@@ -22,8 +22,6 @@ export class Game<
 
     public slug!: string;
     public creatorId!: string;
-    public sourceSlug?: string;
-    public sourceOptions?: Record<string, unknown>;
 
     public publicFlags!: number;
     public flags!: GameFlagsBitField;
@@ -59,9 +57,6 @@ export class Game<
         this.slug = data.slug;
 
         this.creatorId = data.creatorId;
-
-        this.sourceSlug = data.sourceSlug;
-        this.sourceOptions = data.sourceOptions;
 
         this.publicFlags = data.publicFlags;
         this.flags = new GameFlagsBitField(data.publicFlags).freeze();
@@ -110,9 +105,6 @@ export class Game<
             this.id === other.id &&
             this.slug === other.slug &&
             this.creatorId === other.creatorId &&
-            this.sourceSlug === other.sourceSlug &&
-            JSON.stringify(this.sourceOptions) ===
-                JSON.stringify(other.sourceOptions) &&
             this.flags.equals(other.publicFlags) &&
             this.mode === other.mode &&
             this.title === other.title &&
@@ -176,8 +168,6 @@ export class Game<
             ...super.toJSON(),
             slug: this.slug,
             creatorId: this.creatorId,
-            sourceSlug: this.sourceSlug,
-            sourceOptions: this.sourceOptions,
             publicFlags: this.publicFlags,
             mode: this.mode,
             title: this.title,
