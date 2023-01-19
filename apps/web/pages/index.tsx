@@ -26,9 +26,11 @@ export default (
         />
 
         <div className="flex flex-col h-[70vh] items-center justify-center">
-            <h1 className="text-qwaroo-gradient font-bold text-8xl">QWAROO</h1>
+            <h1 className="text-qwaroo-gradient font-bold text-6xl md:text-8xl">
+                QWAROO
+            </h1>
 
-            <h2 className="text-2xl">
+            <h2 className="text-2xl text-center">
                 A collection of fun guessing and statistics based games.
             </h2>
 
