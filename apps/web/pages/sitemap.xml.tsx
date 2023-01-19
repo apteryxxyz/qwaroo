@@ -2,16 +2,16 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { GetServerSideProps } from 'next';
 import { type ISitemapField, getServerSideSitemap } from 'next-sitemap';
-import { useApiUrl } from '#/hooks/useEnv';
+import { useApiUrl, useWebUrl } from '#/hooks/useEnv';
 
 function loadStaticPaths() {
     const manifestPath = join(process.cwd(), '.next', 'build-manifest.json');
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
 
     return Object.keys(manifest.pages)
-        .filter(path => !path.startsWith('/_') && !path.includes('['))
+        .filter(path => !/^\/(_|\d{3}|.+xml|.+\[.+])/g.test(path))
         .map(page => ({
-            loc: new URL(page, useApiUrl()).toString(),
+            loc: new URL(page, useWebUrl()).toString(),
             lastmod: new Date().toISOString(),
             changefreq: 'daily' as const,
             priority: 0.7,
