@@ -8,5 +8,3 @@ node_modules/
 .next/
 dist/
 analyze/
-public/robots.txt
-public/sitemap*.xml

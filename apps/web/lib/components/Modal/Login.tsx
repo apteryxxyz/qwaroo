@@ -75,7 +75,26 @@ export function LoginModal(props: LoginModal.Props) {
         <p className="text-center text-sm opacity-50 max-w-[320px]">
             Qwaroo will only ever access your display name and avatar. Your
             email address or any other personal information will{' '}
-            <strong>never</strong> be stored or shared by Qwaroo.
+            <strong>never</strong> be stored or shared by Qwaroo. By continuing,
+            you comfirm that you agree to our{' '}
+            <a
+                className="underline"
+                href="/policies/terms"
+                target="_blank"
+                rel="noreferrer"
+            >
+                Terms of Service
+            </a>{' '}
+            and{' '}
+            <a
+                className="underline"
+                href="/policies/privacy"
+                target="_blank"
+                rel="noreferrer"
+            >
+                Privacy Policy
+            </a>
+            .
         </p>
 
         <Button
