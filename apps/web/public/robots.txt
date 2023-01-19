@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://qwaroo.com
+
+# Sitemaps
+Sitemap: https://qwaroo.com/sitemap.xml

@@ -5,8 +5,7 @@
     "scripts": {
         "lint": "eslint pages lib --ext .ts,.tsx",
         "format": "prettier --write **/*.{ts,tsx,json,md} && eslint --fix pages lib --ext .ts,.tsx",
-        "sitemap": "next-sitemap --config ./sitemap.config.js",
-        "build": "next build && npm run sitemap",
+        "build": "next build",
         "start": "node scripts/start.js",
         "dev": "next dev"
     },

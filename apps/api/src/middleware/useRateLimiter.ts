@@ -7,7 +7,7 @@ const rateLimiter = new RateLimiterMemory({ points: 60, duration: 60 });
 /** Apply rate limits to an endpoint. */
 export function useRateLimiter() {
     // TODO: There will be requests from our server, so in the future we'll need a way to ignore those
-    // Probably just use the 'SITEMAP_TOKEN' environment variable
+    // Probably just use the 'INTERNAL_TOKEN' environment variable
 
     return handle((req, res, next) => {
         const ip =
