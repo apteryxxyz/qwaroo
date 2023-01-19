@@ -1,8 +1,22 @@
 import { ServerError as Error, Validate, createRegExp } from '@qwaroo/common';
 import { Game, type GameDocument, type UserDocument } from '@qwaroo/database';
-import { loadItems } from '@qwaroo/sources';
 import { type FetchGamesOptions, Game as GameEntity } from '@qwaroo/types';
 import { shuffle } from 'shuffle-seed';
+
+/** Load the items for a game from the local file system. */
+export function loadItems<T extends GameEntity.Mode = GameEntity.Mode>(
+    gameSlug: string
+) {
+    const { existsSync, readFileSync } = require('node:fs');
+    const { resolve } = require('node:path');
+
+    const path = resolve('data', `${gameSlug}.json`);
+    if (!existsSync(path)) return [];
+
+    const data = readFileSync(path, 'utf8');
+    const items = JSON.parse(data);
+    return items as GameEntity.Item<T>[];
+}
 
 export class Games extends null {
     /** Get a list of all the game categories. */
