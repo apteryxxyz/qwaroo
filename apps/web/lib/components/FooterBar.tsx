@@ -5,6 +5,13 @@ export function FooterBar() {
         <div className="max-w-8xl w-full flex flex-row mx-auto text-sm items-center justify-center">
             <PlainButton
                 className="hover:opacity-80"
+                linkProps={{ href: '/contact' }}
+            >
+                Contact Us
+            </PlainButton>
+
+            <PlainButton
+                className="hover:opacity-80"
                 linkProps={{ href: '/policies/privacy' }}
             >
                 Privacy Policy
