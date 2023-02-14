@@ -1,87 +1,59 @@
 import { Validate } from '@qwaroo/common';
-import type { Connection as ConnectionEntity } from '@qwaroo/types';
-import type { Document, Model } from 'mongoose';
-import { Schema, model } from 'mongoose';
-import { User, type UserDocument } from './User';
+import type * as Types from '@qwaroo/types';
+import * as Mongoose from 'mongoose';
+import { User } from './User';
 
-export interface ConnectionMethods {
-    /** Get the user this connection belongs to.  */
-    getUser(): Promise<UserDocument>;
-}
-
-export interface ConnectionDocument
-    extends ConnectionEntity,
-        ConnectionMethods,
-        Document {
-    id: string;
-}
-
-export interface ConnectionModel
-    extends Model<ConnectionEntity, {}, ConnectionMethods> {}
-
-const ConnectionSchema = new Schema<
-    ConnectionEntity,
-    ConnectionModel,
-    undefined,
-    ConnectionMethods
->(
-    {
-        // Identifiers
-        userId: {
-            type: String,
-            required: true,
-            match: Validate.ObjectId,
-        },
-
-        // Provider Information
-        providerName: {
-            type: String,
-            required: true,
-        },
-
-        // Account Information
-        accountId: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-
-        accountUsername: {
-            type: String,
-            required: true,
-        },
-
-        // Security
-        refreshToken: {
-            type: String,
-            required: true,
-        },
-
-        // Timestamps
-        linkedTimestamp: {
-            type: Number,
-            required: true,
-            default: Date.now,
-        },
-    },
-    {
-        toJSON: {
-            transform(_, ret) {
-                ret.id = ret._id.toString();
-                delete ret._id;
-                delete ret.__v;
-                delete ret.refreshToken;
-                return ret;
-            },
-        },
+export namespace Connection {
+    export interface Methods {
+        /** Get the user this connection belongs to.  */
+        getUser(): Promise<User.Document>;
     }
-);
 
-ConnectionSchema.method('getUser', function getUser(this: ConnectionDocument) {
-    return User.findById(this.userId).exec();
-});
+    export interface Document
+        extends Types.Connection.Entity,
+            Methods,
+            Mongoose.Document {
+        id: string;
+    }
 
-export const Connection = model<ConnectionEntity, ConnectionModel>(
-    'Connection',
-    ConnectionSchema
-);
+    export interface Model
+        extends Mongoose.Model<Types.Connection.Entity, {}, Methods> {}
+
+    export const Schema = new Mongoose.Schema<
+        Types.Connection.Entity,
+        Model,
+        undefined,
+        Methods
+    >(
+        {
+            userId: { type: String, required: true, match: Validate.ObjectId },
+
+            providerName: { type: String, required: true },
+            accountId: { type: String, required: true, unique: true },
+            accountUsername: { type: String, required: true },
+            refreshToken: { type: String, required: true },
+
+            linkedTimestamp: { type: Number, default: Date.now },
+        },
+        {
+            toJSON: {
+                transform(_, record) {
+                    record.id = record._id;
+                    delete record._id;
+                    delete record.__v;
+                    delete record.refreshToken;
+                    return record;
+                },
+            },
+        }
+    );
+
+    Schema.method('getUser', function getUser(this: Document) {
+        return User.Model.findById(this.userId).exec();
+    });
+
+    export const Model = Mongoose.model<Types.Connection.Entity, Model>(
+        'Connection',
+        Schema
+    );
+}

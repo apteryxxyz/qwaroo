@@ -1,17 +1,18 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { APIRoutes } from '@qwaroo/types';
 import type { GetServerSideProps } from 'next';
 import { type ISitemapField, getServerSideSitemap } from 'next-sitemap';
-import { useApiUrl, useWebUrl } from '#/hooks/useEnv';
+import { getApiUrl, getEnv, getWebUrl } from '#/utilities/getEnv';
 
-function loadStaticPaths() {
+async function loadStaticPaths() {
     const manifestPath = join(process.cwd(), '.next', 'build-manifest.json');
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
 
     return Object.keys(manifest.pages)
         .filter(path => !/^\/(_|\d{3}|.+xml|.+\[.+])/g.test(path))
         .map(page => ({
-            loc: new URL(page, useWebUrl()).toString(),
+            loc: new URL(page, getWebUrl()).toString(),
             lastmod: new Date().toISOString(),
             changefreq: 'daily' as const,
             priority: 0.7,
@@ -19,17 +20,20 @@ function loadStaticPaths() {
 }
 
 async function loadServerPaths() {
-    const sitemapJson = await fetch(
-        new URL('/internal/sitemap', useApiUrl()).toString(),
-        { headers: { Authorization: String(process.env['INTERNAL_TOKEN']!) } }
-    ).then(r => r.json());
+    const token = getEnv(String, process.env['INTERNAL_TOKEN']);
+    const data = await fetch(
+        new URL(APIRoutes.internalSitemap(), getApiUrl()).toString(),
+        { headers: { authorisation: token } }
+    ).then(res => res.json());
 
-    return sitemapJson.items as ISitemapField[];
+    return (data.items ?? []) as ISitemapField[];
 }
 
 export const getServerSideProps: GetServerSideProps = async context => {
-    const staticPaths = loadStaticPaths();
-    const serverPaths = await loadServerPaths();
+    const [staticPaths, serverPaths] = await Promise.all([
+        loadStaticPaths(),
+        loadServerPaths(),
+    ]);
 
     return getServerSideSitemap(context, [...staticPaths, ...serverPaths]);
 };

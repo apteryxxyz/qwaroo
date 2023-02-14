@@ -3,125 +3,118 @@ import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 import { faSignIn } from '@fortawesome/free-solid-svg-icons/faSignIn';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//
-import { type Game, ItemManager, ScoreManager } from '@qwaroo/client';
-import { Game as GameEntity } from '@qwaroo/types';
+import type { Game, ItemListing, Score } from '@qwaroo/client';
+import type { APIGame, APIScore } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import { useEffect, useRef, useState } from 'react';
+import { GameOver } from './GameOver';
 import { ItemBlock } from './ItemBlock';
 import { CountUpNumber } from '#/components/Count/Number';
-import { CountUpString } from '#/components/Count/String';
-import { Display } from '#/components/Display';
-import { Loading } from '#/components/Display/Loading';
 import { Button } from '#/components/Input/Button';
 import { Dropdown } from '#/components/Input/Dropdown';
+import { Loading } from '#/components/Loading';
 import { Modal } from '#/components/Modal';
-import { useClient } from '#/contexts/ClientContext';
+import { useClient } from '#/contexts/Client';
 import { useLogger } from '#/hooks/useLogger';
-import { getBackTo } from '#/utilities/backTo';
 import { emitEvent } from '#/utilities/googleServices';
-import {
-    disableInspectElement,
-    enableInspectElement,
-    goFullscreen,
-    goMinimised,
-} from '#/utilities/screenControl';
+import { goFullscreen, goMinimised } from '#/utilities/screenControl';
 import { sleepSeconds } from '#/utilities/sleepSeconds';
 
-export function HigherOrLower({ slug }: HigherOrLower.Props) {
+export function HigherOrLower(props: HigherOrLower.Props) {
     const client = useClient();
-    const logger = useLogger(`HigherOrLower(${slug})`);
+    const logger = useLogger(`HigherOrLower(${props.game.slug})`);
 
-    const startTime = useRef<number | null>(null);
-    const itemsManager = useRef<ItemManager<HigherOrLower.Mode>>(null!);
-    const scoresManager = useRef<ScoreManager | null>(null);
-    const steps = useRef<HigherOrLower.Step[]>([]);
+    const game = useRef<Game<HigherOrLower.Mode>>(null!);
+    if (!game.current) game.current = client.games.append(props.game);
+    const score = useRef<Score<Game<HigherOrLower.Mode>>>();
+    if (!score.current && props.score)
+        score.current = game.current.scores.append(props.score);
+    const items = useRef<ItemListing<Game.Item<HigherOrLower.Mode>>>(
+        undefined!
+    );
 
-    const [game, setGame] = useState<Game | null>(null);
-    const [status, setStatus] = useState<HigherOrLower.Status>('loading');
-    const [items, setItems] = useState<HigherOrLower.Item[]>([]);
+    const startTime = useRef(0);
+    const steps = useRef<Game.Step<HigherOrLower.Mode>[]>([]);
 
-    const [highScore, setHighScore] = useState<number | undefined>();
-    const [score, setScore] = useState(0);
+    const [gameStatus, setGameStatus] =
+        useState<HigherOrLower.Status>('loading');
+    const [highScore, setHighScore] = useState(score.current?.highScore);
+    const [thisScore, setThisScore] = useState(0);
 
-    const [gamesPath, setGamesPath] = useState<string>('/games');
     const [areSettingsOpen, setAreSettingsOpen] = useState(false);
     const [settings, setSettings] = useState<HigherOrLower.Settings>({
         imageCropping: 'auto',
         imageQuality: 'reduced',
     });
 
-    function prepareGame() {
+    async function prepareGame() {
         logger.info('Preparing game');
-        setStatus('loading');
+        setGameStatus('loading');
+
+        const listing = await game.current.fetchItems();
+        items.current = listing;
+    }
+
+    function restartGame() {
+        logger.info('Restarting game');
+        setGameStatus('loading');
+        setThisScore(0);
+        steps.current = [];
+        void prepareGame().then(() => startGame());
     }
 
     function startGame() {
-        if (game) {
-            logger.info('Starting game');
-            goFullscreen();
-            startTime.current = Date.now();
-            setStatus('playing');
-            emitEvent('game_start', {
-                user_id: client.id ?? 'anonymous',
-                user_name: client.me?.displayName ?? 'Anonymous',
-                game_id: game.id,
-                game_title: game.title,
-            });
-        } else {
-            logger.error('Game not ready');
-        }
+        goFullscreen();
+        logger.info('Starting game');
+        startTime.current = Date.now();
+        setGameStatus('playing');
     }
 
-    async function endGame(final: 'lose' | 'win') {
-        setStatus(final);
+    async function endGame(finalStatus: 'lose' | 'win') {
+        setGameStatus(finalStatus);
         await sleepSeconds(0.7);
         logger.info('Ending game');
-        void final;
 
-        if (game) {
-            void game
-                .submitScore({
-                    seed: itemsManager.current.seed,
-                    steps: steps.current,
-                    // Time can be modified by the user, but it's not important
-                    // Prehaps we could send a request when the game starts and count the time from there
-                    time: Date.now() - startTime.current!,
+        void game.current
+            .submitScore({
+                version: items.current.options.version!,
+                seed: items.current.options.seed!,
+                steps: steps.current,
+                // Time can be modified by the user, but it's not important
+                // Prehaps we could send a request when the game starts and count the time from there
+                time: Date.now() - startTime.current!,
+            })
+            .then(() =>
+                emitEvent('game_end', {
+                    user_id: client.id ?? 'anonymous',
+                    user_name: client.me?.displayName ?? 'Anonymous',
+                    game_id: game.current.id,
+                    game_title: game.current.title,
+                    final_score: score,
+                    final_time: ms(Date.now() - startTime.current!, {
+                        shortFormat: true,
+                    }),
                 })
-                .then(() =>
-                    emitEvent('game_end', {
-                        user_id: client.id ?? 'anonymous',
-                        user_name: client.me?.displayName ?? 'Anonymous',
-                        game_id: game.id,
-                        game_title: game.title,
-                        final_score: score,
-                        final_time: ms(Date.now() - startTime.current!, {
-                            shortFormat: true,
-                        }),
-                    })
-                )
-                .catch(() => null);
-        }
+            )
+            .catch(() => null);
 
         await sleepSeconds(0.7);
-        setStatus('finished');
+        setGameStatus('finished');
+        goMinimised();
     }
 
-    function getItem(index: -1 | 0 | 1) {
-        return items[score + 1 + index];
+    function useItem(index: -1 | 0 | 1) {
+        return items.current[thisScore + 1 + index];
     }
 
-    async function pickItem(decision: 1 | -1) {
-        if (status !== 'playing') {
-            logger.error('Not playing');
-            return;
-        }
+    async function pickItem(decision: Game.Step<HigherOrLower.Mode>) {
+        if (gameStatus !== 'playing') return logger.error('Not playing');
 
-        const previousItem = getItem(-1);
-        const currentItem = getItem(0);
-        logger.info('Picked item', { decision, previousItem, currentItem });
+        const previousItem = useItem(-1);
+        const currentItem = useItem(0);
+        logger.info('Picking item', { decision, previousItem, currentItem });
 
-        setStatus('animating');
+        setGameStatus('animating');
         await sleepSeconds(1);
 
         if (
@@ -135,99 +128,49 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         steps.current.push(decision);
         logger.info('Correct guess');
 
-        const newScore = score + 1;
-        const currentLength = items.length;
-        const totalLength = itemsManager.current.total;
-        if (score === totalLength - 1) return endGame('win');
+        const newScore = thisScore + 1;
+        const currentLength = items.current.length;
+        const totalLength = items.current.total;
 
+        if (newScore === totalLength - 1) return endGame('win');
         if (currentLength - newScore < 3) {
             // Preload more items
-            const newItems = await itemsManager.current.fetchMore();
-            setItems(items => [...items, ...newItems]);
-            // TODO: Should probably not log this
-            logger.info('Fetched more items', { newItems });
+            await items.current.fetchMore();
+            logger.info('Fetched more items');
         }
 
-        setStatus('next');
+        setGameStatus('next');
         await sleepSeconds(1);
-        setStatus('playing');
+        setGameStatus('playing');
 
-        if (highScore !== null && newScore > (highScore ?? 0))
+        if (highScore && newScore > highScore)
             setHighScore(s => s && Math.max(s, newScore));
-        setScore(newScore);
+        setThisScore(newScore);
+    }
+
+    function mergeSettings(newSettings: Record<string, unknown>) {
+        setSettings(s => ({ ...s, ...newSettings }));
     }
 
     useEffect(() => {
-        disableInspectElement();
-        goFullscreen();
-        prepareGame();
-
-        const rawSettings = localStorage.getItem(`qwaroo.settings_${slug}`);
+        const settingsKey = `qwaroo.settings_${game.current.id}`;
+        const rawSettings = localStorage.getItem(settingsKey);
         if (rawSettings) setSettings(JSON.parse(rawSettings));
 
-        const backTo = getBackTo();
-        if (/^\/games(?!\/)/.test(backTo)) setGamesPath(backTo);
+        Reflect.set(globalThis, '__ITEM_LISTING__', items);
 
-        void client.games.fetchOne(slug).then(g => setGame(g));
-
-        return () => {
-            enableInspectElement();
-            goMinimised();
-        };
+        void prepareGame().then(() => startGame());
+        return () => goMinimised();
     }, []);
 
-    useEffect(() => {
-        if (!game) return;
+    if (gameStatus === 'loading') return <Loading.Circle className="my-auto" />;
+    if (gameStatus === 'finished')
+        return <GameOver score={thisScore} toRestart={restartGame} />;
 
-        itemsManager.current = new ItemManager(game);
-        scoresManager.current = client.isLoggedIn()
-            ? new ScoreManager(client.me)
-            : null;
-
-        (async () => {
-            if (client.isLoggedIn() && scoresManager.current) {
-                // Fetch the users high score from the database
-                await scoresManager.current.fetchAll();
-                const score = scoresManager.current //
-                    .find(s => s.gameId === game.id);
-                setHighScore(score?.highScore ?? 0);
-                logger.info('Loaded high score', { score });
-            }
-
-            if (itemsManager.current) {
-                // Fetch the initial game items
-                await itemsManager.current
-                    .fetchMore()
-                    .then(items => setItems(items))
-                    .then(() => startGame());
-            }
-        })();
-    }, [game]);
-
-    useEffect(() => {
-        const rawSettings = JSON.stringify(settings);
-        localStorage.setItem(`qwaroo.settings_${slug}`, rawSettings);
-    }, [settings]);
-
-    // Game is still loading
-    if (!game || items.length === 0) return <Loading />;
-
-    // Game has finished
-    if (status === 'finished')
-        return <Display
-            header="Game Over"
-            title={`You scored ${score} points.`}
-            description="You can play again or browse other games."
-            showSocials
-        >
-            <Button onClick={() => window.location.reload()}>Play again</Button>
-            <Button linkProps={{ href: gamesPath }}>Browse other games</Button>
-        </Display>;
-
-    const hasPreview = score < items.length - 1;
-    const previousItem = getItem(-1);
-    const currentItem = getItem(0);
-    const nextItem = hasPreview && getItem(1);
+    const hasPreview = thisScore < items.current.length - 1;
+    const previousItem = useItem(-1);
+    const currentItem = useItem(0);
+    const nextItem = useItem(1);
 
     const shouldShowValue = [
         'animating',
@@ -235,51 +178,43 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         'lose',
         'win',
         'finished',
-    ].includes(status);
-    const shouldShowActions = status === 'playing';
+    ].includes(gameStatus);
+    const shouldShowActions = gameStatus === 'playing';
 
-    // Game is in play
     return <>
         {/* Game UI */}
         <div
             className={`flex flex-col xl:flex-row w-screen xl:w-[150vw] h-[150vh] xl:h-screen overflow-hidden
-        ${
-            status === 'next' &&
-            `translate-x-0 xl:-translate-x-1/3 -translate-y-1/3 xl:translate-y-0
-            duration-1000 transition-transform ease-[ease-in-out]`
-        }`}
+            ${
+                gameStatus === 'next' &&
+                `translate-x-0 xl:-translate-x-1/3 -translate-y-1/3 xl:translate-y-0
+                duration-1000 transition-transform ease-[ease-in-out]`
+            }`
+                .replaceAll(/\s+/g, ' ')
+                .trim()}
         >
             <ItemBlock
-                thisSide="left"
                 shouldShowValue
                 {...previousItem}
-                {...game.data}
+                {...game.current.extraData}
                 {...settings}
             />
 
             <ItemBlock
-                thisSide="right"
-                shouldShowValue={shouldShowValue}
                 shouldShowActions={shouldShowActions}
+                shouldShowValue={shouldShowValue}
                 {...currentItem}
-                value={
-                    typeof currentItem.value === 'number' ? (
-                        <CountUpNumber endValue={currentItem.value} />
-                    ) : (
-                        <CountUpString endValue={currentItem.value} />
-                    )
-                }
-                {...game.data}
+                {...game.current.extraData}
                 {...settings}
+                value={<CountUpNumber endValue={useItem(0).value} />}
                 onMoreClick={() => pickItem(1)}
                 onLessClick={() => pickItem(-1)}
             />
 
-            {hasPreview && nextItem && <ItemBlock
-                thisSide="right"
+            {hasPreview && <ItemBlock
                 shouldShowActions
                 {...nextItem}
-                {...game.data}
+                {...game.current.extraData}
                 {...settings}
                 onMoreClick={() => pickItem(1)}
                 onLessClick={() => pickItem(-1)}
@@ -290,18 +225,14 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         <div className="pointer-events-none fixed inset-0 text-xl text-white align-top">
             <div className="flex flex-row">
                 <Button
-                    disableDefaultStyles
-                    className="pointer-events-auto"
-                    whileHover="brightness-90"
+                    className="!bg-transparent pointer-events-auto"
                     iconProp={faGear}
                     onClick={() => setAreSettingsOpen(true)}
                     ariaLabel="Settings"
                 />
 
                 <Button
-                    disableDefaultStyles
-                    className="pointer-events-auto"
-                    whileHover="brightness-90"
+                    className="!bg-transparent pointer-events-auto"
                     iconProp={faSignIn}
                     onClick={() => endGame('lose')}
                     ariaLabel="Give up"
@@ -310,10 +241,10 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         </div>
 
         {/* Scores */}
-        <div className="pointer-events-none fixed inset-0 flex flex-col m-3 items-end text-white">
+        <div className="pointer-events-none fixed inset-0 flex flex-col mx-3 items-end text-white">
             <span className="flex gap-4 items-center">
                 <span className="text-xl">Score</span>
-                <span className="text-2xl font-bold">{score}</span>
+                <span className="text-2xl font-bold">{thisScore}</span>
             </span>
 
             {highScore !==
@@ -332,17 +263,17 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
                 className={`flex items-center justify-center w-12 h-12 lg:w-24 lg:h-24
                 rounded-full transition-colors
                 ${
-                    status === 'next' || status === 'win'
+                    gameStatus === 'next' || gameStatus === 'win'
                         ? 'bg-green-700'
-                        : status === 'lose'
+                        : gameStatus === 'lose'
                         ? 'bg-red-700'
                         : 'bg-slate-800'
                 }`}
             >
                 <span className="text-2xl lg:text-3xl font-semibold">
-                    {status === 'next' || status === 'win' ? (
+                    {gameStatus === 'next' || gameStatus === 'win' ? (
                         <FontAwesomeIcon icon={faCheck} />
-                    ) : status === 'lose' ? (
+                    ) : gameStatus === 'lose' ? (
                         <FontAwesomeIcon icon={faTimes} />
                     ) : (
                         'vs'
@@ -352,51 +283,33 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
         </div>
 
         <Modal
-            className="flex flex-col gap-3 items-center justify-center"
+            title="Game Settings"
             isOpen={areSettingsOpen}
-            onClose={() => setAreSettingsOpen(false)}
+            toClose={() => setAreSettingsOpen(false)}
         >
-            <h2 className="text-xl font-bold">Game Settings</h2>
+            <div>
+                <span>Image Cropping</span>
+                <Dropdown
+                    options={[
+                        { label: 'Auto', value: 'auto' },
+                        { label: 'Crop', value: 'crop' },
+                        { label: 'None', value: 'none' },
+                    ]}
+                    defaultValue={settings.imageCropping}
+                    onChange={value => mergeSettings({ imageCropping: value })}
+                />
+            </div>
 
-            <div className="flex flex-col gap-3">
-                <div className="flex flex-col justify-center items-center">
-                    <span className="text-lg font-semibold">
-                        Image Cropping
-                    </span>
-                    <Dropdown
-                        className="min-w-[200px]"
-                        options={[
-                            { label: 'Auto', value: 'auto' },
-                            { label: 'Crop', value: 'crop' },
-                            { label: 'None', value: 'none' },
-                        ]}
-                        currentValue={settings.imageCropping ?? 'auto'}
-                        onChange={v =>
-                            setSettings(s => ({
-                                ...s,
-                                imageCropping:
-                                    v as HigherOrLower.Settings['imageCropping'],
-                            }))
-                        }
-                    />
-
-                    <span className="text-lg font-semibold">Image Quality</span>
-                    <Dropdown
-                        className="min-w-[200px]"
-                        options={[
-                            { label: 'Max', value: 'max' },
-                            { label: 'Reduced', value: 'reduced' },
-                        ]}
-                        currentValue={settings.imageQuality ?? 'reduced'}
-                        onChange={v =>
-                            setSettings(s => ({
-                                ...s,
-                                imageQuality:
-                                    v as HigherOrLower.Settings['imageQuality'],
-                            }))
-                        }
-                    />
-                </div>
+            <div>
+                <span>Image Quality</span>
+                <Dropdown
+                    options={[
+                        { label: 'Max', value: 'max' },
+                        { label: 'Reduced', value: 'reduced' },
+                    ]}
+                    defaultValue={settings.imageQuality}
+                    onChange={value => mergeSettings({ imageQuality: value })}
+                />
             </div>
         </Modal>
     </>;
@@ -404,16 +317,12 @@ export function HigherOrLower({ slug }: HigherOrLower.Props) {
 
 export namespace HigherOrLower {
     export interface Props {
-        slug: string;
+        game: APIGame;
+        score?: APIScore;
     }
 
-    export const Mode = GameEntity.Mode.HigherOrLower;
-    export type Mode = typeof GameEntity.Mode.HigherOrLower;
-    export type Item = GameEntity.Item<Mode>;
-    export type Step = GameEntity.Step<Mode>;
-
     export interface Settings {
-        imageCropping: 'auto' | 'crop' | 'none';
+        imageCropping: 'crop' | 'none' | 'auto';
         imageQuality: 'max' | 'reduced';
     }
 
@@ -425,4 +334,6 @@ export namespace HigherOrLower {
         | 'finished'
         | 'lose'
         | 'win';
+
+    export type Mode = typeof Game.Mode.HigherOrLower;
 }

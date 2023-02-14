@@ -1,86 +1,87 @@
-import {
-    type APIGame,
-    type APISubmitScore,
-    Game as GameEntity,
-    Routes,
-} from '@qwaroo/types';
+import * as Types from '@qwaroo/types';
 import { Base } from './Base';
+import { ItemListing } from '#/listings/ItemListing';
 import type { GameManager } from '#/managers/GameManager';
-import { ItemManager } from '#/managers/ItemManager';
+import { ScoreManager } from '#/managers/ScoreManager';
 import { GameFlagsBitField } from '#/utilities/GameFlagsBitField';
 
 /** A game. */
-export class Game<
-        M extends GameEntity.Mode = GameEntity.Mode,
-        H extends boolean = boolean
-    >
-    extends Base
-    implements APIGame<M>
-{
-    /** The manager of the game. */
-    public games: GameManager;
+export class Game<M extends Game.Mode = Game.Mode> extends Base {
+    public manager: GameManager;
+    public scores: ScoreManager<Game<M>>;
 
+    /** Short unique slug, intended to be easier to type. */
     public slug!: string;
+    /** ID of the user that created this game. */
     public creatorId!: string;
-
-    public publicFlags!: number;
-    public flags!: GameFlagsBitField;
-
+    /** What mode this game is. */
     public mode!: M;
+    /** A title for this game. */
     public title!: string;
+    /** A short description for this game. */
     public shortDescription!: string;
+    /** A long description for this game. */
     public longDescription!: string;
+    /** URL to a thumbnail image. */
     public thumbnailUrl!: string;
+    /** Categories this game belongs to. */
     public categories!: string[];
-    public data!: GameEntity.Data<M>;
-
-    public highScore!: H extends true ? number : undefined;
-    public highScoreTime!: H extends true ? number : undefined;
-    public highScoreTimestamp!: H extends true ? number : undefined;
-
+    /** The flags for this game. */
+    public flags!: GameFlagsBitField;
+    /** Additional data properties. */
+    public extraData!: Game.Extra<M>;
+    /** The highest score this game has gotten. */
+    public highScore!: number;
+    /** The time it took to get the highest score. */
+    public highScoreTime!: number;
+    /** The timestamp when the highest score was achieved. */
+    public highScorePlayedTimestamp!: number;
+    /** The total score. */
     public totalScore!: number;
+    /** The total time. */
     public totalTime!: number;
+    /** The total number of plays. */
     public totalPlays!: number;
-
-    public createdTimestamp!: number;
-    public updatedTimestamp!: number;
+    /** The score this game had. */
+    public lastScore!: number;
+    /** The time the last game took. */
+    public lastTime!: number;
+    /** The timestamp when this game was last played. */
     public lastPlayedTimestamp!: number;
+    /** When this game was created. */
+    public createdTimestamp!: number;
+    /** When this game was last updated. */
+    public updatedTimestamp!: number;
 
-    public constructor(games: GameManager, data: APIGame<M>) {
-        super(games.client, data);
-        this.games = games;
+    public constructor(manager: GameManager, data: Types.APIGame<M>) {
+        super(manager, data);
+        this.manager = manager;
+        this.scores = new ScoreManager(this);
         this._patch(data);
     }
 
-    public override _patch(data: APIGame<M>) {
-        this.id = data.id;
+    public override _patch(data: Types.APIGame<M>) {
         this.slug = data.slug;
-
         this.creatorId = data.creatorId;
-
-        this.publicFlags = data.publicFlags;
-        this.flags = new GameFlagsBitField(data.publicFlags).freeze();
-
         this.mode = data.mode;
         this.title = data.title;
         this.shortDescription = data.shortDescription;
         this.longDescription = data.longDescription;
         this.thumbnailUrl = data.thumbnailUrl;
         this.categories = data.categories;
-        this.data = data.data;
-
-        type T = H extends true ? number : undefined;
-        this.highScore = data.highScore as T;
-        this.highScoreTime = data.highScoreTime as T;
-        this.highScoreTimestamp = data.highScoreTimestamp as T;
-
+        this.flags = new GameFlagsBitField(data.flags);
+        this.extraData = data.extraData ?? {};
+        this.highScore = data.highScore;
+        this.highScoreTime = data.highScoreTime;
+        this.highScorePlayedTimestamp = data.highScorePlayedTimestamp;
         this.totalScore = data.totalScore;
         this.totalTime = data.totalTime;
         this.totalPlays = data.totalPlays;
-
+        this.lastScore = data.lastScore;
+        this.lastTime = data.lastTime;
+        this.lastPlayedTimestamp = data.lastPlayedTimestamp;
         this.createdTimestamp = data.createdTimestamp;
         this.updatedTimestamp = data.updatedTimestamp;
-        this.lastPlayedTimestamp = data.lastPlayedTimestamp;
 
         return super._patch(data);
     }
@@ -100,67 +101,71 @@ export class Game<
         return new Date(this.updatedTimestamp);
     }
 
-    public override equals(other: Game | APIGame) {
+    /** The human readable name for this games mode. */
+    public get modeName() {
+        return Game.ModeNames[this.mode];
+    }
+
+    /** Fetch the game. */
+    public fetch() {
+        return this.manager.fetchOne(this.id);
+    }
+
+    /** Fetch the creator of this game. */
+    public fetchCreator(force = false) {
+        return this.client.users.fetchOne(this.creatorId, force);
+    }
+
+    /** Submit a score. */
+    public async submitScore(save: Types.APISubmitScoreOptions) {
+        const path = Types.APIRoutes.gameScores(this.id);
+        await this.client.api.post(path, undefined, save);
+
+        if (this.client.me) {
+            const score = await this.client.me.scores.fetchOne(this.id);
+            if (score) return score;
+        }
+
+        return undefined;
+    }
+
+    /** Fetch the first set of items for this game. */
+    public async fetchItems() {
+        const listing = new ItemListing<Game.Item<M>>(
+            this,
+            {},
+            -1
+        ) as ItemListing<Game.Item<M>>;
+        await listing.fetchMore();
+        return listing;
+    }
+
+    public override equals(other: Game | Types.APIGame) {
         return (
-            this.id === other.id &&
+            super.equals(other) &&
             this.slug === other.slug &&
             this.creatorId === other.creatorId &&
-            this.flags.equals(other.publicFlags) &&
             this.mode === other.mode &&
             this.title === other.title &&
             this.shortDescription === other.shortDescription &&
             this.longDescription === other.longDescription &&
             this.thumbnailUrl === other.thumbnailUrl &&
-            JSON.stringify(this.categories) ===
-                JSON.stringify(other.categories) &&
-            JSON.stringify(this.data) === JSON.stringify(other.data) &&
+            this.categories === other.categories &&
+            this.flags.equals(Number(other.flags)) &&
+            JSON.stringify(this.extraData ?? {}) ===
+                JSON.stringify(other.extraData ?? {}) &&
             this.highScore === other.highScore &&
             this.highScoreTime === other.highScoreTime &&
-            this.highScoreTimestamp === other.highScoreTimestamp &&
+            this.highScorePlayedTimestamp === other.highScorePlayedTimestamp &&
             this.totalScore === other.totalScore &&
             this.totalTime === other.totalTime &&
             this.totalPlays === other.totalPlays &&
+            this.lastScore === other.lastScore &&
+            this.lastTime === other.lastTime &&
+            this.lastPlayedTimestamp === other.lastPlayedTimestamp &&
             this.createdTimestamp === other.createdTimestamp &&
-            this.updatedTimestamp === other.updatedTimestamp &&
-            this.lastPlayedTimestamp === other.lastPlayedTimestamp
+            this.updatedTimestamp === other.updatedTimestamp
         );
-    }
-
-    /** Fetch the game. */
-    public async fetch(force = true) {
-        return this.games.fetchOne(this.id, force);
-    }
-
-    /** Fetch the creator of this game. */
-    public async fetchCreator(force = true) {
-        return this.client.users.fetchOne(this.creatorId, force);
-    }
-
-    /** Fetch the statistics of this game. */
-    public fetchStatistics() {
-        return this.client.games.fetchStatistics(this.id);
-    }
-
-    /** Fetch the first set items of this game. */
-    public async fetchItems() {
-        // Idk why but it doesn't work without the type assertion
-        const manager = new ItemManager<M>(this) as ItemManager<M>;
-        await manager.fetchMore();
-        return manager;
-    }
-
-    /** Submit a score. */
-    public async submitScore(save: APISubmitScore<M>) {
-        const path = Routes.gameScore(this.id);
-        await this.client.rest.post(path, undefined, save);
-
-        if (this.client.isLoggedIn()) {
-            const scores = await this.client.me.fetchScores();
-            const score = scores.find(s => s.gameId === this.id);
-            if (score) return score;
-        }
-
-        return undefined;
     }
 
     public override toJSON() {
@@ -168,23 +173,25 @@ export class Game<
             ...super.toJSON(),
             slug: this.slug,
             creatorId: this.creatorId,
-            publicFlags: this.publicFlags,
             mode: this.mode,
             title: this.title,
             shortDescription: this.shortDescription,
             longDescription: this.longDescription,
             thumbnailUrl: this.thumbnailUrl,
             categories: this.categories,
-            data: this.data,
+            flags: Number(this.flags),
+            extraData: this.extraData,
             highScore: this.highScore,
             highScoreTime: this.highScoreTime,
-            highScoreTimestamp: this.highScoreTimestamp,
+            highScorePlayedTimestamp: this.highScorePlayedTimestamp,
             totalScore: this.totalScore,
             totalTime: this.totalTime,
             totalPlays: this.totalPlays,
+            lastScore: this.lastScore,
+            lastTime: this.lastTime,
+            lastPlayedTimestamp: this.lastPlayedTimestamp,
             createdTimestamp: this.createdTimestamp,
             updatedTimestamp: this.updatedTimestamp,
-            lastPlayedTimestamp: this.lastPlayedTimestamp,
         };
     }
 
@@ -201,10 +208,23 @@ export class Game<
             return typeof value === 'string' ? value : value.id;
         return null;
     }
+
+    public get [Symbol.toStringTag]() {
+        return 'Game';
+    }
 }
 
 export namespace Game {
-    export type Resolvable = Game | APIGame | string;
-    export const Flags = GameEntity.Flags;
-    export type Flags = GameEntity.Flags;
+    export type Resolvable = Game | Types.APIGame | Entity<Mode> | string;
+    export type Entity<M extends Mode = Mode> = Types.Game.Entity<M>;
+
+    export type Mode = Types.Game.Mode;
+    export const Mode = Types.Game.Mode;
+    export const ModeNames = Types.Game.ModeNames;
+    export type Flags = Types.Game.Flags;
+    export const Flags = Types.Game.Flags;
+
+    export type Extra<M extends Mode = Mode> = Types.Game.Extra<M>;
+    export type Item<M extends Mode = Mode> = Types.Game.Item<M>;
+    export type Step<M extends Mode = Mode> = Types.Game.Step<M>;
 }

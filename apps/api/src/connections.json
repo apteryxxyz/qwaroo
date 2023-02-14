@@ -1,0 +1,26 @@
+[
+    {
+        "_id": {
+            "$oid": "63ab9ff3c4a7828ed11b4b8e"
+        },
+        "userId": "63ab9ff3c4a7828ed11b4b8d",
+        "providerName": "discord",
+        "accountId": "548150274414608399",
+        "accountUsername": "Apteryx#3459",
+        "refreshToken": "22c8ebed6aa3f590aaa12d14f6d01217-aa5560dfb3099daeeb019711dbc35836d366b06e9e63a5c0a524401433ac9f2d",
+        "linkedTimestamp": 1672191987856,
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63ac8678bc99fdb4ab8c2cde"
+        },
+        "userId": "63ac8678bc99fdb4ab8c2cdd",
+        "providerName": "discord",
+        "accountId": "690228101208211539",
+        "accountUsername": "ClearlyScript#5555",
+        "refreshToken": "d0803e69aa2d06f3cb1195c345168e4a-3d2614d5ca5152d274522ed40787cdf907c47471db66547d2a34f4cca9250509",
+        "linkedTimestamp": 1672251000444,
+        "__v": 0
+    }
+]

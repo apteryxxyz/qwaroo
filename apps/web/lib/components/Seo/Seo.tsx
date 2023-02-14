@@ -1,13 +1,5 @@
 import Head from 'next/head';
 
-export namespace Seo {
-    export interface Props {
-        title: string;
-        noIndex?: boolean;
-        children?: React.ReactNode | React.ReactNode[];
-    }
-}
-
 export function Seo(props: Seo.Props) {
     return <Head>
         {/* Basic */}
@@ -40,4 +32,12 @@ export function Seo(props: Seo.Props) {
 
         {props.children}
     </Head>;
+}
+
+export namespace Seo {
+    export interface Props {
+        title: string;
+        noIndex?: boolean;
+        children?: React.ReactNode | React.ReactNode[];
+    }
 }

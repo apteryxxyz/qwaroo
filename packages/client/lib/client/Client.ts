@@ -1,58 +1,66 @@
-import { REST } from './REST';
+import { APIManager } from './APIManager';
+import { CDNManager } from './CDNManager';
 import { GameManager } from '#/managers/GameManager';
 import { UserManager } from '#/managers/UserManager';
-import type { User } from '#/structures/User';
 
 /** The API client, used to make connecting to the API easier. */
-export class Client<R extends boolean = boolean> {
-    /** The REST manager. */
-    public rest: REST;
-    /** ID of the currently logged in user if at all. */
-    public id!: R extends true ? string : undefined;
-    /** The users manager. */
-    public users: UserManager;
+export class Client {
+    /** The API REST manager. */
+    public api: APIManager;
+    /** The CDN REST manager. */
+    public cdn: CDNManager;
+
     /** The games manager. */
     public games: GameManager;
+    /** The users manager. */
+    public users: UserManager;
+
+    /** ID of the currently logged in user if at all. */
+    public id?: string;
 
     public constructor(options: Client.Options) {
-        this.rest = new REST(options);
+        this.api = new APIManager(options.api);
+        this.cdn = new CDNManager(options.cdn);
 
-        this.users = new UserManager(this);
         this.games = new GameManager(this);
+        this.users = new UserManager(this);
     }
 
-    /** The currently logged in user. */
-    public get me(): R extends true ? User : undefined {
-        // @ts-expect-error 2322
-        return this.id && this.users.get(this.id);
+    // /** The currently logged in user. */
+    public get me() {
+        return this.id ? this.users.get(this.id) : undefined;
     }
 
-    /** Whether the client is logged in. */
-    public isLoggedIn(): this is Client<true> {
-        return this.me !== undefined;
-    }
-
-    /** Initialise this client. */
-    public async login(id: string, token: string) {
-        // @ts-expect-error 2322
+    /** Prepare the client. */
+    public prepare(id: string, token: string) {
         this.id = id as string;
-        this.rest.setToken(token);
+        this.api.setToken(token);
+        this.cdn.setToken(token);
+        return this;
+    }
 
-        const user = await this.users.fetchOne(id);
-        this.users.set(user.id, user);
-        if (user.partial) await user.fetch();
-
+    /** Initialise the client. */
+    public async login() {
+        const user = await this.users.fetchOne(this.id!);
+        this.users.set(this.id!, user);
         return this;
     }
 
     /** Uninitialise this client. */
-    public async logout() {
-        this.rest.setToken(undefined);
-        // @ts-expect-error 2322
+    public logout() {
         this.id = undefined;
+        this.api.setToken(undefined);
+        this.cdn.setToken(undefined);
+    }
+
+    public get [Symbol.toStringTag]() {
+        return 'Client';
     }
 }
 
 export namespace Client {
-    export interface Options extends REST.Options {}
+    export interface Options {
+        api: APIManager.Options;
+        cdn: CDNManager.Options;
+    }
 }

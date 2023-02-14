@@ -1,44 +1,40 @@
-import '@fortawesome/fontawesome-svg-core/styles.css';
 import '#/styles/common.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
-import { Client } from '@qwaroo/client';
-import { ThemeProvider, useTheme } from 'next-themes';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { ThemeProvider } from 'next-themes';
 import { useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
+import { Pipe, Pipeline } from 'react-pipeline-component';
 import { Bubbles } from '#/components/Background/Bubbles';
-import { FooterBar } from '#/components/FooterBar';
-import { NavigationBar } from '#/components/NavigationBar';
-import { ClientProvider } from '#/contexts/ClientContext';
-import { useApiUrl } from '#/hooks/useEnv';
-import { setBackTo } from '#/utilities/backTo';
+import { Footer } from '#/components/Footer';
+import { Header } from '#/components/Header';
+import { ClientProvider, createClient } from '#/contexts/Client';
 import { pageView } from '#/utilities/googleServices';
+import { repairMainHeight } from '#/utilities/screenControl';
 
-const client = new Client({ apiHost: useApiUrl() });
+const client = createClient();
 
 export default ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
-    const { theme } = useTheme() as { theme: 'light' | 'dark' };
 
     useEffect(() => {
-        // Login the client if the user has an id and token
-        const uid = localStorage.getItem('qwaroo.user_id');
-        const token = localStorage.getItem('qwaroo.token');
-        if (uid && token) void client.login(uid, token);
         Reflect.set(globalThis, '__QWAROO_CLIENT__', client);
 
-        const handleRouteChange = () => setBackTo();
-        router.events.on('routeChangeStart', handleRouteChange);
+        // Login to the client if ID and token are present
+        const id = localStorage.getItem('qwaroo.user_id');
+        const token = localStorage.getItem('qwaroo.token');
+        if (id && token) {
+            client.prepare(id, token);
+            void client.login();
+        }
 
-        return () => {
-            router.events.off('routeChangeStart', handleRouteChange);
-        };
+        repairMainHeight();
+        window.addEventListener('resize', repairMainHeight);
+        return () => window.removeEventListener('resize', repairMainHeight);
     }, []);
 
     useEffect(() => {
-        // Google analytics page view
         const handleChange = (url: string) => pageView(url);
 
         router.events.on('routeChangeComplete', handleChange);
@@ -50,43 +46,39 @@ export default ({ Component, pageProps }: AppProps) => {
         };
     }, [router.events]);
 
-    return <ClientProvider value={client}>
-        <ThemeProvider
-            enableSystem={true}
-            attribute="class"
-            storageKey="qwaroo.theme"
-        >
-            <Head>
-                <link rel="preconnect" href={useApiUrl().toString()} />
-            </Head>
+    return <Pipeline
+        // prettier-ignore
+        components={[
+            <ThemeProvider attribute="class" storageKey="qwaroo.theme" enableSystem children={<Pipe />} />,
+            <ClientProvider value={client} children={<Pipe />} />,
+        ]}
+    >
+        <qwaroo className="min-h-screen flex flex-col mx-auto bg-neutral-200 dark:bg-neutral-900">
+            <Header />
 
-            <div
-                id="body"
-                className="min-h-screen flex flex-col max-auto
-                    bg-neutral-100 dark:bg-neutral-900"
+            <main
+                className="flex flex-col gap-3 z-10 max-w-8xl w-full mx-auto p-3
+                text-black dark:text-white"
             >
-                <NavigationBar />
+                <Component {...pageProps} />
+            </main>
 
-                <main
-                    id="content"
-                    className="z-10 max-w-8xl w-full h-full mx-auto p-3 mb-auto
-                        text-black dark:text-white"
-                >
-                    <Component {...pageProps} />
-                </main>
+            <Footer />
 
-                <FooterBar />
-            </div>
-
-            <div className="invisible md:visible motion-reduce:invisible">
+            <div className="hidden md:block motion-reduce:hidden">
                 <Bubbles count={20} />
             </div>
-
-            <ToastContainer
-                position="bottom-center"
-                autoClose={5_000}
-                theme={theme ?? 'light'}
-            />
-        </ThemeProvider>
-    </ClientProvider>;
+        </qwaroo>
+    </Pipeline>;
 };
+
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            qwaroo: React.DetailedHTMLProps<
+                React.HTMLAttributes<HTMLElement>,
+                HTMLElement
+            >;
+        }
+    }
+}

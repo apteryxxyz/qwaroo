@@ -1,10 +1,11 @@
-import { SocialButtons } from '#/components/Input/SocialButtons';
+import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
+import { Button } from '#/components/Input/Button';
 import { PageSeo } from '#/components/Seo/Page';
 
 export default () => {
     return <div
         className="flex flex-col gap-1 max-w-4xl mx-auto
-    [&>section]:my-1 [&>section]:p-5"
+        [&>section]:my-1 [&>section]:p-5"
     >
         <PageSeo
             title="Contact Us"
@@ -38,7 +39,16 @@ export default () => {
                 you as soon as we can.
             </p>
 
-            <SocialButtons />
+            <Button
+                className="bg-[#5865F2] hover:brightness-125"
+                iconProp={faDiscord}
+                linkProps={{
+                    href: 'https://discord.gg/C3qVXYqX8J',
+                    newTab: true,
+                }}
+            >
+                Discord
+            </Button>
         </section>
 
         <section className="flex flex-col gap-2 bg-white dark:bg-neutral-800 rounded-xl">

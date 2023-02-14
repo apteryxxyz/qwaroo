@@ -1,37 +1,42 @@
-import { User as UserEntity } from '@qwaroo/types';
-import type { APIUser } from '@qwaroo/types';
+import * as Types from '@qwaroo/types';
 import { Base } from './Base';
-import type { Client } from '#/client/Client';
-import { ConnectionManager } from '#/managers/ConnectionManager';
+import { ConnectionListing } from '#/listings/ConnectionListing';
 import { GameManager } from '#/managers/GameManager';
 import { ScoreManager } from '#/managers/ScoreManager';
+import type { UserManager } from '#/managers/UserManager';
 import { UserFlagsBitField } from '#/utilities/UserFlagsBitField';
 
 /** A user. */
-export class User extends Base implements APIUser {
-    public publicFlags!: number;
-    public flags!: UserFlagsBitField;
+export class User extends Base {
+    public manager: UserManager;
+    public games: GameManager;
+    public scores: ScoreManager<User>;
 
+    /** A display name, does not need to be unique. */
     public displayName!: string;
+    /** A URL to the users avatar. */
     public avatarUrl!: string;
-
+    /** The flags for this user. */
+    public flags!: UserFlagsBitField;
+    /** The timestamp when this user joined. */
     public joinedTimestamp!: number;
-    public seenTimestamp!: number;
+    /** The timestamp when this user last active. */
+    public lastSeenTimestamp!: number;
 
-    public constructor(client: Client, data: APIUser) {
-        super(client, data);
+    public constructor(manager: UserManager, data: Types.APIUser) {
+        super(manager, data);
+        this.manager = manager;
+        this.games = new GameManager(this);
+        this.scores = new ScoreManager(this);
         this._patch(data);
     }
 
-    public override _patch(data: APIUser) {
-        this.publicFlags = data.publicFlags;
-        this.flags = new UserFlagsBitField(data.publicFlags).freeze();
-
+    public override _patch(data: Types.APIUser) {
         this.displayName = data.displayName;
         this.avatarUrl = data.avatarUrl;
-
+        this.flags = new UserFlagsBitField(data.flags);
         this.joinedTimestamp = data.joinedTimestamp;
-        this.seenTimestamp = data.seenTimestamp;
+        this.lastSeenTimestamp = data.lastSeenTimestamp;
 
         return super._patch(data);
     }
@@ -47,61 +52,41 @@ export class User extends Base implements APIUser {
     }
 
     /** The date the user was last seen. */
-    public get seenAt() {
-        return new Date(this.seenTimestamp);
-    }
-
-    public override equals(other: User | APIUser) {
-        return (
-            this.id === other.id &&
-            this.flags.equals(other.publicFlags) &&
-            this.displayName === other.displayName &&
-            this.avatarUrl === other.avatarUrl &&
-            this.joinedTimestamp === other.joinedTimestamp &&
-            this.seenTimestamp === other.seenTimestamp
-        );
+    public get lastSeenAt() {
+        return new Date(this.lastSeenTimestamp);
     }
 
     /** Fetch the user. */
-    public async fetch(force = true) {
-        return this.client.users.fetchOne(this.id, force);
+    public fetch(force = true) {
+        return this.client.users.fetchOne(this, force);
     }
 
-    /** Fetch the user's connections. */
+    /** Fetch the users connections. */
     public async fetchConnections() {
-        const connections = new ConnectionManager(this);
-        await connections.fetchAll();
-        return connections;
+        const listing = new ConnectionListing(this);
+        await listing.fetchMore();
+        return listing;
     }
 
-    /** Fetch the first set of the user's scores. */
-    public async fetchScores() {
-        const scores = new ScoreManager(this);
-        await scores.fetchMany();
-        return scores;
-    }
-
-    /** Fetch the user's game categories. */
-    public async fetchGameCategories() {
-        const games = new GameManager(this);
-        return games.fetchCategories();
-    }
-
-    /** Fetch the first set of the user's games. */
-    public async fetchGames() {
-        const games = new GameManager(this);
-        await games.fetchMany();
-        return games;
+    public override equals(other: User | Types.APIUser) {
+        return (
+            this.id === other.id &&
+            this.displayName === other.displayName &&
+            this.avatarUrl === other.avatarUrl &&
+            this.flags.equals(Number(other.flags)) &&
+            this.joinedTimestamp === other.joinedTimestamp &&
+            this.lastSeenTimestamp === other.lastSeenTimestamp
+        );
     }
 
     public override toJSON() {
         return {
             ...super.toJSON(),
-            publicFlags: this.publicFlags,
+            flags: Number(this.flags),
             displayName: this.displayName,
             avatarUrl: this.avatarUrl,
             joinedTimestamp: this.joinedTimestamp,
-            seenTimestamp: this.seenTimestamp,
+            lastSeenTimestamp: this.lastSeenTimestamp,
         };
     }
 
@@ -118,10 +103,15 @@ export class User extends Base implements APIUser {
             return typeof value === 'string' ? value : value.id;
         return null;
     }
+
+    public get [Symbol.toStringTag]() {
+        return 'User';
+    }
 }
 
 export namespace User {
-    export type Resolvable = User | APIUser | string;
-    export const Flags = UserEntity.Flags;
-    export type Flags = UserEntity.Flags;
+    export type Resolvable = User | Types.APIUser | Entity | string;
+    export type Entity = Types.User.Entity;
+    export type Flags = Types.User.Flags;
+    export const Flags = Types.User.Flags;
 }

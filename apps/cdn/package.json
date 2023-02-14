@@ -1,0 +1,39 @@
+{
+    "name": "cdn",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "lint": "eslint --ext .js,.ts src",
+        "format": "prettier --write \"src/**/*.{js,ts}\" && npm run lint -- --fix",
+        "start": "node ./dist/index.js",
+        "build": "tsup src/index.ts --config tsup.config.ts",
+        "dev": "npm run build && npm run start"
+    },
+    "dependencies": {
+        "@qwaroo/database": "workspace:^0.0.0",
+        "@qwaroo/middleware": "workspace:^0.0.0",
+        "@qwaroo/server": "workspace:^0.0.0",
+        "@qwaroo/types": "workspace:^0.0.0",
+        "dotenv": "^16.0.3",
+        "dotenv-expand": "^9.0.0",
+        "express": "^4.18.2",
+        "shuffle-seed": "^1.1.6"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.14",
+        "@types/node": "^18.11.10",
+        "@types/shuffle-seed": "^1.1.0"
+    },
+    "nx": {
+        "targets": {
+            "format": {
+                "dependsOn": ["^format"],
+                "outputs": ["{projectRoot}/src"]
+            },
+            "build": {
+                "dependsOn": ["^build"],
+                "outputs": ["{projectRoot}/dist"]
+            }
+        }
+    }
+}

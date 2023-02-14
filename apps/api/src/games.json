@@ -1,0 +1,368 @@
+[
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63c1"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "worldometer-basic",
+        "sourceOptions": {
+            "valueProperty": "population"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "Countries by Population",
+        "shortDescription": "Which country has a higher population?",
+        "longDescription": "Can you guess which country has a higher population? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://blog.ons.gov.uk/wp-content/uploads/sites/6/2021/04/shutterstock_604150523-630x470.jpg",
+        "categories": ["Geography"],
+        "data": {
+            "verb": "has",
+            "noun": "people",
+            "higher": "More",
+            "lower": "Less"
+        },
+        "totalScore": 294,
+        "totalTime": 1955956,
+        "totalPlays": 67,
+        "slug": "countries-by-population",
+        "createdTimestamp": 1672215315962,
+        "updatedTimestamp": 1673585792369,
+        "lastPlayedTimestamp": 1675438168713,
+        "highScore": 12,
+        "highScoreTime": 88255,
+        "highScoreTimestamp": 1673682342634
+    },
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63c0"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "imdb-advanced-search",
+        "sourceOptions": {
+            "titleType": "tv_series",
+            "sortParameter": "moviemeter",
+            "sortDirection": "asc",
+            "valueProperty": "rating"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "IMDb TV Series Ratings",
+        "shortDescription": "Which popular TV series on IMDb has a higher rating?",
+        "longDescription": "Can you guess which popular TV series on IMDb has a higher rating? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://miro.medium.com/max/992/1*jRuU1_OQ1P98SRjniHx1Jg.jpeg",
+        "categories": ["TV"],
+        "data": {
+            "verb": "has a rating of",
+            "noun": "out of 10",
+            "higher": "Better",
+            "lower": "Worse"
+        },
+        "totalScore": 47,
+        "totalTime": 298249,
+        "totalPlays": 24,
+        "slug": "imdb-tv-series-ratings",
+        "createdTimestamp": 1672215315959,
+        "updatedTimestamp": 1672215315959,
+        "lastPlayedTimestamp": 1673282367370
+    },
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63c6"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "youtube-channel-video-views",
+        "sourceOptions": {
+            "channelIds": ["UCV6mNrW8CrmWtcxWfQXy11g"]
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "DarkViperAU Video Views",
+        "shortDescription": "Which of GTA speedrunner DarkViperAUs videos has more views?",
+        "longDescription": "Can you guess which of GTA speedrunner DarkViperAUs videos has more views? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cd5a5964-649b-424c-b83d-6aff2736807c/dec6qdy-29ca9b08-861c-4337-b085-3dab7d836ffa.png/v1/fill/w_1280,h_1280,q_80,strp/darkviperau_fanart_celebrating_500k_subs_by_doragonroudo_dec6qdy-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcL2NkNWE1OTY0LTY0OWItNDI0Yy1iODNkLTZhZmYyNzM2ODA3Y1wvZGVjNnFkeS0yOWNhOWIwOC04NjFjLTQzMzctYjA4NS0zZGFiN2Q4MzZmZmEucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.Jr-iHA0_AaomirGEv4Uv2gArcoBGUQM6LvyCR9X4YRM",
+        "categories": ["Content Creators"],
+        "data": {
+            "verb": "has",
+            "noun": "views",
+            "higher": "More",
+            "lower": "Less"
+        },
+        "totalScore": 550,
+        "totalTime": 6788792,
+        "totalPlays": 224,
+        "slug": "darkviperau-video-views",
+        "createdTimestamp": 1672215315975,
+        "updatedTimestamp": 1673234680391,
+        "lastPlayedTimestamp": 1675747827817,
+        "highScore": 19,
+        "highScoreTime": 150547,
+        "highScoreTimestamp": 1675196802962
+    },
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63be"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "imdb-advanced-search",
+        "sourceOptions": {
+            "titleType": "feature",
+            "sortParameter": "moviemeter",
+            "sortDirection": "asc",
+            "valueProperty": "rating"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "IMDb Movie Ratings",
+        "shortDescription": "Which popular movie on IMDb has a higher rating?",
+        "longDescription": "Can you guess which popular movie on IMDb has a higher rating? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://wallpaperaccess.com/full/3658919.jpg",
+        "categories": ["Movies"],
+        "data": {
+            "verb": "has a rating of",
+            "noun": "out of 10",
+            "higher": "Better",
+            "lower": "Worse"
+        },
+        "totalScore": 54,
+        "totalTime": 669522,
+        "totalPlays": 34,
+        "slug": "imdb-movie-ratings",
+        "createdTimestamp": 1672215315951,
+        "updatedTimestamp": 1672215315951,
+        "lastPlayedTimestamp": 1673281996068
+    },
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63c2"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "worldometer-basic",
+        "sourceOptions": {
+            "valueProperty": "landArea"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "Countries by Land Area",
+        "shortDescription": "Which country has a larger land area?",
+        "longDescription": "Can you guess which country has a larger land area? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://www.geospatialworld.net/wp-content/uploads/2020/04/Population-data-768x513.jpg",
+        "categories": ["Geography"],
+        "data": {
+            "verb": "has",
+            "noun": "in land area",
+            "suffix": "km²",
+            "higher": "More",
+            "lower": "Less"
+        },
+        "totalScore": 13,
+        "totalTime": 93046,
+        "totalPlays": 7,
+        "slug": "countries-by-land-area",
+        "createdTimestamp": 1672215315965,
+        "updatedTimestamp": 1673585792026,
+        "lastPlayedTimestamp": 1672932960281
+    },
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63bf"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "imdb-advanced-search",
+        "sourceOptions": {
+            "titleType": "video_game",
+            "sortParameter": "moviemeter",
+            "sortDirection": "asc",
+            "valueProperty": "rating"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "IMDb Video Game Ratings",
+        "shortDescription": "Which popular video game on IMDb has a higher rating?",
+        "longDescription": "Can you guess which popular video game on IMDb has a higher rating? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://cdn.vox-cdn.com/uploads/chorus_image/image/68510166/jbareham_201201_ecl1050_goty_2020_top_50_02.0.jpg",
+        "categories": ["Gaming"],
+        "data": {
+            "verb": "has a rating of",
+            "noun": "out of 10",
+            "higher": "Better",
+            "lower": "Worse"
+        },
+        "totalScore": 134,
+        "totalTime": 820114,
+        "totalPlays": 52,
+        "slug": "imdb-video-game-ratings",
+        "createdTimestamp": 1672215315955,
+        "updatedTimestamp": 1672215315955,
+        "lastPlayedTimestamp": 1673279089684
+    },
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63c4"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "gta-base",
+        "sourceOptions": {
+            "jsonPath": "/media/com_jamegafilter/en_gb/6.json",
+            "gameFilter": "gta-online",
+            "ctForValue": "ct13",
+            "imageFrame": "fit"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "GTA Online Weapon Prices",
+        "shortDescription": "Which GTA Online weapon is more expensive?",
+        "longDescription": "Can you guess which GTA Online weapon is more expensive? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2019/01/gta-online-lasers.jpg",
+        "categories": ["Gaming"],
+        "data": {
+            "verb": "costs",
+            "noun": "dollars",
+            "prefix": "$",
+            "higher": "More",
+            "lower": "Less"
+        },
+        "totalScore": 574,
+        "totalTime": 3690852,
+        "totalPlays": 139,
+        "slug": "gta-online-weapon-prices",
+        "createdTimestamp": 1672215315970,
+        "updatedTimestamp": 1673234793658,
+        "lastPlayedTimestamp": 1673442243629
+    },
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63c3"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "worldometer-basic",
+        "sourceOptions": {
+            "valueProperty": "density"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "Countries by Population Density",
+        "shortDescription": "Which country has a higher population density?",
+        "longDescription": "Can you guess which country has a higher population density? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://images.theconversation.com/files/286614/original/file-20190801-169696-2nvbgb.jpg",
+        "categories": ["Geography"],
+        "data": {
+            "verb": "has",
+            "noun": "in population density",
+            "suffix": "ppl/km²",
+            "higher": "More",
+            "lower": "Less"
+        },
+        "totalScore": 2,
+        "totalTime": 48316,
+        "totalPlays": 5,
+        "slug": "countries-by-population-density",
+        "createdTimestamp": 1672215315968,
+        "updatedTimestamp": 1673585792393,
+        "lastPlayedTimestamp": 1672402621309
+    },
+    {
+        "_id": {
+            "$oid": "63abfc0f2c91cc113bea63c5"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "gta-base",
+        "sourceOptions": {
+            "jsonPath": "/media/com_jamegafilter/en_gb/1.json",
+            "gameFilter": "gta-online",
+            "ctForValue": "ct13",
+            "ctForCaption": "ct72",
+            "captionTemplate": "based on {}"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "GTA Online Vehicle Prices",
+        "shortDescription": "Which GTA Online vehicle is more expensive?",
+        "longDescription": "Can you guess which GTA Online vehicle is more expensive? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://d.newsweek.com/en/full/907847/gta-online-deluxo.jpg",
+        "categories": ["Gaming"],
+        "data": {
+            "verb": "costs",
+            "noun": "dollars",
+            "prefix": "$",
+            "higher": "More",
+            "lower": "Less"
+        },
+        "totalScore": 5002,
+        "totalTime": 54447160,
+        "totalPlays": 736,
+        "slug": "gta-online-vehicle-prices",
+        "createdTimestamp": 1672215315973,
+        "updatedTimestamp": 1673235784752,
+        "lastPlayedTimestamp": 1676027280312,
+        "highScore": 124,
+        "highScoreTime": 503370,
+        "highScoreTimestamp": 1675157597736
+    },
+    {
+        "_id": {
+            "$oid": "63bbb489f235b095e26db153"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "gta-base",
+        "sourceOptions": {
+            "jsonPath": "/media/com_jamegafilter/en_gb/3.json",
+            "ctForValue": "ct13"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "GTA Online Property Prices",
+        "shortDescription": "Which GTA Online property is more expensive?",
+        "longDescription": "Can you guess which GTA Online property is is more expensive? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://www.gtabase.com/images/jch-optimize/ng/images_gta-5_properties_apartment_full_eclipse-towers.webp",
+        "categories": ["Gaming"],
+        "data": {
+            "verb": "costs",
+            "prefix": "$",
+            "noun": "dollars",
+            "higher": "More",
+            "lower": "Less"
+        },
+        "totalScore": 21,
+        "totalTime": 91726,
+        "totalPlays": 2,
+        "slug": "gta-online-property-prices",
+        "createdTimestamp": 1673244572327,
+        "updatedTimestamp": 1673245943223,
+        "lastPlayedTimestamp": 1673257009770,
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "63bbb489f235b095e26db152"
+        },
+        "creatorId": "63ab9ff3c4a7828ed11b4b8d",
+        "sourceSlug": "gta-base",
+        "sourceOptions": {
+            "jsonPath": "/media/com_jamegafilter/en_gb/1.json",
+            "gameFilter": "gta-online",
+            "ctForValue": "ct132"
+        },
+        "publicFlags": 1,
+        "mode": "higher-or-lower",
+        "title": "GTA Online Vehicle Top Speeds",
+        "shortDescription": "Which GTA Online vehicle is faster?",
+        "longDescription": "Can you guess which GTA Online vehicle is faster? Find out in this edition of the classic Higher or Lower guessing game!",
+        "thumbnailUrl": "https://www.theloadout.com/wp-content/uploads/2021/05/fastest-cars-gta-5-br8.jpeg",
+        "categories": ["Gaming"],
+        "data": {
+            "verb": "has a top speed of",
+            "suffix": "mph",
+            "noun": "",
+            "higher": "Faster",
+            "lower": "Slower"
+        },
+        "totalScore": 9,
+        "totalTime": 59640,
+        "totalPlays": 3,
+        "slug": "gta-online-vehicle-top-speeds",
+        "createdTimestamp": 1673244572323,
+        "updatedTimestamp": 1673245943778,
+        "lastPlayedTimestamp": 1673582570699,
+        "__v": 0
+    }
+]

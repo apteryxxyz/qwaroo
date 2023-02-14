@@ -1,22 +1,15 @@
 import type { APIGameStatistics } from '@qwaroo/types';
+import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { Button } from '#/components/Input/Button';
-import { PageSeo } from '#/components/Seo/Page';
-import { useClient } from '#/contexts/ClientContext';
+import { PageSeo } from '#/components/Seo';
+import { useClient } from '#/contexts/Client';
 
 export default (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-    const router = useRouter();
-
-    useEffect(() => {
-        void router.prefetch('/games');
-    }, []);
-
-    return <>
+    return <section className="flex flex-col m-auto">
         <PageSeo
             title="Home"
             description="A collection of fun guessing and statistics based browser games.
@@ -25,48 +18,41 @@ export default (
             url="/"
         />
 
-        <div className="flex flex-col h-[70vh] items-center justify-center">
-            <h1 className="text-qwaroo-gradient font-bold text-6xl md:text-8xl">
-                QWAROO
-            </h1>
+        <h1
+            aria-hidden
+            className="text-qwaroo-400 text-center text-8xl font-bold"
+        >
+            QWAROO
+        </h1>
 
-            <h2 className="text-2xl text-center">
-                A collection of fun guessing and statistics based games.
-            </h2>
+        <h2 className="text-2xl text-center">
+            A collection of fun guessing and statistics based games.
+        </h2>
 
+        <span className="text-center">
+            {props.statistics.totalPlays} games played,{' '}
+            {props.statistics.totalScore} points scored, more than{' '}
+            {ms(props.statistics.totalTime, { shortFormat: true }) ?? '0s'}{' '}
+            spent playing
+        </span>
+
+        <div className="flex mx-auto my-5 gap-3 [&>*]:!min-w-[200px] [&>*]:!min-h-[50px] [&>*]:text-lg">
             <Button
-                className="m-2 w-[30vh] bg-qwaroo-gradient text-xl font-bold text-white"
-                linkProps={{ href: '/games' }}
+                className="animate-scale"
+                linkProps={{ href: WebRoutes.games() }}
             >
                 Browse games
             </Button>
 
-            <div className="flex flex-col items-center justify-center font-semibold">
-                <h3 className="text-lg">Global Statistics</h3>
-
-                <span>
-                    {props.totalPlays} games played, {props.totalScore} points
-                    scored
-                </span>
-
-                <span>
-                    {ms(props.totalTime, {
-                        shortFormat: true,
-                    }) ?? '0s'}{' '}
-                    spent playing
-                </span>
-            </div>
+            {/* <Button linkProps={{ href: '/posts' }}>Blog posts</Button> */}
         </div>
-    </>;
+    </section>;
 };
 
-export const getServerSideProps: GetServerSideProps<
-    APIGameStatistics
-> = async () => {
-    const statistics = await useClient(true)
-        .games.fetchStatistics('@all')
-        .catch(() => null);
-    if (!statistics) return { notFound: true };
-
-    return { props: statistics };
+export const getServerSideProps: GetServerSideProps<{
+    statistics: APIGameStatistics;
+}> = async context => {
+    const client = useClient(context.req);
+    const statistics = await client.games.fetchStatistics();
+    return { props: { statistics } };
 };

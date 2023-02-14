@@ -9,6 +9,11 @@ const copyOptions = [{
     from: 'nginx.conf',
     to: 'api.qwaroo.com',
 }, {
+    directory: 'apps/cdn',
+    env: '.env',
+    from: 'nginx.conf',
+    to: 'cdn.qwaroo.com',
+}, {
     directory: 'apps/web',
     env: '.env',
     from: 'nginx.conf',

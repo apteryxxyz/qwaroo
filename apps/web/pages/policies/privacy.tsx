@@ -3,7 +3,7 @@ import { PageSeo } from '#/components/Seo/Page';
 export default () => {
     return <div
         className="flex flex-col gap-1 max-w-4xl mx-auto
-    [&>section]:my-1 [&>section]:p-5"
+        [&>section]:my-1 [&>section]:p-5"
     >
         <PageSeo
             title="Privacy Policy"

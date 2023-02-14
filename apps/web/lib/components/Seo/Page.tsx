@@ -1,19 +1,5 @@
 import { Seo } from './Seo';
-import { resolveHref } from '#/utilities/resolveHref';
-
-export namespace PageSeo {
-    export interface Props extends Seo.Props {
-        url: string;
-        description: string;
-        keywords?: string[];
-
-        banner?: {
-            source: string;
-            width: number;
-            height: number;
-        };
-    }
-}
+import { resolveHref } from '#/utilities/urlHelpers';
 
 export function PageSeo({ keywords = [], banner, ...props }: PageSeo.Props) {
     keywords = [...keywords, 'qwaroo', 'guessing', 'game', 'quiz', 'apteryx'];
@@ -60,4 +46,18 @@ export function PageSeo({ keywords = [], banner, ...props }: PageSeo.Props) {
             />
         </>}
     </Seo>;
+}
+
+export namespace PageSeo {
+    export interface Props extends Seo.Props {
+        url: string;
+        description: string;
+        keywords?: string[];
+
+        banner?: {
+            source: string;
+            width: number;
+            height: number;
+        };
+    }
 }

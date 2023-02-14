@@ -1,30 +1,30 @@
-import { Game as GameEntity } from '@qwaroo/types';
+import { Game } from '@qwaroo/client';
+import { type APIGame, WebRoutes } from '@qwaroo/types';
 import { PageSeo } from './Page';
-
-export namespace GameSeo {
-    export interface Props extends PageSeo.Props {
-        url: string;
-        description: string;
-        categories: string[];
-        mode: GameEntity.Mode | string;
-    }
-}
+import { resolveThumbnailUrl } from '#/utilities/urlHelpers';
 
 export function GameSeo(props: GameSeo.Props) {
-    const mode = modeToTitle(props.mode);
-
     return <PageSeo
         {...props}
-        title={`${props.title} - ${mode}`}
-        keywords={[props.title, mode, ...props.categories]}
+        url={WebRoutes.game(props.game.slug)}
+        title={`${props.game.title} - ${Game.ModeNames[props.game.mode]}`}
+        description={props.game.longDescription}
+        banner={{
+            source: resolveThumbnailUrl(props.game.thumbnailUrl),
+            width: 900,
+            height: 900,
+        }}
+        keywords={[
+            props.game.title,
+            Game.ModeNames[props.game.mode],
+            ...props.game.categories,
+        ]}
+        noIndex={(props.game.flags & Game.Flags.Public) !== 0}
     />;
 }
 
-function modeToTitle(mode: GameEntity.Mode | string) {
-    switch (mode) {
-        case GameEntity.Mode.HigherOrLower:
-            return 'Higher or Lower';
-        default:
-            return 'Unknown';
+export namespace GameSeo {
+    export interface Props extends Partial<PageSeo.Props> {
+        game: APIGame;
     }
 }

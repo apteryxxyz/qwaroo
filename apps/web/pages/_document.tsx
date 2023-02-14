@@ -1,6 +1,8 @@
-/* eslint-disable @next/next/next-script-for-ga */
 import { Head, Html, Main, NextScript } from 'next/document';
-import { useGoogleAdsenseClient, useGoogleAnalyticsId } from '#/hooks/useEnv';
+import {
+    getGoogleAdSenseClient,
+    getGoogleAnalyticsId,
+} from '#/utilities/getEnv';
 
 export default () => {
     return <Html lang="en">
@@ -9,16 +11,15 @@ export default () => {
             <script
                 async
                 id="google-adsense"
-                src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${useGoogleAdsenseClient()}`}
+                src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${getGoogleAdSenseClient()}`}
                 crossOrigin="anonymous"
             />
 
             {/* Google Analytics */}
             <script
                 async
-                src={`https://www.googletagmanager.com/gtag/js?id=${useGoogleAnalyticsId()}`}
+                src={`https://www.googletagmanager.com/gtag/js?id=${getGoogleAnalyticsId()}`}
             />
-
             <script
                 dangerouslySetInnerHTML={{
                     __html: `
@@ -26,7 +27,7 @@ export default () => {
                     function gtag(){dataLayer.push(arguments);}
 
                     gtag('js', new Date());
-                    gtag('config', '${useGoogleAnalyticsId()}', {
+                    gtag('config', '${getGoogleAnalyticsId()}', {
                         page_path: window.location.pathname
                     });
                     window.gtag = gtag;

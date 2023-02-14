@@ -14,7 +14,6 @@
         "@fortawesome/free-brands-svg-icons": "^6.2.1",
         "@fortawesome/free-solid-svg-icons": "^6.2.1",
         "@fortawesome/react-fontawesome": "^0.2.0",
-        "@next/bundle-analyzer": "^13.0.6",
         "@qwaroo/client": "workspace:^0.0.0",
         "@qwaroo/common": "workspace:^0.0.0",
         "@qwaroo/types": "workspace:^0.0.0",
@@ -29,20 +28,18 @@
         "postcss-preset-env": "^7.8.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-toastify": "^9.1.1",
+        "react-pipeline-component": "^1.1.0",
         "tailwindcss": "^3.2.4"
     },
     "devDependencies": {
+        "@next/bundle-analyzer": "^13.0.6",
         "@next/env": "^13.0.7",
         "@types/gtag.js": "^0.0.12",
         "@types/node": "^18.11.10",
         "@types/react": "^18.0.26",
         "@types/react-dom": "^18.0.9",
-        "eslint": "^8.28.0",
-        "eslint-config-apteryx": "^2.0.2",
         "next-sitemap": "^3.1.43",
-        "prettier": "^2.8.0",
-        "prettier-config-apteryx": "^2.0.2",
+        "postcss-import": "^15.1.0",
         "typescript": "^4.9.3"
     },
     "prettier": "prettier-config-apteryx"

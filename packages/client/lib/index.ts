@@ -1,12 +1,19 @@
 // Client
+export * from './client/APIManager';
+export * from './client/CDNManager';
 export * from './client/Client';
-export * from './client/REST';
+
+// Listings
+export * from './listings/ConnectionListing';
+export * from './listings/GameListing';
+export * from './listings/ItemListing';
+export * from './listings/Listing';
+export * from './listings/ScoreListing';
+export * from './listings/UserListing';
 
 // Managers
-export * from './managers/BaseManager';
-export * from './managers/ConnectionManager';
 export * from './managers/GameManager';
-export * from './managers/ItemManager';
+export * from './managers/Manager';
 export * from './managers/ScoreManager';
 export * from './managers/UserManager';
 
@@ -17,7 +24,8 @@ export * from './structures/Game';
 export * from './structures/Score';
 export * from './structures/User';
 
-// Utilities
+// Utilites
 export * from './utilities/BitField';
+export * from './utilities/Collection';
 export * from './utilities/GameFlagsBitField';
 export * from './utilities/UserFlagsBitField';

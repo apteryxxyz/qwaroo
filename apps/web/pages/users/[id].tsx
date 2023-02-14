@@ -1,216 +1,101 @@
-import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
-import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
-import { faReddit } from '@fortawesome/free-brands-svg-icons/faReddit';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faCode } from '@fortawesome/free-solid-svg-icons/faCode';
 import { faHammer } from '@fortawesome/free-solid-svg-icons/faHammer';
-import { faPalette } from '@fortawesome/free-solid-svg-icons/faPalette';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//
-import type { Connection, Score, User } from '@qwaroo/client';
 import type { APIUser } from '@qwaroo/types';
-import ms from 'enhanced-ms';
+import { WebRoutes } from '@qwaroo/types';
+import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { useEffect, useState } from 'react';
-import { HighscoreCard } from '#/components/Cards/Highscore';
-import { StatisticCard } from '#/components/Cards/Statistic';
-import { Loading } from '#/components/Display/Loading';
-import { PageSeo } from '#/components/Seo/Page';
-import { useClient } from '#/contexts/ClientContext';
+import { Card } from '#/components/Card';
+import { GameBrowser } from '#/components/Game/Browser';
+import { ScoreBrowser } from '#/components/Score/Browser';
+import { PageSeo } from '#/components/Seo';
+import { useClient } from '#/contexts/Client';
 
-const providerIconMap = {
-    discord: faDiscord,
-    reddit: faReddit,
-    github: faGithub,
-} as const;
-
-const providerNameMap = {
-    discord: 'Discord',
-    reddit: 'Reddit',
-    github: 'GitHub',
-};
-
-const badgeIconMap = {
+const BadgeIconMap = {
     Developer: faCode,
     Moderator: faHammer,
     Verified: faCheck,
-    Creator: faPalette,
-} as const;
+};
 
-export default ({
-    id,
-    displayName,
-    avatarUrl,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+export default (
+    props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
     const client = useClient();
-    const [user, setUser] = useState<User | null>(null);
-    const [connection, setConnection] = useState<Connection | null>(null);
-    const [scores, setScores] = useState<Score[]>([]);
-
-    useEffect(() => {
-        (async () => {
-            const user = await client.users.fetchOne(id);
-            const [connections, scores] = await Promise.all([
-                user.fetchConnections().catch(() => null),
-                user
-                    .fetchScores()
-                    .then(async scores => {
-                        await client.games.fetchMany({
-                            ids: scores?.map(s => s.gameId),
-                        });
-                        return scores;
-                    })
-                    .catch(() => null),
-            ]);
-
-            if (connections?.first()) setConnection(connections.first()!);
-            if (scores) setScores(Array.from(scores.values()));
-            setUser(user);
-        })();
-    }, []);
-
-    function getStatistics() {
-        const totalPlays = scores.reduce((a, s) => a + s.totalPlays, 0);
-        const totalScore = scores.reduce((a, s) => a + s.totalScore, 0);
-        const averageScore = totalPlays > 0 ? totalScore / totalPlays : 0;
-        const totalTime = scores.reduce((a, s) => a + s.totalTime, 0);
-
-        return [
-            ['Games Played', Number.isNaN(totalPlays) ? 0 : totalPlays],
-            ['Total Score', Number.isNaN(totalScore) ? 0 : totalScore],
-            ['Average Score', Number.isNaN(averageScore) ? 0 : averageScore],
-            ['Total Time Played', Number.isNaN(totalTime) ? 0 : totalTime],
-        ] as const;
-    }
-
-    const bannerUrl = new URL('https://wsrv.nl');
-    bannerUrl.searchParams.set('url', avatarUrl);
-    bannerUrl.searchParams.set('w', '900');
-    bannerUrl.searchParams.set('h', '900');
+    const user = client.users.append(props.user);
 
     return <>
         <PageSeo
-            title={displayName}
-            description={`View ${displayName}'s Qwaroo profile, containing their statistics, achievements, created games, and more.`}
-            url={`/users/${id}`}
-            banner={{
-                source: bannerUrl.toString(),
-                width: 900,
-                height: 900,
-            }}
+            url={WebRoutes.user(user.id)}
+            title={`${user.displayName}'s Profile`}
+            description={`View ${user.displayName}'s Qwaroo profile, containing their statistics, achievements, created games, and more.`}
         />
 
-        {!user && <Loading />}
+        <h2>User Profile</h2>
 
-        {user && <div className="flex flex-col gap-3">
-            <section>
-                <h2 className="font-bold text-3xl">User Profile</h2>
+        <Card className="flex flex-row">
+            <picture>
+                <img
+                    className="rounded-xl aspect-square"
+                    src={user.avatarUrl}
+                    alt={`${user.displayName}'s avatar`}
+                    title={`${user.displayName}'s avatar`}
+                    width={128}
+                    height={128}
+                />
+            </picture>
 
-                <div className="flex gap-3 p-3 bg-white dark:bg-neutral-800 rounded-xl">
-                    {/* Information */}
+            <div className="flex flex-col justify-center">
+                <span className="flex items-center gap-1">
+                    <h3 className="text-3xl font-bold text-qwaroo-400">
+                        {user.displayName}
+                    </h3>
 
-                    <picture>
-                        <img
-                            className="rounded-xl aspect-square"
-                            src={avatarUrl.toString()}
-                            alt={`${displayName}'s avatar`}
-                            title={`${displayName}'s avatar`}
-                            width={128}
-                            height={128}
-                        />
-                    </picture>
+                    {user.flags
+                        .toArray()
+                        .filter(
+                            (flag): flag is keyof typeof BadgeIconMap =>
+                                flag in BadgeIconMap
+                        )
+                        .map(flag => <FontAwesomeIcon
+                            key={flag}
+                            icon={BadgeIconMap[flag]}
+                            title={flag}
+                            className="bg-qwaroo-400 rounded-full text-white text-lg aspect-square p-1"
+                        />)}
+                </span>
 
-                    <div className="flex flex-col justify-center">
-                        <span className="flex items-center">
-                            <h3 className="text-3xl font-bold text-qwaroo-400">
-                                {displayName}
-                            </h3>
+                <span>
+                    Joined {user.joinedAt.toLocaleDateString('en-NZ')}, about{' '}
+                    {ms(Date.now() - user.joinedTimestamp, { roundUp: true })}{' '}
+                    ago.
+                </span>
+            </div>
+        </Card>
 
-                            {user.flags
-                                .toArray()
-                                .filter(
-                                    (flag): flag is keyof typeof badgeIconMap =>
-                                        flag in badgeIconMap
-                                )
-                                .map(flag => <FontAwesomeIcon
-                                    key={flag}
-                                    icon={badgeIconMap[flag]}
-                                    title={flag}
-                                    className="bg-qwaroo-gradient rounded-full text-white text-lg aspect-square ml-2 p-[0.3rem]"
-                                    // className="bg-qwaroo-gradient rounded-full text-white text-xl ml-2 aspect-square p-1"
-                                />)}
-                        </span>
+        <section>
+            <h2>Game Statistics</h2>
 
-                        <p>
-                            Joined {user.joinedAt.toLocaleDateString()}, about{' '}
-                            {ms(Date.now() - user.joinedAt.getTime(), {
-                                roundUp: true,
-                            })}{' '}
-                            ago
-                            {connection && <span>
-                                <br />
-                                via{' '}
-                                <FontAwesomeIcon
-                                    title={
-                                        providerNameMap[connection.providerName]
-                                    }
-                                    icon={
-                                        providerIconMap[connection.providerName]
-                                    }
-                                />{' '}
-                                as {connection.accountUsername}
-                            </span>}
-                            .
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <ScoreBrowser manager={user.scores} />
+        </section>
 
-            <section>
-                <h2 className="font-bold text-3xl">Game Statistics</h2>
+        <section>
+            <h2>Created Games</h2>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {/* Statistics */}
-
-                    {getStatistics().map(([name, value]) => <StatisticCard
-                        key={name}
-                        value={value}
-                        description={name}
-                        formatNumber={
-                            name === 'Total Time Played'
-                                ? v => ms(v, { shortFormat: true }) ?? '0s'
-                                : undefined
-                        }
-                    />)}
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
-                    {/* Per Game Statistics */}
-
-                    {scores.map(score => <HighscoreCard
-                        key={score.gameId}
-                        score={score}
-                        game={client.games.get(score.gameId)}
-                        isMe={user.id === client.id}
-                    />)}
-                </div>
-            </section>
-
-            {/* TODO: Show this users created games */}
-        </div>}
+            <GameBrowser manager={user.games} />
+        </section>
     </>;
 };
 
-export const getServerSideProps: GetServerSideProps<APIUser> = async ({
-    params,
-}) => {
-    const id = String(params?.['id'] ?? '');
+export const getServerSideProps: GetServerSideProps<{
+    user: APIUser;
+}> = async context => {
+    const id = String(context.params?.['id'] ?? '');
     if (!id) return { notFound: true };
+    const client = useClient(context.req);
 
-    const user = await useClient(true)
-        .users.fetchOne(id)
-        .catch(() => null);
+    const user = await client.users.fetchOne(id).catch(() => null);
     if (!user) return { notFound: true };
 
-    return { props: user.toJSON() };
+    return { props: { user: user.toJSON() } };
 };

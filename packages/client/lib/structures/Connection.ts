@@ -1,33 +1,33 @@
-import type { APIConnection } from '@qwaroo/types';
+import type * as Types from '@qwaroo/types';
 import { Base } from './Base';
-import type { ConnectionManager } from '#/managers/ConnectionManager';
+import type { ConnectionListing } from '#/listings/ConnectionListing';
 
 /** A connection. */
-export class Connection extends Base implements APIConnection {
-    /** The manager of the connection. */
-    public connections: ConnectionManager;
+export class Connection extends Base {
+    public listing: ConnectionListing;
 
+    /** The ID of the user that this connection belongs to. */
     public userId!: string;
-
-    public providerName!: APIConnection['providerName'];
+    /** The name of the provider this connection is for. */
+    public providerName!: Connection.ProviderName;
+    /** This connections identifier within the provider. */
     public accountId!: string;
+    /** This connections username within the provider. */
     public accountUsername!: string;
-
+    /** The timestamp when this connection was linked. */
     public linkedTimestamp!: number;
 
-    public constructor(connections: ConnectionManager, data: APIConnection) {
-        super(connections.client, data);
-        this.connections = connections;
+    public constructor(listing: ConnectionListing, data: Types.APIConnection) {
+        super(listing, data);
+        this.listing = listing;
         this._patch(data);
     }
 
-    public override _patch(data: APIConnection) {
+    public override _patch(data: Types.APIConnection) {
         this.userId = data.userId;
-
         this.providerName = data.providerName;
         this.accountId = data.accountId;
         this.accountUsername = data.accountUsername;
-
         this.linkedTimestamp = data.linkedTimestamp;
 
         return super._patch(data);
@@ -43,25 +43,25 @@ export class Connection extends Base implements APIConnection {
         return new Date(this.linkedTimestamp);
     }
 
-    public override equals(other: Connection | APIConnection) {
+    /** Fetch this connection. */
+    public fetch() {
+        return this.listing.fetchOne(this);
+    }
+
+    /** Fetch the user of this connection. */
+    public fetchUser(force = true) {
+        return this.client.users.fetchOne(this.userId, force);
+    }
+
+    public override equals(other: Connection | Types.APIConnection) {
         return (
-            this.id === other.id &&
+            super.equals(other) &&
             this.userId === other.userId &&
             this.providerName === other.providerName &&
             this.accountId === other.accountId &&
             this.accountUsername === other.accountUsername &&
             this.linkedTimestamp === other.linkedTimestamp
         );
-    }
-
-    /** Fetch the connection. */
-    public fetch(force = true) {
-        return this.connections.fetchOne(this.id, force);
-    }
-
-    /** Fetch the user of this connection. */
-    public fetchUser(force = true) {
-        return this.connections.user.fetch(force);
     }
 
     public override toJSON() {
@@ -88,8 +88,14 @@ export class Connection extends Base implements APIConnection {
             return typeof value === 'string' ? value : value.id;
         return null;
     }
+
+    public get [Symbol.toStringTag]() {
+        return 'Connection';
+    }
 }
 
 export namespace Connection {
-    export type Resolvable = Connection | APIConnection | string;
+    export type Resolvable = Connection | Types.APIConnection | Entity | string;
+    export type Entity = Types.Connection.Entity;
+    export type ProviderName = Types.Connection.ProviderName;
 }

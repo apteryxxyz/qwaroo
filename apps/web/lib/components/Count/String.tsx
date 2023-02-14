@@ -1,12 +1,5 @@
 import { useEffect, useState } from 'react';
 
-export namespace CountUpString {
-    export interface Props {
-        endValue: string;
-        animationDuration?: number;
-    }
-}
-
 export function CountUpString({
     endValue,
     animationDuration = 1_000,
@@ -16,7 +9,9 @@ export function CountUpString({
     const easeOutQuad = (time: number) => time * (2 - time);
     const stringLength = endValue.length;
 
-    const [string, setString] = useState(createRandomString(stringLength));
+    const [string, setString] = useState(
+        CountUpString.createRandomString(stringLength)
+    );
 
     useEffect(() => {
         let count = 0;
@@ -28,7 +23,7 @@ export function CountUpString({
 
             if (count !== currentCount) {
                 count = currentCount;
-                setString(createRandomString(stringLength));
+                setString(CountUpString.createRandomString(stringLength));
             }
 
             if (frame === totalFrames) {
@@ -41,17 +36,24 @@ export function CountUpString({
     return <>{string}</>;
 }
 
-export function createRandomString(length: number) {
-    let result = '';
-    const characters =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(
-            Math.floor(Math.random() * charactersLength)
-        );
+export namespace CountUpString {
+    export interface Props {
+        endValue: string;
+        animationDuration?: number;
     }
 
-    return result;
+    export function createRandomString(length: number) {
+        let result = '';
+        const characters =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+            );
+        }
+
+        return result;
+    }
 }

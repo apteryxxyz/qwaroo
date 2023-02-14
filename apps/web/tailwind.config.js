@@ -23,8 +23,28 @@ module.exports = {
                     '800': '#1c41b1',
                     '900': '#1d3b8b',
                 },
-            }
-        }
+            },
+            keyframes: {
+                wiggle: {
+                    '0%, 100%': { transform: 'rotate(-2deg)' },
+                    '50%': { transform: 'rotate(2deg)' },
+                },
+                scale: {
+                    '0%': { transform: 'scale(.9)' },
+                    '70%': { transform: 'scale(1)' },
+                    '100%': { transform: 'scale(.9)' },
+                },
+                'spin-slow': {
+                    '0%, 100%': { transform: 'rotate(0deg)' },
+                    '50%': { transform: 'rotate(360deg)' },
+                },
+            },
+            animation: {
+                wiggle: 'wiggle 1s ease-in-out infinite',
+                scale: 'scale 3s ease-in-out infinite',
+                'spin-slow': 'spin-slow 10s linear infinite',
+            },
+        },
     },
     plugins: [],
     safelist: [
@@ -48,5 +68,10 @@ module.exports = {
             pattern: /-?brightness-\d+/,
             variants: ['dark', 'dark:hover', 'hover'],
         },
+        {
+            // other
+            pattern: /hidden|!min-h-screen/,
+            variants: ['dark', 'dark:hover', 'hover'],
+        }
     ]
 };

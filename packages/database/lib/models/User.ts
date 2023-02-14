@@ -1,117 +1,111 @@
 import { Validate } from '@qwaroo/common';
-import type { User as UserEntity } from '@qwaroo/types';
-import type { Document, Model } from 'mongoose';
-import { Schema, model } from 'mongoose';
-import { Connection, type ConnectionDocument } from './Connection';
-import { Game, type GameDocument } from './Game';
-import { Score, type ScoreDocument } from './Score';
+import * as Types from '@qwaroo/types';
+import * as Mongoose from 'mongoose';
+import { Connection } from './Connection';
+import { Game } from './Game';
+import { Score } from './Score';
 
-export interface UserMethods {
-    /** Get the list of connections linked to this user. */
-    getConnections(): Promise<ConnectionDocument[]>;
-    /** Get a specific connection that is linked to this user. */
-    getConnection(id: string): Promise<ConnectionDocument | null>;
+export namespace User {
+    export interface Methods {
+        /** Get the list of connections linked to this user. */
+        getConnections(): Promise<Connection.Document[]>;
+        /** Get a specific connection that is linked to this user. */
+        getConnection(id: string): Promise<Connection.Document | null>;
 
-    /** Get the games that this user has created. */
-    getGames(): Promise<GameDocument[]>;
-    /** Get a specific game that this user has created. */
-    getGame(id: string): Promise<GameDocument | null>;
+        /** Get the games that this user has created. */
+        getGames(): Promise<Game.Document[]>;
+        /** Get a specific game that this user has created. */
+        getGame(id: string): Promise<Game.Document | null>;
 
-    /** Get the scores that this user has submitted. */
-    getScores(): Promise<ScoreDocument[]>;
-}
+        /** Get the scores that this user has submitted. */
+        getScores(): Promise<Score.Document[]>;
+    }
 
-export interface UserDocument extends UserEntity, UserMethods, Document {
-    id: string;
-}
+    export interface Document
+        extends Types.User.Entity,
+            Methods,
+            Mongoose.Document {
+        id: string;
+    }
 
-export interface UserModel extends Model<UserEntity, {}, UserMethods> {}
+    export interface Model
+        extends Mongoose.Model<Types.User.Entity, {}, Methods> {}
 
-const UserSchema = new Schema<UserEntity, UserModel, undefined, UserMethods>(
-    {
-        // Flags
-        publicFlags: {
-            type: Number,
-            required: true,
-            default: 0,
-        },
-
-        // Information
-        displayName: {
-            type: String,
-            required: true,
-            match: Validate.DisplayName,
-        },
-
-        avatarUrl: {
-            type: String,
-            required: true,
-            match: Validate.AvatarURL,
-        },
-
-        // Security
-        revokeToken: {
-            type: String,
-            required: true,
-            default: () => new Date().getMilliseconds().toString(),
-        },
-
-        // Timestamps
-        joinedTimestamp: {
-            type: Number,
-            required: true,
-            default: Date.now,
-        },
-
-        seenTimestamp: {
-            type: Number,
-            required: true,
-            default: Date.now,
-        },
-    },
-    {
-        toJSON: {
-            transform(_, ret) {
-                ret.id = ret._id.toString();
-                delete ret._id;
-                delete ret.__v;
-                delete ret.revokeToken;
-                return ret;
+    export const Schema = new Mongoose.Schema<
+        Types.User.Entity,
+        Model,
+        undefined,
+        Methods
+    >(
+        {
+            displayName: {
+                type: String,
+                required: true,
+                match: Validate.DisplayName,
             },
+            avatarUrl: {
+                type: String,
+                required: true,
+                match: Validate.AvatarURL,
+            },
+            flags: {
+                type: Number,
+                default: Types.User.Flags.None,
+            },
+
+            revokeToken: {
+                type: String,
+                required: true,
+                default: () => new Date().getMilliseconds().toString(),
+            },
+
+            joinedTimestamp: { type: Number, default: Date.now },
+            lastSeenTimestamp: { type: Number, default: Date.now },
         },
-    }
-);
+        {
+            toJSON: {
+                transform(_, record) {
+                    record.id = record._id;
+                    delete record._id;
+                    delete record.__v;
+                    delete record.revokeToken;
+                    return record;
+                },
+            },
+        }
+    );
 
-UserSchema.method(
-    'getConnections',
-    function getConnections(this: UserDocument) {
-        return Connection.find({ userId: this.id }).exec();
-    }
-);
+    Schema.method('getConnections', function getConnections(this: Document) {
+        return Connection.Model.find({ userId: this.id }).exec();
+    });
 
-UserSchema.method(
-    'getConnection',
-    function getConnection(this: UserDocument, id: string) {
-        return Connection.findById(id).exec();
-    }
-);
+    Schema.method(
+        'getConnection',
+        function getConnection(this: Document, id: string) {
+            return Connection.Model.findById(id).exec();
+        }
+    );
 
-UserSchema.method('getGames', function getGames(this: UserDocument) {
-    return Game.find({ userId: this.id }).exec();
-});
+    Schema.method('getGames', function getGames(this: Document) {
+        return Game.Model.find({ userId: this.id }).exec();
+    });
 
-UserSchema.method('getGame', function getGame(this: UserDocument, id: string) {
-    return Game.findById(id).exec();
-});
+    Schema.method('getGame', function getGame(this: Document, id: string) {
+        return Game.Model.findById(id).exec();
+    });
 
-UserSchema.method('getScores', function getScores(this: UserDocument) {
-    return Score.find({ userId: this.id }).exec();
-});
+    Schema.method('getScores', function getScores(this: Document) {
+        return Score.Model.find({ userId: this.id }).exec();
+    });
 
-// If the user's display name is invalid, set it to their ID
-UserSchema.pre('validate', function setDisplayName(this: UserDocument) {
-    if (!Validate.DisplayName.test(this.displayName))
-        this.displayName = this.id;
-});
+    // If the user's display name is invalid, set it to their ID
+    Schema.pre('validate', function setDisplayName(this: Document) {
+        if (!Validate.DisplayName.test(this.displayName))
+            this.displayName = this.id;
+    });
 
-export const User = model<UserEntity, UserModel>('User', UserSchema);
+    export const Model = Mongoose.model<Types.User.Entity, Model>(
+        'User',
+        Schema
+    );
+}

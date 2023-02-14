@@ -1,6 +1,10 @@
-import { User } from '@qwaroo/types';
+import * as Types from '@qwaroo/types';
 import { BitField } from './BitField';
 
-export class UserFlagsBitField extends BitField<typeof User.Flags>(
-    User.Flags
-) {}
+export class UserFlagsBitField extends BitField<typeof Types.User.Flags>(
+    Types.User.Flags
+) {
+    public get [Symbol.toStringTag]() {
+        return 'UserFlagsBitField';
+    }
+}

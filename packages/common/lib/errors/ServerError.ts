@@ -1,4 +1,4 @@
-import { StatusCodes } from '../constants/StatusCodes';
+import { StatusCodes } from '#/constants/StatusCodes';
 
 /**
  * A error that is to be throw from within the server.
@@ -11,13 +11,13 @@ export class ServerError extends Error {
     public readonly headers?: Record<string, string>;
 
     public constructor(
-        code: keyof typeof StatusCodes,
+        status: keyof typeof StatusCodes,
         details?: string,
         headers?: Record<string, string>
     ) {
-        super(StatusCodes[code]);
+        super(StatusCodes[status]);
 
-        this.status = code;
+        this.status = status;
         this.details = details;
         this.headers = headers;
     }

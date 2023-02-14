@@ -4,6 +4,7 @@
         "no-warning-comments": "off",
         "@typescript-eslint/dot-notation": "off",
         "unicorn/prefer-math-trunc": "off",
-        "@typescript-eslint/prefer-literal-enum-member": "off"
+        "@typescript-eslint/prefer-literal-enum-member": "off",
+        "@typescript-eslint/no-confusing-void-expression": "off"
     }
 }
