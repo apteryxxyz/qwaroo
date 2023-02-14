@@ -1,28 +1,43 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Backdrop } from '../Backdrop';
+import { useRef } from 'react';
+import { Backdrop } from './Backdrop';
+import { useOnClickOutside } from '#/hooks/useOnClickOutside';
+
+export function Modal(props: Modal.Props) {
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    useOnClickOutside(modalRef, props.toClose);
+
+    return <AnimatePresence mode="wait">
+        {props.isOpen && <Backdrop>
+            <motion.section
+                ref={modalRef}
+                className={`bg-qwaroo-100 text-black dark:bg-neutral-900 dark:text-white
+                    grid grid-cols-1 xl:grid-cols-2 gap-4 rounded-2xl shadow-lg p-5 md:p-10 max-w-[90%]
+                    ${props.className ?? ''}`
+                    .replaceAll(/\s+/g, ' ')
+                    .trim()}
+                onClick={e => e.stopPropagation()}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+            >
+                <h2 className="text-xl font-bold col-span-full">
+                    {props.title}
+                </h2>
+
+                {props.children}
+            </motion.section>
+        </Backdrop>}
+    </AnimatePresence>;
+}
 
 export namespace Modal {
     export interface Props {
         className?: string;
+        title: string;
         isOpen: boolean;
-        onClose(): void;
+        toClose(): void;
         children: React.ReactNode | React.ReactNode[];
     }
-}
-
-export function Modal(props: Modal.Props) {
-    return <AnimatePresence initial={false} mode="wait">
-        {props.isOpen && <Backdrop onClick={props.onClose}>
-            <motion.div
-                className={`bg-white text-black dark:bg-neutral-800 dark:text-white
-                    rounded-2xl shadow-lg p-5 md:p-10 max-w-[90%] ${props.className}`}
-                onClick={e => e.stopPropagation()}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-            >
-                {props.children}
-            </motion.div>
-        </Backdrop>}
-    </AnimatePresence>;
 }

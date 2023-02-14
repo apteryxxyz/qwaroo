@@ -1,18 +1,17 @@
-import { type APIUser, type FetchUsersOptions, Routes } from '@qwaroo/types';
-import { MapManager } from './BaseManager';
+import type { APIUser, FetchUsersOptions } from '@qwaroo/types';
+import { APIRoutes } from '@qwaroo/types';
+import { Manager } from './Manager';
+import { UserListing } from '#/listings/UserListing';
 import { User } from '#/structures/User';
 
-/** A manager for users. */
-export class UserManager extends MapManager<string, User> {
-    private _add(data: APIUser) {
-        const existing = this.get(data.id);
-
-        if (existing) {
-            existing._patch(data);
-            return existing;
+export class UserManager extends Manager<string, User> {
+    public append(data: APIUser) {
+        if (this.has(data.id)) {
+            const existing = this.get(data.id)!;
+            return existing._patch(data);
         }
 
-        const entry = new User(this.client, data);
+        const entry = new User(this, data);
         this.set(entry.id, entry);
         return entry;
     }
@@ -20,20 +19,21 @@ export class UserManager extends MapManager<string, User> {
     /** Fetch a single user. */
     public async fetchOne(user: User.Resolvable, force = false) {
         const id = User.resolveId(user) ?? 'unknown';
+        if (force && this.has(id)) return this.get(id)!;
 
-        if (!force) {
-            const existing = this.get(id);
-            if (existing) return existing;
-        }
-
-        const path = Routes.user(id);
-        const data = await this.client.rest.get(path);
-        return this._add(data);
+        const path = APIRoutes.user(id);
+        const data = await this.client.api.get(path);
+        return this.append(data);
     }
 
-    /** Fetch many users. */
-    public async fetchMany(options: FetchUsersOptions): Promise<User[]> {
-        const data = await this.client.rest.get(Routes.users(), options);
-        return data.items.map((dt: APIUser) => this._add(dt));
+    /** Fetch a paged user listing. */
+    public async fetchMany(options: FetchUsersOptions = {}) {
+        const listing = new UserListing(this, options, -1);
+        await listing.fetchMore();
+        return listing;
+    }
+
+    public get [Symbol.toStringTag]() {
+        return 'UserManager';
     }
 }

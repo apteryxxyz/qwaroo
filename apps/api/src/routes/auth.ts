@@ -1,73 +1,64 @@
-import process from 'node:process';
 import { URL } from 'node:url';
-import { Routes } from '@qwaroo/types';
-import { Router } from 'express';
-import passport from 'passport';
-import { Authentication } from '#/handlers/Authentication';
-import { useMethods } from '#/middleware/useMethods';
-import { DiscordPassport } from '#/passports/Discord';
-import { GitHubPassport } from '#/passports/GitHub';
-import { RedditPassport } from '#/passports/Reddit';
-import { handle } from '#/utilities/routeHandler';
+import { handle, useMethods } from '@qwaroo/middleware';
+import { Authentication, getEnv } from '@qwaroo/server';
+import { APIRoutes, WebRoutes } from '@qwaroo/types';
+import * as passport from 'passport';
+import { DiscordPassport } from '#/passports/DiscordPassport';
+import { RedditPassport } from '#/passports/RedditPassport';
+
+const WebUrl = getEnv(String, 'WEB_URL');
 
 export default () => {
-    const router = Router();
-    new DiscordPassport();
-    new GitHubPassport();
-    new RedditPassport();
-    passport.initialize();
+    const router = require('express').Router();
 
-    const providers = ['discord', 'github', 'reddit'] as const;
+    for (const Passport of [DiscordPassport, RedditPassport]) {
+        const provider = new Passport().providerName;
 
-    for (const provider of providers) {
         router.all(
-            Routes.authLogin(provider),
+            APIRoutes.authLogin(provider),
             useMethods(['GET']),
-            // @ts-expect-error 2769
             passport.authenticate(provider, {
                 session: false,
                 state: 'qwaroo',
                 duration: 'permanent',
-            })
+            } as unknown as Record<string, unknown>)
         );
 
         router.all(
-            Routes.authCallback(provider),
+            APIRoutes.authCallback(provider),
             useMethods(['GET']),
             passport.authenticate(provider, {
-                failureRedirect: `/auth/${provider}/failure`,
+                failureRedirect: APIRoutes.authFailure(provider),
                 session: false,
-            }),
+            } as unknown as Record<string, unknown>),
             handle(async (req, res) => {
-                if (!req.user) {
-                    res.redirect(`/auth/${provider}/login`);
-                    return;
-                }
+                if (!req.user)
+                    return res.redirect(APIRoutes.authLogin(provider));
 
                 const { id, revokeToken } = req.user;
                 const token = Authentication.createToken(id, revokeToken);
 
-                const webUrl = process.env['WEB_URL']!;
-                const redirectUrl = new URL('/auth/callback', webUrl);
-                redirectUrl.searchParams.set('uid', id);
-                redirectUrl.searchParams.set('token', token);
-                redirectUrl.searchParams.set('provider', provider);
+                const destination = new URL(WebRoutes.loginCallback(), WebUrl);
+                destination.searchParams.set('id', req.user.id);
+                destination.searchParams.set('provider', provider);
+                destination.searchParams.set('token', token);
 
-                res.redirect(redirectUrl.toString());
+                return res.redirect(destination.toString());
             })
         );
 
         router.all(
-            Routes.authFailure(provider),
+            APIRoutes.authFailure(provider),
             useMethods(['GET']),
-            (_req, res) => {
-                const webUrl = process.env['WEB_URL']!;
-                const redirectUrl = new URL('/auth/failure', webUrl);
-                redirectUrl.searchParams.set('provider', provider);
-                res.redirect(redirectUrl.toString());
-            }
+            handle(async (_req, res) => {
+                const destination = new URL(WebRoutes.loginFailure(), WebUrl);
+                destination.searchParams.set('provider', provider);
+
+                return res.redirect(destination.toString());
+            })
         );
     }
 
+    passport.initialize();
     return router;
 };

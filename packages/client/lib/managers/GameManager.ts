@@ -1,79 +1,77 @@
-import { type APIGame, type FetchGamesOptions, Routes } from '@qwaroo/types';
-import type { APIGameStatistics } from '@qwaroo/types';
-import { MapManager } from './BaseManager';
+import type {
+    APIGame,
+    APIGameStatistics,
+    FetchGamesOptions,
+} from '@qwaroo/types';
+import { APIRoutes } from '@qwaroo/types';
+import { Manager } from './Manager';
 import type { Client } from '#/client/Client';
+import { GameListing } from '#/listings/GameListing';
 import { Game } from '#/structures/Game';
 import { User } from '#/structures/User';
 
-/** A manager for games. */
-export class GameManager<U extends boolean = boolean> //
-    extends MapManager<string, Game>
-{
-    /** Optional, the creator of the games to get. */
-    public user?: U extends true ? User : undefined;
+export class GameManager extends Manager<string, Game> {
+    public user?: User;
 
-    public constructor(parent: Client | User) {
+    public constructor(parent: User | Client) {
         super(parent);
-        // @ts-expect-error 2322
+        this.client = parent instanceof User ? parent.client : parent;
         if (parent instanceof User) this.user = parent;
     }
 
-    private _add(data: APIGame) {
-        const existing = this.get(data.id);
+    public append(data: APIGame): Game;
+    public append(): null;
+    public append(data?: APIGame) {
+        if (!data) return null;
 
-        if (existing) {
-            existing._patch(data);
-            return existing;
+        if (this.has(data.id)) {
+            const existing = this.get(data.id)!;
+            return existing._patch(data);
         }
 
-        // Need to cast here for some reason idk
-        const entry = new Game(this, data) as Game;
+        const entry = new Game(this, data);
         this.set(entry.id, entry);
         return entry;
     }
 
     /** Fetch all game categories. */
-    public async fetchCategories(): Promise<string[]> {
+    public async fetchCategories() {
         const path = this.user
-            ? Routes.userCategories(this.user.id)
-            : Routes.categories();
-        const data = await this.client.rest.get(path);
-        return data.items;
+            ? APIRoutes.userGameCategories(this.user.id)
+            : APIRoutes.gameCategories();
+        const data = await this.client.api.get(path);
+        return data.items as string[];
     }
 
-    /** Fetch the statistics for one or all games. */
-    public fetchStatistics(gameId?: string): Promise<APIGameStatistics> {
-        const path = Routes.gameStatistics(gameId ?? '@all');
-        return this.client.rest.get(path);
+    /** Fetch the statistics for all games. */
+    public async fetchStatistics() {
+        const path = this.user
+            ? APIRoutes.userGameStatistics(this.user.id)
+            : APIRoutes.gameStatistics();
+        const data = await this.client.api.get(path);
+        return data as APIGameStatistics;
     }
 
     /** Fetch a single game. */
     public async fetchOne(game: Game.Resolvable, force = false) {
         const id = Game.resolveId(game) ?? 'unknown';
+        if (force && this.has(id)) return this.get(id)!;
 
-        if (!force) {
-            const existing = this.get(id);
-            if (existing) return existing;
-        }
-
-        const path = Routes.game(id);
-        const data = await this.client.rest.get(path);
-        return this._add(data);
-    }
-
-    /** Fetch a page of games. */
-    public async fetchMore(options: FetchGamesOptions = {}) {
-        if (options.limit === undefined) options.limit = 20;
-        if (options.skip === undefined) options.skip = this.size;
-        return this.fetchMany(options);
-    }
-
-    /** Fetch many games. */
-    public async fetchMany(options: FetchGamesOptions = {}): Promise<Game[]> {
         const path = this.user
-            ? Routes.userGames(this.user.id)
-            : Routes.games();
-        const data = await this.client.rest.get(path, options);
-        return data.items.map((dt: APIGame) => this._add(dt));
+            ? APIRoutes.userGame(this.user.id, id)
+            : APIRoutes.game(id);
+        const data = await this.client.api.get(path);
+        return this.append(data);
+    }
+
+    /** Fetch a paged game listing. */
+    public async fetchMany(options: FetchGamesOptions = {}) {
+        const listing = new GameListing(this, options, -1);
+        await listing.fetchMore();
+        return listing;
+    }
+
+    public get [Symbol.toStringTag]() {
+        return 'GameManager';
     }
 }

@@ -1,15 +1,5 @@
 import { useEffect, useState } from 'react';
 
-export namespace CountUpNumber {
-    export interface Props {
-        startValue?: number;
-        endValue: number;
-        animationDuration?: number;
-        decimalPlaces?: number;
-        format?(value: number): string;
-    }
-}
-
 export function CountUpNumber({
     startValue = 0,
     endValue,
@@ -21,7 +11,7 @@ export function CountUpNumber({
             maximumFractionDigits: decimalPlaces,
         }),
 }: CountUpNumber.Props) {
-    const frameDuration = 1_000 / 30;
+    const frameDuration = animationDuration / 30;
     const totalFrames = Math.round(animationDuration / frameDuration);
     const easeOutQuad = (t: number) => t * (2 - t);
     const [count, setCount] = useState(startValue);
@@ -42,10 +32,20 @@ export function CountUpNumber({
                 clearInterval(counter);
                 setCount(endValue);
             }
-        });
+        }, frameDuration);
 
         return () => clearInterval(counter);
     }, []);
 
     return <>{format(count)}</>;
+}
+
+export namespace CountUpNumber {
+    export interface Props {
+        startValue?: number;
+        endValue: number;
+        animationDuration?: number;
+        decimalPlaces?: number;
+        format?(value: number): string;
+    }
 }

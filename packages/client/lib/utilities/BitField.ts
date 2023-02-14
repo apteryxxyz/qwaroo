@@ -87,6 +87,10 @@ export function BitField<F extends Enum<number>>(flags: F) {
 
             return 0;
         }
+
+        public get [Symbol.toStringTag]() {
+            return 'BitField';
+        }
     };
 }
 

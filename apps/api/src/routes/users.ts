@@ -1,28 +1,34 @@
 import { ServerError as Error } from '@qwaroo/common';
-import { Routes } from '@qwaroo/types';
-import { Router } from 'express';
-import { Users } from '#/handlers/Users';
-import { useMe, useMustBeMe } from '#/middleware/useMe';
-import { useMethods } from '#/middleware/useMethods';
-import { useToken } from '#/middleware/useToken';
-import { handle } from '#/utilities/routeHandler';
+import {
+    handle,
+    useMe,
+    useMethods,
+    useMustBeMe,
+    useToken,
+} from '@qwaroo/middleware';
+import { Users } from '@qwaroo/server';
+import { APIRoutes } from '@qwaroo/types';
 
 export default () => {
-    const router = Router();
+    const router = require('express').Router();
 
     router.all(
-        Routes.users(),
+        APIRoutes.users(),
         useMethods(['GET']),
-        useToken([], ['GET']),
+        useToken([]),
         handle(async (req, res) => {
             const opts: Record<string, unknown> = {};
 
-            opts['term'] = String(req.query['term'] ?? '') || undefined;
-            opts['limit'] = Number(req.query['limit'] ?? 0) || undefined;
-            opts['skip'] = Number(req.query['skip'] ?? 0) || undefined;
+            opts['ids'] = Array.isArray(req.search['ids'])
+                ? req.search['ids']
+                : undefined;
 
-            const ids = String(req.query['ids'] ?? '');
-            if (ids) opts['ids'] = ids.split(',');
+            opts['term'] = String(req.search['term'] ?? '') || undefined;
+            opts['limit'] = Number(req.search['limit'] ?? 0) || undefined;
+            opts['skip'] = Number(req.search['skip'] ?? 0) || undefined;
+
+            opts['sort'] = String(req.search['sort'] ?? '') || undefined;
+            opts['order'] = String(req.search['order'] ?? '') || undefined;
 
             const [data, items] = await Users.getUsers(opts);
             res.status(200).json({ success: true, ...data, items });
@@ -30,40 +36,48 @@ export default () => {
     );
 
     router.all(
-        Routes.user(':userId'),
+        APIRoutes.user(':userId'),
         useMethods(['GET']),
-        useToken([], ['GET']),
+        useToken([]),
         useMe('userId'),
         handle(async (req, res) => {
-            const user = await Users.getUser(req.params['userId']);
+            const userId = String(req.params['userId'] || '');
+            const user = await Users.getUser(userId);
+
             res.status(200).json({ success: true, ...user.toJSON() });
         })
     );
 
     router.all(
-        Routes.userConnections(':userId'),
+        APIRoutes.userConnections(':userId'),
         useMethods(['GET']),
-        useToken([], ['GET']),
+        useToken([]),
         useMe('userId'),
         useMustBeMe('userId', ['GET']),
         handle(async (req, res) => {
-            const user = await Users.getUser(req.params['userId']);
+            const userId = String(req.params['userId'] || '');
+            const user = await Users.getUser(userId);
+
             const connections = await user.getConnections();
+
             res.status(200).json({ success: true, items: connections });
         })
     );
 
     router.all(
-        Routes.userConnection(':userId', ':connectionId'),
+        APIRoutes.userConnection(':userId', ':connectionId'),
         useMethods(['GET']),
-        useToken([], ['GET']),
+        useToken([]),
         useMe('userId'),
         useMustBeMe('userId', ['GET']),
         handle(async (req, res) => {
-            const user = await Users.getUser(req.params['userId']);
-            const connectionId = String(req.params['connectionId'] ?? '');
+            const userId = String(req.params['userId'] || '');
+            const user = await Users.getUser(userId);
+
+            const connectionId = String(req.params['connectionId'] || '');
             const connection = await user.getConnection(connectionId);
-            if (!connection) throw new Error(404, 'Connection was not found');
+            if (!connection) throw new Error(404, 'Connection not found');
+
             res.status(200).json({ success: true, ...connection.toJSON() });
         })
     );

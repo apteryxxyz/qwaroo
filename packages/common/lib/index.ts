@@ -9,4 +9,5 @@ export * from './errors/ServerError';
 
 // Utilities
 export * from './utilities/createRegExp';
-export * from './utilities/createSlug';
+export * from './utilities/Slug';
+export * from './utilities/Query';

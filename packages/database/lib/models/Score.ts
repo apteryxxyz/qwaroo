@@ -1,109 +1,73 @@
 import { Validate } from '@qwaroo/common';
-import type { Score as ScoreEntity } from '@qwaroo/types';
-import type { Document, Model } from 'mongoose';
-import { Schema, model } from 'mongoose';
-import { Game, type GameDocument } from './Game';
-import { User, type UserDocument } from './User';
+import type * as Types from '@qwaroo/types';
+import * as Mongoose from 'mongoose';
+import { Game } from './Game';
+import { User } from './User';
 
-export interface ScoreMethods {
-    /** Get the user that this score belongs to. */
-    getUser(): Promise<UserDocument>;
-    /** Get the game that this score is for. */
-    getGame(): Promise<GameDocument>;
-}
-
-export interface ScoreDocument extends ScoreEntity, ScoreMethods, Document {
-    id: string;
-}
-
-export interface ScoreModel extends Model<ScoreEntity, {}, ScoreMethods> {}
-
-const ScoreSchema = new Schema<
-    ScoreEntity,
-    ScoreModel,
-    undefined,
-    ScoreMethods
->(
-    {
-        // Identifiers
-        userId: {
-            type: String,
-            required: true,
-            match: Validate.ObjectId,
-        },
-
-        gameId: {
-            type: String,
-            required: true,
-            match: Validate.ObjectId,
-        },
-
-        // Highscore
-        highScore: {
-            type: Number,
-            required: false,
-        },
-
-        highScoreTime: {
-            type: Number,
-            required: false,
-        },
-
-        highScoreTimestamp: {
-            type: Number,
-            required: false,
-        },
-
-        // Totals
-        totalScore: {
-            type: Number,
-            required: true,
-            default: 0,
-        },
-
-        totalTime: {
-            type: Number,
-            required: true,
-            default: 0,
-        },
-
-        totalPlays: {
-            type: Number,
-            required: true,
-            default: 0,
-        },
-
-        // Timestamps
-        firstPlayedTimestamp: {
-            type: Number,
-            required: true,
-            default: Date.now(),
-        },
-
-        lastPlayedTimestamp: {
-            type: Number,
-            required: true,
-            default: Date.now(),
-        },
-    },
-    {
-        toJSON: {
-            transform(_, ret) {
-                ret.id = ret._id.toString();
-                delete ret._id;
-                delete ret.__v;
-                return ret;
-            },
-        },
+export namespace Score {
+    export interface Methods {
+        /** Get the user that this score belongs to. */
+        getUser(): Promise<User.Document>;
+        /** Get the game that this score is for. */
+        getGame(): Promise<Game.Document>;
     }
-);
 
-ScoreSchema.method('getUser', function getUser(this: ScoreDocument) {
-    return User.findById(this.userId);
-});
+    export interface Document
+        extends Types.Score.Entity,
+            Methods,
+            Mongoose.Document {
+        id: string;
+    }
 
-ScoreSchema.method('getGame', function getGame(this: ScoreDocument) {
-    return Game.findById(this.gameId);
-});
+    export interface Model
+        extends Mongoose.Model<Types.Score.Entity, {}, Methods> {}
 
-export const Score = model<ScoreEntity, ScoreModel>('Score', ScoreSchema);
+    export const Schema = new Mongoose.Schema<
+        Types.Score.Entity,
+        Model,
+        undefined,
+        Methods
+    >(
+        {
+            userId: { type: String, required: true, match: Validate.ObjectId },
+            gameId: { type: String, required: true, match: Validate.ObjectId },
+
+            highScore: { type: Number, default: 0 },
+            highScoreTime: { type: Number, default: 0 },
+            highScorePlayedTimestamp: { type: Number, default: 0 },
+
+            totalScore: { type: Number, default: 0 },
+            totalTime: { type: Number, default: 0 },
+            totalPlays: { type: Number, default: 0 },
+
+            lastScore: { type: Number, default: 0 },
+            lastTime: { type: Number, default: 0 },
+            lastPlayedTimestamp: { type: Number, default: 0 },
+
+            firstPlayedTimestamp: { type: Number, default: Date.now },
+        },
+        {
+            toJSON: {
+                transform(_, record) {
+                    record.id = record._id;
+                    delete record._id;
+                    delete record.__v;
+                    return record;
+                },
+            },
+        }
+    );
+
+    Schema.method('getUser', function getUser(this: Document) {
+        return User.Model.findById(this.userId);
+    });
+
+    Schema.method('getGame', function getGame(this: Document) {
+        return Game.Model.findById(this.gameId);
+    });
+
+    export const Model = Mongoose.model<Types.Score.Entity, Model>(
+        'Score',
+        Schema
+    );
+}

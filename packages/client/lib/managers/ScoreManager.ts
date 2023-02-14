@@ -1,63 +1,59 @@
-import { type APIScore, type FetchScoresOptions, Routes } from '@qwaroo/types';
-import { MapManager } from './BaseManager';
+import type { APIScore, FetchScoresOptions } from '@qwaroo/types';
+import { APIRoutes } from '@qwaroo/types';
+import { Manager } from './Manager';
+import { ScoreListing } from '#/listings/ScoreListing';
+import { Game } from '#/structures/Game';
 import { Score } from '#/structures/Score';
 import type { User } from '#/structures/User';
 
-/** A manager for scores. */
-export class ScoreManager extends MapManager<string, Score> {
-    /** The user the scores belong to. */
-    public user: User;
+export class ScoreManager<P extends Game | User> extends Manager<
+    string,
+    Score
+> {
+    public parent: P;
 
-    public constructor(user: User) {
-        super(user.client);
-        this.user = user;
+    public constructor(parent: P) {
+        super(parent);
+        this.parent = parent;
     }
 
-    private _add(data: APIScore) {
-        const existing = this.get(data.id);
-
-        if (existing) {
-            existing._patch(data);
-            return existing;
+    public append(data: APIScore): Score<P> {
+        if (this.has(data.id)) {
+            const existing = this.get(data.id)!;
+            return existing._patch(data) as Score<P>;
         }
 
-        const entry = new Score(this, data);
+        const entry = new Score<P>(this, data);
         this.set(entry.id, entry);
         return entry;
     }
 
     /** Fetch a single score. */
-    public async fetchOne(score: Score.Resolvable, force = false) {
+    public async fetchOne(
+        score:
+            | Score.Resolvable
+            | (P extends Game ? Game.Resolvable : User.Resolvable),
+        force = false
+    ): Promise<Score> {
         const id = Score.resolveId(score) ?? 'unknown';
+        if (force && this.has(id)) return this.get(id)!;
 
-        if (!force) {
-            const existing = this.get(id);
-            if (existing) return existing;
-        }
-
-        const path = Routes.userScore(this.user.id, id);
-        const data = await this.client.rest.get(path);
-        return this._add(data);
+        const path =
+            this.parent instanceof Game
+                ? APIRoutes.gameScore(this.parent.id, id)
+                : APIRoutes.userScore(this.parent.id, id);
+        const data = await this.client.api.get(path);
+        return this.append(data);
     }
 
-    /** Fetch a page of scores. */
-    public async fetchMore(options: FetchScoresOptions = {}) {
-        if (options.limit === undefined) options.limit = 20;
-        if (options.skip === undefined) options.skip = this.size;
-        return this.fetchMany(options);
+    /** Fetch a paged score listing. */
+    public async fetchMany(options: FetchScoresOptions = {}) {
+        const listing = new ScoreListing<P>(this, options, -1);
+        await listing.fetchMore();
+        return listing;
     }
 
-    /** Fetch all scores. */
-    public async fetchAll(options: FetchScoresOptions = {}) {
-        const path = Routes.userScores(this.user.id);
-        const data = await this.client.rest.get(path, options);
-        return this.fetchMany({ ...options, limit: data.total, skip: 0 });
-    }
-
-    /** Fetch many scores. */
-    public async fetchMany(options: FetchScoresOptions = {}): Promise<Score[]> {
-        const path = Routes.userScores(this.user.id);
-        const data = await this.client.rest.get(path, options);
-        return data.items.map((dt: APIScore) => this._add(dt));
+    public get [Symbol.toStringTag]() {
+        return 'ScoreManager';
     }
 }

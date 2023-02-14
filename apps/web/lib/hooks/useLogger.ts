@@ -1,6 +1,6 @@
-export type Logger = Pick<Console, 'log' | 'warn' | 'error'>;
+export type Logger = Pick<Console, 'info' | 'warn' | 'error'>;
 
-export function useLogger(scope: string) {
+export function useLogger(scope: string): Logger {
     return {
         info: console.info.bind(console, `[${scope}]`),
         warn: console.warn.bind(console, `[${scope}]`),

@@ -23,7 +23,6 @@
     "include": [
         "next-env.d.ts",
         ".next/types/**/*.ts",
-        "app/**/*.tsx",
         "pages/**/*.tsx",
         "lib/components/**/*.tsx",
         "lib/**/**/**.ts"

@@ -1,67 +1,44 @@
-import { type APIGame, Game as GameEntity } from '@qwaroo/types';
+import { Game } from '@qwaroo/client';
+import type { APIGame, APIScore } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { useState } from 'react';
-import { LoginModal } from '#/components/Modal/Login';
 import { HigherOrLower } from '#/components/Modes/HigherOrLower';
 import { GameSeo } from '#/components/Seo/Game';
-import { useClient } from '#/contexts/ClientContext';
+import { useClient } from '#/contexts/Client';
 
 export default (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
     function GameScreen() {
-        switch (props.mode) {
-            case GameEntity.Mode.HigherOrLower:
-                return <HigherOrLower slug={props.slug} />;
+        switch (props.game.mode) {
+            case Game.Mode.HigherOrLower:
+                return <HigherOrLower game={props.game} score={props.score} />;
             default:
                 return null;
         }
     }
 
-    const bannerUrl = new URL('https://wsrv.nl');
-    bannerUrl.searchParams.set('url', props.thumbnailUrl);
-    bannerUrl.searchParams.set('w', '900');
-    bannerUrl.searchParams.set('h', '900');
-
     return <>
-        <GameSeo
-            url={`/games/${props.slug}`}
-            title={props.title}
-            description={props.longDescription}
-            categories={props.categories}
-            mode={props.mode}
-            banner={{
-                source: bannerUrl.toString(),
-                width: 900,
-                height: 900,
-            }}
-            noIndex={
-                (props.publicFlags & GameEntity.Flags.Approved) ===
-                GameEntity.Flags.Approved
-            }
-        />
+        <GameSeo game={props.game} />
 
         <GameScreen />
-
-        <LoginModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-        />
     </>;
 };
 
-export const getServerSideProps: GetServerSideProps<APIGame> = async ({
-    params,
-}) => {
-    const slug = String(params?.['slug'] ?? '');
+export const getServerSideProps: GetServerSideProps<{
+    game: APIGame;
+    score?: APIScore;
+}> = async context => {
+    const slug = String(context.params?.['slug'] ?? '');
     if (!slug) return { notFound: true };
+    const client = useClient(context.req);
 
-    const game = await useClient(true)
-        .games.fetchOne(slug)
-        .catch(() => null);
+    const game = await client.games.fetchOne(slug).catch(() => null);
     if (!game) return { notFound: true };
+    const score = client.id
+        ? await game.scores.fetchOne(client.id).catch(() => null)
+        : undefined;
 
-    return { props: JSON.parse(JSON.stringify(game)) };
+    const props = { game: game.toJSON(), score: score?.toJSON() };
+    if (!props.score) Reflect.deleteProperty(props, 'score');
+    return { props };
 };

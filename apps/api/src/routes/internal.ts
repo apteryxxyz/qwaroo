@@ -1,39 +1,36 @@
-import process from 'node:process';
 import { URL } from 'node:url';
-import { Game, User } from '@qwaroo/database';
-import { Router } from 'express';
-import { useMethods } from '#/middleware/useMethods';
-import { useStaticToken } from '#/middleware/useToken';
-import { handle } from '#/utilities/routeHandler';
+import { handle, useMethods, useStaticToken } from '@qwaroo/middleware';
+import { Game, User, getEnv } from '@qwaroo/server';
+import { APIRoutes } from '@qwaroo/types';
 
 export default () => {
-    const router = Router();
+    const router = require('express').Router();
 
     router.all(
-        '/internal/sitemap',
+        APIRoutes.internalSitemap(),
         useMethods(['GET']),
-        useStaticToken(process.env['INTERNAL_TOKEN']!),
+        useStaticToken(getEnv(String, 'INTERNAL_TOKEN')),
         handle(async (_req, res) => {
-            const baseWebUrl = new URL(process.env['WEB_URL']!);
+            const baseWebUrl = new URL(getEnv(String, 'WEB_URL'));
 
-            const games = await Game.find().exec();
-            const gameSitemapFields = games.map(game => ({
+            const games = await Game.Model.find().exec();
+            const gameFields = games.map(game => ({
                 loc: new URL(`/games/${game.slug}`, baseWebUrl).toString(),
                 lastmod: new Date(game.updatedTimestamp).toISOString(),
                 changefreq: 'weekly',
                 priority: 0.8,
             }));
 
-            const users = await User.find().exec();
-            const userSitemapFields = users.map(user => ({
+            const users = await User.Model.find().exec();
+            const userFields = users.map(user => ({
                 loc: new URL(`/users/${user.id}`, baseWebUrl).toString(),
-                lastmod: new Date(user.seenTimestamp).toISOString(),
+                lastmod: new Date(user.lastSeenTimestamp).toISOString(),
                 changefreq: 'weekly',
                 priority: 0.8,
             }));
 
-            const sitemapFields = [...gameSitemapFields, ...userSitemapFields];
-            res.status(200).json({ success: true, items: sitemapFields });
+            const fields = [...gameFields, ...userFields];
+            res.status(200).json({ success: true, items: fields });
         })
     );
 

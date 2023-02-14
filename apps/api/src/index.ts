@@ -1,27 +1,23 @@
-import '@qwaroo/types';
-import process from 'node:process';
 import { Database } from '@qwaroo/database';
-import dotenv = require('dotenv');
-import dotenvExpand = require('dotenv-expand');
-import { Server } from './Server';
+import { Server, getEnv } from '@qwaroo/server';
 
-const env = dotenv.config();
-dotenvExpand.expand(env);
-
-let PORT = Number(process.env['PORT']);
-if (Number.isNaN(PORT)) {
-    console.warn('Missing or invalid PORT, defaulting to 3001');
-    PORT = 3_001;
-}
+require('dotenv-expand').expand(require('dotenv').config());
 
 const database = new Database();
-const server = new Server(PORT);
+const server = new Server();
 
 void main();
 async function main() {
-    await database.connect();
-    await server.listen();
-    await (await import('./dev')).default();
+    server.routers.push(require('./routes/auth').default());
+    server.routers.push(require('./routes/games').default());
+    server.routers.push(require('./routes/internal').default());
+    server.routers.push(require('./routes/scores').default());
+    server.routers.push(require('./routes/users').default());
+
+    await database.connect(getEnv(String, 'MONGODB_URI'));
+    await server.listen(getEnv(Number, 'API_PORT'));
 }
 
 export { database, server };
+
+export { migrate } from './migrate';

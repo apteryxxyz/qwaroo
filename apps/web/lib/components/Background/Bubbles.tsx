@@ -35,7 +35,6 @@ function Bubble({ index, count }: { index: number; count: number }) {
             animationDuration: `${speed}s`,
             animationDelay: `${delay}s`,
         }}
-        className={`bg-qwaroo-gradient dark:bg-white
-            opacity-50 dark:opacity-20 ${styles['bubble']}`}
-    ></div>;
+        className={`bg-qwaroo-500 dark:bg-white opacity-50 dark:opacity-20 ${styles['bubble']}`}
+    />;
 }

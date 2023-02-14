@@ -1,20 +1,14 @@
-import { Validate } from '@qwaroo/common';
-import { Routes } from '@qwaroo/types';
-import { Router } from 'express';
-import { Games } from '#/handlers/Games';
-import { Users } from '#/handlers/Users';
-import { useMe } from '#/middleware/useMe';
-import { useMethods } from '#/middleware/useMethods';
-import { useToken } from '#/middleware/useToken';
-import { handle } from '#/utilities/routeHandler';
+import { handle, useMe, useMethods, useToken } from '@qwaroo/middleware';
+import { Games, Items, Statistics, Users } from '@qwaroo/server';
+import { APIRoutes } from '@qwaroo/types';
 
 export default () => {
-    const router = Router();
+    const router = require('express').Router();
 
     router.all(
-        [Routes.categories(), Routes.userCategories(':userId')],
+        [APIRoutes.gameCategories(), APIRoutes.userGameCategories(':userId')],
         useMethods(['GET']),
-        useToken([], ['GET']),
+        useToken([]),
         useMe('userId'),
         handle(async (req, res) => {
             const userId = String(req.params['userId'] ?? '') || undefined;
@@ -26,81 +20,86 @@ export default () => {
     );
 
     router.all(
-        [Routes.games(), Routes.userGames(':userId')],
+        [APIRoutes.gameStatistics(), APIRoutes.userGameStatistics(':userId')],
         useMethods(['GET']),
-        useToken([], ['GET']),
+        useToken([]),
+        useMe('userId'),
+        handle(async (req, res) => {
+            const userId = String(req.params['userId'] ?? '') || undefined;
+            const user = userId ? await Users.getUser(userId) : undefined;
+
+            const statistics = await Statistics.getGameStatistics(user);
+            res.status(200).json({ success: true, ...statistics });
+        })
+    );
+
+    router.all(
+        [APIRoutes.games(), APIRoutes.userGames(':userId')],
+        useMethods(['GET']),
+        useToken([]),
         useMe('userId'),
         handle(async (req, res) => {
             const opts: Record<string, unknown> = {};
 
-            opts['term'] = String(req.query['term'] ?? '') || undefined;
-            opts['limit'] = Number(req.query['limit'] ?? 0) || undefined;
-            opts['skip'] = Number(req.query['skip'] ?? 0) || undefined;
-            opts['sort'] = String(req.query['sort'] ?? '') || undefined;
-            opts['order'] = String(req.query['order'] ?? '') || undefined;
+            opts['ids'] = Array.isArray(req.search['ids'])
+                ? req.search['ids']
+                : undefined;
 
-            const ids = String(req.query['ids'] ?? '');
-            if (ids) opts['ids'] = ids.split(',');
-            const slugs = String(req.query['slugs'] ?? '');
-            if (slugs) opts['slugs'] = slugs.split(',');
+            opts['term'] = String(req.search['term'] ?? '') || undefined;
+            opts['limit'] = Number(req.search['limit'] ?? 0) || undefined;
+            opts['skip'] = Number(req.search['skip'] ?? 0) || undefined;
 
-            const modes = String(req.query['modes'] ?? '');
-            if (modes) opts['modes'] = modes.split(',');
-            const categories = String(req.query['categories'] ?? '');
-            if (categories) opts['categories'] = categories.split(',');
+            opts['sort'] = String(req.search['sort'] ?? '') || undefined;
+            opts['order'] = String(req.search['order'] ?? '') || undefined;
 
             const userId = String(req.params['userId'] ?? '') || undefined;
             const user = userId ? await Users.getUser(userId) : undefined;
 
-            const [data, items] = await Games.getGames(req.user, user, opts);
+            const [data, items] = await Games.getGames(opts, user, req.user);
             res.status(200).json({ success: true, ...data, items });
         })
     );
 
     router.all(
-        Routes.game(':gameId'),
+        [APIRoutes.game(':gameId'), APIRoutes.userGame(':userId', ':gameId')],
         useMethods(['GET']),
-        useToken([], ['GET']),
+        useToken([]),
         useMe('userId'),
         handle(async (req, res) => {
-            const gameId = String(req.params['gameId'] ?? '');
-            const userId = String(req.user?.id ?? '');
+            const userId = String(req.params['userId'] ?? '') || undefined;
+            const user = userId ? await Users.getUser(userId) : undefined;
 
-            const user = Validate.ObjectId.test(gameId)
-                ? await Users.getUser(userId)
-                : undefined;
-            const game = Validate.ObjectId.test(gameId)
-                ? await Games.getGameById(user, gameId)
-                : await Games.getGameBySlug(user, gameId);
+            const gameId = String(req.params['gameId'] ?? '');
+            const game = await Games.getGame(gameId, user, true);
 
             res.status(200).json({ success: true, ...game.toJSON() });
         })
     );
 
     router.all(
-        Routes.gameItems(':gameId'),
+        APIRoutes.gameItems(':gameId'),
         useMethods(['GET']),
-        useToken([], ['GET']),
+        useToken([]),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
-            const userId = String(req.user?.id ?? '');
+            const game = await Games.getGame(gameId, req.user);
 
-            const user = Validate.ObjectId.test(userId)
-                ? await Users.getUser(userId)
-                : undefined;
-            const game = Validate.ObjectId.test(gameId)
-                ? await Games.getGameById(user, gameId)
-                : await Games.getGameBySlug(user, gameId);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const opts: any = {};
 
-            let seed = String(req.query['seed'] ?? '') || undefined;
-            const limit = Number(req.query['limit'] ?? 0) || undefined;
-            const skip = Number(req.query['skip'] ?? 0) || undefined;
+            opts['seed'] = String(req.search['seed'] ?? '') || undefined;
+            opts['version'] = String(req.search['version'] ?? '') || undefined;
+            opts['limit'] = Number(req.search['limit'] ?? 5);
+            opts['skip'] = Number(req.search['skip'] ?? 0);
 
-            // Prevent a custom seed from being used
-            if (!seed || skip === 0) seed = Math.random().toString(36).slice(2);
+            if (!opts['seed'] || opts['skip'] === 0)
+                opts['seed'] = Math.random().toString(36).slice(2);
+            if (!opts['version'] || opts['skip'] === 0) {
+                const versions = await Items.getItemsVersions(game);
+                opts['version'] = versions.at(-1);
+            }
 
-            const args = [game, seed, limit, skip] as const;
-            const [data, items] = await Games.getGameItems(...args);
+            const [data, items] = await Items.getItems(game, opts);
             res.status(200).json({ success: true, ...data, items });
         })
     );

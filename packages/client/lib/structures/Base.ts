@@ -1,12 +1,16 @@
-import type { Client } from '#/client/Client';
+import { Client } from '#/client/Client';
 
 /** A base class for all structures. */
 export class Base {
     public client: Client;
     public id!: string;
 
-    public constructor(client: Client, data: { id: string }) {
-        this.client = client;
+    public constructor(
+        client: Client | { client: Client },
+        data: { id: string }
+    ) {
+        if (client instanceof Client) this.client = client;
+        else this.client = client.client;
         this._patch(data);
     }
 
@@ -16,7 +20,7 @@ export class Base {
 
     public _patch(data: { id: string }) {
         this.id = data.id;
-        return data;
+        return this;
     }
 
     public _update(data: { id: string }) {
@@ -35,5 +39,9 @@ export class Base {
 
     public valueOf() {
         return this.id;
+    }
+
+    public get [Symbol.toStringTag]() {
+        return 'Base';
     }
 }

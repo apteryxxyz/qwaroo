@@ -11,7 +11,6 @@
     "dependencies": {
         "@qwaroo/common": "workspace:^0.0.0",
         "@qwaroo/types": "workspace:^0.0.0",
-        "mongodb-memory-server": "^8.10.1",
         "mongoose": "^6.7.5"
     },
     "devDependencies": {

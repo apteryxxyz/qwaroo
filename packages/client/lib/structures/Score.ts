@@ -1,50 +1,57 @@
-import type { APIScore } from '@qwaroo/types';
+import type * as Types from '@qwaroo/types';
 import { Base } from './Base';
+import type { Game } from './Game';
+import type { User } from './User';
 import type { ScoreManager } from '#/managers/ScoreManager';
 
-/** A game score. */
-export class Score<H extends boolean = boolean>
-    extends Base
-    implements APIScore
-{
-    /** The manager of the score. */
-    public scores: ScoreManager;
+/** A score. */
+export class Score<P extends Game | User = Game | User> extends Base {
+    public manager: ScoreManager<P>;
 
+    /** The ID of the user that this score belongs to. */
     public userId!: string;
+    /** The ID of the game that this score is for. */
     public gameId!: string;
-
-    public highScore!: H extends true ? number : undefined;
-    public highScoreTime!: H extends true ? number : undefined;
-    public highScoreTimestamp!: H extends true ? number : undefined;
-
+    /** The highest score the user has gotten. */
+    public highScore!: number;
+    /** The time it took to get the highest score. */
+    public highScoreTime!: number;
+    /** The timestamp when the highest score was achieved. */
+    public highScorePlayedTimestamp!: number;
+    /** The total score. */
     public totalScore!: number;
+    /** The total time. */
     public totalTime!: number;
+    /** The total number of plays. */
     public totalPlays!: number;
-
-    public firstPlayedTimestamp!: number;
+    /** The score this user last scored. */
+    public lastScore!: number;
+    /** The time the last game took. */
+    public lastTime!: number;
+    /** The timestamp when this user last played this. */
     public lastPlayedTimestamp!: number;
+    /** The timestamp when this user first played this. */
+    public firstPlayedTimestamp!: number;
 
-    public constructor(scores: ScoreManager, data: APIScore) {
-        super(scores.client, data);
-        this.scores = scores;
+    public constructor(manager: ScoreManager<P>, data: Types.APIScore) {
+        super(manager, data);
+        this.manager = manager;
         this._patch(data);
     }
 
-    public override _patch(data: APIScore) {
+    public override _patch(data: Types.APIScore) {
         this.userId = data.userId;
         this.gameId = data.gameId;
-
-        type T = H extends true ? number : undefined;
-        this.highScore = data.highScore as T;
-        this.highScoreTime = data.highScoreTime as T;
-        this.highScoreTimestamp = data.highScoreTimestamp as T;
-
+        this.highScore = data.highScore;
+        this.highScoreTime = data.highScoreTime;
+        this.highScorePlayedTimestamp = data.highScorePlayedTimestamp;
         this.totalScore = data.totalScore;
         this.totalTime = data.totalTime;
         this.totalPlays = data.totalPlays;
-
-        this.firstPlayedTimestamp = data.firstPlayedTimestamp;
+        this.lastScore = data.lastScore;
+        this.lastTime = data.lastTime;
         this.lastPlayedTimestamp = data.lastPlayedTimestamp;
+        this.firstPlayedTimestamp = data.firstPlayedTimestamp;
 
         return super._patch(data);
     }
@@ -55,9 +62,9 @@ export class Score<H extends boolean = boolean>
     }
 
     /** The date the high score was achieved. */
-    public get highScoreAt() {
-        return this.highScoreTimestamp
-            ? new Date(this.highScoreTimestamp)
+    public get highScorePlayedAt() {
+        return this.highScorePlayedTimestamp
+            ? new Date(this.highScorePlayedTimestamp)
             : undefined;
     }
 
@@ -71,35 +78,37 @@ export class Score<H extends boolean = boolean>
         return new Date(this.lastPlayedTimestamp);
     }
 
-    public override equals(other: Score | APIScore) {
+    /** Fetch this score. */
+    public fetch() {
+        return this.manager.fetchOne(this.id);
+    }
+
+    /** Fetch this scores user. */
+    public fetchUser(force = false) {
+        return this.client.users.fetchOne(this.userId, force);
+    }
+
+    /** Fetch this scores game. */
+    public fetchGame(force = false) {
+        return this.client.games.fetchOne(this.gameId, force);
+    }
+
+    public override equals(other: Score | Types.APIScore): boolean {
         return (
-            this.id === other.id &&
+            super.equals(other) &&
             this.userId === other.userId &&
             this.gameId === other.gameId &&
             this.highScore === other.highScore &&
             this.highScoreTime === other.highScoreTime &&
-            this.highScoreTimestamp === other.highScoreTimestamp &&
+            this.highScorePlayedTimestamp === other.highScorePlayedTimestamp &&
             this.totalScore === other.totalScore &&
             this.totalTime === other.totalTime &&
             this.totalPlays === other.totalPlays &&
-            this.firstPlayedTimestamp === other.firstPlayedTimestamp &&
-            this.lastPlayedTimestamp === other.lastPlayedTimestamp
+            this.lastScore === other.lastScore &&
+            this.lastTime === other.lastTime &&
+            this.lastPlayedTimestamp === other.lastPlayedTimestamp &&
+            this.firstPlayedTimestamp === other.firstPlayedTimestamp
         );
-    }
-
-    /** Fetch the score. */
-    public fetch(force = true) {
-        return this.scores.fetchOne(this.id, force);
-    }
-
-    /** Fetch this scores user. */
-    public fetchUser(force = true) {
-        return this.scores.user.fetch(force);
-    }
-
-    /** Fetch this scores game. */
-    public fetchGame(force = true) {
-        return this.client.games.fetchOne(this.gameId, force);
     }
 
     public override toJSON() {
@@ -109,12 +118,14 @@ export class Score<H extends boolean = boolean>
             gameId: this.gameId,
             highScore: this.highScore,
             highScoreTime: this.highScoreTime,
-            highScoreTimestamp: this.highScoreTimestamp,
+            highScorePlayedTimestamp: this.highScorePlayedTimestamp,
             totalScore: this.totalScore,
             totalTime: this.totalTime,
             totalPlays: this.totalPlays,
-            firstPlayedTimestamp: this.firstPlayedTimestamp,
+            lastScore: this.lastScore,
+            lastTime: this.lastTime,
             lastPlayedTimestamp: this.lastPlayedTimestamp,
+            firstPlayedTimestamp: this.firstPlayedTimestamp,
         };
     }
 
@@ -131,8 +142,13 @@ export class Score<H extends boolean = boolean>
             return typeof value === 'string' ? value : value.id;
         return null;
     }
+
+    public get [Symbol.toStringTag]() {
+        return 'Score';
+    }
 }
 
 export namespace Score {
-    export type Resolvable = Score | APIScore | string;
+    export type Resolvable = Score | Types.APIScore | Entity | string;
+    export type Entity = Types.Score.Entity;
 }

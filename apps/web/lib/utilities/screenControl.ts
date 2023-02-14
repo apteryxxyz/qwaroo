@@ -1,55 +1,39 @@
-/** Hide the navbar, footer and border spacing. */
+/** Hide the header, footer and remove border spacing. */
 export function goFullscreen() {
-    for (const selector of ['#navigation-bar', '#banner-bar', '#footer-bar']) {
-        const element = document.querySelector(selector);
-        if (element) element.classList.add('hidden');
+    const toHide = document.querySelectorAll<HTMLElement>('header, footer');
+    for (const el of Array.from(toHide)) el.style.display = 'none';
+
+    const toExpand = document.querySelector('main');
+    if (toExpand) {
+        toExpand.classList.remove('max-w-8xl', 'p-3');
+        toExpand.style.marginTop = '0';
+        toExpand.style.minHeight = '100vh';
     }
 
-    const main = document.querySelector('#content');
-    if (main) main.classList.remove('max-w-8xl', 'p-3');
     document.body.style.overflow = 'hidden';
 }
 
-/** Show the navbar, footer and border spacing. */
+/** Show the header, footer and reset the border spacing. */
 export function goMinimised() {
-    for (const selector of ['#navigation-bar', '#banner-bar', '#footer-bar']) {
-        const element = document.querySelector(selector);
-        if (element) element.classList.remove('hidden');
+    const toShow = document.querySelectorAll<HTMLElement>('header, footer');
+    for (const el of Array.from(toShow)) el.style.display = 'block';
+
+    const toContract = document.querySelector('main');
+    if (toContract) {
+        toContract.classList.add('max-w-8xl', 'p-3');
+        repairMainHeight();
     }
 
-    const main = document.querySelector('#content');
-    if (main) main.classList.add('max-w-8xl', 'p-3');
     document.body.style.overflow = 'auto';
 }
 
-const contextMenuListener = (event: MouseEvent) => {
-    event.preventDefault();
-};
+export function repairMainHeight() {
+    const headerHeight = document.querySelector('header')?.clientHeight;
+    const footerHeight = document.querySelector('footer')?.clientHeight;
+    const mainElement = document.querySelector('main');
 
-const inspectElementListener = (event: KeyboardEvent) => {
-    if (
-        event.key === 'F12' ||
-        (event.ctrlKey &&
-            (event.key === 'U' ||
-                (event.shiftKey &&
-                    (event.key === 'I' ||
-                        event.key === 'C' ||
-                        event.key === 'J' ||
-                        event.key === 'U'))))
-    )
-        event.preventDefault();
-};
-
-/** Disable the normal ways to access the dev tools. */
-export function disableInspectElement(onBlur?: () => void) {
-    document.addEventListener('contextmenu', contextMenuListener);
-    document.addEventListener('keydown', inspectElementListener);
-    if (onBlur) window.addEventListener('blur', onBlur);
-}
-
-/** Enable the normal ways to access the dev tools. */
-export function enableInspectElement(onBlur?: () => void) {
-    document.removeEventListener('contextmenu', contextMenuListener);
-    document.removeEventListener('keydown', inspectElementListener);
-    if (onBlur) window.removeEventListener('blur', onBlur);
+    if (mainElement && headerHeight && footerHeight) {
+        mainElement.style.marginTop = `${headerHeight}px`;
+        mainElement.style.minHeight = `calc(100vh - ${headerHeight}px - ${footerHeight}px)`;
+    }
 }
