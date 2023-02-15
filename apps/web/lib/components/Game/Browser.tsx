@@ -114,8 +114,8 @@ export function GameBrowser(props: GameBrowser.Props) {
                 ariaLabel="Change sort order"
                 iconProp={
                     options.order === 'asc'
-                        ? faSortAmountUpAlt
-                        : faSortAmountDownAlt
+                        ? faSortAmountDownAlt
+                        : faSortAmountUpAlt
                 }
                 onClick={() =>
                     void loadNewOptions({
