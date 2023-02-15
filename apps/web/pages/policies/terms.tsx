@@ -13,7 +13,7 @@ export default () => {
             url="/policies/terms"
         />
 
-        <h2 className="font-bold text-4xl text-qwaroo-gradient">
+        <h2 className="font-bold text-4xl text-qwaroo-400">
             Qwaroo Terms of Use
         </h2>
 

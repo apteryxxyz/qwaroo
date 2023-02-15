@@ -17,8 +17,7 @@ export function Header() {
     >
         <nav className="flex flex-col md:flex-row text-white">
             <Button
-                className="mx-auto md:mx-0 !bg-transparent
-                    hover:text-qwaroo-100 dark:hover:text-neutral-200"
+                className="mx-auto md:mx-0 !bg-transparent"
                 linkProps={{ href: '/' }}
             >
                 <h1 className="text-3xl font-bold">QWAROO</h1>
@@ -26,7 +25,7 @@ export function Header() {
 
             <div className="flex flex-wrap mx-auto md:mr-0">
                 <Button
-                    className="!bg-transparent hover:text-qwaroo-100 dark:hover:text-neutral-200"
+                    className="!bg-transparent"
                     iconProp={faGamepad}
                     linkProps={{ href: '/games' }}
                 >
@@ -34,7 +33,7 @@ export function Header() {
                 </Button>
 
                 <Button
-                    className="!bg-transparent hover:text-qwaroo-100 dark:hover:text-neutral-200"
+                    className="!bg-transparent"
                     iconProp={faUserAlt}
                     linkProps={{ href: '/profile' }}
                 >
@@ -42,7 +41,7 @@ export function Header() {
                 </Button>
 
                 {/* <Button
-                    className="!bg-transparent hover:text-qwaroo-100 dark:hover:text-neutral-200"
+                    className="!bg-transparent"
                     iconProp={faPenFancy}
                     linkProps={{ href: '/games/create' }}
                 >
@@ -50,7 +49,7 @@ export function Header() {
                 </Button> */}
 
                 <Button
-                    className="!bg-transparent hover:text-qwaroo-100 dark:hover:text-neutral-200"
+                    className="!bg-transparent"
                     iconProp={
                         (theme ?? 'light') === 'light'
                             ? faCloudMoon

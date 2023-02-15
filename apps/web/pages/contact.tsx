@@ -15,7 +15,7 @@ export default () => {
             url="/contact"
         />
 
-        <h2 className="font-bold text-4xl text-qwaroo-gradient">
+        <h2 className="font-bold text-4xl text-qwaroo-400">
             Qwaroo Contact Us
         </h2>
 

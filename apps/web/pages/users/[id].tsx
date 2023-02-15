@@ -67,7 +67,9 @@ export default (
 
                 <span>
                     Joined {user.joinedAt.toLocaleDateString('en-NZ')}, about{' '}
-                    {ms(Date.now() - user.joinedTimestamp, { roundUp: true })}{' '}
+                    {ms(Date.now() - user.joinedTimestamp, {
+                        roundUp: true,
+                    })}{' '}
                     ago.
                 </span>
             </div>
