@@ -31,7 +31,7 @@ export class Items extends null {
             skip: number;
         }
     ) {
-        const limit = Math.min(Math.max(options.limit ?? 5, 0), 5);
+        const limit = Math.max(options.limit ?? 5, 0);
         if (typeof limit !== 'number')
             throw new Error(422, 'Limit must be a number');
         const skip = Math.max(options.skip ?? 0, 0);
