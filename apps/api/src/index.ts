@@ -19,5 +19,3 @@ async function main() {
 }
 
 export { database, server };
-
-export { migrate } from './migrate';
