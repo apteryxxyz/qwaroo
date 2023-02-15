@@ -12,7 +12,7 @@ export function Modal(props: Modal.Props) {
         {props.isOpen && <Backdrop>
             <motion.section
                 ref={modalRef}
-                className={`bg-qwaroo-100 text-black dark:bg-neutral-900 dark:text-white
+                className={`bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white
                     grid grid-cols-1 xl:grid-cols-2 gap-4 rounded-2xl shadow-lg p-5 md:p-10 max-w-[90%]
                     ${props.className ?? ''}`
                     .replaceAll(/\s+/g, ' ')
