@@ -2,8 +2,9 @@ import { Game } from '@qwaroo/client';
 import type { APIGame, APIScore } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { HigherOrLower } from '#/components/Modes/HigherOrLower';
-import { GameSeo } from '#/components/Seo/Game';
+import { GameSeo } from '#/components/Seo';
 import { useClient } from '#/contexts/Client';
+import { removeUndefined } from '#/utilities/object';
 
 export default (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -11,7 +12,10 @@ export default (
     function GameScreen() {
         switch (props.game.mode) {
             case Game.Mode.HigherOrLower:
-                return <HigherOrLower game={props.game} score={props.score} />;
+                return <HigherOrLower.Embed
+                    game={props.game}
+                    score={props.score}
+                />;
             default:
                 return null;
         }
@@ -27,6 +31,7 @@ export default (
 export const getServerSideProps: GetServerSideProps<{
     game: APIGame;
     score?: APIScore;
+    isLayoutNeeded: boolean;
 }> = async context => {
     const slug = String(context.params?.['slug'] ?? '');
     if (!slug) return { notFound: true };
@@ -34,11 +39,16 @@ export const getServerSideProps: GetServerSideProps<{
 
     const game = await client.games.fetchOne(slug).catch(() => null);
     if (!game) return { notFound: true };
+
     const score = client.id
         ? await game.scores.fetchOne(client.id).catch(() => null)
         : undefined;
 
-    const props = { game: game.toJSON(), score: score?.toJSON() };
-    if (!props.score) Reflect.deleteProperty(props, 'score');
-    return { props };
+    return {
+        props: removeUndefined({
+            game: game.toJSON(),
+            score: score?.toJSON(),
+            isLayoutNeeded: false,
+        }),
+    };
 };

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export function Backdrop(props: Backdrop.Props) {
     return <motion.div
-        className="z-100 fixed top-0 left-0 h-screen w-screen bg-black/50
+        className="fixed top-0 left-0 h-screen w-screen bg-black/50
             flex items-center justify-center"
         onClick={props.onClick}
         initial={{ opacity: 0 }}

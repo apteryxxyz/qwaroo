@@ -1,7 +1,7 @@
 import { Game } from '@qwaroo/client';
 import { type APIGame, WebRoutes } from '@qwaroo/types';
 import { PageSeo } from './Page';
-import { resolveThumbnailUrl } from '#/utilities/urlHelpers';
+import { proxifyImageUrl } from '#/utilities/url';
 
 export function GameSeo(props: GameSeo.Props) {
     return <PageSeo
@@ -10,7 +10,7 @@ export function GameSeo(props: GameSeo.Props) {
         title={`${props.game.title} - ${Game.ModeNames[props.game.mode]}`}
         description={props.game.longDescription}
         banner={{
-            source: resolveThumbnailUrl(props.game.thumbnailUrl),
+            source: proxifyImageUrl(props.game.thumbnailUrl, 80, 900),
             width: 900,
             height: 900,
         }}

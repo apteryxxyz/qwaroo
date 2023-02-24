@@ -2,7 +2,7 @@ import { faDiscord, faReddit } from '@fortawesome/free-brands-svg-icons';
 import { APIRoutes, WebRoutes } from '@qwaroo/types';
 import { Button } from '#/components/Input/Button';
 import { PageSeo } from '#/components/Seo';
-import { getApiUrl } from '#/utilities/getEnv';
+import { getApiUrl } from '#/utilities/env';
 
 export default () => {
     return <>

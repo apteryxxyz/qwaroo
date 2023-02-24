@@ -6,12 +6,10 @@ import { useRouter } from 'next/router';
 import { ThemeProvider } from 'next-themes';
 import { useEffect } from 'react';
 import { Pipe, Pipeline } from 'react-pipeline-component';
-import { Bubbles } from '#/components/Background/Bubbles';
-import { Footer } from '#/components/Footer';
-import { Header } from '#/components/Header';
+import { Layout } from '#/components/Layout';
 import { ClientProvider, createClient } from '#/contexts/Client';
-import { pageView } from '#/utilities/googleServices';
-import { repairMainHeight } from '#/utilities/screenControl';
+import { resizeMain } from '#/utilities/element';
+import { triggerPageView } from '#/utilities/google';
 
 const client = createClient();
 
@@ -29,13 +27,13 @@ export default ({ Component, pageProps }: AppProps) => {
             void client.login();
         }
 
-        repairMainHeight();
-        window.addEventListener('resize', repairMainHeight);
-        return () => window.removeEventListener('resize', repairMainHeight);
+        resizeMain();
+        window.addEventListener('resize', resizeMain);
+        return () => window.removeEventListener('resize', resizeMain);
     }, []);
 
     useEffect(() => {
-        const handleChange = (url: string) => pageView(url);
+        const handleChange = (url: string) => triggerPageView(url);
 
         router.events.on('routeChangeComplete', handleChange);
         router.events.on('hashChangeComplete', handleChange);
@@ -53,22 +51,9 @@ export default ({ Component, pageProps }: AppProps) => {
             <ClientProvider value={client} children={<Pipe />} />,
         ]}
     >
-        <qwaroo className="min-h-screen flex flex-col mx-auto bg-neutral-200 dark:bg-neutral-900">
-            <Header />
-
-            <main
-                className="flex flex-col gap-3 z-10 max-w-8xl w-full mx-auto p-3
-                text-black dark:text-white"
-            >
-                <Component {...pageProps} />
-            </main>
-
-            <Footer />
-
-            <div className="hidden md:block motion-reduce:hidden">
-                <Bubbles count={20} />
-            </div>
-        </qwaroo>
+        <Layout {...pageProps}>
+            <Component {...pageProps} />
+        </Layout>
     </Pipeline>;
 };
 

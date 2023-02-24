@@ -6,7 +6,7 @@ import { useRef, useState } from 'react';
 import { Button } from './Button';
 import { useOnClickOutside } from '#/hooks/useOnClickOutside';
 
-export function Dropdown(props: Dropdown.Props) {
+export function Dropdown<V extends string | number>(props: Dropdown.Props<V>) {
     const defaultValue = props.defaultValue ?? props.options[0].value;
     const defaultOption = props.options.find(o => o.value === defaultValue)!;
 
@@ -14,7 +14,7 @@ export function Dropdown(props: Dropdown.Props) {
     const [selected, setSelected] = useState(defaultOption);
     const [isOpen, setIsOpen] = useState(false);
 
-    function onChange(value: string | number) {
+    function onChange(value: V) {
         if (isOpen) setIsOpen(false);
         props.onChange(value);
         setSelected(props.options.find(o => o.value === value)!);
@@ -22,7 +22,7 @@ export function Dropdown(props: Dropdown.Props) {
 
     useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
-    return <div ref={dropdownRef} className="flex flex-col z-20">
+    return <div ref={dropdownRef} className="flex flex-col">
         <Button
             // I hate that I have to hard code this width, but I can't
             // figure out how to get the width of the button and options
@@ -35,7 +35,7 @@ export function Dropdown(props: Dropdown.Props) {
         </Button>
 
         <motion.div
-            className="absolute mt-10 rounded-b-xl"
+            className="absolute mt-10 rounded-b-xl z-[2]"
             initial="exit"
             animate={isOpen ? 'enter' : 'exit'}
             variants={Dropdown.Varients}
@@ -47,22 +47,22 @@ export function Dropdown(props: Dropdown.Props) {
                     key={option.label}
                     {...option}
                     isLast={index === self.length - 1}
-                    onClick={onChange}
+                    onClick={value => onChange(value as V)}
                 />)}
         </motion.div>
     </div>;
 }
 
 export namespace Dropdown {
-    export interface Props {
+    export interface Props<V extends string | number> {
         className?: string;
         isDisabled?: boolean;
         ignoreResize?: boolean;
 
-        options: { label: string; value: string | number }[];
+        options: { label: string; value: V }[];
         defaultValue?: string | number;
 
-        onChange(value: string | number): void;
+        onChange(value: V): void;
     }
 
     export const MinimumWidth = 100;

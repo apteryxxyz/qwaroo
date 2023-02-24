@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { APIRoutes } from '@qwaroo/types';
 import type { GetServerSideProps } from 'next';
 import { type ISitemapField, getServerSideSitemap } from 'next-sitemap';
-import { getApiUrl, getEnv, getWebUrl } from '#/utilities/getEnv';
+import { getApiUrl, getEnv, getWebUrl } from '#/utilities/env';
 
 async function loadStaticPaths() {
     const manifestPath = join(process.cwd(), '.next', 'build-manifest.json');

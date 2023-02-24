@@ -1,5 +1,5 @@
 import { Seo } from './Seo';
-import { resolveHref } from '#/utilities/urlHelpers';
+import { resolveHref } from '#/utilities/url';
 
 export function PageSeo({ keywords = [], banner, ...props }: PageSeo.Props) {
     keywords = [...keywords, 'qwaroo', 'guessing', 'game', 'quiz', 'apteryx'];

@@ -13,7 +13,7 @@ export function Header() {
 
     return <Container
         parentType="header"
-        parentClassName="fixed left-0 right-0 z-[1030] shadow-xl bg-qwaroo-500 dark:bg-neutral-800"
+        parentClassName="fixed left-0 right-0 z-[2] shadow-xl bg-qwaroo-500 dark:bg-neutral-800"
     >
         <nav className="flex flex-col md:flex-row text-white">
             <Button

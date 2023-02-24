@@ -3,7 +3,7 @@ import React from 'react';
 export function Container(props: Container.Props) {
     return React.createElement(
         props.parentType ?? 'div',
-        { className: `z-10 ${props.parentClassName ?? ''}`, id: props.id },
+        { className: `${props.parentClassName ?? ''}`, id: props.id },
         React.createElement(
             props.childType ?? 'div',
             { className: `max-w-8xl mx-auto ${props.childClassName ?? ''}` },

@@ -1,8 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import {
-    getGoogleAdSenseClient,
-    getGoogleAnalyticsId,
-} from '#/utilities/getEnv';
+import { getGoogleAdSenseClient, getGoogleAnalyticsId } from '#/utilities/env';
 
 export default () => {
     return <Html lang="en">

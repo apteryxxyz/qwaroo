@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Game, User } from '@qwaroo/client';
 import { WebRoutes } from '@qwaroo/types';
 import Link from 'next/link';
-import { resolveThumbnailUrl } from '#/utilities/urlHelpers';
+import { proxifyImageUrl } from '#/utilities/url';
 
 export function GameCard({ game, creator }: GameCard.Props) {
     const [badgeText, badgeIcon] = generateGameBagde(game);
@@ -16,8 +16,10 @@ export function GameCard({ game, creator }: GameCard.Props) {
             hover:shadow-lg hover:brightness-125"
         style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3),
-                rgba(0,0,0,0.3)),url(${resolveThumbnailUrl(
-                    game.thumbnailUrl
+                rgba(0,0,0,0.3)),url(${proxifyImageUrl(
+                    game.thumbnailUrl,
+                    80,
+                    900
                 )})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',

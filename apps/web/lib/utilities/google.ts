@@ -1,8 +1,8 @@
-import { getGoogleAnalyticsId } from './getEnv';
+import { getGoogleAnalyticsId } from './env';
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 /** Trigger a page view event. */
-export function pageView(url: string) {
+export function triggerPageView(url: string) {
     window.gtag('config', getGoogleAnalyticsId(), {
         page_path: url,
     });

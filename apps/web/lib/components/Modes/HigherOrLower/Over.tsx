@@ -2,7 +2,7 @@ import { WebRoutes } from '@qwaroo/types';
 import { Display } from '#/components/Display/Display';
 import { Button } from '#/components/Input/Button';
 
-export function GameOver(props: GameOver.Props) {
+export function Over(props: Over.Props) {
     return <Display
         header="Game Over"
         title={`You scored ${props.score} points.`}
@@ -15,7 +15,7 @@ export function GameOver(props: GameOver.Props) {
     </Display>;
 }
 
-export namespace GameOver {
+export namespace Over {
     export interface Props {
         score: number;
         toRestart(): void;

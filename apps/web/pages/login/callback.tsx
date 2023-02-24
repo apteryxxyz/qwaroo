@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Loading } from '#/components/Loading';
 import { Seo } from '#/components/Seo';
-import { documentCookie } from '#/utilities/documentCookie';
+import { documentCookie } from '#/utilities/cookies';
 
 export default () => {
     const router = useRouter();

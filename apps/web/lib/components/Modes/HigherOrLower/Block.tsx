@@ -2,23 +2,20 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons/faArrowDown';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import type { Game } from '@qwaroo/client';
 import Link from 'next/link';
+import type { Embed } from './Embed';
 import { Button } from '#/components/Input/Button';
+import { proxifyImageUrl } from '#/utilities/url';
 
-export function ItemBlock(props: ItemBlock.Props) {
-    const quality = ItemBlock.qualityToNumber(props.imageQuality);
-    const frame = ItemBlock.croppingToFrame(
-        props.imageCropping,
-        props.imageFrame
-    );
+export function Block(props: Block.Props) {
+    const quality = Block.qualityToNumber(props.imageQuality);
+    const frame = Block.croppingToFrame(props.imageCropping, props.imageFrame);
 
     const imageUrl = new URL(props.imageSource!);
-    const proxyUrl = new URL('https://wsrv.nl');
-    proxyUrl.searchParams.set('url', imageUrl.toString());
-    proxyUrl.searchParams.set('q', quality.toString());
+    const proxyUrl = proxifyImageUrl(imageUrl, quality);
 
     return <aside
         className="relative h-[50vh] xl:h-screen w-screen xl:w-[50vw] bg-no-repeat text-white
-            flex flex-col justify-center items-center p-10 xl:pt-[30vw] select-none"
+            flex flex-col justify-center items-center p-10 xl:pt-[30vw] select-none bg-neutral-200 dark:bg-neutral-900"
         style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(${proxyUrl})`,
             backgroundSize: frame === 'fit' ? 'contain' : 'cover',
@@ -35,7 +32,7 @@ export function ItemBlock(props: ItemBlock.Props) {
 
         <span className="text-center text-xl">{props.valueVerb}</span>
 
-        {props.shouldShowValue && <span className="text-center text-4xl xl:text-7xl font-bold">
+        {props.showValue && <span className="text-center text-4xl xl:text-7xl font-bold">
             {props.valuePrefix}
             {typeof props.value === 'number'
                 ? props.value.toLocaleString()
@@ -43,20 +40,20 @@ export function ItemBlock(props: ItemBlock.Props) {
             {props.valueSuffix}
         </span>}
 
-        {props.shouldShowActions &&
-            props.onMoreClick &&
-            props.onLessClick && <div className="flex uppercase text-center font-bold text-lg xl:text-3xl">
+        {props.showActions &&
+            props.onHigherClick &&
+            props.onLowerClick && <div className="flex uppercase text-center font-bold text-lg xl:text-3xl">
                 <Button
-                    className="text-center m-3 p-3 bg-red-500 hover:bg-red-600"
+                    className="text-center m-3 p-3 bg-red-500"
                     iconProp={faArrowUp}
-                    onClick={props.onMoreClick}
+                    onClick={props.onHigherClick}
                 >
                     {props.higherText}
                 </Button>
                 <Button
-                    className="text-center m-3 p-3 bg-blue-500 hover:bg-blue-600"
+                    className="text-center m-3 p-3 bg-blue-500"
                     iconProp={faArrowDown}
-                    onClick={props.onLessClick}
+                    onClick={props.onLowerClick}
                 >
                     {props.lowerText}
                 </Button>
@@ -77,20 +74,16 @@ export function ItemBlock(props: ItemBlock.Props) {
     </aside>;
 }
 
-export namespace ItemBlock {
+export namespace Block {
     export interface Props
-        extends Omit<Game.Item<typeof Game.Mode.HigherOrLower>, 'value'>,
-            Game.Extra<typeof Game.Mode.HigherOrLower> {
+        extends Omit<Game.Item<Embed.Mode>, 'value'>,
+            Game.Extra<Embed.Mode>,
+            Embed.Settings {
         value: number | React.ReactNode;
-
-        shouldShowValue?: boolean;
-        shouldShowActions?: boolean;
-
-        onMoreClick?(): void;
-        onLessClick?(): void;
-
-        imageCropping: 'crop' | 'none' | 'auto';
-        imageQuality: 'max' | 'reduced';
+        showValue?: boolean;
+        showActions?: boolean;
+        onHigherClick?(): void;
+        onLowerClick?(): void;
     }
 
     export function croppingToFrame(
