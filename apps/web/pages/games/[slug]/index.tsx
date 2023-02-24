@@ -121,7 +121,7 @@ export default (
 
             <Button
                 className="text-3xl font-bold !bg-qwaroo-500 animate-scale"
-                linkProps={{ href: WebRoutes.game(game.current.slug) }}
+                linkProps={{ href: WebRoutes.playGame(game.current.slug) }}
             >
                 PLAY
             </Button>
