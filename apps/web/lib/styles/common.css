@@ -6,6 +6,20 @@
 
 body {
     overflow-y: scroll;
+    overflow: overlay;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3884f8;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(141, 141, 141, 0.1);
 }
 
 a,
