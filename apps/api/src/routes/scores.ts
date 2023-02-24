@@ -5,6 +5,7 @@ import {
     useMethods,
     useToken,
 } from '@qwaroo/middleware';
+import type { Game, User } from '@qwaroo/server';
 import { Games, Scores, Users } from '@qwaroo/server';
 import { APIRoutes } from '@qwaroo/types';
 
@@ -70,6 +71,36 @@ export default () => {
             const scoreOrGameId = String(req.params['scoreOrGameId']);
             const score = await Scores.getScore(user, scoreOrGameId);
 
+            res.status(200).json({ success: true, ...score.toJSON() });
+        })
+    );
+
+    router.all(
+        [
+            APIRoutes.userScore(':userId', ':scoreOrGameId'),
+            APIRoutes.gameScore(':gameId', ':scoreOrUserId'),
+        ],
+        useMethods(['GET']),
+        useToken([]),
+        handle(async (req, res) => {
+            let childId: string;
+            let entity: Game.Document | User.Document;
+
+            if (req.path.includes('user')) {
+                const userId = String(req.params['userId']);
+                const user = await Users.getUser(userId);
+
+                childId = String(req.params['scoreOrGameId']);
+                entity = user;
+            } else {
+                const gameId = String(req.params['gameId']);
+                const game = await Games.getGame(gameId);
+
+                childId = String(req.params['scoreOrUserId']);
+                entity = game;
+            }
+
+            const score = await Scores.getScore(entity, childId);
             res.status(200).json({ success: true, ...score.toJSON() });
         })
     );

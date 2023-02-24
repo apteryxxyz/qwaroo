@@ -2,24 +2,35 @@ import { ServerError as Error, Validate } from '@qwaroo/common';
 import { Score } from '@qwaroo/database';
 import type { APISubmitScoreOptions, FetchScoresOptions } from '@qwaroo/types';
 import { Replay } from './Replay';
-import { Game, User } from '#/utilities/structures';
+import type { User } from '#/utilities/structures';
+import { Game } from '#/utilities/structures';
 
 export class Scores extends null {
-    public static async getScore(user: User.Document, gameOrScoreId: string) {
-        if (!Validate.ObjectId.test(gameOrScoreId))
-            throw new Error(422, 'Game or score ID is not valid');
+    public static async getScore(
+        parent: Game.Document | User.Document,
+        childId: string
+    ) {
+        if (!Validate.ObjectId.test(childId))
+            throw new Error(422, 'Game, user or score ID is not valid');
 
-        const score = await Score.Model.findOne({
-            userId: user.id,
-            $or: [{ gameId: gameOrScoreId }, { _id: gameOrScoreId }],
-        }).exec();
+        const score = await Score.Model.findOne(
+            parent instanceof Game.Model
+                ? {
+                      gameId: parent.id,
+                      $or: [{ userId: childId }, { _id: childId }],
+                  }
+                : {
+                      userId: parent.id,
+                      $or: [{ gameId: childId }, { _id: childId }],
+                  }
+        );
         if (!score) throw new Error(404, 'Score not found');
 
         return score;
     }
 
     public static async getScores(
-        gameOrUser: Game.Document | User.Document,
+        parent: Game.Document | User.Document,
         options: FetchScoresOptions = {}
     ) {
         const limit = Math.min(Math.max(options.limit ?? 20, 0), 100);
@@ -31,10 +42,9 @@ export class Scores extends null {
 
         const query = Score.Model.find();
 
-        if (gameOrUser instanceof Game.Model)
-            void query.where('gameId').equals(gameOrUser.id);
-        else if (gameOrUser instanceof User.Model)
-            void query.where('userId').equals(gameOrUser.id);
+        if (parent instanceof Game.Model)
+            void query.where('gameId').equals(parent.id);
+        else void query.where('userId').equals(parent.id);
 
         const sort = String(options.sort ?? 'highScore').trim();
         // prettier-ignore

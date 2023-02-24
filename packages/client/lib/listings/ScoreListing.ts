@@ -2,7 +2,7 @@ import type { APIScore, FetchScoresOptions } from '@qwaroo/types';
 import { APIRoutes } from '@qwaroo/types';
 import { Listing } from './Listing';
 import type { ScoreManager } from '#/managers/ScoreManager';
-import type { Game } from '#/structures/Game';
+import { Game } from '#/structures/Game';
 import { Score } from '#/structures/Score';
 import type { User } from '#/structures/User';
 
@@ -31,7 +31,10 @@ export class ScoreListing<P extends Game | User> extends Listing<
 
     public async fetchMore() {
         this.abortController = new AbortController();
-        const path = APIRoutes.userScores(this.manager.parent.id);
+        const path =
+            this.manager.parent instanceof Game
+                ? APIRoutes.gameScores(this.manager.parent.id)
+                : APIRoutes.userScores(this.manager.parent.id);
         const data = await this.client.api.get(
             path,
             {
