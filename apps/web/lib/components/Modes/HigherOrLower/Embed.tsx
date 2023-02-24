@@ -12,6 +12,9 @@ import { useLogger } from '#/hooks/useLogger';
 import { emitEvent } from '#/utilities/google';
 import { sleepSeconds } from '#/utilities/timer';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const noop = (() => null) as any;
+
 export function Embed(props: Embed.Props) {
     // Variables
 
@@ -185,7 +188,7 @@ export function Embed(props: Embed.Props) {
             nextItem={useItem(1)}
             extraData={game.current.extraData}
             gameSettings={settings}
-            itemPicker={pickItem}
+            itemPicker={props.isPreview ? noop : pickItem}
             isSliding={status === Embed.Status.Sliding}
             isWaiting={status === Embed.Status.Waiting}
         />
@@ -195,10 +198,12 @@ export function Embed(props: Embed.Props) {
             highScore={highScore}
             isCorrectGuess={status === Embed.Status.Correct}
             isWrongGuess={status === Embed.Status.Wrong}
-            toggleSettings={() => setAreSettingsOpen(true)}
-            giveUp={() => endGame()}
+            toggleSettings={
+                props.isPreview ? noop : () => setAreSettingsOpen(true)
+            }
+            giveUp={props.isPreview ? noop : () => endGame()}
+            showGiveUp={!props.isPreview}
             showSettings
-            showGiveUp
         />
 
         <Settings
@@ -214,6 +219,7 @@ export namespace Embed {
     export interface Props {
         game: APIGame;
         score?: APIScore;
+        isPreview?: boolean;
     }
 
     export type Mode = typeof Game.Mode.HigherOrLower;

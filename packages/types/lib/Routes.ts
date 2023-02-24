@@ -99,6 +99,12 @@ export const WebRoutes = {
     game(gameSlug: string) {
         return `/games/${gameSlug}` as const;
     },
+    playGame(gameSlug: string) {
+        return `/games/${gameSlug}/play` as const;
+    },
+    previewGame(gameSlug: string) {
+        return `/games/${gameSlug}/preview` as const;
+    },
     createGame() {
         return '/games/create' as const;
     },

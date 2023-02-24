@@ -9,22 +9,13 @@ import { removeUndefined } from '#/utilities/object';
 export default (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-    function GameScreen() {
-        switch (props.game.mode) {
-            case Game.Mode.HigherOrLower:
-                return <HigherOrLower.Embed
-                    game={props.game}
-                    score={props.score}
-                />;
-            default:
-                return null;
-        }
-    }
-
     return <>
         <GameSeo game={props.game} />
 
-        <GameScreen />
+        {props.game.mode === Game.Mode.HigherOrLower && <HigherOrLower.Embed
+            game={props.game}
+            score={props.score}
+        />}
     </>;
 };
 

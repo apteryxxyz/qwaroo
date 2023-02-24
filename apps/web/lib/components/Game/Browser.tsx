@@ -14,16 +14,23 @@ import { Textbox } from '../Input/Textbox';
 import { Loading } from '../Loading';
 import { GameCard } from './Card';
 import { useClient } from '#/contexts/Client';
+import { useEventListener } from '#/hooks/useEventListener';
 import { useIsFirstRender } from '#/hooks/useIsFirstRender';
 
 export function GameBrowser(props: GameBrowser.Props) {
+    // Variables
+
     const client = useClient();
     const router = useRouter();
+
+    const browserRef = useRef<HTMLDivElement>(null);
 
     const games = useRef<GameListing | null>(null);
     const [options, setOptions] = useState<FetchGamesOptions>({});
     const [, setIsLoadingOptions] = useState(false);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+    // Functions
 
     async function fetchAdditionalGames(listing: GameListing) {
         const newGames = await listing.fetchMore();
@@ -66,6 +73,19 @@ export function GameBrowser(props: GameBrowser.Props) {
         setIsLoadingOptions(false);
     }
 
+    function resizeGrid() {
+        const browser = browserRef.current;
+        if (!browser) return;
+
+        const gridWidth = browser.clientWidth;
+        const cardWidth = 300;
+        const columns = Math.floor(gridWidth / cardWidth);
+
+        browser.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    }
+
+    // Hooks
+
     const isFirstRender = useIsFirstRender();
     useEffect(() => {
         if (isFirstRender) {
@@ -76,6 +96,11 @@ export function GameBrowser(props: GameBrowser.Props) {
             }
         }
     }, [router.query]);
+
+    useEffect(resizeGrid, [games.current]);
+    useEventListener('resize', resizeGrid);
+
+    // Render
 
     return <div className="flex flex-col gap-3 w-full">
         {/* Filter bar */}
@@ -127,7 +152,7 @@ export function GameBrowser(props: GameBrowser.Props) {
 
         {/* Games grid */}
         {games.current ? (
-            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            <section ref={browserRef} className="grid gap-3">
                 {games.current.map(game => <GameCard
                     key={game.id}
                     game={game}

@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { Pipe, Pipeline } from 'react-pipeline-component';
 import { Layout } from '#/components/Layout';
 import { ClientProvider, createClient } from '#/contexts/Client';
+import { injectEventEmitters } from '#/hooks/useEventListener';
 import { resizeMain } from '#/utilities/element';
 import { triggerPageView } from '#/utilities/google';
 
@@ -17,6 +18,7 @@ export default ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
 
     useEffect(() => {
+        injectEventEmitters();
         Reflect.set(globalThis, '__QWAROO_CLIENT__', client);
 
         // Login to the client if ID and token are present

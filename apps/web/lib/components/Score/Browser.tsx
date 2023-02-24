@@ -7,18 +7,25 @@ import { Button } from '../Input/Button';
 import { Loading } from '../Loading';
 import { ScoreCard } from './Card';
 import { useClient } from '#/contexts/Client';
+import { useEventListener } from '#/hooks/useEventListener';
 import { useIsFirstRender } from '#/hooks/useIsFirstRender';
 
 export function ScoreBrowser<P extends Game | User>(
     props: ScoreBrowser.Props<P>
 ) {
+    // Variables
+
     const client = useClient();
     const router = useRouter();
+
+    const browserRef = useRef<HTMLDivElement>(null);
 
     const scores = useRef<ScoreListing<P> | null>(null);
     const [options, setOptions] = useState<FetchScoresOptions>({});
     const [, setIsLoadingOptions] = useState(false);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+    // Functions
 
     async function fetchAdditionalScores(listing: ScoreListing<P>) {
         const newScores = await listing.fetchMore();
@@ -63,6 +70,19 @@ export function ScoreBrowser<P extends Game | User>(
         setIsLoadingOptions(false);
     }
 
+    function resizeGrid() {
+        const browser = browserRef.current;
+        if (!browser) return;
+
+        const gridWidth = browser.clientWidth;
+        const cardWidth = 300;
+        const columns = Math.floor(gridWidth / cardWidth);
+
+        browser.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    }
+
+    // Hooks
+
     const isFirstRender = useIsFirstRender();
     useEffect(() => {
         if (isFirstRender) {
@@ -74,9 +94,14 @@ export function ScoreBrowser<P extends Game | User>(
         }
     }, [router.query]);
 
+    useEffect(resizeGrid, [scores.current]);
+    useEventListener('resize', resizeGrid);
+
+    // Render
+
     return <div className="flex flex-col gap-3 w-full">
         {scores.current ? (
-            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            <section ref={browserRef} className="grid gap-3">
                 {scores.current.map((score, _, self) => <ScoreCard
                     key={score.id}
                     score={score}

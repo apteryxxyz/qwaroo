@@ -30,9 +30,9 @@ module.exports = {
                     '50%': { transform: 'rotate(2deg)' },
                 },
                 scale: {
-                    '0%': { transform: 'scale(.9)' },
-                    '70%': { transform: 'scale(1)' },
-                    '100%': { transform: 'scale(.9)' },
+                    '0%': { transform: 'scale(.98)' },
+                    '50%': { transform: 'scale(1.02)' },
+                    '100%': { transform: 'scale(.98)' },
                 },
                 'spin-slow': {
                     '0%, 100%': { transform: 'rotate(0deg)' },

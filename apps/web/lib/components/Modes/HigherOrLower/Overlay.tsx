@@ -28,7 +28,7 @@ export function Overlay(props: Overlay.Props) {
 
             {/* Scores */}
             <div className="pointer-events-none select-none flex flex-col items-end text-white pr-2">
-                {(props.highScore || true) && <span className="text-xl">
+                {(props.highScore ?? 0) > 0 && <span className="text-xl">
                     High Score{' '}
                     <span className="text-2xl font-bold">
                         {props.highScore}
