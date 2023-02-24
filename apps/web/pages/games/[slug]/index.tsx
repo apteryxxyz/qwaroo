@@ -44,10 +44,13 @@ export default (
     };
 
     const handleEmbedLoad = () => {
-        const embedWindow = embedRef?.current?.contentWindow;
-        if (!embedWindow) return;
-        embedWindow.addEventListener('click', handleEmbedClick);
-        setTimeout(() => embedWindow.clearEventListeners(), 1_000);
+        setTimeout(() => {
+            const embedWindow = embedRef?.current?.contentWindow;
+            if (!embedWindow) return;
+
+            embedWindow.clearEventListeners();
+            embedWindow.addEventListener('click', handleEmbedClick);
+        }, 1_000);
     };
 
     return <>
