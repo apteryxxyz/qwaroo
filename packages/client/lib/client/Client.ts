@@ -26,7 +26,7 @@ export class Client {
         this.users = new UserManager(this);
     }
 
-    // /** The currently logged in user. */
+    /** The currently logged in user. */
     public get me() {
         return this.id ? this.users.get(this.id) : undefined;
     }

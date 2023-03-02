@@ -111,11 +111,3 @@ export abstract class Passport<Profile extends Omit<passport.Profile, 'name'>> {
         });
     }
 }
-
-/*
-GET /auth/[provider]/login - Redirect to providers login page
-GET /auth/[provider]/callback - Find or create user
-
-PATCH /users/[id]/connections/[id] - Refresh a connections properties
-DELETE /users/[id]/connections/[id] - Delete a connection from a user
-*/
