@@ -13,9 +13,8 @@ export function Button(props: Button.Props) {
     const className = `
         flex gap-2 px-3 py-2 rounded-xl cursor-pointer
         items-center justify-center text-center
-        text-white bg-qwaroo-500 hover:brightness-125
-        dark:bg-neutral-800 dark:hover:brightness-125
-        transition-color duration-200
+        text-white bg-qwaroo-500 dark:bg-neutral-800
+        hover:brightness-125 duration-200
         ${props.className ?? ''}`
         .replaceAll(/\s+/g, ' ')
         .trim();

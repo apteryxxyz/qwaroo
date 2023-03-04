@@ -1,10 +1,10 @@
-export function resizeMain() {
-    const headerHeight = document.querySelector('header')?.clientHeight;
-    const footerHeight = document.querySelector('footer')?.clientHeight;
+export function resizePageMargin() {
+    const navElement = document.querySelector('nav');
     const mainElement = document.querySelector('main');
 
-    if (mainElement && headerHeight && footerHeight) {
-        mainElement.style.marginTop = `${headerHeight}px`;
-        mainElement.style.minHeight = `calc(100vh - ${headerHeight}px - ${footerHeight}px)`;
-    }
+    if (!navElement || !mainElement) return;
+
+    const navHeight = navElement.clientHeight;
+    mainElement.style.marginTop = `${navHeight}px`;
+    mainElement.style.minHeight = `calc(100vh - ${navHeight}px)`;
 }

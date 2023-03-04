@@ -1,7 +1,10 @@
 import { Bubbles } from './Background/Bubbles';
 import { Header } from './Header';
+import { useResizePageMargin } from '#/hooks/useResizePageMargin';
 
 export function Layout(props: Layout.Props) {
+    useResizePageMargin();
+
     const isLayoutNeeded = props.isLayoutNeeded ?? true;
 
     return <qwaroo className="min-h-screen flex flex-col mx-auto bg-neutral-200 dark:bg-neutral-900">

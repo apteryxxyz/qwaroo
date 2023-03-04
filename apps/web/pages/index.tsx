@@ -37,15 +37,25 @@ export default (
             spent playing
         </span>
 
-        <div className="flex mx-auto my-5 gap-3 [&>*]:!min-w-[220px] [&>*]:!min-h-[60px] [&>*]:text-lg">
+        {/* <div className="flex mx-auto my-5 gap-3 [&>*]:!min-w-[220px] [&>*]:!min-h-[60px] [&>*]:text-xl">
             <Button
                 className="animate-scale"
                 linkProps={{ href: WebRoutes.games() }}
             >
                 Browse games
             </Button>
+        </div> */}
 
-            {/* <Button linkProps={{ href: '/posts' }}>Blog posts</Button> */}
+        <div
+            className="flex gap-3 mx-auto my-5 text-xl font-bold
+                [&>*]:!min-w-[220px] [&>*]:!min-h-[60px]"
+        >
+            <Button
+                className="animate-scale"
+                linkProps={{ href: WebRoutes.games() }}
+            >
+                Browse games
+            </Button>
         </div>
 
         <Footer />
