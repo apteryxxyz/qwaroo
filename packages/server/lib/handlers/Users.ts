@@ -1,8 +1,48 @@
 import { ServerError as Error, Validate, createRegExp } from '@qwaroo/common';
 import type { FetchUsersOptions } from '@qwaroo/types';
-import { User } from '#/utilities/structures';
+import { Connection, User } from '#/utilities/structures';
 
 export class Users extends null {
+    /**
+     * Create a new user and connection.
+     * @note This is not intended to be plugged into an API route.
+     */
+    public static async ensureUser(
+        providerName: string,
+        accountId: string,
+        accountUsername: string,
+        displayName: string,
+        avatarUrl: string,
+        refreshToken?: string
+    ) {
+        const connection = await Connection.Model.findOne({
+            providerName,
+            accountId,
+        });
+
+        if (connection) {
+            const user = await connection.getUser();
+            if (user) return user;
+            await connection.remove();
+        }
+
+        const newUser = new User.Model({
+            displayName,
+            avatarUrl,
+        });
+
+        const newConnection = new Connection.Model({
+            userId: newUser.id,
+            providerName,
+            accountId,
+            accountUsername,
+            refreshToken,
+        });
+
+        await Promise.all([newUser.save(), newConnection.save()]);
+        return newUser;
+    }
+
     /** Get an existing user by their ID. */
     public static async getUser(id: string) {
         if (!Validate.ObjectId.test(id))
