@@ -9,5 +9,5 @@
             "#/*": ["./src/*"]
         }
     },
-    "include": ["src/**/*.ts", "../../packages/handlers/lib/Structures.ts"]
+    "include": ["src/**/*.ts"]
 }
