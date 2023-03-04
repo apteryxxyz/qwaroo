@@ -9,7 +9,6 @@ import { Pipe, Pipeline } from 'react-pipeline-component';
 import { Layout } from '#/components/Layout';
 import { ClientProvider, createClient } from '#/contexts/Client';
 import { injectEventEmitters } from '#/hooks/useEventListener';
-import { resizeMain } from '#/utilities/element';
 import { triggerPageView } from '#/utilities/google';
 
 const client = createClient();
@@ -28,10 +27,6 @@ export default ({ Component, pageProps }: AppProps) => {
             client.prepare(id, token);
             void client.login();
         }
-
-        resizeMain();
-        window.addEventListener('resize', resizeMain);
-        return () => window.removeEventListener('resize', resizeMain);
     }, []);
 
     useEffect(() => {

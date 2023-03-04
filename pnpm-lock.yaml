@@ -90,6 +90,7 @@ importers:
       passport-oauth2-refresh: ^2.1.0
       passport-reddit: github:Slotos/passport-reddit#master
       rate-limiter-flexible: ^2.4.1
+      tsup: ^6.6.3
     dependencies:
       '@qwaroo/common': link:../../packages/common
       '@qwaroo/database': link:../../packages/database
@@ -118,6 +119,7 @@ importers:
       '@types/passport-oauth2': 1.4.11
       '@types/passport-oauth2-refresh': 1.1.1
       '@types/qs': 6.9.7
+      tsup: 6.6.3
 
   apps/cdn:
     specifiers:
@@ -132,6 +134,7 @@ importers:
       dotenv-expand: ^9.0.0
       express: ^4.18.2
       shuffle-seed: ^1.1.6
+      tsup: ^6.6.3
     dependencies:
       '@qwaroo/database': link:../../packages/database
       '@qwaroo/middleware': link:../../packages/middleware
@@ -145,6 +148,7 @@ importers:
       '@types/express': 4.17.16
       '@types/node': 18.11.18
       '@types/shuffle-seed': 1.1.0
+      tsup: 6.6.3
 
   apps/web:
     specifiers:
@@ -5827,7 +5831,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -8706,7 +8710,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
     dev: true
 
   /rollup/3.12.0:
@@ -9442,6 +9446,41 @@ packages:
       sucrase: 3.29.0
       tree-kill: 1.2.2
       typescript: 4.9.5
+    transitivePeerDependencies:
+      - supports-color
+      - ts-node
+    dev: true
+
+  /tsup/6.6.3:
+    resolution: {integrity: sha512-OLx/jFllYlVeZQ7sCHBuRVEQBBa1tFbouoc/gbYakyipjVQdWy/iQOvmExUA/ewap9iQ7tbJf9pW0PgcEFfJcQ==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': ^1
+      postcss: ^8.4.12
+      typescript: ^4.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      postcss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      bundle-require: 4.0.1_esbuild@0.17.7
+      cac: 6.7.14
+      chokidar: 3.5.3
+      debug: 4.3.4
+      esbuild: 0.17.7
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      postcss-load-config: 3.1.4
+      resolve-from: 5.0.0
+      rollup: 3.15.0
+      source-map: 0.8.0-beta.0
+      sucrase: 3.29.0
+      tree-kill: 1.2.2
     transitivePeerDependencies:
       - supports-color
       - ts-node

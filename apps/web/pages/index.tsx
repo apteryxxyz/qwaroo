@@ -2,6 +2,7 @@ import type { APIGameStatistics } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { Footer } from '#/components/Footer';
 import { Button } from '#/components/Input/Button';
 import { PageSeo } from '#/components/Seo';
 import { useClient } from '#/contexts/Client';
@@ -36,7 +37,7 @@ export default (
             spent playing
         </span>
 
-        <div className="flex mx-auto my-5 gap-3 [&>*]:!min-w-[200px] [&>*]:!min-h-[50px] [&>*]:text-lg">
+        <div className="flex mx-auto my-5 gap-3 [&>*]:!min-w-[220px] [&>*]:!min-h-[60px] [&>*]:text-lg">
             <Button
                 className="animate-scale"
                 linkProps={{ href: WebRoutes.games() }}
@@ -46,6 +47,8 @@ export default (
 
             {/* <Button linkProps={{ href: '/posts' }}>Blog posts</Button> */}
         </div>
+
+        <Footer />
     </section>;
 };
 
