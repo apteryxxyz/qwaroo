@@ -1,15 +1,51 @@
-import { Client as Discord } from 'discord.js';
-import { Maclary } from 'maclary';
+import {
+    ActivityType,
+    Client as Discord,
+    GatewayIntentBits,
+    Partials,
+} from 'discord.js';
+import { container, Maclary } from 'maclary';
+import { Database } from '@qwaroo/database';
+import { getEnv } from '@qwaroo/server';
 
 require('dotenv-expand').expand(require('dotenv').config());
 
+const database = new Database();
 const discord = new Discord({
-    intents: [],
-    partials: [],
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.DirectMessages,
+    ],
+    partials: [Partials.Channel],
+    presence: {
+        activities: [
+            {
+                type: ActivityType.Watching,
+                name: 'qwaroo.com',
+            },
+        ],
+    },
 });
 const maclary = new Maclary({
-    guildId: process.env['GUILD_ID']!,
+    defaultPrefix: '!',
+    guildId: getEnv(String, 'GUILD_ID'),
 });
-Maclary.init(maclary, discord);
 
-void discord.login(process.env['DISCORD_TOKEN']!);
+container.database = database;
+
+void main();
+async function main() {
+    Maclary.init(maclary, discord);
+    await discord.login(getEnv(String, 'DISCORD_TOKEN'));
+    await database.connect(getEnv(String, 'MONGODB_URI'));
+}
+
+export { database, discord, maclary };
+
+declare module 'maclary' {
+    export interface Container {
+        database: Database;
+    }
+}
