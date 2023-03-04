@@ -13,7 +13,7 @@ export namespace Connection {
         accountUsername: string;
 
         /** The refresh token for this connections provider. */
-        refreshToken: string;
+        refreshToken?: string;
 
         /** The timestamp when this connection was linked. */
         linkedTimestamp: number;
