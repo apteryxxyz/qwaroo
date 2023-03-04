@@ -1,0 +1,38 @@
+{
+    "name": "discord",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "lint": "eslint --ext .js,.ts src",
+        "format": "prettier --write \"src/**/*.{js,ts}\" && npm run lint -- --fix",
+        "start": "node ./dist/index.js",
+        "build": "tsup && tsc-alias",
+        "dev": "npm run build && npm run start"
+    },
+    "dependencies": {
+        "@maclary/context": "^3.0.1",
+        "@qwaroo/server": "workspace:^0.0.0",
+        "@qwaroo/types": "workspace:^0.0.0",
+        "discord.js": "^14.7.1",
+        "dotenv": "^16.0.3",
+        "dotenv-expand": "^9.0.0",
+        "maclary": "^1.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^18.14.6",
+        "tsc-alias": "^1.8.2",
+        "tsup": "^6.6.3"
+    },
+    "nx": {
+        "targets": {
+            "format": {
+                "dependsOn": ["^format"],
+                "outputs": ["{projectRoot}/src"]
+            },
+            "build": {
+                "dependsOn": ["^build"],
+                "outputs": ["{projectRoot}/dist"]
+            }
+        }
+    }
+}
