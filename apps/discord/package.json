@@ -18,6 +18,7 @@
         "discord.js": "^14.7.1",
         "dotenv": "^16.0.3",
         "dotenv-expand": "^9.0.0",
+        "enhanced-ms": "^2.2.0",
         "maclary": "^1.0.1"
     },
     "devDependencies": {

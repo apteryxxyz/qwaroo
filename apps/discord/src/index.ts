@@ -1,9 +1,4 @@
-import {
-    ActivityType,
-    Client as Discord,
-    GatewayIntentBits,
-    Partials,
-} from 'discord.js';
+import { ActivityType, Client, GatewayIntentBits, Partials } from 'discord.js';
 import { container, Maclary } from 'maclary';
 import { Database } from '@qwaroo/database';
 import { getEnv } from '@qwaroo/server';
@@ -11,7 +6,7 @@ import { getEnv } from '@qwaroo/server';
 require('dotenv-expand').expand(require('dotenv').config());
 
 const database = new Database();
-const discord = new Discord({
+const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
@@ -23,7 +18,7 @@ const discord = new Discord({
         activities: [
             {
                 type: ActivityType.Watching,
-                name: 'qwaroo.com',
+                name: 'qwaroo.com | bot is in alpha',
             },
         ],
     },
@@ -37,12 +32,12 @@ container.database = database;
 
 void main();
 async function main() {
-    Maclary.init(maclary, discord);
-    await discord.login(getEnv(String, 'DISCORD_TOKEN'));
+    Maclary.init(maclary, client);
     await database.connect(getEnv(String, 'MONGODB_URI'));
+    await client.login(getEnv(String, 'DISCORD_TOKEN'));
 }
 
-export { database, discord, maclary };
+export { database, client, maclary };
 
 declare module 'maclary' {
     export interface Container {
