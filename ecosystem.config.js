@@ -21,6 +21,15 @@ module.exports = [
         watch: false,
     },
     {
+        name: 'Qwaroo Discord',
+        cwd: './apps/discord',
+        script,
+        args: 'start',
+        instances: 1,
+        autorestart: true,
+        watch: false,
+    },
+    {
         name: 'Qwaroo Web',
         cwd: './apps/web',
         script,
