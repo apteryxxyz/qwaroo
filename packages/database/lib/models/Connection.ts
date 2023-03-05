@@ -31,7 +31,7 @@ export namespace Connection {
             providerName: { type: String, required: true },
             accountId: { type: String, required: true, unique: true },
             accountUsername: { type: String, required: true },
-            refreshToken: { type: String, required: true },
+            refreshToken: { type: String, required: false },
 
             linkedTimestamp: { type: Number, default: Date.now },
         },
