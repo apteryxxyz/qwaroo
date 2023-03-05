@@ -4,7 +4,7 @@ import {
     ButtonBuilder,
     EmbedBuilder,
 } from '@discordjs/builders';
-import { Games, getEnv, Score, Scores } from '@qwaroo/server';
+import { Game, Games, getEnv, Score, Scores, User } from '@qwaroo/server';
 import { WebRoutes } from '@qwaroo/types';
 import { ApplicationCommandOptionType, ButtonStyle } from 'discord.js';
 import { Command } from 'maclary';
@@ -41,35 +41,20 @@ export class ProfileCommand extends Command<
         const msg = "User doesn't have a profile yet.";
         if (!user) return input.editReply(msg);
 
-        const [_1, scores] = await Scores.getScores(user, { limit: 3 });
-        const scoreGameIds = scores.map(s => s.gameId);
-        const [_2, scoreGames] = await Games.getGames({
-            ids: scoreGameIds,
-            limit: 3,
-        });
-
         const profileUrl = new URL(
             WebRoutes.user(user.id),
             getEnv(String, 'WEB_URL')
         ).toString();
 
         const profileEmbed = new EmbedBuilder()
-            .setThumbnail(user.avatarUrl)
-            .setTitle(user.displayName)
+            .setTitle(`${user.displayName}'s Profile`)
             .setDescription(formatJoinDate(user.joinedTimestamp))
             .setURL(profileUrl)
+            .setThumbnail(user.avatarUrl)
             .setColor(0x3884f8);
 
-        const scoresEmbed = new EmbedBuilder()
-            .setTitle('Highest Scores')
-            .setFields(
-                scores.map((s, i) => ({
-                    name: scoreGames[i]?.title ?? 'Unknown Game',
-                    value: formatScore(s, s.id === user.id),
-                    inline: true,
-                }))
-            )
-            .setColor(0x3884f8);
+        const scoresEmbed = await makeScoresEmbed(user);
+        const gamesEmbed = await makeGamesEmbed(user);
 
         const profileButton = new ButtonBuilder()
             .setStyle(ButtonStyle.Link)
@@ -79,7 +64,7 @@ export class ProfileCommand extends Command<
             .addComponents(profileButton);
 
         return input.editReply({
-            embeds: [profileEmbed, scoresEmbed],
+            embeds: [profileEmbed, scoresEmbed, gamesEmbed],
             components: [buttonRow],
         });
     }
@@ -91,6 +76,27 @@ function formatJoinDate(joinedTimestamp: number) {
     return `Joined ${atString}, about ${timeAgo} ago.`;
 }
 
+async function makeScoresEmbed(user: User.Document) {
+    const [{ total }, scores] = await Scores.getScores(user, { limit: 3 });
+    const scoreGameIds = scores.map(s => s.gameId);
+    const [_, scoreGames] = await Games.getGames({
+        ids: scoreGameIds,
+        limit: 3,
+    });
+
+    return new EmbedBuilder()
+        .setTitle('Highest Scores')
+        .setFields(
+            scores.map((s, i) => ({
+                name: scoreGames[i]?.title ?? 'Unknown Game',
+                value: formatScore(s, s.id === user.id),
+                inline: true,
+            }))
+        )
+        .setFooter({ text: `Showing ${scores.length} of ${total} scores.` })
+        .setColor(0x3884f8);
+}
+
 function formatScore(score: Score.Document, isMe: boolean) {
     return `**Highscore of ${score.highScore}**\n${
         isMe ? 'You' : 'They'
@@ -99,4 +105,23 @@ function formatScore(score: Score.Document, isMe: boolean) {
     } over ${ms(score.totalTime, { shortFormat: true })}, ${
         isMe ? 'your' : 'their'
     } total score is ${score.totalScore}.`;
+}
+
+async function makeGamesEmbed(user: User.Document) {
+    const [{ total }, games] = await Games.getGames({ limit: 3 }, user);
+
+    return new EmbedBuilder()
+        .setTitle('Top Created Games')
+        .setFields(
+            games.map(g => ({
+                name: g.title,
+                value: formatGame(g),
+            }))
+        )
+        .setFooter({ text: `Showing ${games.length} of ${total} games.` })
+        .setColor(0x3884f8);
+}
+
+function formatGame(game: Game.Document) {
+    return `**${Game.ModeNames[game.mode]}**\n${game.shortDescription}`;
 }
