@@ -1,14 +1,15 @@
-import { Handler } from '#/lib/structures/Handler';
 import {
     ActionRowBuilder,
     ButtonBuilder,
     EmbedBuilder,
 } from '@discordjs/builders';
-import { Game, Games, getEnv, Score, Scores, User } from '@qwaroo/server';
+import type { Score, User } from '@qwaroo/server';
+import { Game, Games, Scores, getEnv } from '@qwaroo/server';
 import { WebRoutes } from '@qwaroo/types';
 import { ApplicationCommandOptionType, ButtonStyle } from 'discord.js';
-import { Command } from 'maclary';
 import ms from 'enhanced-ms';
+import { Command } from 'maclary';
+import { Handler } from '#/lib/structures/Handler';
 
 export class ProfileCommand extends Command<
     Command.Type.ChatInput,

@@ -1,7 +1,7 @@
-import { ActivityType, Client, GatewayIntentBits, Partials } from 'discord.js';
-import { container, Maclary } from 'maclary';
 import { Database } from '@qwaroo/database';
 import { getEnv } from '@qwaroo/server';
+import { ActivityType, Client, GatewayIntentBits, Partials } from 'discord.js';
+import { Maclary, container } from 'maclary';
 
 require('dotenv-expand').expand(require('dotenv').config());
 

@@ -1,18 +1,17 @@
-// import { faDiscord, faReddit } from '@fortawesome/free-brands-svg-icons';
 import { APIRoutes, WebRoutes } from '@qwaroo/types';
-// import { Button } from '#/components/Input/Button';
-import { PageSeo } from '#/components/Seo';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { Loading } from '#/components/Loading';
+import { PageSeo } from '#/components/Seo';
 import { getApiUrl } from '#/utilities/env';
-// import { getApiUrl } from '#/utilities/env';
 
 export default () => {
     const router = useRouter();
 
     useEffect(() => {
-        router.replace(new URL(APIRoutes.authLogin('discord'), getApiUrl()));
+        void router.replace(
+            new URL(APIRoutes.authLogin('discord'), getApiUrl())
+        );
     }, []);
 
     return <>
