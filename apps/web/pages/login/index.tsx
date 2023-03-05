@@ -1,10 +1,20 @@
-import { faDiscord, faReddit } from '@fortawesome/free-brands-svg-icons';
+// import { faDiscord, faReddit } from '@fortawesome/free-brands-svg-icons';
 import { APIRoutes, WebRoutes } from '@qwaroo/types';
-import { Button } from '#/components/Input/Button';
+// import { Button } from '#/components/Input/Button';
 import { PageSeo } from '#/components/Seo';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { Loading } from '#/components/Loading';
 import { getApiUrl } from '#/utilities/env';
+// import { getApiUrl } from '#/utilities/env';
 
 export default () => {
+    const router = useRouter();
+
+    useEffect(() => {
+        router.replace(new URL(APIRoutes.authLogin('discord'), getApiUrl()));
+    }, []);
+
     return <>
         <PageSeo
             url={WebRoutes.login()}
@@ -12,7 +22,9 @@ export default () => {
             description="Login to Qwaroo"
         />
 
-        <h2>Login / Sign Up</h2>
+        <Loading.Circle className="my-auto" />
+
+        {/* <h2>Login / Sign Up</h2>
 
         <p>
             Welcome! Login to save your statistics, achievements, and to create
@@ -39,6 +51,6 @@ export default () => {
             >
                 Sign in with Reddit
             </Button>
-        </div>
+        </div> */}
     </>;
 };
