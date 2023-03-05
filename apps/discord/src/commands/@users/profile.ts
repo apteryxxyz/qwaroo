@@ -64,7 +64,7 @@ export class ProfileCommand extends Command<
             .addComponents(profileButton);
 
         return input.editReply({
-            embeds: [profileEmbed, scoresEmbed, gamesEmbed],
+            embeds: [profileEmbed, scoresEmbed, gamesEmbed].filter(Boolean),
             components: [buttonRow],
         });
     }
@@ -78,6 +78,8 @@ function formatJoinDate(joinedTimestamp: number) {
 
 async function makeScoresEmbed(user: User.Document) {
     const [{ total }, scores] = await Scores.getScores(user, { limit: 3 });
+    if (total === 0) return undefined;
+
     const scoreGameIds = scores.map(s => s.gameId);
     const [_, scoreGames] = await Games.getGames({
         ids: scoreGameIds,
@@ -109,6 +111,7 @@ function formatScore(score: Score.Document, isMe: boolean) {
 
 async function makeGamesEmbed(user: User.Document) {
     const [{ total }, games] = await Games.getGames({ limit: 3 }, user);
+    if (total === 0) return undefined;
 
     return new EmbedBuilder()
         .setTitle('Top Created Games')
