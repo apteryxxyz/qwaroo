@@ -1,5 +1,6 @@
 import { URL } from 'node:url';
-import { Connection, Encryption, User, getEnv, Users } from '@qwaroo/server';
+import type { Connection } from '@qwaroo/server';
+import { Encryption, User, Users, getEnv } from '@qwaroo/server';
 import { APIRoutes } from '@qwaroo/types';
 import passport from 'passport';
 import type * as oauth2 from 'passport-oauth2';

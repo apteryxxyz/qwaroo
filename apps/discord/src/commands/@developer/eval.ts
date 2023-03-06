@@ -39,7 +39,7 @@ export default class EvalCommand extends Command<
         if (!script) return void message.reply('No script was provided.');
 
         let colour = 0x2fc086;
-        let output: any = '';
+        let output: unknown = '';
         const hasAwait = script.match(/await /g);
         const hasReturn = script.match(/return /g);
         const hasResolve = script.match(/(!<?\.)resolve\(/g);
@@ -94,7 +94,7 @@ export default class EvalCommand extends Command<
                 },
                 {
                     name: 'Output',
-                    value: codeBlock(output.slice(0, 1_000)),
+                    value: codeBlock(String(output).slice(0, 1_000)),
                 },
             ]);
 
