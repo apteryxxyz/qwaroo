@@ -72,7 +72,7 @@ export async function fetchAndBuildGames(
     const last = Math.min(page * limit, meta.total);
 
     const mainEmbed = new EmbedBuilder()
-        .setTitle('Highest Scores')
+        .setTitle('Created Games')
         .setFields(
             games.map(game => ({
                 name: game.title,
