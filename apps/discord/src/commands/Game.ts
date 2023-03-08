@@ -31,7 +31,7 @@ export class GameCommand extends Command<
                     type: Command.OptionType.String,
                     required: true,
                     autocomplete: true,
-                    minLength: 3,
+                    minLength: 10,
                 },
             ],
         });
