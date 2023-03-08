@@ -1,6 +1,6 @@
 import { Action } from 'maclary';
 
-export class GamesPaginationAction extends Action {
+export class DestroyAction extends Action {
     public constructor() {
         super({ id: '.' });
     }
