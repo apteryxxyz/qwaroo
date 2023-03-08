@@ -19,9 +19,11 @@
         "dotenv": "^16.0.3",
         "dotenv-expand": "^9.0.0",
         "enhanced-ms": "^2.2.0",
+        "lodash": "^4.17.21",
         "maclary": "^1.0.1"
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.191",
         "@types/node": "^18.14.6",
         "tsc-alias": "^1.8.2",
         "tsup": "^6.6.3"
