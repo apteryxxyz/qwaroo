@@ -45,6 +45,19 @@ export class ProfileCommand extends Command<
         const msg = "User doesn't have a profile yet.";
         if (!user) return input.editReply(msg);
 
+        const payload = this._buildProfile(user);
+        const scores = await this._fetchAndBuildScores(user, { limit: 3 });
+        const games = await this._fetchAndBuildGames({ limit: 3 });
+        const buttons = this._buildButtons(user);
+
+        return input.editReply(
+            _.mergeWith(payload, scores, games, buttons, (a, b) =>
+                _.isArray(a) ? a.concat(b) : a
+            )
+        );
+    }
+
+    private _buildProfile(user: User.Document) {
         const profileUrl = new URL(
             WebRoutes.user(user.id),
             getEnv(String, 'WEB_URL')
@@ -56,25 +69,8 @@ export class ProfileCommand extends Command<
             .setURL(profileUrl)
             .setThumbnail(user.avatarUrl)
             .setColor(0x3884f8);
-        const scores = await this._fetchAndBuildScores(user, { limit: 6 });
-        const games = await this._fetchAndBuildGames({ limit: 9 });
 
-        const buttonRow = new ActionRowBuilder<ButtonBuilder>();
-        buttonRow.addComponents(
-            new ButtonBuilder()
-                .setStyle(ButtonStyle.Link)
-                .setLabel('View Full Profile')
-                .setURL(profileUrl)
-        );
-
-        return input.editReply(
-            _.mergeWith(
-                { embeds: [mainEmbed], components: [buttonRow] },
-                scores,
-                games,
-                (a, b) => (_.isArray(a) ? a.concat(b) : a)
-            )
-        );
+        return { embeds: [mainEmbed] };
     }
 
     private async _fetchAndBuildScores(
@@ -118,7 +114,7 @@ export class ProfileCommand extends Command<
         const last = Math.min(page * limit, meta.total);
 
         const mainEmbed = new EmbedBuilder()
-            .setTitle('Games')
+            .setTitle('Created Games')
             .setFields(
                 games.map(game => ({
                     name: game.title,
@@ -132,6 +128,23 @@ export class ProfileCommand extends Command<
             .setColor(0x3884f8);
 
         return { embeds: [mainEmbed] };
+    }
+
+    private _buildButtons(user: User.Document) {
+        const userUrl = new URL(
+            WebRoutes.user(user.id),
+            getEnv(String, 'WEB_URL')
+        ).toString();
+
+        const buttonRow = new ActionRowBuilder<ButtonBuilder>();
+        buttonRow.addComponents(
+            new ButtonBuilder()
+                .setStyle(ButtonStyle.Link)
+                .setURL(userUrl)
+                .setLabel('Full Profile, All Scores, All Created Games')
+        );
+
+        return { components: [buttonRow] };
     }
 }
 

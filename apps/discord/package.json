@@ -12,6 +12,7 @@
     "dependencies": {
         "@discordjs/builders": "^1.4.0",
         "@maclary/context": "^3.0.1",
+        "@qwaroo/common": "workspace:^0.0.0",
         "@qwaroo/database": "workspace:^0.0.0",
         "@qwaroo/server": "workspace:^0.0.0",
         "@qwaroo/types": "workspace:^0.0.0",
@@ -31,12 +32,20 @@
     "nx": {
         "targets": {
             "format": {
-                "dependsOn": ["^format"],
-                "outputs": ["{projectRoot}/src"]
+                "dependsOn": [
+                    "^format"
+                ],
+                "outputs": [
+                    "{projectRoot}/src"
+                ]
             },
             "build": {
-                "dependsOn": ["^build"],
-                "outputs": ["{projectRoot}/dist"]
+                "dependsOn": [
+                    "^build"
+                ],
+                "outputs": [
+                    "{projectRoot}/dist"
+                ]
             }
         }
     }

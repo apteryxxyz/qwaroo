@@ -154,6 +154,7 @@ importers:
     specifiers:
       '@discordjs/builders': ^1.4.0
       '@maclary/context': ^3.0.1
+      '@qwaroo/common': workspace:^0.0.0
       '@qwaroo/database': workspace:^0.0.0
       '@qwaroo/server': workspace:^0.0.0
       '@qwaroo/types': workspace:^0.0.0
@@ -170,6 +171,7 @@ importers:
     dependencies:
       '@discordjs/builders': 1.4.0
       '@maclary/context': 3.0.1_discord.js@14.7.1
+      '@qwaroo/common': link:../../packages/common
       '@qwaroo/database': link:../../packages/database
       '@qwaroo/server': link:../../packages/server
       '@qwaroo/types': link:../../packages/types
