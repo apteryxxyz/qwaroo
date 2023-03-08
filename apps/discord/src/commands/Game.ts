@@ -143,10 +143,6 @@ export class GameCommand extends Command<
             WebRoutes.game(game.slug),
             getEnv(String, 'WEB_URL')
         ).toString();
-        const creatorUrl = new URL(
-            WebRoutes.user(game.creatorId),
-            getEnv(String, 'WEB_URL')
-        ).toString();
 
         const buttonRow = new ActionRowBuilder<ButtonBuilder>();
         buttonRow.addComponents(
@@ -155,8 +151,8 @@ export class GameCommand extends Command<
                 .setURL(gameUrl)
                 .setLabel('Play Game, All Scores'),
             new ButtonBuilder()
-                .setStyle(ButtonStyle.Link)
-                .setURL(creatorUrl)
+                .setStyle(ButtonStyle.Secondary)
+                .setCustomId(`profile,${game.creatorId}`)
                 .setLabel('Creator Profile')
         );
 
