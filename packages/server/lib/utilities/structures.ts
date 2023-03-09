@@ -20,6 +20,10 @@ export namespace Game {
     export type Flags = Types.Game.Flags;
     export const Flags = Types.Game.Flags;
 
+    export type Extra<M extends Mode = Mode> = Types.Game.Extra<M>;
+    export type Item<M extends Mode = Mode> = Types.Game.Item<M>;
+    export type Step<M extends Mode = Mode> = Types.Game.Step<M>;
+
     export type Methods = Database.Game.Methods;
     export type Document = Database.Game.Document;
     export type Model = Database.Game.Model;

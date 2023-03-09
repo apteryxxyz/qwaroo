@@ -1,7 +1,7 @@
 import { Connection, Users } from '@qwaroo/server';
 import type { User } from 'discord.js';
 
-export class Handler extends null {
+export class UserHandler extends null {
     public static async getUserFromAccountId(accountId: string) {
         const connection = await Connection.Model.findOne({
             providerName: 'discord',

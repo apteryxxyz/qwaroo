@@ -2,7 +2,7 @@ import { ApplicationCommandOptionType } from 'discord.js';
 import _ from 'lodash';
 import { Command } from 'maclary';
 import * as Profile from '#/builders/Profile';
-import { Handler } from '#/structures/Handler';
+import { UserHandler } from '#/handlers/UserHandler';
 
 export class ProfileCommand extends Command<
     Command.Type.ChatInput,
@@ -30,7 +30,7 @@ export class ProfileCommand extends Command<
         await input.deferReply();
 
         const userId = input.options.getUser('user')?.id ?? input.user.id;
-        const user = await Handler.getUserFromAccountId(userId);
+        const user = await UserHandler.getUserFromAccountId(userId);
 
         const msg = "User doesn't have a profile yet.";
         if (!user) return input.editReply(msg);

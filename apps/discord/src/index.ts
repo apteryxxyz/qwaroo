@@ -2,10 +2,16 @@ import { Database } from '@qwaroo/database';
 import { getEnv } from '@qwaroo/server';
 import { ActivityType, Client, GatewayIntentBits, Partials } from 'discord.js';
 import { Maclary, container } from 'maclary';
+import { GameManager } from '#/managers/GameManager';
 
 require('dotenv-expand').expand(require('dotenv').config());
 
 const database = new Database();
+const games = new GameManager();
+
+container.database = database;
+container.games = games;
+
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -28,8 +34,6 @@ const maclary = new Maclary({
     guildId: getEnv(String, 'GUILD_ID'),
 });
 
-container.database = database;
-
 void main();
 async function main() {
     Maclary.init(maclary, client);
@@ -42,5 +46,6 @@ export { database, client, maclary };
 declare module 'maclary' {
     export interface Container {
         database: Database;
+        games: GameManager;
     }
 }
