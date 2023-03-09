@@ -3,6 +3,7 @@ import { getEnv } from '@qwaroo/server';
 import { ActivityType, Client, GatewayIntentBits, Partials } from 'discord.js';
 import { Maclary, container } from 'maclary';
 import { GameManager } from '#/managers/GameManager';
+import '#/types';
 
 require('dotenv-expand').expand(require('dotenv').config());
 
@@ -42,10 +43,3 @@ async function main() {
 }
 
 export { database, client, maclary };
-
-declare module 'maclary' {
-    export interface Container {
-        database: Database;
-        games: GameManager;
-    }
-}

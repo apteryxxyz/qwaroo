@@ -1,7 +1,7 @@
 import { ApplicationCommandOptionType } from 'discord.js';
 import _ from 'lodash';
 import { Command } from 'maclary';
-import * as Profile from '#/builders/Profile';
+import * as Profile from '#/builders/profile';
 import { UserHandler } from '#/handlers/UserHandler';
 
 export class ProfileCommand extends Command<
@@ -35,15 +35,14 @@ export class ProfileCommand extends Command<
         const msg = "User doesn't have a profile yet.";
         if (!user) return input.editReply(msg);
 
-        const payload = Profile.buildProfile(user);
+        const profile = Profile.buildProfile(user);
         const scores = await Profile.fetchAndBuildScores(user, { limit: 3 });
         const games = await Profile.fetchAndBuildGames(user, { limit: 3 });
         const buttons = Profile.buildButtons(user);
 
-        return input.editReply(
-            _.mergeWith(payload, scores, games, buttons, (a, b) =>
-                _.isArray(a) ? a.concat(b) : a
-            )
-        );
+        return input.editReply({
+            embeds: _.compact([profile, scores, games]),
+            components: [buttons],
+        });
     }
 }

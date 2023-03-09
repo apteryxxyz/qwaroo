@@ -18,14 +18,12 @@ export function buildProfile(user: User.Document) {
         getEnv(String, 'WEB_URL')
     ).toString();
 
-    const mainEmbed = new EmbedBuilder()
+    return new EmbedBuilder()
         .setTitle(`${user.displayName}'s Profile`)
         .setDescription(formatJoinDate(user.joinedTimestamp))
         .setURL(profileUrl)
         .setThumbnail(user.avatarUrl)
         .setColor(0x3884f8);
-
-    return { embeds: [mainEmbed] };
 }
 
 export async function fetchAndBuildScores(
@@ -43,7 +41,7 @@ export async function fetchAndBuildScores(
     const gameIds = scores.map(score => score.gameId);
     const [, games] = await Games.getGames({ ids: gameIds });
 
-    const mainEmbed = new EmbedBuilder()
+    return new EmbedBuilder()
         .setTitle('Highest Scores')
         .setFields(
             scores.map((score, i) => ({
@@ -56,8 +54,6 @@ export async function fetchAndBuildScores(
             text: `Showing ${first}-${last} of ${meta.total} scores.`,
         })
         .setColor(0x3884f8);
-
-    return { embeds: [mainEmbed] };
 }
 
 export async function fetchAndBuildGames(
@@ -72,7 +68,7 @@ export async function fetchAndBuildGames(
     const first = (page - 1) * limit + 1;
     const last = Math.min(page * limit, meta.total);
 
-    const mainEmbed = new EmbedBuilder()
+    return new EmbedBuilder()
         .setTitle('Created Games')
         .setFields(
             games.map(game => ({
@@ -85,8 +81,6 @@ export async function fetchAndBuildGames(
             text: `Showing ${first}-${last} of ${meta.total} games.`,
         })
         .setColor(0x3884f8);
-
-    return { embeds: [mainEmbed] };
 }
 
 export function buildButtons(user: User.Document) {
@@ -103,7 +97,7 @@ export function buildButtons(user: User.Document) {
             .setLabel('Full Profile, All Scores, All Created Games')
     );
 
-    return { components: [buttonRow] };
+    return buttonRow;
 }
 
 function formatJoinDate(joinedTimestamp: number) {
