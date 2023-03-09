@@ -90,8 +90,11 @@ export class HigherOrLower extends Base {
         if (
             (previousItem.value > currentItem.value && decision === 1) ||
             (previousItem.value < currentItem.value && decision === -1)
-        )
+        ) {
+            await this.message.edit(this.buildDisplay());
+            await new Promise(resolve => setTimeout(resolve, 1_000));
             return this.end();
+        }
 
         this.steps.push(decision);
         const newScore = this.internalScore + 1;
