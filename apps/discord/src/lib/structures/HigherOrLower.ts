@@ -134,14 +134,22 @@ export class HigherOrLower extends Base {
             .addFields(
                 {
                     name: previousItem.display,
-                    value: `${this.game.extraData.valueVerb} **${previousItem.value}** ${this.game.extraData.valueNoun}`,
+                    value: `${
+                        this.game.extraData.valueVerb
+                    } **${previousItem.value.toLocaleString('en-NZ')}** ${
+                        this.game.extraData.valueNoun
+                    }`,
                     inline: true,
                 },
                 {
                     name: currentItem.display,
                     value:
                         this.status === HigherOrLower.Status.Picking
-                            ? `${this.game.extraData.valueVerb} **${currentItem.value}** ${this.game.extraData.valueNoun}`
+                            ? `${
+                                  this.game.extraData.valueVerb
+                              } **${currentItem.value.toLocaleString(
+                                  'en-NZ'
+                              )}** ${this.game.extraData.valueNoun}`
                             : this.game.extraData.valueVerb,
                     inline: true,
                 }
