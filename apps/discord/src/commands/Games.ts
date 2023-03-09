@@ -1,3 +1,4 @@
+import { URL } from 'node:url';
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -18,7 +19,7 @@ export class GamesCommand extends Command<
     public constructor() {
         super({
             name: 'games',
-            description: 'Get a list of games you can play.',
+            description: 'Get a paginated list of all the games you can play.',
             type: Command.Type.ChatInput,
             kinds: [Command.Kind.Slash],
         });

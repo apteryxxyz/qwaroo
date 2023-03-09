@@ -1,3 +1,4 @@
+import { URL } from 'node:url';
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -20,14 +21,15 @@ export class GameCommand extends Command<
     public constructor() {
         super({
             name: 'game',
-            description: 'Get information about a game.',
+            description:
+                'View the description, creator, and leaderboard for a game.',
             type: Command.Type.ChatInput,
             kinds: [Command.Kind.Slash],
 
             options: [
                 {
                     name: 'game',
-                    description: 'The game to get information about.',
+                    description: 'The game to view.',
                     type: Command.OptionType.String,
                     required: true,
                     autocomplete: true,
@@ -147,9 +149,13 @@ export class GameCommand extends Command<
         const buttonRow = new ActionRowBuilder<ButtonBuilder>();
         buttonRow.addComponents(
             new ButtonBuilder()
+                .setStyle(ButtonStyle.Primary)
+                .setCustomId(`game,${game.id},play`)
+                .setLabel('Play'),
+            new ButtonBuilder()
                 .setStyle(ButtonStyle.Link)
                 .setURL(gameUrl)
-                .setLabel('Play Game, All Scores'),
+                .setLabel('All Scores'),
             new ButtonBuilder()
                 .setStyle(ButtonStyle.Secondary)
                 .setCustomId(`profile,${game.creatorId}`)
