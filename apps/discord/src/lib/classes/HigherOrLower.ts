@@ -208,7 +208,7 @@ export class HigherOrLower extends Base {
             new ButtonBuilder()
                 .setStyle(ButtonStyle.Danger)
                 .setCustomId(`play,${this.id},pick,higher`)
-                .setLabel(this._addPadding(this.game.extraData.higherText, 8))
+                .setLabel(this.game.extraData.higherText)
                 .setDisabled(this.status !== HigherOrLower.Status.Waiting),
             new ButtonBuilder()
                 .setStyle(ButtonStyle.Secondary)
@@ -218,7 +218,7 @@ export class HigherOrLower extends Base {
             new ButtonBuilder()
                 .setStyle(ButtonStyle.Primary)
                 .setCustomId(`play,${this.id},pick,lower`)
-                .setLabel(this._addPadding(this.game.extraData.lowerText, 8))
+                .setLabel(this.game.extraData.lowerText)
                 .setDisabled(this.status !== HigherOrLower.Status.Waiting),
         ];
     }
@@ -260,11 +260,6 @@ export class HigherOrLower extends Base {
                 .setCustomId(`game,${this.game.id},play`)
                 .setLabel('Play Again'),
         ];
-    }
-
-    private _addPadding(str: string, length: number) {
-        const side = Math.round((length - str.length) / 2);
-        return 'ㅤ'.repeat(side) + str + 'ㅤ'.repeat(side);
     }
 }
 
