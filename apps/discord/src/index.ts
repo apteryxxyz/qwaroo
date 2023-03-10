@@ -13,12 +13,7 @@ const games = new GameManager();
 container.games = games;
 
 const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.DirectMessages,
-    ],
+    intents: [GatewayIntentBits.Guilds],
     partials: [Partials.Channel],
     presence: {
         activities: [

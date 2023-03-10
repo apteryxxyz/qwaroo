@@ -74,7 +74,6 @@ export class BrowserAction extends Action {
 
                 const user = child as User.Document;
                 const embed = Browser.buildUserScoresEmbed(
-                    user,
                     scores,
                     games,
                     meta.total,
