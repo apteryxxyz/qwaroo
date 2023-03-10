@@ -1,20 +1,61 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { EmbedBuilder } from '@discordjs/builders';
-import { Command } from 'maclary';
+import { ButtonBuilder, EmbedBuilder } from '@discordjs/builders';
+import { getEnv } from '@qwaroo/server';
+import { WebRoutes } from '@qwaroo/types';
+import { OAuth2Scopes } from 'discord-api-types/v10';
+import { ButtonStyle, PermissionsBitField } from 'discord.js';
+import { Command, container } from 'maclary';
 
-export function resolvePrefix(command: Command<any, any>) {
+// Commands
+
+export function buildCommandsEmbed(
+    commands: Command<any, any>[] = Array.from(container.maclary.commands.cache)
+) {
+    const categories = new Map<string, ReturnType<typeof parseSubCommand>[]>();
+    for (const group of commands)
+        for (const command of getSubCommands(group)) {
+            if (command.category === 'Developer') continue;
+            const category = categories.get(command.category);
+            if (category) category.push(command);
+            else categories.set(command.category, [command]);
+        }
+
+    return new EmbedBuilder()
+        .setTitle('Commands')
+        .setFields(
+            [...categories.entries()].map(([category, commands]) => ({
+                name: category,
+                value: formatCommands(commands),
+            }))
+        )
+        .setColor(0x3884f8);
+}
+
+function formatCommands(commands: ReturnType<typeof parseSubCommand>[]) {
+    const usages = commands.map(command => command.usage);
+    const descriptions = commands.map(command => command.description);
+    const maxLength = Math.max(...usages.map(usage => usage.length));
+
+    return usages
+        .map(
+            (usage, i) => `\`${usage.padEnd(maxLength)}\` - ${descriptions[i]}`
+        )
+        .join('\n');
+}
+
+function resolvePrefix(command: Command<any, any>) {
     const hasUser = command.kinds.includes(Command.Kind.User);
     const hasMessage = command.kinds.includes(Command.Kind.Message);
     const hasSlash = command.kinds.includes(Command.Kind.Slash);
 
-    if (hasUser && hasMessage) return 'Apps > ';
-    else if (hasUser) return 'User > ';
-    else if (hasMessage) return 'Message > ';
+    if (hasUser && hasMessage) return 'App > ';
+    else if (hasUser) return 'Usr > ';
+    else if (hasMessage) return 'Msg > ';
     else if (hasSlash) return '/';
     return '!';
 }
 
-export function getSubCommands(
+function getSubCommands(
     command: Command<any, any>,
     name: string = ''
 ): ReturnType<typeof parseSubCommand>[] {
@@ -22,60 +63,72 @@ export function getSubCommands(
         return [parseSubCommand(command, name)];
     else if (Reflect.get(command, '_variety') === 1)
         return (command.options as Command<any, any>[]) //
-            .flatMap(cmd => getSubCommands(cmd, name));
+            .flatMap(cmd => getSubCommands(cmd, `${name + command.name} `));
     return [];
 }
 
-export function parseSubCommand(command: Command<any, any>, name: string = '') {
+function parseSubCommand(command: Command<any, any>, name: string = '') {
     return {
-        prefix: resolvePrefix(command),
-        name: `${name}${command.name}`.trim(),
-        description: command.description,
         category: (command.category as string | '') || 'Uncategorised',
+        usage: `${resolvePrefix(command)}${name + command.name}`,
         options: (command.options as { required: boolean; name: string }[]) //
-            .map(opt => (opt.required ? `<${opt.name}>` : `[${opt.name}]`)),
-    } as const;
+            .map(opt =>
+                opt.required
+                    ? (`<${opt.name}>` as const)
+                    : (`[${opt.name}]` as const)
+            ),
+        description: command.description,
+    };
 }
 
-export function buildCommands(
-    commands: ReturnType<typeof parseSubCommand>[] = []
-) {
-    const categories = new Map<string, ReturnType<typeof parseSubCommand>[]>();
-    for (const command of commands.flat()) {
-        if (command.category === 'Developer') continue;
-        const category = categories.get(command.category);
-        if (category) category.push(command);
-        else categories.set(command.category, [command]);
-    }
+// Links
 
-    return new EmbedBuilder()
-        .setTitle('Commands')
-        .setFields(
-            [...categories.entries()]
-                .sort((a, b) => b[1].length - a[1].length)
-                .map(([category, commands]) => ({
-                    name: category,
-                    value: formatCommands(commands),
-                }))
-        )
-        .setColor(0x3884f8);
+export async function buildGeneralButtons() {
+    return [
+        new ButtonBuilder()
+            .setStyle(ButtonStyle.Link)
+            .setURL(getEnv(String, 'WEB_URL'))
+            .setLabel('Qwaroo'),
+        new ButtonBuilder()
+            .setStyle(ButtonStyle.Link)
+            .setURL(getBotInvite())
+            .setLabel('Invite'),
+        new ButtonBuilder()
+            .setStyle(ButtonStyle.Link)
+            .setURL(await getSupportInvite())
+            .setLabel('Support'),
+    ];
 }
 
-export function formatCommands(commands: ReturnType<typeof parseSubCommand>[]) {
-    const usages = commands.map(formatUsage);
-    const descriptions = commands.map(command => command.description);
-    const maxLength = Math.max(...usages.map(usage => usage.length));
-
-    return usages
-        .map((usage, i) => {
-            const padding = ' '.repeat(maxLength - usage.length);
-            return `\`${usage}${padding}\` - ${descriptions[i]}`;
-        })
-        .join('\n');
+export function buildPolicyButtons() {
+    return [
+        new ButtonBuilder()
+            .setStyle(ButtonStyle.Link)
+            .setURL(getEnv(String, 'WEB_URL') + WebRoutes.privacyPolicy())
+            .setLabel('Privacy Policy'),
+        new ButtonBuilder()
+            .setStyle(ButtonStyle.Link)
+            .setURL(getEnv(String, 'WEB_URL') + WebRoutes.termsOfUse())
+            .setLabel('Terms of Use'),
+    ];
 }
 
-export function formatUsage(command: ReturnType<typeof parseSubCommand>) {
-    return `${command.prefix}${command.name} ${command.options.join(
-        ' '
-    )}`.trim();
+function getBotInvite() {
+    const addParams = container.client.application.installParams ?? {
+        scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands],
+        permissions: new PermissionsBitField(
+            PermissionsBitField.Flags.Administrator
+        ),
+    };
+    return container.client.generateInvite(addParams);
+}
+
+async function getSupportInvite() {
+    const guildId = getEnv(String, 'SUPPORT_GUILD_ID');
+    const channelId = getEnv(String, 'SUPPORT_CHANNEL_ID');
+
+    const guild = await container.client.guilds.fetch(guildId);
+    return guild.invites
+        .create(channelId, { maxAge: 0 })
+        .then(invite => invite.url);
 }

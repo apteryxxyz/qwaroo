@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import _ from 'lodash';
 import { Command } from 'maclary';
-import { buildCommands, getSubCommands } from '#/builders/help';
+import * as Common from '#/builders/common';
+import * as Help from '#/builders/help';
 
 export class HelpCommand extends Command<
     Command.Type.ChatInput,
@@ -9,22 +8,23 @@ export class HelpCommand extends Command<
 > {
     public constructor() {
         super({
-            name: 'help',
-            description: 'View a list of commands.',
             type: Command.Type.ChatInput,
             kinds: [Command.Kind.Slash],
+            name: 'help',
+            description: 'View a list of commands and useful links.',
         });
     }
 
     public override async onSlash(input: Command.ChatInput) {
-        const commands = this._buildCommands();
-        return input.reply({ embeds: [commands] });
-    }
+        const commands = Help.buildCommandsEmbed();
+        const policies = Common.buildComponentRow(...Help.buildPolicyButtons());
+        const general = Common.buildComponentRow(
+            ...(await Help.buildGeneralButtons())
+        );
 
-    private _buildCommands() {
-        const { maclary } = this.container;
-        const commands = Array.from(maclary.commands.cache.values());
-        const commandObjects = commands.flatMap(cmd => getSubCommands(cmd));
-        return buildCommands(commandObjects);
+        return input.reply({
+            embeds: [commands],
+            components: [general, policies],
+        });
     }
 }

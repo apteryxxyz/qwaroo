@@ -1,7 +1,7 @@
 import { Games } from '@qwaroo/server';
 import { Action } from 'maclary';
-import { UserHandler } from '#/handlers/UserHandler';
-import { HigherOrLower } from '#/structures/HigherOrLower';
+import { HigherOrLower } from '#/classes/HigherOrLower';
+import { UserHandler } from '#/classes/UserHandler';
 
 export class GameAction extends Action {
     public constructor() {
@@ -25,7 +25,7 @@ export class GameAction extends Action {
             return this.container.games.create(...params);
         }
 
-        await button.editReply('This action is not yet implemented.');
+        return button.editReply("I don't know what you want me to do.");
     }
 }
 
@@ -41,14 +41,15 @@ export class PlayAction extends Action {
         if (!instance) {
             await button.message.edit({ components: [] });
             return button.reply({
-                content: 'This game has expired.',
+                content: 'This game has expired, start a new one.',
                 ephemeral: true,
             });
         }
 
         if (instance.user.id !== button.user.id)
             return button.reply({
-                content: 'You are not the player of this game.',
+                content:
+                    "You can't use this button, start your own game to play.",
                 ephemeral: true,
             });
 
@@ -67,9 +68,6 @@ export class PlayAction extends Action {
             return instance.end();
         }
 
-        await button.reply('This action is not yet implemented.');
+        return button.reply("I don't know what you want me to do.");
     }
 }
-
-// play,id,action,...args
-// game,id,play

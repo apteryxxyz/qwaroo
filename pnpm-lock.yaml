@@ -158,14 +158,17 @@ importers:
       '@qwaroo/database': workspace:^0.0.0
       '@qwaroo/server': workspace:^0.0.0
       '@qwaroo/types': workspace:^0.0.0
+      '@types/common-tags': ^1.8.1
       '@types/lodash': ^4.14.191
       '@types/node': ^18.14.6
+      common-tags: ^1.8.2
+      discord-api-types: ^0.37.35
       discord.js: ^14.7.1
       dotenv: ^16.0.3
       dotenv-expand: ^9.0.0
       enhanced-ms: ^2.2.0
       lodash: ^4.17.21
-      maclary: ^1.0.1
+      maclary: 1.0.2-next.fe5ca94.0
       tsc-alias: ^1.8.2
       tsup: ^6.6.3
     dependencies:
@@ -175,13 +178,16 @@ importers:
       '@qwaroo/database': link:../../packages/database
       '@qwaroo/server': link:../../packages/server
       '@qwaroo/types': link:../../packages/types
+      common-tags: 1.8.2
+      discord-api-types: 0.37.35
       discord.js: 14.7.1
       dotenv: 16.0.3
       dotenv-expand: 9.0.0
       enhanced-ms: 2.2.0
       lodash: 4.17.21
-      maclary: 1.0.1_discord.js@14.7.1
+      maclary: 1.0.2-next.fe5ca94.0_discord.js@14.7.1
     devDependencies:
+      '@types/common-tags': 1.8.1
       '@types/lodash': 4.14.191
       '@types/node': 18.14.6
       tsc-alias: 1.8.2
@@ -3251,6 +3257,10 @@ packages:
       '@types/qs': 6.9.7
     dev: true
 
+  /@types/common-tags/1.8.1:
+    resolution: {integrity: sha512-20R/mDpKSPWdJs5TOpz3e7zqbeCNuMCPhV7Yndk9KU2Rbij2r5W4RzwDPkzC+2lzUqXYu9rFzTktCBnDjHuNQg==}
+    dev: true
+
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
@@ -4299,6 +4309,11 @@ packages:
   /common-ancestor-path/1.0.1:
     resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==}
     dev: true
+
+  /common-tags/1.8.2:
+    resolution: {integrity: sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==}
+    engines: {node: '>=4.0.0'}
+    dev: false
 
   /compare-func/2.0.0:
     resolution: {integrity: sha512-zHig5N+tPWARooBnb0Zx1MFcdfpyJrfTJ3Y5L+IFvUm8rM74hHz66z0gw0x4tijh5CorKkKUCnW82R2vmpeCRA==}
@@ -6949,8 +6964,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /maclary/1.0.1_discord.js@14.7.1:
-    resolution: {integrity: sha512-VcHSMnIF5dsbxwNZzEdsXaY3DeUGFMfdCDaVZF/FK1h7r/R3DlyQ/vqdHC9riLLy2CtGfQOAO9mpYlmYy+phyw==}
+  /maclary/1.0.2-next.fe5ca94.0_discord.js@14.7.1:
+    resolution: {integrity: sha512-3G/pJ5Srz214l+I/GrXUYCPYJGBzPBXRLd9tpFoeeDOierX6+1tcFkzAGeC35NLwHsW0OGr2Phcmg7L+N4GY6A==}
     peerDependencies:
       discord.js: '>=14.7.0'
     dependencies:

@@ -1,7 +1,7 @@
 import { ms } from 'enhanced-ms';
 import { Command } from 'maclary';
 
-export default class PingCommand extends Command<
+export default class UptimeCommand extends Command<
     Command.Type.ChatInput,
     [Command.Kind.Slash]
 > {

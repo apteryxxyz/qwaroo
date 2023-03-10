@@ -2,7 +2,7 @@ import type { Game, User } from '@qwaroo/server';
 import { Scores } from '@qwaroo/server';
 import type { User as DiscordUser, Message } from 'discord.js';
 import { MapManager } from 'maclary';
-import { HigherOrLower } from '#/structures/HigherOrLower';
+import { HigherOrLower } from './HigherOrLower';
 
 type ActiveGame = HigherOrLower;
 

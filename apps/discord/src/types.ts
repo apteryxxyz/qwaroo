@@ -1,5 +1,5 @@
 import type { Database } from '@qwaroo/database';
-import type { GameManager } from '#/managers/GameManager';
+import type { GameManager } from '#/classes/GameManager';
 
 declare module 'maclary' {
     export interface Container {

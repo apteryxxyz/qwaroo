@@ -16,14 +16,17 @@
         "@qwaroo/database": "workspace:^0.0.0",
         "@qwaroo/server": "workspace:^0.0.0",
         "@qwaroo/types": "workspace:^0.0.0",
+        "common-tags": "^1.8.2",
+        "discord-api-types": "^0.37.35",
         "discord.js": "^14.7.1",
         "dotenv": "^16.0.3",
         "dotenv-expand": "^9.0.0",
         "enhanced-ms": "^2.2.0",
         "lodash": "^4.17.21",
-        "maclary": "^1.0.1"
+        "maclary": "1.0.2-next.fe5ca94.0"
     },
     "devDependencies": {
+        "@types/common-tags": "^1.8.1",
         "@types/lodash": "^4.14.191",
         "@types/node": "^18.14.6",
         "tsc-alias": "^1.8.2",

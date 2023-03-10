@@ -15,14 +15,13 @@ export default class PingCommand extends Command<
     }
 
     public override async onSlash(input: Command.ChatInput) {
-        const wsPing = input.client.ws.ping;
-
         const reply = await input.reply({
             content: 'Pinging client...',
             fetchReply: true,
         });
         const botLatency = reply.createdTimestamp - input.createdTimestamp;
 
+        const wsPing = input.client.ws.ping;
         const dbStart = Date.now();
         await User.Model.findOne({});
         const dbLatency = Date.now() - dbStart;

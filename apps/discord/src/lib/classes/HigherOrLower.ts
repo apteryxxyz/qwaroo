@@ -1,17 +1,17 @@
 import process from 'node:process';
 import { URL } from 'node:url';
-import {
-    ActionRowBuilder,
-    ButtonBuilder,
-    EmbedBuilder,
-} from '@discordjs/builders';
+import { ButtonBuilder, EmbedBuilder } from '@discordjs/builders';
 import type { Game, User } from '@qwaroo/server';
 import { Scores, getEnv } from '@qwaroo/server';
 import { WebRoutes } from '@qwaroo/types';
+import { oneLine, stripIndent } from 'common-tags';
 import type { User as DiscordUser, Message } from 'discord.js';
 import { ButtonStyle } from 'discord.js';
+import { ms } from 'enhanced-ms';
 import { Base } from 'maclary';
 import { ItemListing } from './ItemListing';
+import * as Common from '#/builders/common';
+import { getEmoji } from '#/utilities/emotes';
 
 export class HigherOrLower extends Base {
     public readonly game: Game.Document;
@@ -19,6 +19,8 @@ export class HigherOrLower extends Base {
     public readonly user: DiscordUser;
     public readonly message: Message;
 
+    public status = HigherOrLower.Status.Preparing;
+    public answerStatus = HigherOrLower.AnswerStatus.Waiting;
     public items?: ItemListing<Game.Item<(typeof Game.Mode)['HigherOrLower']>>;
 
     public startTime?: number;
@@ -28,7 +30,6 @@ export class HigherOrLower extends Base {
     public highScore = 0;
     public displayScore = 0;
     public internalScore = 0;
-    public status: HigherOrLower.Status = HigherOrLower.Status.Preparing;
     public steps: Game.Step<(typeof Game.Mode)['HigherOrLower']>[] = [];
 
     public constructor(
@@ -62,7 +63,7 @@ export class HigherOrLower extends Base {
 
     public async start() {
         this.startTime = Date.now();
-        await this.message.edit(this.buildDisplay());
+        await this._updateMessage();
     }
 
     public async end() {
@@ -76,7 +77,15 @@ export class HigherOrLower extends Base {
             steps: this.steps!,
         });
 
-        await this.message.edit(this.buildGameOver());
+        const embed = this._buildGameOverEmbed();
+        const buttons = Common.buildComponentRow(
+            ...this._buildGameOverButtons()
+        );
+
+        await this.message.edit({
+            embeds: [embed],
+            components: [buttons],
+        });
     }
 
     public async pick(
@@ -91,19 +100,21 @@ export class HigherOrLower extends Base {
             (previousItem.value > currentItem.value && decision === 1) ||
             (previousItem.value < currentItem.value && decision === -1)
         ) {
-            await this.message.edit(this.buildDisplay());
+            this.answerStatus = HigherOrLower.AnswerStatus.Wrong;
+            await this._updateMessage();
             await new Promise(resolve => setTimeout(resolve, 1_000));
             return this.end();
         }
 
         this.steps.push(decision);
+        this.answerStatus = HigherOrLower.AnswerStatus.Correct;
         const newScore = this.internalScore + 1;
         const currentLength = this.items!.length;
         const totalLength = this.items!.total!;
 
         this.displayScore = newScore;
         if (newScore > this.highScore) this.highScore = newScore;
-        await this.message.edit(this.buildDisplay());
+        await this._updateMessage();
 
         await new Promise(resolve => setTimeout(resolve, 1_000));
         this.internalScore = newScore;
@@ -111,49 +122,72 @@ export class HigherOrLower extends Base {
         if (newScore >= totalLength - 1) return this.end();
         if (currentLength - newScore < 3) await this.items!.fetchMore();
 
+        this.answerStatus = HigherOrLower.AnswerStatus.Waiting;
         this.status = HigherOrLower.Status.Waiting;
-        await this.message.edit(this.buildDisplay());
+        await this._updateMessage();
     }
 
     public relativeAt(index: -1 | 0 | 1) {
-        return this.items!.at(this.internalScore + index + 1);
+        return this.items!.at(this.internalScore + index + 1)!;
     }
 
-    public buildDisplay() {
+    private _updateMessage() {
+        const embed = this._buildDisplayEmbed();
+        const buttons = Common.buildComponentRow(...this._buildActionButtons());
+
+        return this.message.edit({
+            content: this.user.toString(),
+            embeds: [...embed],
+            components: [buttons],
+        });
+    }
+
+    private _buildDisplayEmbed() {
         const gameUrl = new URL(
             WebRoutes.game(this.game.slug),
             getEnv(String, 'WEB_URL')
         ).toString();
-
         const previousItem = this.relativeAt(-1)!;
         const currentItem = this.relativeAt(0)!;
+
+        const scoreDisplay = stripIndent`
+            Score: **${this.displayScore}**
+            High Score: **${this.highScore}**
+        `;
+
+        const leftDisplay = this._buildItemDisplay(previousItem);
+        const maxLength = `   ${this._buildItemDisplay(currentItem)}`.length;
+        const rightDisplay = oneLine`
+            ${
+                this.answerStatus === HigherOrLower.AnswerStatus.Correct
+                    ? getEmoji('check')
+                    : ''
+            }
+            ${
+                this.answerStatus === HigherOrLower.AnswerStatus.Wrong
+                    ? getEmoji('cross')
+                    : ''
+            }            
+            ${
+                this.status === HigherOrLower.Status.Picking
+                    ? this._buildItemDisplay(currentItem)
+                    : '...'.padEnd(maxLength / 2 - 1, 'ㅤ')
+            }
+        `;
 
         const mainEmbed = new EmbedBuilder()
             .setTitle(this.game.title)
             .setURL(gameUrl)
-            .setDescription(
-                `Score: **${this.displayScore}**\nHigh Score: **${this.highScore}**`
-            )
-            .addFields(
+            .setDescription(scoreDisplay)
+            .setFields(
                 {
                     name: previousItem.display,
-                    value: `${
-                        this.game.extraData.valueVerb
-                    } **${previousItem.value.toLocaleString('en-NZ')}** ${
-                        this.game.extraData.valueNoun
-                    }`,
+                    value: leftDisplay,
                     inline: true,
                 },
                 {
                     name: currentItem.display,
-                    value:
-                        this.status === HigherOrLower.Status.Picking
-                            ? `${
-                                  this.game.extraData.valueVerb
-                              } **${currentItem.value.toLocaleString(
-                                  'en-NZ'
-                              )}** ${this.game.extraData.valueNoun}`
-                            : this.game.extraData.valueVerb,
+                    value: rightDisplay,
                     inline: true,
                 }
             )
@@ -166,12 +200,15 @@ export class HigherOrLower extends Base {
             .setURL(gameUrl)
             .setImage(currentItem.imageSource);
 
-        const buttonRow = new ActionRowBuilder<ButtonBuilder>();
-        buttonRow.addComponents(
+        return [mainEmbed, leftImage, rightImage];
+    }
+
+    private _buildActionButtons() {
+        return [
             new ButtonBuilder()
                 .setStyle(ButtonStyle.Danger)
                 .setCustomId(`play,${this.id},pick,higher`)
-                .setLabel(this._addPadding(this.game.extraData.higherText, 14))
+                .setLabel(this._addPadding(this.game.extraData.higherText, 8))
                 .setDisabled(this.status !== HigherOrLower.Status.Waiting),
             new ButtonBuilder()
                 .setStyle(ButtonStyle.Secondary)
@@ -181,41 +218,48 @@ export class HigherOrLower extends Base {
             new ButtonBuilder()
                 .setStyle(ButtonStyle.Primary)
                 .setCustomId(`play,${this.id},pick,lower`)
-                .setLabel(this._addPadding(this.game.extraData.lowerText, 14))
-                .setDisabled(this.status !== HigherOrLower.Status.Waiting)
-        );
-
-        return {
-            content: this.user.toString(),
-            embeds: [mainEmbed, leftImage, rightImage],
-            components: [buttonRow],
-        };
+                .setLabel(this._addPadding(this.game.extraData.lowerText, 8))
+                .setDisabled(this.status !== HigherOrLower.Status.Waiting),
+        ];
     }
 
-    public buildGameOver() {
+    private _buildItemDisplay(item: ReturnType<HigherOrLower['relativeAt']>) {
+        return oneLine`
+            ${this.game.extraData.valueVerb}
+            **${item.value.toLocaleString('en-NZ')}**
+            ${this.game.extraData.valueNoun}
+        `;
+    }
+
+    private _buildGameOverEmbed() {
+        return new EmbedBuilder()
+            .setTitle(this.game.title)
+            .setDescription(
+                '**Game Over**\n' +
+                    oneLine`
+                You scored **${this.displayScore}** points in
+                ${ms(this.endTime! - this.startTime!, { shortFormat: true })}!`
+            )
+            .setThumbnail(this.game.thumbnailUrl)
+            .setColor(0x3884f8);
+    }
+
+    private _buildGameOverButtons() {
         const gameUrl = new URL(
             WebRoutes.game(this.game.slug),
             getEnv(String, 'WEB_URL')
         ).toString();
 
-        const mainEmbed = new EmbedBuilder()
-            .setTitle(this.game.title)
-            .setURL(gameUrl)
-            .setDescription(
-                `**Game Over**\nYou scored **${this.internalScore}** points!`
-            )
-            .setThumbnail(this.game.thumbnailUrl)
-            .setColor(0x3884f8);
-
-        const buttonRow = new ActionRowBuilder<ButtonBuilder>();
-        buttonRow.addComponents(
+        return [
+            new ButtonBuilder()
+                .setStyle(ButtonStyle.Link)
+                .setURL(gameUrl)
+                .setLabel('Play on Web'),
             new ButtonBuilder()
                 .setStyle(ButtonStyle.Primary)
                 .setCustomId(`game,${this.game.id},play`)
-                .setLabel('Play Again')
-        );
-
-        return { embeds: [mainEmbed], components: [buttonRow] };
+                .setLabel('Play Again'),
+        ];
     }
 
     private _addPadding(str: string, length: number) {
@@ -230,5 +274,11 @@ export namespace HigherOrLower {
         Waiting = 'waiting',
         Picking = 'picking',
         Finished = 'finished',
+    }
+
+    export enum AnswerStatus {
+        Waiting = 'waiting',
+        Correct = 'correct',
+        Wrong = 'wrong',
     }
 }
