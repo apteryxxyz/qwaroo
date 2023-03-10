@@ -20,20 +20,28 @@
         "shuffle-seed": "^1.1.6"
     },
     "devDependencies": {
-        "@types/express": "^4.17.14",
-        "@types/node": "^18.11.10",
+        "@types/express": "^4.17.17",
+        "@types/node": "^18.15.0",
         "@types/shuffle-seed": "^1.1.0",
         "tsup": "^6.6.3"
     },
     "nx": {
         "targets": {
             "format": {
-                "dependsOn": ["^format"],
-                "outputs": ["{projectRoot}/src"]
+                "dependsOn": [
+                    "^format"
+                ],
+                "outputs": [
+                    "{projectRoot}/src"
+                ]
             },
             "build": {
-                "dependsOn": ["^build"],
-                "outputs": ["{projectRoot}/dist"]
+                "dependsOn": [
+                    "^build"
+                ],
+                "outputs": [
+                    "{projectRoot}/dist"
+                ]
             }
         }
     }

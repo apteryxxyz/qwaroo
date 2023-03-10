@@ -11,11 +11,11 @@
     "dependencies": {
         "@qwaroo/common": "workspace:^0.0.0",
         "@qwaroo/types": "workspace:^0.0.0",
-        "mongoose": "^6.7.5"
+        "mongoose": "^6.10.2"
     },
     "devDependencies": {
-        "@types/node": "^18.11.10",
-        "tsup": "^6.5.0",
-        "typescript": "^4.9.3"
+        "@types/node": "^18.15.0",
+        "tsup": "^6.6.3",
+        "typescript": "^4.9.5"
     }
 }

@@ -23,13 +23,13 @@
         "dotenv-expand": "^9.0.0",
         "enhanced-ms": "^2.2.0",
         "lodash": "^4.17.21",
-        "maclary": "1.0.2-next.fe5ca94.0"
+        "maclary": "1.0.2-next.fc03dd6.0"
     },
     "devDependencies": {
         "@types/common-tags": "^1.8.1",
         "@types/lodash": "^4.14.191",
-        "@types/node": "^18.14.6",
-        "tsc-alias": "^1.8.2",
+        "@types/node": "^18.15.0",
+        "tsc-alias": "^1.8.3",
         "tsup": "^6.6.3"
     },
     "nx": {
