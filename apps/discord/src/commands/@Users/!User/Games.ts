@@ -12,7 +12,7 @@ export class UserGamesCommand extends Command<
         super({
             name: 'games',
             description:
-                'View a list of games created by a user, or yourself, and that you can play.',
+                'View a list of games that a user, or yourself, has created.',
             type: Command.Type.ChatInput,
             kinds: [Command.Kind.Slash],
 

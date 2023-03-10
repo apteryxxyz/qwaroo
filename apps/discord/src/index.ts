@@ -26,7 +26,10 @@ const client = new Client({
 });
 const maclary = new Maclary({
     defaultPrefix: '!',
-    guildId: getEnv(String, 'GUILD_ID'),
+    guildId:
+        getEnv(String, 'NODE_ENV') === 'development'
+            ? getEnv(String, 'GUILD_ID')
+            : undefined,
 });
 
 void main();
