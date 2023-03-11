@@ -43,6 +43,8 @@ export class HigherOrLower extends Base {
         this.player = player;
         this.user = user;
         this.message = message;
+
+        this.resetTimer();
     }
 
     public get id() {
@@ -51,7 +53,7 @@ export class HigherOrLower extends Base {
 
     public resetTimer() {
         if (this.inactiveTimer) clearTimeout(this.inactiveTimer);
-        this.inactiveTimer = setTimeout(() => this.end(), 1_000 * 60 * 5);
+        this.inactiveTimer = setTimeout(() => this.end(), 1_000 * 60 * 2);
     }
 
     public async prepare() {
