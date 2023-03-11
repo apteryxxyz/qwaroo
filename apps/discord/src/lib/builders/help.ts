@@ -83,7 +83,7 @@ function parseSubCommand(command: Command<any, any>, name: string = '') {
 
 // Links
 
-export async function buildGeneralButtons() {
+export function buildGeneralButtons() {
     return [
         new ButtonBuilder()
             .setStyle(ButtonStyle.Link)
@@ -95,7 +95,7 @@ export async function buildGeneralButtons() {
             .setLabel('Invite'),
         new ButtonBuilder()
             .setStyle(ButtonStyle.Link)
-            .setURL(await getSupportInvite())
+            .setURL(getSupportInvite())
             .setLabel('Support'),
     ];
 }
@@ -123,12 +123,6 @@ function getBotInvite() {
     return container.client.generateInvite(addParams);
 }
 
-async function getSupportInvite() {
-    const guildId = getEnv(String, 'SUPPORT_GUILD_ID');
-    const channelId = getEnv(String, 'SUPPORT_CHANNEL_ID');
-
-    const guild = await container.client.guilds.fetch(guildId);
-    return guild.invites
-        .create(channelId, { maxAge: 0 })
-        .then(invite => invite.url);
+function getSupportInvite() {
+    return 'https://discord.gg/vZQbMhwsKY';
 }

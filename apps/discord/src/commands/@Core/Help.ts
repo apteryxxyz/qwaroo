@@ -17,10 +17,8 @@ export class HelpCommand extends Command<
 
     public override async onSlash(input: Command.ChatInput) {
         const commands = Help.buildCommandsEmbed();
+        const general = Common.buildComponentRow(...Help.buildGeneralButtons());
         const policies = Common.buildComponentRow(...Help.buildPolicyButtons());
-        const general = Common.buildComponentRow(
-            ...(await Help.buildGeneralButtons())
-        );
 
         return input.reply({
             embeds: [commands],

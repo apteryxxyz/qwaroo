@@ -19,7 +19,7 @@ const client = new Client({
         activities: [
             {
                 type: ActivityType.Watching,
-                name: 'qwaroo.com | bot is in alpha',
+                name: 'qwaroo.com',
             },
         ],
     },
