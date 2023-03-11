@@ -43,16 +43,16 @@ export function Block(props: Block.Props) {
 
         {props.showActions &&
             props.onHigherClick &&
-            props.onLowerClick && <div className="flex uppercase text-center font-bold text-lg xl:text-3xl">
+            props.onLowerClick && <div className="flex text-center font-bold text-lg xl:text-3xl">
                 <Button
-                    className="text-center m-3 p-3 bg-red-500"
+                    className="text-center m-3 p-3 bg-red-500 uppercase"
                     iconProp={faArrowUp}
                     onClick={props.onHigherClick}
                 >
                     {props.higherText}
                 </Button>
                 <Button
-                    className="text-center m-3 p-3 bg-blue-500"
+                    className="text-center m-3 p-3 bg-blue-500 uppercase"
                     iconProp={faArrowDown}
                     onClick={props.onLowerClick}
                 >

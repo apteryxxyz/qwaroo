@@ -21,7 +21,7 @@ export default (
             url="/"
         />
 
-        <section className="flex flex-col m-auto p-[10%]">
+        <section className="flex flex-col m-auto max-w-3xl">
             <h1
                 aria-hidden
                 className="text-qwaroo-400 text-center text-8xl font-bold"
@@ -29,7 +29,7 @@ export default (
                 QWAROO
             </h1>
 
-            <h2 className="text-xl text-center max-w-3xl">
+            <h2 className="text-xl text-center max-w-xl">
                 Ready to have some fun? Check out our collection of exciting
                 guessing and statistics-based games!
             </h2>

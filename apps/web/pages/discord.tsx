@@ -22,16 +22,17 @@ export default (
             url="/discord"
         />
 
-        <section className="flex flex-col m-auto p-[10%]">
+        <section className="flex flex-col m-auto max-w-3xl">
             <h1
                 aria-hidden
                 className="text-qwaroo-400 text-center text-8xl font-bold"
             >
-                QWAROO
-                <span className="text-4xl">, but on Discord</span>
+                <span className="text-8xl font-bold">QWAROO</span>
+                <span className="hidden lg:inline text-4xl">, </span>
+                <span className="block lg:inline text-4xl">but on Discord</span>
             </h1>
 
-            <h2 className="text-xl text-center max-w-3xl">
+            <h2 className="text-xl text-center">
                 Get ready to level up your Discord experience with our
                 collection of exciting guessing and statistics-based games! Our
                 Discord bot brings the fun right to your server!
