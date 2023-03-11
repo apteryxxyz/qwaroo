@@ -79,7 +79,7 @@ export class BrowserAction extends Action {
                     meta.total,
                     meta.skip,
                     meta.limit
-                ).setTitle(`Games Created by ${user.displayName}`);
+                ).setTitle(`Game Scores for ${user.displayName}`);
 
                 const buttons = Common.buildComponentRow(
                     ...Browser.buildUserScoresBrowserButtons(

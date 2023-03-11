@@ -44,7 +44,7 @@ export class UserScoresCommand extends Command<
 
         const params = [scores, games, meta.total] as const;
         const embed = Browser.buildUserScoresEmbed(...params) //
-            .setTitle(`Games Created by ${user.displayName}`);
+            .setTitle(`Game Scores for ${user.displayName}`);
         const buttons = Common.buildComponentRow(
             ...Browser.buildUserScoresBrowserButtons(
                 { limit: 9 },
