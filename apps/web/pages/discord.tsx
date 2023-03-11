@@ -2,6 +2,8 @@ import type { APIGameStatistics } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { Copyright } from '#/components/Footer/Copyright';
+import { Links } from '#/components/Footer/Links';
 import { Button } from '#/components/Input/Button';
 import { Section } from '#/components/Section';
 import { PageSeo } from '#/components/Seo';
@@ -25,7 +27,8 @@ export default (
                 aria-hidden
                 className="text-qwaroo-400 text-center text-8xl font-bold"
             >
-                QWAROO<span className="text-5xl">, but on Discord</span>
+                QWAROO
+                <span className="text-4xl">, but on Discord</span>
             </h1>
 
             <h2 className="text-xl text-center max-w-3xl">
@@ -67,7 +70,7 @@ export default (
         </section>
 
         <Section imageSrc="/images/discord/play.png" imageSide="right">
-            <h3 className="text-3xl font-bold">Guessing Games</h3>
+            <h3 className="text-center text-3xl font-bold">Guessing Games</h3>
 
             <p className="text-center">
                 Test your skills with a variety of guessing and statistics game
@@ -77,7 +80,7 @@ export default (
         </Section>
 
         <Section imageSrc="/images/discord/games.png" imageSide="left">
-            <h3 className="text-3xl font-bold">Trivia Challenge</h3>
+            <h3 className="text-center text-3xl font-bold">Trivia Challenge</h3>
 
             <p className="text-center">
                 Choose from a range of game modes and put your knowledge to the
@@ -87,13 +90,20 @@ export default (
         </Section>
 
         <Section imageSrc="/images/discord/profile.png" imageSide="right">
-            <h3 className="text-3xl font-bold">Profile & Leaderboards</h3>
+            <h3 className="text-center text-3xl font-bold">
+                Profile & Leaderboards
+            </h3>
 
             <p className="text-center">
                 Save your progress and compete with other players for the
                 highest score on the leaderboard!
             </p>
         </Section>
+
+        <footer>
+            <Links />
+            <Copyright includeDiscord />
+        </footer>
     </>;
 };
 
