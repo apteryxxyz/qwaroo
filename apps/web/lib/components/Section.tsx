@@ -4,7 +4,7 @@ export function Section(props: Section.Props) {
     return <section
         id={props.id}
         className={`
-            w-full flex flex-col lg:flex-row items-center justify-center gap-5
+            w-full flex flex-col lg:flex-row items-center justify-center gap-5 mb-10
             ${props.imageSide === 'left' ? 'lg:flex-row-reverse' : ''}
             ${props.className ?? ''}`.replaceAll(/\s+/g, ' ')}
     >

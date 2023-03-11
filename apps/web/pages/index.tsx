@@ -21,7 +21,7 @@ export default (
             url="/"
         />
 
-        <section className="flex flex-col m-auto max-w-3xl">
+        <section className="flex flex-col m-auto max-w-3xl lg:my-[15%]">
             <h1
                 aria-hidden
                 className="text-qwaroo-400 text-center text-8xl font-bold"
