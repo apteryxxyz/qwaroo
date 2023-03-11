@@ -92,6 +92,17 @@ export const WebRoutes = {
         return '/login/failure' as const;
     },
 
+    // Discord
+    discord() {
+        return '/discord' as const;
+    },
+    discordSupport() {
+        return '/discord/support' as const;
+    },
+    discordInvite() {
+        return '/discord/invite' as const;
+    },
+
     // Games
     games() {
         return '/games' as const;

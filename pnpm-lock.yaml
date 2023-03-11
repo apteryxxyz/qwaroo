@@ -221,6 +221,7 @@ importers:
       postcss-preset-env: ^7.8.3
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-parallax-tilt: ^1.7.112
       react-pipeline-component: ^1.1.0
       tailwindcss: ^3.2.7
       typescript: ^4.9.5
@@ -243,6 +244,7 @@ importers:
       postcss-preset-env: 7.8.3_postcss@8.4.21
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-parallax-tilt: 1.7.112_biqbaboplfbrettd7655fr4n2y
       react-pipeline-component: 1.1.0
       tailwindcss: 3.2.7_postcss@8.4.21
     devDependencies:
@@ -7962,6 +7964,16 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+    dev: false
+
+  /react-parallax-tilt/1.7.112_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-W8WhEpEjn09CwDj3opOg0sRyRsR4B6C6xONhsBgOXKFgtA8LKN7NgcwAOq14gKJaLHKRxiO418pC8P4VTIq2/w==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-pipeline-component/1.1.0:

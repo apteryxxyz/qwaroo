@@ -12,11 +12,12 @@ export default (
 ) => {
     return <>
         <PageSeo
-            title="Home"
-            description="Ready to have some fun? Check out our collection of exciting guessing and statistics-based games!
+            title="Discord Bot"
+            description="Get ready to level up your Discord experience with our collection of exciting guessing
+            and statistics-based games! Our Discord bot brings the fun right to your server!
             Can you guess which country has a higher population, or which movie has a better rating on IMDb?
             Find out today!"
-            url="/"
+            url="/discord"
         />
 
         <section className="flex flex-col m-auto p-[10%]">
@@ -24,12 +25,13 @@ export default (
                 aria-hidden
                 className="text-qwaroo-400 text-center text-8xl font-bold"
             >
-                QWAROO
+                QWAROO<span className="text-5xl">, but on Discord</span>
             </h1>
 
             <h2 className="text-xl text-center max-w-3xl">
-                Ready to have some fun? Check out our collection of exciting
-                guessing and statistics-based games!
+                Get ready to level up your Discord experience with our
+                collection of exciting guessing and statistics-based games! Our
+                Discord bot brings the fun right to your server!
             </h2>
 
             <span className="text-center">
@@ -41,20 +43,30 @@ export default (
 
             <div className="flex flex-col items-center gap-3 m-5 font-bold">
                 <div className="flex gap-3 [&>*]:!min-w-[220px] [&>*]:!min-h-[50px] text-xl">
-                    <Button linkProps={{ href: WebRoutes.games() }}>
-                        Browse Games
+                    <Button
+                        linkProps={{
+                            href: WebRoutes.discordInvite(),
+                            newTab: true,
+                        }}
+                    >
+                        Invite to Server
+                    </Button>
+
+                    <Button
+                        linkProps={{
+                            href: WebRoutes.discordSupport(),
+                            newTab: true,
+                        }}
+                    >
+                        Join Support
                     </Button>
                 </div>
 
-                <div className="flex gap-3 [&>*]:!min-w-[160px] [&>*]:!min-h-[40px]">
-                    <Button linkProps={{ href: WebRoutes.discord() }}>
-                        Play on Discord
-                    </Button>
-                </div>
+                <div className="flex gap-3 [&>*]:!min-w-[160px] [&>*]:!min-h-[40px]"></div>
             </div>
         </section>
 
-        <Section imageSrc="/images/web/play.png" imageSide="right">
+        <Section imageSrc="/images/discord/play.png" imageSide="right">
             <h3 className="text-3xl font-bold">Guessing Games</h3>
 
             <p className="text-center">
@@ -64,7 +76,7 @@ export default (
             </p>
         </Section>
 
-        <Section imageSrc="/images/web/games.png" imageSide="left">
+        <Section imageSrc="/images/discord/games.png" imageSide="left">
             <h3 className="text-3xl font-bold">Trivia Challenge</h3>
 
             <p className="text-center">
@@ -74,12 +86,12 @@ export default (
             </p>
         </Section>
 
-        <Section imageSrc="/images/web/profile.png" imageSide="right">
+        <Section imageSrc="/images/discord/profile.png" imageSide="right">
             <h3 className="text-3xl font-bold">Profile & Leaderboards</h3>
 
             <p className="text-center">
-                Sign in to save your progress and compete with other players for
-                the highest score on the leaderboard!
+                Save your progress and compete with other players for the
+                highest score on the leaderboard!
             </p>
         </Section>
     </>;

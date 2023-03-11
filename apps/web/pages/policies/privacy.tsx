@@ -7,7 +7,7 @@ export default () => {
     >
         <PageSeo
             title="Privacy Policy"
-            description="A collection of fun guessing and statistics based browser games.
+            description="Ready to have some fun? Check out our collection of exciting guessing and statistics-based games!
             Can you guess which country has a higher population, or which movie has a better rating on IMDb?
             Find out today!"
             url="/policies/privacy"
@@ -18,8 +18,8 @@ export default () => {
         </h2>
 
         <div className="flex flex-col font-semibold text-lg">
-            <span>Effective: 18th January 2023</span>
-            <span>Last updated: 18th January 2023</span>
+            <span>Effective: 11th March 2023</span>
+            <span>Last updated: 11th March 2023</span>
         </div>
 
         <section className="flex flex-col gap-2 bg-white dark:bg-neutral-800 rounded-xl">
@@ -38,12 +38,19 @@ export default () => {
             <h3 className="font-bold text-2xl">The information we collect</h3>
 
             <p>
-                Logging into our service can only be done using a third-party
-                login provider. When you create an account using one of those
-                providers, we will only collect your account's unique ID,
-                display name and avatar image. Your ID is used to identify you,
-                while your display name and avatar will be displayed on your
-                Qwaroo profile.
+                Logging into our service can only be done via Discords login
+                provider service. When you create an account using that
+                provider, we will only collect your account's unique ID, display
+                name and avatar image. Your ID is used to identify you, while
+                your display name and avatar will be displayed on your Qwaroo
+                profile.
+            </p>
+
+            <p>
+                It is important to note that our Discord bot handles the login
+                process slightly differently. When you play a game for the first
+                time using our Discord bot, we automatically create an account
+                for you using your Discord ID as the unique identifier.
             </p>
 
             <p>
@@ -125,7 +132,7 @@ export default () => {
 
             <p>
                 Qwaroo and our servers are based in New Zealand and, as such,
-                are subject to the New Zealand Privacy Act 1993. We only collect
+                are subject to the New Zealand Privacy Act 2020. We only collect
                 and process data that is necessary for the provision of our
                 services or as required by law.
             </p>

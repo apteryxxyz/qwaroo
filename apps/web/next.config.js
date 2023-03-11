@@ -7,8 +7,13 @@ let nextConfig = {
     async redirects() {
         return [
             {
-                source: '/discord',
+                source: '/discord/support',
                 destination: 'https://discord.gg/C3qVXYqX8J',
+                permanent: false,
+            },
+            {
+                source: '/discord/invite',
+                destination: 'https://discord.com/api/oauth2/authorize?client_id=1048791046571700274&scope=applications.commands+bot',
                 permanent: false,
             }
         ]

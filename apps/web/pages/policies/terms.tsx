@@ -7,7 +7,7 @@ export default () => {
     >
         <PageSeo
             title="Terms of Use"
-            description="A collection of fun guessing and statistics based browser games.
+            description="Ready to have some fun? Check out our collection of exciting guessing and statistics-based games!
             Can you guess which country has a higher population, or which movie has a better rating on IMDb?
             Find out today!"
             url="/policies/terms"
@@ -18,8 +18,8 @@ export default () => {
         </h2>
 
         <div className="flex flex-col font-semibold text-lg">
-            <span>Effective: 18th January 2023</span>
-            <span>Last updated: 18th January 2023</span>
+            <span>Effective: 11th March 2023</span>
+            <span>Last updated: 11th March 2023</span>
         </div>
 
         <section className="flex flex-col gap-2 bg-white dark:bg-neutral-800 rounded-xl">
@@ -31,9 +31,9 @@ export default () => {
                 "our", "us"). Our service allows users to create and play games,
                 create profiles, and interact with other users. By accessing or
                 using our services, including visiting our website and creating
-                an account, you are agreeing to be bound by the following terms
-                and conditions. If you do not agree to these terms, you may not
-                access or use our services.
+                an account, or using our Discord bot, you are agreeing to be
+                bound by the following terms and conditions. If you do not agree
+                to these terms, you may not access or use our services.
             </p>
         </section>
 
@@ -97,16 +97,16 @@ export default () => {
             <h3 className="font-bold text-2xl">Intellectual property</h3>
 
             <p>
-                All content and software on our website, unless otherwise
-                stated, is the property of Apteryx Software and is protected by
-                copyright laws. You may not use any content or software on our
-                webiste without our express written permission.
+                All content and software related to our services, unless
+                otherwise stated, is the property of Apteryx Software and is
+                protected by copyright laws. You may not use any content or
+                software on our webiste without our express written permission.
             </p>
 
             <p>
                 User-generated content, such as game modes, remain the property
                 of the individual who submitted the content. By submitting
-                content to our website, you grant us a non-exclusive,
+                content to our services, you grant us a non-exclusive,
                 royalty-free, worldwide license to use, copy, display, and
                 distribute that content.
             </p>
@@ -129,10 +129,9 @@ export default () => {
             <h3 className="font-bold text-2xl">Acceptance of these terms</h3>
 
             <p>
-                Continued use of our site signifies your acceptance of these
+                Continued use of our services signifies your acceptance of these
                 terms. If you do not accept these terms then please do not use
-                this site. When registering we will further request your
-                explicit acceptance of the terms of use.
+                our services.
             </p>
         </section>
 

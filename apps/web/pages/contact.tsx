@@ -9,7 +9,7 @@ export default () => {
     >
         <PageSeo
             title="Contact Us"
-            description="A collection of fun guessing and statistics based browser games.
+            description="Ready to have some fun? Check out our collection of exciting guessing and statistics-based games!
             Can you guess which country has a higher population, or which movie has a better rating on IMDb?
             Find out today!"
             url="/contact"
