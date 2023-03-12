@@ -1,7 +1,12 @@
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { motion } from 'framer-motion';
-import type { ChangeEvent, KeyboardEvent } from 'react';
+import type {
+    ChangeEvent,
+    Dispatch,
+    KeyboardEvent,
+    SetStateAction,
+} from 'react';
 import { useRef, useState } from 'react';
 import { Button } from './Button';
 
@@ -11,31 +16,35 @@ export function Textbox(props: Textbox.Props) {
             'Textbox cannot have both enableEnter and enableOnChange'
         );
 
-    const [value, setValue] = useState(props.defaultValue ?? '');
+    const [value, setValue] = props.setValue
+        ? [props.value ?? '', props.setValue]
+        : useState(props.value ?? '');
     const searchTimeout = useRef<ReturnType<typeof setTimeout>>(null!);
 
-    return <div
-        className={`flex ${props.className ?? ''}`}
-        role={props.ariaRole}
-    >
+    return <div role={props.ariaRole} className="flex">
         <motion.input
-            className="w-full p-2 rounded-l-xl bg-neutral-100 dark:bg-neutral-800"
+            className={`w-full p-2 ${
+                props.enableIcon ? 'rounded-l-xl' : 'rounded-xl'
+            } bg-neutral-100 dark:bg-neutral-800 ${props.className ?? ''}`}
             placeholder={props.placeHolder}
-            defaultValue={value}
+            value={value}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                setValue(event.currentTarget.value);
                 clearTimeout(searchTimeout.current);
-                setValue(event.target.value);
 
                 if (props.enableOnChange)
                     searchTimeout.current = setTimeout(() => {
-                        props.onValue(event.target.value);
+                        props.onValue(event.currentTarget.value);
                     }, 300);
             }}
-            onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
+            onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => {
                 if (props.enableEnter && event.key === 'Enter') {
                     props.onValue(value);
                     event.currentTarget.blur();
+                    return;
                 }
+
+                if (props.onKeyUp) props.onKeyUp(value, event.key);
             }}
             disabled={props.isDisabled}
         />
@@ -54,11 +63,14 @@ export namespace Textbox {
         className?: string;
         isDisabled?: boolean;
 
+        value?: string;
+        setValue?: Dispatch<SetStateAction<string>>;
+
         iconProp?: IconProp;
-        defaultValue?: string;
         placeHolder?: string;
         ariaRole?: string;
 
+        onKeyUp?(value: string, key: string): void;
         onValue(value: string): void;
 
         enableEnter?: boolean;

@@ -104,13 +104,13 @@ export function GameBrowser(props: GameBrowser.Props) {
 
     return <div className="flex flex-col gap-3 w-full">
         {/* Filter bar */}
-        <section className="flex flex-wrap gap-1">
+        <form className="flex flex-wrap gap-1">
             {/* Search box */}
             <Textbox
                 ariaRole="searchbox"
                 placeHolder="Search games..."
                 iconProp={faSearch}
-                defaultValue={options.term}
+                value={options.term}
                 onValue={v => loadNewOptions({ term: v })}
                 enableIcon
                 enableEnter
@@ -148,7 +148,7 @@ export function GameBrowser(props: GameBrowser.Props) {
                     })
                 }
             />
-        </section>
+        </form>
 
         {/* Games grid */}
         {games.current ? (
