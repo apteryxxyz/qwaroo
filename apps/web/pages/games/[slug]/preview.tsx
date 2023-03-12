@@ -2,10 +2,10 @@ import { Game } from '@qwaroo/client';
 import type { APIGame, APIScore } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { HigherOrLower } from '#/components/Modes/HigherOrLower';
 import { GameSeo } from '#/components/Seo';
 import { useClient } from '#/contexts/Client';
 import { useEventListener } from '#/hooks/useEventListener';
+import { HigherOrLower } from '#/modes/HigherOrLower';
 import { removeUndefined } from '#/utilities/object';
 
 export default (
@@ -24,7 +24,8 @@ export default (
         <GameSeo game={props.game} />
 
         <div className="cursor-pointer">
-            {props.game.mode === Game.Mode.HigherOrLower && <HigherOrLower.Embed
+            {props.game.mode ===
+                Game.Mode.HigherOrLower && <HigherOrLower.Gameplay.Embed
                 game={props.game}
                 score={props.score}
                 isPreview

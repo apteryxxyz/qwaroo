@@ -3,4 +3,4 @@ import { Display } from './Display';
 import { Embed } from './Embed';
 import { Overlay } from './Overlay';
 
-export const HigherOrLower = { Block, Display, Overlay, Embed };
+export const Gameplay = { Block, Display, Overlay, Embed };

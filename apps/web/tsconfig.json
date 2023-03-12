@@ -25,6 +25,7 @@
         ".next/types/**/*.ts",
         "pages/**/*.tsx",
         "lib/components/**/*.tsx",
+        "lib/modes/**/*.tsx",
         "lib/**/**/**.ts"
     ]
 }
