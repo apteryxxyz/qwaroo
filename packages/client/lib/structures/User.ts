@@ -1,6 +1,6 @@
 import * as Types from '@qwaroo/types';
 import { Base } from './Base';
-import { ConnectionListing } from '#/listings/ConnectionListing';
+import { Connection } from './Connection';
 import { GameManager } from '#/managers/GameManager';
 import { ScoreManager } from '#/managers/ScoreManager';
 import type { UserManager } from '#/managers/UserManager';
@@ -61,11 +61,11 @@ export class User extends Base {
         return this.client.users.fetchOne(this, force);
     }
 
-    /** Fetch the users connections. */
-    public async fetchConnections() {
-        const listing = new ConnectionListing(this);
-        await listing.fetchMore();
-        return listing;
+    /** Fetch the users connection. */
+    public async fetchConnection() {
+        const path = Types.APIRoutes.userConnection(this.id);
+        const data = await this.client.api.get(path);
+        return new Connection(this, data);
     }
 
     public override equals(other: User | Types.APIUser) {

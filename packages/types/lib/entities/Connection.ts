@@ -19,5 +19,5 @@ export namespace Connection {
         linkedTimestamp: number;
     }
 
-    export type ProviderName = 'discord' | 'reddit';
+    export type ProviderName = 'discord';
 }

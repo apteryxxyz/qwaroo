@@ -1,10 +1,10 @@
 import type * as Types from '@qwaroo/types';
 import { Base } from './Base';
-import type { ConnectionListing } from '#/listings/ConnectionListing';
+import type { User } from './User';
 
 /** A connection. */
 export class Connection extends Base {
-    public listing: ConnectionListing;
+    public user: User;
 
     /** The ID of the user that this connection belongs to. */
     public userId!: string;
@@ -17,9 +17,9 @@ export class Connection extends Base {
     /** The timestamp when this connection was linked. */
     public linkedTimestamp!: number;
 
-    public constructor(listing: ConnectionListing, data: Types.APIConnection) {
-        super(listing, data);
-        this.listing = listing;
+    public constructor(user: User, data: Types.APIConnection) {
+        super(user, data);
+        this.user = user;
         this._patch(data);
     }
 
@@ -45,7 +45,7 @@ export class Connection extends Base {
 
     /** Fetch this connection. */
     public fetch() {
-        return this.listing.fetchOne(this);
+        return this.user.fetchConnection();
     }
 
     /** Fetch the user of this connection. */

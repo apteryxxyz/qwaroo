@@ -7,10 +7,8 @@ import { Score } from './Score';
 
 export namespace User {
     export interface Methods {
-        /** Get the list of connections linked to this user. */
-        getConnections(): Promise<Connection.Document[]>;
-        /** Get a specific connection that is linked to this user. */
-        getConnection(id: string): Promise<Connection.Document | null>;
+        /** Get the connection for this user. */
+        getConnection(): Promise<Connection.Document>;
 
         /** Get the games that this user has created. */
         getGames(): Promise<Game.Document[]>;
@@ -75,16 +73,9 @@ export namespace User {
         }
     );
 
-    Schema.method('getConnections', function getConnections(this: Document) {
-        return Connection.Model.find({ userId: this.id }).exec();
+    Schema.method('getConnection', function getConnection(this: Document) {
+        return Connection.Model.findOne({ userId: this.id }).exec();
     });
-
-    Schema.method(
-        'getConnection',
-        function getConnection(this: Document, id: string) {
-            return Connection.Model.findById(id).exec();
-        }
-    );
 
     Schema.method('getGames', function getGames(this: Document) {
         return Game.Model.find({ userId: this.id }).exec();

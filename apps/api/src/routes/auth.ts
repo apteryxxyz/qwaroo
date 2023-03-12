@@ -4,14 +4,13 @@ import { Authentication, getEnv } from '@qwaroo/server';
 import { APIRoutes, WebRoutes } from '@qwaroo/types';
 import * as passport from 'passport';
 import { DiscordPassport } from '#/passports/DiscordPassport';
-import { RedditPassport } from '#/passports/RedditPassport';
 
 const WebUrl = getEnv(String, 'WEB_URL');
 
 export default () => {
     const router = require('express').Router();
 
-    for (const Passport of [DiscordPassport, RedditPassport]) {
+    for (const Passport of [DiscordPassport]) {
         const provider = new Passport().providerName;
 
         router.all(

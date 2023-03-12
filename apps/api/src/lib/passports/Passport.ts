@@ -77,10 +77,13 @@ export abstract class Passport<Profile extends Omit<passport.Profile, 'name'>> {
 
     public async fetchProfile(accessToken: string) {
         return new Promise<Profile>((resolve, reject) => {
-            passport.authenticate(this.providerName, (err, profile) => {
-                if (err) reject(err);
-                else resolve(profile);
-            })({} as unknown, {} as unknown, () => void 0, {
+            passport.authenticate(
+                this.providerName,
+                (err: Error, profile: Profile) => {
+                    if (err) reject(err);
+                    else resolve(profile);
+                }
+            )({} as unknown, {} as unknown, () => void 0, {
                 query: { access_token: accessToken },
             });
         });

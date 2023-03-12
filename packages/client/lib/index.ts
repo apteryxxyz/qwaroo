@@ -4,7 +4,6 @@ export * from './client/CDNManager';
 export * from './client/Client';
 
 // Listings
-export * from './listings/ConnectionListing';
 export * from './listings/GameListing';
 export * from './listings/ItemListing';
 export * from './listings/Listing';

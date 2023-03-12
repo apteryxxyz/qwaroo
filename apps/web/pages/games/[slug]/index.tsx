@@ -5,14 +5,13 @@ import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Card } from '#/components/Card';
 import { Button } from '#/components/Input/Button';
 import { ScoreBrowser } from '#/components/Score/Browser';
 import { GameSeo } from '#/components/Seo';
 import { useClient } from '#/contexts/Client';
 import { removeUndefined } from '#/utilities/object';
-import { proxifyImageUrl } from '#/utilities/url';
 
 const BadgeIconMap = {};
 

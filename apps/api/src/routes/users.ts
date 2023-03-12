@@ -49,7 +49,7 @@ export default () => {
     );
 
     router.all(
-        APIRoutes.userConnections(':userId'),
+        APIRoutes.userConnection(':userId'),
         useMethods(['GET']),
         useToken([]),
         useMe('userId'),
@@ -58,24 +58,7 @@ export default () => {
             const userId = String(req.params['userId'] || '');
             const user = await Users.getUser(userId);
 
-            const connections = await user.getConnections();
-
-            res.status(200).json({ success: true, items: connections });
-        })
-    );
-
-    router.all(
-        APIRoutes.userConnection(':userId', ':connectionId'),
-        useMethods(['GET']),
-        useToken([]),
-        useMe('userId'),
-        useMustBeMe('userId', ['GET']),
-        handle(async (req, res) => {
-            const userId = String(req.params['userId'] || '');
-            const user = await Users.getUser(userId);
-
-            const connectionId = String(req.params['connectionId'] || '');
-            const connection = await user.getConnection(connectionId);
+            const connection = await user.getConnection();
             if (!connection) throw new Error(404, 'Connection not found');
 
             res.status(200).json({ success: true, ...connection.toJSON() });

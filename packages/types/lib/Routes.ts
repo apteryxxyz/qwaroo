@@ -40,11 +40,8 @@ export const APIRoutes = {
     user(userId: string | '@me') {
         return `/users/${userId}` as const;
     },
-    userConnections(userId: string | '@me') {
-        return `/users/${userId}/connections` as const;
-    },
-    userConnection(userId: string | '@me', connectionId: string) {
-        return `/users/${userId}/connections/${connectionId}` as const;
+    userConnection(userId: string | '@me') {
+        return `/users/${userId}/connection` as const;
     },
 
     // Users Games
