@@ -16,7 +16,8 @@
         "pull": "git reset --hard HEAD && git pull",
         "start": "pm2 startOrReload ecosystem.config.js",
         "stop": "pm2 stop ecosystem.config.js",
-        "restart": "pm2 restart ecosystem.config.js"
+        "reload": "pm2 startOrReload ecosystem.config.js",
+        "restart": "pm2 startOrRestart ecosystem.config.js"
     },
     "prettier": "prettier-config-apteryx",
     "devDependencies": {

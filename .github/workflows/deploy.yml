@@ -38,4 +38,4 @@ jobs:
             pnpm install
             pnpm build
             pnpm nginx
-            pnpm restart
+            pnpm reload
