@@ -61,7 +61,11 @@ export namespace Game {
                 required: true,
                 match: Validate.ThumbnailURL,
             },
-            categories: { type: [String], default: [] },
+            categories: {
+                type: [String],
+                default: [],
+                match: Validate.Category,
+            },
             flags: { type: Number, default: Types.Game.Flags.None },
             extraData: { type: Object, default: {} },
 
