@@ -24,7 +24,7 @@ export function TagTextbox(props: TagTextbox.Props) {
         props.setTags(tags => tags.filter(t => t !== tag));
     }
 
-    return <div className="flex flex-col gap-3">
+    return <div className="flex flex-col gap-2">
         <Textbox
             {...props}
             onValue={() => null}
@@ -37,7 +37,9 @@ export function TagTextbox(props: TagTextbox.Props) {
         <div className="flex flex-row gap-3 mx-1">
             {props.tags.map(tag => <div
                 key={tag}
-                className="bg-neutral-100 dark:bg-neutral-800 rounded-xl p-2"
+                className={`bg-neutral-100 dark:bg-neutral-800 rounded-xl p-2 ${
+                    props.className ?? ''
+                }`}
             >
                 {tag}
 
