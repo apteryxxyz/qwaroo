@@ -5,7 +5,7 @@ import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Card } from '#/components/Card';
 import { Button } from '#/components/Input/Button';
 import { ScoreBrowser } from '#/components/Score/Browser';
@@ -57,22 +57,8 @@ export default (
         <GameSeo game={props.game} />
 
         <section className="contents lg:grid grid-cols-3 gap-2">
-            <Card className="flex w-full flex-row col-span-2">
-                <picture>
-                    <img
-                        className="rounded-xl aspect-square"
-                        src={proxifyImageUrl(
-                            game.current.thumbnailUrl,
-                            80,
-                            900
-                        )}
-                        alt={`${game.current.title}'s thumbnail`}
-                        width={128}
-                        height={128}
-                    />
-                </picture>
-
-                <div className="flex flex-col justify-center">
+            <Card className="flex w-full col-span-2">
+                <div>
                     <span className="flex items-center gap-1">
                         <h2 className="text-2xl font-bold text-qwaroo-400">
                             {game.current.title}
@@ -93,7 +79,7 @@ export default (
                     </span>
 
                     <span>
-                        Created by{' '}
+                        {game.current.longDescription} Created by{' '}
                         <a
                             href={WebRoutes.user(creator.current.id)}
                             className="text-qwaroo-400 font-bold"
@@ -106,16 +92,21 @@ export default (
                         {ms(Date.now() - game.current.createdTimestamp, {
                             roundUp: true,
                         })}{' '}
-                        ago.
-                    </span>
-
-                    <span>
-                        Last played around{' '}
+                        ago, last played around{' '}
                         {ms(Date.now() - game.current.lastPlayedTimestamp, {
                             roundUp: true,
                         })}
                         .
                     </span>
+
+                    <div className="flex mt-2">
+                        {game.current.categories.map(category => <div
+                            key={category}
+                            className="bg-qwaroo-500 rounded-md p-2 font-bold"
+                        >
+                            {category}
+                        </div>)}
+                    </div>
                 </div>
             </Card>
 

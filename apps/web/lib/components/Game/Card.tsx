@@ -25,11 +25,8 @@ export function GameCard({ game, creator }: GameCard.Props) {
             backgroundPosition: 'center',
         }}
     >
-        <div
-            className="flex flex-col gap-2 absolute mt-2 -m-2 text-sm font-bold uppercase
-        [&>*]:px-3 [&>*]:py-2 [&>*]:rounded-md [&>*]:drop-shadow-[0_4px_3px_rgba(0,0,0,.25)] [&>*]:w-fit"
-        >
-            {badgeText && <span className="bg-qwaroo-gradient">
+        <div className="flex flex-col gap-2 absolute mt-2 -m-2 text-sm font-bold uppercase">
+            {badgeText && <span className="bg-qwaroo-500 px-3 py-2 rounded-md drop-shadow-[0_4px_3px_rgba(0,0,0,.25)]">
                 {badgeIcon && <FontAwesomeIcon icon={badgeIcon} />} {badgeText}
             </span>}
         </div>
