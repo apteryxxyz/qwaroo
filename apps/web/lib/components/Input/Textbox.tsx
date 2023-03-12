@@ -7,7 +7,7 @@ import type {
     KeyboardEvent,
     SetStateAction,
 } from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from './Button';
 
 export function Textbox(props: Textbox.Props) {
@@ -19,20 +19,35 @@ export function Textbox(props: Textbox.Props) {
     const [value, setValue] = props.setValue
         ? [props.value ?? '', props.setValue]
         : useState(props.value ?? '');
+    const [isValid, setIsValid] = useState(true);
     const searchTimeout = useRef<ReturnType<typeof setTimeout>>(null!);
+
+    function updateIsValid() {
+        const valueExists = value.trim() !== '';
+        const doesMatch = props.mustMatch?.test(value) ?? true;
+
+        if (props.isRequired && !valueExists) return setIsValid(false);
+        else if (!valueExists) return setIsValid(!props.isRequired);
+        else if (!doesMatch && (props.isRequired || !props.isRequired))
+            return setIsValid(false);
+        else return setIsValid(true);
+    }
+
+    useEffect(updateIsValid, [value]);
 
     return <div role={props.ariaRole} className="flex">
         <motion.input
-            className={`w-full p-2 ${
-                props.enableIcon ? 'rounded-l-xl' : 'rounded-xl'
-            } bg-neutral-100 dark:bg-neutral-800 ${props.className ?? ''}`}
+            className={`w-full p-2 bg-neutral-100 dark:bg-neutral-800
+                ${props.enableIcon ? 'rounded-l-xl' : 'rounded-xl'}
+                ${isValid ? '' : 'outline outline-red-500'}
+                ${props.className ?? ''}`}
             placeholder={props.placeHolder}
             value={value}
-            minLength={props.minLength}
-            maxLength={props.maxLength}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 setValue(event.currentTarget.value);
                 clearTimeout(searchTimeout.current);
+
+                if (!isValid) return;
 
                 if (props.enableOnChange)
                     searchTimeout.current = setTimeout(() => {
@@ -40,6 +55,8 @@ export function Textbox(props: Textbox.Props) {
                     }, 300);
             }}
             onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => {
+                if (!isValid) return;
+
                 if (props.enableEnter && event.key === 'Enter') {
                     props.onValue(value);
                     event.currentTarget.blur();
@@ -62,23 +79,28 @@ export function Textbox(props: Textbox.Props) {
 
 export namespace Textbox {
     export interface Props {
+        // Styling
         className?: string;
-        isDisabled?: boolean;
+        ariaRole?: string;
 
+        // State
         value?: string;
         setValue?: Dispatch<SetStateAction<string>>;
+        isDisabled?: boolean;
+        isRequired?: boolean;
+        mustMatch?: RegExp;
 
-        iconProp?: IconProp;
+        // Input Properties
         placeHolder?: string;
-        ariaRole?: string;
-        minLength?: number;
-        maxLength?: number;
-
-        onKeyUp?(value: string, key: string): void;
-        onValue(value: string): void;
-
         enableEnter?: boolean;
         enableOnChange?: boolean;
+
+        // Icon Properties
+        iconProp?: IconProp;
         enableIcon?: boolean;
+
+        // Callbacks
+        onKeyUp?(value: string, key: string): void;
+        onValue(value: string): void;
     }
 }
