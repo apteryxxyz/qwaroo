@@ -28,17 +28,17 @@ export class User extends Base {
         this.manager = manager;
         this.games = new GameManager(this);
         this.scores = new ScoreManager(this);
-        this._patch(data);
+        this.patch(data);
     }
 
-    public override _patch(data: Types.APIUser) {
+    public override patch(data: Types.APIUser) {
         this.displayName = data.displayName;
         this.avatarUrl = data.avatarUrl;
         this.flags = new UserFlagsBitField(data.flags);
         this.joinedTimestamp = data.joinedTimestamp;
         this.lastSeenTimestamp = data.lastSeenTimestamp;
 
-        return super._patch(data);
+        return super.patch(data);
     }
 
     /** Check if the user has been fetched. */

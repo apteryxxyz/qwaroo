@@ -57,10 +57,10 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
         super(manager, data);
         this.manager = manager;
         this.scores = new ScoreManager(this);
-        this._patch(data);
+        this.patch(data);
     }
 
-    public override _patch(data: Types.APIGame<M>) {
+    public override patch(data: Types.APIGame<M>) {
         this.slug = data.slug;
         this.creatorId = data.creatorId;
         this.mode = data.mode;
@@ -83,7 +83,7 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
         this.createdTimestamp = data.createdTimestamp;
         this.updatedTimestamp = data.updatedTimestamp;
 
-        return super._patch(data);
+        return super.patch(data);
     }
 
     /** Check if the game has been fetched. */

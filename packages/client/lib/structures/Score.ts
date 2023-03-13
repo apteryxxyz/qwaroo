@@ -36,10 +36,10 @@ export class Score<P extends Game | User = Game | User> extends Base {
     public constructor(manager: ScoreManager<P>, data: Types.APIScore) {
         super(manager, data);
         this.manager = manager;
-        this._patch(data);
+        this.patch(data);
     }
 
-    public override _patch(data: Types.APIScore) {
+    public override patch(data: Types.APIScore) {
         this.userId = data.userId;
         this.gameId = data.gameId;
         this.highScore = data.highScore;
@@ -53,7 +53,7 @@ export class Score<P extends Game | User = Game | User> extends Base {
         this.lastPlayedTimestamp = data.lastPlayedTimestamp;
         this.firstPlayedTimestamp = data.firstPlayedTimestamp;
 
-        return super._patch(data);
+        return super.patch(data);
     }
 
     /** Check if the score has been fetched. */

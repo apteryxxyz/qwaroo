@@ -8,7 +8,7 @@ export class UserManager extends Manager<string, User> {
     public append(data: APIUser) {
         if (this.has(data.id)) {
             const existing = this.get(data.id)!;
-            return existing._patch(data);
+            return existing.patch(data);
         }
 
         const entry = new User(this, data);

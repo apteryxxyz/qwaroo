@@ -11,21 +11,21 @@ export class Base {
     ) {
         if (client instanceof Client) this.client = client;
         else this.client = client.client;
-        this._patch(data);
+        this.patch(data);
     }
 
-    public _clone() {
+    public clone() {
         return Object.assign(Object.create(this), this);
     }
 
-    public _patch(data: { id: string }) {
+    public patch(data: { id: string }) {
         this.id = data.id;
         return this;
     }
 
-    public _update(data: { id: string }) {
-        const clone = this._clone();
-        this._patch(data);
+    public update(data: { id: string }) {
+        const clone = this.clone();
+        this.patch(data);
         return clone;
     }
 

@@ -20,17 +20,17 @@ export class Connection extends Base {
     public constructor(user: User, data: Types.APIConnection) {
         super(user, data);
         this.user = user;
-        this._patch(data);
+        this.patch(data);
     }
 
-    public override _patch(data: Types.APIConnection) {
+    public override patch(data: Types.APIConnection) {
         this.userId = data.userId;
         this.providerName = data.providerName;
         this.accountId = data.accountId;
         this.accountUsername = data.accountUsername;
         this.linkedTimestamp = data.linkedTimestamp;
 
-        return super._patch(data);
+        return super.patch(data);
     }
 
     /** Check if the connection has been fetched. */

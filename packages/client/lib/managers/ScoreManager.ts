@@ -20,7 +20,7 @@ export class ScoreManager<P extends Game | User> extends Manager<
     public append(data: APIScore): Score<P> {
         if (this.has(data.id)) {
             const existing = this.get(data.id)!;
-            return existing._patch(data) as Score<P>;
+            return existing.patch(data) as Score<P>;
         }
 
         const entry = new Score<P>(this, data);

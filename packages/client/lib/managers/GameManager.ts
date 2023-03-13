@@ -26,7 +26,7 @@ export class GameManager extends Manager<string, Game> {
 
         if (this.has(data.id)) {
             const existing = this.get(data.id)!;
-            return existing._patch(data);
+            return existing.patch(data);
         }
 
         const entry = new Game(this, data);
