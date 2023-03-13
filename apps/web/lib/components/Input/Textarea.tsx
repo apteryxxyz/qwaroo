@@ -5,7 +5,7 @@ import type {
     KeyboardEvent,
     SetStateAction,
 } from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function Textarea(props: Textarea.Props) {
     if (props.enableEnter && props.enableOnChange)
@@ -16,14 +16,25 @@ export function Textarea(props: Textarea.Props) {
     const [value, setValue] = props.setValue
         ? [props.value ?? '', props.setValue]
         : useState(props.value ?? '');
-    const [isValid, setIsValid] = useState(
-        props.mustMatch ? props.mustMatch.test(value) : true
-    );
+    const [isValid, setIsValid] = useState(true);
     const searchTimeout = useRef<ReturnType<typeof setTimeout>>(null!);
+
+    function updateIsValid() {
+        const valueExists = value.trim() !== '';
+        const doesMatch = props.mustMatch?.test(value) ?? true;
+
+        if (props.isRequired && !valueExists) return setIsValid(false);
+        else if (!valueExists) return setIsValid(!props.isRequired);
+        else if (!doesMatch && (props.isRequired || !props.isRequired))
+            return setIsValid(false);
+        else return setIsValid(true);
+    }
+
+    useEffect(updateIsValid, [value]);
 
     return <div role={props.ariaRole} className="flex">
         <motion.textarea
-            className={`w-full p-2 bg-neutral-100 dark:bg-neutral-800 rounded-xl
+            className={`w-full p-2 bg-neutral-100 dark:bg-neutral-800
                 ${isValid ? '' : 'outline outline-red-500'}
                 ${props.className ?? ''}`}
             placeholder={props.placeHolder}
@@ -32,21 +43,21 @@ export function Textarea(props: Textarea.Props) {
                 setValue(event.currentTarget.value);
                 clearTimeout(searchTimeout.current);
 
-                if (props.mustMatch && !props.mustMatch.test(value))
-                    return setIsValid(false);
-                else setIsValid(true);
+                if (!isValid) return;
 
-                if (props.enableOnChange)
+                if (props.enableOnChange && props.onValue)
                     searchTimeout.current = setTimeout(() => {
-                        props.onValue(event.currentTarget.value);
+                        props.onValue?.(event.currentTarget.value);
                     }, 300);
             }}
             onKeyUp={(event: KeyboardEvent<HTMLTextAreaElement>) => {
-                if (props.mustMatch && !props.mustMatch.test(value))
-                    return setIsValid(false);
-                else setIsValid(true);
+                if (!isValid) return;
 
-                if (props.enableEnter && event.key === 'Enter') {
+                if (
+                    props.enableEnter &&
+                    props.onValue &&
+                    event.key === 'Enter'
+                ) {
                     props.onValue(value);
                     event.currentTarget.blur();
                     return;
@@ -79,6 +90,6 @@ export namespace Textarea {
 
         // Callbacks
         onKeyUp?(value: string, key: string): void;
-        onValue(value: string): void;
+        onValue?(value: string): void;
     }
 }

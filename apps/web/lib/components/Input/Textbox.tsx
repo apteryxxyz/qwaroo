@@ -49,15 +49,19 @@ export function Textbox(props: Textbox.Props) {
 
                 if (!isValid) return;
 
-                if (props.enableOnChange)
+                if (props.enableOnChange && props.onValue)
                     searchTimeout.current = setTimeout(() => {
-                        props.onValue(event.currentTarget.value);
+                        props.onValue?.(event.currentTarget.value);
                     }, 300);
             }}
             onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => {
                 if (!isValid) return;
 
-                if (props.enableEnter && event.key === 'Enter') {
+                if (
+                    props.enableEnter &&
+                    props.onValue &&
+                    event.key === 'Enter'
+                ) {
                     props.onValue(value);
                     event.currentTarget.blur();
                     return;
@@ -71,7 +75,7 @@ export function Textbox(props: Textbox.Props) {
         {props.enableIcon && <Button
             className="rounded-l-none px-3"
             iconProp={faSearch}
-            onClick={() => props.enableIcon && props.onValue(value)}
+            onClick={() => props.enableIcon && props.onValue?.(value)}
             ariaLabel={props.placeHolder ?? '...'}
         />}
     </div>;
@@ -101,6 +105,6 @@ export namespace Textbox {
 
         // Callbacks
         onKeyUp?(value: string, key: string): void;
-        onValue(value: string): void;
+        onValue?(value: string): void;
     }
 }
