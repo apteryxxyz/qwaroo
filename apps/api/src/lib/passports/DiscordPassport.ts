@@ -14,11 +14,11 @@ export class DiscordPassport extends Passport<Strategy.Profile> {
         });
     }
 
-    public _formatDisplayName(profile: Strategy.Profile) {
+    public formatDisplayName(profile: Strategy.Profile) {
         return profile.username;
     }
 
-    public _formatAvatarUrl(profile: Strategy.Profile) {
+    public formatAvatarUrl(profile: Strategy.Profile) {
         if (profile.avatar === null) {
             const defaultAvatarNumber =
                 Number.parseInt(profile.discriminator, 10) % 5;
@@ -29,7 +29,7 @@ export class DiscordPassport extends Passport<Strategy.Profile> {
         }
     }
 
-    public _formatUsername(profile: Strategy.Profile) {
+    public formatUsername(profile: Strategy.Profile) {
         return `${profile.username}#${profile.discriminator}`;
     }
 }

@@ -1,5 +1,4 @@
 import { URL } from 'node:url';
-import type { Connection } from '@qwaroo/server';
 import { Encryption, User, Users, getEnv } from '@qwaroo/server';
 import { APIRoutes } from '@qwaroo/types';
 import passport from 'passport';
@@ -37,55 +36,25 @@ export abstract class Passport<Profile extends Omit<passport.Profile, 'name'>> {
             }
         );
 
-        passport.use(strategy);
-        refresh.use(strategy);
+        passport.use(this.providerName, strategy);
+        refresh.use(this.providerName, strategy);
 
         passport.serializeUser((user, done) => done(null, user.id));
         passport.deserializeUser((id, done) => User.Model.findById(id, done));
     }
 
     public async findOrCreateUser(refreshToken: string, profile: Profile) {
-        return Users.ensureUser(
+        return Users.ensureAndRefreshUser(
             this.providerName,
             profile.id,
-            this._formatUsername(profile),
-            this._formatDisplayName(profile),
-            this._formatAvatarUrl(profile),
+            this.formatUsername(profile),
+            this.formatDisplayName(profile),
+            this.formatAvatarUrl(profile),
             Encryption.encryptString(refreshToken)
         );
     }
 
-    public abstract _formatDisplayName(profile: Profile): string;
-    public abstract _formatAvatarUrl(profile: Profile): string;
-    public abstract _formatUsername(profile: Profile): string;
-
-    public async fetchConnectionToken(connection: Connection.Document) {
-        if (!connection.refreshToken) throw new Error('No refresh token found');
-
-        // TODO: Cache these access tokens
-        return new Promise<string>((resolve, reject) =>
-            refresh.requestNewAccessToken(
-                this.providerName,
-                Encryption.decryptString(connection.refreshToken!),
-                (err, accessToken) => {
-                    if (err) reject(err);
-                    else resolve(accessToken);
-                }
-            )
-        );
-    }
-
-    public async fetchProfile(accessToken: string) {
-        return new Promise<Profile>((resolve, reject) => {
-            passport.authenticate(
-                this.providerName,
-                (err: Error, profile: Profile) => {
-                    if (err) reject(err);
-                    else resolve(profile);
-                }
-            )({} as unknown, {} as unknown, () => void 0, {
-                query: { access_token: accessToken },
-            });
-        });
-    }
+    public abstract formatDisplayName(profile: Profile): string;
+    public abstract formatAvatarUrl(profile: Profile): string;
+    public abstract formatUsername(profile: Profile): string;
 }

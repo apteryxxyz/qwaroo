@@ -15,7 +15,7 @@ export class UserHandler extends null {
         const existing = await this.getUserFromAccountId(user.id);
         if (existing) return existing;
 
-        return Users.ensureUser(
+        return Users.ensureAndRefreshUser(
             'discord',
             user.id,
             user.tag,

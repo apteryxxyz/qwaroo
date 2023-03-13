@@ -17,7 +17,6 @@
         "@qwaroo/types": "workspace:^0.0.0",
         "co-body": "^6.1.0",
         "cors": "^2.8.5",
-        "discord-passport": "^1.1.0",
         "dotenv": "^16.0.3",
         "dotenv-expand": "^9.0.0",
         "express": "^4.18.2",

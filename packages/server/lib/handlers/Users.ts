@@ -7,7 +7,7 @@ export class Users extends null {
      * Create a new user and connection.
      * @note This is not intended to be plugged into an API route.
      */
-    public static async ensureUser(
+    public static async ensureAndRefreshUser(
         providerName: string,
         accountId: string,
         accountUsername: string,
@@ -21,9 +21,26 @@ export class Users extends null {
         });
 
         if (connection) {
+            const hasConnectionChanged =
+                connection.accountUsername !== accountUsername ||
+                (refreshToken && connection.refreshToken !== refreshToken);
+            if (hasConnectionChanged)
+                await connection.updateOne({
+                    accountUsername,
+                    refreshToken,
+                });
+
             const user = await connection.getUser();
-            if (user) return user;
-            await connection.remove();
+            const hasUserChanged =
+                user.avatarUrl !== avatarUrl ||
+                user.displayName !== displayName;
+            if (hasUserChanged)
+                await user.updateOne({
+                    avatarUrl,
+                    displayName,
+                });
+
+            return user;
         }
 
         const newUser = new User.Model({
