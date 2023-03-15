@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: 'class',
-    content: ['./app/**/*.tsx', './pages/**/*.tsx', './lib/components/**/*.tsx'],
+    content: [
+        './app/**/*.tsx',
+        './pages/**/*.tsx',
+        './lib/components/**/*.tsx',
+        './lib/modes/**/*.tsx',
+    ],
     theme: {
         extend: {
             maxWidth: {
@@ -11,17 +16,17 @@ module.exports = {
                 '1.5xl': '1.30rem',
             },
             colors: {
-                'qwaroo': {
-                    '50': '#eff6ff',
-                    '100': '#dbebfe',
-                    '200': '#bedcff',
-                    '300': '#92c7fe',
-                    '400': '#5ea8fc',
-                    '500': '#3884f8',
-                    '600': '#2365ed',
-                    '700': '#1b50da',
-                    '800': '#1c41b1',
-                    '900': '#1d3b8b',
+                qwaroo: {
+                    50: '#eff6ff',
+                    100: '#dbebfe',
+                    200: '#bedcff',
+                    300: '#92c7fe',
+                    400: '#5ea8fc',
+                    500: '#3884f8',
+                    600: '#2365ed',
+                    700: '#1b50da',
+                    800: '#1c41b1',
+                    900: '#1d3b8b',
                 },
             },
             keyframes: {
@@ -72,6 +77,6 @@ module.exports = {
             // other
             pattern: /hidden|!min-h-screen/,
             variants: ['dark', 'dark:hover', 'hover'],
-        }
-    ]
+        },
+    ],
 };
