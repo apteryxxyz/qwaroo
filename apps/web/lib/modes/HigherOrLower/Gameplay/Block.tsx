@@ -10,7 +10,6 @@ export function Block(props: Block.Props) {
     const quality = Block.qualityToNumber(props.imageQuality);
     const frame = Block.croppingToFrame(props.imageCropping, props.imageFrame);
 
-    console.log(props);
     const imageUrl = new URL(props.imageSource!);
     const proxyUrl = proxifyImageUrl(imageUrl, quality);
 
