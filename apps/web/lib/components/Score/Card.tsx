@@ -18,7 +18,7 @@ export function ScoreCard(props: ScoreCard.Props) {
 
     return <Card>
         <h3 className="font-semibold text-lg">
-            <Link href={titleUrl} className="text-qwaroo-400">
+            <Link href={titleUrl} className="text-qwaroo-500">
                 {props.game?.title ?? props.user?.displayName}
             </Link>
             <br />

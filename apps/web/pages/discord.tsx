@@ -25,7 +25,7 @@ export default (
         <section className="flex flex-col m-auto max-w-3xl lg:my-[15%]">
             <h1
                 aria-hidden
-                className="text-qwaroo-400 text-center text-8xl font-bold"
+                className="text-qwaroo-500 text-center text-8xl font-bold"
             >
                 <span className="text-8xl font-bold">QWAROO</span>
                 <span className="hidden lg:inline text-4xl">, </span>

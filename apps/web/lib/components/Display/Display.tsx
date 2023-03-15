@@ -8,7 +8,7 @@ export function Display(props: Display.Props) {
         childClassName="flex flex-col gap-3 mx-auto"
     >
         <section>
-            {props.header && <h2 className="text-xl font-semibold text-qwaroo-400">
+            {props.header && <h2 className="text-xl font-semibold text-qwaroo-500">
                 {props.header}
             </h2>}
 

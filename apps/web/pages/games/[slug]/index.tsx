@@ -59,7 +59,7 @@ export default (
             <Card className="flex w-full col-span-2">
                 <div>
                     <span className="flex items-center gap-1">
-                        <h2 className="text-2xl font-bold text-qwaroo-400">
+                        <h2 className="text-2xl font-bold text-qwaroo-500">
                             {game.current.title}
                         </h2>
 
@@ -73,15 +73,24 @@ export default (
                                 key={flag}
                                 icon={BadgeIconMap[flag]}
                                 title={flag}
-                                className="bg-qwaroo-400 rounded-full text-white text-lg aspect-square p-1"
+                                className="bg-qwaroo-500 rounded-full text-white text-lg aspect-square p-1"
                             />)}
                     </span>
+
+                    <div className="flex gap-2 mb-2">
+                        {game.current.categories.map(category => <span
+                            key={category}
+                            className="font-bold bg-qwaroo-500 rounded-xl text-white text-md p-1"
+                        >
+                            {category}
+                        </span>)}
+                    </div>
 
                     <span>
                         {game.current.longDescription} Created by{' '}
                         <a
                             href={WebRoutes.user(creator.current.id)}
-                            className="text-qwaroo-400 font-bold"
+                            className="text-qwaroo-500 font-bold"
                         >
                             {creator.current.displayName}
                         </a>
@@ -97,15 +106,6 @@ export default (
                         })}
                         .
                     </span>
-
-                    <div className="flex mt-2">
-                        {game.current.categories.map(category => <div
-                            key={category}
-                            className="bg-qwaroo-500 rounded-md p-2 font-bold"
-                        >
-                            {category}
-                        </div>)}
-                    </div>
                 </div>
             </Card>
 

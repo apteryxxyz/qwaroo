@@ -22,14 +22,14 @@ export namespace Validate {
     export const ObjectId = /^[\da-f]{24}$/;
 
     // User
-    export const DisplayName = createStringLengthRegExp(3, 32);
+    export const DisplayName = createStringLengthRegExp(3, 40);
     export const AvatarURL = /^(http|https):\/\/.{1,1024}$/;
 
     // Game
-    export const Slug = createStringLengthRegExp(3, 32, 'a-z0-9-');
-    export const Title = createStringLengthRegExp(3, 32);
-    export const ShortDescription = createStringLengthRegExp(3, 64);
-    export const LongDescription = createStringLengthRegExp(128, 512);
+    export const Slug = createStringLengthRegExp(3, 40, 'a-z0-9-');
+    export const Title = createStringLengthRegExp(3, 40);
+    export const ShortDescription = createStringLengthRegExp(10, 80);
+    export const LongDescription = createStringLengthRegExp(100, 500);
     export const ThumbnailURL = /^(http|https):\/\/.{1,1024}$/;
     export const Category = createStringLengthRegExp(3, 32);
 }

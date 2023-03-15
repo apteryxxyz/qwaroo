@@ -2,10 +2,12 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faCode } from '@fortawesome/free-solid-svg-icons/faCode';
 import { faHammer } from '@fortawesome/free-solid-svg-icons/faHammer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { User } from '@qwaroo/client';
 import type { APIUser } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { useRef } from 'react';
 import { Card } from '#/components/Card';
 import { GameBrowser } from '#/components/Game/Browser';
 import { ScoreBrowser } from '#/components/Score/Browser';
@@ -22,13 +24,15 @@ export default (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
     const client = useClient();
-    const user = client.users.append(props.user);
+
+    const user = useRef<User>(null!);
+    if (!user.current) user.current = client.users.append(props.user);
 
     return <>
         <PageSeo
-            url={WebRoutes.user(user.id)}
-            title={`${user.displayName}'s Profile`}
-            description={`View ${user.displayName}'s Qwaroo profile, containing their statistics, achievements, created games, and more.`}
+            url={WebRoutes.user(user.current.id)}
+            title={`${user.current.displayName}'s Profile`}
+            description={`View ${user.current.displayName}'s Qwaroo profile, containing their statistics, achievements, created games, and more.`}
         />
 
         <h2>User Profile</h2>
@@ -37,9 +41,9 @@ export default (
             <picture>
                 <img
                     className="rounded-xl aspect-square"
-                    src={user.avatarUrl}
-                    alt={`${user.displayName}'s avatar`}
-                    title={`${user.displayName}'s avatar`}
+                    src={user.current.avatarUrl}
+                    alt={`${user.current.displayName}'s avatar`}
+                    title={`${user.current.displayName}'s avatar`}
                     width={128}
                     height={128}
                 />
@@ -47,11 +51,11 @@ export default (
 
             <div className="flex flex-col justify-center">
                 <span className="flex items-center gap-1">
-                    <h3 className="text-3xl font-bold text-qwaroo-400">
-                        {user.displayName}
+                    <h3 className="text-3xl font-bold text-qwaroo-500">
+                        {user.current.displayName}
                     </h3>
 
-                    {user.flags
+                    {user.current.flags
                         .toArray()
                         .filter(
                             (flag): flag is keyof typeof BadgeIconMap =>
@@ -61,13 +65,14 @@ export default (
                             key={flag}
                             icon={BadgeIconMap[flag]}
                             title={flag}
-                            className="bg-qwaroo-400 rounded-full text-white text-lg aspect-square p-1"
+                            className="bg-qwaroo-500 rounded-full text-white text-lg aspect-square p-1"
                         />)}
                 </span>
 
                 <span>
-                    Joined {user.joinedAt.toLocaleDateString('en-NZ')}, about{' '}
-                    {ms(Date.now() - user.joinedTimestamp, {
+                    Joined {user.current.joinedAt.toLocaleDateString('en-NZ')},
+                    about{' '}
+                    {ms(Date.now() - user.current.joinedTimestamp, {
                         roundUp: true,
                     })}{' '}
                     ago.
@@ -78,13 +83,13 @@ export default (
         <section>
             <h2>Game Statistics</h2>
 
-            <ScoreBrowser manager={user.scores} />
+            <ScoreBrowser manager={user.current.scores} />
         </section>
 
         <section>
             <h2>Created Games</h2>
 
-            <GameBrowser manager={user.games} />
+            <GameBrowser manager={user.current.games} />
         </section>
     </>;
 };
