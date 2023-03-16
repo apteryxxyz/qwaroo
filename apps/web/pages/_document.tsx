@@ -40,7 +40,6 @@ export default () => {
                 src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
                 data-id="apteryx"
                 data-description="Support me on Buy me a coffee!"
-                data-message="Thanks for visiting Qwaroo! Support development by buying us a coffee!"
                 data-color="#5F7FFF"
                 data-position="left"
                 data-x_margin="10"
