@@ -77,6 +77,9 @@ export const WebRoutes = {
     home() {
         return '/' as const;
     },
+    donate() {
+        return '/donate' as const;
+    },
 
     // Auth
     login() {

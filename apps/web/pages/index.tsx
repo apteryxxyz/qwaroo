@@ -1,3 +1,4 @@
+import { faCoffee } from '@fortawesome/free-solid-svg-icons/faCoffee';
 import type { APIGameStatistics } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
@@ -42,13 +43,21 @@ export default (
             </span>
 
             <div className="flex flex-col items-center gap-3 m-5 font-bold">
-                <div className="flex gap-3 [&>*]:!min-w-[220px] [&>*]:!min-h-[50px] text-xl">
+                <div className="flex gap-3 text-xl">
                     <Button linkProps={{ href: WebRoutes.games() }}>
                         Browse Games
                     </Button>
+
+                    <Button
+                        linkProps={{
+                            href: WebRoutes.donate(),
+                            newTab: true,
+                        }}
+                        iconProp={faCoffee}
+                    ></Button>
                 </div>
 
-                <div className="flex gap-3 [&>*]:!min-w-[160px] [&>*]:!min-h-[40px]">
+                <div className="flex gap-3">
                     <Button linkProps={{ href: WebRoutes.discord() }}>
                         Play on Discord
                     </Button>

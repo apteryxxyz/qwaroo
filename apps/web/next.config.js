@@ -1,3 +1,5 @@
+const { WebRoutes } = require('@qwaroo/types');
+
 /** @type {import('next').NextConfig} */
 let nextConfig = {
     distDir: process.env['BUILD_DIR'] ?? '.next',
@@ -7,13 +9,18 @@ let nextConfig = {
     async redirects() {
         return [
             {
-                source: '/discord/support',
+                source: WebRoutes.discordSupport(),
                 destination: 'https://discord.gg/vZQbMhwsKY',
                 permanent: false,
             },
             {
-                source: '/discord/invite',
+                source: WebRoutes.discordInvite(),
                 destination: 'https://discord.com/api/oauth2/authorize?client_id=1048791046571700274&scope=applications.commands+bot',
+                permanent: false,
+            },
+            {
+                source: WebRoutes.donate(),
+                destination: 'https://buymeacoffee.com/apteryx',
                 permanent: false,
             }
         ]
