@@ -14,7 +14,7 @@ This repository includes the following apps/packages:
 
 - [`CDN`](apps/cdn) - The CDN for the site, it is used to serve static and some dynamic content to the users, such as game data. It is written in TypeScript and uses the Express framework.
 
-- [`Discord`](apps/discord) - The Discord bot version of Qwaroo, brings the games to Discord. **It is still in development**. It is written in TypeScript and uses the Maclary bot framework.
+- [`Discord`](bots/discord) - The Discord bot version of Qwaroo, brings the games to Discord. **It is still in development**. It is written in TypeScript and uses the Maclary bot framework.
 
 - [`Web`](apps/web) - The web client for the site. It is written in TypeScript and uses the NextJS framework.
 

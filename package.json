@@ -1,7 +1,7 @@
 {
     "name": "qwaroo",
     "private": true,
-    "workspaces": ["packages/*", "apps/*"],
+    "workspaces": ["apps/*", "bots/*", "packages/*"],
     "scripts": {
         "build": "lerna run build",
         "build:packages": "lerna run build --scope @qwaroo/*",

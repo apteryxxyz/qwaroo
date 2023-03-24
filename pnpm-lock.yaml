@@ -148,49 +148,6 @@ importers:
       '@types/shuffle-seed': 1.1.0
       tsup: 6.6.3
 
-  apps/discord:
-    specifiers:
-      '@discordjs/builders': ^1.4.0
-      '@maclary/context': ^3.0.1
-      '@qwaroo/common': workspace:^0.0.0
-      '@qwaroo/database': workspace:^0.0.0
-      '@qwaroo/server': workspace:^0.0.0
-      '@qwaroo/types': workspace:^0.0.0
-      '@types/common-tags': ^1.8.1
-      '@types/lodash': ^4.14.191
-      '@types/node': ^18.15.0
-      common-tags: ^1.8.2
-      discord-api-types: ^0.37.35
-      discord.js: ^14.7.1
-      dotenv: ^16.0.3
-      dotenv-expand: ^9.0.0
-      enhanced-ms: ^2.2.0
-      lodash: ^4.17.21
-      maclary: 1.0.2-next.fc03dd6.0
-      tsc-alias: ^1.8.3
-      tsup: ^6.6.3
-    dependencies:
-      '@discordjs/builders': 1.4.0
-      '@maclary/context': 3.0.1_discord.js@14.7.1
-      '@qwaroo/common': link:../../packages/common
-      '@qwaroo/database': link:../../packages/database
-      '@qwaroo/server': link:../../packages/server
-      '@qwaroo/types': link:../../packages/types
-      common-tags: 1.8.2
-      discord-api-types: 0.37.35
-      discord.js: 14.7.1
-      dotenv: 16.0.3
-      dotenv-expand: 9.0.0
-      enhanced-ms: 2.2.0
-      lodash: 4.17.21
-      maclary: 1.0.2-next.fc03dd6.0_discord.js@14.7.1
-    devDependencies:
-      '@types/common-tags': 1.8.1
-      '@types/lodash': 4.14.191
-      '@types/node': 18.15.0
-      tsc-alias: 1.8.3
-      tsup: 6.6.3
-
   apps/web:
     specifiers:
       '@fortawesome/fontawesome-svg-core': ^6.3.0
@@ -255,6 +212,49 @@ importers:
       next-sitemap: 3.1.55_jccvrrmb7rb3yyi3af3znueaea
       postcss-import: 15.1.0_postcss@8.4.21
       typescript: 4.9.5
+
+  bots/discord:
+    specifiers:
+      '@discordjs/builders': ^1.4.0
+      '@maclary/context': ^3.0.1
+      '@qwaroo/common': workspace:^0.0.0
+      '@qwaroo/database': workspace:^0.0.0
+      '@qwaroo/server': workspace:^0.0.0
+      '@qwaroo/types': workspace:^0.0.0
+      '@types/common-tags': ^1.8.1
+      '@types/lodash': ^4.14.191
+      '@types/node': ^18.15.0
+      common-tags: ^1.8.2
+      discord-api-types: ^0.37.35
+      discord.js: ^14.7.1
+      dotenv: ^16.0.3
+      dotenv-expand: ^9.0.0
+      enhanced-ms: ^2.2.0
+      lodash: ^4.17.21
+      maclary: 1.0.2-next.fc03dd6.0
+      tsc-alias: ^1.8.3
+      tsup: ^6.6.3
+    dependencies:
+      '@discordjs/builders': 1.4.0
+      '@maclary/context': 3.0.1_discord.js@14.7.1
+      '@qwaroo/common': link:../../packages/common
+      '@qwaroo/database': link:../../packages/database
+      '@qwaroo/server': link:../../packages/server
+      '@qwaroo/types': link:../../packages/types
+      common-tags: 1.8.2
+      discord-api-types: 0.37.35
+      discord.js: 14.7.1
+      dotenv: 16.0.3
+      dotenv-expand: 9.0.0
+      enhanced-ms: 2.2.0
+      lodash: 4.17.21
+      maclary: 1.0.2-next.fc03dd6.0_discord.js@14.7.1
+    devDependencies:
+      '@types/common-tags': 1.8.1
+      '@types/lodash': 4.14.191
+      '@types/node': 18.15.0
+      tsc-alias: 1.8.3
+      tsup: 6.6.3
 
   packages/client:
     specifiers:
@@ -1943,7 +1943,7 @@ packages:
     engines: {node: ^14.15.0 || >=16.0.0}
     dependencies:
       chalk: 4.1.0
-      execa: 5.0.0
+      execa: 5.1.1
       strong-log-transformer: 2.1.0
     dev: true
 
@@ -1983,7 +1983,7 @@ packages:
       '@motionone/easing': 10.15.1
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: false
 
   /@motionone/dom/10.15.5:
@@ -1994,14 +1994,14 @@ packages:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
       hey-listen: 1.0.8
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: false
 
   /@motionone/easing/10.15.1:
     resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
     dependencies:
       '@motionone/utils': 10.15.1
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: false
 
   /@motionone/generators/10.15.1:
@@ -2009,7 +2009,7 @@ packages:
     dependencies:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: false
 
   /@motionone/types/10.15.1:
@@ -2021,7 +2021,7 @@ packages:
     dependencies:
       '@motionone/types': 10.15.1
       hey-listen: 1.0.8
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: false
 
   /@next/bundle-analyzer/13.2.4:
@@ -4131,6 +4131,7 @@ packages:
   /discord.js/14.7.1:
     resolution: {integrity: sha512-1FECvqJJjjeYcjSm0IGMnPxLqja/pmG1B0W2l3lUY2Gi4KXiyTeQmU1IxWcbXHn2k+ytP587mMWqva2IA87EbA==}
     engines: {node: '>=16.9.0'}
+    deprecated: Hard crashes on interactions with a channel in the payload, use 14.8.0 and up
     dependencies:
       '@discordjs/builders': 1.4.0
       '@discordjs/collection': 1.3.0
@@ -4751,9 +4752,9 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       cross-spawn: 7.0.3
-      get-stream: 6.0.0
+      get-stream: 6.0.1
       human-signals: 2.1.0
-      is-stream: 2.0.0
+      is-stream: 2.0.1
       merge-stream: 2.0.0
       npm-run-path: 4.0.1
       onetime: 5.1.2
@@ -5201,7 +5202,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -6536,7 +6537,7 @@ packages:
       array-differ: 3.0.0
       array-union: 2.1.0
       arrify: 2.0.1
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /mute-stream/0.0.8:

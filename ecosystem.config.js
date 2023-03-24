@@ -22,7 +22,7 @@ module.exports = [
     },
     {
         name: 'Qwaroo Discord',
-        cwd: './apps/discord',
+        cwd: './bots/discord',
         script,
         args: 'start',
         instances: 1,
