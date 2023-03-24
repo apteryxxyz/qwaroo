@@ -48,7 +48,7 @@ const lists = [
 ];
 const poster = new Poster(isDevelopment ? [] : lists, {
     shardCount: () => client.shard?.count ?? 1,
-    guildCount: () => 11,
+    guildCount: () => client.guilds.cache.size,
     userCount: () => client.guilds.cache.reduce((a, b) => a + b.memberCount, 0),
     voiceConnectionCount: () => 0,
 });
