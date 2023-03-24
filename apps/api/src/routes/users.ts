@@ -6,6 +6,7 @@ import {
     useMustBeMe,
     useToken,
 } from '@qwaroo/middleware';
+import type { User } from '@qwaroo/server';
 import { Users } from '@qwaroo/server';
 import { APIRoutes } from '@qwaroo/types';
 
@@ -42,7 +43,10 @@ export default () => {
         useMe('userId'),
         handle(async (req, res) => {
             const userId = String(req.params['userId'] || '');
-            const user = await Users.getUser(userId);
+            const user = (await Users.getUser(
+                userId,
+                req.user
+            )) as User.Document;
 
             res.status(200).json({ success: true, ...user.toJSON() });
         })
@@ -56,7 +60,7 @@ export default () => {
         useMustBeMe('userId', ['GET']),
         handle(async (req, res) => {
             const userId = String(req.params['userId'] || '');
-            const user = await Users.getUser(userId);
+            const user = await Users.getUser(userId, req.user);
 
             const connection = await user.getConnection();
             if (!connection) throw new Error(404, 'Connection not found');

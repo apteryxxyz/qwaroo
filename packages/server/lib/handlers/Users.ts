@@ -61,9 +61,11 @@ export class Users extends null {
     }
 
     /** Get an existing user by their ID. */
-    public static async getUser(id: string) {
+    public static async getUser(id: string, defaultUser?: User.Document) {
         if (!Validate.ObjectId.test(id))
             throw new Error(404, 'User was not found');
+
+        if (defaultUser && defaultUser.id === id) return defaultUser;
 
         const user = await User.Model.findById(id).exec();
         if (!user) throw new Error(404, 'User was not found');

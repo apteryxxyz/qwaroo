@@ -12,7 +12,9 @@ export default () => {
         useMe('userId'),
         handle(async (req, res) => {
             const userId = String(req.params['userId'] ?? '') || undefined;
-            const user = userId ? await Users.getUser(userId) : undefined;
+            const user = userId
+                ? await Users.getUser(userId, req.user)
+                : undefined;
 
             const categories = await Games.getCategories(user);
             res.status(200).json({ success: true, items: categories });
@@ -26,7 +28,9 @@ export default () => {
         useMe('userId'),
         handle(async (req, res) => {
             const userId = String(req.params['userId'] ?? '') || undefined;
-            const user = userId ? await Users.getUser(userId) : undefined;
+            const user = userId
+                ? await Users.getUser(userId, req.user)
+                : undefined;
 
             const statistics = await Statistics.getGameStatistics(user);
             res.status(200).json({ success: true, ...statistics });
@@ -53,7 +57,9 @@ export default () => {
             opts['order'] = String(req.search['order'] ?? '') || undefined;
 
             const userId = String(req.params['userId'] ?? '') || undefined;
-            const user = userId ? await Users.getUser(userId) : undefined;
+            const user = userId
+                ? await Users.getUser(userId, req.user)
+                : undefined;
 
             const [data, items] = await Games.getGames(opts, user, req.user);
             res.status(200).json({ success: true, ...data, items });
@@ -67,7 +73,9 @@ export default () => {
         useMe('userId'),
         handle(async (req, res) => {
             const userId = String(req.params['userId'] ?? '') || undefined;
-            const user = userId ? await Users.getUser(userId) : undefined;
+            const user = userId
+                ? await Users.getUser(userId, req.user)
+                : undefined;
 
             const gameId = String(req.params['gameId'] ?? '');
             const game = await Games.getGame(gameId, user, true);

@@ -19,7 +19,7 @@ export default () => {
         useMe('userId'),
         handle(async (req, res) => {
             const userId = String(req.params['userId']);
-            const user = await Users.getUser(userId);
+            const user = await Users.getUser(userId, req.user);
 
             const opts: Record<string, unknown> = {};
             opts['limit'] = Number(req.search['limit'] ?? 0) || undefined;
@@ -66,7 +66,7 @@ export default () => {
         useMe('userId'),
         handle(async (req, res) => {
             const userId = String(req.params['userId']);
-            const user = await Users.getUser(userId);
+            const user = await Users.getUser(userId, req.user);
 
             const scoreOrGameId = String(req.params['scoreOrGameId']);
             const score = await Scores.getScore(user, scoreOrGameId);
@@ -88,7 +88,7 @@ export default () => {
 
             if (req.path.includes('user')) {
                 const userId = String(req.params['userId']);
-                const user = await Users.getUser(userId);
+                const user = await Users.getUser(userId, req.user);
 
                 childId = String(req.params['scoreOrGameId']);
                 entity = user;
