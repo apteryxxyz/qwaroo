@@ -1,8 +1,6 @@
-import {
-    faSearch,
-    faSortAmountDownAlt,
-    faSortAmountUpAlt,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { faSortAmountDownAlt } from '@fortawesome/free-solid-svg-icons/faSortAmountDownAlt';
+import { faSortAmountUpAlt } from '@fortawesome/free-solid-svg-icons/faSortAmountUpAlt';
 import type { GameManager } from '@qwaroo/client';
 import { GameListing } from '@qwaroo/client';
 import type { FetchGamesOptions } from '@qwaroo/types';
@@ -22,7 +20,6 @@ export function GameBrowser(props: GameBrowser.Props) {
 
     const client = useClient();
     const router = useRouter();
-
     const browserRef = useRef<HTMLDivElement>(null);
 
     const games = useRef<GameListing | null>(null);
@@ -45,9 +42,7 @@ export function GameBrowser(props: GameBrowser.Props) {
     async function loadMoreGames() {
         if (!games.current || isLoadingMore === true) return;
         setIsLoadingMore(true);
-
         await fetchAdditionalGames(games.current);
-
         setIsLoadingMore(false);
     }
 
@@ -71,6 +66,11 @@ export function GameBrowser(props: GameBrowser.Props) {
         games.current = listing;
 
         setIsLoadingOptions(false);
+    }
+
+    async function changeOption(key: string, value: unknown) {
+        const newOptions = { [key]: value };
+        await loadNewOptions(newOptions);
     }
 
     function resizeGrid() {
@@ -104,14 +104,14 @@ export function GameBrowser(props: GameBrowser.Props) {
 
     return <div className="flex flex-col gap-3 w-full">
         {/* Filter bar */}
-        <form className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap gap-1">
             {/* Search box */}
             <Textbox
                 ariaRole="searchbox"
                 placeHolder="Search games..."
                 iconProp={faSearch}
                 value={options.term}
-                onValue={v => loadNewOptions({ term: v })}
+                onValue={v => changeOption('term', v)}
                 enableIcon
                 enableEnter
             />
@@ -130,7 +130,7 @@ export function GameBrowser(props: GameBrowser.Props) {
                     },
                 ]}
                 defaultValue={options.sort}
-                onChange={v => loadNewOptions({ sort: v })}
+                onChange={v => changeOption('sort', v)}
             />
 
             {/* Sort direction */}
@@ -143,12 +143,13 @@ export function GameBrowser(props: GameBrowser.Props) {
                         : faSortAmountUpAlt
                 }
                 onClick={() =>
-                    void loadNewOptions({
-                        order: options.order === 'asc' ? 'desc' : 'asc',
-                    })
+                    changeOption(
+                        'order',
+                        options.order === 'asc' ? 'desc' : 'asc'
+                    )
                 }
             />
-        </form>
+        </div>
 
         {/* Games grid */}
         {games.current ? (
@@ -177,6 +178,7 @@ export namespace GameBrowser {
     export interface Props {
         manager: GameManager;
         enablePathQuery?: boolean;
+        perPage?: number;
     }
 
     export function parseOptions(...allOptions: FetchGamesOptions[]) {
