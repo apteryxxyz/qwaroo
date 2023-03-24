@@ -91,7 +91,7 @@ export namespace Dropdown {
 
 export function Option(props: Option.Props) {
     return <Button
-        className={`w-full min-w-[180px] rounded-none
+        className={`w-full min-w-[180px] !rounded-none
             ${props.isLast ? '!rounded-b-xl' : ''}`}
         onClick={() => props.onClick(props.value)}
         ariaRole="option"
