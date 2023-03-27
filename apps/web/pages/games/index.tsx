@@ -10,7 +10,9 @@ export default () => {
         <PageSeo
             url={WebRoutes.games()}
             title="Games"
-            description="Ready to have some fun? Check out our collection of exciting guessing and statistics-based games! Can you guess which country has a higher population, or which movie has a better rating on IMDb? Find out today!"
+            description="Explore our collection of exciting guessing and statistics-based games!
+            Can you guess which country has a higher population, or which movie has a better rating on IMDb?
+            Find out today!"
         />
 
         <h2>Game Modes</h2>

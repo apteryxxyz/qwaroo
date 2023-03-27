@@ -16,7 +16,7 @@ export default (
     return <>
         <PageSeo
             title="Home"
-            description="Ready to have some fun? Check out our collection of exciting guessing and statistics-based games!
+            description="Explore our collection of exciting guessing and statistics-based games!
             Can you guess which country has a higher population, or which movie has a better rating on IMDb?
             Find out today!"
             url="/"
@@ -31,8 +31,8 @@ export default (
             </h1>
 
             <h2 className="text-xl text-center max-w-xl">
-                Ready to have some fun? Check out our collection of exciting
-                guessing and statistics-based games!
+                Explore our collection of exciting guessing and statistics-based
+                games!
             </h2>
 
             <span className="text-center">

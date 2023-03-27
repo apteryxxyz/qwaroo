@@ -7,7 +7,7 @@ export default () => {
     >
         <PageSeo
             title="Terms of Use"
-            description="Ready to have some fun? Check out our collection of exciting guessing and statistics-based games!
+            description="Explore our collection of exciting guessing and statistics-based games!
             Can you guess which country has a higher population, or which movie has a better rating on IMDb?
             Find out today!"
             url="/policies/terms"
@@ -100,7 +100,7 @@ export default () => {
                 All content and software related to our services, unless
                 otherwise stated, is the property of Apteryx Software and is
                 protected by copyright laws. You may not use any content or
-                software on our webiste without our express written permission.
+                software on our webiste withour express written permission.
             </p>
 
             <p>
