@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { URL } from 'node:url';
 import { ButtonBuilder, EmbedBuilder } from '@discordjs/builders';
 import { getEnv } from '@qwaroo/server';
 import { WebRoutes } from '@qwaroo/types';
@@ -97,6 +98,15 @@ export function buildGeneralButtons() {
             .setStyle(ButtonStyle.Link)
             .setURL(getSupportInvite())
             .setLabel('Support'),
+        new ButtonBuilder()
+            .setStyle(ButtonStyle.Link)
+            .setURL(
+                new URL(
+                    WebRoutes.donate(),
+                    getEnv(String, 'WEB_URL')
+                ).toString()
+            )
+            .setLabel('Donate'),
     ];
 }
 
