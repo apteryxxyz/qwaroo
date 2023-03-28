@@ -5,7 +5,9 @@ import { Textbox } from './Textbox';
 
 export function TagTextbox(props: TagTextbox.Props) {
     const [value, setValue] = useState('');
-    const [tags, setTags] = useState(props.initialTags ?? []);
+    const [tags, setTags] = props.setTags
+        ? [props.tags ?? [], props.setTags]
+        : useState(props.tags ?? []);
 
     function onChange(value: string, key: string) {
         if ((key !== ',' && key !== 'Enter') || !value) return;
@@ -22,14 +24,12 @@ export function TagTextbox(props: TagTextbox.Props) {
         );
 
         setTags(newTags);
-        props.onChange(newTags);
         setValue('');
     }
 
     function removeTag(tag: string) {
         const newTags = tags.filter(t => t !== tag);
         setTags(newTags);
-        props.onChange(newTags);
     }
 
     return <div className="flex flex-col gap-2">
@@ -59,6 +59,25 @@ export function TagTextbox(props: TagTextbox.Props) {
     </div>;
 }
 
+//     function removeTag(tag: string) {
+//         const newTags = tags.filter(t => t !== tag);
+//         setTags(newTags);
+//         props.onChange(newTags);
+//     }
+
+//     return <div className="flex flex-col gap-2">
+//         <Textbox
+//             {...props}
+//             onValue={() => null}
+//             onKeyUp={onChange}
+//             value={value}
+//             setValue={setValue}
+//             isDisabled={tags.length >= (props.maxTags ?? 10)}
+//         />
+
+//     </div>;
+// }
+
 export namespace TagTextbox {
     export interface Props {
         // Visual properties
@@ -67,8 +86,8 @@ export namespace TagTextbox {
         ariaRole?: string;
 
         // Tag-related properties
-        initialTags?: string[];
-        onChange(tags: string[]): void;
+        tags?: string[];
+        setTags?(tags: string[]): void;
         maxTags?: number;
         mustMatch?: RegExp;
     }

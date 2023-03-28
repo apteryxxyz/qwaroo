@@ -129,6 +129,14 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
         return undefined;
     }
 
+    public async edit(changes: Partial<Game.Entity>) {
+        if (this.client.id !== this.creatorId) return this;
+
+        const path = Types.APIRoutes.game(this.id);
+        const data = await this.client.api.patch(path, undefined, changes);
+        return this.patch(data);
+    }
+
     /** Fetch the first set of items for this game. */
     public async fetchItems() {
         const listing = new ItemListing<Game.Item<M>>(

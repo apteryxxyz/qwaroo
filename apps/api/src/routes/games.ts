@@ -1,4 +1,10 @@
-import { handle, useMe, useMethods, useToken } from '@qwaroo/middleware';
+import {
+    handle,
+    useBody,
+    useMe,
+    useMethods,
+    useToken,
+} from '@qwaroo/middleware';
 import { Games, Items, Statistics, Users } from '@qwaroo/server';
 import { APIRoutes } from '@qwaroo/types';
 
@@ -68,9 +74,10 @@ export default () => {
 
     router.all(
         [APIRoutes.game(':gameId'), APIRoutes.userGame(':userId', ':gameId')],
-        useMethods(['GET']),
-        useToken([]),
+        useMethods(['GET', 'PATCH']),
+        useToken(['PATCH']),
         useMe('userId'),
+        useBody(['PATCH']),
         handle(async (req, res) => {
             const userId = String(req.params['userId'] ?? '') || undefined;
             const user = userId
@@ -79,6 +86,9 @@ export default () => {
 
             const gameId = String(req.params['gameId'] ?? '');
             const game = await Games.getGame(gameId, user, true);
+
+            if (req.method === 'PATCH')
+                await Games.updateGame(game, req.user!, req.body);
 
             res.status(200).json({ success: true, ...game.toJSON() });
         })

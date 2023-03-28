@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Game, User } from '@qwaroo/client';
 import type { APIGame, APIScore, APIUser } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
@@ -12,8 +11,6 @@ import { ScoreBrowser } from '#/components/Score/Browser';
 import { GameSeo } from '#/components/Seo';
 import { useClient } from '#/contexts/Client';
 import { removeUndefined } from '#/utilities/object';
-
-const BadgeIconMap = {};
 
 export default (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -55,39 +52,15 @@ export default (
     return <>
         <GameSeo game={props.game} />
 
-        <section className="contents lg:grid grid-cols-3 gap-2">
-            <Card className="flex w-full col-span-2">
-                <div>
-                    <span className="flex items-center gap-1">
-                        <h2 className="text-2xl font-bold text-qwaroo-500">
-                            {game.current.title}
-                        </h2>
+        <h2>{game.current.title}</h2>
 
-                        {game.current.flags
-                            .toArray()
-                            .filter(
-                                (flag): flag is keyof typeof BadgeIconMap =>
-                                    flag in BadgeIconMap
-                            )
-                            .map(flag => <FontAwesomeIcon
-                                key={flag}
-                                icon={BadgeIconMap[flag]}
-                                title={flag}
-                                className="bg-qwaroo-500 rounded-full text-white text-lg aspect-square p-1"
-                            />)}
-                    </span>
-
-                    <div className="flex gap-2 mb-2">
-                        {game.current.categories.map(category => <span
-                            key={category}
-                            className="font-bold bg-qwaroo-500 rounded-xl text-white text-md p-1"
-                        >
-                            {category}
-                        </span>)}
-                    </div>
-
-                    <span>
-                        {game.current.longDescription} Created by{' '}
+        <div className="lg:grid grid-cols-3 gap-3">
+            <div className="flex flex-col col-span-2 gap-3">
+                <Card className="flex flex-col w-full">
+                    <p>
+                        {game.current.longDescription}
+                        <br />
+                        Created by{' '}
                         <a
                             href={WebRoutes.user(creator.current.id)}
                             className="text-qwaroo-500 font-bold"
@@ -105,24 +78,35 @@ export default (
                             roundUp: true,
                         })}
                         .
-                    </span>
+                    </p>
+                </Card>
+
+                <div className="flex [&>*]:!w-full gap-3">
+                    <Button
+                        className="text-3xl font-bold !bg-qwaroo-500"
+                        linkProps={{
+                            href: WebRoutes.playGame(game.current.slug),
+                        }}
+                    >
+                        Play
+                    </Button>
+
+                    {props.isCreator && <Button
+                        className="text-3xl font-bold !bg-qwaroo-500"
+                        linkProps={{
+                            href: WebRoutes.editGame(game.current.slug),
+                        }}
+                    >
+                        Edit
+                    </Button>}
                 </div>
-            </Card>
 
-            <Button
-                className="text-3xl font-bold !bg-qwaroo-500 animate-scale"
-                linkProps={{ href: WebRoutes.playGame(game.current.slug) }}
-            >
-                PLAY
-            </Button>
-        </section>
+                <section className="col-span-3 lg:col-span-2">
+                    <h2>Leaderboard</h2>
 
-        <div className="grid grid-cols-3 gap-3">
-            <section className="col-span-3 lg:col-span-2">
-                <h2>Leaderboard</h2>
-
-                <ScoreBrowser manager={game.current.scores} />
-            </section>
+                    <ScoreBrowser manager={game.current.scores} />
+                </section>
+            </div>
 
             <section className="hidden lg:block">
                 <iframe
@@ -133,6 +117,30 @@ export default (
                 />
             </section>
         </div>
+
+        {/* <section className="contents lg:grid grid-cols-3">
+            
+
+            <Button
+                className="text-3xl font-bold !bg-qwaroo-500"
+                linkProps={{ href: WebRoutes.playGame(game.current.slug) }}
+            >
+                PLAY
+            </Button>
+        </section>
+
+        <div className="grid grid-cols-3 gap-3">
+            
+
+            <section className="hidden lg:block">
+                <iframe
+                    ref={embedRef}
+                    className="rounded-xl w-full aspect-[9/16]"
+                    src={WebRoutes.previewGame(game.current.slug)}
+                    onLoad={handleEmbedLoad}
+                />
+            </section>
+        </div> */}
     </>;
 };
 
@@ -140,6 +148,7 @@ export const getServerSideProps: GetServerSideProps<{
     game: APIGame;
     creator: APIUser;
     score?: APIScore;
+    isCreator: boolean;
 }> = async context => {
     const slug = String(context.params?.['slug'] ?? '');
     if (!slug) return { notFound: true };
@@ -160,6 +169,7 @@ export const getServerSideProps: GetServerSideProps<{
             game: game.toJSON(),
             creator: creator.toJSON(),
             score: score?.toJSON(),
+            isCreator: client.id === creator.id,
         }),
     };
 };

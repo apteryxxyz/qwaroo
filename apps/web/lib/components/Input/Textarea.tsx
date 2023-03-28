@@ -35,7 +35,7 @@ export function Textarea(props: Textarea.Props) {
     return <div role={props.ariaRole} className="flex">
         <motion.textarea
             className={`w-full p-2 bg-neutral-100 dark:bg-neutral-800
-                ${isValid ? '' : 'outline outline-red-500'}
+                ${isValid ? '' : 'outline outline-red-500'} rounded-xl
                 ${props.className ?? ''}`}
             placeholder={props.placeHolder}
             value={value}

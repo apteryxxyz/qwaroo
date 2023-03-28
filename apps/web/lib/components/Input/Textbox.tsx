@@ -40,6 +40,7 @@ export function Textbox(props: Textbox.Props) {
             className={`w-full p-2 bg-neutral-100 dark:bg-neutral-800
                 ${props.enableIcon ? 'rounded-l-xl' : 'rounded-xl'}
                 ${isValid ? '' : 'outline outline-red-500'}
+                ${props.isDisabled ? 'cursor-not-allowed' : ''}
                 ${props.className ?? ''}`}
             placeholder={props.placeHolder}
             value={value}

@@ -1,5 +1,6 @@
 import { ServerError as Error, Validate, createRegExp } from '@qwaroo/common';
 import type { FetchGamesOptions } from '@qwaroo/types';
+import _ from 'lodash';
 import type { User } from '#/utilities/structures';
 import { Game } from '#/utilities/structures';
 
@@ -33,6 +34,79 @@ export class Games extends null {
         const isPublic = (game.flags & Game.Flags.Public) !== 0;
         const isCreator = user && game.creatorId === user.id;
         if (!isPublic && !isCreator) throw new Error(403, 'Game was not found');
+
+        return game;
+    }
+
+    /** Update a game. */
+    public static async updateGame(
+        game: Game.Document,
+        user: User.Document,
+        data: Partial<Game.Entity>
+    ) {
+        const isPublic = (game.flags & Game.Flags.Public) !== 0;
+        const isCreator = user.id === game.creatorId;
+        if (!isPublic && !isCreator) throw new Error(403, 'Game was not found');
+
+        const isEqual = (a: unknown, b: unknown) => a !== undefined && a !== b;
+
+        if (isEqual(data.shortDescription, game.shortDescription))
+            game.shortDescription = String(data.shortDescription ?? '').trim();
+        if (isEqual(data.longDescription, game.longDescription))
+            game.longDescription = String(data.longDescription ?? '').trim();
+
+        if (isEqual(data.thumbnailUrl, game.thumbnailUrl))
+            game.thumbnailUrl = String(data.thumbnailUrl ?? '').trim();
+        if (
+            data.categories &&
+            isEqual(
+                JSON.stringify(data.categories),
+                JSON.stringify(game.categories)
+            )
+        )
+            game.categories = Array.isArray(data.categories)
+                ? data.categories
+                      .filter(cat => Validate.Category.test(cat))
+                      .map(cat => _.startCase(String(cat).toLowerCase()))
+                : [];
+
+        if (game.mode === Game.Mode.HigherOrLower && data.extraData) {
+            if (isEqual(data.extraData.valueVerb, game.extraData.valueVerb))
+                game.extraData.valueVerb = String(
+                    data.extraData.valueVerb ?? ''
+                ).trim();
+            if (isEqual(data.extraData.valueNoun, game.extraData.valueNoun))
+                game.extraData.valueNoun = String(
+                    data.extraData.valueNoun ?? ''
+                ).trim();
+            if (isEqual(data.extraData.valuePrefix, game.extraData.valuePrefix))
+                game.extraData.valuePrefix = String(
+                    data.extraData.valuePrefix ?? ''
+                ).trim();
+            if (isEqual(data.extraData.valueSuffix, game.extraData.valueSuffix))
+                game.extraData.valueSuffix = String(
+                    data.extraData.valueSuffix ?? ''
+                ).trim();
+            if (isEqual(data.extraData.higherText, game.extraData.higherText))
+                game.extraData.higherText = String(
+                    data.extraData.higherText ?? ''
+                ).trim();
+            if (isEqual(data.extraData.lowerText, game.extraData.lowerText))
+                game.extraData.lowerText = String(
+                    data.extraData.lowerText ?? ''
+                ).trim();
+
+            // Mongoose doesnt detect changes to nested objects, so we have to manually mark it as modified
+            game.markModified('extraData');
+        }
+
+        if (game.isModified()) {
+            game.updatedTimestamp = Date.now();
+            await game.save().catch(error => {
+                console.log(error);
+                throw new Error(400, 'Failed to update game');
+            });
+        }
 
         return game;
     }
