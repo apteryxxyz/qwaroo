@@ -10,7 +10,7 @@
         "dev": "npm run build && npm run start"
     },
     "dependencies": {
-        "@discordjs/builders": "^1.4.0",
+        "@discordjs/builders": "^1.5.0",
         "@maclary/context": "^3.0.1",
         "@maclary/lists": "0.1.1-next.f2167ae.0",
         "@qwaroo/common": "workspace:^0.0.0",
@@ -18,8 +18,8 @@
         "@qwaroo/server": "workspace:^0.0.0",
         "@qwaroo/types": "workspace:^0.0.0",
         "common-tags": "^1.8.2",
-        "discord-api-types": "^0.37.35",
-        "discord.js": "^14.7.1",
+        "discord-api-types": "^0.37.37",
+        "discord.js": "^14.8.0",
         "dotenv": "^16.0.3",
         "dotenv-expand": "^9.0.0",
         "enhanced-ms": "^2.2.0",
@@ -28,10 +28,10 @@
     },
     "devDependencies": {
         "@types/common-tags": "^1.8.1",
-        "@types/lodash": "^4.14.191",
-        "@types/node": "^18.15.0",
-        "tsc-alias": "^1.8.3",
-        "tsup": "^6.6.3"
+        "@types/lodash": "^4.14.192",
+        "@types/node": "^18.15.11",
+        "tsc-alias": "^1.8.5",
+        "tsup": "^6.7.0"
     },
     "nx": {
         "targets": {

@@ -10,9 +10,9 @@
         "dev": "next dev"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^6.3.0",
-        "@fortawesome/free-brands-svg-icons": "^6.3.0",
-        "@fortawesome/free-solid-svg-icons": "^6.3.0",
+        "@fortawesome/fontawesome-svg-core": "^6.4.0",
+        "@fortawesome/free-brands-svg-icons": "^6.4.0",
+        "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@qwaroo/client": "workspace:^0.0.0",
         "@qwaroo/common": "workspace:^0.0.0",
@@ -28,16 +28,16 @@
         "postcss-preset-env": "^7.8.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-parallax-tilt": "^1.7.112",
+        "react-parallax-tilt": "^1.7.121",
         "react-pipeline-component": "^1.1.0",
-        "tailwindcss": "^3.2.7"
+        "tailwindcss": "^3.3.1"
     },
     "devDependencies": {
         "@next/bundle-analyzer": "^13.2.4",
         "@next/env": "^13.2.4",
         "@types/gtag.js": "^0.0.12",
-        "@types/node": "^18.15.0",
-        "@types/react": "^18.0.28",
+        "@types/node": "^18.15.11",
+        "@types/react": "^18.0.31",
         "@types/react-dom": "^18.0.11",
         "next-sitemap": "^3.1.55",
         "postcss-import": "^15.1.0",

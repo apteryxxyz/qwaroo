@@ -37,7 +37,8 @@
         "@types/passport-oauth2": "^1.4.12",
         "@types/passport-oauth2-refresh": "^1.1.1",
         "@types/qs": "^6.9.7",
-        "tsup": "^6.6.3"
+        "eslint": "^8.37.0",
+        "tsup": "^6.7.0"
     },
     "nx": {
         "targets": {
