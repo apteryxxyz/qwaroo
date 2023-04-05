@@ -69,6 +69,9 @@ export namespace Game {
             flags: { type: Number, default: Types.Game.Flags.None },
             extraData: { type: Object, default: {} },
 
+            sourceSlug: { type: String, match: Validate.Slug },
+            sourceProperties: { type: Object, default: {} },
+
             highScore: { type: Number, default: 0 },
             highScoreTime: { type: Number, default: 0 },
             highScorePlayedTimestamp: { type: Number, default: 0 },
@@ -82,7 +85,8 @@ export namespace Game {
             lastPlayedTimestamp: { type: Number, default: 0 },
 
             createdTimestamp: { type: Number, default: Date.now },
-            updatedTimestamp: { type: Number, default: Date.now },
+            editedTimestamp: { type: Number, default: Date.now },
+            updatedTimestamp: { type: Number },
         },
         {
             toJSON: {

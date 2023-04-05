@@ -28,6 +28,7 @@ export interface FetchGamesOptions extends FetchPageOptions {
         | 'totalPlays'
         | 'lastPlayedTimestamp'
         | 'createdTimestamp'
+        | 'editedTimestamp'
         | 'updatedTimestamp';
     order?: 'asc' | 'desc';
 }

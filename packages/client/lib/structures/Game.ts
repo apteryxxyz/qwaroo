@@ -30,6 +30,12 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
     public flags!: GameFlagsBitField;
     /** Additional data properties. */
     public extraData!: Game.Extra<M>;
+
+    /** The slug of the source. */
+    public sourceSlug?: string;
+    /** Additional properties for the source. */
+    public sourceProperties?: Record<string, unknown>;
+
     /** The highest score this game has gotten. */
     public highScore!: number;
     /** The time it took to get the highest score. */
@@ -50,8 +56,10 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
     public lastPlayedTimestamp!: number;
     /** When this game was created. */
     public createdTimestamp!: number;
-    /** When this game was last updated. */
-    public updatedTimestamp!: number;
+    /** When this game was last edited. */
+    public editedTimestamp!: number;
+    /** When this game items were last updated. */
+    public updatedTimestamp?: number;
 
     public constructor(manager: GameManager, data: Types.APIGame<M>) {
         super(manager, data);
@@ -71,6 +79,8 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
         this.categories = data.categories;
         this.flags = new GameFlagsBitField(data.flags);
         this.extraData = data.extraData ?? {};
+        this.sourceSlug = data.sourceSlug;
+        this.sourceProperties = data.sourceProperties;
         this.highScore = data.highScore;
         this.highScoreTime = data.highScoreTime;
         this.highScorePlayedTimestamp = data.highScorePlayedTimestamp;
@@ -81,6 +91,7 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
         this.lastTime = data.lastTime;
         this.lastPlayedTimestamp = data.lastPlayedTimestamp;
         this.createdTimestamp = data.createdTimestamp;
+        this.editedTimestamp = data.editedTimestamp;
         this.updatedTimestamp = data.updatedTimestamp;
 
         return super.patch(data);
@@ -97,8 +108,15 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
     }
 
     /** The date the game was last updated. */
+    public get editedAt() {
+        return new Date(this.editedTimestamp);
+    }
+
+    /** The date the game's items were last updated. */
     public get updatedAt() {
-        return new Date(this.updatedTimestamp);
+        return this.updatedTimestamp
+            ? new Date(this.updatedTimestamp)
+            : undefined;
     }
 
     /** The human readable name for this games mode. */
@@ -148,6 +166,12 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
         return listing;
     }
 
+    public async updateItems() {
+        const path = Types.APIRoutes.gameItems(this.id);
+        const data = await this.client.api.post(path);
+        return data.version as string;
+    }
+
     public override equals(other: Game | Types.APIGame) {
         return (
             super.equals(other) &&
@@ -162,6 +186,9 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
             this.flags.equals(Number(other.flags)) &&
             JSON.stringify(this.extraData ?? {}) ===
                 JSON.stringify(other.extraData ?? {}) &&
+            this.sourceSlug === other.sourceSlug &&
+            JSON.stringify(this.sourceProperties ?? {}) ===
+                JSON.stringify(other.sourceProperties ?? {}) &&
             this.highScore === other.highScore &&
             this.highScoreTime === other.highScoreTime &&
             this.highScorePlayedTimestamp === other.highScorePlayedTimestamp &&
@@ -172,6 +199,7 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
             this.lastTime === other.lastTime &&
             this.lastPlayedTimestamp === other.lastPlayedTimestamp &&
             this.createdTimestamp === other.createdTimestamp &&
+            this.editedTimestamp === other.editedTimestamp &&
             this.updatedTimestamp === other.updatedTimestamp
         );
     }
@@ -189,6 +217,8 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
             categories: this.categories,
             flags: Number(this.flags),
             extraData: this.extraData,
+            sourceSlug: this.sourceSlug,
+            sourceProperties: this.sourceProperties,
             highScore: this.highScore,
             highScoreTime: this.highScoreTime,
             highScorePlayedTimestamp: this.highScorePlayedTimestamp,
@@ -199,6 +229,7 @@ export class Game<M extends Game.Mode = Game.Mode> extends Base {
             lastTime: this.lastTime,
             lastPlayedTimestamp: this.lastPlayedTimestamp,
             createdTimestamp: this.createdTimestamp,
+            editedTimestamp: this.editedTimestamp,
             updatedTimestamp: this.updatedTimestamp,
         };
     }

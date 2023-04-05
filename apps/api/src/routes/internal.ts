@@ -16,7 +16,9 @@ export default () => {
             const games = await Game.Model.find().exec();
             const gameFields = games.map(game => ({
                 loc: new URL(`/games/${game.slug}`, baseWebUrl).toString(),
-                lastmod: new Date(game.updatedTimestamp).toISOString(),
+                lastmod: new Date(
+                    Math.max(game.updatedTimestamp ?? 0, game.editedTimestamp)
+                ).toISOString(),
                 changefreq: 'weekly',
                 priority: 0.8,
             }));

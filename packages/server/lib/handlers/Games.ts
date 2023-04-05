@@ -101,7 +101,7 @@ export class Games extends null {
         }
 
         if (game.isModified()) {
-            game.updatedTimestamp = Date.now();
+            game.editedTimestamp = Date.now();
             await game.save().catch(error => {
                 console.log(error);
                 throw new Error(400, 'Failed to update game');
@@ -157,7 +157,8 @@ export class Games extends null {
         if (![
             'highScore', 'highScoreTime', 'highScoreTimestamp',
             'totalPlays', 'totalTime', 'totalScore',
-            'lastPlayedTimestamp', 'createdTimestamp', 'updatedTimestamp'
+            'lastPlayedTimestamp', 'createdTimestamp',
+            'editedTimestamp', 'updatedTimestamp',
         ].includes(sort))
             throw new Error(422, 'Sort is not valid');
 

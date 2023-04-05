@@ -65,7 +65,7 @@ function generateGameBagde(game: Game) {
     const sevenDays = 1_000 * 60 * 60 * 24 * 7;
     if (game.createdTimestamp > Date.now() - sevenDays)
         return ['New', faWandMagicSparkles] as const;
-    else if (game.updatedTimestamp > Date.now() - sevenDays)
+    else if ((game.updatedTimestamp ?? 0) > Date.now() - sevenDays)
         return ['Updated', faPen] as const;
     else return [null, null] as const;
 }

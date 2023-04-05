@@ -24,6 +24,11 @@ export namespace Game {
         /** Additional data properties. */
         extraData: Extra<M>;
 
+        /** The slug of the source. */
+        sourceSlug?: string;
+        /** Additional properties for the source. */
+        sourceProperties?: Record<string, unknown>;
+
         /** The highest score this game has gotten. */
         highScore: number;
         /** The time it took to get the highest score. */
@@ -47,8 +52,10 @@ export namespace Game {
 
         /** When this game was created. */
         createdTimestamp: number;
-        /** When this game was last updated. */
-        updatedTimestamp: number;
+        /** When this game was last edited. */
+        editedTimestamp: number;
+        /** When this game items were last updated. */
+        updatedTimestamp?: number;
     }
 
     export enum Mode {

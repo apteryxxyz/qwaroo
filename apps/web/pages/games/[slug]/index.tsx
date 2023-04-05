@@ -1,10 +1,14 @@
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Game, User } from '@qwaroo/client';
 import type { APIGame, APIScore, APIUser } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Card } from '#/components/Card';
 import { Button } from '#/components/Input/Button';
 import { ScoreBrowser } from '#/components/Score/Browser';
@@ -28,6 +32,9 @@ export default (
     const score = useRef<APIScore | null>(null);
     if (!score.current && props.score)
         score.current = game.current.scores.append(props.score);
+
+    const [isUpdating, setIsUpdating] = useState(false);
+    const [updateResult, setUpdateResult] = useState<boolean | null>(null);
 
     // Functions
 
@@ -99,6 +106,35 @@ export default (
                     >
                         Edit
                     </Button>}
+
+                    {props.isCreator && game.current.sourceSlug && <Button
+                        className="text-3xl font-bold !bg-qwaroo-500"
+                        onClick={() => {
+                            setIsUpdating(true);
+                            game.current
+                                .updateItems()
+                                .then(() => setUpdateResult(true))
+                                .catch(() => setUpdateResult(false))
+                                .finally(() => {
+                                    setIsUpdating(false);
+                                    setTimeout(
+                                        () => setUpdateResult(null),
+                                        3_000
+                                    );
+                                });
+                        }}
+                        isDisabled={isUpdating}
+                    >
+                        {isUpdating && <span className="animate-spin">
+                            <FontAwesomeIcon icon={faSpinner} />
+                        </span>}
+                        {updateResult !== null && <span>
+                            <FontAwesomeIcon
+                                icon={updateResult === true ? faCheck : faTimes}
+                            />
+                        </span>}
+                        Update
+                    </Button>}
                 </div>
 
                 <section className="col-span-3 lg:col-span-2">
@@ -117,30 +153,6 @@ export default (
                 />
             </section>
         </div>
-
-        {/* <section className="contents lg:grid grid-cols-3">
-            
-
-            <Button
-                className="text-3xl font-bold !bg-qwaroo-500"
-                linkProps={{ href: WebRoutes.playGame(game.current.slug) }}
-            >
-                PLAY
-            </Button>
-        </section>
-
-        <div className="grid grid-cols-3 gap-3">
-            
-
-            <section className="hidden lg:block">
-                <iframe
-                    ref={embedRef}
-                    className="rounded-xl w-full aspect-[9/16]"
-                    src={WebRoutes.previewGame(game.current.slug)}
-                    onLoad={handleEmbedLoad}
-                />
-            </section>
-        </div> */}
     </>;
 };
 

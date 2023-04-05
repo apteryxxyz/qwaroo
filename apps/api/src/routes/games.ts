@@ -96,29 +96,41 @@ export default () => {
 
     router.all(
         APIRoutes.gameItems(':gameId'),
-        useMethods(['GET']),
-        useToken([]),
+        useMethods(['GET', 'POST']),
+        useToken(['POST']),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId'] ?? '');
             const game = await Games.getGame(gameId, req.user);
 
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const opts: any = {};
+            if (req.method === 'GET') {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const opts: any = {};
 
-            opts['seed'] = String(req.search['seed'] ?? '') || undefined;
-            opts['version'] = String(req.search['version'] ?? '') || undefined;
-            opts['limit'] = Number(req.search['limit'] ?? 5);
-            opts['skip'] = Number(req.search['skip'] ?? 0);
+                opts['seed'] = String(req.search['seed'] ?? '') || undefined;
+                opts['version'] =
+                    String(req.search['version'] ?? '') || undefined;
+                opts['limit'] = Number(req.search['limit'] ?? 5);
+                opts['skip'] = Number(req.search['skip'] ?? 0);
 
-            if (!opts['seed'] || opts['skip'] === 0)
-                opts['seed'] = Math.random().toString(36).slice(2);
-            if (!opts['version'] || opts['skip'] === 0) {
-                const versions = await Items.getItemsVersions(game);
-                opts['version'] = versions.at(-1);
+                if (!opts['seed'] || opts['skip'] === 0)
+                    opts['seed'] = Math.random().toString(36).slice(2);
+                if (!opts['version'] || opts['skip'] === 0) {
+                    const versions = await Items.getItemsVersions(game);
+                    opts['version'] = versions.at(-1);
+                }
+
+                const [data, items] = await Items.getItems(game, opts);
+                res.status(200).json({ success: true, ...data, items });
             }
 
-            const [data, items] = await Items.getItems(game, opts);
-            res.status(200).json({ success: true, ...data, items });
+            if (req.method === 'POST') {
+                // TODO: need to check if user is creator
+
+                if (Date.now() - (game.updatedTimestamp ?? 0) > 60_000) {
+                    await Items.updateItems(game, req.user!);
+                    res.status(200).json({ success: true });
+                } else res.status(403).json({ success: false });
+            }
         })
     );
 
