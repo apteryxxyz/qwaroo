@@ -57,9 +57,7 @@ export class GameManager extends Manager<string, Game> {
         const id = Game.resolveId(game) ?? 'unknown';
         if (force && this.has(id)) return this.get(id)!;
 
-        const path = this.user
-            ? APIRoutes.userGame(this.user.id, id)
-            : APIRoutes.game(id);
+        const path = APIRoutes.game(id);
         const data = await this.client.api.get(path);
         return this.append(data);
     }

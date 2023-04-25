@@ -4,6 +4,13 @@ import _ from 'lodash';
 import type { User } from '#/utilities/structures';
 import { Game } from '#/utilities/structures';
 
+const toString = (value: unknown) => {
+    if (typeof value === 'number') value = String(value);
+    if (typeof value === 'boolean') value = String(value);
+    if (typeof value === 'string') return value;
+    return '';
+};
+
 export class Games extends null {
     /** Get a list of all the game categories. */
     public static async getCategories(user?: User.Document) {
@@ -33,7 +40,45 @@ export class Games extends null {
         // If the game is not public, only the creator can see it
         const isPublic = (game.flags & Game.Flags.Public) !== 0;
         const isCreator = user && game.creatorId === user.id;
-        if (!isPublic && !isCreator) throw new Error(403, 'Game was not found');
+        if (!isPublic && !isCreator) throw new Error(404, 'Game was not found');
+
+        return game;
+    }
+
+    public static async createGame(
+        user: User.Document,
+        data: Partial<Game.Entity>
+    ) {
+        const game = new Game.Model({
+            creatorId: user.id,
+            title: toString(data.title),
+            mode: toString(data.mode),
+            shortDescription: toString(data.shortDescription),
+            longDescription: toString(data.longDescription),
+            thumbnailUrl: toString(data.thumbnailUrl),
+            categories: Array.isArray(data.categories)
+                ? data.categories
+                      .filter(cat => Validate.Category.test(cat))
+                      .map(cat => _.startCase(toString(cat).toLowerCase()))
+                : [],
+            sourceSlug: toString(data.sourceSlug),
+            sourceProperties: data.sourceProperties,
+            extraData: {
+                valueVerb: toString(data.extraData?.valueVerb),
+                valueNoun: toString(data.extraData?.valueNoun),
+                valuePrefix: toString(data.extraData?.valuePrefix),
+                valueSuffix: toString(data.extraData?.valueSuffix),
+                higherText: toString(data.extraData?.higherText),
+                lowerText: toString(data.extraData?.lowerText),
+            },
+            flags: 0,
+            createdTimestamp: Date.now(),
+            editedTimestamp: Date.now(),
+        });
+
+        await game.save().catch(error => {
+            throw new Error(400, error.message);
+        });
 
         return game;
     }
@@ -46,17 +91,17 @@ export class Games extends null {
     ) {
         const isPublic = (game.flags & Game.Flags.Public) !== 0;
         const isCreator = user.id === game.creatorId;
-        if (!isPublic && !isCreator) throw new Error(403, 'Game was not found');
+        if (!isPublic && !isCreator) throw new Error(404, 'Game was not found');
 
         const isEqual = (a: unknown, b: unknown) => a !== undefined && a !== b;
 
         if (isEqual(data.shortDescription, game.shortDescription))
-            game.shortDescription = String(data.shortDescription ?? '').trim();
+            game.shortDescription = toString(data.shortDescription);
         if (isEqual(data.longDescription, game.longDescription))
-            game.longDescription = String(data.longDescription ?? '').trim();
+            game.longDescription = toString(data.longDescription);
 
         if (isEqual(data.thumbnailUrl, game.thumbnailUrl))
-            game.thumbnailUrl = String(data.thumbnailUrl ?? '').trim();
+            game.thumbnailUrl = toString(data.thumbnailUrl);
         if (
             data.categories &&
             isEqual(
@@ -67,34 +112,26 @@ export class Games extends null {
             game.categories = Array.isArray(data.categories)
                 ? data.categories
                       .filter(cat => Validate.Category.test(cat))
-                      .map(cat => _.startCase(String(cat).toLowerCase()))
+                      .map(cat => _.startCase(toString(cat).toLowerCase()))
                 : [];
 
         if (game.mode === Game.Mode.HigherOrLower && data.extraData) {
             if (isEqual(data.extraData.valueVerb, game.extraData.valueVerb))
-                game.extraData.valueVerb = String(
-                    data.extraData.valueVerb ?? ''
-                ).trim();
+                game.extraData.valueVerb = toString(data.extraData.valueVerb);
             if (isEqual(data.extraData.valueNoun, game.extraData.valueNoun))
-                game.extraData.valueNoun = String(
-                    data.extraData.valueNoun ?? ''
-                ).trim();
+                game.extraData.valueNoun = toString(data.extraData.valueNoun);
             if (isEqual(data.extraData.valuePrefix, game.extraData.valuePrefix))
-                game.extraData.valuePrefix = String(
-                    data.extraData.valuePrefix ?? ''
-                ).trim();
+                game.extraData.valuePrefix = toString(
+                    data.extraData.valuePrefix
+                );
             if (isEqual(data.extraData.valueSuffix, game.extraData.valueSuffix))
-                game.extraData.valueSuffix = String(
-                    data.extraData.valueSuffix ?? ''
-                ).trim();
+                game.extraData.valueSuffix = toString(
+                    data.extraData.valueSuffix
+                );
             if (isEqual(data.extraData.higherText, game.extraData.higherText))
-                game.extraData.higherText = String(
-                    data.extraData.higherText ?? ''
-                ).trim();
+                game.extraData.higherText = toString(data.extraData.higherText);
             if (isEqual(data.extraData.lowerText, game.extraData.lowerText))
-                game.extraData.lowerText = String(
-                    data.extraData.lowerText ?? ''
-                ).trim();
+                game.extraData.lowerText = toString(data.extraData.lowerText);
 
             // Mongoose doesnt detect changes to nested objects, so we have to manually mark it as modified
             game.markModified('extraData');
@@ -103,8 +140,7 @@ export class Games extends null {
         if (game.isModified()) {
             game.editedTimestamp = Date.now();
             await game.save().catch(error => {
-                console.log(error);
-                throw new Error(400, 'Failed to update game');
+                throw new Error(400, error.message);
             });
         }
 
@@ -130,7 +166,8 @@ export class Games extends null {
         if (user) void query.where('creatorId').equals(user.id);
         // Filter out all the private games, unless the user is the creator
         if (!me || !user || me.id !== user.id)
-            void query.where('publicFlags', { $bitsAllSet: Game.Flags.Public });
+            void query.where('flags', { $bitsAllSet: Game.Flags.Public });
+        //     void query.where('publicFlags', { $bitsAllSet: Game.Flags.Public });
 
         const ids = Array.from(options.ids ?? []);
         if (ids.length > 0) {
@@ -138,7 +175,7 @@ export class Games extends null {
             if (validIds.length > 0) void query.where('_id').in(validIds);
         }
 
-        const term = String(options.term ?? '').trim();
+        const term = toString(options.term);
         if (term.length > 0) {
             const regex = createRegExp(term, false, 'i');
             void query.where({
@@ -152,7 +189,7 @@ export class Games extends null {
             });
         }
 
-        const sort = String(options.sort ?? 'totalPlays').trim();
+        const sort = toString(options.sort ?? 'totalPlays');
         // prettier-ignore
         if (![
             'highScore', 'highScoreTime', 'highScoreTimestamp',
@@ -162,7 +199,7 @@ export class Games extends null {
         ].includes(sort))
             throw new Error(422, 'Sort is not valid');
 
-        const order = String(options.order ?? 'desc').trim();
+        const order = toString(options.order ?? 'desc');
         if (!['asc', 'desc'].includes(order))
             throw new Error(422, 'Order is not valid');
 

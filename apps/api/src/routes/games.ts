@@ -45,47 +45,58 @@ export default () => {
 
     router.all(
         [APIRoutes.games(), APIRoutes.userGames(':userId')],
-        useMethods(['GET']),
-        useToken([]),
+        useMethods(['GET', 'PUT']),
+        useToken(['PUT']),
+        useBody(['PUT']),
         useMe('userId'),
         handle(async (req, res) => {
-            const opts: Record<string, unknown> = {};
-
-            opts['ids'] = Array.isArray(req.search['ids'])
-                ? req.search['ids']
-                : undefined;
-
-            opts['term'] = String(req.search['term'] ?? '') || undefined;
-            opts['limit'] = Number(req.search['limit'] ?? 0) || undefined;
-            opts['skip'] = Number(req.search['skip'] ?? 0) || undefined;
-
-            opts['sort'] = String(req.search['sort'] ?? '') || undefined;
-            opts['order'] = String(req.search['order'] ?? '') || undefined;
-
             const userId = String(req.params['userId'] ?? '') || undefined;
             const user = userId
                 ? await Users.getUser(userId, req.user)
                 : undefined;
 
-            const [data, items] = await Games.getGames(opts, user, req.user);
-            res.status(200).json({ success: true, ...data, items });
+            if (req.method === 'GET') {
+                const opts: Record<string, unknown> = {};
+
+                opts['ids'] = Array.isArray(req.search['ids'])
+                    ? req.search['ids']
+                    : undefined;
+
+                opts['term'] = String(req.search['term'] ?? '') || undefined;
+                opts['limit'] = Number(req.search['limit'] ?? 0) || undefined;
+                opts['skip'] = Number(req.search['skip'] ?? 0) || undefined;
+
+                opts['sort'] = String(req.search['sort'] ?? '') || undefined;
+                opts['order'] = String(req.search['order'] ?? '') || undefined;
+
+                const params = [opts, user, req.user] as const;
+                const [data, items] = await Games.getGames(...params);
+                res.status(200).json({ success: true, ...data, items });
+            }
+
+            if (req.method === 'PUT') {
+                const user = req.user!;
+
+                const items = await Items.validateSource(
+                    req.body?.sourceSlug,
+                    req.body?.sourceProperties
+                );
+                const game = await Games.createGame(user, req.body);
+                await Items.saveItems(game, items[1]);
+
+                res.status(200).json({ success: true, ...game.toJSON() });
+            }
         })
     );
 
     router.all(
-        [APIRoutes.game(':gameId'), APIRoutes.userGame(':userId', ':gameId')],
+        APIRoutes.game(':gameId'),
         useMethods(['GET', 'PATCH']),
         useToken(['PATCH']),
-        useMe('userId'),
         useBody(['PATCH']),
         handle(async (req, res) => {
-            const userId = String(req.params['userId'] ?? '') || undefined;
-            const user = userId
-                ? await Users.getUser(userId, req.user)
-                : undefined;
-
             const gameId = String(req.params['gameId'] ?? '');
-            const game = await Games.getGame(gameId, user, true);
+            const game = await Games.getGame(gameId, req.user, true);
 
             if (req.method === 'PATCH')
                 await Games.updateGame(game, req.user!, req.body);
@@ -124,12 +135,8 @@ export default () => {
             }
 
             if (req.method === 'POST') {
-                // TODO: need to check if user is creator
-
-                if (Date.now() - (game.updatedTimestamp ?? 0) > 60_000) {
-                    await Items.updateItems(game, req.user!);
-                    res.status(200).json({ success: true });
-                } else res.status(403).json({ success: false });
+                await Items.updateItems(game, req.user!);
+                res.status(200).json({ success: true });
             }
         })
     );

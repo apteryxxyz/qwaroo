@@ -11,9 +11,8 @@ import { ClientProvider, createClient } from '#/contexts/Client';
 import { injectEventEmitters } from '#/hooks/useEventListener';
 import { triggerPageView } from '#/utilities/google';
 
-const client = createClient();
-
 export default ({ Component, pageProps }: AppProps) => {
+    const client = createClient();
     const router = useRouter();
 
     useEffect(() => {
@@ -27,6 +26,8 @@ export default ({ Component, pageProps }: AppProps) => {
             client.prepare(id, token);
             void client.login();
         }
+
+        client.hasTriedToPrepare = true;
     }, []);
 
     useEffect(() => {

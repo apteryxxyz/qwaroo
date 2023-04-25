@@ -39,7 +39,7 @@ export default () => {
         useBody(['POST']),
         handle(async (req, res) => {
             const gameId = String(req.params['gameId']);
-            const game = await Games.getGame(gameId);
+            const game = await Games.getGame(gameId, req.user);
 
             if (req.method === 'GET') {
                 const opts: Record<string, unknown> = {};
@@ -94,7 +94,7 @@ export default () => {
                 entity = user;
             } else {
                 const gameId = String(req.params['gameId']);
-                const game = await Games.getGame(gameId);
+                const game = await Games.getGame(gameId, req.user);
 
                 childId = String(req.params['scoreOrUserId']);
                 entity = game;
