@@ -28,7 +28,7 @@ export function buildCommandsEmbed(
     }
 
     return new EmbedBuilder()
-        .setTitle('Commands')
+        .setTitle('Qwaroo Commands')
         .setFields(
             [...categories.entries()].map(([category, commands]) => ({
                 name: category,
