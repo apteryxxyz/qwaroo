@@ -54,9 +54,6 @@ export const APIRoutes = {
     userGameStatistics(userId: string | '@me') {
         return `/users/${userId}/games/statistics` as const;
     },
-    userGame(userId: string | '@me', gameId: string) {
-        return `/users/${userId}/games/${gameId}` as const;
-    },
     userScores(userId: string | '@me') {
         return `/users/${userId}/scores` as const;
     },

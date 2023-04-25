@@ -16,7 +16,12 @@ const games = new GameManager();
 container.games = games;
 
 const client = new Client({
-    intents: [GatewayIntentBits.Guilds],
+    intents: [
+        GatewayIntentBits.Guilds,
+        // Needed for the eval command
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+    ],
     partials: [Partials.Channel],
     presence: {
         activities: [
@@ -28,7 +33,6 @@ const client = new Client({
     },
 });
 const maclary = new Maclary({
-    defaultPrefix: '!',
     guildId:
         getEnv(String, 'NODE_ENV') === 'development'
             ? getEnv(String, 'GUILD_ID')
@@ -36,11 +40,10 @@ const maclary = new Maclary({
 });
 
 const clientId = getEnv(String, 'DISCORD_APPLICATION_ID');
-
 const lists = [
     new Lists.TopGG(clientId, getEnv(String, 'TOP_GG_KEY')),
     new Lists.DiscordBots(clientId, getEnv(String, 'DISCORD_BOTS_KEY')),
-    // TODO: Add Botlist.me
+    new Lists.BotListMe(clientId, getEnv(String, 'BOTLIST_ME_KEY')),
     new Lists.DiscordsCom(clientId, getEnv(String, 'DISCORDS_COM_KEY')),
     new Lists.DiscordBotList(clientId, getEnv(String, 'DISCORD_BOT_LIST_KEY')),
     new Lists.DiscordList(clientId, getEnv(String, 'DISCORD_LIST_KEY')),
@@ -59,7 +62,7 @@ async function main() {
     Maclary.init(maclary, client);
     await database.connect(getEnv(String, 'MONGODB_URI'));
     await client.login(getEnv(String, 'DISCORD_TOKEN'));
-    poster.startAutoPost();
+    poster.startAutoPoster();
 }
 
 export { database, client, maclary };

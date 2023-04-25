@@ -18,6 +18,8 @@ export class Client {
     /** ID of the currently logged in user if at all. */
     public id?: string;
 
+    public hasTriedToPrepare = false;
+
     public constructor(options: Client.Options) {
         this.api = new APIManager(options.api);
         this.cdn = new CDNManager(options.cdn);

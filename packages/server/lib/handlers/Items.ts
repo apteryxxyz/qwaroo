@@ -52,9 +52,48 @@ export class Items extends null {
         return [{ total, seed, version, limit, skip }, items] as const;
     }
 
+    public static async validateSource(
+        sourceSlug: string,
+        sourceProperties: Record<string, unknown>
+    ) {
+        // @ts-expect-error Ignore maps strict keys
+        const source = Sources.get(sourceSlug);
+        if (!source) throw new Error(400, 'Invalid or missing source');
+
+        const properties = await Promise.resolve(
+            source.prepareProperties(sourceProperties)
+        ).catch(error => {
+            throw new Error(
+                400,
+                'Invalid or missing source properties',
+                error.message
+            );
+        });
+
+        const items = await source
+            // @ts-expect-error More stuff idk
+            .fetchItems(properties) //
+            .catch(() => {
+                throw new Error(
+                    500,
+                    'Failed to fetch game items, double check your source properties'
+                );
+            });
+
+        if (items.length < 100)
+            throw new Error(
+                400,
+                'Failed to fetch game items, you need at least 100 items'
+            );
+
+        return [true, items as unknown as Record<string, unknown>[]] as const;
+    }
+
     public static async updateItems(game: Game.Document, user: User.Document) {
         if (game.creatorId !== user.id)
             throw new Error(403, 'You are not the game creator');
+        if (Date.now() - (game.updatedTimestamp ?? 0) < 60_000)
+            throw new Error(409, 'Too many requests to update');
 
         // @ts-expect-error Ignore maps strict keys
         const source = Sources.get(game.sourceSlug!);
@@ -84,14 +123,19 @@ export class Items extends null {
                 'Fetched games items must have at least 100 items'
             );
 
+        return this.saveItems(
+            game,
+            items as unknown as Record<string, unknown>[]
+        );
+    }
+
+    public static async saveItems(
+        game: Game.Document,
+        items: Record<string, unknown>[]
+    ) {
         const version = Date.now().toString();
         await Promise.all([
-            this._writeItems(
-                game.id,
-                version,
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                items as any
-            ),
+            this._writeItems(game.id, version, items),
             game.updateOne({ updatedTimestamp: Date.now() }),
         ]);
         return version;

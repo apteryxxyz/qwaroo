@@ -6,8 +6,8 @@ import { Card } from '../Card';
 import { useClient } from '#/contexts/Client';
 
 export function ScoreCard(props: ScoreCard.Props) {
-    if (!props.user && !props.game)
-        throw new Error('ScoreCard requires either a user or a game');
+    // Private games dont have a user or game
+    if (!props.user && !props.game) return null;
 
     const client = useClient();
 

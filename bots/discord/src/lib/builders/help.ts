@@ -4,82 +4,55 @@ import { ButtonBuilder, EmbedBuilder } from '@discordjs/builders';
 import { getEnv } from '@qwaroo/server';
 import { WebRoutes } from '@qwaroo/types';
 import { OAuth2Scopes } from 'discord-api-types/v10';
+import type { ApplicationCommand } from 'discord.js';
 import { ButtonStyle, PermissionsBitField } from 'discord.js';
-import { Command, container } from 'maclary';
+import type { Command } from 'maclary';
+import { container } from 'maclary';
 
 // Commands
 
 export function buildCommandsEmbed(
-    commands: Command<any, any>[] = Array.from(container.maclary.commands.cache)
+    internalCommands: Command<any, any>[],
+    externalCommands: ApplicationCommand[]
 ) {
-    const categories = new Map<string, ReturnType<typeof parseSubCommand>[]>();
-    for (const group of commands)
-        for (const command of getSubCommands(group)) {
-            if (command.category === 'Developer') continue;
-            const category = categories.get(command.category);
-            if (category) category.push(command);
-            else categories.set(command.category, [command]);
-        }
+    const categories = new Map<string, string[]>();
+    for (const command of externalCommands) {
+        const category =
+            internalCommands.find(cmd => cmd.name === command.name)?.category ??
+            'Misc';
+        if (category === 'Developer') continue;
+
+        const commands = categories.get(category) ?? [];
+        commands.push(...parseCommand(command, command.id));
+        categories.set(category, commands);
+    }
 
     return new EmbedBuilder()
-        .setTitle('Commands')
+        .setTitle('Qwaroo Commands')
         .setFields(
             [...categories.entries()].map(([category, commands]) => ({
                 name: category,
-                value: formatCommands(commands),
+                value: commands.join('\n'),
             }))
         )
         .setColor(0x3884f8);
 }
 
-function formatCommands(commands: ReturnType<typeof parseSubCommand>[]) {
-    const usages = commands.map(command => command.usage);
-    const descriptions = commands.map(command => command.description);
-    const maxLength = Math.max(...usages.map(usage => usage.length));
-
-    return usages
-        .map(
-            (usage, i) => `\`${usage.padEnd(maxLength)}\` - ${descriptions[i]}`
-        )
-        .join('\n');
+interface HelpCommand {
+    type: number;
+    name: string;
+    description: string;
+    options?: HelpCommand[];
 }
-
-function resolvePrefix(command: Command<any, any>) {
-    const hasUser = command.kinds.includes(Command.Kind.User);
-    const hasMessage = command.kinds.includes(Command.Kind.Message);
-    const hasSlash = command.kinds.includes(Command.Kind.Slash);
-
-    if (hasUser && hasMessage) return 'App > ';
-    else if (hasUser) return 'Usr > ';
-    else if (hasMessage) return 'Msg > ';
-    else if (hasSlash) return '/';
-    return '!';
-}
-
-function getSubCommands(
-    command: Command<any, any>,
-    name: string = ''
-): ReturnType<typeof parseSubCommand>[] {
-    if (Reflect.get(command, '_variety') === 2)
-        return [parseSubCommand(command, name)];
-    else if (Reflect.get(command, '_variety') === 1)
-        return (command.options as Command<any, any>[]) //
-            .flatMap(cmd => getSubCommands(cmd, `${name + command.name} `));
-    return [];
-}
-
-function parseSubCommand(command: Command<any, any>, name: string = '') {
-    return {
-        category: (command.category as string | '') || 'Uncategorised',
-        usage: `${resolvePrefix(command)}${name + command.name}`,
-        options: (command.options as { required: boolean; name: string }[]) //
-            .map(opt =>
-                opt.required
-                    ? (`<${opt.name}>` as const)
-                    : (`[${opt.name}]` as const)
-            ),
-        description: command.description,
-    };
+function parseCommand(command: HelpCommand, id: string, prefix = ''): string[] {
+    if (
+        command.options?.length &&
+        command.options?.every(opt => opt.type === 1)
+    )
+        return command.options.flatMap(opt =>
+            parseCommand(opt, id, `${prefix}${command.name} `)
+        );
+    return [`</${prefix}${command.name}:${id}> ${command.description}`];
 }
 
 // Links

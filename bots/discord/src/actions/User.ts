@@ -32,7 +32,7 @@ export class UserAction extends Action {
             const buttons = Common.buildComponentRow(
                 ...Browser.buildGameBrowserButtons(
                     { limit: 9 },
-                    user.id,
+                    id,
                     false,
                     meta.total > 9
                 )
