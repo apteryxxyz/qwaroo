@@ -317,8 +317,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1(discord.js@14.8.0)
       '@maclary/lists':
-        specifier: 0.2.1-next.c7ce387.0
-        version: 0.2.1-next.c7ce387.0
+        specifier: 0.3.0-next.c5c3b36.0
+        version: 0.3.0-next.c5c3b36.0
       '@qwaroo/common':
         specifier: workspace:^0.0.0
         version: link:../../packages/common
@@ -2258,8 +2258,8 @@ packages:
       discord.js: 14.8.0
     dev: false
 
-  /@maclary/lists@0.2.1-next.c7ce387.0:
-    resolution: {integrity: sha512-3shzJ1ZAtIzHcluiGK9AF1EOLbNqJ75OtOgNSQRE1hzcVDE2uqJ202VOFQg4L382a+DaPFXCkt8yjSvh/3YU6w==}
+  /@maclary/lists@0.3.0-next.c5c3b36.0:
+    resolution: {integrity: sha512-Cb6+dJXrDLxlfgEYBrlW9EHfx4ED0oVlr7F+Up84MHGwCqJMARStTyo4cQC03bHg92q3XsjurrB5zJpid2QFsw==}
     dev: false
 
   /@motionone/animation@10.15.1:
