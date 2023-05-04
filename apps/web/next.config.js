@@ -24,7 +24,17 @@ let nextConfig = {
                 permanent: false,
             }
         ]
-    }
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'wsrv.nl',
+                port: '',
+                pathname: '/**',
+            },
+        ],
+    },
 };
 
 if (process.env['ANALYSE'] === 'true') {

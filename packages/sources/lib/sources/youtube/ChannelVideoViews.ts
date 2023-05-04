@@ -12,7 +12,10 @@ export class YouTubeChannelVideoViews extends Source<
         super({
             mode: Game.Mode.HigherOrLower,
             name: 'YouTube Channel Video Views',
-            description: '',
+            description:
+                'Fetch videos from one or more YouTube channels and use their view counts to play a Higher or Lower guessing game.',
+            iconUrl:
+                'https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png',
             isPublic: true,
 
             properties: {
@@ -22,6 +25,7 @@ export class YouTubeChannelVideoViews extends Source<
                     description:
                         'The IDs of the YouTube channels to fetch videos from.',
                     required: true,
+                    validate: /^UC[\w-]{22}$/,
                 },
 
                 maxVideoCount: {

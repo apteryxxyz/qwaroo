@@ -64,6 +64,11 @@ export const APIRoutes = {
         return `/users/${userId}/scores/statistics` as const;
     },
 
+    // Sources
+    sources() {
+        return '/sources' as const;
+    },
+
     // Internal
     internalSitemap() {
         return '/internal/sitemap' as const;
@@ -117,7 +122,7 @@ export const WebRoutes = {
         return `/games/${gameSlug}/edit` as const;
     },
     createGame() {
-        return '/games/create' as const;
+        return `/games/create` as const;
     },
 
     // Users

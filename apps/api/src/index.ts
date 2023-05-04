@@ -12,6 +12,7 @@ async function main() {
     server.routers.push(require('./routes/games').default());
     server.routers.push(require('./routes/internal').default());
     server.routers.push(require('./routes/scores').default());
+    server.routers.push(require('./routes/sources').default());
     server.routers.push(require('./routes/users').default());
 
     await database.connect(getEnv(String, 'MONGODB_URI'));

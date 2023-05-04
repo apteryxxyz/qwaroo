@@ -1,14 +1,14 @@
-import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+// import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
+// import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Game, User } from '@qwaroo/client';
 import type { APIGame, APIScore, APIUser } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Card } from '#/components/Card';
 import { Button } from '#/components/Input/Button';
 import { ScoreBrowser } from '#/components/Score/Browser';
@@ -33,8 +33,8 @@ export default (
     if (!score.current && props.score)
         score.current = game.current.scores.append(props.score);
 
-    const [isUpdating, setIsUpdating] = useState(false);
-    const [updateResult, setUpdateResult] = useState<boolean | null>(null);
+    // const [isUpdating, setIsUpdating] = useState(false);
+    // const [updateResult, setUpdateResult] = useState<boolean | null>(null);
 
     // Functions
 
@@ -107,7 +107,8 @@ export default (
                         Edit
                     </Button>}
 
-                    {props.isCreator && game.current.sourceSlug && <Button
+                    {/* NOTE: Temporany disabled until validation is added to the edit page */}
+                    {/* {props.isCreator && game.current.sourceSlug && <Button
                         className="text-3xl font-bold !bg-qwaroo-500"
                         onClick={() => {
                             setIsUpdating(true);
@@ -134,7 +135,7 @@ export default (
                             />
                         </span>}
                         Update
-                    </Button>}
+                    </Button>} */}
                 </div>
 
                 <section className="col-span-3 lg:col-span-2">

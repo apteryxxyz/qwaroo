@@ -4,7 +4,7 @@ import { Field } from '#/components/Editor/Field';
 import { Textbox } from '#/components/Input/Textbox';
 
 export function Extra(props: Extra.Props) {
-    function addChange(property: keyof Game.Extra, value: unknown) {
+    function addExtraChange(property: keyof Game.Extra, value: unknown) {
         props.setData({ ...props.data, [property]: value });
         return value;
     }
@@ -17,7 +17,8 @@ export function Extra(props: Extra.Props) {
             <Textbox
                 className="bg-white dark:!bg-neutral-900"
                 value={props.data.higherText}
-                setValue={_ => addChange('higherText', _)}
+                setValue={value => addExtraChange('higherText', value)}
+                onValidate={isValid => props.onValidate(0, isValid)}
                 isRequired
             />
         </Field>
@@ -29,7 +30,8 @@ export function Extra(props: Extra.Props) {
             <Textbox
                 className="bg-white dark:!bg-neutral-900"
                 value={props.data.lowerText}
-                setValue={_ => addChange('lowerText', _)}
+                setValue={value => addExtraChange('lowerText', value)}
+                onValidate={isValid => props.onValidate(1, isValid)}
                 isRequired
             />
         </Field>
@@ -41,7 +43,8 @@ export function Extra(props: Extra.Props) {
             <Textbox
                 className="bg-white dark:!bg-neutral-900"
                 value={props.data.valueNoun}
-                setValue={_ => addChange('valueNoun', _)}
+                setValue={value => addExtraChange('valueNoun', value)}
+                onValidate={isValid => props.onValidate(2, isValid)}
                 isRequired
             />
         </Field>
@@ -53,7 +56,8 @@ export function Extra(props: Extra.Props) {
             <Textbox
                 className="bg-white dark:!bg-neutral-900"
                 value={props.data.valueVerb}
-                setValue={_ => addChange('valueVerb', _)}
+                setValue={value => addExtraChange('valueVerb', value)}
+                onValidate={isValid => props.onValidate(3, isValid)}
                 isRequired
             />
         </Field>
@@ -65,7 +69,8 @@ export function Extra(props: Extra.Props) {
             <Textbox
                 className="bg-white dark:!bg-neutral-900"
                 value={props.data.valuePrefix}
-                setValue={_ => addChange('valuePrefix', _ ?? '')}
+                setValue={value => addExtraChange('valuePrefix', value ?? '')}
+                onValidate={isValid => props.onValidate(4, isValid)}
             />
         </Field>
 
@@ -76,7 +81,8 @@ export function Extra(props: Extra.Props) {
             <Textbox
                 className="bg-white dark:!bg-neutral-900"
                 value={props.data.valueSuffix}
-                setValue={_ => addChange('valueSuffix', _ ?? '')}
+                setValue={value => addExtraChange('valueSuffix', value ?? '')}
+                onValidate={isValid => props.onValidate(5, isValid)}
             />
         </Field>
     </Card>;
@@ -86,5 +92,6 @@ export namespace Extra {
     export interface Props {
         data: Game.Extra;
         setData(data: Game.Extra): void;
+        onValidate(index: number, isValid: boolean): void;
     }
 }

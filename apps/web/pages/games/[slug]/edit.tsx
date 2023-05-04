@@ -101,7 +101,12 @@ export default (
             </Field>
         </Card>
 
-        <Extra data={copy.extraData} setData={_ => addChange('extraData', _)} />
+        <Extra
+            data={copy.extraData}
+            setData={_ => addChange('extraData', _)}
+            // TODO: Implement validation
+            onValidate={() => null}
+        />
 
         <div className="flex items-end justify-end gap-2">
             <Button onClick={resetChanges}>Cancel</Button>

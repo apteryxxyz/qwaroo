@@ -103,6 +103,9 @@ importers:
       '@qwaroo/server':
         specifier: workspace:^0.0.0
         version: link:../../packages/server
+      '@qwaroo/sources':
+        specifier: workspace:^
+        version: link:../../packages/sources
       '@qwaroo/types':
         specifier: workspace:^0.0.0
         version: link:../../packages/types
