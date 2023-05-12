@@ -84,10 +84,12 @@ export default (
                         })}{' '}
                         ago
                         {hasBeenPlayed
-                            ? `, last played around{' '}
-                        ${ms(Date.now() - game.current.lastPlayedTimestamp, {
-                            roundUp: true,
-                        })}}`
+                            ? `, last played around ${ms(
+                                  Date.now() - game.current.lastPlayedTimestamp,
+                                  {
+                                      roundUp: true,
+                                  }
+                              )}`
                             : ''}
                         .
                     </p>
