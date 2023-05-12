@@ -29,18 +29,18 @@ export function Header() {
 
                 <Button
                     className="!bg-transparent"
-                    iconProp={faUserAlt}
-                    linkProps={{ href: '/profile' }}
-                >
-                    Profile
-                </Button>
-
-                <Button
-                    className="!bg-transparent"
                     iconProp={faPenFancy}
                     linkProps={{ href: '/games/create' }}
                 >
                     Create
+                </Button>
+
+                <Button
+                    className="!bg-transparent"
+                    iconProp={faUserAlt}
+                    linkProps={{ href: '/profile' }}
+                >
+                    Profile
                 </Button>
 
                 <ThemeSwitch />
