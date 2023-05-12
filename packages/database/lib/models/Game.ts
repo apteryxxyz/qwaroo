@@ -1,3 +1,4 @@
+import { URL } from 'node:url';
 import { Slug, Validate } from '@qwaroo/common';
 import * as Types from '@qwaroo/types';
 import * as Mongoose from 'mongoose';
@@ -106,6 +107,16 @@ export namespace Game {
 
     Schema.method('getScores', function getScores(this: Document) {
         return Score.Model.find({ gameId: this.id }).exec();
+    });
+
+    // Ensure thumbnail is valid, if not use default
+    Schema.pre('validate', async function setThumbnail(this: Document) {
+        const url = new URL('https://wsrv.nl');
+        url.searchParams.set('url', this.thumbnailUrl);
+
+        const response = await fetch(url, { method: 'HEAD' });
+        if (response.status !== 200)
+            this.thumbnailUrl = 'https://wsrv.nl/lichtenstein.jpg';
     });
 
     export const Model = Mongoose.model<Types.Game.Entity, Model>(

@@ -1,14 +1,14 @@
 import { Source } from '#/structures/Source';
 
-export type ValidateArgs = [
+type ValidateParameters = [
     record: Record<string, unknown>,
     prop: string,
     value: unknown,
     options: Source.Prop
 ];
 
-function _verifyValue(...args: ValidateArgs) {
-    const [, prop, value, options] = args;
+function verifyValue(...parameters: ValidateParameters) {
+    const [, prop, value, options] = parameters;
 
     if (
         value &&
@@ -17,85 +17,103 @@ function _verifyValue(...args: ValidateArgs) {
     )
         throw new Error(`Invalid option for "${prop}": ${String(value)}`);
 
-    if (value && options.validate) {
-        const err = new Error(`Invalid value for "${prop}": ${String(value)}`);
-        if (
-            options.validate instanceof RegExp &&
-            !options.validate.test(String(value))
-        )
-            throw err;
-        // else if (!options.validate.call(record, value)) throw err;
-    }
+    if (
+        value &&
+        options.validate instanceof RegExp &&
+        !options.validate.test(String(value))
+    )
+        throw new Error(`Invalid value for "${prop}": ${String(value)}`);
 
     if (!value && options.default !== undefined) return options.default;
 
-    if (!value && options.required) {
-        // if (typeof options.required === 'function') {
-        //     if (options.required.call(record)) throw err;
-        // } else
+    if (!value && options.required)
         throw new Error(`Missing required value for "${prop}"`);
-    }
 
     return value;
 }
 
-export function validateString(...args: ValidateArgs) {
-    const value = _verifyValue(...args);
-    if (value === undefined) return undefined;
+function validateString(...parameters: ValidateParameters) {
+    const [, prop, , options] = parameters;
+    const value = verifyValue(...parameters);
+    const string = String(value ?? '').trim();
 
-    const asStr = String(value);
-    if (!asStr)
-        throw new Error(`Invalid string for "${args[1]}": ${String(value)}`);
-    return asStr;
+    if (!string)
+        throw new Error(`Invalid string for "${prop}": ${String(value)}`);
+
+    if (options.minLength && string.length < options.minLength)
+        throw new Error(`String for "${prop}" is too short: ${String(value)}`);
+
+    if (options.maxLength && string.length > options.maxLength)
+        throw new Error(`String for "${prop}" is too long: ${String(value)}`);
+
+    return string;
 }
 
-export function validateNumber(...args: ValidateArgs) {
-    const value = _verifyValue(...args);
-    if (value === undefined) return undefined;
+function validateNumber(...parameters: ValidateParameters) {
+    const [, prop, , options] = parameters;
+    const value = verifyValue(...parameters);
+    const number = Number(String(value ?? ''));
 
-    const asNum = Number(String(value));
-    if (Number.isNaN(asNum))
-        throw new Error(`Invalid number for "${args[1]}": ${String(value)}`);
-    return asNum;
+    if (Number.isNaN(number))
+        throw new Error(`Invalid number for "${prop}": ${String(value)}`);
+
+    if (options.minValue && number < options.minValue)
+        throw new Error(`Number for "${prop}" is too small: ${String(value)}`);
+
+    if (options.maxValue && number > options.maxValue)
+        throw new Error(`Number for "${prop}" is too large: ${String(value)}`);
+
+    return number;
 }
 
-export function validateBoolean(...args: ValidateArgs) {
-    const value = _verifyValue(...args);
-    if (value === undefined) return undefined;
+function validateBoolean(...parameters: ValidateParameters) {
+    const [, prop] = parameters;
+    const value = verifyValue(...parameters);
 
-    const asBool = Boolean(value);
-    if (typeof asBool !== 'boolean')
-        throw new Error(`Invalid boolean for "${args[1]}": ${String(value)}`);
-    return asBool;
+    const isTrue = value === true || value === 'true';
+    const isFalse = value === false || value === 'false';
+
+    if (value && !isTrue && !isFalse)
+        throw new Error(`Invalid boolean for "${prop}": ${String(value)}`);
+
+    return isTrue;
 }
 
-export function validateArray(...args: ValidateArgs) {
-    if (!Array.isArray(args[2]))
-        throw new Error(`Invalid array for "${args[1]}": ${String(args[2])}`);
-    return args[2];
+function validateArray(...parameters: ValidateParameters) {
+    const [, prop, value, options] = parameters;
+
+    if (!Array.isArray(value))
+        throw new Error(`Invalid array for "${prop}": ${String(value)}`);
+
+    if (options.minLength && value.length < options.minLength)
+        throw new Error(`Array for "${prop}" is too short: ${String(value)}`);
+
+    if (options.maxLength && value.length > options.maxLength)
+        throw new Error(`Array for "${prop}" is too long: ${String(value)}`);
+
+    return value;
 }
 
-export function validateValue(...args: ValidateArgs): unknown {
-    if (Array.isArray(args[3].type)) {
-        const array = validateArray(...args);
-        if (array === undefined) return [] as const;
-        return array.map(
-            (value: unknown) =>
-                validateValue(args[0], args[1], value, {
-                    ...args[3],
-                    type: args[3].type[0] as Source.Prop.Type,
-                }) as unknown
+export function validateValue(...parameters: ValidateParameters): unknown {
+    const [, prop, , options] = parameters;
+
+    if (Array.isArray(options.type)) {
+        return validateArray(...parameters).map(value =>
+            validateValue(parameters[0], parameters[1], value, {
+                ...options,
+                type: options.type[0] as Source.Prop.Type,
+            })
         );
     }
 
-    switch (args[3].type) {
+    switch (options.type) {
         case Source.Prop.Type.String:
-            return validateString(...args);
+            return validateString(...parameters);
         case Source.Prop.Type.Number:
-            return validateNumber(...args);
+            return validateNumber(...parameters);
         case Source.Prop.Type.Boolean:
-            return validateBoolean(...args);
+            return validateBoolean(...parameters);
         default:
-            throw new Error(`Invalid type for "${args[1]}": ${args[3].type}`);
+            throw new Error(`Invalid type for "${prop}": ${options.type}`);
     }
 }

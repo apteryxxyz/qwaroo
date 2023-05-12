@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '../Input/Button';
 import { Dropdown } from '../Input/Dropdown';
-import { Textbox } from '../Input/Textbox';
+import { StringTextbox } from '../Input/Textbox/String';
 import { Loading } from '../Loading';
 import { GameCard } from './Card';
 import { useClient } from '#/contexts/Client';
@@ -106,12 +106,22 @@ export function GameBrowser(props: GameBrowser.Props) {
         {/* Filter bar */}
         <div className="flex flex-wrap gap-1">
             {/* Search box */}
-            <Textbox
+            {/* <Textbox
                 ariaRole="searchbox"
                 placeHolder="Search games..."
                 iconProp={faSearch}
                 value={options.term}
                 onValue={v => changeOption('term', v)}
+                enableIcon
+                enableEnter
+            /> */}
+
+            <StringTextbox
+                ariaRole="searchbox"
+                placeHolder='Search games...'
+                iconProp={faSearch}
+                value={options.term}
+                onValue={value => changeOption('term', value)}
                 enableIcon
                 enableEnter
             />

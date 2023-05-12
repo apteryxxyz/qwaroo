@@ -53,8 +53,18 @@ export namespace Source {
 
         required?: boolean;
         default?: unknown;
+
         options?: { label: string; value: unknown }[];
         validate?: RegExp;
+
+        minLength?: number;
+        maxLength?: number;
+
+        minValue?: number;
+        maxValue?: number;
+
+        minCount?: number;
+        maxCount?: number;
     }
 
     export namespace Prop {

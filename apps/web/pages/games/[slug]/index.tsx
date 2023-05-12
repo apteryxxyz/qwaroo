@@ -1,14 +1,14 @@
-// import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
-// import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
-// import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Game, User } from '@qwaroo/client';
 import type { APIGame, APIScore, APIUser } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Card } from '#/components/Card';
 import { Button } from '#/components/Input/Button';
 import { ScoreBrowser } from '#/components/Score/Browser';
@@ -33,8 +33,10 @@ export default (
     if (!score.current && props.score)
         score.current = game.current.scores.append(props.score);
 
-    // const [isUpdating, setIsUpdating] = useState(false);
-    // const [updateResult, setUpdateResult] = useState<boolean | null>(null);
+    const [isUpdating, setIsUpdating] = useState(false);
+    const [updateResult, setUpdateResult] = useState<boolean | null>(null);
+
+    const hasBeenPlayed = game.current.lastPlayedTimestamp !== 0;
 
     // Functions
 
@@ -80,10 +82,13 @@ export default (
                         {ms(Date.now() - game.current.createdTimestamp, {
                             roundUp: true,
                         })}{' '}
-                        ago, last played around{' '}
-                        {ms(Date.now() - game.current.lastPlayedTimestamp, {
+                        ago
+                        {hasBeenPlayed
+                            ? `, last played around{' '}
+                        ${ms(Date.now() - game.current.lastPlayedTimestamp, {
                             roundUp: true,
-                        })}
+                        })}}`
+                            : ''}
                         .
                     </p>
                 </Card>
@@ -98,17 +103,17 @@ export default (
                         Play
                     </Button>
 
-                    {props.isCreator && <Button
+                    {/* NOTE: Temporany disabled until validation is added to the edit page */}
+                    {/* {props.isCreator && <Button
                         className="text-3xl font-bold !bg-qwaroo-500"
                         linkProps={{
                             href: WebRoutes.editGame(game.current.slug),
                         }}
                     >
                         Edit
-                    </Button>}
+                    </Button>} */}
 
-                    {/* NOTE: Temporany disabled until validation is added to the edit page */}
-                    {/* {props.isCreator && game.current.sourceSlug && <Button
+                    {props.isCreator && game.current.sourceSlug && <Button
                         className="text-3xl font-bold !bg-qwaroo-500"
                         onClick={() => {
                             setIsUpdating(true);
@@ -135,7 +140,7 @@ export default (
                             />
                         </span>}
                         Update
-                    </Button>} */}
+                    </Button>}
                 </div>
 
                 <section className="col-span-3 lg:col-span-2">

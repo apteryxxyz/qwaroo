@@ -1,15 +1,23 @@
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { motion } from 'framer-motion';
-import type { AriaRole, Dispatch, SetStateAction } from 'react';
+import type {
+    AriaRole,
+    Dispatch,
+    HTMLInputTypeAttribute,
+    SetStateAction,
+} from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { Button } from '../Button';
 
-export function Textarea(props: Textarea.Props) {
+export function StringTextbox(props: StringTextbox.Props) {
     const [value, setValue] = props.setValue
         ? [props.value ?? '', props.setValue]
         : useState(props.value ?? '');
     const [error, setError] = useState<string | null>(null);
     const searchTimeout = useRef<ReturnType<typeof setTimeout>>(null!);
 
-    function validate() {
+    async function validate() {
         const valueExists = value && value.trim() !== '';
         const doesMatch = props.mustMatch?.test(value) ?? true;
 
@@ -22,32 +30,40 @@ export function Textarea(props: Textarea.Props) {
         if (valueExists && !doesMatch) return 'Invalid format';
 
         const additionalValidation =
-            props.additionalValidation?.(value) ?? null;
+            (await props.additionalValidation?.(value)) ?? null;
         if (additionalValidation) return additionalValidation;
 
         return null;
     }
 
     useEffect(() => {
-        const result = validate();
-        setError(result);
-        props.onValidate?.(result);
+        (async () => {
+            const result = await validate();
+            setError(result);
+            props.onValidate?.(result);
+        })();
     }, [value]);
 
-    return <div role={props.ariaRole} className="flex">
+    return <div role={props.ariaRole} className="relative flex">
         {error && <p className="absolute text-red-500 bottom-1 right-1 px-1">
             {error}
         </p>}
 
-        <motion.textarea
+        <motion.input
+            type={props.type}
             placeholder={props.placeHolder}
             disabled={props.isDisabled}
             className={`w-full p-2 bg-white dark:bg-neutral-700
-                rounded-xl
+                ${props.enableIcon ? 'rounded-l-xl' : 'rounded-xl'}
                 ${error ? 'outline outline-red-500' : ''}
                 ${props.isDisabled ? 'cursor-not-allowed' : ''}
                 ${props.className ?? ''}`}
             value={value}
+            //
+            onBlur={() => {
+                if (error || !props.onBlur) return;
+                props.onBlur(value);
+            }}
             //
             onChange={event => {
                 const newValue = event.currentTarget.value;
@@ -85,10 +101,20 @@ export function Textarea(props: Textarea.Props) {
                 if (props.onKeyUp) props.onKeyUp(event.key, value);
             }}
         />
+
+        {props.enableIcon && <Button
+            className="rounded-l-none px-3"
+            iconProp={faSearch}
+            onClick={() => {
+                if (!props.enableIcon || !props.onValue) return;
+                return props.onValue(value);
+            }}
+            ariaLabel={props.placeHolder ?? '...'}
+        />}
     </div>;
 }
 
-export namespace Textarea {
+export namespace StringTextbox {
     export interface Props {
         // Styling
         ariaRole?: AriaRole;
@@ -103,19 +129,27 @@ export namespace Textarea {
         mustMatch?: RegExp;
         minLength?: number;
         maxLength?: number;
-        additionalValidation?(value: string): string | null;
+        additionalValidation?(
+            value: string
+        ): string | null | Promise<string | null>;
 
         // Input
+        type?: HTMLInputTypeAttribute;
         placeHolder?: string;
         isDisabled?: boolean;
 
+        // Icon Properties
+        iconProp?: IconProp;
+
         // Enabling
         enableEnter?: boolean;
+        enableIcon?: boolean;
         enableOnChange?: boolean;
 
         // Callbacks
         onKeyUp?(key: string, value: string): void;
         onValue?(value: string): void;
+        onBlur?(value: string): void;
         onValidate?(value: string | null): void;
     }
 }

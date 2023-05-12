@@ -1,6 +1,7 @@
 import type { APIProperty } from '@qwaroo/types';
-import { TagTextbox } from '../Input/TagTextbox';
-import { Textbox } from '../Input/Textbox';
+import { MultipleTextbox } from '../Input/Textbox/Multiple';
+import { NumberTextbox } from '../Input/Textbox/Number';
+import { StringTextbox } from '../Input/Textbox/String';
 
 export function Property(props: Property.Props) {
     const isArray = Array.isArray(props.property.type);
@@ -14,29 +15,33 @@ export function Property(props: Property.Props) {
     switch (type) {
         case 'string':
             return isArray ? (
-                <TagTextbox
-                    className="bg-white dark:!bg-neutral-900"
+                <MultipleTextbox
                     mustMatch={validate}
-                    tags={props.value as string[]}
-                    setTags={_ => props.onChange(_)}
+                    minCount={props.property.minCount}
+                    maxCount={props.property.maxCount}
+                    minLength={props.property.minLength}
+                    maxLength={props.property.maxLength}
+                    values={props.value as string[]}
+                    setValues={props.onChange}
+                    onValidate={props.onValidate}
                 />
             ) : (
-                <Textbox
-                    className="bg-white dark:!bg-neutral-900"
+                <StringTextbox
                     mustMatch={validate}
+                    minLength={props.property.minLength}
+                    maxLength={props.property.maxLength}
                     value={String(props.value ?? '')}
-                    isRequired={props.property.required}
-                    setValue={_ => props.onChange(_)}
+                    setValue={props.onChange}
+                    onValidate={props.onValidate}
                 />
             );
 
         case 'number':
-            return <Textbox
-                className="bg-white dark:!bg-neutral-900"
-                mustMatch={/^\d+$/}
-                value={String(props.value ?? '')}
-                isRequired={props.property.required}
-                setValue={_ => props.onChange(_)}
+            return <NumberTextbox
+                minValue={props.property.minValue}
+                maxValue={props.property.maxValue}
+                value={Number(props.value ?? '')}
+                setValue={props.onChange}
                 onValidate={props.onValidate}
             />;
 
@@ -50,6 +55,6 @@ export namespace Property {
         property: APIProperty;
         value: unknown;
         onChange(value: unknown): void;
-        onValidate?(isValid: boolean): void;
+        onValidate?(error: string | null): void;
     }
 }

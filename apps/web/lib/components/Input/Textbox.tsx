@@ -102,6 +102,8 @@ export namespace Textbox {
         isDisabled?: boolean;
         isRequired?: boolean;
         mustMatch?: RegExp;
+        minLength?: number;
+        maxLength?: number;
 
         // Input Properties
         placeHolder?: string;

@@ -26,6 +26,8 @@ export class YouTubeChannelVideoViews extends Source<
                         'The IDs of the YouTube channels to fetch videos from.',
                     required: true,
                     validate: /^UC[\w-]{22}$/,
+                    minCount: 1,
+                    maxCount: 10,
                 },
 
                 maxVideoCount: {
@@ -35,15 +37,19 @@ export class YouTubeChannelVideoViews extends Source<
                         'The max number of videos (per channel) to use.',
                     required: true,
                     default: 250,
+                    minValue: 100,
+                    maxValue: 500,
                 },
 
                 minViewCount: {
                     type: Source.Prop.Type.Number,
                     name: 'Minimum View Count',
                     description:
-                        'The minimum number of views a video must have.',
+                        'The minimum number of views a video must have to appear in game.',
                     required: true,
                     default: 1,
+                    minValue: 1,
+                    maxValue: 100_000_000,
                 },
             },
         });

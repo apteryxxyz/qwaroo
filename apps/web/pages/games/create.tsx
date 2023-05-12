@@ -1,6 +1,6 @@
 import { Game } from '@qwaroo/client';
 import type { ClientError } from '@qwaroo/common';
-import { Validate } from '@qwaroo/common';
+import { Slug, Validate } from '@qwaroo/common';
 import type { APIGame, APISource } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
@@ -11,9 +11,9 @@ import { Field } from '#/components/Editor/Field';
 import { Property } from '#/components/Editor/Property';
 import { Source } from '#/components/Editor/Source';
 import { Button } from '#/components/Input/Button';
-import { TagTextbox } from '#/components/Input/TagTextbox';
 import { Textarea } from '#/components/Input/Textarea';
-import { Textbox } from '#/components/Input/Textbox';
+import { MultipleTextbox } from '#/components/Input/Textbox/Multiple';
+import { StringTextbox } from '#/components/Input/Textbox/String';
 import { Loading } from '#/components/Loading';
 import { PageSeo } from '#/components/Seo';
 import { useClient } from '#/contexts/Client';
@@ -36,9 +36,11 @@ export default (
 
     const [source, setSource] = useState<APISource | null>(null);
     const [properties, setProperties] = useState<Record<string, unknown>>({});
-    const [propertiesValid, setPropertiesValid] = useState<boolean[]>([]);
+    const [propertiesErrors, setPropertiesErrors] = useState<(string | null)[]>(
+        []
+    );
     const [data, setData] = useState<Record<string, unknown>>({});
-    const [dataValid, setDataValid] = useState<boolean[]>([]);
+    const [dataErrors, setDataErrors] = useState<(string | null)[]>([]);
     const [extraValid, setExtraValid] = useState<boolean[]>([]);
     const [error, setError] = useState<ClientError | null>(null);
 
@@ -46,10 +48,10 @@ export default (
         setProperties(current => ({ ...current, [property]: value }));
     }
 
-    function addPropertiesValidation(index: number, isValid: boolean) {
-        setPropertiesValid(current => {
+    function addPropertiesValidation(index: number, error: string | null) {
+        setPropertiesErrors(current => {
             const copy = [...current];
-            copy[index] = isValid;
+            copy[index] = error;
             return copy;
         });
     }
@@ -58,20 +60,29 @@ export default (
         setData(current => ({ ...current, [property]: value }));
     }
 
-    function addDataValidation(index: number, isValid: boolean) {
-        setDataValid(current => {
+    function addDataValidation(index: number, error: string | null) {
+        setDataErrors(current => {
             const copy = [...current];
-            copy[index] = isValid;
+            copy[index] = error;
             return copy;
         });
     }
 
-    function addExtraValidation(index: number, isValid: boolean) {
+    function addExtraValidation(index: number, error: boolean) {
         setExtraValid(current => {
             const copy = [...current];
-            copy[index] = isValid;
+            copy[index] = error;
             return copy;
         });
+    }
+
+    function isTitleTaken(title: string) {
+        // Really shouldn't be making a request for every character typed
+        // but it's the easiest way to do it for now
+        return client.games
+            .fetchOne(Slug.createWithTransliteration(title))
+            .then(game => game !== null)
+            .catch(() => false);
     }
 
     useEffect(() => {
@@ -137,8 +148,8 @@ export default (
                         onChange={value =>
                             addPropertiesChange(property.key, value)
                         }
-                        onValidate={isValid =>
-                            addPropertiesValidation(index, isValid)
+                        onValidate={error =>
+                            addPropertiesValidation(index, error)
                         }
                     />
                 </Field>)}
@@ -150,7 +161,7 @@ export default (
                 </Button>
                 <Button
                     onClick={() => setSectionIndex(index => index + 1)}
-                    isDisabled={propertiesValid.includes(false)}
+                    isDisabled={propertiesErrors.some(error => error !== null)}
                 >
                     Continue
                 </Button>
@@ -160,7 +171,7 @@ export default (
         {sectionIndex === 3 && <>
             <h2>
                 Choose Descriptive{' '}
-                <small className="text-sm font-normal">(2 of 4)</small>
+                <small className="text-sm font-normal">(3 of 4)</small>
             </h2>
 
             <Card className="flex flex-col gap-5">
@@ -168,12 +179,17 @@ export default (
                     label="Title"
                     description="Provide a title for your game, this cannot be changed."
                 >
-                    <Textbox
-                        className="bg-white dark:!bg-neutral-900"
+                    <StringTextbox
                         mustMatch={Validate.Title}
                         value={String(data['title'] ?? '')}
                         setValue={value => addDataChange('title', value)}
-                        onValidate={isValid => addDataValidation(0, isValid)}
+                        onValidate={error => addDataValidation(0, error)}
+                        additionalValidation={async value => {
+                            const taken =
+                                (await isTitleTaken(value)) ||
+                                value.toLowerCase() === 'create';
+                            return taken ? 'Title is already taken' : null;
+                        }}
                         isRequired
                     />
                 </Field>
@@ -182,14 +198,13 @@ export default (
                     label="Headline"
                     description="In 64 characters or less, provide a short and catchy phrase that describes your game. This will be displayed on your game's card."
                 >
-                    <Textbox
-                        className="bg-white dark:!bg-neutral-900"
+                    <StringTextbox
                         mustMatch={Validate.ShortDescription}
                         value={String(data['shortDescription'] ?? '')}
                         setValue={value =>
                             addDataChange('shortDescription', value)
                         }
-                        onValidate={isValid => addDataValidation(1, isValid)}
+                        onValidate={error => addDataValidation(1, error)}
                         isRequired
                     />
                 </Field>
@@ -199,13 +214,12 @@ export default (
                     description="Between 128 and 512 characters, provide a detailed description of your game. This will be displayed on your game's page."
                 >
                     <Textarea
-                        className="bg-white dark:!bg-neutral-900"
                         mustMatch={Validate.LongDescription}
                         value={String(data['longDescription'] ?? '')}
                         setValue={value =>
                             addDataChange('longDescription', value)
                         }
-                        onValidate={isValid => addDataValidation(2, isValid)}
+                        onValidate={error => addDataValidation(2, error)}
                         isRequired
                     />
                 </Field>
@@ -214,30 +228,29 @@ export default (
                     label="Thumbnail URL"
                     description="Provide a URL to an image that will be used as your game's thumbnail. This will be displayed on your game's card."
                 >
-                    <Textbox
-                        className="bg-white dark:!bg-neutral-900"
+                    <StringTextbox
                         mustMatch={Validate.ThumbnailURL}
                         value={String(data['thumbnailUrl'] ?? '')}
                         setValue={value => addDataChange('thumbnailUrl', value)}
-                        onValidate={isValid => addDataValidation(3, isValid)}
+                        onValidate={error => addDataValidation(3, error)}
                         isRequired
                     />
                 </Field>
 
                 <Field
                     label="Tags"
-                    description="To categorise your game, please provide a list of up to five tags that best describe it. Use commas to separate the tags."
+                    description="To categorise your game, please provide a list of up to five tags that best describe it. Press enter to add a tag."
                 >
-                    <TagTextbox
-                        className="bg-white dark:!bg-neutral-900"
+                    <MultipleTextbox
                         mustMatch={Validate.Category}
-                        tags={
+                        values={
                             Array.isArray(data['categories'])
                                 ? data['categories']
                                 : []
                         }
-                        setTags={tags => addDataChange('categories', tags)}
-                        maxTags={5}
+                        setValues={tags => addDataChange('categories', tags)}
+                        minCount={1}
+                        maxCount={5}
                     />
                 </Field>
             </Card>
@@ -248,7 +261,7 @@ export default (
                 </Button>
                 <Button
                     onClick={() => setSectionIndex(index => index + 1)}
-                    isDisabled={dataValid.includes(false)}
+                    isDisabled={dataErrors.some(error => error !== null)}
                 >
                     Continue
                 </Button>
@@ -257,16 +270,14 @@ export default (
 
         {sectionIndex === 4 && source && <>
             <h2>
-                Choose Descriptive{' '}
-                <small className="text-sm font-normal">(2 of 4)</small>
+                Choose Game Options{' '}
+                <small className="text-sm font-normal">(4 of 4)</small>
             </h2>
 
             <Extra
                 data={(data['extraData'] ?? {}) as Extra.Props['data']}
                 setData={data => addDataChange('extraData', data)}
-                onValidate={(index, isValid) =>
-                    addExtraValidation(index, isValid)
-                }
+                onValidate={(index, error) => addExtraValidation(index, error)}
             />
 
             <div className="flex items-end justify-end gap-2">
@@ -276,6 +287,8 @@ export default (
                 <Button
                     isDisabled={extraValid.includes(false)}
                     onClick={async () => {
+                        setSectionIndex(index => index + 1);
+
                         const game = await client.games
                             .createGame({
                                 ...(data as unknown as APIGame),
@@ -283,7 +296,10 @@ export default (
                                 sourceSlug: source.slug,
                                 sourceProperties: properties,
                             })
-                            .catch(error => setError(error));
+                            .catch(error => {
+                                setSectionIndex(-1);
+                                setError(error);
+                            });
 
                         if (game) void router.push(WebRoutes.game(game.slug));
                     }}

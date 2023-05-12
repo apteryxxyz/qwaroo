@@ -11,6 +11,7 @@ import { Button } from '#/components/Input/Button';
 import { TagTextbox } from '#/components/Input/TagTextbox';
 import { Textarea } from '#/components/Input/Textarea';
 import { Textbox } from '#/components/Input/Textbox';
+import { StringTextbox } from '#/components/Input/Textbox/String';
 import { PageSeo } from '#/components/Seo';
 import { useClient } from '#/contexts/Client';
 import { Extra } from '#/modes/HigherOrLower/Editor/Extra';
@@ -51,11 +52,10 @@ export default (
 
         <Card className="flex flex-col gap-5">
             <Field label="Title" description="Provide a title for your game.">
-                <Textbox
-                    className="bg-white dark:!bg-neutral-900"
-                    mustMatch={Validate.Title}
+                <StringTextbox
                     value={copy.title}
-                    setValue={_ => addChange('title', _)}
+                    setValue={value => addChange('title', value)}
+                    mustMatch={Validate.Title}
                     isRequired
                     isDisabled
                 />
@@ -65,11 +65,10 @@ export default (
                 label="Headline"
                 description="In 64 characters or less, provide a short and catchy phrase that describes your game. This will be displayed on your game's card."
             >
-                <Textbox
-                    className="bg-white dark:!bg-neutral-900"
-                    mustMatch={Validate.ShortDescription}
+                <StringTextbox
                     value={copy.shortDescription}
-                    setValue={_ => addChange('shortDescription', _)}
+                    setValue={value => addChange('shortDescription', value)}
+                    mustMatch={Validate.ShortDescription}
                     isRequired
                 />
             </Field>
@@ -79,17 +78,16 @@ export default (
                 description="Between 128 and 512 characters, provide a detailed description of your game. This will be displayed on your game's page."
             >
                 <Textarea
-                    className="bg-white dark:!bg-neutral-900"
-                    mustMatch={Validate.LongDescription}
                     value={copy.longDescription}
-                    setValue={_ => addChange('longDescription', _)}
+                    setValue={value => addChange('longDescription', value)}
+                    mustMatch={Validate.LongDescription}
                     isRequired
                 />
             </Field>
 
             <Field
                 label="Tags"
-                description="To categorise your game, please provide a list of up to five tags that best describe it. Use commas to separate the tags."
+                description="To categorise your game, please provide a list of up to five tags that best describe it. Press enter to add a tag."
             >
                 <TagTextbox
                     className="bg-white dark:!bg-neutral-900"

@@ -31,5 +31,9 @@ export namespace Validate {
     export const ShortDescription = createStringLengthRegExp(10, 80);
     export const LongDescription = createStringLengthRegExp(100, 500);
     export const ThumbnailURL = /^(http|https):\/\/.{1,1024}$/;
-    export const Category = createStringLengthRegExp(3, 32);
+    export const Category = createStringLengthRegExp(
+        3,
+        32,
+        '\u00C0-\u01FFA-Z0-9'
+    );
 }
