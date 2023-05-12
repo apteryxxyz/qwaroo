@@ -1,11 +1,7 @@
 {
     "name": "qwaroo",
     "private": true,
-    "workspaces": [
-        "apps/*",
-        "bots/*",
-        "packages/*"
-    ],
+    "workspaces": ["apps/*", "bots/*", "packages/*"],
     "scripts": {
         "build": "lerna run build",
         "build:packages": "lerna run build --scope @qwaroo/*",
@@ -25,9 +21,6 @@
     },
     "prettier": "prettier-config-apteryx",
     "devDependencies": {
-        "@commitlint/cli": "^17.5.1",
-        "@commitlint/config-conventional": "^17.4.4",
-        "@commitlint/config-pnpm-scopes": "^17.5.0",
         "@next/eslint-plugin-next": "^13.2.4",
         "@rushstack/eslint-patch": "^1.2.0",
         "@typescript-eslint/eslint-plugin": "^5.57.0",
