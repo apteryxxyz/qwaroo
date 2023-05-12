@@ -106,16 +106,6 @@ export function GameBrowser(props: GameBrowser.Props) {
         {/* Filter bar */}
         <div className="flex flex-wrap gap-1">
             {/* Search box */}
-            {/* <Textbox
-                ariaRole="searchbox"
-                placeHolder="Search games..."
-                iconProp={faSearch}
-                value={options.term}
-                onValue={v => changeOption('term', v)}
-                enableIcon
-                enableEnter
-            /> */}
-
             <StringTextbox
                 ariaRole="searchbox"
                 placeHolder="Search games..."
@@ -177,6 +167,12 @@ export function GameBrowser(props: GameBrowser.Props) {
                 >
                     {isLoadingMore ? 'Loading...' : 'Load more'}
                 </Button>}
+
+                {/* No games */}
+                {games.current.size === 0 &&
+                    !games.current.hasMore && <p className="col-span-full">
+                        No games to show here, yet.
+                    </p>}
             </section>
         ) : (
             <Loading.Circle className="mt-[100px]" />

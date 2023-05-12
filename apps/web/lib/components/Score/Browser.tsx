@@ -124,6 +124,12 @@ export function ScoreBrowser<P extends Game | User>(
                 >
                     {isLoadingMore ? 'Loading...' : 'Load more'}
                 </Button>}
+
+                {/* No scores */}
+                {scores.current.size === 0 &&
+                    !scores.current.hasMore && <p className="col-span-full">
+                        No scores to show here, yet.
+                    </p>}
             </section>
         ) : (
             <Loading.Circle className="mt-[33px]" />
