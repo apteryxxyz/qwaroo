@@ -118,7 +118,7 @@ export function GameBrowser(props: GameBrowser.Props) {
 
             <StringTextbox
                 ariaRole="searchbox"
-                placeHolder='Search games...'
+                placeHolder="Search games..."
                 iconProp={faSearch}
                 value={options.term}
                 onValue={value => changeOption('term', value)}

@@ -81,7 +81,7 @@ export class Games extends null {
                 higherText: toString(data.extraData?.higherText),
                 lowerText: toString(data.extraData?.lowerText),
             },
-            flags: 0,
+            flags: Game.Flags.Public,
             createdTimestamp: Date.now(),
             editedTimestamp: Date.now(),
         });

@@ -41,7 +41,7 @@ export default (
     );
     const [data, setData] = useState<Record<string, unknown>>({});
     const [dataErrors, setDataErrors] = useState<(string | null)[]>([]);
-    const [extraValid, setExtraValid] = useState<boolean[]>([]);
+    const [extraErrors, setExtraErrors] = useState<(string | null)[]>([]);
     const [error, setError] = useState<ClientError | null>(null);
 
     function addPropertiesChange(property: string, value: unknown) {
@@ -68,8 +68,8 @@ export default (
         });
     }
 
-    function addExtraValidation(index: number, error: boolean) {
-        setExtraValid(current => {
+    function addExtraValidation(index: number, error: string | null) {
+        setExtraErrors(current => {
             const copy = [...current];
             copy[index] = error;
             return copy;
@@ -285,7 +285,7 @@ export default (
                     Back
                 </Button>
                 <Button
-                    isDisabled={extraValid.includes(false)}
+                    isDisabled={extraErrors.some(error => error !== null)}
                     onClick={async () => {
                         setSectionIndex(index => index + 1);
 

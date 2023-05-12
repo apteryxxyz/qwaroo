@@ -103,15 +103,14 @@ export default (
                         Play
                     </Button>
 
-                    {/* NOTE: Temporany disabled until validation is added to the edit page */}
-                    {/* {props.isCreator && <Button
+                    {props.isCreator && <Button
                         className="text-3xl font-bold !bg-qwaroo-500"
                         linkProps={{
                             href: WebRoutes.editGame(game.current.slug),
                         }}
                     >
                         Edit
-                    </Button>} */}
+                    </Button>}
 
                     {props.isCreator && game.current.sourceSlug && <Button
                         className="text-3xl font-bold !bg-qwaroo-500"
