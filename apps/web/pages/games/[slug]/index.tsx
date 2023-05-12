@@ -36,6 +36,8 @@ export default (
     const [isUpdating, setIsUpdating] = useState(false);
     const [updateResult, setUpdateResult] = useState<boolean | null>(null);
 
+    const hasBeenPlayed = game.current.lastPlayedTimestamp !== 0;
+
     // Functions
 
     const handleEmbedClick = (event: Event) => {
@@ -80,10 +82,13 @@ export default (
                         {ms(Date.now() - game.current.createdTimestamp, {
                             roundUp: true,
                         })}{' '}
-                        ago, last played around{' '}
-                        {ms(Date.now() - game.current.lastPlayedTimestamp, {
+                        ago
+                        {hasBeenPlayed
+                            ? `, last played around{' '}
+                        ${ms(Date.now() - game.current.lastPlayedTimestamp, {
                             roundUp: true,
-                        })}
+                        })}}`
+                            : ''}
                         .
                     </p>
                 </Card>

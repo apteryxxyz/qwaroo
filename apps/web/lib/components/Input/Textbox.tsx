@@ -23,14 +23,18 @@ export function Textbox(props: Textbox.Props) {
     const searchTimeout = useRef<ReturnType<typeof setTimeout>>(null!);
 
     function updateIsValid() {
-        const valueExists = value.trim() !== '';
+        const valueExists = value && value.trim() !== '';
         const doesMatch = props.mustMatch?.test(value) ?? true;
 
-        if (props.isRequired && !valueExists) return setIsValid(false);
-        else if (!valueExists) return setIsValid(!props.isRequired);
+        let result;
+        if (props.isRequired && !valueExists) result = false;
+        else if (!valueExists) result = !props.isRequired;
         else if (!doesMatch && (props.isRequired || !props.isRequired))
-            return setIsValid(false);
-        else return setIsValid(true);
+            result = false;
+        else result = true;
+
+        setIsValid(result);
+        props.onValidate?.(result);
     }
 
     useEffect(updateIsValid, [value]);
@@ -44,6 +48,10 @@ export function Textbox(props: Textbox.Props) {
                 ${props.className ?? ''}`}
             placeholder={props.placeHolder}
             value={value}
+            onBlur={() => {
+                if (!isValid) return;
+                if (props.onBlur) props.onBlur(value);
+            }}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 setValue(event.currentTarget.value);
                 clearTimeout(searchTimeout.current);
@@ -94,6 +102,8 @@ export namespace Textbox {
         isDisabled?: boolean;
         isRequired?: boolean;
         mustMatch?: RegExp;
+        minLength?: number;
+        maxLength?: number;
 
         // Input Properties
         placeHolder?: string;
@@ -107,5 +117,7 @@ export namespace Textbox {
         // Callbacks
         onKeyUp?(value: string, key: string): void;
         onValue?(value: string): void;
+        onBlur?(value: string): void;
+        onValidate?(value: boolean): void;
     }
 }

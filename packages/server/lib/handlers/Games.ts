@@ -45,6 +45,16 @@ export class Games extends null {
         return game;
     }
 
+    public static async isUniqueSlug(slug: string) {
+        if (!Validate.Slug.test(slug) || slug === 'create')
+            throw new Error(400, 'Game title is invalid');
+
+        const existing = await Game.Model.findOne({ slug }).exec();
+        if (existing) throw new Error(400, 'Game title is not unique');
+
+        return true;
+    }
+
     public static async createGame(
         user: User.Document,
         data: Partial<Game.Entity>
@@ -71,7 +81,7 @@ export class Games extends null {
                 higherText: toString(data.extraData?.higherText),
                 lowerText: toString(data.extraData?.lowerText),
             },
-            flags: 0,
+            flags: Game.Flags.Public,
             createdTimestamp: Date.now(),
             editedTimestamp: Date.now(),
         });

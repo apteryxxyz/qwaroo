@@ -11,6 +11,7 @@ export abstract class Source<
     public readonly name: string;
     public readonly slug: string;
     public readonly description: string;
+    public readonly iconUrl: string;
     public readonly isPublic: boolean;
     public readonly properties: Record<keyof P, Source.Prop>;
 
@@ -19,6 +20,7 @@ export abstract class Source<
         this.name = options.name;
         this.slug = Slug.create(this.name);
         this.description = options.description;
+        this.iconUrl = options.iconUrl;
         this.isPublic = options.isPublic;
         this.properties = options.properties;
     }
@@ -39,19 +41,30 @@ export namespace Source {
         mode: M;
         name: string;
         description: string;
+        iconUrl: string;
         isPublic: boolean;
         properties: Record<keyof P, Prop>;
     }
 
     export interface Prop<T extends Prop.Type = Prop.Type> {
-        type: T | T[];
+        type: T | [T];
         name: string;
         description: string;
 
         required?: boolean;
         default?: unknown;
+
         options?: { label: string; value: unknown }[];
         validate?: RegExp;
+
+        minLength?: number;
+        maxLength?: number;
+
+        minValue?: number;
+        maxValue?: number;
+
+        minCount?: number;
+        maxCount?: number;
     }
 
     export namespace Prop {

@@ -37,6 +37,7 @@ export function TagTextbox(props: TagTextbox.Props) {
             {...props}
             onValue={() => null}
             onKeyUp={onChange}
+            onBlur={() => onChange(value, ',')}
             value={value}
             setValue={setValue}
             isDisabled={tags.length >= (props.maxTags ?? 10)}
@@ -58,25 +59,6 @@ export function TagTextbox(props: TagTextbox.Props) {
         </div>
     </div>;
 }
-
-//     function removeTag(tag: string) {
-//         const newTags = tags.filter(t => t !== tag);
-//         setTags(newTags);
-//         props.onChange(newTags);
-//     }
-
-//     return <div className="flex flex-col gap-2">
-//         <Textbox
-//             {...props}
-//             onValue={() => null}
-//             onKeyUp={onChange}
-//             value={value}
-//             setValue={setValue}
-//             isDisabled={tags.length >= (props.maxTags ?? 10)}
-//         />
-
-//     </div>;
-// }
 
 export namespace TagTextbox {
     export interface Props {

@@ -1,6 +1,7 @@
 import type {
     APIGame,
     APIGameStatistics,
+    APISource,
     FetchGamesOptions,
 } from '@qwaroo/types';
 import { APIRoutes } from '@qwaroo/types';
@@ -32,6 +33,20 @@ export class GameManager extends Manager<string, Game> {
         const entry = new Game(this, data);
         this.set(entry.id, entry);
         return entry;
+    }
+
+    /** Create a new game, this request can take a while. */
+    public async createGame(options: APIGame) {
+        const path = APIRoutes.games();
+        const data = await this.client.api.put(path, {}, options);
+        return this.append(data);
+    }
+
+    /** Fetch the sources. */
+    public async fetchSources() {
+        const path = APIRoutes.sources();
+        const data = await this.client.api.get(path);
+        return data.items as APISource[];
     }
 
     /** Fetch all game categories. */

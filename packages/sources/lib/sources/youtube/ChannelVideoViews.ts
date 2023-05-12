@@ -12,7 +12,10 @@ export class YouTubeChannelVideoViews extends Source<
         super({
             mode: Game.Mode.HigherOrLower,
             name: 'YouTube Channel Video Views',
-            description: '',
+            description:
+                'Fetch videos from one or more YouTube channels and use their view counts to play a Higher or Lower guessing game.',
+            iconUrl:
+                'https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png',
             isPublic: true,
 
             properties: {
@@ -22,6 +25,9 @@ export class YouTubeChannelVideoViews extends Source<
                     description:
                         'The IDs of the YouTube channels to fetch videos from.',
                     required: true,
+                    validate: /^UC[\w-]{22}$/,
+                    minCount: 1,
+                    maxCount: 10,
                 },
 
                 maxVideoCount: {
@@ -31,15 +37,19 @@ export class YouTubeChannelVideoViews extends Source<
                         'The max number of videos (per channel) to use.',
                     required: true,
                     default: 250,
+                    minValue: 100,
+                    maxValue: 500,
                 },
 
                 minViewCount: {
                     type: Source.Prop.Type.Number,
                     name: 'Minimum View Count',
                     description:
-                        'The minimum number of views a video must have.',
+                        'The minimum number of views a video must have to appear in game.',
                     required: true,
                     default: 1,
+                    minValue: 1,
+                    maxValue: 100_000_000,
                 },
             },
         });

@@ -14,6 +14,7 @@
         "@qwaroo/database": "workspace:^0.0.0",
         "@qwaroo/middleware": "workspace:^0.0.0",
         "@qwaroo/server": "workspace:^0.0.0",
+        "@qwaroo/sources": "workspace:^",
         "@qwaroo/types": "workspace:^0.0.0",
         "co-body": "^6.1.0",
         "cors": "^2.8.5",
@@ -43,20 +44,12 @@
     "nx": {
         "targets": {
             "format": {
-                "dependsOn": [
-                    "^format"
-                ],
-                "outputs": [
-                    "{projectRoot}/src"
-                ]
+                "dependsOn": ["^format"],
+                "outputs": ["{projectRoot}/src"]
             },
             "build": {
-                "dependsOn": [
-                    "^build"
-                ],
-                "outputs": [
-                    "{projectRoot}/dist"
-                ]
+                "dependsOn": ["^build"],
+                "outputs": ["{projectRoot}/dist"]
             }
         }
     }

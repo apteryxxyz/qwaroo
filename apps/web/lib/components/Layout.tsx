@@ -13,7 +13,7 @@ export function Layout(props: Layout.Props) {
 
             <main
                 className="flex flex-col z-[1] gap-3 min-h-screen max-w-8xl w-full mx-auto p-3
-                text-black dark:text-white"
+                text-black dark:text-white lg:justify-center"
             >
                 {props.children}
             </main>

@@ -1,3 +1,4 @@
+import { Slug } from '@qwaroo/common';
 import {
     handle,
     useBody,
@@ -77,10 +78,14 @@ export default () => {
             if (req.method === 'PUT') {
                 const user = req.user!;
 
+                const slug = Slug.createWithTransliteration(req.body?.title);
+                await Games.isUniqueSlug(slug);
+
                 const items = await Items.validateSource(
                     req.body?.sourceSlug,
                     req.body?.sourceProperties
                 );
+
                 const game = await Games.createGame(user, req.body);
                 await Items.saveItems(game, items[1]);
 

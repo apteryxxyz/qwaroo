@@ -12,9 +12,4 @@ export * from './payloads/connection';
 export * from './payloads/game';
 export * from './payloads/score';
 export * from './payloads/user';
-
-// GET cdn.qwaroo.com/games/[id]/items/[version]
-
-// GET localhost:3001/access/games/[id]/items/[version]
-// GET localhost:3001/access/games/[id]/items/@latest
-//
+export * from './payloads/source';
