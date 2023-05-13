@@ -26,7 +26,7 @@ export function Block(props: Block.Props) {
             "{props.display}"
         </h2>
 
-        {props.caption && <p className="text-center text-xl">
+        {props.caption && <p className="text-center text-lg">
             {props.caption}
         </p>}
 

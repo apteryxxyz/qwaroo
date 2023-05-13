@@ -65,6 +65,7 @@ export function Embed(props: Embed.Props) {
     function restartGame() {
         logger.info('Restarting game...');
         setStatus(Embed.Status.Preparing);
+        setHighScore(internalScore);
         setInternalScore(0);
         setDisplayScore(0);
         void prepareGame().then(() => startGame());

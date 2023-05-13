@@ -38,7 +38,6 @@ export function GameBrowser(props: GameBrowser.Props) {
                 (id, index, self) =>
                     !client.users.has(id) && self.indexOf(id) === index
             );
-        console.log(creatorIds);
         return creatorIds.length > 0
             ? client.users.fetchMany({ ids: creatorIds })
             : undefined;
