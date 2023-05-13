@@ -2,7 +2,7 @@ import { Game } from '@qwaroo/client';
 import type { APIGame, APIScore } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { GameSeo } from '#/components/Seo';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 import { HigherOrLower } from '#/modes/HigherOrLower';
 import { removeUndefined } from '#/utilities/object';
 

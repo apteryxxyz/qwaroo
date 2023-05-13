@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button } from '../Input/Button';
 import { Loading } from '../Loading';
 import { ScoreCard } from './Card';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 import { useEventListener } from '#/hooks/useEventListener';
 import { useIsFirstRender } from '#/hooks/useIsFirstRender';
 

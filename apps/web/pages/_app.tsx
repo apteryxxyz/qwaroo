@@ -7,27 +7,14 @@ import { ThemeProvider } from 'next-themes';
 import { useEffect } from 'react';
 import { Pipe, Pipeline } from 'react-pipeline-component';
 import { Layout } from '#/components/Layout';
-import { ClientProvider, createClient } from '#/contexts/Client';
 import { injectEventEmitters } from '#/hooks/useEventListener';
 import { triggerPageView } from '#/utilities/google';
 
 export default ({ Component, pageProps }: AppProps) => {
-    const client = createClient();
     const router = useRouter();
 
     useEffect(() => {
         injectEventEmitters();
-        Reflect.set(globalThis, '__QWAROO_CLIENT__', client);
-
-        // Login to the client if ID and token are present
-        const id = localStorage.getItem('qwaroo.user_id');
-        const token = localStorage.getItem('qwaroo.token');
-        if (id && token) {
-            client.prepare(id, token);
-            void client.login();
-        }
-
-        client.hasTriedToPrepare = true;
     }, []);
 
     useEffect(() => {
@@ -46,7 +33,6 @@ export default ({ Component, pageProps }: AppProps) => {
         // prettier-ignore
         components={[
             <ThemeProvider attribute="class" storageKey="qwaroo.theme" enableSystem children={<Pipe />} />,
-            <ClientProvider value={client} children={<Pipe />} />,
         ]}
     >
         <Layout {...pageProps}>

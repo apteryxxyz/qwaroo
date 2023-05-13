@@ -12,7 +12,7 @@ import { Card } from '#/components/Card';
 import { GameBrowser } from '#/components/Game/Browser';
 import { ScoreBrowser } from '#/components/Score/Browser';
 import { PageSeo } from '#/components/Seo';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 
 const BadgeIconMap = {
     Developer: faCode,

@@ -8,7 +8,7 @@ import { Links } from '#/components/Footer/Links';
 import { Button } from '#/components/Input/Button';
 import { Section } from '#/components/Section';
 import { PageSeo } from '#/components/Seo';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 
 export default (
     props: InferGetServerSidePropsType<typeof getServerSideProps>

@@ -11,7 +11,7 @@ import { Dropdown } from '../Input/Dropdown';
 import { StringTextbox } from '../Input/Textbox/String';
 import { Loading } from '../Loading';
 import { GameCard } from './Card';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 import { useEventListener } from '#/hooks/useEventListener';
 import { useIsFirstRender } from '#/hooks/useIsFirstRender';
 
@@ -32,11 +32,16 @@ export function GameBrowser(props: GameBrowser.Props) {
     async function fetchAdditionalGames(listing: GameListing) {
         const newGames = await listing.fetchMore();
 
-        const creatorIds = Array.from(
-            new Set(newGames.map(game => game.creatorId))
-        ).filter(id => !client.users.has(id));
-        if (creatorIds.length > 0)
-            await client.users.fetchMany({ ids: creatorIds });
+        const creatorIds = newGames
+            .map(game => game.creatorId)
+            .filter(
+                (id, index, self) =>
+                    !client.users.has(id) && self.indexOf(id) === index
+            );
+        console.log(creatorIds);
+        return creatorIds.length > 0
+            ? client.users.fetchMany({ ids: creatorIds })
+            : undefined;
     }
 
     async function loadMoreGames() {
@@ -62,10 +67,11 @@ export function GameBrowser(props: GameBrowser.Props) {
             );
 
         const listing = new GameListing(props.manager, combinedOptions, -1);
-        await fetchAdditionalGames(listing);
-        games.current = listing;
+        return fetchAdditionalGames(listing).then(() => {
+            games.current = listing;
 
-        setIsLoadingOptions(false);
+            setIsLoadingOptions(false);
+        });
     }
 
     async function changeOption(key: string, value: unknown) {

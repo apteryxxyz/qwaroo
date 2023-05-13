@@ -13,7 +13,7 @@ import { Card } from '#/components/Card';
 import { Button } from '#/components/Input/Button';
 import { ScoreBrowser } from '#/components/Score/Browser';
 import { GameSeo } from '#/components/Seo';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 import { removeUndefined } from '#/utilities/object';
 
 export default (

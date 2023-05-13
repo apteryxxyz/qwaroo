@@ -3,7 +3,7 @@ import { WebRoutes } from '@qwaroo/types';
 import { ms } from 'enhanced-ms';
 import Link from 'next/link';
 import { Card } from '../Card';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 
 export function ScoreCard(props: ScoreCard.Props) {
     // Private games dont have a user or game

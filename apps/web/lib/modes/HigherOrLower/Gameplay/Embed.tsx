@@ -7,7 +7,7 @@ import { Over } from './Over';
 import { Overlay } from './Overlay';
 import { Settings } from './Settings';
 import { Loading } from '#/components/Loading';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 import { useLogger } from '#/hooks/useLogger';
 import { emitEvent } from '#/utilities/google';
 import { sleepSeconds } from '#/utilities/timer';

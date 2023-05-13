@@ -1,7 +1,7 @@
 import { WebRoutes } from '@qwaroo/types';
 import { GameBrowser } from '#/components/Game/Browser';
 import { PageSeo } from '#/components/Seo/Page';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 
 export default () => {
     const client = useClient();

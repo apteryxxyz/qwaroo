@@ -13,7 +13,7 @@ import { Textarea } from '#/components/Input/Textarea';
 import { MultipleTextbox } from '#/components/Input/Textbox/Multiple';
 import { StringTextbox } from '#/components/Input/Textbox/String';
 import { PageSeo } from '#/components/Seo';
-import { useClient } from '#/contexts/Client';
+import { useClient } from '#/hooks/useClient';
 import { Extra } from '#/modes/HigherOrLower/Editor/Extra';
 
 export default (

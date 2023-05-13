@@ -1,10 +1,7 @@
 import { Client, Collection } from '@qwaroo/client';
 import type { GetServerSidePropsContext } from 'next';
-import { createContext, useContext } from 'react';
 import { getApiUrl, getCdnUrl } from '#/utilities/env';
 
-export const ClientContext = createContext<Client>(null!);
-export const ClientProvider = ClientContext.Provider;
 export const ClientCache = new Collection<string, Client>();
 
 export function useClient(req?: GetServerSidePropsContext['req']) {
@@ -22,8 +19,8 @@ export function createClient() {
 function useOnServer(req: GetServerSidePropsContext['req']) {
     const userId = req.cookies['qwaroo.user_id'];
     const token = req.cookies['qwaroo.token'];
-
     if (!userId || !token) return createClient();
+
     if (ClientCache.has(token)) return ClientCache.get(token)!;
 
     const client = createClient();
@@ -33,14 +30,19 @@ function useOnServer(req: GetServerSidePropsContext['req']) {
 }
 
 function useOnClient() {
-    const client = useContext(ClientContext);
+    let client = ClientCache.get('__default__');
+    if (!client) {
+        client = createClient();
+        ClientCache.set('__default__', client);
+    }
+
     if (client.hasTriedToPrepare) return client;
     if (typeof localStorage === 'undefined') return client;
 
     const userId = localStorage.getItem('qwaroo.user_id');
     const token = localStorage.getItem('qwaroo.token');
-
     if (!userId || !token) return client;
+
     client.prepare(userId, token);
     client.hasTriedToPrepare = true;
     void client.login();
