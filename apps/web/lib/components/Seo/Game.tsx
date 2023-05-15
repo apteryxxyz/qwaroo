@@ -19,7 +19,7 @@ export function GameSeo(props: GameSeo.Props) {
             Game.ModeNames[props.game.mode],
             ...props.game.categories,
         ]}
-        noIndex={(props.game.flags & Game.Flags.Public) !== 0}
+        noIndex={(props.game.flags & Game.Flags.Public) === 0}
     />;
 }
 
