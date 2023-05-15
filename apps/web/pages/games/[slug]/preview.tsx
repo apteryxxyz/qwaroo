@@ -2,7 +2,6 @@ import { Game } from '@qwaroo/client';
 import type { APIGame, APIScore } from '@qwaroo/types';
 import { WebRoutes } from '@qwaroo/types';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { GameSeo } from '#/components/Seo';
 import { useClient } from '#/hooks/useClient';
 import { useEventListener } from '#/hooks/useEventListener';
 import { HigherOrLower } from '#/modes/HigherOrLower';
@@ -21,8 +20,6 @@ export default (
     useEventListener('click', handleClick);
 
     return <>
-        <GameSeo game={props.game} />
-
         <div className="cursor-pointer">
             {props.game.mode ===
                 Game.Mode.HigherOrLower && <HigherOrLower.Gameplay.Embed

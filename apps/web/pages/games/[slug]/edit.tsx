@@ -62,6 +62,7 @@ export default (
             url={WebRoutes.editGame(props.game.slug)}
             title="Edit Game"
             description="Edit your game's information."
+            noIndex
         />
 
         <h2>Edit Game</h2>

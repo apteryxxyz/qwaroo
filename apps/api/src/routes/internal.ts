@@ -1,7 +1,7 @@
 import { URL } from 'node:url';
 import { handle, useMethods, useStaticToken } from '@qwaroo/middleware';
 import { Game, User, getEnv } from '@qwaroo/server';
-import { APIRoutes } from '@qwaroo/types';
+import { APIRoutes, WebRoutes } from '@qwaroo/types';
 
 export default () => {
     const router = require('express').Router();
@@ -14,14 +14,22 @@ export default () => {
             const baseWebUrl = new URL(getEnv(String, 'WEB_URL'));
 
             const games = await Game.Model.find().exec();
-            const gameFields = games.map(game => ({
-                loc: new URL(`/games/${game.slug}`, baseWebUrl).toString(),
-                lastmod: new Date(
-                    Math.max(game.updatedTimestamp ?? 0, game.editedTimestamp)
-                ).toISOString(),
-                changefreq: 'weekly',
-                priority: 0.8,
-            }));
+            const gameFields = games.map(game => {
+                return [
+                    WebRoutes.game(game.slug),
+                    WebRoutes.playGame(game.slug),
+                ].map(route => ({
+                    loc: new URL(route, baseWebUrl).toString(),
+                    lastmod: new Date(
+                        Math.max(
+                            game.updatedTimestamp ?? 0,
+                            game.editedTimestamp
+                        )
+                    ).toISOString(),
+                    changefreq: 'weekly',
+                    priority: 0.8,
+                }));
+            });
 
             const users = await User.Model.find().exec();
             const userFields = users.map(user => ({
