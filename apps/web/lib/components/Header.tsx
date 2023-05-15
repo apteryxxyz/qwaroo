@@ -1,11 +1,24 @@
+import { faCloudMoon } from '@fortawesome/free-solid-svg-icons/faCloudMoon';
+import { faCloudSun } from '@fortawesome/free-solid-svg-icons/faCloudSun';
 import { faGamepad } from '@fortawesome/free-solid-svg-icons/faGamepad';
 import { faPenFancy } from '@fortawesome/free-solid-svg-icons/faPenFancy';
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons/faUserAlt';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import { Container } from './Container';
 import { Button } from './Input/Button';
-import { ThemeSwitch } from './Input/ThemeSwitch';
+import { Loading } from './Loading';
+import { useClient } from '#/hooks/useClient';
 
 export function Header() {
+    const client = useClient();
+
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+
+    const { theme, setTheme } = useTheme();
+    const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+
     return <Container
         parentType="header"
         parentClassName="fixed left-0 right-0 z-[2] shadow-xl bg-qwaroo-500 dark:bg-neutral-800"
@@ -35,15 +48,38 @@ export function Header() {
                     Create
                 </Button>
 
-                <Button
-                    className="!bg-transparent"
-                    iconProp={faUserAlt}
-                    linkProps={{ href: '/profile' }}
-                >
-                    Profile
-                </Button>
+                {mounted ? (
+                    client.id ? (
+                        <Button
+                            className="!bg-transparent"
+                            iconProp={faUserAlt}
+                            linkProps={{ href: '/profile' }}
+                        >
+                            Profile
+                        </Button>
+                    ) : (
+                        <Button
+                            className="!bg-transparent"
+                            iconProp={faUserAlt}
+                            linkProps={{ href: '/login' }}
+                        >
+                            Login
+                        </Button>
+                    )
+                ) : (
+                    <Loading.Circle className="m-auto [&>*]:!w-6 [&>*]:!h-6" />
+                )}
 
-                <ThemeSwitch />
+                {mounted ? (
+                    <Button
+                        className="!bg-transparent"
+                        iconProp={theme === 'light' ? faCloudMoon : faCloudSun}
+                        ariaLabel="Toggle theme"
+                        onClick={() => toggleTheme()}
+                    />
+                ) : (
+                    <Loading.Circle className="m-auto [&>*]:!w-6 [&>*]:!h-6" />
+                )}
             </div>
         </nav>
     </Container>;
