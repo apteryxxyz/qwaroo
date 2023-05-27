@@ -4,8 +4,9 @@
  */
 
 const fs = require('fs');
-const { glob } = require('glob');
+const path = require('path');
 
+const directories = ['.', './apps/www'];
 const environments = ['production', 'development', 'staging', 'reset'];
 
 void main(process.argv.length, process.argv);
@@ -21,8 +22,7 @@ async function main(argc, argv) {
 }
 
 async function copyEnvFiles(environment) {
-    const files = await glob(`**/.env.local.${environment}`);
-    for (const file of files) {
+    for (const file of findAllOf(`.env.local.${environment}`)) {
         const newFile = file.replace(`.env.local.${environment}`, '.env.local');
         fs.copyFileSync(file, newFile);
         console.info(`[Prepare Enviroment] Copied ${file} to ${newFile}`)
@@ -30,9 +30,24 @@ async function copyEnvFiles(environment) {
 }
 
 async function resetFiles() {
-    const files = await glob('**/.env.local');
-    for (const file of files) {
+    for (const file of findAllOf('.env.local')) {
         fs.rmSync(file);
         console.info(`[Prepare Enviroment] Removed ${file}`);
     }
+}
+
+function findAllOf(match) {
+    const files = [];
+    for (const directory of directories) {
+        const file = lookInDirectoryFor(directory, match);
+        if (file) files.push(file);
+    }
+
+    return files;
+}
+
+function lookInDirectoryFor(directory, match) {
+    for (const file of fs.readdirSync(directory))
+        if (file === match) return path.join(directory, file);
+    return null;
 }
