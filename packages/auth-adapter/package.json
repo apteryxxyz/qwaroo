@@ -1,5 +1,5 @@
 {
-    "name": "@qwaroo/database",
+    "name": "@qwaroo/auth-adapter",
     "version": "0.0.0",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -9,9 +9,8 @@
         "build": "tsup src/index.ts"
     },
     "dependencies": {
-        "@typegoose/typegoose": "^11.1.0",
+        "@qwaroo/database": "workspace:^",
         "mongoose": "^7.1.2",
-        "mongoose-autopopulate": "^1.0.1",
-        "reflect-metadata": "^0.1.13"
+        "next-auth": "^4.22.1"
     }
 }

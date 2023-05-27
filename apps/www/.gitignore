@@ -1,0 +1,8 @@
+# Build
+.next/
+
+# Secrets
+.env.local.*
+
+# Auto generated
+.env.local

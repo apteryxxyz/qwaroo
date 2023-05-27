@@ -1,9 +1,9 @@
 # Dependencies
 node_modules/
 
-# Build
-.nginx/
+# Cache
+.turbo/
 
-# Nohup
-nohup.out
-nohup.err
+# Auto generated
+docker-compose.override.yml
+.turbo

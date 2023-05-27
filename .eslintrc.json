@@ -1,10 +1,8 @@
 {
     "extends": ["apteryx/common", "apteryx/typescript", "apteryx/prettier"],
+    "ignorePatterns": ["dist", "node_modules", "*.config.*"],
     "rules": {
-        "no-warning-comments": "off",
-        "@typescript-eslint/dot-notation": "off",
-        "unicorn/prefer-math-trunc": "off",
-        "@typescript-eslint/prefer-literal-enum-member": "off",
-        "@typescript-eslint/no-confusing-void-expression": "off"
+        "jsdoc/newline-after-description": "off",
+        "no-return-assign": "off"
     }
 }

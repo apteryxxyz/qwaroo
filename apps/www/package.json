@@ -1,0 +1,51 @@
+{
+    "name": "www",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "format": "prettier --write src && eslint --fix src",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@auth/core": "^0.7.1",
+        "@qwaroo/auth-adapter": "workspace:^",
+        "@qwaroo/database": "workspace:^",
+        "@radix-ui/react-aspect-ratio": "^1.0.2",
+        "@radix-ui/react-dialog": "^1.0.3",
+        "@radix-ui/react-dropdown-menu": "^2.0.4",
+        "@radix-ui/react-label": "^2.0.1",
+        "@radix-ui/react-separator": "^1.0.2",
+        "@radix-ui/react-slot": "^1.0.1",
+        "@radix-ui/react-switch": "^1.0.2",
+        "@typegoose/typegoose": "^11.1.0",
+        "autoprefixer": "^10.4.14",
+        "class-variance-authority": "^0.6.0",
+        "clsx": "^1.2.1",
+        "framer-motion": "^10.12.12",
+        "lucide-react": "^0.220.0",
+        "mongoose": "^7.1.2",
+        "next": "13.4.4-canary.6",
+        "next-auth": "^4.22.1",
+        "next-themes": "npm:@wits/next-themes@^0.2.16",
+        "postcss": "^8.4.23",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-icons": "^4.8.0",
+        "react-wrap-balancer": "^0.5.0",
+        "tailwind-group-variant": "^1.0.0",
+        "tailwind-merge": "^1.12.0",
+        "tailwind-scrollbar": "^3.0.4",
+        "tailwindcss": "^3.3.2",
+        "tailwindcss-animate": "^1.0.5"
+    },
+    "devDependencies": {
+        "@types/node": "^20.2.1",
+        "@types/react": "^18.2.6",
+        "@types/react-dom": "^18.2.4",
+        "typescript": "^5.0.4"
+    },
+    "prettier": "./.prettierrc.js"
+}
