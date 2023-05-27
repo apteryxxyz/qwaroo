@@ -1,13 +1,13 @@
 name: Continuous Deployment
 
 on:
-  push:
-    # branches:
-    #   # TODO: Change this to 'main' once rewrite is done
-    #   - 'rewrite'
-    # paths:
-    #   - 'apps/**'
-    #   - 'packages/**'
+  # push:
+  # branches:
+  #   # TODO: Change this to 'main' once rewrite is done
+  #   - 'rewrite'
+  # paths:
+  #   - 'apps/**'
+  #   - 'packages/**'
   workflow_dispatch:
     inputs:
       environment:
