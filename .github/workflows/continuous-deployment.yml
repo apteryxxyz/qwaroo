@@ -42,7 +42,7 @@ jobs:
           envs: PROJECT_DIRECTORY
           script: |
             cd $PROJECT_DIRECTORY
-            pnpm pull
-            pnpm prepare-for:${{ github.event.inputs.environment }}
-            pnpm deploy-to:${{ github.event.inputs.environment }}
+            git pull
+            yarn prepare-for:${{ github.event.inputs.environment }}
+            yarn deploy-to:${{ github.event.inputs.environment }}
             echo "[Workflow] Deployed successfully"
