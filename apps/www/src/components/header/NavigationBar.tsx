@@ -30,21 +30,21 @@ export function MobileNavigationBar() {
 
         <Sheet open={open} onOpenChange={setOpen}>
             <Sheet.Trigger asChild>
-                <Button className='ml-auto' variant="outline">
+                <Button className="ml-auto" variant="outline">
                     <NavigationIcon />
-                    <span className='sr-only'>Toggle menu</span>
+                    <span className="sr-only">Toggle menu</span>
                 </Button>
             </Sheet.Trigger>
 
-            <Sheet.Content className='flex flex-col items-center' size="content" position="right">
-                <Sheet.Header className='mt-[30%] '>
+            <Sheet.Content className="flex flex-col items-center" size="content" position="right">
+                <Sheet.Header className="mt-[30%]">
                     <Link href="/" className="inline-flex items-center text-xl font-bold text-primary">
                         <Logo className="inline w-8 h-8 mr-2 fill-primary" />
                         Qwaroo
                     </Link>
                 </Sheet.Header>
 
-                <nav className='flex flex-col gap-6 my-6'>
+                <nav className="flex flex-col gap-6 my-6">
                     <Link href="/games" onClick={() => {
                         router.push('/games')
                         setOpen(false)

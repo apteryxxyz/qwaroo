@@ -20,7 +20,7 @@ export default async function Home() {
             </p>
 
             <div className="space-x-2 mt-2">
-                <Link href="/">
+                <Link href="/games">
                     <Button>Browse games</Button>
                 </Link>
                 <Link href="/">
