@@ -15,14 +15,14 @@ export function NavigationBar() {
     return <header className="sticky top-0 z-40 w-full border-b supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur">
         <MobileNavigationBar />
         <DesktopNavigationBar />
-    </header>
+    </header>;
 }
 
 export function MobileNavigationBar() {
-    const router = useRouter()
+    const router = useRouter();
     const [open, setOpen] = useState(false);
 
-    return <div className='flex md:hidden items-center container h-14'>
+    return <div className="flex md:hidden items-center container h-14">
         <Link href="/" className="inline-flex items-center text-xl font-bold text-primary">
             <Logo className="inline w-8 h-8 mr-2 fill-primary" />
             Qwaroo
@@ -38,24 +38,35 @@ export function MobileNavigationBar() {
 
             <Sheet.Content className="flex flex-col items-center" size="content" position="right">
                 <Sheet.Header className="mt-[30%]">
-                    <Link href="/" className="inline-flex items-center text-xl font-bold text-primary">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center text-xl font-bold text-primary"
+                    >
                         <Logo className="inline w-8 h-8 mr-2 fill-primary" />
                         Qwaroo
                     </Link>
                 </Sheet.Header>
 
                 <nav className="flex flex-col gap-6 my-6">
-                    <Link href="/games" onClick={() => {
-                        router.push('/games')
-                        setOpen(false)
-                    }} className="text-xl text-foreground">
+                    <Link
+                        href="/games"
+                        onClick={() => {
+                            router.push('/games');
+                            setOpen(false);
+                        }}
+                        className="text-xl text-foreground"
+                    >
                         Games
                     </Link>
 
-                    <Link href="/" onClick={() => {
-                        router.push('/')
-                        setOpen(false)
-                    }} className="text-xl text-foreground">
+                    <Link
+                        href="/"
+                        onClick={() => {
+                            router.push('/');
+                            setOpen(false);
+                        }}
+                        className="text-xl text-foreground"
+                    >
                         Create
                     </Link>
                 </nav>
@@ -87,7 +98,7 @@ export function MobileNavigationBar() {
 export function DesktopNavigationBar() {
     const pathname = usePathname();
 
-    return <div className='hidden md:flex items-center container h-14'>
+    return <div className="hidden md:flex items-center container h-14">
         <Link href="/" className="inline-flex items-center text-xl font-bold text-primary">
             <Logo className="inline w-8 h-8 mr-2 fill-primary" />
             Qwaroo
@@ -139,7 +150,7 @@ export function DesktopNavigationBar() {
         <span className="mx-8 h-7 w-[1px] bg-foreground rotate-[20deg]" />
 
         <ProfileButton />
-    </div>
+    </div>;
 }
 
 /*

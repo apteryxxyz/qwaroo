@@ -8,9 +8,7 @@ import { cn } from '@/utilities/styling';
 
 const SheetRoot = ({
     ...props
-}: React.ComponentProps<typeof SheetPrimitive.Root>) => (
-    <SheetPrimitive.Root {...props} />
-)
+}: React.ComponentProps<typeof SheetPrimitive.Root>) => <SheetPrimitive.Root {...props} />;
 
 const SheetTrigger = SheetPrimitive.Trigger;
 
@@ -30,7 +28,7 @@ const portalVariants = cva('fixed inset-0 z-50 flex', {
 
 interface SheetPortalProps
     extends SheetPrimitive.DialogPortalProps,
-    VariantProps<typeof portalVariants> { }
+        VariantProps<typeof portalVariants> {}
 
 const SheetPortal = ({
     position,
@@ -38,8 +36,8 @@ const SheetPortal = ({
     children,
     ...props
 }: SheetPortalProps) => <SheetPrimitive.Portal className={cn(className)} {...props}>
-        <div className={portalVariants({ position })}>{children}</div>
-    </SheetPrimitive.Portal>;
+    <div className={portalVariants({ position })}>{children}</div>
+</SheetPrimitive.Portal>;
 SheetPortal.displayName = SheetPrimitive.Portal.displayName;
 
 const SheetOverlay = React.forwardRef<
@@ -148,7 +146,7 @@ const sheetVariants = cva(
 
 export interface DialogContentProps
     extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> { }
+        VariantProps<typeof sheetVariants> {}
 
 const SheetContent = React.forwardRef<
     React.ElementRef<typeof SheetPrimitive.Content>,

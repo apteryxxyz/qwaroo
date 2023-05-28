@@ -14,7 +14,12 @@ const inter = Inter({ subsets: ['latin'] });
 export default async function RootLayout(props: { children: React.ReactNode }) {
     if (!props) return null;
 
-    return <ServerThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    return <ServerThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+    >
         <html lang="en" className={inter.className}>
             <body key="body" className="bg-background text-foreground">
                 <SessionProvider>

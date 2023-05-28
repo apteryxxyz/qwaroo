@@ -1,36 +1,23 @@
-# Stage 1: Build
-
-FROM node:18-alpine3.14 AS workspace
+FROM node:18-alpine3.14
 WORKDIR /app
 
-# Setup PNPM
-RUN npm install --global pnpm
+# Install root dependencies
+COPY .yarn .yarn/
+COPY package.json tsconfig.json .yarnrc.yml ./
+RUN yarn install
 
-# Copy the files from the monorepo root
-COPY . .
+# Install package dependencies and build
+COPY packages ./packages
+RUN yarn install
+RUN yarn workspaces foreach --include="@qwaroo/*" run build
 
-# Install all dependencies
-RUN pnpm install --no-frozen-lockfile
+# Install app dependencies and build
+COPY apps/www ./apps/www
+RUN yarn install
+RUN yarn workspace www build
 
-# Build the local dependencies
-RUN pnpm --filter=@qwaroo/* build
-
-# Build this app
-RUN pnpm --filter=www build
-
-# # Deploy the www app to the pruned folder
-# RUN pnpm --filter=www deploy pruned
-
-# # Copy the built .next to the new pruned folder
-# RUN cp -r ./apps/www/.next /app/pruned/.next
-
-# Stage 2: Release
-# FROM node:18-alpine3.14 AS release
-# WORKDIR /app
-
-# # Copy only the required files
-# COPY --from=workspace /app/node_modules/ ./node_modules
-# COPY --from=workspace /app/apps/www/ ./
+# Delete cache
+RUN yarn cache clean
 
 EXPOSE 3000
-CMD ["pnpm", "--filter=www", "start"]
+CMD ["yarn", "workspace", "www", "start"]
