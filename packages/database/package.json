@@ -13,5 +13,12 @@
         "mongoose": "^7.1.2",
         "mongoose-autopopulate": "^1.0.1",
         "reflect-metadata": "^0.1.13"
+    },
+    "devDependencies": {
+        "@types/eslint": "^8",
+        "@types/prettier": "^2",
+        "eslint": "^8.41.0",
+        "prettier": "^2.8.8",
+        "tsup": "^6.7.0"
     }
 }

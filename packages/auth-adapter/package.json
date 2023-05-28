@@ -12,5 +12,12 @@
         "@qwaroo/database": "workspace:^",
         "mongoose": "^7.1.2",
         "next-auth": "^4.22.1"
+    },
+    "devDependencies": {
+        "@types/eslint": "^8",
+        "@types/prettier": "^2",
+        "eslint": "^8.41.0",
+        "prettier": "^2.8.8",
+        "tsup": "^6.7.0"
     }
 }

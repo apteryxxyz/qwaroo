@@ -555,8 +555,13 @@ __metadata:
   resolution: "@qwaroo/auth-adapter@workspace:packages/auth-adapter"
   dependencies:
     "@qwaroo/database": "workspace:^"
+    "@types/eslint": ^8
+    "@types/prettier": ^2
+    eslint: ^8.41.0
     mongoose: ^7.1.2
     next-auth: ^4.22.1
+    prettier: ^2.8.8
+    tsup: ^6.7.0
   languageName: unknown
   linkType: soft
 
@@ -565,9 +570,14 @@ __metadata:
   resolution: "@qwaroo/database@workspace:packages/database"
   dependencies:
     "@typegoose/typegoose": ^11.1.0
+    "@types/eslint": ^8
+    "@types/prettier": ^2
+    eslint: ^8.41.0
     mongoose: ^7.1.2
     mongoose-autopopulate: ^1.0.1
+    prettier: ^2.8.8
     reflect-metadata: ^0.1.13
+    tsup: ^6.7.0
   languageName: unknown
   linkType: soft
 
@@ -1315,7 +1325,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.9":
+"@types/eslint@npm:^8":
+  version: 8.40.0
+  resolution: "@types/eslint@npm:8.40.0"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: bab41d7f590182e743853cdd5bf5359cbc4240df986223457c8a5f5674743a3fe2a8626704b65bf9121dfa0ce0a0efd760da8339cc329018f229d4d2d6ee1c43
+  languageName: node
+  linkType: hard
+
+"@types/estree@npm:*":
+  version: 1.0.1
+  resolution: "@types/estree@npm:1.0.1"
+  checksum: e9aa175eacb797216fafce4d41e8202c7a75555bc55232dee0f9903d7171f8f19f0ae7d5191bb1a88cb90e65468be508c0df850a9fb81b4433b293a5a749899d
+  languageName: node
+  linkType: hard
+
+"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.9":
   version: 7.0.12
   resolution: "@types/json-schema@npm:7.0.12"
   checksum: 00239e97234eeb5ceefb0c1875d98ade6e922bfec39dd365ec6bd360b5c2f825e612ac4f6e5f1d13601b8b30f378f15e6faa805a3a732f4a1bbe61915163d293
@@ -1340,6 +1367,13 @@ __metadata:
   version: 2.4.1
   resolution: "@types/normalize-package-data@npm:2.4.1"
   checksum: e87bccbf11f95035c89a132b52b79ce69a1e3652fe55962363063c9c0dae0fe2477ebc585e03a9652adc6f381d24ba5589cc5e51849df4ced3d3e004a7d40ed5
+  languageName: node
+  linkType: hard
+
+"@types/prettier@npm:^2":
+  version: 2.7.2
+  resolution: "@types/prettier@npm:2.7.2"
+  checksum: b47d76a5252265f8d25dd2fe2a5a61dc43ba0e6a96ffdd00c594cb4fd74c1982c2e346497e3472805d97915407a09423804cc2110a0b8e1b22cffcab246479b7
   languageName: node
   linkType: hard
 
@@ -6059,12 +6093,15 @@ __metadata:
     "@radix-ui/react-slot": ^1.0.1
     "@radix-ui/react-switch": ^1.0.2
     "@typegoose/typegoose": ^11.1.0
+    "@types/eslint": ^8
     "@types/node": ^20.2.1
+    "@types/prettier": ^2
     "@types/react": ^18.2.6
     "@types/react-dom": ^18.2.4
     autoprefixer: ^10.4.14
     class-variance-authority: ^0.6.0
     clsx: ^1.2.1
+    eslint: ^8.41.0
     framer-motion: ^10.12.12
     lucide-react: ^0.220.0
     mongoose: ^7.1.2
@@ -6072,6 +6109,7 @@ __metadata:
     next-auth: ^4.22.1
     next-themes: "npm:@wits/next-themes@^0.2.16"
     postcss: ^8.4.23
+    prettier: ^2.8.8
     react: ^18.2.0
     react-dom: ^18.2.0
     react-hook-form: ^7.44.1

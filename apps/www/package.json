@@ -48,9 +48,13 @@
         "zod": "^3.21.4"
     },
     "devDependencies": {
+        "@types/eslint": "^8",
         "@types/node": "^20.2.1",
+        "@types/prettier": "^2",
         "@types/react": "^18.2.6",
         "@types/react-dom": "^18.2.4",
+        "eslint": "^8.41.0",
+        "prettier": "^2.8.8",
         "typescript": "^5.0.4"
     },
     "prettier": "./.prettierrc.js"
