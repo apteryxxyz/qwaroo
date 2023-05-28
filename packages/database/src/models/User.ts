@@ -7,10 +7,11 @@ import mongoose from 'mongoose';
     schemaOptions: {
         toJSON: {
             transform(_, record) {
-                record.id = record._id;
+                record.id = record._id.toString();
                 delete record._id;
                 delete record.__v;
                 delete record.emailAddress;
+                delete record.emailVerifiedTimestamp;
                 return record;
             },
         },
@@ -54,7 +55,10 @@ export namespace User {
         getModelForClass(User);
 
     export type Entity = {
-        [K in keyof User]: User[K] extends Function ? never : User[K];
+        [K in keyof Omit<
+            User,
+            'emailAddress' | 'emailVerifiedTimestamp'
+        >]: User[K] extends Function ? never : User[K];
     };
 
     export type Document = DocumentType<User>;

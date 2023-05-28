@@ -1,11 +1,14 @@
 import { AlertCircleIcon } from 'lucide-react';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth';
 import { getProviders } from 'next-auth/react';
 import { ImageWithFallback } from '@/components/ImageWithFallback';
 import { Alert } from '@/components/ui/Alert';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { authOptions } from '@/utilities/auth';
 
 export type SignInErrorTypes =
     | 'OAuthSignin'
@@ -31,15 +34,14 @@ const ErrorStrings: Record<SignInErrorTypes, string> = {
     default: 'Unable to sign in.',
 };
 
-// function fetchProviders() {
-//     return getProviders();
-// }
-
-export default async function LogIn({
+export default async function SignIn({
     searchParams,
 }: {
     searchParams: { error?: SignInErrorTypes };
 }) {
+    const session = await getServerSession(authOptions);
+    if (!session) return redirect('/');
+
     const providers = Object.values((await getProviders()) ?? {});
     const csrfToken = cookies().get('next-auth.csrf-token')?.value.split('|')[0];
     const errorString =

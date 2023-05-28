@@ -18,6 +18,7 @@ body {
     min-height: 100dvh;
     max-width: 100dvw;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 /* Responsive images/videos */
@@ -37,7 +38,7 @@ select,
 option {
     appearance: none;
     background-color: transparent;
-    border: none;
+    /* border: none; */
     box-sizing: border-box;
     color: inherit;
     font-family: inherit;

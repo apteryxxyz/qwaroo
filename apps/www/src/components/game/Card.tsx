@@ -3,10 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
+import { Skeleton } from '@/components/ui/Skeleton';
 
 interface GameCardProps {
-    game: Game.Document;
-    creator?: User.Document;
+    game: Game.Entity;
+    creator?: User.Entity;
 }
 
 export function GameCard({ game, creator }: GameCardProps) {
@@ -21,32 +22,40 @@ export function GameCard({ game, creator }: GameCardProps) {
             />
 
             <div className="col-span-3 flex flex-col gap-2 justify-center">
-                <Card.Header>
+                <Card.Header className="text-sm">
                     <Card.Title>{game.title}</Card.Title>
-                    {creator && <Card.Description>
+                    {creator && <p>
                         Created by <span className="underline">{creator.displayName}</span>
-                    </Card.Description>}
+                    </p>}
                     <div className="space-x-2">
                         <Badge>{game.categories[0]}</Badge>
                         <Badge>{game.totalPlays} Plays</Badge>
                     </div>
-                    <Card.Description>{game.shortDescription}</Card.Description>
+                    <div>{game.shortDescription}</div>
                 </Card.Header>
-
-                {/* <Card.Content>
-                    
-                </Card.Content> */}
             </div>
-
-            {/* <div className="col-span-3 flex flex-col gap-2 justify-center p-3">
-                <Card.Title>{game.title}</Card.Title>
-                <span>Created by {game.creator.displayName}</span>
-                <div className="space-x-2">
-                    <Badge>{game.categories[0]}</Badge>
-                    <Badge>{game.totalPlays} Plays</Badge>
-                </div>
-                <Card.Description>{game.shortDescription}</Card.Description>
-            </div> */}
         </Card>
     </Link>;
+}
+
+export function SkeletonGameCard() {
+    return <Card className="grid grid-cols-4 h-full">
+        <Skeleton className="object-cover h-full rounded-l-md border-r-2" />
+
+        <div className="col-span-3 flex flex-col gap-2 justify-center">
+            <Card.Header>
+                <Skeleton className="h-5" />
+
+                <Skeleton className="h-3 w-[70%]" />
+
+                <div className="flex space-x-2">
+                    <Skeleton className="h-4 w-[30%]" />
+                    <Skeleton className="h-4 w-[30%]" />
+                </div>
+
+                <Skeleton className="h-3" />
+                <Skeleton className="h-3 w-[70%]" />
+            </Card.Header>
+        </div>
+    </Card>;
 }

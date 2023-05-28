@@ -8,14 +8,14 @@ import {
 } from '@typegoose/typegoose';
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
 import mongoose from 'mongoose';
-import { User } from './User';
+import type { User } from './User';
 
 @ModelOptions({
     options: { customName: 'Connection' },
     schemaOptions: {
         toJSON: {
             transform(_, record) {
-                record.id = record._id;
+                record.id = record._id.toString();
                 delete record._id;
                 delete record.__v;
                 delete record.tokenData;
@@ -51,12 +51,6 @@ export class Connection {
     /** Token data provided by */
     @Prop({ type: () => Token })
     public tokenData: Token = {};
-
-    /** Get the user that this connection belongs to. */
-    public async getUser(force = false) {
-        if (!force && this.user instanceof User.Model) return this.user;
-        return (this.user = (await User.Model.findById(this.user).exec())!);
-    }
 }
 
 export class Token {
@@ -85,10 +79,11 @@ export namespace Connection {
         getModelForClass(Connection);
 
     export type Entity = {
-        [K in keyof Connection]: Connection[K] extends Function
-            ? never
-            : Connection[K];
-    };
+        [K in keyof Omit<
+            Connection,
+            'tokenData'
+        >]: Connection[K] extends Function ? never : Connection[K];
+    } & { user: User.Entity };
 
     export type Document = DocumentType<Connection>;
 }

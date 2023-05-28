@@ -5,7 +5,7 @@ import { Check, ChevronRight, Circle } from 'lucide-react';
 import * as React from 'react';
 import { cn } from '@/utilities/styling';
 
-const DropdownMenu = DropdownMenuPrimitive.Root;
+const DropdownMenuRoot = DropdownMenuPrimitive.Root;
 
 const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 
@@ -153,7 +153,7 @@ const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTML
 
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
-export const Dropdown = Object.assign(DropdownMenu, {
+export const DropdownMenu = Object.assign(DropdownMenuRoot, {
     Trigger: DropdownMenuTrigger,
     Content: DropdownMenuContent,
     Item: DropdownMenuItem,
@@ -171,7 +171,7 @@ export const Dropdown = Object.assign(DropdownMenu, {
 });
 
 export {
-    DropdownMenu,
+    DropdownMenuRoot,
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuItem,

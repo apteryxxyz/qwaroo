@@ -3,7 +3,7 @@ import Balancer from 'react-wrap-balancer';
 import { Showcase } from '@/components/game/Showcase';
 import { Button } from '@/components/ui/Button';
 
-export default function Page() {
+export default async function Home() {
     return <section className="min-h-[75dvh] grid lg:grid-cols-2">
         <div className="col-span-1 flex flex-col gap-2 justify-center">
             <h1 className="text-primary text-8xl font-bold">Qwaroo</h1>
@@ -20,7 +20,7 @@ export default function Page() {
             </p>
 
             <div className="space-x-2 mt-2">
-                <Link href="/games">
+                <Link href="/">
                     <Button>Browse games</Button>
                 </Link>
                 <Link href="/">

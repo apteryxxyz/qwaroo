@@ -8,14 +8,14 @@ import {
 } from '@typegoose/typegoose';
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
 import mongoose from 'mongoose';
-import { User } from './User';
+import type { User } from './User';
 
 @ModelOptions({
     options: { customName: 'Session' },
     schemaOptions: {
         toJSON: {
             transform(_, record) {
-                record.id = record._id;
+                record.id = record._id.toString();
                 delete record._id;
                 delete record.__v;
                 delete record.tokenData;
@@ -43,12 +43,6 @@ export class Session {
     /** The timestamp when this session will expire. */
     @Prop({ required: true })
     public expiresTimestamp!: number;
-
-    /** Get the user that this session belongs to. */
-    public async getUser(force = false) {
-        if (!force && this.user instanceof User.Model) return this.user;
-        return (this.user = (await User.Model.findById(this.user).exec())!);
-    }
 }
 
 export namespace Session {
@@ -58,7 +52,7 @@ export namespace Session {
 
     export type Entity = {
         [K in keyof Session]: Session[K] extends Function ? never : Session[K];
-    };
+    } & { user: User.Entity };
 
     export type Document = DocumentType<Session>;
 }

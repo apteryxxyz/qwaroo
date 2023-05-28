@@ -11,7 +11,7 @@ import {
     getModelForClass,
 } from '@typegoose/typegoose';
 import mongoose, { SchemaTypes } from 'mongoose';
-import { User } from './User';
+import type { User } from './User';
 import { Slug } from '@/utilities/Slug';
 
 @ModelOptions({
@@ -19,9 +19,11 @@ import { Slug } from '@/utilities/Slug';
     schemaOptions: {
         toJSON: {
             transform(_, record) {
-                record.id = record._id;
+                record.id = record._id.toString();
                 delete record._id;
                 delete record.__v;
+                record.extraData.id = record.extraData._id.toString();
+                delete record.extraData._id;
                 return record;
             },
         },
@@ -82,7 +84,7 @@ export class Game {
     public categories!: string[];
 
     @Prop({ required: true, default: 0 })
-    public flags!: number;
+    public flags: number = 0;
 
     @Prop({ type: () => ExtraData, required: true })
     public extraData!: ExtraData;
@@ -103,13 +105,13 @@ export class Game {
     public highScoreTimestamp?: string;
 
     @Prop({ default: 0 })
-    public totalScore!: number;
+    public totalScore: number = 0;
 
     @Prop({ default: 0 })
-    public totalTime!: number;
+    public totalTime: number = 0;
 
     @Prop({ default: 0 })
-    public totalPlays!: number;
+    public totalPlays: number = 0;
 
     @Prop()
     public lastScore?: number;
@@ -128,35 +130,6 @@ export class Game {
 
     @Prop()
     public updatedTimestamp?: number;
-
-    public async getCreator(force = false) {
-        if (!force && this.creator instanceof User.Model) return this.creator;
-        return (this.creator = (await User.Model.findById(
-            this.creator
-        ).exec())!);
-    }
-
-    public static async getGameCategories() {
-        const categories = await Game.Model.find({
-            flags: { $bitsAllSet: Game.Flag.Public },
-        })
-            .distinct<string[]>('categories')
-            .exec();
-        return Array.from(new Set(categories.flat()));
-    }
-
-    public static async getGames() {
-        return Game.Model.find({
-            flags: { $bitsAllSet: Game.Flag.Public },
-        });
-    }
-
-    public static async getGameBySlug(slug: string) {
-        return Game.Model.findOne({
-            slug,
-            flags: { $bitsAllSet: Game.Flag.Public },
-        });
-    }
 }
 
 class ExtraData {
@@ -186,7 +159,7 @@ export namespace Game {
 
     export type Entity = {
         [K in keyof Game]: Game[K] extends Function ? never : Game[K];
-    };
+    } & { creator: User.Entity };
 
     export type Document = DocumentType<Game>;
 

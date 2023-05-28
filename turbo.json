@@ -5,6 +5,16 @@
             "dependsOn": ["^build"],
             "inputs": ["package.json", "tsconfig.json", "src/**"],
             "outputs": [".next/**", "dist/**"]
+        },
+        "lint": {
+            "dependsOn": ["^lint"],
+            "inputs": ["package.json", "tsconfig.json", "src/**"],
+            "outputs": []
+        },
+        "format": {
+            "dependsOn": ["^format"],
+            "inputs": ["package.json", "tsconfig.json", "src/**"],
+            "outputs": []
         }
     }
 }
