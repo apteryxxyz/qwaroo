@@ -35,17 +35,21 @@ export class Score {
     @Prop({ ref: 'Game', required: true, autopopulate: true })
     public game!: Ref<Game>;
 
-    /** The highest score earned for this game by this user. */
-    @Prop()
-    public highScore?: number;
+    /** The vote status of the user for this game, -1 for dislike, 1 for like, 0 for no vote. */
+    @Prop({ default: 0, min: -1, max: 1 })
+    public voteDirection: number = 0;
 
-    /** The game time for the highest score. */
-    @Prop()
-    public highScoreTime?: number;
+    public get hasLiked() {
+        return this.voteDirection === 1;
+    }
 
-    /** Timestamp of when the high score was achieved. */
-    @Prop()
-    public highScorePlayedTimestamp?: number;
+    public get hasDisliked() {
+        return this.voteDirection === -1;
+    }
+
+    /** Whether or not this game is saved by the user. */
+    @Prop({ default: false })
+    public isSaved: boolean = false;
 
     /** The total score earned for this game. */
     @Prop({ default: 0 })
@@ -59,6 +63,18 @@ export class Score {
     @Prop({ default: 0 })
     public totalPlays: number = 0;
 
+    /** The highest score earned for this game by this user. */
+    @Prop()
+    public highScore?: number;
+
+    /** The game time for the highest score. */
+    @Prop()
+    public highScoreTime?: number;
+
+    /** Date of when the high score was achieved. */
+    @Prop()
+    public highScoreAt?: Date;
+
     /** The last score earned for this game. */
     @Prop()
     public lastScore?: number;
@@ -67,9 +83,9 @@ export class Score {
     @Prop()
     public lastTime?: number;
 
-    /** Timestamp of when the last score was achieved. */
+    /** Date of when the last score was achieved. */
     @Prop()
-    public lastPlayedTimestamp?: number;
+    public lastPlayedAt?: Date;
 }
 
 export namespace Score {
@@ -82,8 +98,4 @@ export namespace Score {
     } & { user: User.Entity; game: Game.Entity };
 
     export type Document = DocumentType<Score>;
-
-    export enum Provider {
-        Discord = 'discord',
-    }
 }

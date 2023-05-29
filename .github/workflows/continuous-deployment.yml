@@ -23,12 +23,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # build:
-  # uses: ./.github/workflows/build.yml
-
   deploy:
-    name: Deploy to ${{ github.event.inputs.environment }}
-    # needs: build
+    name: Deploy to ${{ github.event.inputs.environment || 'staging' }}
     runs-on: ubuntu-latest
     steps:
       - name: Execute remote commands
@@ -43,6 +39,6 @@ jobs:
           script: |
             cd $PROJECT_DIRECTORY
             git pull
-            npm run prepare-for:${{ github.event.inputs.environment }}
-            npm run deploy-to:${{ github.event.inputs.environment }}
+            npm run prepare-for:${{ github.event.inputs.environment || 'staging' }}
+            npm run deploy-to:${{ github.event.inputs.environment || 'staging' }}
             echo "[Workflow] Deployed successfully"

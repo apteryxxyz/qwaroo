@@ -45,6 +45,14 @@ import { Slug } from '@/utilities/Slug';
 export class Game {
     public id!: string;
 
+    /** Title of this game. */
+    @Prop({
+        required: true,
+        minlength: 3,
+        maxlength: 40,
+    })
+    public title!: string;
+
     /** Slug of this games title, must be unique. */
     @Prop({
         minlength: 3,
@@ -54,14 +62,6 @@ export class Game {
         },
     })
     public slug!: string;
-
-    /** Title of this game. */
-    @Prop({
-        required: true,
-        minlength: 3,
-        maxlength: 40,
-    })
-    public title!: string;
 
     /** The user that created this game. */
     @Prop({
@@ -88,16 +88,25 @@ export class Game {
     public longDescription!: string;
 
     /** The URL to the thumbnail image for this game. */
-    @Prop({ required: true })
+    @Prop({
+        required: true,
+        validate: {
+            validator(value: string) {
+                try {
+                    new URL(value);
+                    return true;
+                } catch {
+                    return false;
+                }
+            },
+            message: 'Invalid thumbnail URL',
+        },
+    })
     public thumbnailUrl!: string;
 
     /** List of categories assigned to this game. */
     @Prop({ type: () => [String], required: true })
     public categories!: string[];
-
-    /** Flags for this game. */
-    @Prop({ required: true, default: 0 })
-    public flags: number = 0;
 
     /** Extra data for this game. */
     @Prop({ type: () => ExtraData, required: true })
@@ -111,18 +120,6 @@ export class Game {
     @Prop({ type: () => SchemaTypes.Mixed })
     public sourceProperties?: Record<string, unknown>;
 
-    /** The highest score earned for this game. */
-    @Prop()
-    public highScore?: number;
-
-    /** The game time for the highest score. */
-    @Prop()
-    public highScoreTime?: number;
-
-    /** Timestamp of when the high score was achieved. */
-    @Prop()
-    public highScoreTimestamp?: string;
-
     /** The total score earned for this game. */
     @Prop({ default: 0 })
     public totalScore: number = 0;
@@ -135,6 +132,18 @@ export class Game {
     @Prop({ default: 0 })
     public totalPlays: number = 0;
 
+    /** The highest score earned for this game. */
+    @Prop()
+    public highScore?: number;
+
+    /** The game time for the highest score. */
+    @Prop()
+    public highScoreTime?: number;
+
+    /** Date of when the high score was achieved. */
+    @Prop()
+    public highScoreAt?: Date;
+
     /** The last score earned for this game. */
     @Prop()
     public lastScore?: number;
@@ -143,21 +152,21 @@ export class Game {
     @Prop()
     public lastTime?: number;
 
-    /** Timestamp of when the last score was achieved. */
+    /** Date of when the last score was achieved. */
     @Prop()
-    public lastPlayedTimestamp?: number;
+    public lastPlayedAt?: Date;
 
-    /** Timestamp of when this game was created. */
+    /** Date of when this game was created. */
     @Prop({ default: Date.now })
-    public createdTimestamp!: number;
+    public createdAt!: Date;
 
-    /** Timestamp of when this game was last edited. */
+    /** Date of when this game was last edited. */
     @Prop()
-    public editedTimestamp?: number;
+    public editedAt?: Date;
 
-    /** Timestamp of when this games items were last updated. */
+    /** Date of when this games items were last updated. */
     @Prop()
-    public updatedTimestamp?: number;
+    public updatedAt?: Date;
 }
 
 class ExtraData {
@@ -190,11 +199,6 @@ export namespace Game {
     } & { creator: User.Entity };
 
     export type Document = DocumentType<Game>;
-
-    export enum Flag {
-        None = 0,
-        Public = 1,
-    }
 
     export interface Item {
         display: string;

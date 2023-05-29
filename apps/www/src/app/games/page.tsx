@@ -12,7 +12,6 @@ import { Alert } from '@/ui/Alert';
 import { Button } from '@/ui/Button';
 import { Form } from '@/ui/Form';
 import { Input } from '@/ui/Input';
-import { Page } from '@/ui/Page';
 
 const searchSchema = z.object({
     query: z.string().optional(),
@@ -27,25 +26,24 @@ export default function Games() {
     const [isLoading, setIsLoading] = useState(true);
     const [total, setTotal] = useState(-1);
     const [loaded, setLoaded] = useState<Game.Entity[]>([]);
-    const [lastLength, setLastLength] = useState(6);
 
     async function fetchMore(isInitial = false) {
         // Reset loaded games if this is the initial load
         if (isInitial && loaded.length > 0) setLoaded([]);
+        const loadedLength = isInitial ? 0 : loaded.length;
 
         // Only fetch more if we have less than the total amount of games
-        if (!isInitial && total !== -1 && loaded.length >= total) return;
+        if (!isInitial && total !== -1 && loadedLength >= total) return;
 
         if (!isLoading) setIsLoading(true);
         const [data, games] = await getGames({
             ...searchForm.getValues(),
             limit: 12,
-            skip: isInitial ? 0 : loaded.length,
+            skip: loadedLength,
         });
 
         if (data.total !== total) setTotal(data.total);
         setLoaded(prev => {
-            setLastLength(games.length);
             if (isInitial) return games;
             else return [...prev, ...games];
         });
@@ -55,7 +53,7 @@ export default function Games() {
     useEffect(() => void fetchMore(true), []);
 
     return <>
-        <Page.Title>Games</Page.Title>
+        <h1 className="text-2xl font-bold leading-none tracking-tight pb-6">Games</h1>
 
         {/* TODO: Filtering will come later, less important right now */}
 
@@ -81,10 +79,9 @@ export default function Games() {
         </Form>
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-            {loaded.map(game => <GameCard key={game.id} game={game} creator={game.creator} />)}
+            {loaded.map(game => <GameCard key={game.id} {...game} />)}
 
-            {isLoading &&
-                Array.from({ length: lastLength || 6 }).map((_, i) => <SkeletonGameCard key={i} />)}
+            {isLoading && Array.from({ length: 6 }).map((_, i) => <SkeletonGameCard key={i} />)}
 
             {!isLoading && loaded.length === 0 && <Alert>
                 <FileQuestionIcon className="w-5 h-5 mr-2" />

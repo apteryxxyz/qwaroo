@@ -44,13 +44,13 @@ export class Connection {
     @Prop({ required: true })
     public accountId!: string;
 
-    /** The timestamp when this connection was linked. */
-    @Prop({ default: Date.now })
-    public linkedTimestamp!: number;
-
     /** Token data provided by */
     @Prop({ type: () => Token })
     public tokenData: Token = {};
+
+    /** The timestamp when this connection was linked. */
+    @Prop({ default: Date.now })
+    public linkedAt!: Date;
 }
 
 export class Token {
@@ -67,7 +67,7 @@ export class Token {
     public idToken?: string;
 
     @Prop()
-    public expiresTimestamp?: number;
+    public expiresAt?: Date;
 
     @Prop()
     public scope?: string;

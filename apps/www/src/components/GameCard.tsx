@@ -1,17 +1,12 @@
-import type { Game, User } from '@qwaroo/database';
+import type { Game } from '@qwaroo/database';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/ui/Badge';
 import { Card } from '@/ui/Card';
 import { Skeleton } from '@/ui/Skeleton';
 
-interface GameCardProps {
-    game: Game.Entity;
-    creator?: User.Entity;
-}
-
-export function GameCard({ game, creator }: GameCardProps) {
-    return <Link href="/" className="h-full">
+export function GameCard(game: Game.Entity) {
+    return <Link href={`/games/${game.slug}`} className="h-full">
         <Card className="grid grid-cols-4 h-full">
             <Image
                 src={game.thumbnailUrl}
@@ -24,9 +19,9 @@ export function GameCard({ game, creator }: GameCardProps) {
             <div className="col-span-3 flex flex-col gap-2 justify-center">
                 <Card.Header className="text-sm">
                     <Card.Title>{game.title}</Card.Title>
-                    {creator && <p>
-                        Created by <span className="underline">{creator.displayName}</span>
-                    </p>}
+                    <p>
+                        Created by <span className="underline">{game.creator.displayName}</span>
+                    </p>
                     <div className="space-x-2">
                         <Badge>{game.categories[0]}</Badge>
                         <Badge>{game.totalPlays} Plays</Badge>

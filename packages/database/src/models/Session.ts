@@ -36,13 +36,13 @@ export class Session {
     @Prop({ required: true })
     public sessionToken!: string;
 
-    /** The timestamp when this session was created. */
+    /** The date when this session was created. */
     @Prop({ required: true })
-    public createdTimestamp: number = Date.now();
+    public createdAt: number = Date.now();
 
-    /** The timestamp when this session will expire. */
+    /** The date when this session will expire. */
     @Prop({ required: true })
-    public expiresTimestamp!: number;
+    public expiresAt!: Date;
 }
 
 export namespace Session {

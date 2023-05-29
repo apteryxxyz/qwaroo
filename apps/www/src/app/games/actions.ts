@@ -16,9 +16,7 @@ export const getGames = zact(
         categories: z.array(z.string()).optional(),
     })
 )(async options => {
-    const query = Game.Model.find({
-        flags: { $bitsAllSet: Game.Flag.Public },
-    });
+    const query = Game.Model.find();
 
     if (options.ids) void query.where('_id').in(options.ids);
     if (options.categories) void query.where('categories').in(options.categories);

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '@/utilities/styling';
 
 const CardRoot = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-    ({ className, ...props }, ref) => <div
+    ({ className, ...props }, ref) => <section
         ref={ref}
         className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)}
         {...props}

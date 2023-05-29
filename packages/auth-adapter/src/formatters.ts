@@ -67,7 +67,7 @@ export function toDocumentAccountFrom(data: AdapterAccount) {
         tokenType: data.token_type,
         refreshToken: data.refresh_token,
         idToken: data.id_token,
-        expiresTimestamp: data.expires_at,
+        expiresAt: data.expires_at ? new Date(data.expires_at) : undefined,
         scope: data.scope,
     };
 
@@ -80,7 +80,7 @@ export function toAuthSessionFrom(document: Session.Document): AdapterSession {
     return {
         sessionToken: document.sessionToken,
         userId: document.user.id,
-        expires: new Date(document.expiresTimestamp),
+        expires: document.expiresAt,
     };
 }
 
@@ -88,7 +88,7 @@ export function toDocumentSessionFrom(data: AdapterSession) {
     const session = new Session();
     session.sessionToken = data.sessionToken;
     session.user = new Types.ObjectId(data.userId);
-    session.expiresTimestamp = data.expires.getTime();
+    session.expiresAt = data.expires;
     return session;
 }
 
@@ -96,6 +96,6 @@ export function toPartialDocumentSessionFrom(data: Partial<AdapterSession>) {
     const session = new Session();
     if (data.sessionToken) session.sessionToken = data.sessionToken;
     if (data.userId) session.user = new Types.ObjectId(data.userId);
-    if (data.expires) session.expiresTimestamp = data.expires.getTime();
+    if (data.expires) session.expiresAt = data.expires;
     return session;
 }

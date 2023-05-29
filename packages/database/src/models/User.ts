@@ -36,17 +36,13 @@ export class User {
     @Prop()
     public avatarUrl?: string;
 
-    /** The flags for this user. */
-    @Prop({ default: 0 })
-    public flags!: number;
-
-    /** The timestamp when this user joined. */
+    /** The date when this user joined. */
     @Prop({ default: Date.now })
-    public joinedTimestamp!: number;
+    public joinedAt!: Date;
 
-    /** The timestamp when this user was last active. */
+    /** The date when this user was last active. */
     @Prop({ default: Date.now })
-    public lastSeenTimestamp!: number;
+    public lastSeenAt!: Date;
 }
 
 export namespace User {
@@ -62,11 +58,4 @@ export namespace User {
     };
 
     export type Document = DocumentType<User>;
-
-    export enum Flag {
-        None = 0,
-        Developer = 1,
-        Moderator = 2,
-        Verified = 4,
-    }
 }
