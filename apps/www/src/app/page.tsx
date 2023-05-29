@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/Button';
 export default async function Home() {
     return <section className="min-h-[75dvh] grid lg:grid-cols-2">
         <div className="col-span-1 flex flex-col gap-2 justify-center">
-            <h1 className="text-primary text-8xl font-bold">Qwaroo</h1>
-            <p className="text-xl">
+            <h1 className="text-primary text-7xl font-bold">Qwaroo</h1>
+            <p className="text-lg">
                 <Balancer>
                     Higher or Lower on a whole new level, play one of the many games we have to
                     offer, or create your own and share it with your friends!
@@ -19,14 +19,14 @@ export default async function Home() {
                 </Balancer>
             </p>
 
-            <div className="space-x-2 mt-2">
-                <Link href="/games">
+            <div className="space-y-2 sm:space-y-0 sm:space-x-2">
+                <Link href="/games" className="block sm:inline">
                     <Button>Browse games</Button>
                 </Link>
-                <Link href="/">
+                <Link href="/" className="block sm:inline">
                     <Button>Play on Discord</Button>
                 </Link>
-                <Link href="/">
+                <Link href="/" className="block sm:inline">
                     <Button variant="outline">Donate</Button>
                 </Link>
             </div>
