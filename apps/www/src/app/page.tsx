@@ -1,7 +1,8 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
-import { Showcase } from '@/components/game/Showcase';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/ui/Button';
+import { tw } from '@/utilities/styling';
 
 export default async function Home() {
     return <section className="min-h-[75dvh] grid lg:grid-cols-2">
@@ -33,7 +34,35 @@ export default async function Home() {
         </div>
 
         <div className="col-span-1 pt-10 lg:pt-0 flex flex-col items-center justify-center">
-            <Showcase />
+            <div className="relative p-6">
+                <Image
+                    className={tw(
+                        'absolute shadow-md rounded-md w-36 md:w-52 -rotate-6 top-0 left-0 z-30'
+                    )}
+                    src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+                    width={500}
+                    height={500}
+                    alt="image"
+                />
+
+                <Image
+                    className="relative shadow-md rounded-md"
+                    src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+                    width={500}
+                    height={500}
+                    alt="image"
+                />
+
+                <Image
+                    className={tw(
+                        'absolute shadow-md rounded-md w-36 md:w-48 rotate-6 bottom-0 right-0 z-30'
+                    )}
+                    src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+                    width={500}
+                    height={500}
+                    alt="image"
+                />
+            </div>
         </div>
     </section>;
 }

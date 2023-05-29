@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
+import { Button } from '@/ui/Button';
+import { Card } from '@/ui/Card';
 import { authOptions } from '@/utilities/auth';
 
 export type SignInErrorTypes =
@@ -31,7 +31,8 @@ export default async function SignOut() {
 
             <Card.Content>
                 <form method="post" action="/api/auth/signout">
-                    <input type="hidden" name="csrfToken" value={csrfToken} />
+                    <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
                     <Button type="submit" className="w-full">
                         Sign out
                     </Button>

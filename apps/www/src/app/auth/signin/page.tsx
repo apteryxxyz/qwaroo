@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { getProviders } from 'next-auth/react';
 import { ImageWithFallback } from '@/components/ImageWithFallback';
-import { Alert } from '@/components/ui/Alert';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
+import { Alert } from '@/ui/Alert';
+import { Button } from '@/ui/Button';
+import { Card } from '@/ui/Card';
 import { authOptions } from '@/utilities/auth';
 
 export type SignInErrorTypes =

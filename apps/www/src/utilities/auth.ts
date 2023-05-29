@@ -3,6 +3,7 @@ import type { AuthOptions, DefaultUser } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import database from './database';
 
+/** Our auth options for Next Auth, containing adapter and providers. */
 export const authOptions: AuthOptions = {
     adapter: AuthAdapter(database),
     providers: [
@@ -18,7 +19,7 @@ export const authOptions: AuthOptions = {
         },
     },
     session: { strategy: 'jwt' },
-    pages: { signIn: '/auth/signin' },
+    pages: { signIn: '/auth/signin', signOut: '/auth/signout' },
 };
 
 declare module 'next-auth' {

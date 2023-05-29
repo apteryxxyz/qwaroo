@@ -1,38 +1,3 @@
-/** @type {import('tailwindcss').Config} */
-// module.exports = {
-//     darkMode: 'class',
-//     content: {
-//         files: [
-//             "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-//             "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-//             "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-//         ],
-//         transform: require('tailwind-group-variant')(),
-//     },
-//     theme: {
-//         extend: {
-//             colors: {
-//                 background: 'hsl(var(--background))',
-//                 foreground: 'hsl(var(--foreground))',
-//                 primary: 'hsl(var(--primary))',
-//                 secondary: 'hsl(var(--secondary))',
-//                 input: 'hsl(var(--input))',
-//             },
-//             borderColor: {
-//                 DEFAULT: 'hsl(var(--border))',
-//             },
-//             borderRadius: {
-//                 lg: `var(--radius)`,
-//                 md: `calc(var(--radius) - 2px)`,
-//                 sm: "calc(var(--radius) - 4px)",
-//             },
-
-//         },
-//     },
-
-//     plugins: [require('tailwind-scrollbar')],
-// }
-
 const { fontFamily } = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
@@ -41,7 +6,7 @@ module.exports = {
     content: {
         files: [
             "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-            "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+            "./src/{components,ui}/**/*.{js,ts,jsx,tsx,mdx}",
             "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
         ],
         transform: require('tailwind-group-variant')(),

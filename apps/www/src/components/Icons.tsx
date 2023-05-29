@@ -1,4 +1,4 @@
-export function Logo({ className }: { className?: string }) {
+export function QwarooIcon({ className }: { className?: string }) {
     return <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"

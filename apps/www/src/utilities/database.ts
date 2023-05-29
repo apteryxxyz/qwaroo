@@ -7,7 +7,7 @@ let connectionPromise: ReturnType<Database['connect']> = new Promise(() => {});
 const ConnectionString = process.env.MONGODB_URI!;
 if (ConnectionString) {
     if (process.env.NODE_ENV === 'development') {
-        const globalWithDatabase = global as typeof global & {
+        const globalWithDatabase = global as typeof globalThis & {
             _connectionPromise?: ReturnType<Database['connect']>;
         };
 

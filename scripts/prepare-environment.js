@@ -1,6 +1,6 @@
 /**
  * Prepares the current environment for deploying, which is either production or staging.
- * It renames the .env.{environment} file to .env.local, and renames the docker-compose.{environment}.yml file to docker-compose.override.yml.
+ * It renames any .env.local.{environment} files to .env.local.
  */
 
 const fs = require('fs');

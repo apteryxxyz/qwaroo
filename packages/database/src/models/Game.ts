@@ -45,6 +45,7 @@ import { Slug } from '@/utilities/Slug';
 export class Game {
     public id!: string;
 
+    /** Slug of this games title, must be unique. */
     @Prop({
         minlength: 3,
         maxlength: 40,
@@ -54,6 +55,7 @@ export class Game {
     })
     public slug!: string;
 
+    /** Title of this game. */
     @Prop({
         required: true,
         minlength: 3,
@@ -61,6 +63,7 @@ export class Game {
     })
     public title!: string;
 
+    /** The user that created this game. */
     @Prop({
         ref: 'User',
         required: true,
@@ -68,6 +71,7 @@ export class Game {
     })
     public creator!: Ref<User>;
 
+    /** A short description for this game, shown to users on display card. */
     @Prop({
         required: true,
         minlength: 8,
@@ -75,6 +79,7 @@ export class Game {
     })
     public shortDescription!: string;
 
+    /** A longer description for this game, shown to users on game page. */
     @Prop({
         required: true,
         minlength: 96,
@@ -82,57 +87,75 @@ export class Game {
     })
     public longDescription!: string;
 
+    /** The URL to the thumbnail image for this game. */
     @Prop({ required: true })
     public thumbnailUrl!: string;
 
+    /** List of categories assigned to this game. */
     @Prop({ type: () => [String], required: true })
     public categories!: string[];
 
+    /** Flags for this game. */
     @Prop({ required: true, default: 0 })
     public flags: number = 0;
 
+    /** Extra data for this game. */
     @Prop({ type: () => ExtraData, required: true })
     public extraData!: ExtraData;
 
+    /** Source slug for automatic game items updating. */
     @Prop({})
     public sourceSlug?: string;
 
+    /** Source properties for automatic game items updating. */
     @Prop({ type: () => SchemaTypes.Mixed })
     public sourceProperties?: Record<string, unknown>;
 
+    /** The highest score earned for this game. */
     @Prop()
     public highScore?: number;
 
+    /** The game time for the highest score. */
     @Prop()
     public highScoreTime?: number;
 
+    /** Timestamp of when the high score was achieved. */
     @Prop()
     public highScoreTimestamp?: string;
 
+    /** The total score earned for this game. */
     @Prop({ default: 0 })
     public totalScore: number = 0;
 
+    /** The total time spent playing this game. */
     @Prop({ default: 0 })
     public totalTime: number = 0;
 
+    /** The total number of times this game has been played. */
     @Prop({ default: 0 })
     public totalPlays: number = 0;
 
+    /** The last score earned for this game. */
     @Prop()
     public lastScore?: number;
 
+    /** The game time for the last score. */
     @Prop()
     public lastTime?: number;
 
+    /** Timestamp of when the last score was achieved. */
     @Prop()
     public lastPlayedTimestamp?: number;
 
+    /** Timestamp of when this game was created. */
     @Prop({ default: Date.now })
     public createdTimestamp!: number;
 
+    /** Timestamp of when this game was last edited. */
     @Prop()
     public editedTimestamp?: number;
 
+    /** Timestamp of when this games items were last updated. */
     @Prop()
     public updatedTimestamp?: number;
 }

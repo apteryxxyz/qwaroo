@@ -6,8 +6,8 @@ import '@/styles/tailwind.css';
 import { Inter } from 'next/font/google';
 import { SessionProvider } from 'next-auth/react';
 import { ServerThemeProvider } from 'next-themes';
+import { NavigationBar } from '@/components/NavigationBar';
 import { TailwindIndicator } from '@/components/TailwindIndicator';
-import { NavigationBar } from '@/components/header/NavigationBar';
 
 const inter = Inter({ subsets: ['latin'] });
 

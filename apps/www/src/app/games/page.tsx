@@ -7,12 +7,12 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { getGames } from './actions';
-import { GameCard, SkeletonGameCard } from '@/components/game/Card';
-import { Alert } from '@/components/ui/Alert';
-import { Button } from '@/components/ui/Button';
-import { Form } from '@/components/ui/Form';
-import { Input } from '@/components/ui/Input';
-import { Page } from '@/components/ui/Page';
+import { GameCard, SkeletonGameCard } from '@/components/GameCard';
+import { Alert } from '@/ui/Alert';
+import { Button } from '@/ui/Button';
+import { Form } from '@/ui/Form';
+import { Input } from '@/ui/Input';
+import { Page } from '@/ui/Page';
 
 const searchSchema = z.object({
     query: z.string().optional(),

@@ -1,9 +1,9 @@
 import type { Game, User } from '@qwaroo/database';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/Badge';
-import { Card } from '@/components/ui/Card';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Badge } from '@/ui/Badge';
+import { Card } from '@/ui/Card';
+import { Skeleton } from '@/ui/Skeleton';
 
 interface GameCardProps {
     game: Game.Entity;

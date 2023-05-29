@@ -43,6 +43,6 @@ jobs:
           script: |
             cd $PROJECT_DIRECTORY
             git pull
-            yarn prepare-for:${{ github.event.inputs.environment }}
-            yarn deploy-to:${{ github.event.inputs.environment }}
+            npm run prepare-for:${{ github.event.inputs.environment }}
+            npm run deploy-to:${{ github.event.inputs.environment }}
             echo "[Workflow] Deployed successfully"

@@ -8,6 +8,5 @@ export default defineConfig({
     minify: true,
     dts: true,
     skipNodeModulesBundle: true,
-    // @ts-expect-error Need decorators
     esbuildPlugins: [esbuildDecorators()],
 });
