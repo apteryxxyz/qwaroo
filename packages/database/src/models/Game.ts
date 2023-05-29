@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { URL } from 'node:url';
-import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
 import {
+    Index,
     ModelOptions,
     Plugins,
     Pre,
@@ -10,6 +10,7 @@ import {
     Severity,
     getModelForClass,
 } from '@typegoose/typegoose';
+import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
 import mongoose, { SchemaTypes } from 'mongoose';
 import type { User } from './User';
 import { Slug } from '@/utilities/Slug';
@@ -29,6 +30,10 @@ import { Slug } from '@/utilities/Slug';
         },
     },
 })
+@Index(
+    { title: 'text', shortDescription: 'text', longDescription: 'text' },
+    { weights: { title: 10, shortDescription: 5, longDescription: 1 } }
+)
 @Pre('validate', async function validate(this: Game) {
     const url = new URL('https://wsrv.nl');
     url.searchParams.set('url', this.thumbnailUrl);

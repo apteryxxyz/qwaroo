@@ -24,30 +24,35 @@ export default function Games() {
         defaultValues: { query: '' },
     });
 
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [total, setTotal] = useState(-1);
     const [loaded, setLoaded] = useState<Game.Entity[]>([]);
     const [lastLength, setLastLength] = useState(6);
 
-    const fetchMore = async (fromSubmit?: boolean) => {
-        if (!fromSubmit && total !== -1 && loaded.length >= total) return;
-        if (!isLoading) setLoading(true);
+    async function fetchMore(isInitial = false) {
+        // Reset loaded games if this is the initial load
+        if (isInitial && loaded.length > 0) setLoaded([]);
 
-        const formOptions = searchForm.getValues();
-        const options = { ...formOptions, limit: 12, skip: loaded.length };
+        // Only fetch more if we have less than the total amount of games
+        if (!isInitial && total !== -1 && loaded.length >= total) return;
 
-        const [data, games] = await getGames(options);
+        if (!isLoading) setIsLoading(true);
+        const [data, games] = await getGames({
+            ...searchForm.getValues(),
+            limit: 12,
+            skip: isInitial ? 0 : loaded.length,
+        });
 
-        if (!total || data.total !== total) setTotal(data.total);
+        if (data.total !== total) setTotal(data.total);
         setLoaded(prev => {
             setLastLength(games.length);
-            if (fromSubmit) return games;
+            if (isInitial) return games;
             else return [...prev, ...games];
         });
-        setLoading(false);
-    };
+        setIsLoading(false);
+    }
 
-    useEffect(() => void fetchMore(), []);
+    useEffect(() => void fetchMore(true), []);
 
     return <>
         <Page.Title>Games</Page.Title>
@@ -56,10 +61,7 @@ export default function Games() {
 
         <Form {...searchForm}>
             <form
-                onSubmit={searchForm.handleSubmit(() => {
-                    setLoaded([]);
-                    return fetchMore(true);
-                })}
+                onSubmit={searchForm.handleSubmit(() => fetchMore(true))}
                 className="flex pb-6 space-x-6"
             >
                 <Form.Field

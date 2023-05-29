@@ -23,6 +23,15 @@ export const getGames = zact(
     if (options.ids) void query.where('_id').in(options.ids);
     if (options.categories) void query.where('categories').in(options.categories);
 
+    if (options.query)
+        void query.where({
+            $text: {
+                $search: options.query,
+                $caseSensitive: false,
+                $diacriticSensitive: false,
+            },
+        });
+
     const total = await Game.Model.countDocuments(query.getFilter());
     const games = await query.limit(options.limit).skip(options.skip).exec();
 
