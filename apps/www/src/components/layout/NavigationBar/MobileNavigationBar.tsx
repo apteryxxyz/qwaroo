@@ -7,8 +7,8 @@ import { useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import { DiscordIcon, QwarooIcon } from '@/components/Icons';
 import { ProfileButton } from '@/components/ProfileButton';
-import { Button } from '@/ui/Button';
-import { Sheet } from '@/ui/Sheet';
+import { Button } from '@/components/ui/Button';
+import { Sheet } from '@/components/ui/Sheet';
 
 export function MobileNavigationBar() {
     const router = useRouter();

@@ -1,10 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
-import { Button } from '@/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { tw } from '@/utilities/styling';
 
-export default async function Home() {
+export const metadata = {
+    title: 'Qwaroo',
+    description:
+        'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
+};
+
+export default async function Page() {
     return <section className="min-h-[75dvh] grid lg:grid-cols-2">
         <div className="col-span-1 flex flex-col gap-2 justify-center">
             <h1 className="text-primary text-7xl font-bold">Qwaroo</h1>
@@ -27,9 +33,9 @@ export default async function Home() {
                 <Link href="/" className="block sm:inline">
                     <Button>Play on Discord</Button>
                 </Link>
-                <Link href="/" className="block sm:inline">
+                {/* <Link href="/" className="block sm:inline">
                     <Button variant="outline">Donate</Button>
-                </Link>
+                </Link> */}
             </div>
         </div>
 

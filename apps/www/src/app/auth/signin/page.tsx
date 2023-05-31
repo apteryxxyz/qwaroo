@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { getProviders } from 'next-auth/react';
 import { ImageWithFallback } from '@/components/ImageWithFallback';
-import { Alert } from '@/ui/Alert';
-import { Button } from '@/ui/Button';
-import { Card } from '@/ui/Card';
+import { Alert } from '@/components/ui/Alert';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 import { authOptions } from '@/utilities/auth';
 
 export type SignInErrorTypes =
@@ -34,7 +34,7 @@ const ErrorStrings: Record<SignInErrorTypes, string> = {
     default: 'Unable to sign in.',
 };
 
-export default async function SignIn({
+export default async function Page({
     searchParams,
 }: {
     searchParams: { error?: SignInErrorTypes };

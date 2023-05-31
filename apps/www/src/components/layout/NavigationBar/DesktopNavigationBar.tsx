@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 import { DiscordIcon, QwarooIcon } from '@/components/Icons';
 import { ProfileButton } from '@/components/ProfileButton';
-import { Button } from '@/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { cn, tw } from '@/utilities/styling';
 
 export function DesktopNavigationBar() {

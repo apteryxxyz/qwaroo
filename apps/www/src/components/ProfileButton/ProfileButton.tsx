@@ -4,7 +4,7 @@ import { LogInIcon, UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { SignInDialog } from './SignInDialog';
-import { Button } from '@/ui/Button';
+import { Button } from '@/components/ui/Button';
 
 export function ProfileButton() {
     const session = useSession();

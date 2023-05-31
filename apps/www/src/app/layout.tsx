@@ -6,12 +6,13 @@ import '@/styles/tailwind.css';
 import { Inter } from 'next/font/google';
 import { SessionProvider } from 'next-auth/react';
 import { ServerThemeProvider } from 'next-themes';
-import { NavigationBar } from '@/components/NavigationBar';
 import { TailwindIndicator } from '@/components/TailwindIndicator';
+import { Backdrop } from '@/components/layout/Backdrop';
+import { NavigationBar } from '@/components/layout/NavigationBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
+export default async function Layout(props: { children: React.ReactNode }) {
     if (!props) return null;
 
     return <ServerThemeProvider
@@ -27,6 +28,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
                     <main className="container py-10">{props.children}</main>
                     <TailwindIndicator />
                 </SessionProvider>
+
+                <Backdrop />
             </body>
         </html>
     </ServerThemeProvider>;

@@ -1,11 +1,25 @@
 import type { Game } from '@qwaroo/database';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge } from '@/ui/Badge';
-import { Card } from '@/ui/Card';
-import { Skeleton } from '@/ui/Skeleton';
+import { Badge } from '@/components/ui/Badge';
+import { Card } from '@/components/ui/Card';
+import { Skeleton } from '@/components/ui/Skeleton';
 
-export function GameCard(game: Game.Entity) {
+export interface PropsWithGame {
+    game: Game.Entity;
+    isLoading?: false;
+}
+interface PropsWithLoading {
+    game?: never;
+    isLoading: true;
+}
+type GameCardProps = PropsWithGame | PropsWithLoading;
+
+export function GameCard(props: GameCardProps) {
+    return props.isLoading ? <LoadingGameCard /> : <DisplayGameCard {...props.game} />;
+}
+
+function DisplayGameCard(game: Game.Entity) {
     return <Link href={`/games/${game.slug}`} className="h-full">
         <Card className="grid grid-cols-4 h-full">
             <Image
@@ -33,7 +47,7 @@ export function GameCard(game: Game.Entity) {
     </Link>;
 }
 
-export function SkeletonGameCard() {
+function LoadingGameCard() {
     return <Card className="grid grid-cols-4 h-full">
         <Skeleton className="object-cover h-full rounded-l-md border-r-2" />
 

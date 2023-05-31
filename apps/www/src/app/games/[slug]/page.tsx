@@ -1,17 +1,39 @@
-import { RatingBar } from './Rating';
+import { AlertCircleIcon } from 'lucide-react';
 import { getGame } from './actions';
-import { GameCard } from '@/components/GameCard';
-import { Alert } from '@/ui/Alert';
-import { Avatar, AvatarFallback, AvatarImage } from '@/ui/Avatar';
-import { Badge } from '@/ui/Badge';
-import { Button } from '@/ui/Button';
-import { Card } from '@/ui/Card';
+import { GameCard } from '@/components/game/GameCard';
+import { Alert } from '@/components/ui/Alert';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
+import { Badge } from '@/components/ui/Badge';
+import { Card } from '@/components/ui/Card';
 
-export default async function Slug({ params: { slug } }: { params: { slug: string } }) {
+interface PageProps {
+    params: { slug: string };
+}
+
+export async function generateMetadata({ params: { slug } }: PageProps) {
+    const { game } = (await getGame({ slug, recommended: false })) ?? {};
+    if (!game)
+        return {
+            title: 'Game not found',
+            description: 'Game not found',
+        };
+
+    return {
+        title: `${game.title} on Qwaroo`,
+        description: game.longDescription,
+    };
+}
+
+export default async function Page({ params: { slug } }: PageProps) {
     const { game, recommended } = (await getGame({ slug, recommended: true })) ?? {};
 
     // TODO: Improve the not found handling
-    if (!game) return <Alert variant="destructive">Game not found</Alert>;
+    if (!game)
+        return <Alert variant="destructive">
+            <AlertCircleIcon className="w-5 h-5 mr-2" />
+            <Alert.Title>Game was not found</Alert.Title>
+            <Alert.Description>"{slug}" is not a valid game slug.</Alert.Description>
+        </Alert>;
 
     return <>
         <h1 className="text-2xl font-bold leading-none tracking-tight pb-6">{game.title}</h1>
@@ -37,14 +59,8 @@ export default async function Slug({ params: { slug } }: { params: { slug: strin
                         <Badge>{game.totalPlays} Plays</Badge>
                     </div>
 
-                    <p>{game.longDescription}</p>
+                    <p className="pt-2">{game.longDescription}</p>
                 </Card.Content>
-
-                <Card.Footer className="space-x-2">
-                    <Button>Play</Button>
-
-                    <RatingBar />
-                </Card.Footer>
             </Card>
 
             <section className="col-span-1">
@@ -53,7 +69,7 @@ export default async function Slug({ params: { slug } }: { params: { slug: strin
                 </h2>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
-                    {recommended!.map(game => <GameCard key={game.id} {...game} />)}
+                    {recommended!.map(game => <GameCard key={game.id} game={game} />)}
                 </div>
             </section>
         </div>

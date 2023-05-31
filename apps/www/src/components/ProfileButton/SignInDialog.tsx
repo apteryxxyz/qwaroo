@@ -7,9 +7,9 @@ import { getCsrfToken, getProviders } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
 import { useEffect, useState } from 'react';
 import { ImageWithFallback } from '../ImageWithFallback';
-import { Alert } from '@/ui/Alert';
-import { Button } from '@/ui/Button';
-import { Dialog } from '@/ui/Dialog';
+import { Alert } from '@/components/ui/Alert';
+import { Button } from '@/components/ui/Button';
+import { Dialog } from '@/components/ui/Dialog';
 
 export function SignInDialog({ children }: PropsWithChildren) {
     const [providers, setProviders] = useState<ClientSafeProvider[]>([]);
