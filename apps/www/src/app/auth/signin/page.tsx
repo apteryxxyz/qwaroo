@@ -8,7 +8,7 @@ import { ImageWithFallback } from '@/components/ImageWithFallback';
 import { Alert } from '@/components/ui/Alert';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { authOptions } from '@/utilities/auth';
+import { authOptions } from '@/utilities/authOptions';
 
 export type SignInErrorTypes =
     | 'OAuthSignin'
