@@ -6,7 +6,7 @@ This means all pages must be server side, while pages that need client-side feat
 ```tsx
 <Page> {/* <- This is server component */}
     <Content> {/* <- This is client component */}
-        {...}        
+        {...}
     </Content>
 </Page>
 ```

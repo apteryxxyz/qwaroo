@@ -11,15 +11,15 @@ import { Card } from '@/components/ui/Card';
 import { authOptions } from '@/utilities/authOptions';
 
 export type SignInErrorTypes =
-    | 'OAuthSignin'
+    | 'Callback'
+    | 'CredentialsSignin'
+    | 'default'
+    | 'EmailSignin'
+    | 'OAuthAccountNotLinked'
     | 'OAuthCallback'
     | 'OAuthCreateAccount'
-    | 'Callback'
-    | 'OAuthAccountNotLinked'
-    | 'EmailSignin'
-    | 'CredentialsSignin'
-    | 'SessionRequired'
-    | 'default';
+    | 'OAuthSignin'
+    | 'SessionRequired';
 
 const ErrorStrings: Record<SignInErrorTypes, string> = {
     OAuthSignin: 'Try signing with a different account.',

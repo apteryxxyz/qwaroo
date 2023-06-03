@@ -199,12 +199,4 @@ export namespace Game {
     } & { creator: User.Entity };
 
     export type Document = DocumentType<Game>;
-
-    export interface Item {
-        display: string;
-        value: number;
-        imageSource: string;
-        imageFrame: 'fit' | 'fill';
-        caption?: string;
-    }
 }

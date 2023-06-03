@@ -1,4 +1,4 @@
 {
     "extends": ["apteryx/next", "../../.eslintrc.json"],
-    "rules": { "jsdoc/newline-after-description": "off", "id-length": "off" }
+    "parserOptions": { "project": "./tsconfig.json" }
 }

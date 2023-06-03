@@ -64,7 +64,7 @@ export default function Content(props: ContentProps) {
 
         <Form {...searchForm}>
             <form
-                onSubmit={searchForm.handleSubmit(() => fetchMore(true))}
+                onSubmit={searchForm.handleSubmit(async () => fetchMore(true))}
                 className="flex pb-6 space-x-6"
             >
                 <Form.Field

@@ -38,7 +38,7 @@ export class Connection {
 
     /** The type of this connections provider. */
     @Prop({ required: true })
-    public providerType!: 'email' | 'oidc' | 'oauth' | 'credentials';
+    public providerType!: 'credentials' | 'email' | 'oauth' | 'oidc';
 
     /** This connections identifier within the provider. */
     @Prop({ required: true })

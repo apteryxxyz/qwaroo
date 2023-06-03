@@ -1,8 +1,4 @@
 {
     "extends": ["apteryx/common", "apteryx/typescript", "apteryx/prettier"],
-    "ignorePatterns": ["dist", "node_modules", "*.config.*"],
-    "rules": {
-        "jsdoc/newline-after-description": "off",
-        "no-return-assign": "off"
-    }
+    "ignorePatterns": ["dist", "node_modules", "*.config.*"]
 }

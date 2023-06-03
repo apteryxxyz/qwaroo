@@ -6,15 +6,15 @@ import { Card } from '@/components/ui/Card';
 import { authOptions } from '@/utilities/authOptions';
 
 export type SignInErrorTypes =
-    | 'OAuthSignin'
+    | 'Callback'
+    | 'CredentialsSignin'
+    | 'default'
+    | 'EmailSignin'
+    | 'OAuthAccountNotLinked'
     | 'OAuthCallback'
     | 'OAuthCreateAccount'
-    | 'Callback'
-    | 'OAuthAccountNotLinked'
-    | 'EmailSignin'
-    | 'CredentialsSignin'
-    | 'SessionRequired'
-    | 'default';
+    | 'OAuthSignin'
+    | 'SessionRequired';
 
 export default async function SignOut() {
     const session = await getServerSession(authOptions);
