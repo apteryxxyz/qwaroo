@@ -34,18 +34,25 @@ const ErrorStrings: Record<SignInErrorTypes, string> = {
     default: 'Unable to sign in.',
 };
 
+export const metadata = {
+    title: 'Sign In to Qwaroo',
+    description: 'Sign in to Qwaroo to access your profile and save your game statistics.',
+};
+
 export default async function Page({
     searchParams,
 }: {
-    searchParams: { error?: SignInErrorTypes };
+    searchParams: { error?: SignInErrorTypes; callbackUrl?: string };
 }) {
     const session = await getServerSession(authOptions);
-    if (!session) return redirect('/');
+    if (session) redirect('/');
 
     const providers = Object.values((await getProviders()) ?? {});
-    const csrfToken = cookies().get('next-auth.csrf-token')?.value.split('|')[0];
     const errorString =
         searchParams.error && (ErrorStrings[searchParams.error] ?? ErrorStrings.default);
+
+    const csrfToken = cookies().get('next-auth.csrf-token')?.value.split('|')[0];
+    const callbackUrl = new URL(searchParams.callbackUrl ?? '', process.env.NEXTAUTH_URL);
 
     return <section className="container min-h-[75dvh] flex items-center justify-center">
         <Card>
@@ -68,6 +75,11 @@ export default async function Page({
                         action={provider.signinUrl}
                     >
                         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+                        {callbackUrl && <input
+                            name="callbackUrl"
+                            type="hidden"
+                            defaultValue={callbackUrl.toString()}
+                        />}
 
                         <Button type="submit" className="w-full">
                             <ImageWithFallback

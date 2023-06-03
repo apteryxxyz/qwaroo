@@ -37,7 +37,7 @@ function DisplayGameCard(game: Game.Entity) {
                         Created by <span className="underline">{game.creator.displayName}</span>
                     </p>
                     <div className="space-x-2">
-                        <Badge>{game.categories[0]}</Badge>
+                        <Badge>{game.category}</Badge>
                         <Badge>{game.totalPlays} Plays</Badge>
                     </div>
                     <div>{game.shortDescription}</div>

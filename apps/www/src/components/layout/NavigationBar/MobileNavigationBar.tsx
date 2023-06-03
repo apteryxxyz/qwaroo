@@ -52,7 +52,7 @@ export function MobileNavigationBar() {
                     </Link>
 
                     <Link
-                        href="/"
+                        href="/games/create"
                         onClick={() => {
                             router.push('/');
                             setOpen(false);

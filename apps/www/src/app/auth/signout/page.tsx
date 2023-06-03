@@ -16,9 +16,14 @@ export type SignInErrorTypes =
     | 'OAuthSignin'
     | 'SessionRequired';
 
+export const metadata = {
+    title: 'Sign Out from Qwaroo',
+    description: 'Sign out from Qwaroo.',
+};
+
 export default async function SignOut() {
     const session = await getServerSession(authOptions);
-    if (!session) return redirect('/');
+    if (!session) redirect('/');
 
     const csrfToken = cookies().get('next-auth.csrf-token')?.value.split('|')[0];
 

@@ -31,8 +31,20 @@ import { Slug } from '@/utilities/Slug';
     },
 })
 @Index(
-    { title: 'text', shortDescription: 'text', longDescription: 'text' },
-    { weights: { title: 10, shortDescription: 5, longDescription: 1 } }
+    {
+        title: 'text',
+        shortDescription: 'text',
+        longDescription: 'text',
+        category: 'text',
+    },
+    {
+        weights: {
+            title: 10,
+            shortDescription: 5,
+            longDescription: 1,
+            category: 5,
+        },
+    }
 )
 @Pre('validate', async function validate(this: Game) {
     const url = new URL('https://wsrv.nl');
@@ -104,9 +116,9 @@ export class Game {
     })
     public thumbnailUrl!: string;
 
-    /** List of categories assigned to this game. */
-    @Prop({ type: () => [String], required: true })
-    public categories!: string[];
+    /** Category assigned to this game. */
+    @Prop({ required: true })
+    public category!: string;
 
     /** Extra data for this game. */
     @Prop({ type: () => ExtraData, required: true })

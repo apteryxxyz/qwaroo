@@ -15,7 +15,7 @@ export function serverAction<S extends z.ZodTypeAny>(options: {
             if (options.cacheTime && cache.has(key)) {
                 console.info('cache hit', key);
                 return cache.get(key) as R;
-            }
+            } else console.info('cache miss', key);
 
             if (options.bodySchema) {
                 const result = options.bodySchema.safeParse(body);

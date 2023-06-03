@@ -16,13 +16,15 @@ export function SignInDialog({ children }: PropsWithChildren) {
     const [csrfToken, setCsrfToken] = useState<string | undefined>();
     const [callbackUrl, setCallbackUrl] = useState<string | undefined>();
 
+    function updateCallbackUrl() {
+        const url = window.location.toString();
+        if (url !== callbackUrl) setCallbackUrl(window.location.toString());
+    }
+
     useEffect(() => {
         (async () => {
             const token = await getCsrfToken();
             if (token) setCsrfToken(token);
-
-            const url = window.location.href;
-            if (url) setCallbackUrl(url);
 
             const providers = await getProviders();
             if (providers) setProviders(Object.values(providers));
@@ -45,9 +47,18 @@ export function SignInDialog({ children }: PropsWithChildren) {
                     action={provider.signinUrl}
                 >
                     <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-                    <input name="callbackUrl" type="hidden" defaultValue={callbackUrl} />
+                    {callbackUrl && <input
+                        name="callbackUrl"
+                        type="hidden"
+                        defaultValue={callbackUrl}
+                    />}
 
-                    <Button type="submit" className="w-full">
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        onMouseOver={updateCallbackUrl}
+                        onTouchStart={updateCallbackUrl}
+                    >
                         <ImageWithFallback
                             className="mr-2 dark:hidden"
                             src={`https://authjs.dev/img/providers/${provider.id}-dark.svg`}

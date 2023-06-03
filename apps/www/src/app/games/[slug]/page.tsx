@@ -55,7 +55,7 @@ export default async function Page({ params: { slug } }: PageProps) {
 
                 <Card.Content>
                     <div className="flex gap-2 flex-wrap">
-                        {game.categories.map(category => <Badge key={category}>{category}</Badge>)}
+                        <Badge>{game.category}</Badge>
                         <Badge>{game.totalPlays} Plays</Badge>
                     </div>
 

@@ -1,0 +1,21 @@
+{
+    "name": "@qwaroo/data-sources",
+    "version": "0.0.0",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "format": "prettier --write src && eslint --fix src",
+        "lint": "eslint src",
+        "build": "tsup src/index.ts"
+    },
+    "dependencies": {
+        "ytpl": "https://github.com/apteryxxyz/node-ytpl"
+    },
+    "devDependencies": {
+        "@types/eslint": "^8",
+        "@types/prettier": "^2",
+        "eslint": "^8.41.0",
+        "prettier": "^2.8.8",
+        "tsup": "^6.7.0"
+    }
+}
