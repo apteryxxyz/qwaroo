@@ -12,10 +12,14 @@ export function serverAction<S extends z.ZodTypeAny>(options: {
     return function _<R>(action: (body: z.infer<S>) => Promise<R>) {
         return async (body: z.infer<S>) => {
             const key = JSON.stringify(body);
-            if (options.cacheTime && cache.has(key)) {
-                console.info('cache hit', key);
-                return cache.get(key) as R;
-            } else console.info('cache miss', key);
+
+            if (options.cacheTime) {
+                if (cacheTime === -1) cache.delete(key);
+                else if (cache.has(key)) {
+                    console.info('cache hit', key);
+                    return cache.get(key) as R;
+                } else console.info('cache miss', key);
+            }
 
             if (options.bodySchema) {
                 const result = options.bodySchema.safeParse(body);
@@ -23,10 +27,12 @@ export function serverAction<S extends z.ZodTypeAny>(options: {
             }
 
             const result = await action(body);
-            if (!options.cacheTime) return result;
 
-            cache.set(key, result);
-            if (cacheTime !== -1) setTimeout(() => cache.delete(key), cacheTime);
+            if (cacheTime) {
+                cache.set(key, result);
+                if (cacheTime !== -1) setTimeout(() => cache.delete(key), cacheTime);
+            }
+
             return result;
         };
     };

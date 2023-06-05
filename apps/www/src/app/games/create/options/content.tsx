@@ -2,15 +2,18 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Source } from '@qwaroo/data-sources';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { validateOptions } from '../actions';
 import { useCreateData } from '../context';
+import { AlertDialog } from '@/components/ui/AlertDialog';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Form } from '@/components/ui/Form';
 import { Input } from '@/components/ui/Input';
+import { useToast } from '@/utilities/useToast';
 
 interface ContentProps {
     source: Source.Entity;
@@ -19,9 +22,14 @@ interface ContentProps {
 export default function Content(props: ContentProps) {
     const { source, setSource, options, setOptions } = useCreateData() ?? {};
     if (!setSource || !setOptions) throw new Error('Missing context');
+    if (!source && setSource) setSource(props.source);
 
     const router = useRouter();
-    if (!source && setSource) setSource(props.source);
+    const { toast } = useToast();
+    const [isPending, startTransition] = useTransition();
+    const [isAlertOpen, setAlertOpen] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+
     const optionsSchema = buildSchema(props.source);
     const optionsForm = useForm<z.infer<typeof optionsSchema>>({
         resolver: zodResolver(optionsSchema),
@@ -37,10 +45,24 @@ export default function Content(props: ContentProps) {
             <Form {...optionsForm}>
                 <form
                     className="flex flex-col gap-6"
-                    onSubmit={optionsForm.handleSubmit(values => {
-                        setOptions(values);
-                        router.push('/games/create/details');
-                    })}
+                    onSubmit={optionsForm.handleSubmit(options =>
+                        startTransition(async () => {
+                            const result = await validateOptions({
+                                slug: props.source.slug,
+                                options,
+                            });
+                            if (result[0] === false) {
+                                toast({
+                                    title: 'Inputted options are invalid!',
+                                    description: result[1],
+                                    variant: 'destructive',
+                                });
+                            } else {
+                                setAlertMessage(result[1] ?? '');
+                                setAlertOpen(true);
+                            }
+                        })
+                    )}
                 >
                     {Object.entries(props.source.properties).map(([key, value]) => <Form.Field
                         key={key}
@@ -66,11 +88,34 @@ export default function Content(props: ContentProps) {
                         </Form.Item>}
                     />)}
 
-                    <Button type="submit" className="ml-auto">
+                    <Button type="submit" className="ml-auto" disabled={isPending}>
                         Continue
                     </Button>
                 </form>
             </Form>
+
+            <AlertDialog open={isAlertOpen} onOpenChange={setAlertOpen}>
+                <AlertDialog.Content>
+                    <AlertDialog.Header>
+                        <AlertDialog.Title>Do you wish to continue?</AlertDialog.Title>
+                        {alertMessage && <AlertDialog.Description>
+                            {alertMessage}
+                        </AlertDialog.Description>}
+                    </AlertDialog.Header>
+
+                    <AlertDialog.Footer>
+                        <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+                        <AlertDialog.Action
+                            onClick={() => {
+                                setOptions(optionsForm.getValues());
+                                router.push('/games/create/details');
+                            }}
+                        >
+                            Continue
+                        </AlertDialog.Action>
+                    </AlertDialog.Footer>
+                </AlertDialog.Content>
+            </AlertDialog>
         </Card.Content>
     </Card>;
 }

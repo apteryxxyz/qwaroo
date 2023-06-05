@@ -9,7 +9,7 @@
         "build": "tsup src/index.ts"
     },
     "dependencies": {
-        "ytpl": "https://github.com/apteryxxyz/node-ytpl"
+        "yt-channel-info": "^3.2.1"
     },
     "devDependencies": {
         "@types/eslint": "^8",

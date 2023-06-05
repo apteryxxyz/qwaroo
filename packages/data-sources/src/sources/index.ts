@@ -1,3 +1,7 @@
 import { YouTubeChannelVideoViews } from './YouTubeChannelVideoViews';
 
-export const Sources = new Map([new YouTubeChannelVideoViews().toArray()]);
+const alpha = new YouTubeChannelVideoViews();
+
+export const Sources = {
+    [alpha.slug]: alpha,
+};

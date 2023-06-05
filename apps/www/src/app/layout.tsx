@@ -9,6 +9,7 @@ import { ServerThemeProvider } from 'next-themes';
 import { TailwindIndicator } from '@/components/TailwindIndicator';
 import { Backdrop } from '@/components/layout/Backdrop';
 import { NavigationBar } from '@/components/layout/NavigationBar';
+import { Toaster } from '@/components/ui/Toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -30,6 +31,7 @@ export default async function Layout(props: { children: React.ReactNode }) {
                 </SessionProvider>
 
                 <Backdrop />
+                <Toaster />
             </body>
         </html>
     </ServerThemeProvider>;

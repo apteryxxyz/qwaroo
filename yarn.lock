@@ -40,12 +40,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/code-frame@npm:^7.0.0":
+"@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.21.4":
   version: 7.21.4
   resolution: "@babel/code-frame@npm:7.21.4"
   dependencies:
     "@babel/highlight": ^7.18.6
   checksum: e5390e6ec1ac58dcef01d4f18eaf1fd2f1325528661ff6d4a5de8979588b9f5a8e852a54a91b923846f7a5c681b217f0a45c2524eb9560553160cd963b7d592c
+  languageName: node
+  linkType: hard
+
+"@babel/generator@npm:^7.22.3":
+  version: 7.22.3
+  resolution: "@babel/generator@npm:7.22.3"
+  dependencies:
+    "@babel/types": ^7.22.3
+    "@jridgewell/gen-mapping": ^0.3.2
+    "@jridgewell/trace-mapping": ^0.3.17
+    jsesc: ^2.5.1
+  checksum: ccb6426ca5b5a38f0d47a3ac9628e223d2aaaa489cbf90ffab41468795c22afe86855f68a58667f0f2673949f1810d4d5a57b826c17984eab3e28fdb34a909e6
+  languageName: node
+  linkType: hard
+
+"@babel/helper-string-parser@npm:^7.21.5":
+  version: 7.21.5
+  resolution: "@babel/helper-string-parser@npm:7.21.5"
+  checksum: 36c0ded452f3858e67634b81960d4bde1d1cd2a56b82f4ba2926e97864816021c885f111a7cf81de88a0ed025f49d84a393256700e9acbca2d99462d648705d8
   languageName: node
   linkType: hard
 
@@ -67,12 +86,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/parser@npm:^7.21.9, @babel/parser@npm:^7.22.4":
+  version: 7.22.4
+  resolution: "@babel/parser@npm:7.22.4"
+  bin:
+    parser: ./bin/babel-parser.js
+  checksum: 0ca6d3a2d9aae2504ba1bc494704b64a83140884f7379f609de69bd39b60adb58a4f8ec692fe53fef8657dd82705d01b7e6efb65e18296326bdd66f71d52d9a9
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.20.13":
   version: 7.22.3
   resolution: "@babel/runtime@npm:7.22.3"
   dependencies:
     regenerator-runtime: ^0.13.11
   checksum: 8fc50785ca4cba749fed90bffca7e6fd52d4709755654e95b8d2a945fc034b56fb8c2e8a0183fea7c4abb86bf5fa77678c0ea35163b6920649833d180c34c234
+  languageName: node
+  linkType: hard
+
+"@babel/template@npm:^7.21.9":
+  version: 7.21.9
+  resolution: "@babel/template@npm:7.21.9"
+  dependencies:
+    "@babel/code-frame": ^7.21.4
+    "@babel/parser": ^7.21.9
+    "@babel/types": ^7.21.5
+  checksum: 6ec2c60d4d53b2a9230ab82c399ba6525df87e9a4e01e4b111e071cbad283b1362e7c99a1bc50027073f44f2de36a495a89c27112c4e7efe7ef9c8d9c84de2ec
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.21.5, @babel/types@npm:^7.22.3, @babel/types@npm:^7.8.3":
+  version: 7.22.4
+  resolution: "@babel/types@npm:7.22.4"
+  dependencies:
+    "@babel/helper-string-parser": ^7.21.5
+    "@babel/helper-validator-identifier": ^7.19.1
+    to-fast-properties: ^2.0.0
+  checksum: ffe36bb4f4a99ad13c426a98c3b508d70736036cae4e471d9c862e3a579847ed4f480686af0fce2633f6f7c0f0d3bf02da73da36e7edd3fde0b2061951dcba9a
   languageName: node
   linkType: hard
 
@@ -407,7 +457,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/trace-mapping@npm:^0.3.9":
+"@jridgewell/trace-mapping@npm:^0.3.17, @jridgewell/trace-mapping@npm:^0.3.9":
   version: 0.3.18
   resolution: "@jridgewell/trace-mapping@npm:0.3.18"
   dependencies:
@@ -417,10 +467,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/env@npm:13.4.5-canary.4"
-  checksum: d2a6429ae437fe01e6fac3533c13543e4a2039a183b5e5930e58160b29e8aa38412219078e9102627e447a1ff6518e50961d1639b63e7e0198b5a70cdaf2cc70
+"@next/env@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/env@npm:13.4.5-canary.6"
+  checksum: e78826418682c688d7b6498423951ca2c0e927a6d5fdc93da551f0a5a969d8df64187704ca9332088054205087cab6bd607d85c7bfd2d45aa8f60cc1c46024f0
   languageName: node
   linkType: hard
 
@@ -433,65 +483,65 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-darwin-arm64@npm:13.4.5-canary.4"
+"@next/swc-darwin-arm64@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-darwin-arm64@npm:13.4.5-canary.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-darwin-x64@npm:13.4.5-canary.4"
+"@next/swc-darwin-x64@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-darwin-x64@npm:13.4.5-canary.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-linux-arm64-gnu@npm:13.4.5-canary.4"
+"@next/swc-linux-arm64-gnu@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-linux-arm64-gnu@npm:13.4.5-canary.6"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-linux-arm64-musl@npm:13.4.5-canary.4"
+"@next/swc-linux-arm64-musl@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-linux-arm64-musl@npm:13.4.5-canary.6"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-linux-x64-gnu@npm:13.4.5-canary.4"
+"@next/swc-linux-x64-gnu@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-linux-x64-gnu@npm:13.4.5-canary.6"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-linux-x64-musl@npm:13.4.5-canary.4"
+"@next/swc-linux-x64-musl@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-linux-x64-musl@npm:13.4.5-canary.6"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-win32-arm64-msvc@npm:13.4.5-canary.4"
+"@next/swc-win32-arm64-msvc@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-win32-arm64-msvc@npm:13.4.5-canary.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-ia32-msvc@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-win32-ia32-msvc@npm:13.4.5-canary.4"
+"@next/swc-win32-ia32-msvc@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-win32-ia32-msvc@npm:13.4.5-canary.6"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:13.4.5-canary.4":
-  version: 13.4.5-canary.4
-  resolution: "@next/swc-win32-x64-msvc@npm:13.4.5-canary.4"
+"@next/swc-win32-x64-msvc@npm:13.4.5-canary.6":
+  version: 13.4.5-canary.6
+  resolution: "@next/swc-win32-x64-msvc@npm:13.4.5-canary.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -574,7 +624,7 @@ __metadata:
     eslint: ^8.41.0
     prettier: ^2.8.8
     tsup: ^6.7.0
-    ytpl: "https://github.com/apteryxxyz/node-ytpl"
+    yt-channel-info: ^3.2.1
   languageName: unknown
   linkType: soft
 
@@ -618,6 +668,31 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.13.10
   checksum: 2b93e161d3fdabe9a64919def7fa3ceaecf2848341e9211520c401181c9eaebb8451c630b066fad2256e5c639c95edc41de0ba59c40eff37e799918d019822d1
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-alert-dialog@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@radix-ui/react-alert-dialog@npm:1.0.4"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/primitive": 1.0.1
+    "@radix-ui/react-compose-refs": 1.0.1
+    "@radix-ui/react-context": 1.0.1
+    "@radix-ui/react-dialog": 1.0.4
+    "@radix-ui/react-primitive": 1.0.3
+    "@radix-ui/react-slot": 1.0.2
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 2c772ab25ae5cc7d6d8e42867542c3935042b5b9524dafc713317d044a976ba480988c44c3e0ed170f9a0eb6270d25c8f7369800768dd5ff3359b00456f49d5e
   languageName: node
   linkType: hard
 
@@ -681,33 +756,6 @@ __metadata:
     "@types/react-dom":
       optional: true
   checksum: defd6070ca89d64f46017943bc444ac73ca4711f710b8fcb7152f5fb84cb05f39e7944d372695720929fa666cf9bc65ce95725c5a29d81f9e51aba59aed42ca2
-  languageName: node
-  linkType: hard
-
-"@radix-ui/react-checkbox@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@radix-ui/react-checkbox@npm:1.0.4"
-  dependencies:
-    "@babel/runtime": ^7.13.10
-    "@radix-ui/primitive": 1.0.1
-    "@radix-ui/react-compose-refs": 1.0.1
-    "@radix-ui/react-context": 1.0.1
-    "@radix-ui/react-presence": 1.0.1
-    "@radix-ui/react-primitive": 1.0.3
-    "@radix-ui/react-use-controllable-state": 1.0.1
-    "@radix-ui/react-use-previous": 1.0.1
-    "@radix-ui/react-use-size": 1.0.1
-  peerDependencies:
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    react: ^16.8 || ^17.0 || ^18.0
-    react-dom: ^16.8 || ^17.0 || ^18.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-dom":
-      optional: true
-  checksum: 6dac5bddd9e1c42b149555501440918d9eae70da13b6d8539c3bf46b6c07681119d865d2106a43f729884ae8e2043bedc34c4d00a09a527b3bf0feade088d188
   languageName: node
   linkType: hard
 
@@ -812,7 +860,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-dialog@npm:^1.0.3":
+"@radix-ui/react-dialog@npm:1.0.4, @radix-ui/react-dialog@npm:^1.0.3":
   version: 1.0.4
   resolution: "@radix-ui/react-dialog@npm:1.0.4"
   dependencies:
@@ -1239,27 +1287,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-progress@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@radix-ui/react-progress@npm:1.0.3"
-  dependencies:
-    "@babel/runtime": ^7.13.10
-    "@radix-ui/react-context": 1.0.1
-    "@radix-ui/react-primitive": 1.0.3
-  peerDependencies:
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    react: ^16.8 || ^17.0 || ^18.0
-    react-dom: ^16.8 || ^17.0 || ^18.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-dom":
-      optional: true
-  checksum: a4398812315ae5b25f8637a6553daf85bd36e6e08d15f7486248538a994a99268752e2c21e4af15277c17e861c1825fdd7292938c515c112dc2cdce63ec1a892
-  languageName: node
-  linkType: hard
-
 "@radix-ui/react-radio-group@npm:^1.1.3":
   version: 1.1.3
   resolution: "@radix-ui/react-radio-group@npm:1.1.3"
@@ -1405,18 +1432,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-switch@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@radix-ui/react-switch@npm:1.0.3"
+"@radix-ui/react-toast@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "@radix-ui/react-toast@npm:1.1.4"
   dependencies:
     "@babel/runtime": ^7.13.10
     "@radix-ui/primitive": 1.0.1
+    "@radix-ui/react-collection": 1.0.3
     "@radix-ui/react-compose-refs": 1.0.1
     "@radix-ui/react-context": 1.0.1
+    "@radix-ui/react-dismissable-layer": 1.0.4
+    "@radix-ui/react-portal": 1.0.3
+    "@radix-ui/react-presence": 1.0.1
     "@radix-ui/react-primitive": 1.0.3
+    "@radix-ui/react-use-callback-ref": 1.0.1
     "@radix-ui/react-use-controllable-state": 1.0.1
-    "@radix-ui/react-use-previous": 1.0.1
-    "@radix-ui/react-use-size": 1.0.1
+    "@radix-ui/react-use-layout-effect": 1.0.1
+    "@radix-ui/react-visually-hidden": 1.0.3
   peerDependencies:
     "@types/react": "*"
     "@types/react-dom": "*"
@@ -1427,7 +1459,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: de18a802f317804d94315b1035d03a9cabef53317c148027f0f382bc2653723532691b65090596140737bb055e3affff977f5d73fe6caf8c526c6158baa811cc
+  checksum: b79a8c2440151670be3f5134c2cf818b44582a33cf71c65462cd22a9107684a1c67d9f96819aa92e20cc7495aec7119787997d5ac6695d1e8d07105a6756577e
   languageName: node
   linkType: hard
 
@@ -1794,6 +1826,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ws@npm:^8":
+  version: 8.5.4
+  resolution: "@types/ws@npm:8.5.4"
+  dependencies:
+    "@types/node": "*"
+  checksum: fefbad20d211929bb996285c4e6f699b12192548afedbe4930ab4384f8a94577c9cd421acaad163cacd36b88649509970a05a0b8f20615b30c501ed5269038d1
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/eslint-plugin@npm:^5.59.6":
   version: 5.59.7
   resolution: "@typescript-eslint/eslint-plugin@npm:5.59.7"
@@ -2132,6 +2173,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"asynckit@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "asynckit@npm:0.4.0"
+  checksum: 7b78c451df768adba04e2d02e63e2d0bf3b07adcd6e42b4cf665cb7ce899bedd344c69a1dcbce355b5f972d597b25aaa1c1742b52cffd9caccb22f348114f6be
+  languageName: node
+  linkType: hard
+
 "autoprefixer@npm:^10.4.14":
   version: 10.4.14
   resolution: "autoprefixer@npm:10.4.14"
@@ -2154,6 +2202,17 @@ __metadata:
   version: 1.0.5
   resolution: "available-typed-arrays@npm:1.0.5"
   checksum: 20eb47b3cefd7db027b9bbb993c658abd36d4edd3fe1060e83699a03ee275b0c9b216cc076ff3f2db29073225fb70e7613987af14269ac1fe2a19803ccc97f1a
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.1.2":
+  version: 1.4.0
+  resolution: "axios@npm:1.4.0"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: 7fb6a4313bae7f45e89d62c70a800913c303df653f19eafec88e56cea2e3821066b8409bc68be1930ecca80e861c52aa787659df0ffec6ad4d451c7816b9386b
   languageName: node
   linkType: hard
 
@@ -2314,9 +2373,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001406":
-  version: 1.0.30001492
-  resolution: "caniuse-lite@npm:1.0.30001492"
-  checksum: 261869f910ec905ab6aa5a754e4ae57da8c5c33f3b723db2fa21840da307667bff61057aef3abaca32091c1561c254dd3a807c0fdb054cdc9e7e3ba495a55e20
+  version: 1.0.30001494
+  resolution: "caniuse-lite@npm:1.0.30001494"
+  checksum: 770b742ebba6076da72e94f979ef609bbc855369d1b937c52227935d966b11c3b02baa6511fba04a804802b6eb22af0a2a4a82405963bbb769772530e6be7a8e
   languageName: node
   linkType: hard
 
@@ -2479,6 +2538,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"combined-stream@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "combined-stream@npm:1.0.8"
+  dependencies:
+    delayed-stream: ~1.0.0
+  checksum: 49fa4aeb4916567e33ea81d088f6584749fc90c7abec76fd516bf1c5aa5c79f3584b5ba3de6b86d26ddd64bae5329c4c7479343250cfe71c75bb366eae53bb7c
+  languageName: node
+  linkType: hard
+
 "command-score@npm:0.1.2":
   version: 0.1.2
   resolution: "command-score@npm:0.1.2"
@@ -2583,6 +2651,13 @@ __metadata:
     has-property-descriptors: ^1.0.0
     object-keys: ^1.1.1
   checksum: e60aee6a19b102df4e2b1f301816804e81ab48bb91f00d0d935f269bf4b3f79c88b39e4f89eaa132890d23267335fd1140dfcd8d5ccd61031a0a2c41a54e33a6
+  languageName: node
+  linkType: hard
+
+"delayed-stream@npm:~1.0.0":
+  version: 1.0.0
+  resolution: "delayed-stream@npm:1.0.0"
+  checksum: 46fe6e83e2cb1d85ba50bd52803c68be9bd953282fa7096f51fc29edd5d67ff84ff753c51966061e5ba7cb5e47ef6d36a91924eddb7f3f3483b1c560f77a0020
   languageName: node
   linkType: hard
 
@@ -3295,12 +3370,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.15.0":
+  version: 1.15.2
+  resolution: "follow-redirects@npm:1.15.2"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: faa66059b66358ba65c234c2f2a37fcec029dc22775f35d9ad6abac56003268baf41e55f9ee645957b32c7d9f62baf1f0b906e68267276f54ec4b4c597c2b190
+  languageName: node
+  linkType: hard
+
 "for-each@npm:^0.3.3":
   version: 0.3.3
   resolution: "for-each@npm:0.3.3"
   dependencies:
     is-callable: ^1.1.3
   checksum: 6c48ff2bc63362319c65e2edca4a8e1e3483a2fabc72fbe7feaf8c73db94fc7861bd53bc02c8a66a0c1dd709da6b04eec42e0abdd6b40ce47305ae92a25e5d28
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
   languageName: node
   linkType: hard
 
@@ -3463,6 +3559,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glob-to-regexp@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "glob-to-regexp@npm:0.4.1"
+  checksum: e795f4e8f06d2a15e86f76e4d92751cf8bbfcf0157cea5c2f0f35678a8195a750b34096b1256e436f0cebc1883b5ff0888c47348443e69546a5a87f9e1eb1167
+  languageName: node
+  linkType: hard
+
 "glob@npm:7.1.6":
   version: 7.1.6
   resolution: "glob@npm:7.1.6"
@@ -3559,7 +3662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.2.6":
+"graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.2.6":
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
   checksum: ac85f94da92d8eb6b7f5a8b20ce65e43d66761c55ce85ac96df6865308390da45a8d3f0296dd3a663de65d30ba497bd46c696cc1e248c72b13d6d567138a4fc7
@@ -4052,6 +4155,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jsesc@npm:^2.5.1":
+  version: 2.5.2
+  resolution: "jsesc@npm:2.5.2"
+  bin:
+    jsesc: bin/jsesc
+  checksum: 4dc190771129e12023f729ce20e1e0bfceac84d73a85bc3119f7f938843fe25a4aeccb54b6494dce26fcf263d815f5f31acdefac7cc9329efb8422a4f4d9fa9d
+  languageName: node
+  linkType: hard
+
 "jsesc@npm:^3.0.2":
   version: 3.0.2
   resolution: "jsesc@npm:3.0.2"
@@ -4277,6 +4389,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mime-db@npm:1.52.0":
+  version: 1.52.0
+  resolution: "mime-db@npm:1.52.0"
+  checksum: 0d99a03585f8b39d68182803b12ac601d9c01abfa28ec56204fa330bc9f3d1c5e14beb049bafadb3dbdf646dfb94b87e24d4ec7b31b7279ef906a8ea9b6a513f
+  languageName: node
+  linkType: hard
+
+"mime-types@npm:^2.1.12":
+  version: 2.1.35
+  resolution: "mime-types@npm:2.1.35"
+  dependencies:
+    mime-db: 1.52.0
+  checksum: 89a5b7f1def9f3af5dad6496c5ed50191ae4331cc5389d7c521c8ad28d5fdad2d06fd81baf38fed813dc4e46bb55c8145bb0ff406330818c9cf712fb2e9b3836
+  languageName: node
+  linkType: hard
+
 "mimic-fn@npm:^2.1.0":
   version: 2.1.0
   resolution: "mimic-fn@npm:2.1.0"
@@ -4288,13 +4416,6 @@ __metadata:
   version: 1.0.1
   resolution: "min-indent@npm:1.0.1"
   checksum: bfc6dd03c5eaf623a4963ebd94d087f6f4bbbfd8c41329a7f09706b0cb66969c4ddd336abeb587bc44bc6f08e13bf90f0b374f9d71f9f01e04adc2cd6f083ef1
-  languageName: node
-  linkType: hard
-
-"miniget@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "miniget@npm:4.2.2"
-  checksum: 577a7826cbf521b8ecb31906b3dce55c61b35398318a461f3484681572287208b7ec5a40de7b0bf0b7738f21630d015cc39ba3edcfb69146565f1528ff957612
   languageName: node
   linkType: hard
 
@@ -4576,25 +4697,41 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:canary":
-  version: 13.4.5-canary.4
-  resolution: "next@npm:13.4.5-canary.4"
+"next-ws@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "next-ws@npm:0.1.1"
   dependencies:
-    "@next/env": 13.4.5-canary.4
-    "@next/swc-darwin-arm64": 13.4.5-canary.4
-    "@next/swc-darwin-x64": 13.4.5-canary.4
-    "@next/swc-linux-arm64-gnu": 13.4.5-canary.4
-    "@next/swc-linux-arm64-musl": 13.4.5-canary.4
-    "@next/swc-linux-x64-gnu": 13.4.5-canary.4
-    "@next/swc-linux-x64-musl": 13.4.5-canary.4
-    "@next/swc-win32-arm64-msvc": 13.4.5-canary.4
-    "@next/swc-win32-ia32-msvc": 13.4.5-canary.4
-    "@next/swc-win32-x64-msvc": 13.4.5-canary.4
+    "@babel/generator": ^7.22.3
+    "@babel/parser": ^7.22.4
+    "@babel/template": ^7.21.9
+  peerDependencies:
+    next: "*"
+    react: "*"
+    ws: "*"
+  checksum: c1c8adaa28718119a57990fb9c59bb06f28f467c02eee7cf4055fb5e96888fef4f7f43562d75fee63b86a077cb9404cedd6bf64d5f2cdd5893050ce719b8315a
+  languageName: node
+  linkType: hard
+
+"next@npm:canary":
+  version: 13.4.5-canary.6
+  resolution: "next@npm:13.4.5-canary.6"
+  dependencies:
+    "@next/env": 13.4.5-canary.6
+    "@next/swc-darwin-arm64": 13.4.5-canary.6
+    "@next/swc-darwin-x64": 13.4.5-canary.6
+    "@next/swc-linux-arm64-gnu": 13.4.5-canary.6
+    "@next/swc-linux-arm64-musl": 13.4.5-canary.6
+    "@next/swc-linux-x64-gnu": 13.4.5-canary.6
+    "@next/swc-linux-x64-musl": 13.4.5-canary.6
+    "@next/swc-win32-arm64-msvc": 13.4.5-canary.6
+    "@next/swc-win32-ia32-msvc": 13.4.5-canary.6
+    "@next/swc-win32-x64-msvc": 13.4.5-canary.6
     "@swc/helpers": 0.5.1
     busboy: 1.6.0
     caniuse-lite: ^1.0.30001406
     postcss: 8.4.14
     styled-jsx: 5.1.1
+    watchpack: 2.4.0
     zod: 3.21.4
   peerDependencies:
     "@opentelemetry/api": ^1.1.0
@@ -4630,7 +4767,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: e2ea92a8a880c4463835a3ed2c79e7e079b723765f751664bf8face307cb8d5ad526719e9d057aec59542c658354db0c30610bc615354e767f45cc9860967437
+  checksum: ea4b437f9f88db838c00b749f8e27b654dd3ee735ada4a850e5a7c725fe3434c865316aee1c425a5886de0355994fb64a00dfba9898eb95b122ee579ec1745cd
   languageName: node
   linkType: hard
 
@@ -5186,6 +5323,13 @@ __metadata:
     err-code: ^2.0.2
     retry: ^0.12.0
   checksum: f96a3f6d90b92b568a26f71e966cbbc0f63ab85ea6ff6c81284dc869b41510e6cdef99b6b65f9030f0db422bf7c96652a3fff9f2e8fb4a0f069d8f4430359429
+  languageName: node
+  linkType: hard
+
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
   languageName: node
   linkType: hard
 
@@ -6033,6 +6177,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"to-fast-properties@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "to-fast-properties@npm:2.0.0"
+  checksum: be2de62fe58ead94e3e592680052683b1ec986c72d589e7b21e5697f8744cdbf48c266fa72f6c15932894c10187b5f54573a3bcf7da0bfd964d5caf23d436168
+  languageName: node
+  linkType: hard
+
 "to-regex-range@npm:^5.0.1":
   version: 5.0.1
   resolution: "to-regex-range@npm:5.0.1"
@@ -6398,6 +6549,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"watchpack@npm:2.4.0":
+  version: 2.4.0
+  resolution: "watchpack@npm:2.4.0"
+  dependencies:
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.1.2
+  checksum: 23d4bc58634dbe13b86093e01c6a68d8096028b664ab7139d58f0c37d962d549a940e98f2f201cecdabd6f9c340338dc73ef8bf094a2249ef582f35183d1a131
+  languageName: node
+  linkType: hard
+
 "webidl-conversions@npm:^4.0.2":
   version: 4.0.2
   resolution: "webidl-conversions@npm:4.0.2"
@@ -6494,6 +6655,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ws@npm:^8.13.0":
+  version: 8.13.0
+  resolution: "ws@npm:8.13.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 53e991bbf928faf5dc6efac9b8eb9ab6497c69feeb94f963d648b7a3530a720b19ec2e0ec037344257e05a4f35bd9ad04d9de6f289615ffb133282031b18c61c
+  languageName: node
+  linkType: hard
+
 "www@workspace:apps/www":
   version: 0.0.0-use.local
   resolution: "www@workspace:apps/www"
@@ -6503,19 +6679,18 @@ __metadata:
     "@qwaroo/auth-adapter": "workspace:^"
     "@qwaroo/data-sources": "workspace:^"
     "@qwaroo/database": "workspace:^"
+    "@radix-ui/react-alert-dialog": ^1.0.4
     "@radix-ui/react-aspect-ratio": ^1.0.2
     "@radix-ui/react-avatar": ^1.0.3
-    "@radix-ui/react-checkbox": ^1.0.4
     "@radix-ui/react-dialog": ^1.0.3
     "@radix-ui/react-dropdown-menu": ^2.0.4
     "@radix-ui/react-label": ^2.0.1
     "@radix-ui/react-popover": ^1.0.6
-    "@radix-ui/react-progress": ^1.0.3
     "@radix-ui/react-radio-group": ^1.1.3
     "@radix-ui/react-select": ^1.2.2
     "@radix-ui/react-separator": ^1.0.2
     "@radix-ui/react-slot": ^1.0.1
-    "@radix-ui/react-switch": ^1.0.3
+    "@radix-ui/react-toast": ^1.1.4
     "@radix-ui/react-tooltip": ^1.0.6
     "@typegoose/typegoose": ^11.1.0
     "@types/eslint": ^8
@@ -6523,6 +6698,7 @@ __metadata:
     "@types/prettier": ^2
     "@types/react": ^18.2.6
     "@types/react-dom": ^18.2.4
+    "@types/ws": ^8
     autoprefixer: ^10.4.14
     class-variance-authority: ^0.6.0
     clsx: ^1.2.1
@@ -6535,6 +6711,7 @@ __metadata:
     next: canary
     next-auth: ^4.22.1
     next-themes: "npm:@wits/next-themes@^0.2.16"
+    next-ws: ^0.1.1
     postcss: ^8.4.23
     prettier: ^2.8.8
     react: ^18.2.0
@@ -6548,6 +6725,7 @@ __metadata:
     tailwindcss: ^3.3.2
     tailwindcss-animate: ^1.0.5
     typescript: ^5.0.4
+    ws: ^8.13.0
     zod: ^3.21.4
     zod-validation-error: ^1.3.0
   languageName: unknown
@@ -6581,12 +6759,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ytpl@https://github.com/apteryxxyz/node-ytpl":
-  version: 0.0.0-development
-  resolution: "ytpl@https://github.com/apteryxxyz/node-ytpl.git#commit=f0b1803211df87cbaf11f1dca861636a1b97e52f"
+"yt-channel-info@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "yt-channel-info@npm:3.2.1"
   dependencies:
-    miniget: ^4.2.2
-  checksum: 9d97069621cca876363ed538c01d16d3e5a29d59c5d048bdc184df56ca8c2ca262e4df0234558c9ef0d0e6308f4ea4c330bc858ed547beffdb0caaffbaa0d821
+    axios: ^1.1.2
+  checksum: 1c76171733f5dfc7515e721ac467b4017185169110fc5e69b6ec08ac30dc9551ec1161081c319018eece76ef47c32c6ea64424a04f5d2550e3c0fe4a779cf5ff
   languageName: node
   linkType: hard
 
