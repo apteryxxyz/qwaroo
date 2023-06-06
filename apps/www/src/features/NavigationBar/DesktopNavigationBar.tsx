@@ -4,9 +4,9 @@ import { TrelloIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
+import { Button } from '@/components/Button';
 import { DiscordIcon, QwarooIcon } from '@/components/Icons';
-import { ProfileButton } from '@/components/ProfileButton';
-import { Button } from '@/components/ui/Button';
+import { ProfileButton } from '@/features/ProfileButton';
 import { cn, tw } from '@/utilities/styling';
 
 export function DesktopNavigationBar() {

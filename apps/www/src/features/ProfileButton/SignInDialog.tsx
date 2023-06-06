@@ -6,10 +6,10 @@ import type { ClientSafeProvider } from 'next-auth/react';
 import { getCsrfToken, getProviders } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
 import { useEffect, useState } from 'react';
-import { ImageWithFallback } from '../ImageWithFallback';
-import { Alert } from '@/components/ui/Alert';
-import { Button } from '@/components/ui/Button';
-import { Dialog } from '@/components/ui/Dialog';
+import { Alert } from '@/components/Alert';
+import { Button } from '@/components/Button';
+import { Dialog } from '@/components/Dialog';
+import { ImageWithFallback } from '@/components/ImageWithFallback';
 
 export function SignInDialog({ children }: PropsWithChildren) {
     const [providers, setProviders] = useState<ClientSafeProvider[]>([]);

@@ -3,7 +3,6 @@
 import type { Source } from '@qwaroo/data-sources';
 import { useState } from 'react';
 import { CreateDataProvider } from './context';
-import { Tooltip } from '@/components/ui/Tooltip';
 
 export default function Layout(props: { children: React.ReactNode }) {
     const [source, setSource] = useState<Source.Entity | null>(null);

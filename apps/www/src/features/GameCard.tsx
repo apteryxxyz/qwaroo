@@ -1,9 +1,9 @@
 import type { Game } from '@qwaroo/database';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/Badge';
-import { Card } from '@/components/ui/Card';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Badge } from '@/components/Badge';
+import { Card } from '@/components/Card';
+import { Skeleton } from '@/components/Skeleton';
 
 export interface PropsWithGame {
     game: Game.Entity;

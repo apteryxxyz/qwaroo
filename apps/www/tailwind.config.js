@@ -4,11 +4,7 @@ const { fontFamily } = require("tailwindcss/defaultTheme")
 module.exports = {
     darkMode: ["class"],
     content: {
-        files: [
-            "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-            "./src/{components,ui}/**/*.{js,ts,jsx,tsx,mdx}",
-            "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-        ],
+        files: ["./src/{components,features,app}/**/*.{js,ts,jsx,tsx,mdx}"],
         transform: require('tailwind-group-variant')(),
     },
     theme: {

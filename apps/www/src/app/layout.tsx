@@ -6,10 +6,10 @@ import '@/styles/tailwind.css';
 import { Inter } from 'next/font/google';
 import { SessionProvider } from 'next-auth/react';
 import { ServerThemeProvider } from 'next-themes';
-import { TailwindIndicator } from '@/components/TailwindIndicator';
-import { Backdrop } from '@/components/layout/Backdrop';
-import { NavigationBar } from '@/components/layout/NavigationBar';
-import { Toaster } from '@/components/ui/Toaster';
+import { Toaster } from '@/components/Toaster';
+import { Backdrop } from '@/features/Backdrop';
+import { NavigationBar } from '@/features/NavigationBar';
+import { TailwindIndicator } from '@/features/TailwindIndicator';
 
 const inter = Inter({ subsets: ['latin'] });
 

@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { getProviders } from 'next-auth/react';
+import { Alert } from '@/components/Alert';
+import { Button } from '@/components/Button';
+import { Card } from '@/components/Card';
 import { ImageWithFallback } from '@/components/ImageWithFallback';
-import { Alert } from '@/components/ui/Alert';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
 import { authOptions } from '@/utilities/authOptions';
 
 export type SignInErrorTypes =

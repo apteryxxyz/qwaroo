@@ -8,11 +8,11 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { validateOptions } from '../actions';
 import { useCreateData } from '../context';
-import { AlertDialog } from '@/components/ui/AlertDialog';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Form } from '@/components/ui/Form';
-import { Input } from '@/components/ui/Input';
+import { AlertDialog } from '@/components/AlertDialog';
+import { Button } from '@/components/Button';
+import { Card } from '@/components/Card';
+import { Form } from '@/components/Form';
+import { Input } from '@/components/Input';
 import { useToast } from '@/utilities/useToast';
 
 interface ContentProps {

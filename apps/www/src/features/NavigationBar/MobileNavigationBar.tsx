@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
+import { Button } from '@/components/Button';
 import { DiscordIcon, QwarooIcon } from '@/components/Icons';
-import { ProfileButton } from '@/components/ProfileButton';
-import { Button } from '@/components/ui/Button';
-import { Sheet } from '@/components/ui/Sheet';
+import { Sheet } from '@/components/Sheet';
+import { ProfileButton } from '@/features/ProfileButton';
 
 export function MobileNavigationBar() {
     const router = useRouter();

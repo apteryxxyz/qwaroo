@@ -1,5 +1,5 @@
-import { GameCard } from '@/components/game/GameCard';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/Skeleton';
+import { GameCard } from '@/features/GameCard';
 
 export default function Loading() {
     return <>

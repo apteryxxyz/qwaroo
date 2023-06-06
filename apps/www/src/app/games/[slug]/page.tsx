@@ -1,10 +1,10 @@
 import { AlertCircleIcon } from 'lucide-react';
 import { getGame } from './actions';
-import { GameCard } from '@/components/game/GameCard';
-import { Alert } from '@/components/ui/Alert';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
-import { Badge } from '@/components/ui/Badge';
-import { Card } from '@/components/ui/Card';
+import { Alert } from '@/components/Alert';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/Avatar';
+import { Badge } from '@/components/Badge';
+import { Card } from '@/components/Card';
+import { GameCard } from '@/features/GameCard';
 
 interface PageProps {
     params: { slug: string };

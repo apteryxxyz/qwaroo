@@ -7,14 +7,14 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useCreateData } from '../context';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Command } from '@/components/ui/Command';
-import { Form } from '@/components/ui/Form';
-import { Input } from '@/components/ui/Input';
-import { Popover } from '@/components/ui/Popover';
-import { Textarea } from '@/components/ui/Textarea';
-import { Tooltip } from '@/components/ui/Tooltip';
+import { Button } from '@/components/Button';
+import { Card } from '@/components/Card';
+import { Command } from '@/components/Command';
+import { Form } from '@/components/Form';
+import { Input } from '@/components/Input';
+import { Popover } from '@/components/Popover';
+import { Textarea } from '@/components/Textarea';
+import { Tooltip } from '@/components/Tooltip';
 import { cn } from '@/utilities/styling';
 
 const DetailsSchema = z.object({

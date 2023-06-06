@@ -3,7 +3,7 @@
 import type { Source } from '@qwaroo/data-sources';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/Card';
 
 interface ContentProps {
     sources: Source.Entity[];
