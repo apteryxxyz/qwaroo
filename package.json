@@ -2,17 +2,13 @@
     "name": "qwaroo",
     "private": true,
     "packageManager": "yarn@3.5.1",
-    "workspaces": [
-        "packages/*",
-        "apps/*"
-    ],
+    "workspaces": ["packages/*", "apps/*"],
     "scripts": {
         "prepare-for:development": "node ./scripts/prepare-environment.js development",
         "prepare-for:production": "node ./scripts/prepare-environment.js production",
         "prepare-for:staging": "node ./scripts/prepare-environment.js staging",
         "prepare-for:reset": "node ./scripts/prepare-environment.js reset",
-        "deploy-to:production": "docker compose up -d --build www",
-        "deploy-to:staging": "docker compose up -d --build www-staging",
+        "deploy-to:staging": "pm2 startOrReload pm2.staging.config.js",
         "turbo:build:packages": "turbo build --filter=\"@qwaroo/*\" --parallel",
         "turbo:build": "turbo build --parallel",
         "turbo:format": "turbo format --parallel",

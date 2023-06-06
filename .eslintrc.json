@@ -1,4 +1,4 @@
 {
     "extends": ["apteryx/common", "apteryx/typescript", "apteryx/prettier"],
-    "ignorePatterns": ["dist", "node_modules", "*.config.*"]
+    "ignorePatterns": ["dist", "node_modules", "*.config.*", "scripts"]
 }
