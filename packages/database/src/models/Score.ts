@@ -35,22 +35,6 @@ export class Score {
     @Prop({ ref: 'Game', required: true, autopopulate: true })
     public game!: Ref<Game>;
 
-    /** The vote status of the user for this game, -1 for dislike, 1 for like, 0 for no vote. */
-    @Prop({ default: 0, min: -1, max: 1 })
-    public voteDirection: number = 0;
-
-    public get hasLiked() {
-        return this.voteDirection === 1;
-    }
-
-    public get hasDisliked() {
-        return this.voteDirection === -1;
-    }
-
-    /** Whether or not this game is saved by the user. */
-    @Prop({ default: false })
-    public isSaved: boolean = false;
-
     /** The total score earned for this game. */
     @Prop({ default: 0 })
     public totalScore: number = 0;

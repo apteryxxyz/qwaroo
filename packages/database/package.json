@@ -12,7 +12,8 @@
         "@typegoose/typegoose": "^11.1.0",
         "mongoose": "^7.1.2",
         "mongoose-autopopulate": "^1.0.1",
-        "reflect-metadata": "^0.1.13"
+        "reflect-metadata": "^0.1.13",
+        "zod": "^3.21.4"
     },
     "devDependencies": {
         "@types/eslint": "^8",

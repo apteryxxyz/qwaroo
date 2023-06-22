@@ -62,7 +62,7 @@ export class YouTubeChannelVideoViews extends Source<Options> {
             if (!channelId && index > 0) continue;
 
             if (!channelId)
-                return this._error(
+                throw new Error(
                     `No YouTube channel ID was provided for channel #${
                         index + 1
                     }.`
@@ -73,17 +73,15 @@ export class YouTubeChannelVideoViews extends Source<Options> {
                 .catch(() => null);
 
             if (!channel || channel.alertMessage)
-                return this._error(
+                throw new Error(
                     `No YouTube channel was found for "${channelId}".`
                 );
 
             channels.push(channel);
         }
 
-        return this._success(
-            `Your game will feature videos from ${channels
-                .map(channel => channel.author)
-                .join(', ')}.`
-        );
+        return `Your game will feature videos from ${channels
+            .map(channel => channel.author)
+            .join(', ')}.`;
     }
 }

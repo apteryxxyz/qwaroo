@@ -3,9 +3,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Source } from '@qwaroo/data-sources';
 import { useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import type { ServerActionError } from 'next-sa/client';
+import { executeServerAction } from 'next-sa/client';
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import ClipLoader from 'react-spinners/ClipLoader';
+import z from 'zod';
 import { validateOptions } from '../actions';
 import { useCreateData } from '../context';
 import { AlertDialog } from '@/components/AlertDialog';
@@ -26,7 +29,7 @@ export default function Content(props: ContentProps) {
 
     const router = useRouter();
     const { toast } = useToast();
-    const [isPending, startTransition] = useTransition();
+    const [isValidating, setValidating] = useState(false);
     const [isAlertOpen, setAlertOpen] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
 
@@ -36,6 +39,26 @@ export default function Content(props: ContentProps) {
         defaultValues: options,
     });
 
+    const onSubmit = useCallback(async () => {
+        const options = optionsForm.getValues();
+        const input = { slug: props.source.slug, options };
+
+        setValidating(true);
+        await executeServerAction(validateOptions, input)
+            .then(message => {
+                setAlertMessage(message);
+                setAlertOpen(true);
+            })
+            .catch((error: ServerActionError) =>
+                toast({
+                    title: 'Inputted options are invalid!',
+                    description: error.message,
+                    variant: 'destructive',
+                })
+            )
+            .finally(() => setValidating(false));
+    }, []);
+
     return <Card>
         <Card.Header>
             <Card.Title>Choose your source options</Card.Title>
@@ -43,27 +66,7 @@ export default function Content(props: ContentProps) {
 
         <Card.Content>
             <Form {...optionsForm}>
-                <form
-                    className="flex flex-col gap-6"
-                    onSubmit={optionsForm.handleSubmit(options =>
-                        startTransition(async () => {
-                            const result = await validateOptions({
-                                slug: props.source.slug,
-                                options,
-                            });
-                            if (result[0] === false) {
-                                toast({
-                                    title: 'Inputted options are invalid!',
-                                    description: result[1],
-                                    variant: 'destructive',
-                                });
-                            } else {
-                                setAlertMessage(result[1] ?? '');
-                                setAlertOpen(true);
-                            }
-                        })
-                    )}
-                >
+                <form className="flex flex-col gap-6" onSubmit={optionsForm.handleSubmit(onSubmit)}>
                     {Object.entries(props.source.properties).map(([key, value]) => <Form.Field
                         key={key}
                         control={optionsForm.control}
@@ -88,7 +91,8 @@ export default function Content(props: ContentProps) {
                         </Form.Item>}
                     />)}
 
-                    <Button type="submit" className="ml-auto" disabled={isPending}>
+                    <Button type="submit" className="flex gap-2 ml-auto" disabled={isValidating}>
+                        {isValidating && <ClipLoader size={16} color="#000" />}
                         Continue
                     </Button>
                 </form>

@@ -3,7 +3,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Game } from '@qwaroo/database';
 import { FileQuestionIcon } from 'lucide-react';
-import { useState } from 'react';
+import { executeServerAction } from 'next-sa/client';
+import type { ServerActionDataType } from 'next-sa/server';
+import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { getGames } from './actions';
@@ -18,8 +20,8 @@ const searchSchema = z.object({
 });
 
 interface ContentProps {
-    data: Awaited<ReturnType<typeof getGames>>[0];
-    games: Awaited<ReturnType<typeof getGames>>[1];
+    data: ServerActionDataType<typeof getGames>[0];
+    games: ServerActionDataType<typeof getGames>[1];
 }
 
 export default function Content(props: ContentProps) {
@@ -28,7 +30,7 @@ export default function Content(props: ContentProps) {
         defaultValues: { query: '' },
     });
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isPending, startTransition] = useTransition();
     const [total, setTotal] = useState(props.data.total);
     const [loaded, setLoaded] = useState<Game.Entity[]>(props.games);
 
@@ -40,22 +42,18 @@ export default function Content(props: ContentProps) {
         // Only fetch more if we have less than the total amount of games
         if (!isInitial && total !== -1 && loadedLength >= total) return;
 
-        if (!isLoading) setIsLoading(true);
-        const [data, games] = await getGames({
+        const [data, games] = await executeServerAction(getGames, {
             ...searchForm.getValues(),
             limit: 12,
             skip: loadedLength,
-        });
+        }).catch(() => [null, null]);
+        if (!data || !games) return;
 
-        if (data.total !== total) setTotal(data.total);
         setLoaded(prev => {
             if (isInitial) return games;
             else return [...prev, ...games];
         });
-        setIsLoading(false);
     }
-
-    // useEffect(() => void fetchMore(true), []);
 
     return <>
         <h1 className="text-2xl font-bold leading-none tracking-tight pb-6">Games</h1>
@@ -64,7 +62,9 @@ export default function Content(props: ContentProps) {
 
         <Form {...searchForm}>
             <form
-                onSubmit={searchForm.handleSubmit(async () => fetchMore(true))}
+                onSubmit={searchForm.handleSubmit(() =>
+                    startTransition(async () => fetchMore(true))
+                )}
                 className="flex pb-6 space-x-6"
             >
                 <Form.Field
@@ -86,9 +86,9 @@ export default function Content(props: ContentProps) {
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             {loaded.map(game => <GameCard key={game.id} game={game} />)}
 
-            {isLoading && Array.from({ length: 6 }).map((_, i) => <GameCard key={i} isLoading />)}
+            {isPending && Array.from({ length: 6 }).map((_, i) => <GameCard key={i} isLoading />)}
 
-            {!isLoading && loaded.length === 0 && <Alert>
+            {!isPending && loaded.length === 0 && <Alert>
                 <FileQuestionIcon className="w-5 h-5 mr-2" />
 
                 <Alert.Title>Hmm, no games were found</Alert.Title>

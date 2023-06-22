@@ -17,27 +17,29 @@ import { Textarea } from '@/components/Textarea';
 import { Tooltip } from '@/components/Tooltip';
 import { cn } from '@/utilities/styling';
 
-const DetailsSchema = z.object({
-    title: z.string().min(3).max(40),
-
-    shortDescription: z.string().min(8).max(64),
-
-    longDescription: z.string().min(96).max(512),
-
-    thumbnailUrl: z.string().url(),
-
-    category: z.string(),
-});
-
 const Categories = ['Geography', 'YouTube'];
+
+const detailsSchema = z.object({
+    title: z.string().min(3).max(40),
+    shortDescription: z.string().min(8).max(64),
+    longDescription: z.string().min(96).max(512),
+    thumbnailUrl: z.string().url().max(512),
+    category: z.string().min(3).max(40),
+    valueVerb: z.string().max(40),
+    valueNoun: z.string().max(40),
+    higherText: z.string().max(40),
+    lowerText: z.string().max(40),
+    valuePrefix: z.string().max(10).optional(),
+    valueSuffix: z.string().max(10).optional(),
+});
 
 export default function Content() {
     const { source, setSource, options, setOptions, details, setDetails } = useCreateData() ?? {};
     if (!setSource || !setOptions) throw new Error('Missing context');
 
     const router = useRouter();
-    const detailsForm = useForm<z.infer<typeof DetailsSchema>>({
-        resolver: zodResolver(DetailsSchema),
+    const detailsForm = useForm<z.infer<typeof detailsSchema>>({
+        resolver: zodResolver(detailsSchema),
         defaultValues: details,
     });
 
@@ -46,20 +48,20 @@ export default function Content() {
         if (!isAllowed) router.replace('/games/create');
     }, []);
 
-    return <Card>
-        <Card.Header>
-            <Card.Title>Choose your descriptive values</Card.Title>
-        </Card.Header>
+    return <Form {...detailsForm}>
+        <form
+            onSubmit={detailsForm.handleSubmit(values => {
+                setDetails(values);
+                // router.push('/games/create/process');
+            })}
+            className="flex-grow flex flex-col gap-6"
+        >
+            <Card>
+                <Card.Header>
+                    <Card.Title>Choose your descriptive values</Card.Title>
+                </Card.Header>
 
-        <Card.Content>
-            <Form {...detailsForm}>
-                <form
-                    className="flex flex-col gap-6"
-                    onSubmit={detailsForm.handleSubmit(values => {
-                        setDetails(values);
-                        // router.push('/games/create/details');
-                    })}
-                >
+                <Card.Content className="flex flex-col gap-6">
                     <Form.Field
                         control={detailsForm.control}
                         name="title"
@@ -210,20 +212,168 @@ export default function Content() {
                             </Popover>
                         </Form.Item>}
                     />
+                    {/* 
+                    <Link href="#tech" className="ml-auto">
+                        <Button>Continue</Button>
+                    </Link> */}
+                </Card.Content>
+            </Card>
+
+            <Card id="tech">
+                <Card.Header>
+                    <Card.Title>Choose your technical values</Card.Title>
+                </Card.Header>
+
+                <Card.Content className="flex flex-col gap-6">
+                    <Form.Field
+                        control={detailsForm.control}
+                        name="valueVerb"
+                        render={({
+                            field,
+                        }) => <Form.Item className="space-y-0 flex flex-col lg:flex-row gap-6">
+                            <div className="lg:w-1/3">
+                                <Form.Label className="block">Unit Verb</Form.Label>
+                                <Form.Description>
+                                    Appears before the value, describes how the value relates to the
+                                    noun, such as 'costs' or 'has'.
+                                </Form.Description>
+                            </div>
+
+                            <div className="flex-grow">
+                                <Form.Control>
+                                    <Input type="text" {...field} />
+                                </Form.Control>
+                                <Form.Message />
+                            </div>
+                        </Form.Item>}
+                    />
+
+                    <Form.Field
+                        control={detailsForm.control}
+                        name="valueNoun"
+                        render={({
+                            field,
+                        }) => <Form.Item className="space-y-0 flex flex-col lg:flex-row gap-6">
+                            <div className="lg:w-1/3">
+                                <Form.Label className="block">Unit Noun</Form.Label>
+                                <Form.Description>
+                                    The unit that the values are, such as 'views' or 'people'.
+                                </Form.Description>
+                            </div>
+
+                            <div className="flex-grow">
+                                <Form.Control>
+                                    <Input type="text" {...field} />
+                                </Form.Control>
+                                <Form.Message />
+                            </div>
+                        </Form.Item>}
+                    />
+
+                    <Form.Field
+                        control={detailsForm.control}
+                        name="higherText"
+                        render={({
+                            field,
+                        }) => <Form.Item className="space-y-0 flex flex-col lg:flex-row gap-6">
+                            <div className="lg:w-1/3">
+                                <Form.Label className="block">Higher Synonym</Form.Label>
+                                <Form.Description>
+                                    A synonym of higher that will appear in-game as the higher
+                                    button, for example, 'More', 'Better', etc.
+                                </Form.Description>
+                            </div>
+
+                            <div className="flex-grow">
+                                <Form.Control>
+                                    <Input type="text" {...field} />
+                                </Form.Control>
+                                <Form.Message />
+                            </div>
+                        </Form.Item>}
+                    />
+
+                    <Form.Field
+                        control={detailsForm.control}
+                        name="lowerText"
+                        render={({
+                            field,
+                        }) => <Form.Item className="space-y-0 flex flex-col lg:flex-row gap-6">
+                            <div className="lg:w-1/3">
+                                <Form.Label className="block">Lower Synonym</Form.Label>
+                                <Form.Description>
+                                    A synonym of lower that will appear in-game as the lower button,
+                                    for example, 'Less', 'Worse', etc.
+                                </Form.Description>
+                            </div>
+
+                            <div className="flex-grow">
+                                <Form.Control>
+                                    <Input type="text" {...field} />
+                                </Form.Control>
+                                <Form.Message />
+                            </div>
+                        </Form.Item>}
+                    />
+
+                    <Form.Field
+                        control={detailsForm.control}
+                        name="valuePrefix"
+                        render={({
+                            field,
+                        }) => <Form.Item className="space-y-0 flex flex-col lg:flex-row gap-6">
+                            <div className="lg:w-1/3">
+                                <Form.Label className="block">Value Prefix (Optional)</Form.Label>
+                                <Form.Description>
+                                    Appears as a prefix to the value, for example a currency symbol.
+                                </Form.Description>
+                            </div>
+
+                            <div className="flex-grow">
+                                <Form.Control>
+                                    <Input type="text" {...field} />
+                                </Form.Control>
+                                <Form.Message />
+                            </div>
+                        </Form.Item>}
+                    />
+
+                    <Form.Field
+                        control={detailsForm.control}
+                        name="valueSuffix"
+                        render={({
+                            field,
+                        }) => <Form.Item className="space-y-0 flex flex-col lg:flex-row gap-6">
+                            <div className="lg:w-1/3">
+                                <Form.Label className="block">Value Suffix (Optional)</Form.Label>
+                                <Form.Description>
+                                    Appears as a suffix to the value, for example weight or speed
+                                    units. Can be empty.
+                                </Form.Description>
+                            </div>
+
+                            <div className="flex-grow">
+                                <Form.Control>
+                                    <Input type="text" {...field} />
+                                </Form.Control>
+                                <Form.Message />
+                            </div>
+                        </Form.Item>}
+                    />
 
                     <Tooltip.Provider>
                         <Tooltip>
                             <Tooltip.Trigger asChild>
                                 <Button type="submit" className="ml-auto">
-                                    Continue
+                                    Create
                                 </Button>
                             </Tooltip.Trigger>
 
                             <Tooltip.Content>Game creation is currently disabled.</Tooltip.Content>
                         </Tooltip>
                     </Tooltip.Provider>
-                </form>
-            </Form>
-        </Card.Content>
-    </Card>;
+                </Card.Content>
+            </Card>
+        </form>
+    </Form>;
 }

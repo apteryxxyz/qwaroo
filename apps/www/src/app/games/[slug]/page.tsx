@@ -1,4 +1,5 @@
 import { AlertCircleIcon } from 'lucide-react';
+import { executeServerAction } from 'next-sa/client';
 import { getGame } from './actions';
 import { Alert } from '@/components/Alert';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/Avatar';
@@ -11,7 +12,8 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params: { slug } }: PageProps) {
-    const { game } = (await getGame({ slug, recommended: false })) ?? {};
+    const { game } = await executeServerAction(getGame, { slug, recommended: false });
+
     if (!game)
         return {
             title: 'Game not found',
@@ -19,13 +21,14 @@ export async function generateMetadata({ params: { slug } }: PageProps) {
         };
 
     return {
-        title: `${game.title} on Qwaroo`,
+        title: game.title,
         description: game.longDescription,
     };
 }
 
 export default async function Page({ params: { slug } }: PageProps) {
-    const { game, recommended } = (await getGame({ slug, recommended: true })) ?? {};
+    const { game, recommended } = await getGame({ slug, recommended: true }) //
+        .then(output => (output.success ? output.data : { game: null, recommended: null }));
 
     // TODO: Improve the not found handling
     if (!game)
@@ -69,7 +72,7 @@ export default async function Page({ params: { slug } }: PageProps) {
                 </h2>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
-                    {recommended!.map(game => <GameCard key={game.id} game={game} />)}
+                    {recommended.map(game => <GameCard key={game.id} game={game} />)}
                 </div>
             </section>
         </div>

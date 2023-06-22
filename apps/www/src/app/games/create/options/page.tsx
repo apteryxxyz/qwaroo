@@ -1,4 +1,5 @@
-import { redirect } from 'next/navigation';
+import { redirect } from 'next/dist/client/components/redirect';
+import { executeServerAction } from 'next-sa/client';
 import { getSource } from '../actions';
 import Content from './content';
 
@@ -7,9 +8,8 @@ interface PageProps {
 }
 
 export default async function Page(props: PageProps) {
-    if (!props.searchParams.source) return redirect('/games/create');
-
-    const source = await getSource({ slug: props.searchParams.source });
+    const slug = props.searchParams.source;
+    const source = slug && (await executeServerAction(getSource, { slug }));
     if (!source) return redirect('/games/create');
 
     return <Content source={source} />;

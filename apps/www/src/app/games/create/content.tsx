@@ -12,7 +12,7 @@ interface ContentProps {
 export default function Content(props: ContentProps) {
     return <Card>
         <Card.Header>
-            <Card.Title>Choose A Source</Card.Title>
+            <Card.Title>Choose a source</Card.Title>
             <Card.Description>
                 Games are automatically created using a source and a set of properties. Choose a
                 source from below to get started!

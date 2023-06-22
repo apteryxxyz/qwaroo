@@ -17,19 +17,7 @@ export abstract class Source<O extends Record<string, unknown>>
     public abstract readonly isPublic: boolean;
     public abstract readonly properties: Record<keyof O, Source.Prop>;
 
-    public abstract validateOptions(
-        options: Partial<O>
-    ): Promise<
-        ReturnType<typeof this._error> | ReturnType<typeof this._success>
-    >;
-
-    protected _error(message: string) {
-        return [false, message] as const;
-    }
-
-    protected _success(message?: string) {
-        return [true, message] as const;
-    }
+    public abstract validateOptions(options: Partial<O>): Promise<string>;
 }
 
 export namespace Source {

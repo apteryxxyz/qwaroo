@@ -12,6 +12,7 @@ import {
 } from '@typegoose/typegoose';
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
 import mongoose, { SchemaTypes } from 'mongoose';
+import { z } from 'zod';
 import type { User } from './User';
 import { Slug } from '@/utilities/Slug';
 
@@ -23,8 +24,6 @@ import { Slug } from '@/utilities/Slug';
                 record.id = record._id.toString();
                 delete record._id;
                 delete record.__v;
-                record.extraData.id = record.extraData._id.toString();
-                delete record.extraData._id;
                 return record;
             },
         },
@@ -113,19 +112,34 @@ export class Game {
             },
             message: 'Invalid thumbnail URL',
         },
+        maxlength: 512,
     })
     public thumbnailUrl!: string;
 
     /** Category assigned to this game. */
-    @Prop({ required: true })
+    @Prop({ required: true, minlength: 3, maxlength: 40 })
     public category!: string;
 
-    /** Extra data for this game. */
-    @Prop({ type: () => ExtraData, required: true })
-    public extraData!: ExtraData;
+    @Prop({ required: true, maxlength: 40 })
+    public valueVerb!: string;
+
+    @Prop({ required: true, maxlength: 40 })
+    public valueNoun!: string;
+
+    @Prop({ required: true, maxlength: 40 })
+    public higherText!: string;
+
+    @Prop({ required: true, maxlength: 40 })
+    public lowerText!: string;
+
+    @Prop({ maxlength: 10 })
+    public valuePrefix?: string;
+
+    @Prop({ maxlength: 10 })
+    public valueSuffix?: string;
 
     /** Source slug for automatic game items updating. */
-    @Prop({})
+    @Prop({ maxlength: 40 })
     public sourceSlug?: string;
 
     /** Source properties for automatic game items updating. */
@@ -181,26 +195,6 @@ export class Game {
     public updatedAt?: Date;
 }
 
-class ExtraData {
-    @Prop({ required: true })
-    public valueVerb!: string;
-
-    @Prop({ required: true })
-    public valueNoun!: string;
-
-    @Prop({ required: true })
-    public higherText!: string;
-
-    @Prop({ required: true })
-    public lowerText!: string;
-
-    @Prop()
-    public valuePrefix?: string;
-
-    @Prop()
-    public valueSuffix?: string;
-}
-
 export namespace Game {
     export const Model =
         (mongoose.models['Game'] as ReturnModelType<typeof Game>) ??
@@ -211,4 +205,21 @@ export namespace Game {
     } & { creator: User.Entity };
 
     export type Document = DocumentType<Game>;
+
+    /** Zod schema for properties that can be user defined. */
+    export const Schema = z.object({
+        title: z.string().min(3).max(40),
+        shortDescription: z.string().min(8).max(64),
+        longDescription: z.string().min(96).max(512),
+        thumbnailUrl: z.string().url().max(512),
+        category: z.string().min(3).max(40),
+        valueVerb: z.string().max(40),
+        valueNoun: z.string().max(40),
+        higherText: z.string().max(40),
+        lowerText: z.string().max(40),
+        valuePrefix: z.string().max(10),
+        valueSuffix: z.string().max(10),
+        sourceSlug: z.string().max(40),
+        sourceProperties: z.record(z.unknown()),
+    });
 }

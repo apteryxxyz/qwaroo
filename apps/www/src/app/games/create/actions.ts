@@ -1,27 +1,32 @@
 'use server';
 
 import { Sources } from '@qwaroo/data-sources';
-import { z } from 'zod';
-import { serverAction } from '@/utilities/serverAction';
+import { createServerAction } from 'next-sa/server';
 
-export const getSources = serverAction({ cacheTime: '1h' })(async () =>
-    Object.values(Sources)
-        .filter(source => source.isPublic)
-        .map(source => source.toJSON())
-);
+export const getSources = createServerAction()
+    .cache({ max: 1, ttl: '1h' })
+    .definition(async () =>
+        Object.values(Sources)
+            .filter(source => source.isPublic)
+            .map(source => source.toJSON())
+    );
 
-export const getSource = serverAction({
-    cacheTime: '1h',
-    bodySchema: z.object({ slug: z.string() }),
-})(async ({ slug }) => {
-    return getSources({}).then(sources => sources.find(source => source.slug === slug) ?? null);
-});
+export const getSource = createServerAction()
+    .input(z => z.object({ slug: z.string() }))
+    .cache({ max: 1, ttl: '1h' })
+    .definition(
+        async ({ slug }) =>
+            Object.values(Sources)
+                .filter(source => source.isPublic)
+                .map(source => source.toJSON())
+                .find(source => source.slug === slug) ?? null
+    );
 
-export const validateOptions = serverAction({
-    cacheTime: '1h',
-    bodySchema: z.object({ slug: z.string(), options: z.any() }),
-})(async ({ slug, options }) => {
-    if (!(slug in Sources)) return [false, 'Invalid source.'] as const;
-    const source = Sources[slug as keyof typeof Sources];
-    return source.validateOptions(options);
-});
+export const validateOptions = createServerAction()
+    .input(z => z.object({ slug: z.string(), options: z.record(z.any()) }))
+    .cache({ max: 1, ttl: '1h' })
+    .definition(async ({ slug, options }) => {
+        if (!(slug in Sources)) throw new Error(`No source was found for "${slug}".`);
+        const source = Sources[slug as keyof typeof Sources];
+        return source.validateOptions(options);
+    });

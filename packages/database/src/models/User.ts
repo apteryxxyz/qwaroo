@@ -42,7 +42,7 @@ export class User {
 
     /** The date when this user was last active. */
     @Prop({ default: Date.now })
-    public lastSeenAt!: Date;
+    public lastSeenAt!: Date; // NOTE: Not currently used
 }
 
 export namespace User {

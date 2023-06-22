@@ -7,7 +7,7 @@ export function Backdrop() {
         height="540"
         viewBox="0 0 1080 540"
         xmlSpace="preserve"
-        className="absolute inset-0 w-screen h-full blur-3xl pointer-events-none -z-10"
+        className="fixed inset-0 w-screen h-full blur-3xl pointer-events-none -z-10"
         style={{ fill: 'hsl(var(--primary) / 50%)' }}
         dangerouslySetInnerHTML={{
             __html: `
