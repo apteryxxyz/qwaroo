@@ -1,4 +1,4 @@
-import ytch from 'yt-channel-info';
+import ytch, { Video } from 'yt-channel-info';
 import { Source } from '../structures/Source';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
@@ -83,5 +83,69 @@ export class YouTubeChannelVideoViews extends Source<Options> {
         return `Your game will feature videos from ${channels
             .map(channel => channel.author)
             .join(', ')}.`;
+    }
+
+    public async fetchItems(options: Options) {
+        const channelIds = [
+            options.channelId,
+            options.secondChannelId,
+            options.thirdChannelId,
+        ].filter(Boolean) as string[];
+
+        const allVideos: Video[] = [];
+
+        for (const channelId of channelIds) {
+            const channelVideos = await this._getChannelVideos(channelId);
+            allVideos.push(...channelVideos);
+        }
+
+        if (allVideos.length < 100)
+            throw new Error(
+                `Only ${allVideos.length} videos were found across all channels, but at least 100 are required.`
+            );
+
+        return allVideos.map(video => ({
+            display: video.title,
+            value: video.viewCount,
+            imageUrl: this._makeMaxResolution(video.videoThumbnails![0].url),
+            imageFrame: 'fill' as const,
+        }));
+    }
+
+    private async _getChannelVideos(channelId: string) {
+        const channelVideos = [];
+        let continuation: string = null!;
+
+        while (channelVideos.length < 200) {
+            const getMethod = continuation
+                ? 'getChannelVideosMore'
+                : 'getChannelVideos';
+            const latestVideos = await ytch[getMethod]({
+                continuation,
+                channelId,
+            });
+
+            const filteredVideos = latestVideos.items.filter(
+                video =>
+                    !video.liveNow &&
+                    // Shorts are too easy to guess
+                    video.lengthSeconds > 60 &&
+                    video.videoThumbnails
+            );
+            channelVideos.push(...filteredVideos);
+
+            if (!latestVideos.continuation) break;
+            continuation = latestVideos.continuation;
+        }
+
+        return channelVideos;
+    }
+
+    private _makeMaxResolution(thumbnailUrl: string) {
+        const url = new URL(thumbnailUrl);
+        const path = url.pathname.split('/');
+        path.splice(-1, 1, 'maxresdefault.jpg');
+        url.pathname = path.join('/');
+        return url.toString().split('?')[0];
     }
 }

@@ -1,10 +1,6 @@
-import { Connection, Session, User } from '@qwaroo/database';
+import { Connection, User } from '@qwaroo/database';
 import { Types } from 'mongoose';
-import type {
-    AdapterAccount,
-    AdapterSession,
-    AdapterUser,
-} from 'next-auth/adapters';
+import type { AdapterAccount, AdapterUser } from 'next-auth/adapters';
 import type { ProviderType } from 'next-auth/providers';
 
 /** USER */
@@ -72,30 +68,4 @@ export function toDocumentAccountFrom(data: AdapterAccount) {
     };
 
     return connection;
-}
-
-/** SESSION */
-
-export function toAuthSessionFrom(document: Session.Document): AdapterSession {
-    return {
-        sessionToken: document.sessionToken,
-        userId: document.user.id,
-        expires: document.expiresAt,
-    };
-}
-
-export function toDocumentSessionFrom(data: AdapterSession) {
-    const session = new Session();
-    session.sessionToken = data.sessionToken;
-    session.user = new Types.ObjectId(data.userId);
-    session.expiresAt = data.expires;
-    return session;
-}
-
-export function toPartialDocumentSessionFrom(data: Partial<AdapterSession>) {
-    const session = new Session();
-    if (data.sessionToken) session.sessionToken = data.sessionToken;
-    if (data.userId) session.user = new Types.ObjectId(data.userId);
-    if (data.expires) session.expiresAt = data.expires;
-    return session;
 }

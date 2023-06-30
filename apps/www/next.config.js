@@ -1,3 +1,5 @@
+require('next-ws/server').verifyPatch();
+
 /** @type {import('next').NextConfig} */
 module.exports = {
     images: {
@@ -5,6 +7,5 @@ module.exports = {
     },
     experimental: {
         serverActions: true,
-        typedRoutes: true,
     },
 };

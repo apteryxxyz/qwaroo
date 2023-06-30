@@ -1,5 +1,5 @@
 {
-    "name": "@qwaroo/data-sources",
+    "name": "@qwaroo/bucket",
     "version": "0.0.0",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -8,14 +8,19 @@
         "lint": "eslint src",
         "build": "tsup src/index.ts"
     },
-    "dependencies": {
-        "yt-channel-info": "npm:@apteryxxyz/yt-channel-info@latest"
-    },
     "devDependencies": {
         "@types/eslint": "^8",
+        "@types/mime-types": "^2",
+        "@types/object-hash": "^3",
         "@types/prettier": "^2",
         "eslint": "^8.41.0",
         "prettier": "^2.8.8",
         "tsup": "^6.7.0"
+    },
+    "dependencies": {
+        "@qwaroo/database": "workspace:^",
+        "file-type": "<17.0.0",
+        "mime-types": "^2.1.35",
+        "object-hash": "^3.0.0"
     }
 }

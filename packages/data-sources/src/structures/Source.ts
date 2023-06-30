@@ -18,6 +18,8 @@ export abstract class Source<O extends Record<string, unknown>>
     public abstract readonly properties: Record<keyof O, Source.Prop>;
 
     public abstract validateOptions(options: Partial<O>): Promise<string>;
+
+    public abstract fetchItems(options: O): Promise<Source.Item[]>;
 }
 
 export namespace Source {

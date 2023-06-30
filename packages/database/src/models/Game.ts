@@ -21,7 +21,7 @@ import { Slug } from '@/utilities/Slug';
     schemaOptions: {
         toJSON: {
             transform(_, record) {
-                record.id = record._id.toString();
+                record.id ??= record._id?.toString();
                 delete record._id;
                 delete record.__v;
                 return record;
@@ -45,12 +45,17 @@ import { Slug } from '@/utilities/Slug';
         },
     }
 )
-@Pre('validate', async function validate(this: Game) {
+@Pre('validate', async function validate(this: Game.Document) {
     const url = new URL('https://wsrv.nl');
     url.searchParams.set('url', this.thumbnailUrl);
     const response = await fetch(url, { method: 'HEAD' });
     if (response.status !== 200)
         this.thumbnailUrl = 'https://wsrv.nl/lichtenstein.jpg';
+})
+@Pre('save', async function save(this: Game.Document) {
+    if (this.isModified('title'))
+        this.slug = Slug.createWithTransliteration(this.title);
+    this.editedAt = new Date();
 })
 @Plugins(require('mongoose-autopopulate'))
 export class Game {

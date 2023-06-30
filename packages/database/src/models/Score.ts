@@ -1,6 +1,7 @@
 import {
     ModelOptions,
     Plugins,
+    Pre,
     Prop,
     Ref,
     getModelForClass,
@@ -22,6 +23,9 @@ import type { User } from './User';
             },
         },
     },
+})
+@Pre('save', async function save(this: Score.Document) {
+    this.lastPlayedAt = new Date();
 })
 @Plugins(require('mongoose-autopopulate'))
 export class Score {

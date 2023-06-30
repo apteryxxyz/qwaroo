@@ -6,3 +6,7 @@
 
 # Auto generated
 .env.local
+
+# Bucket
+bucket/*
+!bucket/.gitkeep

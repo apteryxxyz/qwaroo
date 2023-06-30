@@ -1,4 +1,5 @@
 {
     "extends": ["apteryx/common", "apteryx/typescript", "apteryx/prettier"],
-    "ignorePatterns": ["dist", "node_modules", "*.config.*", "scripts"]
+    "ignorePatterns": ["dist", "node_modules", "*.config.*", "scripts"],
+    "rules": { "@typescript-eslint/consistent-type-imports": "off" }
 }

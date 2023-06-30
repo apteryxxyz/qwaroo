@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
     schemaOptions: {
         toJSON: {
             transform(_, record) {
-                record.id = record._id.toString();
+                record.id ??= record._id?.toString();
                 delete record._id;
                 delete record.__v;
                 delete record.emailAddress;
