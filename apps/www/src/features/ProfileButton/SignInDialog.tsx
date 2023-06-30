@@ -1,6 +1,6 @@
 'use client';
 
-import { AlertCircleIcon } from 'lucide-react';
+import { AlertCircleIcon, MailQuestionIcon } from 'lucide-react';
 import Image from 'next/image';
 import type { ClientSafeProvider } from 'next-auth/react';
 import { getCsrfToken, getProviders } from 'next-auth/react';
@@ -83,6 +83,16 @@ export function SignInDialog({ children }: PropsWithChildren) {
                     <Alert.Title>Sign in failed</Alert.Title>
                     <Alert.Description>
                         There are no sign in providers configured.
+                    </Alert.Description>
+                </Alert>}
+
+                {providers.length > 0 && <Alert>
+                    <MailQuestionIcon className="w-5 h-5 mr-2" />
+                    <Alert.Title>"Why do you need my email address?"</Alert.Title>
+                    <Alert.Description>
+                        We use your email address purely for authentication purposes. We will
+                        <br />
+                        never share your email address with anyone else nor send you any emails.
                     </Alert.Description>
                 </Alert>}
             </Dialog.Content>

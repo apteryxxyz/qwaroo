@@ -51,7 +51,11 @@ export default async function Page({
     const errorString =
         searchParams.error && (ErrorStrings[searchParams.error] ?? ErrorStrings.default);
 
-    const csrfToken = cookies().get('next-auth.csrf-token')?.value.split('|')[0];
+    // The __Host prefix is required in production
+    const csrfToken = (
+        cookies().get('next-auth.csrf-token') ?? //
+        cookies().get('__Host-next-auth.csrf-token')
+    )?.value.split('|')[0];
     const callbackUrl = new URL(searchParams.callbackUrl ?? '', process.env.NEXTAUTH_URL);
 
     return <section className="container min-h-[75dvh] flex items-center justify-center">

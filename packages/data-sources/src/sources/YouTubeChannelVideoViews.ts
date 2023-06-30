@@ -1,7 +1,9 @@
-import ytch, { Video } from 'yt-channel-info';
+import ytch from 'yt-channel-info';
 import { Source } from '../structures/Source';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+// For some reason, importing from yt-channel-info causes a type error in production
+type Video = any;
+
 type Options = {
     channelId: string;
     secondChannelId?: string;
@@ -105,8 +107,8 @@ export class YouTubeChannelVideoViews extends Source<Options> {
             );
 
         return allVideos.map(video => ({
-            display: video.title,
-            value: video.viewCount,
+            display: video.title as string,
+            value: video.viewCount as number,
             imageUrl: this._makeMaxResolution(video.videoThumbnails![0].url),
             imageFrame: 'fill' as const,
         }));
