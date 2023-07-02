@@ -119,13 +119,10 @@ export class YouTubeChannelVideoViews extends Source<Options> {
         let continuation: string = null!;
 
         while (channelVideos.length < 200) {
-            const getMethod = continuation
-                ? 'getChannelVideosMore'
-                : 'getChannelVideos';
-            const latestVideos = await ytch[getMethod]({
-                continuation,
-                channelId,
-            });
+            const latestVideos = await (continuation
+                ? ytch.getChannelVideosMore
+                : ytch.getChannelVideos
+            ).bind(ytch)({ continuation, channelId });
 
             const filteredVideos = latestVideos.items.filter(
                 video =>

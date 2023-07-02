@@ -3,10 +3,10 @@
 import { redirect } from 'next/navigation';
 import { useWebSocket } from 'next-ws/client';
 import { useCallback, useEffect } from 'react';
-import { useCreateData } from '../context';
+import { useCreate } from '../context';
 
 export default function Content() {
-    const { source, options, details } = useCreateData() ?? {};
+    const { source, options, details } = useCreate() ?? {};
     if (!source || !options || !details) redirect('/games/create');
 
     const ws = useWebSocket()!;

@@ -46,11 +46,20 @@ import { Slug } from '@/utilities/Slug';
     }
 )
 @Pre('validate', async function validate(this: Game.Document) {
-    const url = new URL('https://wsrv.nl');
-    url.searchParams.set('url', this.thumbnailUrl);
-    const response = await fetch(url, { method: 'HEAD' });
-    if (response.status !== 200)
+    if (!this.isModified('thumbnailUrl')) return;
+
+    try {
+        const url = new URL(this.thumbnailUrl);
+        const safeHosts = ['i.imgur.com', 'wsrv.nl'];
+        if (!safeHosts.includes(url.host)) {
+            const test = new URL('https://wsrv.nl');
+            test.searchParams.set('url', this.thumbnailUrl);
+            const response = await fetch(test, { method: 'HEAD' });
+            if (!response.ok) throw new Error('Invalid thumbnail URL');
+        }
+    } catch {
         this.thumbnailUrl = 'https://wsrv.nl/lichtenstein.jpg';
+    }
 })
 @Pre('save', async function save(this: Game.Document) {
     if (this.isModified('title'))
@@ -71,6 +80,7 @@ export class Game {
 
     /** Slug of this games title, must be unique. */
     @Prop({
+        unique: true,
         minlength: 3,
         maxlength: 40,
         default(this: Game) {

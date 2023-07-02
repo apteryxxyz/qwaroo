@@ -6,24 +6,25 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useCreateData } from '../context';
+import { useCreate } from '../context';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { Command } from '@/components/Command';
+import { Dropzone } from '@/components/Dropzone';
 import { Form } from '@/components/Form';
 import { Input } from '@/components/Input';
 import { Popover } from '@/components/Popover';
 import { Textarea } from '@/components/Textarea';
 import { Tooltip } from '@/components/Tooltip';
+import { useToast } from '@/hooks/useToast';
 import { cn } from '@/utilities/styling';
 
-const Categories = ['Geography', 'YouTube'];
-
-const detailsSchema = z.object({
+const FormSchema = z.object({
     title: z.string().min(3).max(40),
     shortDescription: z.string().min(8).max(64),
     longDescription: z.string().min(96).max(512),
-    thumbnailUrl: z.string().url().max(512),
+    thumbnailBinary: z.any(),
+    // thumbnailUrl: z.string().url().max(512),
     category: z.string().min(3).max(40),
     valueVerb: z.string().max(40),
     valueNoun: z.string().max(40),
@@ -34,12 +35,11 @@ const detailsSchema = z.object({
 });
 
 export default function Content() {
-    const { source, setSource, options, setOptions, details, setDetails } = useCreateData() ?? {};
-    if (!setSource || !setOptions) throw new Error('Missing context');
-
     const router = useRouter();
-    const detailsForm = useForm<z.infer<typeof detailsSchema>>({
-        resolver: zodResolver(detailsSchema),
+    const { toast } = useToast();
+    const { source, options, details, setDetails } = useCreate();
+    const form = useForm<z.infer<typeof FormSchema>>({
+        resolver: zodResolver(FormSchema),
         defaultValues: details,
     });
 
@@ -48,13 +48,13 @@ export default function Content() {
         if (!isAllowed) router.replace('/games/create');
     }, []);
 
-    return <Form {...detailsForm}>
+    return <Form {...form}>
         <form
-            onSubmit={detailsForm.handleSubmit(values => {
+            className="flex-grow flex flex-col gap-6"
+            onSubmit={form.handleSubmit(values => {
                 setDetails(values);
                 router.push('/games/create/process');
             })}
-            className="flex-grow flex flex-col gap-6"
         >
             <Card>
                 <Card.Header>
@@ -63,7 +63,7 @@ export default function Content() {
 
                 <Card.Content className="flex flex-col gap-6">
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="title"
                         render={({
                             field,
@@ -85,7 +85,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="shortDescription"
                         render={({
                             field,
@@ -108,7 +108,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="longDescription"
                         render={({
                             field,
@@ -131,30 +131,43 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
-                        name="thumbnailUrl"
+                        control={form.control}
+                        name="thumbnailBinary"
                         render={({
                             field,
                         }) => <Form.Item className="space-y-0 flex flex-col lg:flex-row gap-6">
                             <div className="lg:w-1/3">
-                                <Form.Label className="block">Thumbnail URL</Form.Label>
+                                <Form.Label className="block">Thumbnail</Form.Label>
                                 <Form.Description>
-                                    Provide a URL to an image that will be used as your game's
-                                    thumbnail. This will be displayed on your game's card.
+                                    Provide an image that will be used as your game's thumbnail.
+                                    This will be displayed on your game's card.
                                 </Form.Description>
                             </div>
 
                             <div className="flex-grow">
-                                <Form.Control>
-                                    <Input type="text" {...field} />
-                                </Form.Control>
-                                <Form.Message />
+                                <Dropzone
+                                    field={field}
+                                    accept={{
+                                        'image/png': [],
+                                        'image/jpeg': [],
+                                    }}
+                                    maxFiles={1}
+                                    maxSize={1_024 * 1_024 * 2}
+                                    restrictionText="PNG or JPEG (MAX. 2MB)"
+                                    onFileError={error =>
+                                        toast({
+                                            title: 'Inputted file is invalid!',
+                                            description: error.message,
+                                            variant: 'destructive',
+                                        })
+                                    }
+                                />
                             </div>
                         </Form.Item>}
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="category"
                         render={({
                             field,
@@ -189,12 +202,10 @@ export default function Content() {
                                         <Command.Empty>No categories found.</Command.Empty>
 
                                         <Command.Group>
-                                            {Categories.map(category => <Command.Item
+                                            {['YouTube'].map(category => <Command.Item
                                                 key={category}
                                                 value={category}
-                                                onSelect={() =>
-                                                    detailsForm.setValue('category', category)
-                                                }
+                                                onSelect={() => form.setValue('category', category)}
                                             >
                                                 <CheckIcon
                                                     className={cn(
@@ -212,21 +223,17 @@ export default function Content() {
                             </Popover>
                         </Form.Item>}
                     />
-                    {/* 
-                    <Link href="#tech" className="ml-auto">
-                        <Button>Continue</Button>
-                    </Link> */}
                 </Card.Content>
             </Card>
 
-            <Card id="tech">
+            <Card>
                 <Card.Header>
                     <Card.Title>Choose your technical values</Card.Title>
                 </Card.Header>
 
                 <Card.Content className="flex flex-col gap-6">
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="valueVerb"
                         render={({
                             field,
@@ -249,7 +256,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="valueNoun"
                         render={({
                             field,
@@ -271,7 +278,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="higherText"
                         render={({
                             field,
@@ -294,7 +301,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="lowerText"
                         render={({
                             field,
@@ -317,7 +324,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="valuePrefix"
                         render={({
                             field,
@@ -339,7 +346,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={detailsForm.control}
+                        control={form.control}
                         name="valueSuffix"
                         render={({
                             field,

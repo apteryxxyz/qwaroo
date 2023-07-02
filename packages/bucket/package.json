@@ -8,6 +8,12 @@
         "lint": "eslint src",
         "build": "tsup src/index.ts"
     },
+    "dependencies": {
+        "@qwaroo/database": "workspace:^",
+        "file-type": "<17.0.0",
+        "mime-types": "^2.1.35",
+        "object-hash": "^3.0.0"
+    },
     "devDependencies": {
         "@types/eslint": "^8",
         "@types/mime-types": "^2",
@@ -16,11 +22,5 @@
         "eslint": "^8.41.0",
         "prettier": "^2.8.8",
         "tsup": "^6.7.0"
-    },
-    "dependencies": {
-        "@qwaroo/database": "workspace:^",
-        "file-type": "<17.0.0",
-        "mime-types": "^2.1.35",
-        "object-hash": "^3.0.0"
     }
 }

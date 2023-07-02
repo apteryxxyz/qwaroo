@@ -11,6 +11,6 @@ const CreateData = createContext<{
 }>(null!);
 
 export const CreateDataProvider = CreateData.Provider;
-export function useCreateData() {
-    return useContext(CreateData);
+export function useCreate() {
+    return useContext(CreateData) ?? {};
 }
