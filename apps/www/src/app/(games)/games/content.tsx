@@ -8,7 +8,7 @@ import type { ServerActionDataType } from 'next-sa/server';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { z } from 'zod';
+import z from 'zod';
 import { GET_games } from './actions';
 import { Alert } from '@/components/Alert';
 import { Button } from '@/components/Button';

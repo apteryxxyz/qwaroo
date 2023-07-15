@@ -2,6 +2,6 @@ import { YouTubeChannelVideoViews } from './YouTubeChannelVideoViews';
 
 const alpha = new YouTubeChannelVideoViews();
 
-export const Sources = {
+export const sources = {
     [alpha.slug]: alpha,
 };

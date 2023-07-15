@@ -14,7 +14,7 @@ import type { User } from './User';
     options: { customName: 'File', allowMixed: Severity.ALLOW },
     schemaOptions: {
         toJSON: {
-            transform(_, record) {
+            transform(_, record: Partial<File.Document>) {
                 record.id ??= record._id?.toString();
                 delete record._id;
                 delete record.__v;

@@ -9,11 +9,11 @@ import { Card } from '@/components/Card';
 import { GameCard } from '@/features/GameCard';
 
 interface PageProps {
-    params: { slug: string };
+    params: { id: string };
 }
 
-export async function generateMetadata({ params: { slug } }: PageProps) {
-    const { game } = (await executeServerAction(GET_game, { slug, recommended: false })) ?? {};
+export async function generateMetadata({ params: { id } }: PageProps) {
+    const { game } = (await executeServerAction(GET_game, { id, recommended: false })) ?? {};
 
     if (!game)
         return {
@@ -27,10 +27,10 @@ export async function generateMetadata({ params: { slug } }: PageProps) {
     };
 }
 
-export default async function Page({ params: { slug } }: PageProps) {
+export default async function Page({ params: { id } }: PageProps) {
     const { game, recommended } = (await executeServerAction(
         GET_game, //
-        { slug, recommended: true }
+        { id, recommended: true }
     )) ?? { recommended: [] };
 
     if (!game) notFound();

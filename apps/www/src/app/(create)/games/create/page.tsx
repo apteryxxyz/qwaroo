@@ -9,5 +9,6 @@ export default async function Page() {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect('/auth/signin?callbackUrl=/games/create');
 
-    return <Content sources={await executeServerAction(GET_sources)} />;
+    const sources = await executeServerAction(GET_sources);
+    return <Content sources={sources} />;
 }

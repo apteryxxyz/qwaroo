@@ -1,3 +1,3 @@
-# @qwaroo/database
+# @qwaroo/bucket
 
-Qwaroo uses MongoDB as its database. This package is a sort of wrapper around providing consistent connectivity and defines the models that can be used to interact with the database. Uses Mongoose and Typegoose.
+Qwaroo stores files in a local "bucket" directory. This package provides a simple API for managing files in the bucket.

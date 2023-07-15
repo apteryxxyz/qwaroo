@@ -31,11 +31,8 @@ export default async function Page() {
                     <Button>Browse games</Button>
                 </Link>
                 <Link href="/" className="block sm:inline">
-                    <Button>Play on Discord</Button>
-                </Link>
-                {/* <Link href="/" className="block sm:inline">
                     <Button variant="outline">Donate</Button>
-                </Link> */}
+                </Link>
             </div>
         </div>
 

@@ -15,8 +15,8 @@ import type { User } from './User';
     options: { customName: 'Score' },
     schemaOptions: {
         toJSON: {
-            transform(_, record) {
-                record.id = record._id.toString();
+            transform(_, record: Partial<Score.Document>) {
+                record.id ??= record._id?.toString();
                 delete record._id;
                 delete record.__v;
                 return record;

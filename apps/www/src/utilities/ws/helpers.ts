@@ -11,21 +11,10 @@ export async function getSession(request: import('http').IncomingMessage) {
         }, {} as Record<string, string>) ?? {};
 
     delete cookies['next-auth.callback-url'];
+    delete cookies['__Secure-next-auth.callback-url'];
     return getServerSession(
         { headers, cookies } as any,
         { getHeader() {}, setHeader() {} } as any,
         authOptions
     );
-}
-
-export function parseJson(maybeJson: string) {
-    try {
-        return JSON.parse(maybeJson);
-    } catch {
-        return null;
-    }
-}
-
-export function sendMessage(client: import('ws').WebSocket, type: string, payload: any) {
-    client.send(JSON.stringify({ type, payload }));
 }

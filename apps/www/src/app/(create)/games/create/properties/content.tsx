@@ -8,8 +8,8 @@ import { executeServerAction } from 'next-sa/client';
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { z } from 'zod';
-import { POST_validateOptions } from '../actions';
+import z from 'zod';
+import { POST_validateProperties } from '../actions';
 import { useCreate } from '../context';
 import { AlertDialog } from '@/components/AlertDialog';
 import { Button } from '@/components/Button';
@@ -23,9 +23,9 @@ interface ContentProps {
 }
 
 export default function Content(props: ContentProps) {
-    const { source, setSource, options, setOptions } = useCreate() ?? {};
-    if (!setSource || !setOptions) throw new Error('Missing context');
-    if (!source && setSource) setSource(props.source);
+    const create = useCreate();
+    if (!create?.setSource || !create.setProperties) throw new Error('Missing context');
+    if (!create.source && create.setSource) create.setSource(props.source);
 
     const router = useRouter();
     const { toast } = useToast();
@@ -33,25 +33,25 @@ export default function Content(props: ContentProps) {
     const [isAlertOpen, setAlertOpen] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
 
-    const optionsSchema = buildSchema(props.source);
-    const optionsForm = useForm<z.infer<typeof optionsSchema>>({
-        resolver: zodResolver(optionsSchema),
-        defaultValues: options,
+    const propertiesSchema = buildSchema(props.source);
+    const propertiesForm = useForm<z.infer<typeof propertiesSchema>>({
+        resolver: zodResolver(propertiesSchema),
+        defaultValues: create.properties ?? {},
     });
 
     const onSubmit = useCallback(async () => {
-        const options = optionsForm.getValues();
-        const input = { slug: props.source.slug, options };
+        const properties = propertiesForm.getValues();
+        const input = { slug: props.source.slug, properties };
 
         setValidating(true);
-        await executeServerAction(POST_validateOptions, input)
+        await executeServerAction(POST_validateProperties, input)
             .then(message => {
                 setAlertMessage(message);
                 setAlertOpen(true);
             })
             .catch((error: ServerActionError) =>
                 toast({
-                    title: 'Inputted options are invalid!',
+                    title: 'Inputted properties are invalid!',
                     description: error.message,
                     variant: 'destructive',
                 })
@@ -65,11 +65,14 @@ export default function Content(props: ContentProps) {
         </Card.Header>
 
         <Card.Content>
-            <Form {...optionsForm}>
-                <form className="flex flex-col gap-6" onSubmit={optionsForm.handleSubmit(onSubmit)}>
+            <Form {...propertiesForm}>
+                <form
+                    className="flex flex-col gap-6"
+                    onSubmit={propertiesForm.handleSubmit(onSubmit)}
+                >
                     {Object.entries(props.source.properties).map(([key, value]) => <Form.Field
                         key={key}
-                        control={optionsForm.control}
+                        control={propertiesForm.control}
                         name={key}
                         render={({
                             field,
@@ -111,7 +114,7 @@ export default function Content(props: ContentProps) {
                         <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
                         <AlertDialog.Action
                             onClick={() => {
-                                setOptions(optionsForm.getValues());
+                                create.setProperties(propertiesForm.getValues());
                                 router.push('/games/create/details');
                             }}
                         >
@@ -124,6 +127,7 @@ export default function Content(props: ContentProps) {
     </Card>;
 }
 
+// NOTE: Not the biggest fan of this, but it works for now
 function buildSchema(source: Source.Entity) {
     const entries = Object.entries(source.properties).map(([key, value]) => {
         let zod: z.ZodTypeAny;

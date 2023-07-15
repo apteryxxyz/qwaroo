@@ -1,5 +1,5 @@
 {
-    "name": "@qwaroo/auth-adapter",
+    "name": "@qwaroo/validators",
     "version": "0.0.0",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -9,12 +9,13 @@
         "build": "tsup src/index.ts"
     },
     "dependencies": {
-        "@qwaroo/database": "workspace:^",
-        "mongoose": "^7.3.4",
-        "next-auth": "^4.22.1"
+        "@qwaroo/data-sources": "workspace:^",
+        "lodash": "^4.17.21",
+        "zod": "^3.21.4"
     },
     "devDependencies": {
         "@types/eslint": "^8.44.0",
+        "@types/lodash": "^4.14.195",
         "@types/prettier": "^2.7.3",
         "eslint": "^8.45.0",
         "prettier": "^2.8.8",

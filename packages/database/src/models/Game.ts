@@ -12,15 +12,13 @@ import {
 } from '@typegoose/typegoose';
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
 import mongoose, { SchemaTypes } from 'mongoose';
-import { z } from 'zod';
 import type { User } from './User';
-import { Slug } from '@/utilities/Slug';
 
 @ModelOptions({
     options: { customName: 'Game', allowMixed: Severity.ALLOW },
     schemaOptions: {
         toJSON: {
-            transform(_, record) {
+            transform(_, record: Partial<Game.Document>) {
                 record.id ??= record._id?.toString();
                 delete record._id;
                 delete record.__v;
@@ -62,8 +60,6 @@ import { Slug } from '@/utilities/Slug';
     }
 })
 @Pre('save', async function save(this: Game.Document) {
-    if (this.isModified('title'))
-        this.slug = Slug.createWithTransliteration(this.title);
     this.editedAt = new Date();
 })
 @Plugins(require('mongoose-autopopulate'))
@@ -77,17 +73,6 @@ export class Game {
         maxlength: 40,
     })
     public title!: string;
-
-    /** Slug of this games title, must be unique. */
-    @Prop({
-        unique: true,
-        minlength: 3,
-        maxlength: 40,
-        default(this: Game) {
-            return Slug.createWithTransliteration(this.title);
-        },
-    })
-    public slug!: string;
 
     /** The user that created this game. */
     @Prop({
@@ -220,21 +205,4 @@ export namespace Game {
     } & { creator: User.Entity };
 
     export type Document = DocumentType<Game>;
-
-    /** Zod schema for properties that can be user defined. */
-    export const Schema = z.object({
-        title: z.string().min(3).max(40),
-        shortDescription: z.string().min(8).max(64),
-        longDescription: z.string().min(96).max(512),
-        thumbnailUrl: z.string().url().max(512),
-        category: z.string().min(3).max(40),
-        valueVerb: z.string().max(40),
-        valueNoun: z.string().max(40),
-        higherText: z.string().max(40),
-        lowerText: z.string().max(40),
-        valuePrefix: z.string().max(10),
-        valueSuffix: z.string().max(10),
-        sourceSlug: z.string().max(40),
-        sourceProperties: z.record(z.unknown()),
-    });
 }

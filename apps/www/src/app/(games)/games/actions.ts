@@ -37,6 +37,6 @@ export const GET_games = createServerAction()
 
         return [
             { total, limit: input.limit, skip: input.skip },
-            games.map(game => game.toJSON() as Game.Entity),
+            games.map(game => game.toJSON()),
         ] as const;
     });

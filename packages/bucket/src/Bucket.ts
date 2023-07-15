@@ -6,19 +6,23 @@ import type { MimeType } from 'file-type';
 import { fromBuffer } from 'file-type';
 import objectHash from 'object-hash';
 
+/** Determines the content type of a buffer. */
 async function findContentType(buffer: Buffer) {
     const type = await fromBuffer(buffer);
     if (type) return type.mime;
     return 'application/octet-stream';
 }
 
+/** A bucket is a storage location for files. */
 export class Bucket {
-    public fileSystemPath: string;
+    /** The directory for the bucket's files. */
+    public directory: string;
 
     public constructor(options: Bucket.Options) {
-        this.fileSystemPath = options.fileSystemPath;
+        this.directory = options.directory;
     }
 
+    /** Create a new file in the bucket. */
     public async createFile(
         uploader: User.Document,
         data: Buffer,
@@ -31,7 +35,7 @@ export class Bucket {
         const hash = objectHash(data);
         const type = await findContentType(data);
 
-        const location = path.join(this.fileSystemPath, hash);
+        const location = path.join(this.directory, hash);
         await fs
             .access(location)
             .catch(async () => fs.writeFile(location, data));
@@ -39,18 +43,20 @@ export class Bucket {
         return File.Model.create({ uploader, hash, type, length, metadata });
     }
 
+    /** Read a file from the bucket. */
     public async readFile(ref: File.Document | string): Promise<Buffer | null> {
         const file =
             typeof ref === 'string' ? await File.Model.findById(ref) : ref;
         if (!file) return null;
 
-        const location = path.join(this.fileSystemPath, file.hash);
+        const location = path.join(this.directory, file.hash);
         return fs
             .access(location)
             .then(async () => fs.readFile(location))
             .catch(() => null);
     }
 
+    /** Delete a file from the bucket. */
     public async deleteFile(ref: File.Document | string) {
         const file =
             typeof ref === 'string' ? await File.Model.findById(ref) : ref;
@@ -58,7 +64,7 @@ export class Bucket {
 
         await file.deleteOne();
 
-        const location = path.join(this.fileSystemPath, file.hash);
+        const location = path.join(this.directory, file.hash);
         await fs
             .access(location)
             .then(async () => fs.unlink(location))
@@ -70,14 +76,14 @@ export class Bucket {
 
 export namespace Bucket {
     export interface Options {
-        fileSystemPath: string;
+        directory: string;
     }
 
     export namespace File {
         export type Type = MimeType | 'application/octet-stream';
 
         export interface Metadata {
-            [hash: string]: string;
+            [key: string]: string;
         }
     }
 }

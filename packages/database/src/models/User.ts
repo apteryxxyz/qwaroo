@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
     options: { customName: 'User' },
     schemaOptions: {
         toJSON: {
-            transform(_, record) {
+            transform(_, record: Partial<User.Document>) {
                 record.id ??= record._id?.toString();
                 delete record._id;
                 delete record.__v;

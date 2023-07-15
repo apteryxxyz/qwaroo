@@ -20,7 +20,7 @@ export function GameCard(props: GameCardProps) {
 }
 
 function DisplayGameCard(game: Game.Entity) {
-    return <Link href={`/games/${game.slug}`} className="h-full">
+    return <Link href={`/games/${game.id}`} className="h-full">
         <Card className="grid grid-cols-4 h-full">
             <Image
                 src={game.thumbnailUrl}

@@ -10,16 +10,16 @@
     },
     "dependencies": {
         "@qwaroo/database": "workspace:^",
-        "file-type": "<17.0.0",
+        "file-type": "^16.5.4",
         "mime-types": "^2.1.35",
         "object-hash": "^3.0.0"
     },
     "devDependencies": {
-        "@types/eslint": "^8",
-        "@types/mime-types": "^2",
-        "@types/object-hash": "^3",
-        "@types/prettier": "^2",
-        "eslint": "^8.41.0",
+        "@types/eslint": "^8.44.0",
+        "@types/mime-types": "^2.1.1",
+        "@types/object-hash": "^3.0.2",
+        "@types/prettier": "^2.7.3",
+        "eslint": "^8.45.0",
         "prettier": "^2.8.8",
         "tsup": "^6.7.0"
     }

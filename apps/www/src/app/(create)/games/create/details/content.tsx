@@ -1,11 +1,12 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { GameCreateSchema } from '@qwaroo/validators';
 import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import z from 'zod';
 import { useCreate } from '../context';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
@@ -15,44 +16,30 @@ import { Form } from '@/components/Form';
 import { Input } from '@/components/Input';
 import { Popover } from '@/components/Popover';
 import { Textarea } from '@/components/Textarea';
-import { Tooltip } from '@/components/Tooltip';
 import { useToast } from '@/hooks/useToast';
 import { cn } from '@/utilities/styling';
 
-const FormSchema = z.object({
-    title: z.string().min(3).max(40),
-    shortDescription: z.string().min(8).max(64),
-    longDescription: z.string().min(96).max(512),
-    thumbnailBinary: z.any(),
-    // thumbnailUrl: z.string().url().max(512),
-    category: z.string().min(3).max(40),
-    valueVerb: z.string().max(40),
-    valueNoun: z.string().max(40),
-    higherText: z.string().max(40),
-    lowerText: z.string().max(40),
-    valuePrefix: z.string().max(10).optional(),
-    valueSuffix: z.string().max(10).optional(),
-});
-
 export default function Content() {
+    const create = useCreate();
+    if (!create?.setSource || !create.setProperties) throw new Error('Missing context');
+
     const router = useRouter();
     const { toast } = useToast();
-    const { source, options, details, setDetails } = useCreate();
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-        defaultValues: details,
+
+    const detailsForm = useForm<z.infer<typeof GameCreateSchema>>({
+        resolver: zodResolver(GameCreateSchema),
+        defaultValues: create.details ?? undefined,
     });
 
     useEffect(() => {
-        const isAllowed = source && Object.keys(options).length > 0;
-        if (!isAllowed) router.replace('/games/create');
+        if (!create.source || !create.properties) return router.replace('/games/create');
     }, []);
 
-    return <Form {...form}>
+    return <Form {...detailsForm}>
         <form
             className="flex-grow flex flex-col gap-6"
-            onSubmit={form.handleSubmit(values => {
-                setDetails(values);
+            onSubmit={detailsForm.handleSubmit(values => {
+                create.setDetails(values);
                 router.push('/games/create/process');
             })}
         >
@@ -63,16 +50,14 @@ export default function Content() {
 
                 <Card.Content className="flex flex-col gap-6">
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="title"
                         render={({
                             field,
                         }) => <Form.Item className="space-y-0 flex flex-col lg:flex-row gap-6">
                             <div className="lg:w-1/3">
                                 <Form.Label className="block">Title</Form.Label>
-                                <Form.Description>
-                                    Provide a title for your game, this cannot be changed.
-                                </Form.Description>
+                                <Form.Description>Provide a title for your game.</Form.Description>
                             </div>
 
                             <div className="flex-grow">
@@ -85,7 +70,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="shortDescription"
                         render={({
                             field,
@@ -108,7 +93,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="longDescription"
                         render={({
                             field,
@@ -131,7 +116,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="thumbnailBinary"
                         render={({
                             field,
@@ -167,7 +152,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="category"
                         render={({
                             field,
@@ -205,7 +190,9 @@ export default function Content() {
                                             {['YouTube'].map(category => <Command.Item
                                                 key={category}
                                                 value={category}
-                                                onSelect={() => form.setValue('category', category)}
+                                                onSelect={() =>
+                                                    detailsForm.setValue('category', category)
+                                                }
                                             >
                                                 <CheckIcon
                                                     className={cn(
@@ -233,7 +220,7 @@ export default function Content() {
 
                 <Card.Content className="flex flex-col gap-6">
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="valueVerb"
                         render={({
                             field,
@@ -256,7 +243,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="valueNoun"
                         render={({
                             field,
@@ -278,7 +265,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="higherText"
                         render={({
                             field,
@@ -301,7 +288,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="lowerText"
                         render={({
                             field,
@@ -324,7 +311,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="valuePrefix"
                         render={({
                             field,
@@ -346,7 +333,7 @@ export default function Content() {
                     />
 
                     <Form.Field
-                        control={form.control}
+                        control={detailsForm.control}
                         name="valueSuffix"
                         render={({
                             field,
@@ -368,17 +355,9 @@ export default function Content() {
                         </Form.Item>}
                     />
 
-                    <Tooltip.Provider>
-                        <Tooltip>
-                            <Tooltip.Trigger asChild>
-                                <Button type="submit" className="ml-auto">
-                                    Create
-                                </Button>
-                            </Tooltip.Trigger>
-
-                            <Tooltip.Content>Game creation is currently disabled.</Tooltip.Content>
-                        </Tooltip>
-                    </Tooltip.Provider>
+                    <Button type="submit" className="ml-auto">
+                        Create
+                    </Button>
                 </Card.Content>
             </Card>
         </form>

@@ -22,7 +22,7 @@ export default function Content(props: ContentProps) {
         <Card.Content className="grid gap-6 grid-cols-1 lg:grid-cols-2">
             {props.sources.map(source => <Link
                 key={source.slug}
-                href={`/games/create/options?source=${source.slug}`}
+                href={`/games/create/properties?source=${source.slug}`}
             >
                 <Card>
                     <Card.Header className="flex-row gap-6 items-center">

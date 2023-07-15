@@ -14,7 +14,7 @@ import type { User } from './User';
     options: { customName: 'Connection' },
     schemaOptions: {
         toJSON: {
-            transform(_, record) {
+            transform(_, record: Partial<Connection.Document>) {
                 record.id ??= record._id?.toString();
                 delete record._id;
                 delete record.__v;
