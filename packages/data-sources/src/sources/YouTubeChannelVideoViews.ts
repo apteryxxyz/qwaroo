@@ -4,13 +4,13 @@ import { Source } from '../structures/Source';
 // For some reason, importing from yt-channel-info causes a type error in production
 type Video = any;
 
-type Options = {
+type Properties = {
     channelId: string;
     secondChannelId?: string;
     thirdChannelId?: string;
 };
 
-export class YouTubeChannelVideoViews extends Source<Options> {
+export class YouTubeChannelVideoViews extends Source<Properties> {
     public slug = 'youtube-channel-video-views' as const;
     public name = 'YouTube Channel Video Views';
     public description =
@@ -23,7 +23,7 @@ export class YouTubeChannelVideoViews extends Source<Options> {
         channelId: {
             type: Source.PropType.String,
             name: 'Channel Username or ID',
-            description: 'Channel whose videos will be used in the game.',
+            description: 'Channel whose videos will be used in the game, ensure that in total there are at least 100 videos.',
             required: true as const,
         },
         secondChannelId: {
@@ -51,11 +51,11 @@ export class YouTubeChannelVideoViews extends Source<Options> {
         } satisfies Source.Entity;
     }
 
-    public async validateOptions(options: Partial<Options>) {
+    public async validateProperties(properties: Partial<Properties>) {
         const channelIds = [
-            options.channelId,
-            options.secondChannelId,
-            options.thirdChannelId,
+            properties.channelId,
+            properties.secondChannelId,
+            properties.thirdChannelId,
         ];
         const channels = [];
 
@@ -87,11 +87,11 @@ export class YouTubeChannelVideoViews extends Source<Options> {
             .join(', ')}.`;
     }
 
-    public async fetchItems(options: Options) {
+    public async fetchItems(properties: Properties) {
         const channelIds = [
-            options.channelId,
-            options.secondChannelId,
-            options.thirdChannelId,
+            properties.channelId,
+            properties.secondChannelId,
+            properties.thirdChannelId,
         ].filter(Boolean) as string[];
 
         const allVideos: Video[] = [];

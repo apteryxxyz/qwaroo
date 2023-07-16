@@ -1,18 +1,22 @@
 import { ModelOptions, Prop, getModelForClass } from '@typegoose/typegoose';
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
+import _ from 'lodash';
 import mongoose from 'mongoose';
 
 @ModelOptions({
     options: { customName: 'User' },
     schemaOptions: {
         toJSON: {
-            transform(_, record: Partial<User.Document>) {
-                record.id ??= record._id?.toString();
-                delete record._id;
-                delete record.__v;
-                delete record.emailAddress;
-                delete record.emailVerifiedTimestamp;
-                return record;
+            transform(document, record) {
+                return {
+                    id: document._id?.toString(),
+                    ..._.omit(record, [
+                        '_id',
+                        '__v',
+                        'emailAddress',
+                        'emailVerifiedTimestamp',
+                    ]),
+                } as User.Entity;
             },
         },
     },

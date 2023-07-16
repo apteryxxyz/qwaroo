@@ -11,7 +11,7 @@ export const GET_game = createServerAction()
         if (!game) return null;
 
         return {
-            game: game.toJSON(),
-            recommended: [game, game, game, game].map(game => game.toJSON()),
+            game: game.toJSON<Game.Entity>(),
+            recommended: [game, game, game, game].map(game => game.toJSON<Game.Entity>()),
         } as const;
     });

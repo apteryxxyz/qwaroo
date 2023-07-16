@@ -28,5 +28,5 @@ export const POST_validateProperties = createServerAction()
     .definition(async ({ slug, properties }) => {
         if (!(slug in sources)) throw new Error(`No source was found for "${slug}".`);
         const source = sources[slug as keyof typeof sources];
-        return source.validateOptions(properties);
+        return source.validateProperties(properties);
     });

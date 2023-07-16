@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import {
     ModelOptions,
     Plugins,
@@ -7,6 +6,7 @@ import {
     getModelForClass,
 } from '@typegoose/typegoose';
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
+import _ from 'lodash';
 import mongoose from 'mongoose';
 import type { User } from './User';
 
@@ -14,12 +14,11 @@ import type { User } from './User';
     options: { customName: 'Connection' },
     schemaOptions: {
         toJSON: {
-            transform(_, record: Partial<Connection.Document>) {
-                record.id ??= record._id?.toString();
-                delete record._id;
-                delete record.__v;
-                delete record.tokenData;
-                return record;
+            transform(document, record) {
+                return {
+                    id: document._id?.toString(),
+                    ..._.omit(record, ['_id', '__v', 'tokenData']),
+                } as Connection.Entity;
             },
         },
     },
@@ -45,6 +44,7 @@ export class Connection {
     public accountId!: string;
 
     /** Token data provided by */
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     @Prop({ type: () => Token })
     public tokenData: Token = {};
 

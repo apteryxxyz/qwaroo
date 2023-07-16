@@ -7,6 +7,7 @@ import {
     getModelForClass,
 } from '@typegoose/typegoose';
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
+import _ from 'lodash';
 import mongoose from 'mongoose';
 import type { Game } from './Game';
 import type { User } from './User';
@@ -15,11 +16,11 @@ import type { User } from './User';
     options: { customName: 'Score' },
     schemaOptions: {
         toJSON: {
-            transform(_, record: Partial<Score.Document>) {
-                record.id ??= record._id?.toString();
-                delete record._id;
-                delete record.__v;
-                return record;
+            transform(document, record) {
+                return {
+                    id: document._id?.toString(),
+                    ..._.omit(record, ['_id', '__v', 'tokenData']),
+                } as Score.Entity;
             },
         },
     },

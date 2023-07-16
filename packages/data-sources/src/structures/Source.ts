@@ -17,9 +17,9 @@ export abstract class Source<O extends Record<string, unknown>>
     public abstract readonly isPublic: boolean;
     public abstract readonly properties: Record<keyof O, Source.Prop>;
 
-    public abstract validateOptions(options: Partial<O>): Promise<string>;
+    public abstract validateProperties(properties: Partial<O>): Promise<string>;
 
-    public abstract fetchItems(options: O): Promise<Source.Item[]>;
+    public abstract fetchItems(properties: O): Promise<Source.Item[]>;
 }
 
 export namespace Source {
