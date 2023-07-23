@@ -5,6 +5,7 @@ dist/
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
+!.yarn/patches
 
 .env
 .env.*
