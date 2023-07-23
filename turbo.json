@@ -1,20 +1,32 @@
 {
-    "$schema": "https://turbo.build/schema.json",
-    "pipeline": {
-        "build": {
-            "dependsOn": ["^build"],
-            "inputs": ["package.json", "tsconfig.json", "src/**"],
-            "outputs": [".next/**", "dist/**"]
-        },
-        "lint": {
-            "dependsOn": ["^lint"],
-            "inputs": ["package.json", "tsconfig.json", "src/**"],
-            "outputs": []
-        },
-        "format": {
-            "dependsOn": ["^format"],
-            "inputs": ["package.json", "tsconfig.json", "src/**"],
-            "outputs": []
-        }
-    }
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "dist/**"]
+    },
+    "lint": {}
+  },
+  "globalEnv": [
+    "PORT",
+    "NODE_ENV",
+    "EXTERNAL_URL",
+    "NEXT_PUBLIC_EXTERNAL_URL",
+
+    "MONGODB_ATLAS_URL",
+    "UPSTASH_REDIS_REST_URL",
+    "UPSTASH_REDIS_REST_TOKEN",
+
+    "NEXTAUTH_URL",
+    "NEXTAUTH_SECRET",
+    "DISCORD_CLIENT_ID",
+    "DISCORD_CLIENT_SECRET",
+
+    "IMGUR_CLIENT_ID",
+    "IMGUR_CLIENT_SECRET"
+  ]
 }

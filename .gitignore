@@ -1,15 +1,10 @@
-# Dependencies
 node_modules/
+dist/
+.turbo/
 
-# Yarn
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
 
-# Cache
-.turbo/
-
-# Auto generated
-.turbo
+.env
+.env.*

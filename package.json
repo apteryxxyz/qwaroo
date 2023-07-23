@@ -1,45 +1,39 @@
 {
-    "name": "qwaroo",
-    "private": true,
-    "packageManager": "yarn@3.5.1",
-    "workspaces": [
-        "packages/*",
-        "apps/*"
-    ],
-    "scripts": {
-        "prepare-for:development": "node ./scripts/prepare-environment.js development",
-        "prepare-for:production": "node ./scripts/prepare-environment.js production",
-        "prepare-for:staging": "node ./scripts/prepare-environment.js staging",
-        "prepare-for:reset": "node ./scripts/prepare-environment.js reset",
-        "deploy-to:staging": "pm2 startOrReload pm2.staging.config.js",
-        "turbo:build:packages": "turbo build --filter=\"@qwaroo/*\" --parallel",
-        "turbo:build": "turbo build --parallel",
-        "turbo:format": "turbo format --parallel",
-        "turbo:lint": "turbo lint --parallel"
-    },
-    "devDependencies": {
-        "@anatine/esbuild-decorators": "^0.2.19",
-        "@next/eslint-plugin-next": "^13.4.10",
-        "@rushstack/eslint-patch": "^1.3.2",
-        "@swc/core": "^1.3.69",
-        "@typescript-eslint/eslint-plugin": "^5.62.0",
-        "@typescript-eslint/parser": "^5.62.0",
-        "esbuild": "^0.17.19",
-        "eslint": "^8.45.0",
-        "eslint-config-apteryx": "^2.1.8",
-        "eslint-config-prettier": "^8.8.0",
-        "eslint-plugin-import": "^2.27.5",
-        "eslint-plugin-jsdoc": "^46.4.4",
-        "eslint-plugin-n": "^16.0.1",
-        "eslint-plugin-prettier": "^5.0.0",
-        "eslint-plugin-promise": "^6.1.1",
-        "eslint-plugin-sonarjs": "^0.19.0",
-        "eslint-plugin-unicorn": "^48.0.0",
-        "prettier-config-apteryx": "^2.1.0",
-        "ts-config-apteryx": "^2.1.0",
-        "tsup": "^7.1.0",
-        "turbo": "^1.10.7",
-        "typescript": "^5.1.6"
-    },
-    "prettier": "prettier-config-apteryx"
+  "name": "qwaroo",
+  "private": true,
+  "packageManager": "yarn@3.6.1",
+  "workspaces": [
+    "packages/*",
+    "packages/config/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "prepare-for:development": "node ./scripts/prepare-environment.js development",
+    "prepare-for:staging": "node ./scripts/prepare-environment.js staging",
+    "prepare-for:reset": "node ./scripts/prepare-environment.js reset",
+    "deploy-to:staging": "pm2 startOrReload pm2.staging.config.js",
+    "with-env": "dotenv -e ./.env --",
+    "build": "turbo build --filter='./packages/*'",
+    "dev": "turbo dev --parallel --filter='./packages/*'",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\" --ignore-path .gitignore",
+    "lint": "turbo lint"
+  },
+  "dependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "dotenv-cli": "^7.2.1",
+    "eslint": "^8.45.0",
+    "nx": "^16.5.4",
+    "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "ts-config-apteryx": "^2.1.0",
+    "tslib": "^2.6.0",
+    "tsup": "^7.1.0",
+    "turbo": "^1.10.9",
+    "typescript": "^5.1.6"
+  },
+  "resolutions": {
+    "next@^13.4.12": "patch:next@npm%3A13.4.12#./.yarn/patches/next-npm-13.4.12-8d241ae02f.patch"
+  }
 }

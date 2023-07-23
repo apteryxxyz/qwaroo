@@ -1,7 +1,8 @@
-const script = process.platform === 'win32'
-    ? '../../scripts/npm-windows.js' : 'npm';
+const script =
+  process.platform === 'win32' ? '../../scripts/npm-windows.js' : 'npm';
 
-module.exports = [{
+module.exports = [
+  {
     name: 'Qwaroo Staging',
     cwd: './apps/www',
     script,
@@ -9,4 +10,5 @@ module.exports = [{
     instances: 1,
     autorestart: true,
     watch: false,
-}];
+  },
+];

@@ -1,4 +1,0 @@
-{
-    "extends": ["apteryx/node", "../../.eslintrc.json"],
-    "parserOptions": { "project": "./tsconfig.json" }
-}

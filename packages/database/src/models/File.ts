@@ -1,65 +1,69 @@
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
 import {
-    ModelOptions,
-    Pre,
-    Prop,
-    Ref,
-    Severity,
-    getModelForClass,
+  getModelForClass,
+  ModelOptions,
+  Prop,
+  Ref,
+  Severity,
 } from '@typegoose/typegoose';
 import _ from 'lodash';
-import mongoose, { SchemaTypes } from 'mongoose';
-import type { User } from './User';
+import mongoose from 'mongoose';
+import type { User } from './user';
 
 @ModelOptions({
-    options: { customName: 'File', allowMixed: Severity.ALLOW },
-    schemaOptions: {
-        toJSON: {
-            transform(document, record) {
-                return {
-                    id: document._id?.toString(),
-                    ..._.omit(record, ['_id', '__v', 'tokenData']),
-                } as File.Entity;
-            },
-        },
+  options: { customName: 'File', allowMixed: Severity.ALLOW },
+  schemaOptions: {
+    timestamps: true,
+    toJSON: {
+      transform(document, record) {
+        return {
+          id: document._id?.toString(),
+          ..._.omit(record, ['_id', '__v', 'tokenData']),
+        } as File.Entity;
+      },
     },
-})
-@Pre('save', async function save(this: File.Document) {
-    this.updatedAt = new Date();
+  },
 })
 export class File {
-    public id!: string;
+  public id!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 
-    @Prop({ ref: 'User', required: true, autopopulate: true })
-    public uploader!: Ref<User>;
+  /** The user that uploaded this file. */
+  @Prop({ ref: 'User', required: true })
+  public uploader!: Ref<User>;
 
-    @Prop({ required: true })
-    public hash!: string;
+  /** A hash generated from the file buffer, signals the location of the file. */
+  @Prop({ required: true })
+  public hash!: string;
 
-    @Prop({ required: true })
-    public type!: string;
+  /** The content/mime type of the file, not used but nice to have. */
+  @Prop({ required: true })
+  public type!: string;
 
-    @Prop({ required: true })
-    public length!: number;
+  /** The length of the file in bytes. */
+  @Prop({ required: true })
+  public length!: number;
 
-    @Prop({ type: () => SchemaTypes.Mixed, default: {} })
-    public metadata: Record<string, unknown> = {};
-
-    @Prop({ default: Date.now() })
-    public createdAt: Date = new Date();
-
-    @Prop()
-    public updatedAt!: Date;
+  /** Any metadata associated with the file. */
+  @Prop({ type: Object })
+  public metadata!: Record<string, unknown>;
 }
 
 export namespace File {
-    export const Model =
-        (mongoose.models['File'] as ReturnModelType<typeof File>) ??
-        getModelForClass(File);
+  export const Model =
+    (mongoose.models['File'] as ReturnModelType<typeof File>) ??
+    getModelForClass(File);
 
-    export type Entity = {
-        [K in keyof File]: File[K] extends Function ? never : File[K];
-    };
+  // export type Entity = {
+  //   [K in keyof File]: File[K] extends Function ? never : File[K];
+  // };
 
-    export type Document = DocumentType<File>;
+  export type Entity<TFields extends 'uploader' | undefined = undefined> = {
+    [K in keyof File]: File[K] extends Function ? never : File[K];
+  } & (TFields extends undefined
+    ? {}
+    : { [K in TFields & string]: K extends 'uploader' ? User.Entity : never });
+
+  export type Document = DocumentType<File>;
 }

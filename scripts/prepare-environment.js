@@ -5,10 +5,37 @@
 
 const fs = require('fs');
 const path = require('path');
-
-const directories = ['.', './apps/www'];
 const environments = ['production', 'development', 'staging', 'reset'];
 
+void main(process.argv.length, process.argv);
+async function main(argc, argv) {
+  const environment = argv[2];
+  if (!environments.includes(environment))
+    return console.error(
+      `[Prepare Enviroment] Invalid environment: ${environment}`,
+    );
+
+  resetFiles();
+  if (environment !== 'unset') copyEnvFiles(environment);
+
+  console.info(
+    `[Prepare Enviroment] Finished preparing environment: ${environment}`,
+  );
+}
+
+function resetFiles() {
+  try {
+    fs.rmSync('.env');
+    console.info(`[Prepare Enviroment] Removed .env`);
+  } catch {}
+}
+
+function copyEnvFiles(environment) {
+  fs.copyFileSync(`.env.${environment}`, '.env');
+  console.info(`[Prepare Enviroment] Copied .env to .env.${environment}`);
+}
+
+/*
 void main(process.argv.length, process.argv);
 async function main(argc, argv) {
     const environment = argv[2];
@@ -51,3 +78,4 @@ function lookInDirectoryFor(directory, match) {
         if (file === match) return path.join(directory, file);
     return null;
 }
+*/

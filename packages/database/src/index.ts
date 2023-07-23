@@ -1,11 +1,14 @@
 import 'reflect-metadata';
+import { Database } from './database';
 
-export * from './Database';
+export * from './database';
+export * from './models/connection';
+export * from './models/file';
+export * from './models/game';
+export * from './models/score';
+export * from './models/user';
 
-export * from './models/Connection';
-export * from './models/File';
-export * from './models/Game';
-export * from './models/Score';
-export * from './models/User';
-
-export * from './utilities/Slug';
+/** Shorthand for connecting. */
+export async function connect() {
+  await Database.getInstance().connect();
+}

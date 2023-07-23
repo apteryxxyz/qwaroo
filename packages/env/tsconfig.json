@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["core.ts", "next.ts"],
+  "exclude": ["*.d.ts"],
+  "compilerOptions": { "outDir": "." }
+}

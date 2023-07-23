@@ -1,26 +1,28 @@
 {
-    "name": "@qwaroo/bucket",
-    "version": "0.0.0",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "scripts": {
-        "format": "prettier --write src && eslint --fix src",
-        "lint": "eslint src",
-        "build": "tsup src/index.ts"
-    },
-    "dependencies": {
-        "@qwaroo/database": "workspace:^",
-        "file-type": "16.5.4",
-        "mime-types": "^2.1.35",
-        "object-hash": "^3.0.0"
-    },
-    "devDependencies": {
-        "@types/eslint": "^8.44.0",
-        "@types/mime-types": "^2.1.1",
-        "@types/object-hash": "^3.0.2",
-        "@types/prettier": "^2.7.3",
-        "eslint": "^8.45.0",
-        "prettier": "^2.8.8",
-        "tsup": "^7.1.0"
-    }
+  "name": "@qwaroo/bucket",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "yarn build --watch",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@qwaroo/database": "1.0.0",
+    "file-type": "16.5.4",
+    "object-hash": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/object-hash": "^3.0.2",
+    "eslint": "^8.45.0",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@qwaroo/eslint-config/base"
+    ]
+  }
 }

@@ -1,89 +1,67 @@
-import {
-    ModelOptions,
-    Plugins,
-    Prop,
-    Ref,
-    getModelForClass,
-} from '@typegoose/typegoose';
 import type { DocumentType, ReturnModelType } from '@typegoose/typegoose';
+import {
+  getModelForClass,
+  ModelOptions,
+  Prop,
+  Ref,
+  Severity,
+} from '@typegoose/typegoose';
 import _ from 'lodash';
 import mongoose from 'mongoose';
-import type { User } from './User';
+import type { User } from './user';
 
 @ModelOptions({
-    options: { customName: 'Connection' },
-    schemaOptions: {
-        toJSON: {
-            transform(document, record) {
-                return {
-                    id: document._id?.toString(),
-                    ..._.omit(record, ['_id', '__v', 'tokenData']),
-                } as Connection.Entity;
-            },
-        },
+  options: { customName: 'Connection', allowMixed: Severity.ALLOW },
+  schemaOptions: {
+    timestamps: true,
+    toJSON: {
+      transform(document, record) {
+        return {
+          id: document._id?.toString(),
+          ..._.omit(record, ['_id', '__v', 'tokenData']),
+        } as Connection.Entity;
+      },
     },
+  },
 })
-@Plugins(require('mongoose-autopopulate'))
 export class Connection {
-    public id!: string;
+  public id!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 
-    /** The user this connection belongs to. */
-    @Prop({ ref: 'User', required: true, autopopulate: true })
-    public user!: Ref<User>;
+  /** The user this connection belongs to. */
+  @Prop({ ref: 'User', required: true })
+  public user!: Ref<User>;
 
-    /** The ID of the provider this connection is for. */
-    @Prop({ required: true })
-    public providerId!: string;
+  /** The ID of the provider this connection is for. */
+  @Prop({ required: true })
+  public providerId!: string;
 
-    /** The type of this connections provider. */
-    @Prop({ required: true })
-    public providerType!: 'credentials' | 'email' | 'oauth' | 'oidc';
+  /** The type of this connections provider. */
+  @Prop({ required: true })
+  public providerType!: 'credentials' | 'email' | 'oauth' | 'oidc';
 
-    /** This connections identifier within the provider. */
-    @Prop({ required: true })
-    public accountId!: string;
+  /** This connections identifier within the provider. */
+  @Prop({ required: true })
+  public accountId!: string;
 
-    /** Token data provided by */
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    @Prop({ type: () => Token })
-    public tokenData: Token = {};
-
-    /** The timestamp when this connection was linked. */
-    @Prop({ default: Date.now })
-    public linkedAt!: Date;
-}
-
-export class Token {
-    @Prop()
-    public tokenType?: string;
-
-    @Prop()
-    public accessToken?: string;
-
-    @Prop()
-    public refreshToken?: string;
-
-    @Prop()
-    public idToken?: string;
-
-    @Prop()
-    public expiresAt?: Date;
-
-    @Prop()
-    public scope?: string;
+  /** Token data provided by */
+  @Prop({ type: Object })
+  public tokenData!: Record<string, unknown>;
 }
 
 export namespace Connection {
-    export const Model =
-        (mongoose.models['Connection'] as ReturnModelType<typeof Connection>) ??
-        getModelForClass(Connection);
+  export const Model =
+    (mongoose.models['Connection'] as ReturnModelType<typeof Connection>) ??
+    getModelForClass(Connection);
 
-    export type Entity = {
-        [K in keyof Omit<
-            Connection,
-            'tokenData'
-        >]: Connection[K] extends Function ? never : Connection[K];
-    } & { user: User.Entity };
+  export type Entity<TFields extends 'user' | undefined = undefined> = {
+    [K in keyof Omit<Connection, 'tokenData'>]: Connection[K] extends Function
+      ? never
+      : Connection[K];
+  } & (TFields extends undefined
+    ? {}
+    : { [K in TFields & string]: K extends 'user' ? User.Entity : never });
 
-    export type Document = DocumentType<Connection>;
+  export type Document = DocumentType<Connection>;
 }
