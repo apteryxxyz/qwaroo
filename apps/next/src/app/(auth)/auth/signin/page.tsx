@@ -1,4 +1,3 @@
-import { env } from '@qwaroo/env/next';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
@@ -9,6 +8,7 @@ import { Alert } from '@/components/alert';
 import { Button } from '@/components/button';
 import { Card } from '@/components/card';
 import { ImageWithFallback } from '@/components/image-with-fallback';
+import { env } from '@/env';
 import { authOptions } from '@/services/auth';
 
 export type SignInErrorTypes =

@@ -1,5 +1,5 @@
 module.exports = {
-  entry: ['core.ts', 'next.ts'],
+  entry: ['core.ts'],
   format: ['cjs'],
   target: 'esnext',
   outDir: '.',

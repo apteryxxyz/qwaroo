@@ -116,7 +116,7 @@ export default function Content(p: ContentProps) {
         className={cn(
           'fixed flex h-[150vh] w-screen flex-col overflow-hidden text-white xl:h-screen xl:w-[150vw] xl:flex-row',
           status === Status.Sliding &&
-            '-translate-y-1/3 translate-x-0 transition-transform duration-1000 ease-[ease-in-out] xl:-translate-x-1/3 xl:translate-y-0',
+            '-translate-y-1/3 translate-x-0 transition-transform duration-1000 ease-in-out xl:-translate-x-1/3 xl:translate-y-0',
         )}
       >
         <ItemBlock {...p.game} {...previousItem} />

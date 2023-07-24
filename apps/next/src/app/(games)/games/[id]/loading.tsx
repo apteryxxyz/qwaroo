@@ -25,7 +25,7 @@ export default function Loading() {
             </Card.Content>
           </Card>
 
-          <section>
+          <section className="space-y-6">
             <Skeleton className="mb-6 h-6 w-32" />
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

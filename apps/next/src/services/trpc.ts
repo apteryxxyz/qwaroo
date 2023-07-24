@@ -1,4 +1,3 @@
-import { env } from '@qwaroo/env/core';
 import type { AppRouter } from '@qwaroo/server';
 import {
   createWSClient,
@@ -8,11 +7,15 @@ import {
 } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';
 import SuperJSON from 'superjson';
+import { env } from '@/env';
 
 function getEndingLink() {
   if (typeof window === 'undefined')
     return httpBatchLink<AppRouter>({ url: `/api/trpc` });
-  const client = createWSClient({ url: 'ws://localhost:3000' });
+  console.log(env);
+  const client = createWSClient({
+    url: env.NEXT_PUBLIC_EXTERNAL_URL.replace('http', 'ws'),
+  });
   return wsLink<AppRouter>({ client });
 }
 

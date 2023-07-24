@@ -59,7 +59,7 @@ export default async function Page(p: PageProps<'id'>) {
             </Card.Content>
           </Card>
 
-          <section className="space-x-6">
+          <section className="space-y-6">
             <h2 className="text-lg font-bold leading-none tracking-tight">
               Highest Scores
             </h2>

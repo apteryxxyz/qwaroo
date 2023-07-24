@@ -4,7 +4,6 @@ import Balancer from 'react-wrap-balancer';
 import { Button } from '@/components/button';
 
 export const metadata = {
-  title: 'Qwaroo',
   description:
     'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
 };
