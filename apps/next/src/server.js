@@ -6,6 +6,6 @@ service.enabled(false);
 
 module.exports = async ({ httpServer }) => {
   await Database.getInstance().connect();
-  const wss = new WebSocketServer({ server: httpServer });
-  prepareWebSocketServer(wss);
+  const wsServer = new WebSocketServer({ noServer: true });
+  prepareWebSocketServer(httpServer, wsServer);
 };

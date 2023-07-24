@@ -1,4 +1,4 @@
-import type { IncomingMessage } from 'node:http';
+import type { IncomingMessage, Server } from 'node:http';
 import { appRouter, createContext } from '@qwaroo/server';
 import { applyWSSHandler } from '@trpc/server/adapters/ws';
 import { getServerSession } from 'next-auth';
@@ -27,9 +27,24 @@ async function getSession(request: IncomingMessage) {
   );
 }
 
-export function prepareWebSocketServer(wss: WebSocketServer) {
+export function prepareWebSocketServer(
+  httpServer: Server,
+  wsServer: WebSocketServer,
+) {
+  httpServer.on('upgrade', (request, socket, head) => {
+    // Handle upgrade ourselves so we can ignore /_next requests (hot reload)
+    const url = new URL(request.url ?? '', 'http://next-ws');
+    const pathname = url.pathname;
+    if (pathname.startsWith('/_next')) return;
+
+    console.log(request.url);
+    wsServer.handleUpgrade(request, socket, head, (ws) => {
+      wsServer.emit('connection', ws, request);
+    });
+  });
+
   return applyWSSHandler({
-    wss,
+    wss: wsServer,
     router: appRouter,
     async createContext({ req: request }) {
       const session = await getSession(request);
