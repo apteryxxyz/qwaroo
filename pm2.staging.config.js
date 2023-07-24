@@ -4,7 +4,7 @@ const script =
 module.exports = [
   {
     name: 'Qwaroo Staging',
-    cwd: './apps/www',
+    cwd: './apps/next',
     script,
     args: 'run start',
     instances: 1,
