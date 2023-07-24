@@ -36,7 +36,7 @@ export function GameScoreCard(p: GameScoreCardProps) {
           >
             {p.score.user.displayName}
           </span>{' '}
-          scored {p.score.highScore}
+          scored {(p.score.highScore ?? 0) || 'no'} points
         </Card.Title>
 
         <Card.Description>

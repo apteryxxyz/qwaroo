@@ -16,7 +16,12 @@ export default async function Page(p: PageProps<'id'>) {
   const caller = appRouter.createCaller({});
   const game = await caller.games.getGame(id).catch(() => notFound());
   const recommended = await caller.games.getSimilarGames(id);
+
   const scores = await caller.scores.getGameScores(id);
+  const highestScores = scores
+    .slice(0, 3)
+    .filter((score) => score.highScore ?? 0 > 0);
+  const restOfScores = scores.slice(highestScores.length);
 
   return (
     <>
@@ -67,7 +72,7 @@ export default async function Page(p: PageProps<'id'>) {
             {scores.length > 0 && (
               <>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {scores.slice(0, 3).map((score, index) => (
+                  {highestScores.map((score, index) => (
                     <GameScoreCard
                       key={score.id}
                       place={index + 1}
@@ -77,7 +82,7 @@ export default async function Page(p: PageProps<'id'>) {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                  {scores.slice(3).map((score) => (
+                  {restOfScores.map((score) => (
                     <GameScoreCard key={score.id} score={score} />
                   ))}
                 </div>
