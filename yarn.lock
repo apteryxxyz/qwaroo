@@ -1018,7 +1018,6 @@ __metadata:
     "@radix-ui/react-dialog": ^1.0.4
     "@radix-ui/react-dropdown-menu": ^2.0.5
     "@radix-ui/react-hover-card": ^1.0.6
-    "@radix-ui/react-icons": ^1.3.0
     "@radix-ui/react-label": ^2.0.2
     "@radix-ui/react-popover": ^1.0.6
     "@radix-ui/react-slot": ^1.0.2
@@ -1043,6 +1042,7 @@ __metadata:
     eslint: ^8.45.0
     eslint-config-next: ^13.4.12
     framer-motion: ^10.13.0
+    lucide-react: ^0.263.1
     next: ^13.4.12
     next-auth: ^4.22.3
     next-themes: "npm:@wits/next-themes@^0.2.16"
@@ -1512,15 +1512,6 @@ __metadata:
     "@types/react-dom":
       optional: true
   checksum: cf7c92beceb1f9ed9b39d7e92a5c85a0d725160e76ef50325dccfab7c25b906b3235742a1e85e0f18478172adc5ec326ef6e3f2cc786a697cb140c01768a8242
-  languageName: node
-  linkType: hard
-
-"@radix-ui/react-icons@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "@radix-ui/react-icons@npm:1.3.0"
-  peerDependencies:
-    react: ^16.x || ^17.x || ^18.x
-  checksum: 982f3ee2271eaaa12b944506ef7701d20fad847082592d99b393b66a2ebbd4cc89e3a0ba48146ed8801418a7bfd76cd55901dc5cb7c6ef404001e7e4c73d05f6
   languageName: node
   linkType: hard
 
@@ -5649,6 +5640,15 @@ __metadata:
   version: 10.0.0
   resolution: "lru-cache@npm:10.0.0"
   checksum: 18f101675fe283bc09cda0ef1e3cc83781aeb8373b439f086f758d1d91b28730950db785999cd060d3c825a8571c03073e8c14512b6655af2188d623031baf50
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.263.1":
+  version: 0.263.1
+  resolution: "lucide-react@npm:0.263.1"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: 0648569855ddbf8b3f281857820f5838015f1713104d37a8ee7dbb4f0e6d9044f9edf215c742cb8f4f22ec2e42893cc48a62bd37af28455b67a6467d7f4d74ca
   languageName: node
   linkType: hard
 

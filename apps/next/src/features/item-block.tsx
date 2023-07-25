@@ -58,14 +58,14 @@ export function ItemBlock(p: ItemBlockProps) {
             className="py-5 text-xl font-bold xl:text-2xl"
             onClick={p.onHigherClick}
           >
-            {p.higherText}
+            {p.higherText ?? 'Higher'}
           </Button>
           <Button
             variant="blue"
             className="py-5 text-xl font-bold xl:text-2xl"
             onClick={p.onLowerClick}
           >
-            {p.lowerText}
+            {p.lowerText ?? 'Lower'}
           </Button>
         </div>
       )}

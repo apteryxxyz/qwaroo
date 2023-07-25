@@ -4,7 +4,7 @@ import type { Source } from '@qwaroo/sources';
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PieChartIcon } from '@radix-ui/react-icons';
+import { Loader2Icon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { AlertDialog } from '@/components/alert-dialog';
@@ -103,7 +103,7 @@ export default function Content(p: ContentProps) {
               className="ml-auto flex gap-2"
             >
               {isValidating && (
-                <PieChartIcon className="mr-1 h-4 w-4 animate-spin" />
+                <Loader2Icon className="mr-1 h-4 w-4 animate-spin" />
               )}
               Continue
             </Button>

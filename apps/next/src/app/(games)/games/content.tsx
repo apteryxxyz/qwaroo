@@ -3,7 +3,7 @@
 import type { Game } from '@qwaroo/database';
 import { useCallback, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { MagnifyingGlassIcon, PieChartIcon } from '@radix-ui/react-icons';
+import { Loader2Icon, SearchIcon, SearchXIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Alert } from '@/components/alert';
@@ -74,9 +74,9 @@ export default function Content(p: ContentProps) {
                   </Form.Control>
                   <Button type="submit" disabled={isSearching}>
                     {isSearching ? (
-                      <PieChartIcon className="mr-1 h-4 w-4 animate-spin" />
+                      <Loader2Icon className="mr-1 h-4 w-4 animate-spin" />
                     ) : (
-                      <MagnifyingGlassIcon className="mr-1 h-4 w-4" />
+                      <SearchIcon className="mr-1 h-4 w-4" />
                     )}
                     Search
                   </Button>
@@ -99,7 +99,7 @@ export default function Content(p: ContentProps) {
 
       {!isSearching && total === 0 && (
         <Alert>
-          <MagnifyingGlassIcon className="h-4 w-4" />
+          <SearchXIcon className="h-4 w-4" />
 
           <Alert.Title>Hmm, no games were found</Alert.Title>
           <Alert.Description>
@@ -112,7 +112,7 @@ export default function Content(p: ContentProps) {
         <div className="flex justify-center py-6">
           <Button onClick={() => fetchMore()} disabled={isSearching}>
             {isSearching && (
-              <PieChartIcon className="mr-1 h-4 w-4 animate-spin" />
+              <Loader2Icon className="mr-1 h-4 w-4 animate-spin" />
             )}
             Load More
           </Button>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ExclamationTriangleIcon, PieChartIcon } from '@radix-ui/react-icons';
+import { AlertTriangleIcon, Loader2Icon } from 'lucide-react';
 import { Alert } from '@/components/alert';
 import { Card } from '@/components/card';
 import { trpc } from '@/services/trpc';
@@ -63,14 +63,14 @@ export default function Content() {
       <Card.Content className="flex items-center justify-center gap-2">
         {!error && (
           <>
-            <PieChartIcon className="h-4 w-4 animate-spin" />
+            <Loader2Icon className="h-4 w-4 animate-spin" />
             {status}...
           </>
         )}
 
         {error && (
           <Alert variant="destructive">
-            <ExclamationTriangleIcon className="h-4 w-4" />
+            <AlertTriangleIcon className="h-4 w-4" />
             <Alert.Title>Game creation failed</Alert.Title>
             <Alert.Description>{error}</Alert.Description>
           </Alert>

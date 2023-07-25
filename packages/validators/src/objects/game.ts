@@ -15,8 +15,8 @@ namespace Shared {
     category: z.string().min(3).max(40),
     valueVerb: z.string().max(40),
     valueNoun: z.string().max(40),
-    higherText: z.string().max(40),
-    lowerText: z.string().max(40),
+    higherText: z.string().max(40).optional(),
+    lowerText: z.string().max(40).optional(),
     valuePrefix: z.string().max(10).optional(),
     valueSuffix: z.string().max(10).optional(),
   } as const;

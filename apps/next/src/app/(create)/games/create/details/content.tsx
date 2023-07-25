@@ -4,7 +4,7 @@ import { GameDetailsSchema } from '@qwaroo/validators';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckIcon, ChevronDownIcon } from '@radix-ui/react-icons';
+import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import type z from 'zod';
 import { Button } from '@/components/button';
@@ -183,7 +183,7 @@ export default function Content() {
                             className="w-[200px]"
                           >
                             {field.value ?? 'Choose a category'}{' '}
-                            <ChevronDownIcon className="ml-2 h-4 w-4" />
+                            <ChevronsUpDownIcon className="ml-2 h-4 w-4" />
                           </Button>
                         </Form.Control>
                       </Popover.Trigger>
@@ -283,11 +283,13 @@ export default function Content() {
               render={({ field }) => (
                 <Form.Item className="flex flex-col gap-6 space-y-0 lg:flex-row">
                   <div className="lg:w-1/3">
-                    <Form.Label className="block">Higher Synonym</Form.Label>
+                    <Form.Label className="block">
+                      Higher Synonym (Optional)
+                    </Form.Label>
                     <Form.Description>
                       A synonym of higher that will appear in-game as the higher
                       button, for example, &apos;More&apos;, &apos;Better&apos;,
-                      etc.
+                      etc. Will default to &apos;Higher&apos; if left empty.
                     </Form.Description>
                   </div>
 
@@ -307,11 +309,13 @@ export default function Content() {
               render={({ field }) => (
                 <Form.Item className="flex flex-col gap-6 space-y-0 lg:flex-row">
                   <div className="lg:w-1/3">
-                    <Form.Label className="block">Lower Synonym</Form.Label>
+                    <Form.Label className="block">
+                      Lower Synonym (Optional)
+                    </Form.Label>
                     <Form.Description>
                       A synonym of lower that will appear in-game as the lower
                       button, for example, &apos;Less&apos;, &apos;Worse&apos;,
-                      etc.
+                      etc. Will default to &apos;Lower&apos; if left empty.
                     </Form.Description>
                   </div>
 

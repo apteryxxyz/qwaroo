@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
-import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
+import { AlertTriangleIcon } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 import { getProviders } from 'next-auth/react';
 import { Alert } from '@/components/alert';
@@ -78,7 +78,7 @@ export default async function Page({
           <div className="grid grid-cols-1 gap-4">
             {errorString && (
               <Alert variant="destructive">
-                <ExclamationTriangleIcon className="h-4 w-4" />
+                <AlertTriangleIcon className="h-4 w-4" />
                 <Alert.Title>Sign in failed</Alert.Title>
                 <Alert.Description>{errorString}</Alert.Description>
               </Alert>
@@ -124,7 +124,7 @@ export default async function Page({
 
             {providers.length === 0 && (
               <Alert variant="destructive">
-                <ExclamationTriangleIcon className="h-4 w-4" />
+                <AlertTriangleIcon className="h-4 w-4" />
                 <Alert.Title>Sign in failed</Alert.Title>
                 <Alert.Description>
                   There are no sign in providers configured.

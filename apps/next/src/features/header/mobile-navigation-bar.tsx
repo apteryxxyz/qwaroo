@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { DiscordLogoIcon, PaperPlaneIcon } from '@radix-ui/react-icons';
+import { MapIcon } from 'lucide-react';
 import { Button } from '@/components/button';
 import { QwarooIcon } from '@/components/icons/qwaroo-icon';
 import { Sheet } from '@/components/sheet';
@@ -25,7 +25,7 @@ export function MobileNavigationBar() {
       <Sheet open={open} onOpenChange={setOpen}>
         <Sheet.Trigger asChild>
           <Button className="ml-auto" variant="outline">
-            <PaperPlaneIcon className="h-4 w-4" />
+            <MapIcon className="h-4 w-4" />
             <span className="sr-only">Toggle menu</span>
           </Button>
         </Sheet.Trigger>
@@ -64,12 +64,12 @@ export function MobileNavigationBar() {
           </nav>
 
           <div className="m-4 inline-flex items-center space-x-4">
-            <Link href="/">
+            {/* <Link href="/">
               <Button variant="ghost" size="sm" className="h-4 w-4 px-0">
                 <DiscordLogoIcon className="mr-1 h-4 w-4" />
                 <span className="sr-only">Join the Discord server</span>
               </Button>
-            </Link>
+            </Link> */}
 
             {/* <Link href="/">
               <Button variant="ghost" size="sm" className="w-5 h-5 px-0">

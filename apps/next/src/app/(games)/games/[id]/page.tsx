@@ -1,7 +1,7 @@
 import { appRouter } from '@qwaroo/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { CrumpledPaperIcon, LightningBoltIcon } from '@radix-ui/react-icons';
+import { CircleSlashIcon, Tally5Icon } from 'lucide-react';
 import { Alert } from '@/components/alert';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/avatar';
 // import { Badge } from '@/components/badge';
@@ -90,16 +90,16 @@ export default async function Page(p: PageProps<'id'>) {
               </>
             )}
 
-            {scores.length === 0 && (
+            {
               <Alert>
-                <LightningBoltIcon className="h-5 w-5" />
+                <Tally5Icon className="h-5 w-5" />
 
                 <Alert.Title>No scores yet</Alert.Title>
                 <Alert.Description>
                   But you could change that by being the first to play!
                 </Alert.Description>
               </Alert>
-            )}
+            }
           </section>
         </div>
 
@@ -114,16 +114,16 @@ export default async function Page(p: PageProps<'id'>) {
             ))}
           </div>
 
-          {recommended.length === 0 && (
+          {
             <Alert>
-              <CrumpledPaperIcon className="h-5 w-5" />
+              <CircleSlashIcon className="h-5 w-5" />
 
               <Alert.Title>No similar games</Alert.Title>
               <Alert.Description>
                 But you could change that by playing and creating more games!
               </Alert.Description>
             </Alert>
-          )}
+          }
         </section>
       </div>
     </>

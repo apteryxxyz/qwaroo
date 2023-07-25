@@ -102,11 +102,11 @@ export class Game {
   @Prop({ required: true, maxlength: 40 })
   public valueNoun!: string;
 
-  @Prop({ required: true, maxlength: 40 })
-  public higherText!: string;
+  @Prop({ maxlength: 40 })
+  public higherText?: string;
 
-  @Prop({ required: true, maxlength: 40 })
-  public lowerText!: string;
+  @Prop({ maxlength: 40 })
+  public lowerText?: string;
 
   @Prop({ maxlength: 10 })
   public valuePrefix?: string;

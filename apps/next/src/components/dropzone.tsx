@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react';
 import Image from 'next/image';
-import { TrashIcon, UploadIcon } from '@radix-ui/react-icons';
+import { Trash2Icon, UploadIcon } from 'lucide-react';
 import type { DropzoneOptions, FileError, FileRejection } from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
 import type { ControllerRenderProps } from 'react-hook-form';
+import { Button } from './button';
 import { Form } from './form';
 import { Input } from './input';
 
@@ -74,17 +75,16 @@ export function Dropzone({
             onLoad={() => URL.revokeObjectURL(file.url)}
           />
 
-          <button
-            type="button"
-            className="absolute right-0 top-0 rounded-full bg-black p-2 text-white"
+          <Button
+            variant="ghost"
+            className="absolute right-0 top-0 rounded-full p-2"
             onClick={() => {
               field.onChange(undefined);
               setFile(undefined);
             }}
           >
-            {/* Improve */}
-            <TrashIcon />
-          </button>
+            <Trash2Icon />
+          </Button>
         </div>
       )}
 

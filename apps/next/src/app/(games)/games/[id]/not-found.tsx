@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
+import { SearchXIcon } from 'lucide-react';
 import { Alert } from '@/components/alert';
 
 export default function NotFound() {
@@ -9,7 +9,7 @@ export default function NotFound() {
 
   return (
     <Alert variant="destructive">
-      <QuestionMarkCircledIcon className="mr-2 h-5 w-5" />
+      <SearchXIcon className="mr-2 h-5 w-5" />
       <Alert.Title>Game was not found</Alert.Title>
       <Alert.Description>
         Game for id &quot;{id}&quot; was not found.
