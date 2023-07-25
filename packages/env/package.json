@@ -1,16 +1,12 @@
 {
   "name": "@qwaroo/env",
   "version": "1.0.0",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup",
     "dev": "yarn build --watch",
     "lint": "eslint ."
   },
   "dependencies": {
-    "@t3-oss/env-core": "^0.6.0",
-    "@t3-oss/env-nextjs": "^0.6.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {

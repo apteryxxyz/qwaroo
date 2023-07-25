@@ -1,3 +1,4 @@
+import '@qwaroo/env';
 import type { IncomingMessage, Server } from 'node:http';
 import { appRouter, createContext } from '@qwaroo/server';
 import { applyWSSHandler } from '@trpc/server/adapters/ws';
@@ -37,7 +38,6 @@ export function prepareWebSocketServer(
     const pathname = url.pathname;
     if (pathname.startsWith('/_next')) return;
 
-    console.log(request.url);
     wsServer.handleUpgrade(request, socket, head, (ws) => {
       wsServer.emit('connection', ws, request);
     });

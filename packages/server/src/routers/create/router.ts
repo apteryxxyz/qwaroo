@@ -1,5 +1,4 @@
 import { Game, User } from '@qwaroo/database';
-import { env } from '@qwaroo/env/core';
 import { sources } from '@qwaroo/sources';
 import { GameCreateSchema } from '@qwaroo/validators';
 import { TRPCError } from '@trpc/server';
@@ -142,7 +141,7 @@ export const createRouter = createTRPCRouter({
               new TRPCError({
                 code: 'INTERNAL_SERVER_ERROR',
                 message:
-                  env.NODE_ENV === 'development'
+                  process.env.NODE_ENV === 'development'
                     ? error.message
                     : 'Hidden in production',
               }),

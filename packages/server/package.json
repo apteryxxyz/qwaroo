@@ -14,6 +14,7 @@
     "@qwaroo/env": "1.0.0",
     "@qwaroo/sources": "1.0.0",
     "@qwaroo/validators": "1.0.0",
+    "@total-typescript/ts-reset": "^0.4.2",
     "@trpc/server": "^10.35.0",
     "@upstash/redis": "^1.22.0",
     "file-type": "^18.5.0",

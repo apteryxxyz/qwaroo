@@ -1,14 +1,13 @@
 import { AuthAdapter } from '@qwaroo/adapter';
 import type { AuthOptions, DefaultUser } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
-import { env } from '../env';
 
 export const authOptions: AuthOptions = {
   adapter: AuthAdapter(),
   providers: [
     DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+      clientId: process.env.DISCORD_CLIENT_ID,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
     }),
   ],
   callbacks: {

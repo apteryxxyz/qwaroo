@@ -25,9 +25,9 @@ export default async function Page(p: PageProps<'id'>) {
 
   return (
     <>
-      {/* <h1 className="text-2xl font-bold leading-none tracking-tight">
+      <h1 className="pb-6 text-2xl font-bold leading-none tracking-tight">
         {game.title}
-      </h1> */}
+      </h1>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="col-span-1 h-fit space-y-6 lg:col-span-2">
@@ -38,6 +38,7 @@ export default async function Page(p: PageProps<'id'>) {
                   <AvatarImage src={game.thumbnailUrl} />
                   <AvatarFallback>{game.title.slice(0, 2)}</AvatarFallback>
                 </Avatar>
+
                 <div>
                   <Card.Title>{game.title}</Card.Title>
                   <Card.Description>

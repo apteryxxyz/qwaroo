@@ -1,3 +1,6 @@
+import '@total-typescript/ts-reset';
+import '@qwaroo/env';
+
 export * from './routers';
 export * from './services/bucket';
 export * from './services/imgur';

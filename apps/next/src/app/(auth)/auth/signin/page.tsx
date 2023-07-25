@@ -8,7 +8,6 @@ import { Alert } from '@/components/alert';
 import { Button } from '@/components/button';
 import { Card } from '@/components/card';
 import { ImageWithFallback } from '@/components/image-with-fallback';
-import { env } from '@/env';
 import { authOptions } from '@/services/auth';
 
 export type SignInErrorTypes =
@@ -60,7 +59,10 @@ export default async function Page({
     cookies().get('next-auth.csrf-token') ?? //
     cookies().get('__Host-next-auth.csrf-token')
   )?.value.split('|')[0];
-  const callbackUrl = new URL(searchParams.callbackUrl ?? '', env.NEXTAUTH_URL);
+  const callbackUrl = new URL(
+    searchParams.callbackUrl ?? '',
+    process.env.NEXTAUTH_URL,
+  );
 
   return (
     <section className="container flex min-h-[75dvh] items-center justify-center">

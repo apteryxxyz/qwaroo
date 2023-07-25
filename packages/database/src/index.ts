@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import '@qwaroo/env';
 import { Database } from './database';
 
 export * from './database';

@@ -155,6 +155,23 @@ export default function Content(p: ContentProps) {
             {guessStatus === GuessStatus.Neutral && 'VS'}
           </span>
         </motion.div>
+
+        <div className="flex-end absolute right-5 top-5 flex flex-col text-2xl">
+          <p>
+            Score <span className="font-bold">{score}</span>
+          </p>
+          {highScore > 0 && (
+            <p>
+              High Score <span className="font-bold">{highScore}</span>
+            </p>
+          )}
+        </div>
+
+        {/* <span>
+          Score <span className="font-bold">{score}</span>
+          <br />
+          High Score <span className="font-bold">{highScore}</span>
+        </span> */}
       </div>
     </>
   );

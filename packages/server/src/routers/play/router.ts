@@ -47,6 +47,7 @@ export const playRouter = createTRPCRouter({
       );
 
       let highScore = null;
+      console.log(context);
       if (context.me) {
         const score = await Score.Model.findOne({
           user: context.me.id,

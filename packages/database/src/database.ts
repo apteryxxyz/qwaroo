@@ -1,4 +1,3 @@
-import { env } from '@qwaroo/env/core';
 import type { Connection } from 'mongoose';
 import mongoose from 'mongoose';
 
@@ -9,7 +8,7 @@ export class Database {
 
   private constructor() {
     if (Database._instance) throw new Error('Database is a singleton');
-    mongoose.set('debug', env.NODE_ENV === 'development');
+    mongoose.set('debug', process.env.NODE_ENV === 'development');
     this._connection = mongoose.connection;
   }
 
@@ -26,7 +25,7 @@ export class Database {
     switch (this._connection.readyState) {
       case mongoose.STATES.disconnected: {
         console.info('[Database] Attempting to connect to MongoDB Atlas');
-        await mongoose.connect(env.MONGODB_ATLAS_URL, {});
+        await mongoose.connect(process.env.MONGODB_ATLAS_URL, {});
         return this._connection;
       }
 

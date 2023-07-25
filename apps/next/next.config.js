@@ -1,6 +1,4 @@
-const service = require('ts-node').register();
-require('./src/env');
-service.enabled(false);
+require('@qwaroo/env');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

@@ -7,14 +7,12 @@ import {
 } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';
 import SuperJSON from 'superjson';
-import { env } from '@/env';
 
 function getEndingLink() {
   if (typeof window === 'undefined')
     return httpBatchLink<AppRouter>({ url: `/api/trpc` });
-  console.log(env);
   const client = createWSClient({
-    url: env.NEXT_PUBLIC_EXTERNAL_URL.replace('http', 'ws'),
+    url: process.env.NEXT_PUBLIC_EXTERNAL_URL.replace('http', 'ws'),
   });
   return wsLink<AppRouter>({ client });
 }
@@ -24,7 +22,8 @@ export function getClientConfig() {
     links: [
       loggerLink({
         enabled: (opts) =>
-          (env.NODE_ENV === 'development' && typeof window !== 'undefined') ||
+          (process.env.NODE_ENV === 'development' &&
+            typeof window !== 'undefined') ||
           (opts.direction === 'down' && opts.result instanceof Error),
       }),
       getEndingLink(),
