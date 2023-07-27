@@ -1,4 +1,4 @@
-import { File, Game, Score } from '@qwaroo/database';
+import { Activity, File, Game } from '@qwaroo/database';
 import type { Source } from '@qwaroo/sources';
 import { TRPCError } from '@trpc/server';
 import _ from 'lodash';
@@ -37,42 +37,49 @@ export function omitValue(item: Source.Item): Source.PartialItem {
 
 /** The state of a game session. */
 export interface State {
-  id: string;
-  time: number;
-  values: number[];
-  steps: number[];
+  gameId: string;
+  startTime: number;
+  itemValues: number[];
+  stepsTaken: number[];
 }
 
-export async function saveScore({ id, steps, time }: State, userId?: string) {
-  const game = (await Game.Model.findById(id))!;
-  game.totalScore += steps.length;
-  game.totalPlays += 1;
-  game.totalTime += Date.now() - time;
-  game.lastScore = steps.length;
-  game.lastTime = Date.now() - time;
-  game.lastPlayedAt = new Date();
-  if (steps.length > (game.highScore ?? 0)) {
-    game.highScore = steps.length;
-    game.highScoreTime = Date.now() - time;
-    game.highScoreAt = new Date();
+export async function saveScore(
+  { gameId, stepsTaken, startTime }: State,
+  userId?: string,
+) {
+  const game = (await Game.Model.findById(gameId))!;
+  game.score.totalScore += stepsTaken.length;
+  game.score.totalPlays += 1;
+  game.score.totalTime += Date.now() - startTime;
+  game.score.lastScore = stepsTaken.length;
+  game.score.lastTime = Date.now() - startTime;
+  game.score.lastPlayedAt = new Date();
+  if (stepsTaken.length > (game.score.highScore ?? 0)) {
+    game.score.highScore = stepsTaken.length;
+    game.score.highScoreTime = Date.now() - startTime;
+    game.score.highScoreAt = new Date();
   }
   await game.save();
 
   if (userId) {
-    let score = await Score.Model.findOne({ user: userId, game: id });
-    if (!score) score = new Score.Model({ user: userId, game: id });
+    let activity = await Activity.Model.findOne({ user: userId, game: gameId });
+    if (!activity)
+      activity = new Activity.Model({
+        user: userId,
+        game: gameId,
+      });
 
-    score.totalScore += steps.length;
-    score.totalPlays += 1;
-    score.totalTime += Date.now() - time;
-    score.lastScore = steps.length;
-    score.lastTime = Date.now() - time;
-    score.lastPlayedAt = new Date();
-    if (steps.length > (score.highScore ?? 0)) {
-      score.highScore = steps.length;
-      score.highScoreTime = Date.now() - time;
-      score.highScoreAt = new Date();
+    activity.score.totalScore += stepsTaken.length;
+    activity.score.totalPlays += 1;
+    activity.score.totalTime += Date.now() - startTime;
+    activity.score.lastScore = stepsTaken.length;
+    activity.score.lastTime = Date.now() - startTime;
+    activity.score.lastPlayedAt = new Date();
+    if (stepsTaken.length > (activity.score.highScore ?? 0)) {
+      activity.score.highScore = stepsTaken.length;
+      activity.score.highScoreTime = Date.now() - startTime;
+      activity.score.highScoreAt = new Date();
     }
-    await score.save();
+    await activity.save();
   }
 }

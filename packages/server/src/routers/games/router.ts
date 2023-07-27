@@ -8,10 +8,8 @@ export const gamesRouter = createTRPCRouter({
   /** Get a game by its ID. */
   getGame: publicProcedure
     .input(z.string().regex(/^[0-9a-fA-F]{24}$/))
-    .query(async ({ input: id }) => {
-      const game = await Game.Model.findById(id).populate<{
-        creator: User.Document;
-      }>('creator');
+    .query(async ({ input: gameId }) => {
+      const game = await Game.Model.findById(gameId).populate('creator');
 
       if (game) return game.toJSON<Game.Entity<'creator'>>();
       throw new TRPCError({
@@ -23,10 +21,8 @@ export const gamesRouter = createTRPCRouter({
   /** From a game, get similar ones to it. */
   getSimilarGames: publicProcedure
     .input(z.string().regex(/^[0-9a-fA-F]{24}$/))
-    .query(async ({ input: id }) => {
-      const game = await Game.Model.findById(id).populate<{
-        creator: User.Document;
-      }>('creator');
+    .query(async ({ input: gameId }) => {
+      const game = await Game.Model.findById(gameId);
       if (!game)
         throw new TRPCError({
           code: 'NOT_FOUND',
@@ -37,7 +33,7 @@ export const gamesRouter = createTRPCRouter({
         _id: { $ne: game._id },
         $text: { $search: game.title },
       })
-        .populate<{ creator: User.Document }>('creator')
+        .populate('creator')
         .limit(5)
         .exec();
 

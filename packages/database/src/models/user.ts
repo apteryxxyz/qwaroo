@@ -18,9 +18,10 @@ import mongoose from 'mongoose';
   },
 })
 export class User {
+  public _id!: mongoose.Types.ObjectId;
   public id!: string;
   public createdAt!: Date;
-  public updatedAt!: Date;
+  public updatedAt?: Date;
 
   /** The users email address. */
   @Prop({ required: true, unique: true })

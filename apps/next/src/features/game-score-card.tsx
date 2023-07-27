@@ -1,11 +1,12 @@
-import type { Score } from '@qwaroo/database';
+import type { Score, User } from '@qwaroo/database';
 import { Card } from '@/components/card';
 import { Skeleton } from '@/components/skeleton';
 import { cn } from '@/utilities/styling';
 
 interface GameScoreCardProps {
   place?: number;
-  score: Score.Entity<'user'>;
+  user: User.Entity;
+  score: Score.Entity;
 }
 
 export function GameScoreCard(p: GameScoreCardProps) {
@@ -34,7 +35,7 @@ export function GameScoreCard(p: GameScoreCardProps) {
               p.place === 3 && 'text-amber-800',
             )}
           >
-            {p.score.user.displayName}
+            {p.user.displayName}
           </span>{' '}
           scored {(p.score.highScore ?? 0) || 'no'} points
         </Card.Title>

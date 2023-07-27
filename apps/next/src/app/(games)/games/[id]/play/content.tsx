@@ -75,7 +75,7 @@ export default function Content(p: ContentProps) {
 
         setPreviousItem({ value: result.currentValue, ...currentItem });
         setCurrentItem(nextItems[0]);
-        setNextItems((prevItems) => [...prevItems.slice(1), ...nextItems]);
+        setNextItems([...nextItems.slice(1), ...result.nextItems!]);
         setCurrentValue(null);
 
         setStatus(Status.Waiting);

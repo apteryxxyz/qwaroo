@@ -25,9 +25,10 @@ import type { User } from './user';
   },
 })
 export class File {
+  public _id!: mongoose.Types.ObjectId;
   public id!: string;
   public createdAt!: Date;
-  public updatedAt!: Date;
+  public updatedAt?: Date;
 
   /** The user that uploaded this file. */
   @Prop({ ref: 'User', required: true })

@@ -25,9 +25,10 @@ import type { User } from './user';
   },
 })
 export class Connection {
+  public _id!: mongoose.Types.ObjectId;
   public id!: string;
   public createdAt!: Date;
-  public updatedAt!: Date;
+  public updatedAt?: Date;
 
   /** The user this connection belongs to. */
   @Prop({ ref: 'User', required: true })
@@ -46,7 +47,7 @@ export class Connection {
   public accountId!: string;
 
   /** Token data provided by */
-  @Prop({ type: Object })
+  @Prop({ type: Object, _id: false })
   public tokenData!: Record<string, unknown>;
 }
 

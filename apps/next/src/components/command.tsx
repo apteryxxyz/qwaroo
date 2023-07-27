@@ -3,9 +3,9 @@
 import * as React from 'react';
 import type { DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
+import { SearchIcon } from 'lucide-react';
 import { Dialog, DialogContent } from '@/components/dialog';
 import { cn } from '@/utilities/styling';
-import { SearchIcon } from 'lucide-react';
 
 const CommandRoot = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,

@@ -1,4 +1,4 @@
-import { Game, Score } from '@qwaroo/database';
+import { Activity, Game } from '@qwaroo/database';
 import type { Source } from '@qwaroo/sources';
 import { TRPCError } from '@trpc/server';
 import { observable } from '@trpc/server/observable';
@@ -18,8 +18,8 @@ export const playRouter = createTRPCRouter({
   /** Begin playing a game on Qwaroo. */
   playGame: publicProcedure
     .input(z.string().regex(/^[0-9a-fA-F]{24}$/))
-    .query(async ({ input: id, ctx: context }) => {
-      const game = await Game.Model.findById(id);
+    .query(async ({ input: gameId, ctx: context }) => {
+      const game = await Game.Model.findById(gameId);
       if (!game)
         throw new TRPCError({
           code: 'NOT_FOUND',
@@ -29,7 +29,7 @@ export const playRouter = createTRPCRouter({
       // Ref is a unique identifier for the game session
       const ref = uuid();
 
-      const items = await getGameItems(id);
+      const items = await getGameItems(gameId);
       const shuffledItems = shuffleWithSeed(items, ref);
       const [previousItem, currentItem, ...nextItems] = //
         shuffledItems.slice(0, 7);
@@ -37,23 +37,19 @@ export const playRouter = createTRPCRouter({
       await redis.set(
         `play:${ref}`,
         JSON.stringify({
-          id,
-          values: [previousItem, currentItem, ...nextItems] //
+          gameId: gameId,
+          startTime: Date.now(),
+          itemValues: [previousItem, currentItem, ...nextItems] //
             .map(({ value }) => value),
-          time: Date.now(),
-          steps: [],
+          stepsTaken: [],
         } satisfies State),
         { ex: 3600 },
       );
 
-      let highScore = null;
-      console.log(context);
+      let highScore;
       if (context.me) {
-        const score = await Score.Model.findOne({
-          user: context.me.id,
-          game: id,
-        });
-        if (score && score.highScore) highScore = score.highScore;
+        const activity = await Activity.Model.findOne({ user: context.me.id });
+        if (activity) highScore = activity.score.highScore;
       }
 
       return {
@@ -77,7 +73,6 @@ export const playRouter = createTRPCRouter({
             // No state indicates that the game has already been saved
             if (!state) return;
 
-            // console.log('')
             void redis.del(`play:${ref}`);
             void saveScore(state, context.me?.id);
           })(),
@@ -115,20 +110,21 @@ export const playRouter = createTRPCRouter({
           message: 'Play state was not found',
         });
 
-      const { values, steps } = state;
+      const { gameId, itemValues, stepsTaken } = state;
 
-      const previousValue = values.at(steps.length) ?? 0;
-      const currentValue = values.at(steps.length + 1) ?? 0;
+      const previousValue = itemValues.at(stepsTaken.length) ?? 0;
+      const currentValue = itemValues.at(stepsTaken.length + 1) ?? 0;
       const correctDirection =
         Math.sign(currentValue - previousValue) || direction;
       const isCorrect = correctDirection === direction;
 
       if (isCorrect) {
         let additionalItems: Source.Item[] = [];
-        if (steps.length + 1 === values.length - 1) {
+        if (stepsTaken.length + 1 === itemValues.length - 1) {
           // We only add additional items every 5th step
           // Prevents making too many requests to the database
-          const items = await getGameItems(state.id);
+          // TODO: Can be improved by storing the file hash in the state
+          const items = await getGameItems(gameId);
           const shuffledItems = shuffleWithSeed(items, ref);
           additionalItems = shuffledItems.slice(0, 5);
         }
@@ -138,8 +134,11 @@ export const playRouter = createTRPCRouter({
           `play:${ref}`,
           JSON.stringify({
             ...state,
-            values: [...values, ...additionalItems.map(({ value }) => value)],
-            steps: [...steps, direction],
+            itemValues: [
+              ...itemValues,
+              ...additionalItems.map(({ value }) => value),
+            ],
+            stepsTaken: [...stepsTaken, direction],
           } satisfies State),
           { ex: 3600 },
         );
@@ -157,7 +156,7 @@ export const playRouter = createTRPCRouter({
         return {
           isCorrect: false,
           currentValue,
-          score: steps.length,
+          score: stepsTaken.length,
         };
       }
     }),

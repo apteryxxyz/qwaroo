@@ -6,8 +6,9 @@ export * from './database';
 export * from './models/connection';
 export * from './models/file';
 export * from './models/game';
-export * from './models/score';
+export * from './models/activity';
 export * from './models/user';
+export * from './models/subdocuments/score';
 
 /** Shorthand for connecting. */
 export async function connect() {

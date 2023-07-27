@@ -9,6 +9,8 @@ import {
 } from '@typegoose/typegoose';
 import _ from 'lodash';
 import mongoose from 'mongoose';
+import { Engagement } from './subdocuments/engagement';
+import { Score } from './subdocuments/score';
 import type { User } from './user';
 
 @ModelOptions({
@@ -17,9 +19,11 @@ import type { User } from './user';
     timestamps: true,
     toJSON: {
       transform(document, record) {
+        document;
+
         return {
-          id: document._id?.toString(),
           ..._.omit(record, ['_id', '__v', 'tokenData']),
+          id: document._id?.toString(),
         } as Game.Entity;
       },
     },
@@ -42,9 +46,10 @@ import type { User } from './user';
   },
 )
 export class Game {
+  public _id!: mongoose.Types.ObjectId;
   public id!: string;
   public createdAt!: Date;
-  public updatedAt!: Date;
+  public updatedAt?: Date;
 
   /** Title of this game. */
   @Prop({
@@ -122,41 +127,13 @@ export class Game {
   @Prop({ type: Object })
   public sourceProperties?: Record<string, unknown>;
 
-  /** The total score earned for this game. */
-  @Prop({ default: 0 })
-  public totalScore: number = 0;
+  /** The subdocument storing score data. */
+  @Prop({ type: Score, default: () => ({}), _id: false })
+  public score!: Score;
 
-  /** The total time spent playing this game. */
-  @Prop({ default: 0 })
-  public totalTime: number = 0;
-
-  /** The total number of times this game has been played. */
-  @Prop({ default: 0 })
-  public totalPlays: number = 0;
-
-  /** The highest score earned for this game. */
-  @Prop()
-  public highScore?: number;
-
-  /** The game time for the highest score. */
-  @Prop()
-  public highScoreTime?: number;
-
-  /** Date of when the high score was achieved. */
-  @Prop()
-  public highScoreAt?: Date;
-
-  /** The last score earned for this game. */
-  @Prop()
-  public lastScore?: number;
-
-  /** The game time for the last score. */
-  @Prop()
-  public lastTime?: number;
-
-  /** Date of when the last score was achieved. */
-  @Prop()
-  public lastPlayedAt?: Date;
+  /** The subdocument storing engagement data. */
+  @Prop({ type: Engagement, default: () => ({}), _id: false })
+  public engagement!: Engagement;
 }
 
 export namespace Game {
@@ -166,9 +143,13 @@ export namespace Game {
 
   export type Entity<TFields extends 'creator' | undefined = undefined> = {
     [K in keyof Game]: Game[K] extends Function ? never : Game[K];
+  } & {
+    score: Score.Entity;
   } & (TFields extends undefined
-    ? {}
-    : { [K in TFields & string]: K extends 'creator' ? User.Entity : never });
+      ? {}
+      : {
+          [K in TFields & string]: K extends 'creator' ? User.Entity : never;
+        });
 
   export type Document = DocumentType<Game>;
 }

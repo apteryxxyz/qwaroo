@@ -12,7 +12,7 @@ export function ProfileButton() {
     <>
       {session.status === 'loading' && (
         <Button>
-          <LogInIcon className="mr-1 h-4 w-4" />
+          <LogInIcon className="mr-1 h-5 w-5" />
           Loading
         </Button>
       )}
@@ -20,7 +20,7 @@ export function ProfileButton() {
       {session.status !== 'loading' && session.data?.user && (
         <Link href="/profile">
           <Button>
-            <UserIcon className="mr-1 h-4 w-4" />
+            <UserIcon className="mr-1 h-5 w-5" />
             Profile
           </Button>
         </Link>
@@ -29,7 +29,7 @@ export function ProfileButton() {
       {session.status !== 'loading' && !session.data?.user && (
         <Link href="/auth/signin" onClick={() => false}>
           <Button onClick={() => signIn()}>
-            <LogInIcon className="mr-1 h-4 w-4" />
+            <LogInIcon className="mr-1 h-5 w-5" />
             Sign in
           </Button>
         </Link>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import { ServerThemeProvider } from 'next-themes';
+import { Tooltip } from '@/components/tooltip';
 import { getClientConfig, trpc } from '@/services/trpc';
 
 export function HTMLProviders({ children }: React.PropsWithChildren) {
@@ -26,7 +27,9 @@ export function MainProviders({ children }: React.PropsWithChildren) {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          <Tooltip.Provider>{children}</Tooltip.Provider>
+        </SessionProvider>
       </QueryClientProvider>
     </trpc.Provider>
   );

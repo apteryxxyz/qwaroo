@@ -12,6 +12,9 @@ interface GameCardProps {
 }
 
 export function GameCard(p: GameCardProps) {
+  const { likeCount, dislikeCount } = p.game.engagement;
+  const likePercentage = (likeCount / (dislikeCount + likeCount)) * 100;
+
   return (
     <Link href={`/games/${p.game.id}`} className="h-full">
       <Card className="grid h-full grid-cols-4">
@@ -26,12 +29,17 @@ export function GameCard(p: GameCardProps) {
         <div className="col-span-3 flex flex-col justify-center gap-2">
           <Card.Header className="text-sm">
             <Card.Title>{p.game.title}</Card.Title>
-            <p>Created by {p.game.creator.displayName}</p>
+            <span>Created by {p.game.creator.displayName}</span>
+
             <div className="space-x-2">
               <Badge>{p.game.category}</Badge>
-              <Badge>{p.game.totalPlays} Plays</Badge>
+              <Badge>{p.game.score.totalPlays} Plays</Badge>
+              {!Number.isNaN(likePercentage) && (
+                <Badge>Liked {Math.round(likePercentage)}%</Badge>
+              )}
             </div>
-            <div>{p.game.shortDescription}</div>
+
+            <p>{p.game.shortDescription}</p>
           </Card.Header>
         </div>
       </Card>
