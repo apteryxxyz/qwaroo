@@ -1,7 +1,7 @@
-import { Card } from '@/components/card';
-import { Skeleton } from '@/components/skeleton';
-import { SkeletonGameCard } from '@/features/game-card';
-import { SkeletonGameScoreCard } from '@/features/game-score-card';
+import { SkeletonGameCard } from '@/components/game-card';
+import { SkeletonGameScoreCard } from '@/components/game-score-card';
+import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Loading() {
   return (

@@ -1,6 +1,6 @@
 import type { Score, User } from '@qwaroo/database';
-import { Card } from '@/components/card';
-import { Skeleton } from '@/components/skeleton';
+import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/utilities/styling';
 
 interface GameScoreCardProps {

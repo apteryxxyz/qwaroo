@@ -19,10 +19,8 @@ import type { User } from './user';
     timestamps: true,
     toJSON: {
       transform(document, record) {
-        document;
-
         return {
-          ..._.omit(record, ['_id', '__v', 'tokenData']),
+          ..._.omit(record, ['_id', '__v']),
           id: document._id?.toString(),
         } as Game.Entity;
       },

@@ -3,8 +3,8 @@
 import type { Activity, Game } from '@qwaroo/database';
 import { useCallback, useEffect, useState } from 'react';
 import { HeartIcon } from 'lucide-react';
-import { Button } from '@/components/button';
-import { Tooltip } from '@/components/tooltip';
+import { Button } from '@/components/ui/button';
+import { Tooltip } from '@/components/ui/tooltip';
 import { useToast } from '@/hooks/use-toast';
 import { trpc } from '@/services/trpc';
 

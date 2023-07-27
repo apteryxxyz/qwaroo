@@ -3,9 +3,9 @@
 import type { Game } from '@qwaroo/database';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge } from '@/components/badge';
-import { Card } from '@/components/card';
-import { Skeleton } from '@/components/skeleton';
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface GameCardProps {
   game: Game.Entity<'creator'>;

@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
-import { Button } from '@/components/button';
-import { Card } from '@/components/card';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { authOptions } from '@/services/auth';
 
 export type SignInErrorTypes =

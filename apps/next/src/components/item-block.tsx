@@ -1,6 +1,6 @@
 import type { Game } from '@qwaroo/database';
 import type { Source } from '@qwaroo/sources';
-import { Button } from '@/components/button';
+import { Button } from '@/components/ui/button';
 import { proxyImageUrl } from '@/utilities/url';
 
 export interface ItemBlockProps

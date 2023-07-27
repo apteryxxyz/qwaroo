@@ -4,10 +4,10 @@ import { redirect } from 'next/navigation';
 import { AlertTriangleIcon } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 import { getProviders } from 'next-auth/react';
-import { Alert } from '@/components/alert';
-import { Button } from '@/components/button';
-import { Card } from '@/components/card';
-import { ImageWithFallback } from '@/components/image-with-fallback';
+import { Alert } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import { authOptions } from '@/services/auth';
 
 export type SignInErrorTypes =

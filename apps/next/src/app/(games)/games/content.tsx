@@ -6,11 +6,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2Icon, SearchIcon, SearchXIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Alert } from '@/components/alert';
-import { Button } from '@/components/button';
-import { Form } from '@/components/form';
-import { Input } from '@/components/input';
-import { GameCard, SkeletonGameCard } from '@/features/game-card';
+import { GameCard, SkeletonGameCard } from '@/components/game-card';
+import { Alert } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { trpc } from '@/services/trpc';
 
 interface ContentProps {

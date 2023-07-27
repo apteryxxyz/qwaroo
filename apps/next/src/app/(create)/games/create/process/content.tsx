@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AlertTriangleIcon, Loader2Icon } from 'lucide-react';
-import { Alert } from '@/components/alert';
-import { Card } from '@/components/card';
+import { Alert } from '@/components/ui/alert';
+import { Card } from '@/components/ui/card';
 import { trpc } from '@/services/trpc';
 import { useCreate } from '../context';
 

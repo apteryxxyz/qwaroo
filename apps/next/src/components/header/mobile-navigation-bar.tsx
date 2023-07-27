@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { MapIcon } from 'lucide-react';
-import { Button } from '@/components/button';
 import { QwarooIcon } from '@/components/icons/qwaroo-icon';
-import { Sheet } from '@/components/sheet';
+import { Button } from '@/components/ui/button';
+import { Sheet } from '@/components/ui/sheet';
 import { ProfileButton } from './profile-button';
 import { ThemeToggle } from './theme-toggle';
 

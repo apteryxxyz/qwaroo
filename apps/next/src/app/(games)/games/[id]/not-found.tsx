@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { SearchXIcon } from 'lucide-react';
-import { Alert } from '@/components/alert';
+import { Alert } from '@/components/ui/alert';
 
 export default function NotFound() {
   const { id } = useParams();

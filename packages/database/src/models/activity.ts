@@ -20,7 +20,7 @@ import type { User } from './user';
       transform(document, record) {
         return {
           id: document._id?.toString(),
-          ..._.omit(record, ['_id', '__v', 'tokenData']),
+          ..._.omit(record, ['_id', '__v']),
         } as Activity.Entity;
       },
     },

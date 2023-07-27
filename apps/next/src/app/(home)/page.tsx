@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
-import { Button } from '@/components/button';
+import { Button } from '@/components/ui/button';
 
 export const metadata = {
   description:

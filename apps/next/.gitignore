@@ -1,3 +1,4 @@
 .next/
+.contentlayer/
 .turbo/
 bucket/

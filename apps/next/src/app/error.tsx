@@ -1,7 +1,7 @@
 'use client';
 
 import { ServerCrashIcon } from 'lucide-react';
-import { Alert } from '@/components/alert';
+import { Alert } from '@/components/ui/alert';
 
 export default function Error() {
   return (

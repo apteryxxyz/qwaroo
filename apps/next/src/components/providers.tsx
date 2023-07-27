@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import { ServerThemeProvider } from 'next-themes';
-import { Tooltip } from '@/components/tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
 import { getClientConfig, trpc } from '@/services/trpc';
 
 export function HTMLProviders({ children }: React.PropsWithChildren) {

@@ -9,14 +9,14 @@ import {
   PlayIcon,
   Tally5Icon,
 } from 'lucide-react';
-import { Alert } from '@/components/alert';
-import { Button } from '@/components/button';
-import { Card } from '@/components/card';
-import { Tooltip } from '@/components/tooltip';
-import { GameCard } from '@/features/game-card';
-import { GameScoreCard } from '@/features/game-score-card';
-import { FavouriteButton } from '@/features/reactions/favourite-button';
-import { RatingButtonRow } from '@/features/reactions/rating-button-row';
+import { GameCard } from '@/components/game-card';
+import { GameScoreCard } from '@/components/game-score-card';
+import { FavouriteButton } from '@/components/reactions/favourite-button';
+import { RatingButtonRow } from '@/components/reactions/rating-button-row';
+import { Alert } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Tooltip } from '@/components/ui/tooltip';
 import { compactNumber, formatDate } from '@/utilities/formatters';
 
 interface ContentProps {
