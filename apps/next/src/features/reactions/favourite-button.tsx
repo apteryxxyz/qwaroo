@@ -40,7 +40,6 @@ export function FavouriteButton(p: FavouriteButtonProps) {
     <Tooltip>
       <Tooltip.Trigger asChild>
         <Button
-          className="inline-flex"
           onClick={() => {
             if (!p.activity) return mustBeLoggedIn();
             if (chooseFavourite.isLoading) return;

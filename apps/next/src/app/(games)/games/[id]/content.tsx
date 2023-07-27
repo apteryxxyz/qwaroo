@@ -2,14 +2,22 @@
 
 import type { Activity, Game } from '@qwaroo/database';
 import Link from 'next/link';
-import { CircleSlashIcon, PlayIcon, Tally5Icon } from 'lucide-react';
+import {
+  AtSignIcon,
+  CalendarDaysIcon,
+  CircleSlashIcon,
+  PlayIcon,
+  Tally5Icon,
+} from 'lucide-react';
 import { Alert } from '@/components/alert';
 import { Button } from '@/components/button';
 import { Card } from '@/components/card';
+import { Tooltip } from '@/components/tooltip';
 import { GameCard } from '@/features/game-card';
 import { GameScoreCard } from '@/features/game-score-card';
 import { FavouriteButton } from '@/features/reactions/favourite-button';
 import { RatingButtonRow } from '@/features/reactions/rating-button-row';
+import { compactNumber, formatDate } from '@/utilities/formatters';
 
 interface ContentProps {
   game: Game.Entity<'creator'>;
@@ -40,18 +48,58 @@ export function Content(p: ContentProps) {
               <p>{p.game.longDescription}</p>
             </Card.Header>
 
-            <Card.Footer className="flex-wrap justify-end gap-2">
-              <RatingButtonRow game={p.game} activity={p.userActivity} />
+            <Card.Content className="flex flex-col items-center justify-end gap-2 xl:flex-row">
+              <div className="ml-auto flex gap-2 xl:ml-0">
+                <Tooltip>
+                  <Tooltip.Trigger asChild>
+                    <div>
+                      <PlayIcon className="mr-1 inline h-5 w-5" />
+                      <span className="font-bold">
+                        {compactNumber(p.game.score.totalPlays)}
+                      </span>
+                    </div>
+                  </Tooltip.Trigger>
+                  <Tooltip.Content>Total plays</Tooltip.Content>
+                </Tooltip>
 
-              <FavouriteButton game={p.game} activity={p.userActivity} />
+                <Tooltip>
+                  <Tooltip.Trigger asChild>
+                    <div>
+                      <AtSignIcon className="mr-1 inline h-5 w-5" />
+                      <span className="font-bold">
+                        {p.game.creator.displayName}
+                      </span>
+                    </div>
+                  </Tooltip.Trigger>
+                  <Tooltip.Content>Created by</Tooltip.Content>
+                </Tooltip>
 
-              <Link href={`/games/${p.game.id}/play`}>
-                <Button>
-                  <PlayIcon className="mr-1 h-5 w-5" />
-                  Play
-                </Button>
-              </Link>
-            </Card.Footer>
+                <Tooltip>
+                  <Tooltip.Trigger asChild>
+                    <div>
+                      <CalendarDaysIcon className="mr-1 inline h-5 w-5" />
+                      <span className="font-bold">
+                        {formatDate(p.game.createdAt)}
+                      </span>
+                    </div>
+                  </Tooltip.Trigger>
+                  <Tooltip.Content>Created at</Tooltip.Content>
+                </Tooltip>
+              </div>
+
+              <div className="ml-auto flex gap-2">
+                <RatingButtonRow game={p.game} activity={p.userActivity} />
+
+                <FavouriteButton game={p.game} activity={p.userActivity} />
+
+                <Link href={`/games/${p.game.id}/play`}>
+                  <Button>
+                    <PlayIcon className="mr-1 h-5 w-5" />
+                    Play
+                  </Button>
+                </Link>
+              </div>
+            </Card.Content>
           </Card>
 
           <section className="space-y-6">
@@ -90,7 +138,7 @@ export function Content(p: ContentProps) {
 
                 <Alert.Title>No scores yet</Alert.Title>
                 <Alert.Description>
-                  But you could change that by being the first to play!
+                  But you could change that by being the first!
                 </Alert.Description>
               </Alert>
             )}
@@ -99,7 +147,7 @@ export function Content(p: ContentProps) {
 
         <section className="col-span-1">
           <h2 className="pb-6 text-lg font-bold leading-none tracking-tight">
-            You Might Like
+            Similar Games
           </h2>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-1">

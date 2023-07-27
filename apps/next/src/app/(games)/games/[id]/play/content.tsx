@@ -4,7 +4,6 @@ import type { Game } from '@qwaroo/database';
 import type { Source } from '@qwaroo/sources';
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/button';
 import { CountUp } from '@/components/count-up';
@@ -23,7 +22,6 @@ interface ContentProps {
 }
 
 export default function Content(p: ContentProps) {
-  const router = useRouter();
   const makeGuess = trpc.play.makeGuess.useMutation();
   const [maximise, minimise] = useMaximise();
 
@@ -101,7 +99,7 @@ export default function Content(p: ContentProps) {
         <p className="text-xl">{text}</p>
 
         <div className="flex gap-4">
-          <Button onClick={() => router.refresh()}>Play Again</Button>
+          <Button onClick={() => location.reload()}>Play Again</Button>
           <Link href="/games">
             <Button>Browse Games</Button>
           </Link>
@@ -166,12 +164,6 @@ export default function Content(p: ContentProps) {
             </p>
           )}
         </div>
-
-        {/* <span>
-          Score <span className="font-bold">{score}</span>
-          <br />
-          High Score <span className="font-bold">{highScore}</span>
-        </span> */}
       </div>
     </>
   );
