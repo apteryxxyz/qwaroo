@@ -25,57 +25,66 @@ export async function GET(request: NextRequest) {
 
   const gameId = request.nextUrl.pathname.split('/').at(-2)!;
 
-  const caller = appRouter.createCaller({});
-  const game = await caller.games.getGame(gameId);
+  try {
+    const caller = appRouter.createCaller({});
+    const game = await caller.games.getGame(gameId);
 
-  return new ImageResponse(
-    (
-      <Card>
-        <Branding />
+    const { likeCount, dislikeCount } = game.engagement;
+    const likePercentage = (likeCount / (dislikeCount + likeCount)) * 100;
 
-        <div
-          style={{ marginTop: 'auto', fontSize: '80px', fontWeight: 'bold' }}
-        >
-          {game.title}
-        </div>
-        <div style={{ marginBottom: 'auto', fontSize: '40px' }}>
-          {game.shortDescription}
-        </div>
+    return new ImageResponse(
+      (
+        <Card>
+          <Branding />
 
-        <BadgeRow>
-          <Badge text={game.creator.displayName}>
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"></path>
-          </Badge>
+          <div
+            style={{ marginTop: 'auto', fontSize: '80px', fontWeight: 'bold' }}
+          >
+            {game.title}
+          </div>
+          <div style={{ marginBottom: 'auto', fontSize: '40px' }}>
+            {game.shortDescription}
+          </div>
 
-          <Badge text={compactNumber(game.score.totalPlays)}>
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </Badge>
+          <BadgeRow>
+            <Badge text={game.creator.displayName}>
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"></path>
+            </Badge>
 
-          <Badge text={'100%'}>
-            <path d="M7 10v12"></path>
-            <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"></path>
-          </Badge>
-        </BadgeRow>
-      </Card>
-    ),
-    {
-      width: 1200,
-      height: 630,
-      fonts: [
-        {
-          name: 'Inter',
-          data: regularFontData,
-          weight: 400,
-        },
-        {
-          name: 'Inter',
-          data: boldFontData,
-          weight: 700,
-        },
-      ],
-    },
-  );
+            <Badge text={compactNumber(game.score.totalPlays)}>
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </Badge>
+
+            {!Number.isNaN(likePercentage) && (
+              <Badge text={likePercentage.toString()}>
+                <path d="M7 10v12"></path>
+                <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"></path>
+              </Badge>
+            )}
+          </BadgeRow>
+        </Card>
+      ),
+      {
+        width: 1200,
+        height: 630,
+        fonts: [
+          {
+            name: 'Inter',
+            data: regularFontData,
+            weight: 400,
+          },
+          {
+            name: 'Inter',
+            data: boldFontData,
+            weight: 700,
+          },
+        ],
+      },
+    );
+  } catch (error) {
+    return new Response(`Failed to generate image`, { status: 500 });
+  }
 
   /*
   return new ImageResponse(
