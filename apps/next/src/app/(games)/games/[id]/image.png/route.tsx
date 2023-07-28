@@ -14,8 +14,8 @@ function loadFont(name: string) {
   return readFile(join(fileURLToPath(import.meta.url), path));
 }
 
-const regularFont = loadFont('Inter-Regular');
-const boldFont = loadFont('Inter-Bold');
+const regularFont = loadFont('inter-regular');
+const boldFont = loadFont('inter-bold');
 
 export async function GET(request: NextRequest) {
   const [regularFontData, boldFontData] = await Promise.all([
