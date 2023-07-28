@@ -46,19 +46,20 @@ export class Bucket {
 
   /** Read a file from the bucket. */
   public async readFile(ref: File.Document | string): Promise<Buffer | null> {
-    const file = typeof ref === 'string' ? await File.Model.findById(ref) : ref;
-    if (!file) return null;
+    const hash = typeof ref === 'string' ? ref : ref.hash;
+    if (!hash) return null;
 
-    const location = path.join(this.directory, file.hash);
+    const location = path.join(this.directory, hash);
     return fs
       .access(location)
-      .then(async () => fs.readFile(location))
+      .then(() => fs.readFile(location))
       .catch(() => null);
   }
 
   /** Delete a file from the bucket. */
   public async deleteFile(ref: File.Document | string) {
-    const file = typeof ref === 'string' ? await File.Model.findById(ref) : ref;
+    const file =
+      typeof ref === 'string' ? await File.Model.findOne({ hash: ref }) : ref;
     if (!file) return null;
 
     await file.deleteOne();
@@ -66,7 +67,7 @@ export class Bucket {
     const location = path.join(this.directory, file.hash);
     await fs
       .access(location)
-      .then(async () => fs.unlink(location))
+      .then(() => fs.unlink(location))
       .catch(() => null);
 
     return null;

@@ -36,7 +36,7 @@ export function prepareWebSocketServer(
     // Handle upgrade ourselves so we can ignore /_next requests (hot reload)
     const url = new URL(request.url ?? '', 'http://next-ws');
     const pathname = url.pathname;
-    if (pathname.startsWith('/_next')) return;
+    if (pathname !== '/api/trpc') return;
 
     wsServer.handleUpgrade(request, socket, head, (ws) => {
       wsServer.emit('connection', ws, request);

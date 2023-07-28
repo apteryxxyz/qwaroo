@@ -5,6 +5,8 @@ import { authOptions } from '@/services/auth';
 import type { PageProps } from '@/types';
 import Content from './content';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page(p: PageProps<'id'>) {
   const id = p.params.id;
   const session = await getServerSession(authOptions);

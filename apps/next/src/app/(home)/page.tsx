@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
@@ -6,7 +7,7 @@ import { Button } from '@/components/ui/button';
 export const metadata = {
   description:
     'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
-};
+} satisfies Metadata;
 
 export default function Page() {
   return (

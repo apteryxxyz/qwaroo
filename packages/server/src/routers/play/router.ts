@@ -8,7 +8,8 @@ import { redis } from '@/services/redis';
 import { createTRPCRouter, publicProcedure } from '@/services/trpc';
 import type { State } from './utilities';
 import {
-  getGameItems,
+  getGameItemsByHash,
+  getGameItemsById,
   omitValue,
   saveScore,
   shuffleWithSeed,
@@ -29,7 +30,7 @@ export const playRouter = createTRPCRouter({
       // Ref is a unique identifier for the game session
       const ref = uuid();
 
-      const items = await getGameItems(gameId);
+      const [objectHash, items] = await getGameItemsById(gameId);
       const shuffledItems = shuffleWithSeed(items, ref);
       const [previousItem, currentItem, ...nextItems] = //
         shuffledItems.slice(0, 7);
@@ -38,6 +39,7 @@ export const playRouter = createTRPCRouter({
         `play:${ref}`,
         JSON.stringify({
           gameId: gameId,
+          objectHash,
           startTime: Date.now(),
           itemValues: [previousItem, currentItem, ...nextItems] //
             .map(({ value }) => value),
@@ -110,7 +112,7 @@ export const playRouter = createTRPCRouter({
           message: 'Play state was not found',
         });
 
-      const { gameId, itemValues, stepsTaken } = state;
+      const { itemValues, stepsTaken } = state;
 
       const previousValue = itemValues.at(stepsTaken.length) ?? 0;
       const currentValue = itemValues.at(stepsTaken.length + 1) ?? 0;
@@ -123,8 +125,7 @@ export const playRouter = createTRPCRouter({
         if (stepsTaken.length + 1 === itemValues.length - 1) {
           // We only add additional items every 5th step
           // Prevents making too many requests to the database
-          // TODO: Can be improved by storing the file hash in the state
-          const items = await getGameItems(gameId);
+          const items = await getGameItemsByHash(state.objectHash);
           const shuffledItems = shuffleWithSeed(items, ref);
           additionalItems = shuffledItems.slice(0, 5);
         }

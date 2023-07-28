@@ -3,6 +3,7 @@ import { Game } from '@qwaroo/database';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import { createTRPCRouter, publicProcedure } from '@/services/trpc';
+import { getGameItemsById } from '../play/utilities';
 
 export const gamesRouter = createTRPCRouter({
   /** Get a game by its ID. */
@@ -16,6 +17,13 @@ export const gamesRouter = createTRPCRouter({
         code: 'NOT_FOUND',
         message: 'Game was not found',
       });
+    }),
+
+  getTwoGameItems: publicProcedure
+    .input(z.string().regex(/^[0-9a-fA-F]{24}$/))
+    .query(async ({ input: gameId }) => {
+      const [, items] = await getGameItemsById(gameId);
+      return items.slice(0, 2);
     }),
 
   /** From a game, get similar ones to it. */

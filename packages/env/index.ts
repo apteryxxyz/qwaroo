@@ -3,8 +3,8 @@ import { z } from 'zod';
 const envSchema = z.object({
   NODE_ENV: z.union([z.literal('development'), z.literal('production')]),
   PORT: z.string().regex(/^\d+$/),
-  EXTERNAL_URL: z.string().min(1),
-  NEXT_PUBLIC_EXTERNAL_URL: z.string().min(1),
+  APP_URL: z.string().min(1),
+  NEXT_PUBLIC_APP_URL: z.string().min(1),
 
   MONGODB_ATLAS_URL: z.string().min(1),
   UPSTASH_REDIS_REST_URL: z.string().url(),

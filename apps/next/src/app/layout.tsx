@@ -1,24 +1,44 @@
 import { Inter } from 'next/font/google';
-import { Toaster } from '@/components/ui/toaster';
 import { Backdrop } from '@/components/backdrop';
-import { DesktopNavigationBar } from '@/components/header/desktop-navigation-bar';
-import { MobileNavigationBar } from '@/components/header/mobile-navigation-bar';
+import { DesktopNavigationBar } from '@/components/desktop-navigation-bar';
+import { MobileNavigationBar } from '@/components/mobile-navigation-bar';
 import { HTMLProviders, MainProviders } from '@/components/providers';
+import { Toaster } from '@/components/ui/toaster';
 import type { LayoutProps } from '@/types';
 import '@/styles/reset.css';
 import '@qwaroo/tailwind-config/styles.css';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { allPosts } from 'contentlayer/generated';
 import { Footer } from '@/components/footer';
+import { absoluteUrl } from '@/utilities/url';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
+  metadataBase: new URL(absoluteUrl('/')),
+  applicationName: 'Qwaroo',
   title: {
     template: '%s on Qwaroo',
     default: 'Qwaroo',
   },
-};
+  openGraph: {
+    type: 'website',
+    siteName: 'Qwaroo',
+    locale: 'en',
+    title: 'Qwaroo',
+    description:
+      'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
+    url: absoluteUrl('/'),
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Qwaroo',
+    description:
+      'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
+    creator: '@apteryxxyz',
+  },
+} satisfies Metadata;
 
 export default function Layout(p: LayoutProps) {
   const post = allPosts.at(-1);

@@ -19,9 +19,20 @@ export function shuffleWithSeed<TItem>(array: TItem[], seed: string): TItem[] {
 }
 
 /** Get the game items from the bucket. */
-export async function getGameItems(id: string) {
+export async function getGameItemsById(id: string) {
   const file = await File.Model.findOne({ metadata: { gameId: id } });
   const object = file && (await bucket.readFile(file));
+  if (!object)
+    throw new TRPCError({
+      code: 'NOT_FOUND',
+      message: 'Game items were not found',
+    });
+  return [file.hash, JSON.parse(object.toString()) as Source.Item[]] as const;
+}
+
+/** Get the game items from the bucket. */
+export async function getGameItemsByHash(hash: string) {
+  const object = await bucket.readFile(hash);
   if (!object)
     throw new TRPCError({
       code: 'NOT_FOUND',
@@ -41,6 +52,7 @@ export interface State {
   startTime: number;
   itemValues: number[];
   stepsTaken: number[];
+  objectHash: string;
 }
 
 export async function saveScore(

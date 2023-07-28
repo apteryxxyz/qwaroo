@@ -9,10 +9,10 @@ import {
   PlayIcon,
   Tally5Icon,
 } from 'lucide-react';
+import { FavouriteButton } from '@/components/favourite-button';
 import { GameCard } from '@/components/game-card';
 import { GameScoreCard } from '@/components/game-score-card';
-import { FavouriteButton } from '@/components/reactions/favourite-button';
-import { RatingButtonRow } from '@/components/reactions/rating-button-row';
+import { RatingButtonRow } from '@/components/rating-button-row';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';

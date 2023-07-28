@@ -11,6 +11,10 @@ function getPostFromParams(p: PageProps<'slug'>) {
   return post ?? null;
 }
 
+export function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post.slug }));
+}
+
 export default function Page(p: PageProps<'slug'>) {
   const post = getPostFromParams(p);
   if (!post) notFound();

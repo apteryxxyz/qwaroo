@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { MapIcon } from 'lucide-react';
-import { QwarooIcon } from '@/components/icons/qwaroo-icon';
 import { Button } from '@/components/ui/button';
 import { Sheet } from '@/components/ui/sheet';
 import { ProfileButton } from './profile-button';
+import { QwarooIcon } from './qwaroo-icon';
 import { ThemeToggle } from './theme-toggle';
 
 export function MobileNavigationBar() {
@@ -18,7 +18,7 @@ export function MobileNavigationBar() {
         href="/"
         className="inline-flex items-center text-xl font-bold text-primary"
       >
-        <QwarooIcon className="mr-1 inline h-8 w-8 fill-primary" />
+        <QwarooIcon />
         Qwaroo
       </Link>
 
@@ -36,7 +36,7 @@ export function MobileNavigationBar() {
               href="/"
               className="inline-flex items-center text-xl font-bold text-primary"
             >
-              <QwarooIcon className="mr-1 inline h-8 w-8 fill-primary" />
+              <QwarooIcon />
               Qwaroo
             </Link>
           </Sheet.Header>

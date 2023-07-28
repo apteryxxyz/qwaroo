@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { QwarooIcon } from '@/components/icons/qwaroo-icon';
 import { cn } from '@/utilities/styling';
 import { ProfileButton } from './profile-button';
+import { QwarooIcon } from './qwaroo-icon';
 import { ThemeToggle } from './theme-toggle';
 
 export function DesktopNavigationBar() {
@@ -16,7 +16,7 @@ export function DesktopNavigationBar() {
         href="/"
         className="inline-flex items-center text-xl font-bold text-primary"
       >
-        <QwarooIcon className="mr-1 inline h-8 w-8 fill-primary" />
+        <QwarooIcon />
         Qwaroo
       </Link>
 

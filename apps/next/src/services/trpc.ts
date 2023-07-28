@@ -7,13 +7,14 @@ import {
 } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';
 import SuperJSON from 'superjson';
+import { absoluteUrl } from '@/utilities/url';
 
 function getEndingLink() {
   if (typeof window === 'undefined')
     return httpBatchLink<AppRouter>({ url: `/api/trpc` });
-  const client = createWSClient({
-    url: process.env.NEXT_PUBLIC_EXTERNAL_URL.replace('http', 'ws'),
-  });
+
+  const url = absoluteUrl('/api/trpc').replace('http', 'ws');
+  const client = createWSClient({ url });
   return wsLink<AppRouter>({ client });
 }
 
