@@ -34,11 +34,11 @@ export async function GET(request: NextRequest) {
         <Branding />
 
         <div
-          style={{ marginTop: 'auto', fontSize: '64px', fontWeight: 'bold' }}
+          style={{ marginTop: 'auto', fontSize: '80px', fontWeight: 'bold' }}
         >
           {game.title}
         </div>
-        <div style={{ marginBottom: 'auto', fontSize: '32px' }}>
+        <div style={{ marginBottom: 'auto', fontSize: '40px' }}>
           {game.shortDescription}
         </div>
 

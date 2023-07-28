@@ -10,6 +10,8 @@ export function Card(p: PropsWithChildren) {
         flexDirection: 'column',
         justifyContent: 'center',
         padding: '50px',
+        background: 'linear-gradient(90deg, #000 0%, #111 100%)',
+        color: 'white',
       }}
     >
       {p.children}

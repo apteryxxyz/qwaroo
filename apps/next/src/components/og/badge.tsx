@@ -6,7 +6,7 @@ export function BadgeRow(p: PropsWithChildren) {
       style={{
         display: 'flex',
         marginTop: 'auto',
-        fontSize: '24px',
+        fontSize: '32px',
         gap: '20px',
       }}
     >
