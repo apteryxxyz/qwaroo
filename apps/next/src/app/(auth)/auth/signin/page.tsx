@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { AlertTriangleIcon } from 'lucide-react';
 import { getServerSession } from 'next-auth';
@@ -133,6 +134,20 @@ export default async function Page({
             )}
           </div>
         </Card.Content>
+
+        <Card.Footer>
+          <p className="text-sm text-foreground/50">
+            By signing in, you agree to our{' '}
+            <Link href="/policies/privacy-policy" className="underline">
+              Privacy Policy
+            </Link>{' '}
+            and{' '}
+            <Link href="/policies/terms-of-service" className="underline">
+              Terms of Service
+            </Link>
+            .
+          </p>
+        </Card.Footer>
       </Card>
     </section>
   );

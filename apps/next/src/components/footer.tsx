@@ -1,6 +1,8 @@
+import Link from 'next/link';
+
 export function Footer() {
   return (
-    <footer className="flex flex-shrink-0 items-center justify-center pb-8 text-foreground/30">
+    <footer className="flex flex-shrink-0 flex-col items-center justify-center pb-8 text-foreground/30">
       <p>
         Made by{' '}
         <a
@@ -12,6 +14,14 @@ export function Footer() {
           Apteryx
         </a>{' '}
         in New Zealand!
+      </p>
+
+      <p>
+        <Link href="/policies/privacy-policy">Privacy Policy</Link>
+
+        <span className="mx-2">|</span>
+
+        <Link href="/policies/terms-of-service">Terms of Service</Link>
       </p>
     </footer>
   );

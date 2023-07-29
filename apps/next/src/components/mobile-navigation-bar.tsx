@@ -44,9 +44,7 @@ export function MobileNavigationBar() {
           <nav className="my-6 flex flex-col gap-6">
             <Link
               href="/games"
-              onClick={() => {
-                setOpen(false);
-              }}
+              onClick={() => setOpen(false)}
               className="text-xl text-foreground"
             >
               Games
@@ -54,12 +52,18 @@ export function MobileNavigationBar() {
 
             <Link
               href="/games/create"
-              onClick={() => {
-                setOpen(false);
-              }}
+              onClick={() => setOpen(false)}
               className="text-xl text-foreground"
             >
               Create
+            </Link>
+
+            <Link
+              href="/posts"
+              onClick={() => setOpen(false)}
+              className="text-xl text-foreground"
+            >
+              Blog
             </Link>
           </nav>
 

@@ -15,6 +15,6 @@ export function proxyImageUrl(
   return proxifiedUrl.toString();
 }
 
-export function absoluteUrl(url: string) {
+export function absoluteUrl(url = '/') {
   return new URL(url, process.env.NEXT_PUBLIC_APP_URL).toString();
 }

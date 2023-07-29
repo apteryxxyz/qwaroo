@@ -122,12 +122,14 @@ export const playRouter = createTRPCRouter({
 
       if (isCorrect) {
         let additionalItems: Source.Item[] = [];
-        if (stepsTaken.length + 1 === itemValues.length - 1) {
-          // We only add additional items every 5th step
+        if (stepsTaken.length + 1 === itemValues.length - 2) {
+          // We only add additional items every 5thish step
           // Prevents making too many requests to the database
           const items = await getGameItemsByHash(state.objectHash);
           const shuffledItems = shuffleWithSeed(items, ref);
-          additionalItems = shuffledItems.slice(0, 5);
+
+          const start = stepsTaken.length + 1;
+          additionalItems = shuffledItems.slice(start, start + 5);
         }
 
         // Update the game state

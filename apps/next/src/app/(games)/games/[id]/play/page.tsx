@@ -7,7 +7,7 @@ import Content from './content';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Page(p: PageProps<'id'>) {
+export default async function Page(p: PageProps<['id']>) {
   const id = p.params.id;
   const session = await getServerSession(authOptions);
 

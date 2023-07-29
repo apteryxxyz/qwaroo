@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import type { PageProps } from '@/types';
 import Content from './content';
 
-export default async function Page(p: PageProps<undefined, 'source'>) {
+export default async function Page(p: PageProps<undefined, ['source']>) {
   const caller = appRouter.createCaller({});
   const sources = await caller.create.getSources();
 

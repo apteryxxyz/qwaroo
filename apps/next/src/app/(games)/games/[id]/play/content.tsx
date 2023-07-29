@@ -154,12 +154,12 @@ export default function Content(p: ContentProps) {
           </span>
         </motion.div>
 
-        <div className="flex-end absolute right-5 top-5 flex flex-col text-2xl">
-          <p>
+        <div className="flex-end absolute right-5 top-5 flex flex-col text-2xl text-white">
+          <p className="drop-shadow-xl">
             Score <span className="font-bold">{score}</span>
           </p>
           {highScore > 0 && (
-            <p>
+            <p className="drop-shadow-xl">
               High Score <span className="font-bold">{highScore}</span>
             </p>
           )}

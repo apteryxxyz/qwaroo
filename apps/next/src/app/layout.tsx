@@ -22,6 +22,7 @@ export const metadata = {
     template: '%s on Qwaroo',
     default: 'Qwaroo',
   },
+
   openGraph: {
     type: 'website',
     siteName: 'Qwaroo',
@@ -29,14 +30,22 @@ export const metadata = {
     title: 'Qwaroo',
     description:
       'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
-    url: absoluteUrl('/'),
+    images: [
+      {
+        url: absoluteUrl('/images/og.png'),
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
+
   twitter: {
     card: 'summary',
     title: 'Qwaroo',
     description:
       'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
     creator: '@apteryxxyz',
+    images: [absoluteUrl('/images/og.png')],
   },
 } satisfies Metadata;
 

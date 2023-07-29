@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2782.47 2752.49" style="border-radius:99999px">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2782.47 2752.49">
     <defs>
         <style>
             path {
-                fill: #fff;
+                fill: #3a7cf8;
             }
         </style>
     </defs>

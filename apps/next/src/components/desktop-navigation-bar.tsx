@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/utilities/styling';
+import { DiscordIcon } from './discord-icon';
 import { ProfileButton } from './profile-button';
 import { QwarooIcon } from './qwaroo-icon';
 import { ThemeToggle } from './theme-toggle';
@@ -32,6 +33,7 @@ export function DesktopNavigationBar() {
         >
           Games
         </Link>
+
         <Link
           href="/games/create"
           className={cn(
@@ -43,11 +45,25 @@ export function DesktopNavigationBar() {
         >
           Create
         </Link>
+
+        <Link
+          href="/posts"
+          className={cn(
+            'transition-colors hover:text-foreground/80',
+            pathname === '/posts' ? 'text-foreground' : 'text-foreground/60',
+          )}
+        >
+          Blog
+        </Link>
       </nav>
 
       <span className="mx-8 h-7 w-[1px] rotate-[20deg] bg-foreground" />
 
       <div className="m-4 inline-flex items-center space-x-4">
+        <Link href="/discord">
+          <DiscordIcon className="h-5 w-5" />
+        </Link>
+
         <ThemeToggle />
       </div>
 

@@ -15,5 +15,3 @@ export default async function Page() {
   const { total, games } = await caller.games.getGames({});
   return <Content total={total} games={games} />;
 }
-
-Reflect.set(Page, 'fullScreen', true);

@@ -5,7 +5,7 @@ import { authOptions } from '@/services/auth';
 import type { PageProps } from '@/types';
 import { Content } from './content';
 
-export default async function Page(p: PageProps<'id'>) {
+export default async function Page(p: PageProps<['id']>) {
   const gameId = p.params.id;
 
   const session = await getServerSession(authOptions);
