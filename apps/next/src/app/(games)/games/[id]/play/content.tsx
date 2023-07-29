@@ -2,13 +2,12 @@
 
 import type { Game } from '@qwaroo/database';
 import type { Source } from '@qwaroo/sources';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ItemBlock } from '@/components/item-block';
 import { Button } from '@/components/ui/button';
 import { CountUp } from '@/components/ui/count-up';
-import { useMaximise } from '@/hooks/use-maximise';
 import { trpc } from '@/services/trpc';
 import { cn } from '@/utilities/styling';
 
@@ -23,7 +22,6 @@ interface ContentProps {
 
 export default function Content(p: ContentProps) {
   const makeGuess = trpc.play.makeGuess.useMutation();
-  const [maximise, minimise] = useMaximise();
 
   const [status, setStatus] = useState(Status.Preparing);
   const [guessStatus, setGuessStatus] = useState(GuessStatus.Neutral);
@@ -36,15 +34,6 @@ export default function Content(p: ContentProps) {
 
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState<number>(p.highScore ?? 0);
-
-  useEffect(() => {
-    // Hide the header and remove page padding, aka maximise the screen
-    maximise();
-    setStatus(Status.Waiting);
-    // Minimise the screen again when the component unmounts
-    return () => minimise();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const makeGuessHandler = useCallback(
     async (direction: 1 | -1) => {
@@ -85,8 +74,6 @@ export default function Content(p: ContentProps) {
   );
 
   if (status === Status.Ended) {
-    minimise();
-
     let text;
     if (score <= 5) text = 'You can do better, I believe in you!';
     else if (score <= 10) text = 'Not bad, not bad at all.';
@@ -100,6 +87,9 @@ export default function Content(p: ContentProps) {
 
         <div className="flex gap-4">
           <Button onClick={() => location.reload()}>Play Again</Button>
+          <Link href={`/games/${p.game.id}`}>
+            <Button>View Game</Button>
+          </Link>
           <Link href="/games">
             <Button>Browse Games</Button>
           </Link>
@@ -109,7 +99,7 @@ export default function Content(p: ContentProps) {
   }
 
   return (
-    <>
+    <div className="absolute inset-0 z-50 bg-background">
       <div
         className={cn(
           'fixed flex h-[150vh] w-screen flex-col overflow-hidden text-white xl:h-screen xl:w-[150vw] xl:flex-row',
@@ -165,7 +155,7 @@ export default function Content(p: ContentProps) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

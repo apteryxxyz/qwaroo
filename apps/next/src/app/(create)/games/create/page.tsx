@@ -29,7 +29,7 @@ export default async function Page() {
                   src={source.iconUrl}
                   width={75}
                   height={75}
-                  alt=" " // TODO
+                  alt={source.name}
                   className="aspect-square object-contain"
                 />
 
