@@ -15,10 +15,13 @@ export function DesktopNavigationBar() {
     <div className="container hidden h-14 items-center md:flex">
       <Link
         href="/"
-        className="inline-flex items-center text-xl font-bold text-primary"
+        className="relative inline-flex items-center text-xl font-bold text-primary"
       >
         <QwarooIcon />
         Qwaroo
+        <span className="absolute -top-1.5 right-0 text-sm uppercase">
+          Beta
+        </span>
       </Link>
 
       <span className="mx-8 h-7 w-[1px] rotate-[20deg] bg-foreground" />
@@ -47,10 +50,10 @@ export function DesktopNavigationBar() {
         </Link>
 
         <Link
-          href="/posts"
+          href="/blog"
           className={cn(
             'transition-colors hover:text-foreground/80',
-            pathname === '/posts' ? 'text-foreground' : 'text-foreground/60',
+            pathname === '/blog' ? 'text-foreground' : 'text-foreground/60',
           )}
         >
           Blog

@@ -6,8 +6,13 @@ import { Button } from '@/components/ui/button';
 export default function Page() {
   return (
     <section className="grid min-h-[75dvh] lg:grid-cols-2">
-      <div className="col-span-1 flex flex-col justify-center gap-2">
-        <h1 className="text-7xl font-bold text-primary">Qwaroo</h1>
+      <div className="col-span-1 flex flex-col justify-center gap-2 [&>*]:w-fit">
+        <h1 className="relative text-7xl font-bold text-primary">
+          Qwaroo
+          <span className="absolute -top-1 right-1 text-lg uppercase">
+            Beta
+          </span>
+        </h1>
         <p className="text-lg">
           <Balancer>
             Higher or Lower on a whole new level, play one of the many games we
@@ -15,16 +20,16 @@ export default function Page() {
           </Balancer>
         </p>
 
-        <div className="space-y-2 sm:space-x-2 sm:space-y-0">
-          <Link href="/games" className="block sm:inline">
+        <div className="flex flex-wrap gap-2">
+          <Link href="/games">
             <Button>Browse games</Button>
           </Link>
 
-          <Link href="/posts" className="block sm:inline">
+          <Link href="/blog">
             <Button variant="outline">Blog posts</Button>
           </Link>
 
-          <Link href="/" className="block sm:inline">
+          <Link href="/">
             <Button variant="outline">Donate</Button>
           </Link>
         </div>
