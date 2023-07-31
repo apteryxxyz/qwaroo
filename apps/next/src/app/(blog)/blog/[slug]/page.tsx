@@ -41,7 +41,7 @@ export function generateMetadata(p: PageProps<['slug']>) {
       title: post.title,
       description: post.description,
       locale: 'en',
-      url: absoluteUrl(`/posts/${post.slug}`),
+      url: absoluteUrl(`/blog/${post.slug}`),
       images: [
         {
           url: imageUrl.toString(),

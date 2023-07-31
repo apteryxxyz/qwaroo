@@ -40,7 +40,7 @@ export const metadata = {
   },
 
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Qwaroo',
     description:
       'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
@@ -63,7 +63,7 @@ export default function Layout(p: LayoutProps) {
               {post?.bannerText && (
                 <p className="flex w-screen items-center justify-center bg-brand p-1 text-center text-white">
                   {post.bannerText}&nbsp;
-                  <Link href={`/posts/${post.slug}`} className="underline">
+                  <Link href={`/blog/${post.slug}`} className="underline">
                     Read more →
                   </Link>
                 </p>

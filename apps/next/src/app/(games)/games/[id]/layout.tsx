@@ -10,15 +10,10 @@ export async function generateMetadata(p: PageProps<['id']>) {
 
   if (!game) return { title: 'Game not found' };
 
-  const { likeCount, dislikeCount } = game.engagement;
-  const likePercentage = (likeCount / (dislikeCount + likeCount)) * 100;
   const imageUrl = makeImageUrl({
     type: 'game',
     title: game.title,
     description: game.shortDescription,
-    creator: game.creator.displayName,
-    plays: game.score.totalPlays,
-    likes: Number.isFinite(likePercentage) ? likePercentage : undefined,
   });
 
   return {
