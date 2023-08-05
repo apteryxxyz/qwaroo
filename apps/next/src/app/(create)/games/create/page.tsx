@@ -2,6 +2,7 @@ import { appRouter } from '@qwaroo/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
+import { proxyImageUrl } from '@/utilities/url';
 
 export default async function Page() {
   const caller = appRouter.createCaller({});
@@ -26,7 +27,7 @@ export default async function Page() {
             <Card>
               <Card.Header className="flex-row items-center gap-6">
                 <Image
-                  src={source.iconUrl}
+                  src={proxyImageUrl(source.iconUrl, 75)}
                   width={75}
                   height={75}
                   alt={source.name}
