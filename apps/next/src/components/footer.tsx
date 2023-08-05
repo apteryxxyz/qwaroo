@@ -3,7 +3,7 @@ import Link from 'next/link';
 export function Footer() {
   return (
     <footer className="flex flex-shrink-0 flex-col items-center justify-center pb-8 text-foreground/30">
-      <p>
+      {/* <p>
         Made by{' '}
         <a
           className="font-semibold underline"
@@ -14,7 +14,7 @@ export function Footer() {
           Apteryx
         </a>{' '}
         in New Zealand!
-      </p>
+      </p> */}
 
       <p>
         <Link href="/policies/privacy-policy">Privacy Policy</Link>

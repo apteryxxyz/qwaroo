@@ -1,7 +1,6 @@
 import { Activity, Game } from '@qwaroo/database';
 import type { Source } from '@qwaroo/sources';
 import { TRPCError } from '@trpc/server';
-import { observable } from '@trpc/server/observable';
 import { v4 as uuid } from 'uuid';
 import { z } from 'zod';
 import { redis } from '@/services/redis';
@@ -63,23 +62,6 @@ export const playRouter = createTRPCRouter({
         highScore,
       };
     }),
-
-  /** A subscription that when closed, saves the game score. */
-  beginWatcher: publicProcedure
-    .input(z.string().uuid())
-    .subscription(({ input: ref, ctx: context }) =>
-      observable(
-        () => () =>
-          (async () => {
-            const state = await redis.get<State>(`play:${ref}`);
-            // No state indicates that the game has already been saved
-            if (!state) return;
-
-            void redis.del(`play:${ref}`);
-            void saveScore(state, context.me?.id);
-          })(),
-      ),
-    ),
 
   /** Prematurely end a game. */
   endGame: publicProcedure

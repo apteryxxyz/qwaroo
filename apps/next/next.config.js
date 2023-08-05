@@ -6,8 +6,15 @@ const withBundleAnalyzer = require('@next/bundle-analyzer');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [{ protocol: 'https', hostname: '**' }],
+    domains: ['github.com', 'wsrv.nl', 'i.imgur.com'],
   },
+  redirects: [
+    {
+      source: '/discord',
+      destination: 'https://discord.com/invite/vZQbMhwsKY',
+      permanent: false,
+    },
+  ],
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if

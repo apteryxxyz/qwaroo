@@ -6,6 +6,8 @@ const envSchema = z.object({
   APP_URL: z.string().min(1),
   NEXT_PUBLIC_APP_URL: z.string().min(1),
 
+  OG_SECRET: z.string().min(1),
+
   MONGODB_ATLAS_URL: z.string().min(1),
   UPSTASH_REDIS_REST_URL: z.string().url(),
   UPSTASH_REDIS_REST_TOKEN: z.string().min(1),

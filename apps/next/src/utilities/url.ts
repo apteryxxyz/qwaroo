@@ -1,3 +1,4 @@
+/** Proxy an image through WSRV. */
 export function proxyImageUrl(
   url: string | URL,
   quality = 80,
@@ -15,6 +16,7 @@ export function proxyImageUrl(
   return proxifiedUrl.toString();
 }
 
+/** Get the absolute URL of a path. */
 export function absoluteUrl(url = '/') {
   return new URL(url, process.env.NEXT_PUBLIC_APP_URL).toString();
 }

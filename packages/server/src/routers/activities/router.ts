@@ -28,6 +28,7 @@ export const activitiesRouter = createTRPCRouter({
       return activities.map((score) => score.toJSON<Activity.Entity<'user'>>());
     }),
 
+  /** Get the score of a game for the current user. */
   getActivity: protectedProcedure
     .input(z.string().regex(/^[0-9a-fA-F]{24}$/))
     .query(async ({ input: gameId, ctx: context }) => {

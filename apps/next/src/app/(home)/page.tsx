@@ -28,18 +28,14 @@ export default function Page() {
           <Link href="/blog">
             <Button variant="outline">Blog posts</Button>
           </Link>
-
-          <Link href="/">
-            <Button variant="outline">Donate</Button>
-          </Link>
         </div>
       </div>
 
       <div className="col-span-1 flex flex-col items-center justify-center pt-10 lg:pt-0">
         <div className="relative p-6">
           <Image
-            className="absolute left-0 top-0 z-30 w-36 -rotate-6 rounded-md shadow-md md:w-52"
-            src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+            className="absolute -top-10 left-0 z-30 w-36 -rotate-6 rounded-md shadow-md md:w-52"
+            src="/images/promo-beast.png"
             width={500}
             height={500}
             alt="image"
@@ -47,15 +43,15 @@ export default function Page() {
 
           <Image
             className="relative rounded-md shadow-md"
-            src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+            src="/images/promo-beast.png"
             width={500}
             height={500}
             alt="image"
           />
 
           <Image
-            className="absolute bottom-0 right-0 z-30 w-36 rotate-6 rounded-md shadow-md md:w-48"
-            src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+            className="absolute -bottom-10 right-0 z-30 w-36 rotate-6 rounded-md shadow-md md:w-48"
+            src="/images/promo-beast.png"
             width={500}
             height={500}
             alt="image"

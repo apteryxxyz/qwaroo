@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { createTRPCRouter, protectedProcedure } from '@/services/trpc';
 
 export const reactionsRouter = createTRPCRouter({
+  /** Like or dislike a game as the current user. */
   chooseRating: protectedProcedure
     .input(
       z.object({
@@ -62,6 +63,7 @@ export const reactionsRouter = createTRPCRouter({
       return true;
     }),
 
+  /** Favourite or unfavourite a game as the current user. */
   chooseFavourite: protectedProcedure
     .input(
       z.object({

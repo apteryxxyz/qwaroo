@@ -72,6 +72,8 @@ export function AuthAdapter() {
         : undefined;
     },
 
+    // * The following methods are required by next-auth but we don't use sessions.
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     createSession(data): any {
       void data;
