@@ -1,9 +1,12 @@
-# Dependencies
 node_modules/
+dist/
+.turbo/
 
-# Build
-.nginx/
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/patches
 
-# Nohup
-nohup.out
-nohup.err
+.env
+.env.*
+!.env.template

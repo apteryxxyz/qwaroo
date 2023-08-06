@@ -1,0 +1,23 @@
+{
+  "name": "@qwaroo/eslint-config",
+  "version": "1.0.0",
+  "files": [
+    "base.js",
+    "next.js",
+    "react.js"
+  ],
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.4.12",
+    "@types/eslint": "^8.44.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-turbo": "^1.10.9",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.0.0"
+  }
+}

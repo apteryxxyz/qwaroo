@@ -1,50 +1,39 @@
 {
-    "name": "qwaroo",
-    "private": true,
-    "workspaces": ["apps/*", "bots/*", "packages/*"],
-    "scripts": {
-        "build": "lerna run build",
-        "build:packages": "lerna run build --scope @qwaroo/*",
-        "dev": "lerna run dev",
-        "format": "lerna run format",
-        "format:packages": "lerna run format --scope @qwaroo/*",
-        "graph": "nx graph",
-        "lint": "lerna run lint",
-        "lint:packages": "lerna run lint --scope @qwaroo/*",
-        "nginx": "node scripts/nginx.js",
-        "prepare": "husky install",
-        "pull": "git reset --hard HEAD && git pull",
-        "start": "pm2 startOrReload ecosystem.config.js",
-        "stop": "pm2 stop ecosystem.config.js",
-        "reload": "pm2 startOrReload ecosystem.config.js",
-        "restart": "pm2 startOrRestart ecosystem.config.js"
-    },
-    "prettier": "prettier-config-apteryx",
-    "devDependencies": {
-        "@next/eslint-plugin-next": "^13.2.4",
-        "@rushstack/eslint-patch": "^1.2.0",
-        "@typescript-eslint/eslint-plugin": "^5.57.0",
-        "@typescript-eslint/parser": "^5.57.0",
-        "dotenv": "^16.0.3",
-        "dotenv-expand": "^9.0.0",
-        "eslint": "^8.37.0",
-        "eslint-config-apteryx": "^2.0.4",
-        "eslint-config-prettier": "^8.8.0",
-        "eslint-plugin-import": "^2.27.5",
-        "eslint-plugin-jsdoc": "^39.9.1",
-        "eslint-plugin-n": "^15.7.0",
-        "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-promise": "^6.1.1",
-        "eslint-plugin-sonarjs": "^0.16.0",
-        "eslint-plugin-typescript-sort-keys": "^2.3.0",
-        "eslint-plugin-unicorn": "^45.0.2",
-        "husky": "^8.0.3",
-        "lerna": "^6.6.1",
-        "nx": "^15.9.1",
-        "prettier": "^2.8.7",
-        "prettier-config-apteryx": "^2.0.3",
-        "ts-config-apteryx": "^2.0.0",
-        "tsup": "^6.7.0",
-        "typescript": "^4.9.5"
-    }
+  "name": "qwaroo",
+  "private": true,
+  "packageManager": "yarn@3.6.1",
+  "workspaces": [
+    "packages/*",
+    "packages/config/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "prepare-for:development": "node ./scripts/prepare-environment.js development",
+    "prepare-for:staging": "node ./scripts/prepare-environment.js staging",
+    "prepare-for:reset": "node ./scripts/prepare-environment.js reset",
+    "deploy-to:staging": "npx pm2 startOrReload pm2.staging.config.js",
+    "with-env": "dotenv -e ./.env --",
+    "build": "turbo build --filter='./packages/*'",
+    "dev": "turbo dev --parallel --filter='./packages/*'",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\" --ignore-path .gitignore",
+    "lint": "turbo lint"
+  },
+  "dependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "dotenv-cli": "^7.2.1",
+    "eslint": "^8.45.0",
+    "nx": "^16.5.4",
+    "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "ts-config-apteryx": "^2.1.0",
+    "tslib": "^2.6.0",
+    "tsup": "^7.1.0",
+    "turbo": "^1.10.9",
+    "typescript": "^5.1.6"
+  },
+  "resolutions": {
+    "next@^13.4.12": "patch:next@npm%3A13.4.12#./.yarn/patches/next-npm-13.4.12-8d241ae02f.patch"
+  }
 }

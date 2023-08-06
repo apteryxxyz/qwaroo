@@ -1,6 +1,0 @@
-{
-    "extends": ["apteryx/node", "../../.eslintrc.json"],
-    "rules": {
-        "@typescript-eslint/class-literal-property-style": "off"
-    }
-}

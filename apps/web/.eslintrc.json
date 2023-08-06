@@ -1,6 +1,0 @@
-{
-    "extends": ["apteryx/next", "../../.eslintrc.json"],
-    "rules": {
-        "id-length": "off"
-    }
-}

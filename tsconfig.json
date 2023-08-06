@@ -1,4 +1,10 @@
 {
-    "extends": "ts-config-apteryx",
-    "exclude": ["node_modules", "dist/index.js"]
+  "extends": "ts-config-apteryx",
+  "exclude": [
+    "**/*.config.*",
+    "**/*.js",
+    "**/*rc.js",
+    "**/dist/",
+    "packages/config/**"
+  ]
 }
