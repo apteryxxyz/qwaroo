@@ -6,6 +6,5 @@ export const config = {
     '/games/create/properties',
     '/games/create/details',
     '/games/create/process',
-    '/profile',
   ],
 };

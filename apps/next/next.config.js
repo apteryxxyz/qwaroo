@@ -8,11 +8,10 @@ const nextConfig = {
   images: {
     domains: ['github.com', 'wsrv.nl', 'i.imgur.com'],
   },
-  redirects: [
+  rewrites: () => [
     {
       source: '/discord',
       destination: 'https://discord.com/invite/vZQbMhwsKY',
-      permanent: false,
     },
   ],
   typescript: {

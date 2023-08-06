@@ -63,9 +63,9 @@ export function DesktopNavigationBar() {
       <span className="mx-8 h-7 w-[1px] rotate-[20deg] bg-foreground" />
 
       <div className="m-4 inline-flex items-center space-x-4">
-        <Link href="/discord">
+        <a href="/discord" target="_blank">
           <DiscordIcon className="h-5 w-5" />
-        </Link>
+        </a>
 
         <ThemeToggle />
       </div>

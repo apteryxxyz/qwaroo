@@ -78,9 +78,9 @@ export function MobileNavigationBar() {
           </nav>
 
           <div className="m-4 inline-flex items-center space-x-4">
-            <Link href="/discord">
+            <a href="/discord" target="_blank">
               <DiscordIcon className="h-5 w-5" />
-            </Link>
+            </a>
 
             <ThemeToggle />
           </div>
