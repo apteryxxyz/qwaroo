@@ -58,7 +58,6 @@ export default function Page(p: PageProps<['slug']>) {
       </div>
 
       <Mdx code={policy.body.code} />
-      <hr />
     </article>
   );
 }

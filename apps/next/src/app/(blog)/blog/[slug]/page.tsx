@@ -121,7 +121,6 @@ export default function Page(p: PageProps<['slug']>) {
       )}
 
       <Mdx code={post.body.code} />
-      <hr />
     </article>
   );
 }
