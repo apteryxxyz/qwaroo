@@ -10,8 +10,10 @@
   "scripts": {
     "prepare-for:development": "node ./scripts/prepare-environment.js development",
     "prepare-for:staging": "node ./scripts/prepare-environment.js staging",
+    "prepare-for:production": "node ./scripts/prepare-environment.js production",
     "prepare-for:reset": "node ./scripts/prepare-environment.js reset",
     "deploy-to:staging": "npx pm2 startOrReload pm2.staging.config.js",
+    "deploy-to:production": "npx pm2 startOrReload pm2.production.config.js",
     "with-env": "dotenv -e ./.env --",
     "build": "turbo build --filter='./packages/*'",
     "dev": "turbo dev --parallel --filter='./packages/*'",
