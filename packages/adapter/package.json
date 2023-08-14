@@ -9,7 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@qwaroo/database": "1.0.0",
+    "@qwaroo/database": "workspace:^",
     "mongoose": "^7.4.0",
     "next-auth": "^4.22.3"
   },

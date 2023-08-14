@@ -9,11 +9,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@qwaroo/bucket": "1.0.0",
-    "@qwaroo/database": "1.0.0",
-    "@qwaroo/env": "1.0.0",
-    "@qwaroo/sources": "1.0.0",
-    "@qwaroo/validators": "1.0.0",
+    "@qwaroo/bucket": "workspace:^",
+    "@qwaroo/database": "workspace:^",
+    "@qwaroo/sources": "workspace:^",
+    "@qwaroo/validators": "workspace:^",
     "@total-typescript/ts-reset": "^0.4.2",
     "@trpc/server": "^10.35.0",
     "@upstash/redis": "^1.22.0",
