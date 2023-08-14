@@ -13,5 +13,11 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": true
+  },
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#3A86F8",
+    "titleBar.activeForeground": "#FFFFFF",
+    "activityBarBadge.background": "#3A86F8",
+    "activityBarBadge.foreground": "#FFFFFF"
   }
 }

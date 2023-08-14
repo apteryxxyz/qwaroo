@@ -22,6 +22,11 @@ export const metadata = {
     template: '%s on Qwaroo',
     default: 'Qwaroo',
   },
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#3A86F8' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 
   openGraph: {
     type: 'website',

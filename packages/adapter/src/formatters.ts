@@ -5,7 +5,7 @@ import { Types } from 'mongoose';
 import type { AdapterAccount, AdapterUser } from 'next-auth/adapters';
 import type { ProviderType } from 'next-auth/providers';
 
-/* USER */
+/** USER */
 
 export function toAuthUserFromDocumentUser(document: User.Document) {
   return {

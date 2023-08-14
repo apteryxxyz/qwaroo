@@ -21,7 +21,6 @@ export async function GET(request: NextRequest) {
     await Promise.all([regularFont, boldFont]);
 
   /*
-
   return new ImageResponse(
     (
       <Card>
@@ -121,7 +120,6 @@ export async function GET(request: NextRequest) {
       ],
     },
   );
-
   */
 
   try {
