@@ -56,7 +56,13 @@ export function generateMetadata(p: PageProps<['slug']>) {
       creator: '@apteryxxyz',
       title: post.title,
       description: post.description,
-      images: [imageUrl.toString()],
+      images: [
+        {
+          url: imageUrl.toString(),
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
   } satisfies Metadata;
 }

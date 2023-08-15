@@ -44,7 +44,13 @@ export async function generateMetadata(p: PageProps<['id']>) {
       card: 'summary_large_image',
       title: game.title,
       description: game.longDescription,
-      images: [imageUrl.toString()],
+      images: [
+        {
+          url: imageUrl.toString(),
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
   } satisfies Metadata;
 }

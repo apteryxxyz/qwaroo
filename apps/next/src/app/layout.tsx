@@ -22,6 +22,8 @@ export const metadata = {
     template: '%s on Qwaroo',
     default: 'Qwaroo',
   },
+  description:
+    'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
   colorScheme: 'light dark',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#3A86F8' },
@@ -50,7 +52,13 @@ export const metadata = {
     description:
       'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
     creator: '@apteryxxyz',
-    images: [absoluteUrl('/images/og.png')],
+    images: [
+      {
+        url: absoluteUrl('/images/og.png'),
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 } satisfies Metadata;
 
@@ -60,6 +68,25 @@ export default function Layout(p: LayoutProps) {
   return (
     <HTMLProviders>
       <html lang="en" className={inter.className}>
+        <head key="head">
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+        </head>
         <body key="body" className="flex flex-col">
           <MainProviders>
             <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
