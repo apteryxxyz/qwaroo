@@ -22,8 +22,13 @@ export const activitiesRouter = createTRPCRouter({
 
       const activities = await Activity.Model.find({ game })
         .populate<{ user: User.Document }>('user')
-        .sort({ highScore: -1 })
-        .limit(10);
+        .limit(10)
+        .then((activities) =>
+          // Couldn't sort on an optional field, so we do it here
+          activities.sort(
+            (a, b) => (b.score.highScore ?? 0) - (a.score.highScore ?? 0),
+          ),
+        );
 
       return activities.map((score) => score.toJSON<Activity.Entity<'user'>>());
     }),
