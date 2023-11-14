@@ -1,20 +1,28 @@
 {
   "name": "@qwaroo/sources",
   "version": "1.0.0",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
-    "dev": "yarn build --watch",
-    "lint": "eslint ."
+    "lint": "eslint src"
   },
   "dependencies": {
+    "@qwaroo/shared": "workspace:^",
+    "cheerio": "1.0.0-rc.12",
+    "lodash": "^4.17.21",
     "yt-channel-info": "npm:@apteryxxyz/yt-channel-info@latest"
   },
   "devDependencies": {
-    "eslint": "^8.45.0",
-    "tsup": "^7.1.0",
-    "typescript": "^5.1.6"
+    "@qwaroo/eslint-config": "workspace:^",
+    "@qwaroo/tsup-config": "workspace:^",
+    "@types/lodash": "^4.14.200",
+    "@types/node": "20.8.9",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
   },
   "eslintConfig": {
     "root": true,

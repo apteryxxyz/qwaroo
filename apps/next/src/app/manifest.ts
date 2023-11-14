@@ -1,16 +1,16 @@
 import type { MetadataRoute } from 'next/types';
+import { APP } from '@/utilities/constants';
 
-export default function manifest() {
+export default function manifest(): MetadataRoute.Manifest {
   return {
-    theme_color: '#3A86F8',
+    theme_color: APP.THEME_COLOUR,
     background_color: '#FFFFFF',
     display: 'standalone',
     scope: '/',
     start_url: '/',
-    name: 'Qwaroo',
-    short_name: 'Qwaroo',
-    description:
-      'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
+    name: APP.NAME,
+    short_name: APP.NAME,
+    description: APP.DESCRIPTION,
     icons: [
       {
         src: '/android-chrome-192x192.png',
@@ -23,5 +23,5 @@ export default function manifest() {
         type: 'image/png',
       },
     ],
-  } satisfies MetadataRoute.Manifest;
+  };
 }

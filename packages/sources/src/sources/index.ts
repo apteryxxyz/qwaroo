@@ -1,7 +1,16 @@
+import { GtaBase } from './gta-base';
+// import { ImdbSearch } from './imdb-search';
+import { WorldometersCountries } from './worldometers-countries';
 import { YouTubeChannelVideoViews } from './youtube-channel-video-views';
 
-const alpha = new YouTubeChannelVideoViews();
+const a = new GtaBase();
+// const b = new ImdbSearch();
+const c = new WorldometersCountries();
+const d = new YouTubeChannelVideoViews();
 
 export const sources = {
-  [alpha.slug]: alpha,
+  [a.slug]: a,
+  // [b.slug]: b,
+  [c.slug]: c,
+  [d.slug]: d,
 };

@@ -1,90 +1,36 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { Game } from '@qwaroo/database';
+import { useGames } from '@qwaroo/sources';
 import type { MetadataRoute } from 'next/types';
-import { allPolicies, allPosts } from 'contentlayer/generated';
 import { absoluteUrl } from '@/utilities/url';
 
-async function loadStaticPaths() {
+async function getStaticSitemap(): Promise<MetadataRoute.Sitemap> {
   const manifestPath = join(process.cwd(), '.next', 'routes-manifest.json');
-  const manifestContent = await readFile(manifestPath, 'utf8');
-  const manifest = JSON.parse(manifestContent) as RoutesManifest;
+  const manifest = await readFile(manifestPath, 'utf8')
+    .then((content) => JSON.parse(content) as RoutesManifest)
+    .catch(() => ({ staticRoutes: [] }));
 
   return manifest.staticRoutes
-    .map((route) => route.page)
-    .filter((page) => !page.split('.')[1])
-    .map((page) => ({
-      url: absoluteUrl(page),
+    .filter((route) => !route.page.split('.')[1])
+    .map((route) => ({
+      url: absoluteUrl(route.page).toString(),
       lastModified: new Date(),
-    })) satisfies MetadataRoute.Sitemap;
+    }));
 }
 
-async function loadDynamicPaths() {
-  const games = await Game.Model.find({}).exec();
-
-  return [
-    ...allPolicies.map((policy) => ({
-      url: absoluteUrl(`/policies/${policy.slug}`),
-      lastModified: policy.updatedAt,
-    })),
-    ...allPosts.map((post) => ({
-      url: absoluteUrl(`/blog/${post.slug}`),
-      lastModified: post.publishedAt,
-    })),
-    ...games.flatMap((game) => [
-      {
-        url: absoluteUrl(`/games/${game.id}`),
-        lastModified: game.updatedAt,
-      },
-      {
-        url: absoluteUrl(`/games/${game.id}/play`),
-        lastModified: game.updatedAt,
-      },
-    ]),
-  ] satisfies MetadataRoute.Sitemap;
+async function getGameSitemap(): Promise<MetadataRoute.Sitemap> {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [games] = await useGames();
+  return games.map((game) => ({
+    url: absoluteUrl(`games/${game.slug}`).toString(),
+    lastModified: new Date(),
+  }));
 }
 
-export default async function sitemap() {
-  return [
-    ...(await loadStaticPaths().catch(() => [])),
-    ...(await loadDynamicPaths().catch(() => [])),
-  ] satisfies MetadataRoute.Sitemap;
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  return [...(await getStaticSitemap()), ...(await getGameSitemap())];
 }
 
-export interface RoutesManifest {
-  version: number;
-  pages404: boolean;
-  caseSensitive: boolean;
-  basePath: string;
-  redirects: {
-    source: string;
-    destination: string;
-    internal: boolean;
-    statusCode: number;
-    regex: string;
-  }[];
-  headers: unknown[];
-  dynamicRoutes: {
-    page: string;
-    regex: string;
-    routeKeys: Record<string, string>;
-    namedRegex: string;
-  }[];
-  staticRoutes: {
-    page: string;
-    regex: string;
-    routeKeys: Record<string, string>;
-    namedRegex: string;
-  }[];
-  dataRoutes: unknown[];
-  rsc: {
-    header: string;
-    varyHeader: string;
-    contentTypeHeader: string;
-  };
-  rewrites: {
-    source: string;
-    destination: string;
-    regex: string;
-  }[];
+interface RoutesManifest {
+  staticRoutes: { page: string }[];
 }

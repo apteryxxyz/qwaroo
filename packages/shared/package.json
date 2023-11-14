@@ -1,0 +1,47 @@
+{
+  "name": "@qwaroo/shared",
+  "version": "1.0.0",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./compress": {
+      "require": "./dist/compress/index.js",
+      "import": "./dist/compress/index.js",
+      "types": "./dist/compress/index.d.ts"
+    },
+    "./logger": {
+      "require": "./dist/logger/index.js",
+      "import": "./dist/logger/index.js",
+      "types": "./dist/logger/index.d.ts"
+    },
+    "./types": {
+      "require": "./dist/types/index.js",
+      "import": "./dist/types/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "chalk": "<5.0.0",
+    "log-symbols": "^4.1.0",
+    "ora": "^5.4.1",
+    "pako": "^2.1.0"
+  },
+  "devDependencies": {
+    "@qwaroo/eslint-config": "workspace:^",
+    "@qwaroo/tsup-config": "workspace:^",
+    "@types/pako": "^2.0.3",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@qwaroo/eslint-config/base"
+    ]
+  }
+}

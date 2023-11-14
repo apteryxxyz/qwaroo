@@ -10,3 +10,12 @@ module.exports = {
   presets: [require('@qwaroo/tailwind-config/base')],
   plugins: [require('tailwindcss-animate')],
 };
+
+/*
+public/
+  games/
+    mrbeast-video-views/
+      data.json -> Game
+      items.json -> Item[]
+      source.json -> Source
+*/

@@ -1,0 +1,189 @@
+[
+  {
+    "mode": "higher-or-lower",
+    "slug": "countries-by-land-area",
+    "title": "Countries by Land Area",
+    "description": "Can you guess which country boasts a larger land area?",
+    "image": "https://nso.gov.mt/wp-content/uploads/shutterstock_1090099571.jpg",
+    "tags": ["geography"],
+    "seo": {
+      "title": "Higher or Lower: Countries by Land Area",
+      "description": "Explore the vastness of nations! Can you guess which country claims a larger land area? Test your geography knowledge with this Higher or Lower quiz!",
+      "keywords": [
+        "countries by land area",
+        "land area quiz",
+        "world geography",
+        "geography quiz"
+      ]
+    },
+    "strings": {
+      "verb": "has",
+      "noun": "people",
+      "higher": "More",
+      "lower": "Less",
+      "suffix": " km²"
+    },
+    "created": 1699892774511,
+    "updated": 1699892774511
+  },
+  {
+    "mode": "higher-or-lower",
+    "slug": "countries-by-population",
+    "title": "Countries by Population",
+    "description": "Can you guess which country has a higher population?",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdm2zHsJstIyUCGvpJYLFrLU9s8x7EETDCjFGX99s4gz8P-Ra9MLpK-RzjuokMzOz6jL8",
+    "tags": ["geography"],
+    "seo": {
+      "title": "Higher or Lower: Countries by Population",
+      "description": "Dive into demographics! Can you predict which country holds a higher population? Challenge yourself with this Higher or Lower quiz and expand your knowledge of global demographics.",
+      "keywords": [
+        "countries by population",
+        "population quiz",
+        "world population",
+        "world geography",
+        "geography quiz"
+      ]
+    },
+    "strings": {
+      "verb": "has",
+      "noun": "people",
+      "higher": "More",
+      "lower": "Less"
+    },
+    "created": 1699892790488,
+    "updated": 1699892790488
+  },
+  {
+    "mode": "higher-or-lower",
+    "slug": "darkviperau-video-views",
+    "title": "DarkViperAU Video Views",
+    "description": "Which of YouTuber DarkViperAU's videos has more views?",
+    "image": "https://yt3.googleusercontent.com/ytc/APkrFKaosfHwK4d9ixmcw4s5AIZ6i9yUZKDbx7stHGPc3A=s176-c-k-c0x00ffffff-no-rj",
+    "tags": ["youtube"],
+    "seo": {
+      "title": "Higher or Lower: DarkViperAU Video Views",
+      "description": "Delve into the world of DarkViperAU! Guess which of the GTA content creator's videos has more views. Test your knowledge of DarkViperAU's YouTube journey in this Higher or Lower quiz!",
+      "keywords": [
+        "darkviperau",
+        "youtube",
+        "content creator",
+        "grand theft auto",
+        "speedrunner"
+      ]
+    },
+    "strings": {
+      "verb": "has",
+      "noun": "views",
+      "higher": "More",
+      "lower": "Less"
+    },
+    "created": 1699892859945,
+    "updated": 1699892859945
+  },
+  {
+    "mode": "higher-or-lower",
+    "slug": "gta-online-vehicle-prices",
+    "title": "GTA Online Vehicle Prices",
+    "description": "Can you guess which GTA Online vehicle demands a higher price?",
+    "image": "https://d.newsweek.com/en/full/907847/gta-online-deluxo.jpg",
+    "tags": ["gaming"],
+    "seo": {
+      "title": "Higher or Lower: GTA Online Vehicle Prices",
+      "description": "Navigate the virtual car market! Can you estimate which GTA Online vehicle commands a higher price? Immerse yourself in the world of Grand Theft Auto with this Higher or Lower quiz!",
+      "keywords": [
+        "grand theft auto",
+        "grand theft auto online",
+        "vehicle prices",
+        "price compression",
+        "expensive vehicles"
+      ]
+    },
+    "strings": {
+      "verb": "costs",
+      "noun": "GTA dollars",
+      "higher": "More",
+      "lower": "Less",
+      "prefix": "$"
+    },
+    "created": 1699892830885,
+    "updated": 1699892830885
+  },
+  {
+    "mode": "higher-or-lower",
+    "slug": "gta-online-weapon-prices",
+    "title": "GTA Online Weapon Prices",
+    "description": "Can you guess which GTA Online weapon has a higher price tag?",
+    "image": "https://img.gta5-mods.com/q75/images/coloured-weapon-icons/16124b-weapons_all.png",
+    "tags": ["gaming"],
+    "seo": {
+      "title": "Higher or Lower: GTA Online Weapon Prices",
+      "description": "Arm yourself with knowledge! Guess which GTA Online weapon carries a heftier price tag. Test your knowledge of in-game arsenals with this Higher or Lower quiz!",
+      "keywords": [
+        "grand theft auto",
+        "grand theft auto online",
+        "weapon prices",
+        "price compression",
+        "expensive weapons"
+      ]
+    },
+    "strings": {
+      "verb": "costs",
+      "noun": "GTA dollars",
+      "higher": "More",
+      "lower": "Less",
+      "prefix": "$"
+    },
+    "created": 1699892832104,
+    "updated": 1699892832104
+  },
+  {
+    "mode": "higher-or-lower",
+    "slug": "jacksucksatlife-video-views",
+    "title": "JackSucksAtLife Video Views",
+    "description": "Which of YouTuber Jack Massey Welsh's videos from across his channels has more views?",
+    "image": "https://yt3.googleusercontent.com/h0CPD1yuym7YK97UH---rAawwWVu_kLyGHzUvviMm2Th-wO1_seYVOyosgOB9WynyLiFj-ZH_Q=s176-c-k-c0x00ffffff-no-rj",
+    "tags": ["youtube"],
+    "seo": {
+      "title": "Higher or Lower: JackSucksAtLife Video Views",
+      "description": "Explore JackSucksAtLife's content universe! Can you predict which video from Jack Massey Welsh's channels scored more views? Dive into the world of play buttons and content creation in this Higher or Lower quiz!",
+      "keywords": [
+        "jacksucksatlife",
+        "jacksucksatstuff",
+        "jacksucksatgeography",
+        "jack massey welsh",
+        "youtube",
+        "play buttons",
+        "content creator"
+      ]
+    },
+    "strings": {
+      "verb": "has",
+      "noun": "views",
+      "higher": "More",
+      "lower": "Less"
+    },
+    "created": 1699892859945,
+    "updated": 1699984566852
+  },
+  {
+    "mode": "higher-or-lower",
+    "slug": "mrbeast-video-views",
+    "title": "MrBeast Video Views",
+    "description": "Which of popular YouTuber MrBeast's videos has more views?",
+    "image": "https://yt3.googleusercontent.com/ytc/APkrFKbAfC_5NBQ3CM6Lyd2zXUFbC4mym1GCRhmpIwcMXg=s176-c-k-c0x00ffffff-no-rj",
+    "tags": ["youtube"],
+    "seo": {
+      "title": "Higher or Lower: MrBeast Video Views",
+      "description": "Explore JackSucksAtLife's content universe! Can you predict which video from Jack Massey Welsh's channels scored more views? Dive into the world of play buttons and content creation in this Higher or Lower quiz!",
+      "keywords": ["mrbeast", "youtube", "content creator"]
+    },
+    "strings": {
+      "verb": "has",
+      "noun": "views",
+      "higher": "More",
+      "lower": "Less"
+    },
+    "created": 1699892859945,
+    "updated": 1699983380304
+  }
+]

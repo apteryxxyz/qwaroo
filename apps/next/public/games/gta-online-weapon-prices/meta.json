@@ -1,0 +1,28 @@
+{
+  "mode": "higher-or-lower",
+  "slug": "gta-online-weapon-prices",
+  "title": "GTA Online Weapon Prices",
+  "description": "Can you guess which GTA Online weapon has a higher price tag?",
+  "image": "https://img.gta5-mods.com/q75/images/coloured-weapon-icons/16124b-weapons_all.png",
+  "tags": ["gaming"],
+  "seo": {
+    "title": "Higher or Lower: GTA Online Weapon Prices",
+    "description": "Arm yourself with knowledge! Guess which GTA Online weapon carries a heftier price tag. Test your knowledge of in-game arsenals with this Higher or Lower quiz!",
+    "keywords": [
+      "grand theft auto",
+      "grand theft auto online",
+      "weapon prices",
+      "price compression",
+      "expensive weapons"
+    ]
+  },
+  "strings": {
+    "verb": "costs",
+    "noun": "GTA dollars",
+    "higher": "More",
+    "lower": "Less",
+    "prefix": "$"
+  },
+  "created": 1699892832104,
+  "updated": 1699892832104
+}

@@ -1,7 +1,4 @@
 {
-  "[cjs]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
@@ -13,11 +10,5 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": true
-  },
-  "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#3A86F8",
-    "titleBar.activeForeground": "#FFFFFF",
-    "activityBarBadge.background": "#3A86F8",
-    "activityBarBadge.foreground": "#FFFFFF"
   }
 }

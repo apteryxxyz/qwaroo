@@ -1,0 +1,11 @@
+{
+  "buildCommand": "pnpm run build",
+  "devCommand": "pnpm run dev",
+  "redirects": [
+    {
+      "source": "/discord",
+      "destination": "https://discord.com/invite/vZQbMhwsKY",
+      "permanent": false
+    }
+  ]
+}

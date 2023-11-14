@@ -1,10 +1,9 @@
+import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
-import { cva } from 'class-variance-authority';
-import type { VariantProps } from 'class-variance-authority';
 import { cn } from '@/utilities/styling';
 
 const alertVariants = cva(
-  'relative w-full rounded-lg border px-4 py-3 text-sm [&:has(svg)]:pl-11 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7',
   {
     variants: {
       variant: {
@@ -19,7 +18,7 @@ const alertVariants = cva(
   },
 );
 
-const AlertRoot = React.forwardRef<
+const Alert = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
 >(({ className, variant, ...props }, ref) => (
@@ -30,19 +29,18 @@ const AlertRoot = React.forwardRef<
     {...props}
   />
 ));
-AlertRoot.displayName = 'Alert';
+Alert.displayName = 'Alert';
 
 const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
->(({ className, children, ...props }, ref) => (
+>(({ className, ...props }, ref) => (
+  // eslint-disable-next-line jsx-a11y/heading-has-content
   <h5
     ref={ref}
     className={cn('mb-1 font-medium leading-none tracking-tight', className)}
     {...props}
-  >
-    {children}
-  </h5>
+  />
 ));
 AlertTitle.displayName = 'AlertTitle';
 
@@ -58,9 +56,4 @@ const AlertDescription = React.forwardRef<
 ));
 AlertDescription.displayName = 'AlertDescription';
 
-export const Alert = Object.assign(AlertRoot, {
-  Title: AlertTitle,
-  Description: AlertDescription,
-});
-
-export { AlertTitle, AlertDescription };
+export { Alert, AlertTitle, AlertDescription };

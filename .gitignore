@@ -1,12 +1,7 @@
 node_modules/
-dist/
 .turbo/
 
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
-!.yarn/patches
+dist/
+.next/
 
-.env
-.env.*
-!.env.template
+.env.local

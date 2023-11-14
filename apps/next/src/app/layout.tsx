@@ -1,42 +1,37 @@
-import { Inter } from 'next/font/google';
-import { Backdrop } from '@/components/backdrop';
-import { DesktopNavigationBar } from '@/components/desktop-navigation-bar';
-import { MobileNavigationBar } from '@/components/mobile-navigation-bar';
-import { HTMLProviders, MainProviders } from '@/components/providers';
-import { Toaster } from '@/components/ui/toaster';
-import type { LayoutProps } from '@/types';
-import '@/styles/reset.css';
 import '@qwaroo/tailwind-config/styles.css';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { allPosts } from 'contentlayer/generated';
-import { Footer } from '@/components/footer';
+import { GeistSans } from 'geist/font';
+import type { Metadata, Viewport } from 'next/types';
+import { Backdrop } from '@/components/backdrop';
+import { NavigationBar } from '@/components/navigation-bar';
+import { HTMLProviders, MainProviders } from '@/components/providers';
+import type { LayoutProps } from '@/types';
+import { APP } from '@/utilities/constants';
 import { absoluteUrl } from '@/utilities/url';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export const metadata = {
-  metadataBase: new URL(absoluteUrl('/')),
-  applicationName: 'Qwaroo',
+export const metadata: Metadata = {
+  metadataBase: absoluteUrl('/'),
+  applicationName: APP.NAME,
   title: {
-    template: '%s on Qwaroo',
-    default: 'Qwaroo',
+    template: APP.TITLE_TEMPLATE,
+    default: APP.DEFAULT_TITLE,
   },
-  description:
-    'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#3A86F8' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
-  ],
+  description: APP.DESCRIPTION,
+
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: APP.DEFAULT_TITLE,
+  },
+  formatDetection: {
+    telephone: false,
+  },
 
   openGraph: {
     type: 'website',
-    siteName: 'Qwaroo',
+    siteName: APP.NAME,
     locale: 'en',
-    title: 'Qwaroo',
-    description:
-      'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
+    description: APP.DESCRIPTION,
+    url: absoluteUrl('/'),
     images: [
       {
         url: absoluteUrl('/images/og.png'),
@@ -47,10 +42,9 @@ export const metadata = {
   },
 
   twitter: {
-    card: 'summary_large_image',
-    title: 'Qwaroo',
-    description:
-      'Higher or Lower on a whole new level, play one of the many games we have to offer, or create your own and share it with your friends!',
+    card: 'summary',
+    title: APP.NAME,
+    description: APP.DESCRIPTION,
     creator: '@apteryxxyz',
     images: [
       {
@@ -60,14 +54,20 @@ export const metadata = {
       },
     ],
   },
-} satisfies Metadata;
+};
+
+export const viewport: Viewport = {
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: APP.THEME_COLOUR },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
+};
 
 export default function Layout(p: LayoutProps) {
-  const post = allPosts.at(-1);
-
   return (
     <HTMLProviders>
-      <html lang="en" className={inter.className}>
+      <html lang="en" className={GeistSans.className}>
         <head key="head">
           <link
             rel="apple-touch-icon"
@@ -87,28 +87,19 @@ export default function Layout(p: LayoutProps) {
             href="/favicon-16x16.png"
           />
         </head>
+
         <body key="body" className="flex flex-col">
           <MainProviders>
             <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
-              <MobileNavigationBar />
-              <DesktopNavigationBar />
-              {post?.bannerText && (
-                <p className="flex w-screen items-center justify-center bg-brand p-1 text-center text-white">
-                  {post.bannerText}&nbsp;
-                  <Link href={`/blog/${post.slug}`} className="underline">
-                    Read more →
-                  </Link>
-                </p>
-              )}
+              <NavigationBar />
             </header>
 
             <main className="container flex-1 gap-6 py-10">{p.children}</main>
 
-            <Footer />
+            <footer></footer>
           </MainProviders>
 
           <Backdrop />
-          <Toaster />
         </body>
       </html>
     </HTMLProviders>

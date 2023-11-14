@@ -1,0 +1,1142 @@
+[
+  {
+    "name": "India",
+    "value": 2973190,
+    "image": "https://images.unsplash.com/photo-1532375810709-75b1da00537c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SW5kaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "China",
+    "value": 9388211,
+    "image": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q2hpbmF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "United States",
+    "value": 9147420,
+    "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VW5pdGVkJTIwU3RhdGVzfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Indonesia",
+    "value": 1811570,
+    "image": "https://images.unsplash.com/photo-1531975474574-e9d2732e8386?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SW5kb25lc2lhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Pakistan",
+    "value": 770880,
+    "image": "https://images.unsplash.com/photo-1470756544705-1848092fbe5f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8UGFraXN0YW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Nigeria",
+    "value": 910770,
+    "image": "https://images.unsplash.com/photo-1618828665011-0abd973f7bb8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TmlnZXJpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Brazil",
+    "value": 8358140,
+    "image": "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QnJhemlsfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Bangladesh",
+    "value": 130170,
+    "image": "https://images.unsplash.com/photo-1585123388867-3bfe6dd4bdbf?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QmFuZ2xhZGVzaHxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Russia",
+    "value": 16376870,
+    "image": "https://images.unsplash.com/photo-1547448415-e9f5b28e570d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8UnVzc2lhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Mexico",
+    "value": 1943950,
+    "image": "https://images.unsplash.com/photo-1537222961176-50d25fff78ef?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TWV4aWNvfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Ethiopia",
+    "value": 1000000,
+    "image": "https://images.unsplash.com/photo-1614981816670-3e65f4cfdb28?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RXRoaW9waWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Japan",
+    "value": 364555,
+    "image": "https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SmFwYW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Philippines",
+    "value": 298170,
+    "image": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8UGhpbGlwcGluZXN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Egypt",
+    "value": 995450,
+    "image": "https://images.unsplash.com/photo-1539768942893-daf53e448371?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RWd5cHR8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "DR Congo",
+    "value": 2267050,
+    "image": "https://images.unsplash.com/photo-1671579255125-254965b5807b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RFIlMjBDb25nb3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Vietnam",
+    "value": 310070,
+    "image": "https://images.unsplash.com/photo-1521993117367-b7f70ccd029d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8VmlldG5hbXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Iran",
+    "value": 1628550,
+    "image": "https://images.unsplash.com/photo-1579932979622-fc012038564d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SXJhbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Turkey",
+    "value": 769630,
+    "image": "https://images.unsplash.com/photo-1527838832700-5059252407fa?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VHVya2V5fGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Germany",
+    "value": 348560,
+    "image": "https://images.unsplash.com/photo-1554072675-66db59dba46f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8R2VybWFueXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Thailand",
+    "value": 510890,
+    "image": "https://images.unsplash.com/photo-1563492065599-3520f775eeed?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VGhhaWxhbmR8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "United Kingdom",
+    "value": 241930,
+    "image": "https://images.unsplash.com/photo-1454537468202-b7ff71d51c2e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VW5pdGVkJTIwS2luZ2RvbXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Tanzania",
+    "value": 885800,
+    "image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VGFuemFuaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "France",
+    "value": 547557,
+    "image": "https://images.unsplash.com/photo-1549144511-f099e773c147?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RnJhbmNlfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "South Africa",
+    "value": 1213090,
+    "image": "https://images.unsplash.com/photo-1552937075-967cf58b74a4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U291dGglMjBBZnJpY2F8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Italy",
+    "value": 294140,
+    "image": "https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SXRhbHl8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Kenya",
+    "value": 569140,
+    "image": "https://images.unsplash.com/photo-1515658323406-25d61c141a6e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8S2VueWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Myanmar",
+    "value": 653290,
+    "image": "https://images.unsplash.com/photo-1490077476659-095159692ab5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TXlhbm1hcnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Colombia",
+    "value": 1109500,
+    "image": "https://images.unsplash.com/photo-1533699224246-6dc3b3ed3304?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q29sb21iaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "South Korea",
+    "value": 97230,
+    "image": "https://images.unsplash.com/photo-1540483761890-a1f7be05d99f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8U291dGglMjBLb3JlYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Uganda",
+    "value": 199810,
+    "image": "https://images.unsplash.com/photo-1521493959102-bdd6677fdd81?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VWdhbmRhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Sudan",
+    "value": 1765048,
+    "image": "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U3VkYW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Spain",
+    "value": 498800,
+    "image": "https://images.unsplash.com/photo-1558642084-fd07fae5282e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U3BhaW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Argentina",
+    "value": 2736690,
+    "image": "https://images.unsplash.com/photo-1612900538226-0e2140aa02f6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8QXJnZW50aW5hfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Algeria",
+    "value": 2381740,
+    "image": "https://images.unsplash.com/photo-1604107050756-b5ac1578b0b3?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QWxnZXJpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Iraq",
+    "value": 434320,
+    "image": "https://images.unsplash.com/photo-1616169610185-62da73d4f889?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SXJhcXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Afghanistan",
+    "value": 652860,
+    "image": "https://images.unsplash.com/photo-1602048532658-14af055db84a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QWZnaGFuaXN0YW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Poland",
+    "value": 306230,
+    "image": "https://images.unsplash.com/photo-1553422734-fd8dd260a116?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8UG9sYW5kfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Canada",
+    "value": 9093510,
+    "image": "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q2FuYWRhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Morocco",
+    "value": 446300,
+    "image": "https://images.unsplash.com/photo-1580746738099-1cb74f972feb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TW9yb2Njb3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Saudi Arabia",
+    "value": 2149690,
+    "image": "https://images.unsplash.com/photo-1683009427540-c5bd6a32abf6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8U2F1ZGklMjBBcmFiaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Ukraine",
+    "value": 579320,
+    "image": "https://images.unsplash.com/photo-1565711561500-49678a10a63f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VWtyYWluZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Angola",
+    "value": 1246700,
+    "image": "https://images.unsplash.com/photo-1630343350724-2eafe052719f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8QW5nb2xhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Uzbekistan",
+    "value": 425400,
+    "image": "https://images.unsplash.com/photo-1557841621-d9f6673405ed?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VXpiZWtpc3RhbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Yemen",
+    "value": 527970,
+    "image": "https://images.unsplash.com/photo-1642425149556-b6f90e946859?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8WWVtZW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Peru",
+    "value": 1280000,
+    "image": "https://images.unsplash.com/photo-1567597243073-2d274aabecec?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8UGVydXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Malaysia",
+    "value": 328550,
+    "image": "https://images.unsplash.com/photo-1562060726-e47264af32bd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TWFsYXlzaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Ghana",
+    "value": 227540,
+    "image": "https://images.unsplash.com/photo-1636865266989-58043bceaa71?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8R2hhbmF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Mozambique",
+    "value": 786380,
+    "image": "https://images.unsplash.com/photo-1595761033910-f8993636082d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TW96YW1iaXF1ZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Nepal",
+    "value": 143350,
+    "image": "https://images.unsplash.com/photo-1529733905113-027ed85d7e33?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TmVwYWx8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Madagascar",
+    "value": 581795,
+    "image": "https://images.unsplash.com/photo-1627580206975-ede73a2ca147?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TWFkYWdhc2NhcnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Côte d'Ivoire",
+    "value": 318000,
+    "image": "https://images.unsplash.com/photo-1664309389055-e985a218530c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8QyVDMyVCNHRlJTIwZCdJdm9pcmV8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Venezuela",
+    "value": 882050,
+    "image": "https://images.unsplash.com/photo-1548704686-f0a484c1bd67?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8VmVuZXp1ZWxhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Cameroon",
+    "value": 472710,
+    "image": "https://images.unsplash.com/photo-1615463531504-af9d9b4e1681?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q2FtZXJvb258ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Niger",
+    "value": 1266700,
+    "image": "https://images.unsplash.com/photo-1578309743751-5f1780eaf1dd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TmlnZXJ8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Australia",
+    "value": 7682300,
+    "image": "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QXVzdHJhbGlhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "North Korea",
+    "value": 120410,
+    "image": "https://images.unsplash.com/photo-1601734327474-a5be8cf68cf0?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Tm9ydGglMjBLb3JlYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Taiwan",
+    "value": 35410,
+    "image": "https://images.unsplash.com/photo-1583395145517-1e3177037600?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VGFpd2FufGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Mali",
+    "value": 1220190,
+    "image": "https://images.unsplash.com/photo-1600718324544-a1ef16db84ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TWFsaXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Burkina Faso",
+    "value": 273600,
+    "image": "https://images.unsplash.com/photo-1645531635989-2102135314c3?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QnVya2luYSUyMEZhc298ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Syria",
+    "value": 183630,
+    "image": "https://images.unsplash.com/photo-1602021007294-6c4ac6901d97?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U3lyaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Sri Lanka",
+    "value": 62710,
+    "image": "https://images.unsplash.com/photo-1623595289196-007a22dd8560?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U3JpJTIwTGFua2F8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Malawi",
+    "value": 94280,
+    "image": "https://images.unsplash.com/photo-1616102225655-f1d1d68344f4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TWFsYXdpfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Zambia",
+    "value": 743390,
+    "image": "https://images.unsplash.com/photo-1590591727066-99c26d0e4b42?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8WmFtYmlhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Romania",
+    "value": 230170,
+    "image": "https://images.unsplash.com/photo-1526112982068-f899a62e118e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Um9tYW5pYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Chile",
+    "value": 743532,
+    "image": "https://images.unsplash.com/photo-1591585101505-7b79ce4c6535?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q2hpbGV8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Kazakhstan",
+    "value": 2699700,
+    "image": "https://images.unsplash.com/photo-1548450847-8a9a5cc3968f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8S2F6YWtoc3RhbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Chad",
+    "value": 1259200,
+    "image": "https://images.unsplash.com/photo-1576158129961-d4543d5d40ec?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q2hhZHxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Ecuador",
+    "value": 248360,
+    "image": "https://images.unsplash.com/photo-1610226977124-9fd2755d09f2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RWN1YWRvcnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Somalia",
+    "value": 627340,
+    "image": "https://images.unsplash.com/photo-1610501110716-11e92189f7aa?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U29tYWxpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Guatemala",
+    "value": 107160,
+    "image": "https://images.unsplash.com/photo-1563442744-3e17a3bf4932?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8R3VhdGVtYWxhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Senegal",
+    "value": 192530,
+    "image": "https://images.unsplash.com/photo-1625989744655-9bff7a23dac4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U2VuZWdhbHxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Netherlands",
+    "value": 33720,
+    "image": "https://images.unsplash.com/photo-1605315188787-e3c8f6bf927a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TmV0aGVybGFuZHN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Cambodia",
+    "value": 176520,
+    "image": "https://images.unsplash.com/photo-1599283415392-c1ad8110a147?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Q2FtYm9kaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Zimbabwe",
+    "value": 386850,
+    "image": "https://images.unsplash.com/photo-1634179412263-19d96377c1a2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8WmltYmFid2V8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Guinea",
+    "value": 245720,
+    "image": "https://images.unsplash.com/photo-1584568518279-d781778d1481?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8R3VpbmVhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Rwanda",
+    "value": 24670,
+    "image": "https://images.unsplash.com/photo-1579518874869-1ad294d2596f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UndhbmRhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Benin",
+    "value": 112760,
+    "image": "https://images.unsplash.com/photo-1544622590-e16d4dfb43cd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8QmVuaW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Burundi",
+    "value": 25680,
+    "image": "https://images.unsplash.com/photo-1598811465492-4138d1f4fbee?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8QnVydW5kaXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Tunisia",
+    "value": 155360,
+    "image": "https://images.unsplash.com/photo-1620509400919-a2ef8294f239?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8VHVuaXNpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Bolivia",
+    "value": 1083300,
+    "image": "https://images.unsplash.com/photo-1544142447-e43d0fe04bf2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Qm9saXZpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Haiti",
+    "value": 27560,
+    "image": "https://images.unsplash.com/photo-1603839957368-33fc4df9943e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8SGFpdGl8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Belgium",
+    "value": 30280,
+    "image": "https://images.unsplash.com/photo-1491557345352-5929e343eb89?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QmVsZ2l1bXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Jordan",
+    "value": 88780,
+    "image": "https://images.unsplash.com/photo-1606210122158-eeb10e0823bf?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Sm9yZGFufGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Dominican Republic",
+    "value": 48320,
+    "image": "https://images.unsplash.com/photo-1551908080-36c7c22746a2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RG9taW5pY2FuJTIwUmVwdWJsaWN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Cuba",
+    "value": 106440,
+    "image": "https://images.unsplash.com/photo-1500759285222-a95626b934cb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q3ViYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "South Sudan",
+    "value": 610952,
+    "image": "https://images.unsplash.com/photo-1536517394620-8fbcfadb9be8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8U291dGglMjBTdWRhbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Sweden",
+    "value": 410340,
+    "image": "https://images.unsplash.com/photo-1562263075-da00b5209d88?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8U3dlZGVufGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Honduras",
+    "value": 111890,
+    "image": "https://images.unsplash.com/photo-1614481095874-249fa1b7a0c7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SG9uZHVyYXN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Czech Republic (Czechia)",
+    "value": 77240,
+    "image": "https://images.unsplash.com/photo-1659219041534-ca4ca4ce86ea?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Q3plY2glMjBSZXB1YmxpYyUyMChDemVjaGlhKXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Azerbaijan",
+    "value": 82658,
+    "image": "https://images.unsplash.com/photo-1621856291734-ed7e47df4f9e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QXplcmJhaWphbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Greece",
+    "value": 128900,
+    "image": "https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8R3JlZWNlfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Papua New Guinea",
+    "value": 452860,
+    "image": "https://images.unsplash.com/photo-1584568518279-d781778d1481?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UGFwdWElMjBOZXclMjBHdWluZWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Portugal",
+    "value": 91590,
+    "image": "https://images.unsplash.com/photo-1496694971191-58e2450fc841?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8UG9ydHVnYWx8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Hungary",
+    "value": 90530,
+    "image": "https://images.unsplash.com/photo-1616432902940-b7a1acbc60b3?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SHVuZ2FyeXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Tajikistan",
+    "value": 139960,
+    "image": "https://images.unsplash.com/photo-1621425022462-a14e58eebcc0?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VGFqaWtpc3RhbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "United Arab Emirates",
+    "value": 83600,
+    "image": "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VW5pdGVkJTIwQXJhYiUyMEVtaXJhdGVzfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Belarus",
+    "value": 202910,
+    "image": "https://images.unsplash.com/photo-1597954626735-77c9f75707f9?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QmVsYXJ1c3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Israel",
+    "value": 21640,
+    "image": "https://images.unsplash.com/photo-1480342740034-d149f44bbeac?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SXNyYWVsfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Togo",
+    "value": 54390,
+    "image": "https://images.unsplash.com/photo-1602788526767-f09470bb8e0b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VG9nb3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Austria",
+    "value": 82409,
+    "image": "https://images.unsplash.com/photo-1520503922584-590e8f7a90d7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QXVzdHJpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Switzerland",
+    "value": 39516,
+    "image": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U3dpdHplcmxhbmR8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Sierra Leone",
+    "value": 72180,
+    "image": "https://images.unsplash.com/photo-1611395813517-41f9be5e292d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8U2llcnJhJTIwTGVvbmV8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Laos",
+    "value": 230800,
+    "image": "https://images.unsplash.com/photo-1610426714962-83caa2244105?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TGFvc3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Hong Kong",
+    "value": 1050,
+    "image": "https://images.unsplash.com/photo-1576788369575-4ab045b9287e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9uZyUyMEtvbmd8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Serbia",
+    "value": 87460,
+    "image": "https://images.unsplash.com/photo-1632343084107-353ad9e95e37?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8U2VyYmlhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Nicaragua",
+    "value": 120340,
+    "image": "https://images.unsplash.com/photo-1599147092320-9ce79b36caa4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TmljYXJhZ3VhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Libya",
+    "value": 1759540,
+    "image": "https://images.unsplash.com/photo-1589234809391-a22ea6a91239?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TGlieWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Paraguay",
+    "value": 397300,
+    "image": "https://images.unsplash.com/photo-1621868415874-3e73628891f8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8UGFyYWd1YXl8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Kyrgyzstan",
+    "value": 191800,
+    "image": "https://images.unsplash.com/photo-1629340038197-191832a53546?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8S3lyZ3l6c3RhbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Bulgaria",
+    "value": 108560,
+    "image": "https://images.unsplash.com/photo-1601152888642-f2f1b5ee0ca2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QnVsZ2FyaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Turkmenistan",
+    "value": 469930,
+    "image": "https://images.unsplash.com/photo-1448772917253-74bbbe249b30?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VHVya21lbmlzdGFufGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "El Salvador",
+    "value": 20720,
+    "image": "https://images.unsplash.com/photo-1624337887888-f5ea6a1e573e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8RWwlMjBTYWx2YWRvcnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Congo",
+    "value": 341500,
+    "image": "https://images.unsplash.com/photo-1623930180584-1b14bc584169?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q29uZ298ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Singapore",
+    "value": 700,
+    "image": "https://images.unsplash.com/photo-1555217851-6141535bd771?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U2luZ2Fwb3JlfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Denmark",
+    "value": 42430,
+    "image": "https://images.unsplash.com/photo-1575843456098-25dc4244e9f2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RGVubWFya3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Slovakia",
+    "value": 48088,
+    "image": "https://images.unsplash.com/photo-1620283110809-3ff3adfe057b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U2xvdmFraWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Central African Republic",
+    "value": 622980,
+    "image": "https://images.unsplash.com/photo-1459508583695-86e229e8855a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q2VudHJhbCUyMEFmcmljYW4lMjBSZXB1YmxpY3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Finland",
+    "value": 303890,
+    "image": "https://images.unsplash.com/photo-1536420124982-bd9d18fc47ed?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RmlubGFuZHxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Norway",
+    "value": 365268,
+    "image": "https://images.unsplash.com/photo-1475066392170-59d55d96fe51?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Tm9yd2F5fGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Liberia",
+    "value": 96320,
+    "image": "https://images.unsplash.com/photo-1586857732531-339838887a23?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TGliZXJpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "State of Palestine",
+    "value": 6020,
+    "image": "https://images.unsplash.com/photo-1698890368895-de6eb7a84f66?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U3RhdGUlMjBvZiUyMFBhbGVzdGluZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Lebanon",
+    "value": 10230,
+    "image": "https://images.unsplash.com/photo-1521327895744-46e309d005b4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TGViYW5vbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "New Zealand",
+    "value": 263310,
+    "image": "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TmV3JTIwWmVhbGFuZHxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Costa Rica",
+    "value": 51060,
+    "image": "https://images.unsplash.com/photo-1552727131-5fc6af16796d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q29zdGElMjBSaWNhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Ireland",
+    "value": 68890,
+    "image": "https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SXJlbGFuZHxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Mauritania",
+    "value": 1030700,
+    "image": "https://images.unsplash.com/photo-1543318557-a11bce6e033a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TWF1cml0YW5pYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Oman",
+    "value": 309500,
+    "image": "https://images.unsplash.com/photo-1621680696874-edd80ce57b72?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8T21hbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Panama",
+    "value": 74340,
+    "image": "https://images.unsplash.com/photo-1540610410855-b4c8877b761c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UGFuYW1hfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Kuwait",
+    "value": 17820,
+    "image": "https://images.unsplash.com/photo-1578783951217-ca527085dc12?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8S3V3YWl0fGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Croatia",
+    "value": 55960,
+    "image": "https://images.unsplash.com/photo-1575540291670-8d3b26f7d327?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q3JvYXRpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Eritrea",
+    "value": 101000,
+    "image": "https://images.unsplash.com/photo-1669115380104-886eeab91820?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8RXJpdHJlYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Georgia",
+    "value": 69490,
+    "image": "https://images.unsplash.com/photo-1603350576276-24747f7bbf40?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8R2VvcmdpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Mongolia",
+    "value": 1553560,
+    "image": "https://images.unsplash.com/photo-1547371131-4f509bd884c1?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TW9uZ29saWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Moldova",
+    "value": 32850,
+    "image": "https://images.unsplash.com/photo-1593340646418-af8bc7d03b2e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TW9sZG92YXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Uruguay",
+    "value": 175020,
+    "image": "https://images.unsplash.com/photo-1583270424916-0879c2e229ed?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VXJ1Z3VheXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Puerto Rico",
+    "value": 8870,
+    "image": "https://images.unsplash.com/photo-1599943503164-2dcaab73121a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UHVlcnRvJTIwUmljb3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Bosnia and Herzegovina",
+    "value": 51000,
+    "image": "https://images.unsplash.com/photo-1543831973-481fbf6dc4a8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Qm9zbmlhJTIwYW5kJTIwSGVyemVnb3ZpbmF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Albania",
+    "value": 27400,
+    "image": "https://images.unsplash.com/photo-1594296095117-2c74d9ffe8ea?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QWxiYW5pYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Jamaica",
+    "value": 10830,
+    "image": "https://images.unsplash.com/photo-1613758161254-93201c574c4f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SmFtYWljYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Armenia",
+    "value": 28470,
+    "image": "https://images.unsplash.com/photo-1583610261946-5d88e555be93?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QXJtZW5pYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Gambia",
+    "value": 10120,
+    "image": "https://images.unsplash.com/photo-1621862681356-eda413727d27?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8R2FtYmlhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Lithuania",
+    "value": 62674,
+    "image": "https://images.unsplash.com/photo-1567023249914-7c83f04de30c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TGl0aHVhbmlhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Qatar",
+    "value": 11610,
+    "image": "https://images.unsplash.com/flagged/photo-1577723601858-c1b8e9a3baf1?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UWF0YXJ8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Botswana",
+    "value": 566730,
+    "image": "https://images.unsplash.com/photo-1591046940577-5badf473537a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Qm90c3dhbmF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Namibia",
+    "value": 823290,
+    "image": "https://images.unsplash.com/photo-1563985336376-568060942b80?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TmFtaWJpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Gabon",
+    "value": 257670,
+    "image": "https://images.unsplash.com/photo-1639398603958-1790aa4954d5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8R2Fib258ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Lesotho",
+    "value": 30360,
+    "image": "https://images.unsplash.com/photo-1625750013300-0961514bc088?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TGVzb3Rob3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Guinea-Bissau",
+    "value": 28120,
+    "image": "https://images.unsplash.com/photo-1623930376524-ead3734be423?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R3VpbmVhJTIwQmlzc2F1fGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Slovenia",
+    "value": 20140,
+    "image": "https://images.unsplash.com/photo-1584520156104-f9a32b3270aa?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U2xvdmVuaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "North Macedonia",
+    "value": 25220,
+    "image": "https://images.unsplash.com/photo-1588519068423-28a88a32ee69?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Tm9ydGglMjBNYWNlZG9uaWF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Latvia",
+    "value": 62200,
+    "image": "https://images.unsplash.com/photo-1614887259709-fe2c3aa56022?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TGF0dmlhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Equatorial Guinea",
+    "value": 28050,
+    "image": "https://images.unsplash.com/photo-1509840825703-6af73fa6c128?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RXF1YXRvcmlhbCUyMEd1aW5lYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Trinidad and Tobago",
+    "value": 5130,
+    "image": "https://images.unsplash.com/photo-1594005039392-53c38b667641?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VHJpbmlkYWQlMjBhbmQlMjBUb2JhZ298ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Bahrain",
+    "value": 760,
+    "image": "https://images.unsplash.com/photo-1548755212-734fccb42001?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QmFocmFpbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Timor-Leste",
+    "value": 14870,
+    "image": "https://images.unsplash.com/photo-1528093945414-ed85cfe03705?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8VGltb3IlMjBMZXN0ZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Estonia",
+    "value": 42390,
+    "image": "https://images.unsplash.com/photo-1627727240079-2d3c29bf8a23?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RXN0b25pYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Mauritius",
+    "value": 2030,
+    "image": "https://images.unsplash.com/photo-1513415431848-a433b3de449f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TWF1cml0aXVzfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Cyprus",
+    "value": 9240,
+    "image": "https://images.unsplash.com/photo-1617870544224-039877fd68fa?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Q3lwcnVzfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Eswatini",
+    "value": 17200,
+    "image": "https://images.unsplash.com/photo-1612703368670-16220177eb0f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RXN3YXRpbml8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Djibouti",
+    "value": 23180,
+    "image": "https://images.unsplash.com/photo-1663296160988-c4e31a41e507?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RGppYm91dGl8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Réunion",
+    "value": 2500,
+    "image": "https://images.unsplash.com/photo-1559825195-0cebb6ea1d18?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8UiVDMyVBOXVuaW9ufGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Fiji",
+    "value": 18270,
+    "image": "https://images.unsplash.com/photo-1538876777165-d225c410433d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8RmlqaXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Comoros",
+    "value": 1861,
+    "image": "https://images.unsplash.com/photo-1663699788269-a35b98e75074?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q29tb3Jvc3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Guyana",
+    "value": 196850,
+    "image": "https://images.unsplash.com/photo-1595794516473-347f0c62238e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8R3V5YW5hfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Bhutan",
+    "value": 38117,
+    "image": "https://images.unsplash.com/photo-1578556881786-851d4b79cb73?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Qmh1dGFufGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Solomon Islands",
+    "value": 27990,
+    "image": "https://images.unsplash.com/photo-1627887419093-bf2fcd9adce6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U29sb21vbiUyMElzbGFuZHN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Macao",
+    "value": 30,
+    "image": "https://images.unsplash.com/photo-1584640962068-f860edeb6f12?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TWFjYW98ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Luxembourg",
+    "value": 2590,
+    "image": "https://images.unsplash.com/photo-1593449044719-ea9688bb8706?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8THV4ZW1ib3VyZ3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Montenegro",
+    "value": 13450,
+    "image": "https://images.unsplash.com/photo-1502824420498-012d4c4f0c42?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TW9udGVuZWdyb3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Suriname",
+    "value": 156000,
+    "image": "https://images.unsplash.com/photo-1444466194851-3b0c9f181f3d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U3VyaW5hbWV8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Cabo Verde",
+    "value": 4030,
+    "image": "https://images.unsplash.com/photo-1592761855671-33347cb2f7bb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Q2FibyUyMFZlcmRlfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Western Sahara",
+    "value": 266000,
+    "image": "https://images.unsplash.com/photo-1637677782209-e7027a8eb611?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8V2VzdGVybiUyMFNhaGFyYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Micronesia",
+    "value": 700,
+    "image": "https://images.unsplash.com/photo-1553603043-8eae8b896d56?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TWljcm9uZXNpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Malta",
+    "value": 320,
+    "image": "https://images.unsplash.com/photo-1512679186997-081a6da4e083?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TWFsdGF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Maldives",
+    "value": 300,
+    "image": "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TWFsZGl2ZXN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Brunei",
+    "value": 5270,
+    "image": "https://images.unsplash.com/photo-1580979443365-6bb3f7b1833f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QnJ1bmVpfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Bahamas",
+    "value": 10010,
+    "image": "https://images.unsplash.com/photo-1562036861-44811e0b4481?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QmFoYW1hc3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Belize",
+    "value": 22810,
+    "image": "https://images.unsplash.com/photo-1585541115010-5ea9833eacfe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QmVsaXplfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Guadeloupe",
+    "value": 1690,
+    "image": "https://images.unsplash.com/photo-1616168063239-a56e20167d7b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R3VhZGVsb3VwZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Iceland",
+    "value": 100250,
+    "image": "https://images.unsplash.com/photo-1476610182048-b716b8518aae?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SWNlbGFuZHxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Martinique",
+    "value": 1060,
+    "image": "https://images.unsplash.com/photo-1586094332115-680788e0182f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TWFydGluaXF1ZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Mayotte",
+    "value": 375,
+    "image": "https://images.unsplash.com/photo-1676915536667-daf95519e0ba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TWF5b3R0ZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Vanuatu",
+    "value": 12190,
+    "image": "https://images.unsplash.com/photo-1552643450-44f3e5c7d875?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VmFudWF0dXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "French Guiana",
+    "value": 82200,
+    "image": "https://images.unsplash.com/photo-1685532210674-9aaf6b0d7bdf?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8RnJlbmNoJTIwR3VpYW5hfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "French Polynesia",
+    "value": 3660,
+    "image": "https://images.unsplash.com/photo-1563177681-1b54d557f053?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RnJlbmNoJTIwUG9seW5lc2lhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "New Caledonia",
+    "value": 18280,
+    "image": "https://images.unsplash.com/photo-1596458162095-1daa37e973ec?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TmV3JTIwQ2FsZWRvbmlhfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Barbados",
+    "value": 430,
+    "image": "https://images.unsplash.com/photo-1557188969-16b469a5b6c2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QmFyYmFkb3N8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Samoa",
+    "value": 2830,
+    "image": "https://images.unsplash.com/photo-1533105045747-b9d71a0955f9?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U2Ftb2F8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Curaçao",
+    "value": 444,
+    "image": "https://images.unsplash.com/photo-1536919613842-558d20933582?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q3VyYSVDMyVBN2FvfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Saint Lucia",
+    "value": 610,
+    "image": "https://images.unsplash.com/photo-1617280325974-f9c5721a4862?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U2FpbnQlMjBMdWNpYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Guam",
+    "value": 540,
+    "image": "https://images.unsplash.com/photo-1599172806227-55b02cefcc31?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8R3VhbXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Kiribati",
+    "value": 810,
+    "image": "https://images.unsplash.com/photo-1594471383603-d4cd2bde19d4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8S2lyaWJhdGl8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Grenada",
+    "value": 340,
+    "image": "https://images.unsplash.com/photo-1624235266962-5fbfbc739d88?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8R3JlbmFkYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Tonga",
+    "value": 720,
+    "image": "https://images.unsplash.com/photo-1549889577-cda81b471223?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VG9uZ2F8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Seychelles",
+    "value": 460,
+    "image": "https://images.unsplash.com/photo-1624964651025-5bf433458ca8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U2V5Y2hlbGxlc3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Aruba",
+    "value": 180,
+    "image": "https://images.unsplash.com/photo-1585061016539-ed9b2bd5f29e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QXJ1YmF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "U.S. Virgin Islands",
+    "value": 350,
+    "image": "https://images.unsplash.com/photo-1626460189233-7c6d5cc04ff8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VS5TLiUyMFZpcmdpbiUyMElzbGFuZHN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Antigua and Barbuda",
+    "value": 440,
+    "image": "https://images.unsplash.com/photo-1582300857444-5ddd87c86797?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QW50aWd1YSUyMGFuZCUyMEJhcmJ1ZGF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Isle of Man",
+    "value": 570,
+    "image": "https://images.unsplash.com/photo-1578417827817-201c916be11b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SXNsZSUyMG9mJTIwTWFufGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Andorra",
+    "value": 470,
+    "image": "https://images.unsplash.com/photo-1602776078307-8747d6f9d89f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QW5kb3JyYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Dominica",
+    "value": 750,
+    "image": "https://images.unsplash.com/photo-1580841130080-89cd40e954a3?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RG9taW5pY2F8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Cayman Islands",
+    "value": 240,
+    "image": "https://images.unsplash.com/photo-1622561726511-020d80becc86?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q2F5bWFuJTIwSXNsYW5kc3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Bermuda",
+    "value": 50,
+    "image": "https://images.unsplash.com/photo-1580840157069-ef1b25886087?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QmVybXVkYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Greenland",
+    "value": 410450,
+    "image": "https://images.unsplash.com/photo-1618422433457-02c7d5009390?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8R3JlZW5sYW5kfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Faeroe Islands",
+    "value": 1396,
+    "image": "https://images.unsplash.com/photo-1681297334019-87ccba3a73a7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8RmFlcm9lJTIwSXNsYW5kc3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Northern Mariana Islands",
+    "value": 460,
+    "image": "https://images.unsplash.com/photo-1610925842524-db2cb5c247ea?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Tm9ydGhlcm4lMjBNYXJpYW5hJTIwSXNsYW5kc3xlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Turks and Caicos",
+    "value": 950,
+    "image": "https://images.unsplash.com/photo-1590170649029-01573b1923fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VHVya3MlMjBhbmQlMjBDYWljb3N8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Sint Maarten",
+    "value": 34,
+    "image": "https://images.unsplash.com/photo-1590375049509-b5c888ca5d8d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U2ludCUyME1hYXJ0ZW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "American Samoa",
+    "value": 200,
+    "image": "https://images.unsplash.com/photo-1533105045747-b9d71a0955f9?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QW1lcmljYW4lMjBTYW1vYXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Marshall Islands",
+    "value": 180,
+    "image": "https://images.unsplash.com/photo-1553709718-3226928c750c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TWFyc2hhbGwlMjBJc2xhbmRzfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Liechtenstein",
+    "value": 160,
+    "image": "https://images.unsplash.com/photo-1587470397803-d6fa235014c5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TGllY2h0ZW5zdGVpbnxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Monaco",
+    "value": 1,
+    "image": "https://images.unsplash.com/photo-1570003550321-14dd053a5956?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TW9uYWNvfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "San Marino",
+    "value": 60,
+    "image": "https://images.unsplash.com/photo-1626677974205-c75ff47dfc5e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U2FuJTIwTWFyaW5vfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Gibraltar",
+    "value": 10,
+    "image": "https://images.unsplash.com/photo-1559415096-cc3543f4f080?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8R2licmFsdGFyfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Saint Martin",
+    "value": 53,
+    "image": "https://images.unsplash.com/photo-1617280325974-f9c5721a4862?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U2FpbnQlMjBNYXJ0aW58ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "British Virgin Islands",
+    "value": 150,
+    "image": "https://images.unsplash.com/photo-1622581646489-6066b5c697e9?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8QnJpdGlzaCUyMFZpcmdpbiUyMElzbGFuZHN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Caribbean Netherlands",
+    "value": 328,
+    "image": "https://images.unsplash.com/photo-1510637027177-809bd1c90ea3?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q2FyaWJiZWFuJTIwTmV0aGVybGFuZHN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Palau",
+    "value": 460,
+    "image": "https://images.unsplash.com/photo-1597343009364-9a42d7fd2be6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UGFsYXV8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Cook Islands",
+    "value": 240,
+    "image": "https://images.unsplash.com/photo-1619900423218-2e548d732dda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q29vayUyMElzbGFuZHN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Anguilla",
+    "value": 90,
+    "image": "https://images.unsplash.com/photo-1622816951464-df6fc7ab2ced?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QW5ndWlsbGF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Nauru",
+    "value": 20,
+    "image": "https://images.unsplash.com/photo-1553947315-42cee3c8c771?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TmF1cnV8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Tuvalu",
+    "value": 30,
+    "image": "https://images.unsplash.com/photo-1594471383603-d4cd2bde19d4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VHV2YWx1fGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Saint Barthelemy",
+    "value": 21,
+    "image": "https://images.unsplash.com/photo-1667481485787-4604391358be?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U2FpbnQlMjBCYXJ0aGVsZW15fGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Saint Helena",
+    "value": 390,
+    "image": "https://images.unsplash.com/photo-1666099960739-aac97b6e4e48?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U2FpbnQlMjBIZWxlbmF8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Montserrat",
+    "value": 100,
+    "image": "https://images.unsplash.com/photo-1596203164608-3b34693e05d5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TW9udHNlcnJhdHxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Falkland Islands",
+    "value": 12170,
+    "image": "https://images.unsplash.com/photo-1532943126512-e2bcf68a488c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RmFsa2xhbmQlMjBJc2xhbmRzfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Niue",
+    "value": 260,
+    "image": "https://images.unsplash.com/photo-1548966067-cee0f5e4cc0e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Tml1ZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Holy See",
+    "value": 0,
+    "image": "https://images.unsplash.com/photo-1602189188215-c4a3566f90fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SG9seSUyMFNlZXxlbnwwfHwwfHx8Mg%3D%3D"
+  }
+]

@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
+// =============== Next.js Specific ===============
+
 export type ParamType<TParam extends string> = TParam extends `${infer TName}[]`
   ? { [key in TName]: string[] }
   : { [key in TParam]: string };

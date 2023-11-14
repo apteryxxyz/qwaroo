@@ -1,0 +1,27 @@
+{
+  "mode": "higher-or-lower",
+  "slug": "darkviperau-video-views",
+  "title": "DarkViperAU Video Views",
+  "description": "Which of YouTuber DarkViperAU's videos has more views?",
+  "image": "https://yt3.googleusercontent.com/ytc/APkrFKaosfHwK4d9ixmcw4s5AIZ6i9yUZKDbx7stHGPc3A=s176-c-k-c0x00ffffff-no-rj",
+  "tags": ["youtube"],
+  "seo": {
+    "title": "Higher or Lower: DarkViperAU Video Views",
+    "description": "Delve into the world of DarkViperAU! Guess which of the GTA content creator's videos has more views. Test your knowledge of DarkViperAU's YouTube journey in this Higher or Lower quiz!",
+    "keywords": [
+      "darkviperau",
+      "youtube",
+      "content creator",
+      "grand theft auto",
+      "speedrunner"
+    ]
+  },
+  "strings": {
+    "verb": "has",
+    "noun": "views",
+    "higher": "More",
+    "lower": "Less"
+  },
+  "created": 1699892859945,
+  "updated": 1699892859945
+}

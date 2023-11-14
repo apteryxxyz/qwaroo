@@ -1,0 +1,11 @@
+{
+  "name": "@qwaroo/tsup-config",
+  "private": true,
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  }
+}

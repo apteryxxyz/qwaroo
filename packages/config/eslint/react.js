@@ -1,24 +1,22 @@
-/** @type {import('eslint').Linter.Config} */
-const config = {
+/** @type {import("eslint").Linter.Config} */
+module.exports = {
   extends: [
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
   ],
-  rules: {
-    'react/prop-types': 'off',
+  env: {
+    es2022: true,
+    node: true,
+    browser: true,
+  },
+  settings: {
+    react: { version: 'detect' },
   },
   globals: {
     React: 'writable',
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
-  env: {
-    browser: true,
+  rules: {
+    'react/prop-types': 'off',
   },
 };
-
-module.exports = config;
