@@ -2,6 +2,7 @@
 
 import { decompress, type Compressed } from '@qwaroo/shared/compress';
 import type { Game } from '@qwaroo/shared/types';
+import ms from 'enhanced-ms';
 import { DoorOpenIcon, Loader2Icon } from 'lucide-react';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -55,10 +56,8 @@ export function HigherOrLower(p: {
     setShuffledItems([...items].sort(() => Math.random() - 0.5));
 
     timeStartedAt.current = Date.now();
-    if (window.gtag) window.gtag('event', 'game_start', { game: game.slug });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+    if (window.gtag) window.gtag('event', 'game_start', { game: game.title });
+  }, [items, game.title]);
 
   const saveStatistics = useCallback(() => {
     if (
@@ -79,17 +78,17 @@ export function HigherOrLower(p: {
 
     if (window.gtag)
       window.gtag('event', 'game_end', {
-        game: game.slug,
+        game: game.title,
         score,
-        time: Date.now() - timeStartedAt.current!,
+        time: ms(Date.now() - timeStartedAt.current!, { shortFormat: true }),
       });
-  }, [game.slug, score, setStatistics, state]);
+  }, [game.title, score, setStatistics, state]);
 
   const makeGuess = useCallback(
     async (direction: 1 | -1) => {
       hasStarted.current = true;
       setState(State.Counting);
-      await new Promise((resolve) => setTimeout(resolve, 1200));
+      await new Promise((r) => setTimeout(r, 1200));
 
       const isCorrect =
         direction === 1
@@ -304,7 +303,7 @@ export function HigherOrLower(p: {
 
   const makeGuess = useCallback(async (direction: 1 | -1) => {
     setState(State.Counting);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    await new Promise((r) => setTimeout(r, 1200));
 
     const isCorrect =
       direction === 1
