@@ -2,10 +2,10 @@
 
 import type { Game } from '@qwaroo/shared/types';
 import { proxifyImageUrl } from '@/utilities/url';
-import { Button } from '../ui/button';
-import { SettingsState, useSettings } from './settings';
+import { Button } from '../../ui/button';
+import { useSettings, type SettingsState } from '../hooks';
 
-export function Item(
+export function ItemBlock(
   p: {
     game: Game.HigherOrLower;
     item: Game.HigherOrLower.Item;
@@ -32,9 +32,9 @@ export function Item(
         }
     ),
 ) {
-  const [settings] = useSettings(p.game.slug);
-  const frame = croppingToFrame(settings.imageCropping, p.item.frame);
-  const quality = qualityToNumber(settings.imageQuality);
+  const [{ imageCropping, imageQuality }] = useSettings(p.game.slug);
+  const frame = croppingToFrame(imageCropping, p.item.frame);
+  const quality = qualityToNumber(imageQuality);
 
   const imageUrl = new URL(p.item.image);
   const proxyUrl = proxifyImageUrl(imageUrl, quality);

@@ -3,5 +3,6 @@
   "jsonId": "6",
   "namePath": "name",
   "valuePath": "attr.ct13.value",
-  "imagePath": "thumbnail"
+  "imagePath": "thumbnail",
+  "imageFrame": "fit"
 }

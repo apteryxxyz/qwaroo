@@ -1,8 +1,8 @@
 import { compress } from '@qwaroo/shared/compress';
 import { useGames } from '@qwaroo/sources';
-import Content from './content';
+import HomeContent from './content';
 
-export default async function Page() {
+export default async function HomePage() {
   const [games] = await useGames();
-  return <Content compressedGames={compress(games)} />;
+  return <HomeContent compressedGames={compress(games)} />;
 }

@@ -2,7 +2,7 @@
 
 import { ServerThemeProvider } from 'next-themes';
 
-export function HTMLProviders(p: React.PropsWithChildren) {
+export function ServerProviders(p: React.PropsWithChildren) {
   return (
     <ServerThemeProvider
       attribute="class"
@@ -15,6 +15,6 @@ export function HTMLProviders(p: React.PropsWithChildren) {
   );
 }
 
-export function MainProviders(p: React.PropsWithChildren) {
+export function ClientProviders(p: React.PropsWithChildren) {
   return <>{p.children}</>;
 }

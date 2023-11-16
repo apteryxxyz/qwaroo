@@ -1,8 +1,9 @@
 import { compress } from '@qwaroo/shared/compress';
+import { Game } from '@qwaroo/shared/types';
 import { useGame, useGameItems, useGames } from '@qwaroo/sources';
 import type { Metadata } from 'next/types';
 import { HigherOrLower } from '@/components/higher-or-lower';
-import type { PageProps } from '@/types';
+import { PageProps } from '@/types';
 import { absoluteUrl } from '@/utilities/url';
 
 export async function generateStaticParams() {
@@ -42,7 +43,7 @@ export default async function Page(p: PageProps<['slug']>) {
   const [items] = await useGameItems(p.params.slug);
 
   switch (game.mode) {
-    case 'higher-or-lower':
+    case Game.Mode.HigherOrLower:
       return (
         <HigherOrLower
           compressedGame={compress(game)}

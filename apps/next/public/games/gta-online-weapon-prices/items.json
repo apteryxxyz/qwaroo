@@ -2,436 +2,523 @@
   {
     "name": "Tactical SMG",
     "value": 325000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/tactical-smg.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/tactical-smg.png",
+    "frame": "fit"
   },
   {
     "name": "Service Carbine",
     "value": 370000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/service-carbine.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/service-carbine.png",
+    "frame": "fit"
   },
   {
     "name": "Precision Rifle",
     "value": 450000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/precision-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/precision-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Heavy Rifle",
     "value": 450000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/heavy-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/heavy-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Compact EMP Launcher",
     "value": 525000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/compact-emp-launcher.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/compact-emp-launcher.png",
+    "frame": "fit"
   },
   {
     "name": "Combat Shotgun",
     "value": 295000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/combat-shotgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/combat-shotgun.png",
+    "frame": "fit"
   },
   {
     "name": "Military Rifle",
     "value": 397500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/military-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/military-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Ceramic Pistol",
     "value": 20000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/ceramic-pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/ceramic-pistol.png",
+    "frame": "fit"
   },
   {
     "name": "Widowmaker",
     "value": 449000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/widowmaker.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/widowmaker.png",
+    "frame": "fit"
   },
   {
     "name": "Unholy Hellbringer",
     "value": 449000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/unholy-hellbringer.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/unholy-hellbringer.png",
+    "frame": "fit"
   },
   {
     "name": "Up-n-Atomizer",
     "value": 399000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/up-n-atomizer.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/up-n-atomizer.png",
+    "frame": "fit"
   },
   {
     "name": "Marksman Rifle Mk II",
     "value": 149000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/marksman-rifle-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/marksman-rifle-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Bullpup Rifle Mk II",
     "value": 105750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/bullpup-rifle-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/bullpup-rifle-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Special Carbine Mk II",
     "value": 135000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/special-carbine-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/special-carbine-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Pump Shotgun Mk II",
     "value": 82500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/pump-shotgun-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/pump-shotgun-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Heavy Revolver Mk II",
     "value": 99000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/heavy-revolver-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/heavy-revolver-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "SNS Pistol Mk II",
     "value": 79575,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/sns-pistol-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/sns-pistol-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Heavy Sniper Mk II",
     "value": 165375,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/heavy-sniper-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/heavy-sniper-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Carbine Rifle Mk II",
     "value": 107500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/carbine-rifle-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/carbine-rifle-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Assault Rifle Mk II",
     "value": 98750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/assault-rifle-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/assault-rifle-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Combat MG Mk II",
     "value": 119000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/combat-mg-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/combat-mg-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "SMG Mk II",
     "value": 85500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/smg-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/smg-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Pistol Mk II",
     "value": 73750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/pistol-mk2.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/pistol-mk2.png",
+    "frame": "fit"
   },
   {
     "name": "Battle Axe",
     "value": 9500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/battle-axe.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/battle-axe.png",
+    "frame": "fit"
   },
   {
     "name": "Pipe Wrench",
     "value": 7150,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/pipe-wrench.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/pipe-wrench.png",
+    "frame": "fit"
   },
   {
     "name": "Pool Cue",
     "value": 6250,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/pool-cue.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/pool-cue.png",
+    "frame": "fit"
   },
   {
     "name": "Pipe Bomb",
     "value": 500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/pipe-bomb.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/pipe-bomb.png",
+    "frame": "fit"
   },
   {
     "name": "Compact Grenade Launcher",
     "value": 45000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/compact-grenade-launcher.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/compact-grenade-launcher.png",
+    "frame": "fit"
   },
   {
     "name": "Mini SMG",
     "value": 8900,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/mini-smg.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/mini-smg.png",
+    "frame": "fit"
   },
   {
     "name": "Sweeper Shotgun",
     "value": 14900,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/sweeper-shotgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/sweeper-shotgun.png",
+    "frame": "fit"
   },
   {
     "name": "Compact Rifle",
     "value": 14650,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/compact-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/compact-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Double Barrel Shotgun",
     "value": 15450,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/double-barrel-shotgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/double-barrel-shotgun.png",
+    "frame": "fit"
   },
   {
     "name": "Switchblade",
     "value": 1950,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/switchblade.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/switchblade.png",
+    "frame": "fit"
   },
   {
     "name": "Heavy Revolver",
     "value": 5900,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/heavy-revolver.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/heavy-revolver.png",
+    "frame": "fit"
   },
   {
     "name": "Flashlight",
     "value": 5750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/flashlight.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/flashlight.png",
+    "frame": "fit"
   },
   {
     "name": "Machete",
     "value": 8900,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/machete.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/machete.png",
+    "frame": "fit"
   },
   {
     "name": "Machine Pistol",
     "value": 6250,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/machine-pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/machine-pistol.png",
+    "frame": "fit"
   },
   {
     "name": "Knuckle Dusters",
     "value": 7500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/knuckle-dusters.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/knuckle-dusters.png",
+    "frame": "fit"
   },
   {
     "name": "Marksman Pistol",
     "value": 4350,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/marksman-pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/marksman-pistol.png",
+    "frame": "fit"
   },
   {
     "name": "Combat PDW",
     "value": 11750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/combat-pdw.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/combat-pdw.png",
+    "frame": "fit"
   },
   {
     "name": "Flare Gun",
     "value": 3750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/flare-gun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/flare-gun.png",
+    "frame": "fit"
   },
   {
     "name": "Proximity Mine",
     "value": 1000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/proximity-mine.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/proximity-mine.png",
+    "frame": "fit"
   },
   {
     "name": "Homing Launcher",
     "value": 75000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/homing-launcher.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/homing-launcher.png",
+    "frame": "fit"
   },
   {
     "name": "Hatchet",
     "value": 750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/hatchet.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/hatchet.png",
+    "frame": "fit"
   },
   {
     "name": "Railgun",
     "value": 730000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/railgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/railgun.png",
+    "frame": "fit"
   },
   {
     "name": "Marksman Rifle",
     "value": 15750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/marksman-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/marksman-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Heavy Shotgun",
     "value": 13550,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/heavy-shotgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/heavy-shotgun.png",
+    "frame": "fit"
   },
   {
     "name": "Musket",
     "value": 21400,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/musket.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/musket.png",
+    "frame": "fit"
   },
   {
     "name": "Antique Cavalry Dagger",
     "value": 2000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/antique-cavalry-dagger.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/antique-cavalry-dagger.png",
+    "frame": "fit"
   },
   {
     "name": "Vintage Pistol",
     "value": 3450,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/vintage-pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/vintage-pistol.png",
+    "frame": "fit"
   },
   {
     "name": "Bullpup Rifle",
     "value": 14500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/bullpup-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/bullpup-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Special Carbine",
     "value": 14750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/special-carbine.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/special-carbine.png",
+    "frame": "fit"
   },
   {
     "name": "Heavy Pistol",
     "value": 3750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/heavy-pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/heavy-pistol.png",
+    "frame": "fit"
   },
   {
     "name": "Gusenberg Sweeper",
     "value": 14600,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/gusenberg-sweeper.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/gusenberg-sweeper.png",
+    "frame": "fit"
   },
   {
     "name": "Broken Bottle",
     "value": 300,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/bottle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/bottle.png",
+    "frame": "fit"
   },
   {
     "name": "SNS Pistol",
     "value": 2750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/sns-pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/sns-pistol.png",
+    "frame": "fit"
   },
   {
     "name": "Jerry Can",
     "value": 100,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/jerry-can.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/jerry-can.png",
+    "frame": "fit"
   },
   {
     "name": "Flare",
     "value": 8000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/flare.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/flare.png",
+    "frame": "fit"
   },
   {
     "name": "Hammer",
     "value": 500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/hammer.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/hammer.png",
+    "frame": "fit"
   },
   {
     "name": "Nightstick",
     "value": 400,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/nightstick.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/nightstick.png",
+    "frame": "fit"
   },
   {
     "name": "Knife",
     "value": 400,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/knife.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/melee/knife.png",
+    "frame": "fit"
   },
   {
     "name": "Molotov",
     "value": 200,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/molotov.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/molotov.png",
+    "frame": "fit"
   },
   {
     "name": "Tear Gas",
     "value": 150,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/tear-gas.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/tear-gas.png",
+    "frame": "fit"
   },
   {
     "name": "Sticky Bomb",
     "value": 600,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/sticky-bomb.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/sticky-bomb.png",
+    "frame": "fit"
   },
   {
     "name": "Grenade",
     "value": 250,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/grenade.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/thrown/grenade.png",
+    "frame": "fit"
   },
   {
     "name": "Minigun",
     "value": 47000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/minigun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/minigun.png",
+    "frame": "fit"
   },
   {
     "name": "RPG (Rocket Launcher)",
     "value": 26250,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/rpg.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/rpg.png",
+    "frame": "fit"
   },
   {
     "name": "Grenade Launcher",
     "value": 32400,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/grenade-launcher.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/heavy/grenade-launcher.png",
+    "frame": "fit"
   },
   {
     "name": "Heavy Sniper",
     "value": 38150,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/heavy-sniper.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/heavy-sniper.png",
+    "frame": "fit"
   },
   {
     "name": "Sniper Rifle",
     "value": 20000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/sniper-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/sniper-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Advanced Rifle",
     "value": 14250,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/advanced-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/advanced-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Carbine Rifle",
     "value": 13000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/carbine-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/carbine-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Assault Rifle",
     "value": 8550,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/assault-rifle.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/assault-rifle.png",
+    "frame": "fit"
   },
   {
     "name": "Combat MG",
     "value": 14800,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/combat-mg.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/combat-mg.png",
+    "frame": "fit"
   },
   {
     "name": "MG",
     "value": 13500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/mg.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/mg.png",
+    "frame": "fit"
   },
   {
     "name": "Assault SMG",
     "value": 12550,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/assault-smg.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/assault-smg.png",
+    "frame": "fit"
   },
   {
     "name": "SMG",
     "value": 7500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/smg.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/smg.png",
+    "frame": "fit"
   },
   {
     "name": "Micro SMG",
     "value": 3750,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/micro-smg.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/micro-smg.png",
+    "frame": "fit"
   },
   {
     "name": "Bullpup Shotgun",
     "value": 8000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/bullpup-shotgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/bullpup-shotgun.png",
+    "frame": "fit"
   },
   {
     "name": "Assault Shotgun",
     "value": 10000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/assault-shotgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/assault-shotgun.png",
+    "frame": "fit"
   },
   {
     "name": "Pump Shotgun",
     "value": 3500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/pump-shotgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/pump-shotgun.png",
+    "frame": "fit"
   },
   {
     "name": "Sawed-Off Shotgun",
     "value": 0.0001,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/sawed-off-shotgun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/shotguns/sawed-off-shotgun.png",
+    "frame": "fit"
   },
   {
     "name": "Stun Gun",
     "value": 375000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/stun-gun.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/stun-gun.png",
+    "frame": "fit"
   },
   {
     "name": "Pistol .50",
     "value": 3900,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/pistol-50.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/pistol-50.png",
+    "frame": "fit"
   },
   {
     "name": "AP Pistol",
     "value": 5000,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/ap-pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/ap-pistol.png",
+    "frame": "fit"
   },
   {
     "name": "Combat Pistol",
     "value": 3200,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/combat-pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/combat-pistol.png",
+    "frame": "fit"
   },
   {
     "name": "Pistol",
     "value": 2500,
-    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/pistol.png"
+    "image": "https://www.gtabase.com/images/gta-5/weapons/handguns/pistol.png",
+    "frame": "fit"
   }
 ]
