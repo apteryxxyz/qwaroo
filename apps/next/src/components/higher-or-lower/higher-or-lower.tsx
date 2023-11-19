@@ -231,7 +231,12 @@ export function HigherOrLower(p: {
 
         <div className="absolute left-4 top-4 space-x-2 pointer-events-auto text-white">
           <SettingsButton slug={game.slug} />
-          <Button variant="ghost" className="p-2" asChild>
+          <Button
+            variant="ghost"
+            className="p-2"
+            onClick={() => saveStatistics()}
+            asChild
+          >
             <Link href="/">
               <DoorOpenIcon className="hover:cursor-pointer" />
               <span className="sr-only">Exit Game</span>
