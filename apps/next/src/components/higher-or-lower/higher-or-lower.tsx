@@ -6,11 +6,11 @@ import ms from 'enhanced-ms';
 import { DoorOpenIcon, Loader2Icon } from 'lucide-react';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useStatistics } from '@/hooks/use-statistics';
 import { cn } from '@/utilities/styling';
 import { Button } from '../ui/button';
-import { useStatistics } from './hooks';
+import { ItemBlock } from './item-block';
 import { Combination } from './item-block/combination';
-import { ItemBlock } from './item-block/item-block';
 import { SettingsButton } from './settings-button';
 
 export function HigherOrLower(p: {
