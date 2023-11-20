@@ -1,5 +1,6 @@
 'use client';
 
+import { useHigherOrLowerSettings as useSettings } from '@/hooks/use-settings';
 import { Label } from '../../ui/label';
 import {
   Select,
@@ -8,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../ui/select';
-import { useSettings } from '../hooks';
 
 export function ImageCroppingSetting(p: { slug: string }) {
   const [{ imageCropping: value }, setSettings] = useSettings(p.slug);

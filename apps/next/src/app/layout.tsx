@@ -1,6 +1,6 @@
 import '@qwaroo/tailwind-config/styles.css';
 import { GeistSans } from 'geist/font/sans';
-import type { Metadata, Viewport } from 'next/types';
+import type { Viewport } from 'next/types';
 import { Backdrop } from '@/components/backdrop';
 import {
   ClientProviders,
@@ -10,46 +10,14 @@ import { GoogleAnalytics } from '@/components/google-analytics';
 import { NavigationBar } from '@/components/navigation-bar';
 import type { LayoutProps } from '@/types';
 import { APP } from '@/utilities/constants';
-import { absoluteUrl } from '@/utilities/url';
+import { generateMetadata } from './metadata';
 
-export const metadata: Metadata = {
-  metadataBase: absoluteUrl('/'),
-  applicationName: APP.NAME,
+export const metadata = generateMetadata({
   title: {
     template: APP.TITLE_TEMPLATE,
     default: APP.DEFAULT_TITLE,
   },
-  description: APP.DESCRIPTION,
-
-  openGraph: {
-    type: 'website',
-    siteName: APP.NAME,
-    locale: 'en',
-    description: APP.DESCRIPTION,
-    url: absoluteUrl('/'),
-    images: [
-      {
-        url: absoluteUrl('/images/og.png'),
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-
-  twitter: {
-    card: 'summary',
-    title: APP.NAME,
-    description: APP.DESCRIPTION,
-    creator: '@apteryxxyz',
-    images: [
-      {
-        url: absoluteUrl('/images/og.png'),
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-};
+});
 
 export const viewport: Viewport = {
   colorScheme: 'light dark',

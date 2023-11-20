@@ -1,9 +1,12 @@
 'use client';
 
 import type { Game } from '@qwaroo/shared/types';
+import {
+  useHigherOrLowerSettings as useSettings,
+  type HigherOrLowerSettingsState as SettingsState,
+} from '@/hooks/use-settings';
 import { proxifyImageUrl } from '@/utilities/url';
 import { Button } from '../../ui/button';
-import { useSettings, type SettingsState } from '../hooks';
 
 export function ItemBlock(
   p: {

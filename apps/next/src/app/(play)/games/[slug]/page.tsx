@@ -2,6 +2,7 @@ import { compress } from '@qwaroo/shared/compress';
 import { Game } from '@qwaroo/shared/types';
 import { useGame, useGameItems, useGames } from '@qwaroo/sources';
 import type { Metadata } from 'next/types';
+import { generateMetadata as generateMetadata$ } from '@/app/metadata';
 import { HigherOrLower } from '@/components/higher-or-lower';
 import { PageProps } from '@/types';
 import { absoluteUrl } from '@/utilities/url';
@@ -17,25 +18,13 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [game] = await useGame(p.params.slug);
-  return {
-    title: game.title,
+
+  return generateMetadata$({
+    title: game.seo.title ?? game.title,
     description: game.seo.description ?? game.description,
-    keywords: game.seo.keywords ?? game.tags,
-
-    openGraph: {
-      type: 'website',
-      title: game.seo.title ?? game.title,
-      description: game.seo.description ?? game.description,
-      url: absoluteUrl(`/games/${game.slug}`),
-    },
-
-    twitter: {
-      card: 'summary',
-      title: game.seo.title ?? game.title,
-      description: game.seo.description ?? game.description,
-      creator: '@apteryxxyz',
-    },
-  };
+    keywords: [...game.tags, ...(game.seo.keywords ?? [])],
+    openGraph: { url: absoluteUrl(`/games/${game.slug}`) },
+  });
 }
 
 export default async function Page(p: PageProps<['slug']>) {
