@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
 type CombinationProps = {
-  endDisplay?: string | undefined;
+  endDisplay?: string | ((value: unknown) => string);
   endValue: number;
   animationDuration?: number;
 };
@@ -30,7 +30,7 @@ export function Combination(p: CombinationProps) {
     const counter = setInterval(() => {
       if (++frame === totalFrames) {
         clearInterval(counter);
-        setDisplay(format(p.endDisplay ?? p.endValue));
+        setDisplay(format(p.endValue, p.endDisplay));
       } else {
         setDisplay(format(generator(frame / totalFrames)));
       }
@@ -43,13 +43,20 @@ export function Combination(p: CombinationProps) {
   return display;
 }
 
-function getFormatter(value: number, display?: string) {
+function getFormatter(
+  value: number,
+  display?: string | ((value: unknown) => string),
+) {
   if (display) {
-    return (v: unknown) => String(v);
+    const trueFormatter = typeof display === 'function' ? display : String;
+    return (v: unknown, d?: unknown) => {
+      if (d && typeof d !== 'function') return String(d);
+      return trueFormatter(v);
+    };
   } else {
     const decimalCount = `${value}`.split('.')[1]?.length ?? 0;
     const decimalPlaces = Math.min(decimalCount, 3);
-    return (v: unknown) =>
+    return (v: unknown, _f?: unknown) =>
       Number(v).toLocaleString(undefined, {
         minimumFractionDigits: decimalPlaces,
         maximumFractionDigits: decimalPlaces,
@@ -57,8 +64,8 @@ function getFormatter(value: number, display?: string) {
   }
 }
 
-function getGenerator(value: number, display?: string) {
-  if (display) {
+function getGenerator(value: number, display?: unknown) {
+  if (typeof display === 'string') {
     const shouldBe = Array.from(display.split('')) //
       .map((s) => (Number.isNaN(Number(s)) ? 'string' : 'number'));
     const getRandom = (type: 'string' | 'number') =>

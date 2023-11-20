@@ -8,9 +8,9 @@ import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useStatistics } from '@/hooks/use-statistics';
 import { cn } from '@/utilities/styling';
+import { Combination } from '../combination';
 import { Button } from '../ui/button';
 import { ItemBlock } from './item-block';
-import { Combination } from './item-block/combination';
 import { SettingsButton } from './settings-button';
 
 export function HigherOrLower(p: {
