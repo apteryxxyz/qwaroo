@@ -20,6 +20,7 @@
     "enhanced-ms": "^2.3.0",
     "eventemitter3": "^5.0.1",
     "geist": "^1.1.0",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.292.0",
     "next": "^14.0.3",
     "next-themes": "npm:@wits/next-themes@^0.2.16",
@@ -36,6 +37,7 @@
     "@qwaroo/scripts": "workspace:^",
     "@qwaroo/tailwind-config": "workspace:^",
     "@types/gtag.js": "^0.0.18",
+    "@types/lodash": "^4.14.201",
     "@types/node": "20.8.9",
     "@types/react": "^18.2.37",
     "@types/uuid": "^9.0.7"
