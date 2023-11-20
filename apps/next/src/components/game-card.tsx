@@ -35,7 +35,7 @@ export function GameCard(p: { game: Game }) {
         className="absolute inset-0"
         prefetch={false}
       >
-        <span className="sr-only">View Game</span>
+        <span className="sr-only">Play {p.game.title}</span>
       </Link>
     </Card>
   );

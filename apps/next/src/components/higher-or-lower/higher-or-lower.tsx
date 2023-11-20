@@ -7,7 +7,9 @@ import { DoorOpenIcon, Loader2Icon } from 'lucide-react';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useStatistics } from '@/hooks/use-statistics';
+import { findAward, getAwardText } from '@/utilities/awards';
 import { cn } from '@/utilities/styling';
+import { AwardImage } from '../award-image';
 import { Combination } from '../combination';
 import { Button } from '../ui/button';
 import { ItemBlock } from './item-block';
@@ -145,16 +147,13 @@ export function HigherOrLower(p: {
   }
 
   if (state === State.Ended) {
-    let text;
-    if (score <= 5) text = 'You can do better, I believe in you!';
-    else if (score <= 10) text = 'Not bad, not bad at all.';
-    else if (score <= 15) text = 'Wow, you are good at this!';
-    else text = 'You are a master, well done!';
+    const award = findAward(score);
 
     return (
-      <div className="mt-[30vh] flex flex-col items-center justify-center gap-6">
+      <div className="mt-[20vh] flex flex-col items-center justify-center gap-6">
+        <AwardImage award={award} className="w-20 xl:w-24 mb-3 xl:mb-6" />
         <h2 className="text-7xl font-bold">{score}</h2>
-        <p className="text-xl">{text}</p>
+        <p className="text-xl">{getAwardText(award)}</p>
 
         <div className="flex gap-4">
           <Button onClick={prepareGame}>Play Again</Button>

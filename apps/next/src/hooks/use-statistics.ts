@@ -1,6 +1,8 @@
 import { useLocalStorage } from '@mantine/hooks';
 import { useCallback } from 'react';
 
+// ==================== useStatistics ====================
+
 export interface StatisticsState {
   highScore: number;
   playCount: number;
@@ -39,4 +41,41 @@ export function useStatistics(slug: string) {
   );
 
   return [state, setStatistics] as const;
+}
+
+// ==================== useAllStatistics ====================
+
+export interface AllStatisticsState {
+  list: (StatisticsState & { slug: string })[];
+  combined: Omit<StatisticsState, 'highScore'> & {
+    averageScore: number;
+    averageTimePlayedInMs: number;
+  };
+}
+
+export function useAllStatistics(slugs: string[]) {
+  const list: AllStatisticsState['list'] = [];
+  const combined: AllStatisticsState['combined'] = {
+    playCount: 0,
+    timePlayedInMs: 0,
+    totalScore: 0,
+    averageScore: 0,
+    averageTimePlayedInMs: 0,
+  };
+
+  for (const slug of slugs) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [statistics] = useStatistics(slug);
+    list.push({ ...statistics, slug });
+    combined.playCount += statistics.playCount;
+    combined.timePlayedInMs += statistics.timePlayedInMs;
+    combined.totalScore += statistics.totalScore;
+  }
+
+  combined.averageScore =
+    combined.playCount > 0 ? combined.totalScore / combined.playCount : 0;
+  combined.averageTimePlayedInMs =
+    combined.playCount > 0 ? combined.timePlayedInMs / combined.playCount : 0;
+
+  return { combined, list };
 }
