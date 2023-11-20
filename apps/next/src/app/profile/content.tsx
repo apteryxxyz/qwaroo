@@ -55,7 +55,7 @@ export default function ProfileContent(p: {
             imageUrl="/images/profile/wall-clock.png"
             value={statistics.combined.timePlayedInMs}
             valueFormatter={(value) =>
-              ms(Number(value), { shortFormat: true })!
+              ms(Number(value), { shortFormat: true }) ?? '0s'
             }
             description="Total Play Time"
           />
@@ -64,14 +64,14 @@ export default function ProfileContent(p: {
             imageUrl="/images/profile/alarm-clock.png"
             value={statistics.combined.averageTimePlayedInMs}
             valueFormatter={(value) =>
-              ms(Number(value), { shortFormat: true })!
+              ms(Number(value), { shortFormat: true }) ?? '0s'
             }
             description="Average Play Time"
           />
         </div>
       </section>
 
-      {statistics.list.length > 0 && (
+      {statistics.list.filter((item) => item.totalScore > 0).length > 0 && (
         <section>
           <h2 className="text-xl font-semibold pb-4">
             Individual Game Statistics
