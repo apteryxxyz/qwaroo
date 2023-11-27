@@ -2,12 +2,12 @@
   "mode": "higher-or-lower",
   "slug": "countries-by-land-area",
   "title": "Countries by Land Area",
-  "description": "Can you guess which country boasts a larger land area?",
-  "image": "https://www.geospatialworld.net/wp-content/uploads/2020/04/Population-data.jpg",
+  "description": "Guess which country has a larger land area.",
+  "image": "https://www.sketchandcalc.com/wp-content/uploads/2021/01/Land-Perimeter-and-Area.jpg",
   "tags": ["geography"],
   "seo": {
     "title": "Higher or Lower: Countries by Land Area",
-    "description": "Explore the vastness of nations! Can you guess which country claims a larger land area? Test your geography knowledge with this Higher or Lower quiz!",
+    "description": "Embark on a geographical journey! Can you guess which country has a larger land area. Test your knowledge with this engaging Higher or Lower quiz!",
     "keywords": [
       "countries by land area",
       "land area quiz",
@@ -16,12 +16,12 @@
     ]
   },
   "strings": {
-    "verb": "has",
-    "noun": "people",
-    "higher": "More",
-    "lower": "Less",
+    "verb": "has a",
+    "higher": "Higher",
+    "lower": "Lower",
+    "noun": "in land area",
     "suffix": " km²"
   },
   "created": 1699892774511,
-  "updated": 1699892774511
+  "updated": 1701049449944
 }

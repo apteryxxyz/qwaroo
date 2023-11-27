@@ -1,0 +1,26 @@
+{
+  "mode": "higher-or-lower",
+  "slug": "countries-by-median-age",
+  "title": "Countries by Median Age",
+  "description": "Determine which country has a higher median age?",
+  "image": "https://www.hindustantimes.com/ht-img/img/2023/04/19/1600x900/The-median-age-of-India-s-population-is-28-2-years_1681931430647.jpg",
+  "tags": ["geography"],
+  "seo": {
+    "title": "Higher or Lower: Countries by Median Age",
+    "description": "Dive into demographic data! Can you determine which country has a higher median age? Expand your knowledge with this Higher or Lower quiz!",
+    "keywords": [
+      "countries by median age",
+      "median age quiz",
+      "world geography",
+      "geography quiz"
+    ]
+  },
+  "strings": {
+    "verb": "has a",
+    "higher": "Higher",
+    "lower": "Lower",
+    "noun": "median age"
+  },
+  "created": 1701045111201,
+  "updated": 1701049450442
+}

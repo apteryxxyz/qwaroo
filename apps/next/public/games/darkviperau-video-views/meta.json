@@ -18,10 +18,10 @@
   },
   "strings": {
     "verb": "has",
-    "noun": "views",
     "higher": "More",
-    "lower": "Less"
+    "lower": "Less",
+    "noun": "views"
   },
   "created": 1699892859945,
-  "updated": 1699892859945
+  "updated": 1701049454480
 }

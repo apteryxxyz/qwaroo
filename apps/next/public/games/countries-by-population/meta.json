@@ -2,12 +2,12 @@
   "mode": "higher-or-lower",
   "slug": "countries-by-population",
   "title": "Countries by Population",
-  "description": "Can you guess which country has a higher population?",
-  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdm2zHsJstIyUCGvpJYLFrLU9s8x7EETDCjFGX99s4gz8P-Ra9MLpK-RzjuokMzOz6jL8",
+  "description": "Guess which country has a larger population.",
+  "image": "https://media.istockphoto.com/id/1357524756/photo/big-crowd-of-people-people-gathered-together-in-one-place-top-view-from-drone.jpg?s=612x612&w=0&k=20&c=8rxctYW7JcEelIZx05-UocZ254knephuT8_4VznIEsw=",
   "tags": ["geography"],
   "seo": {
     "title": "Higher or Lower: Countries by Population",
-    "description": "Dive into demographics! Can you predict which country holds a higher population? Challenge yourself with this Higher or Lower quiz and expand your knowledge of global demographics.",
+    "description": "Explore global demographics! Can you guess which country has a larger population. Challenge your knowledge with this Higher or Lower quiz!",
     "keywords": [
       "countries by population",
       "population quiz",
@@ -18,10 +18,10 @@
   },
   "strings": {
     "verb": "has",
-    "noun": "people",
     "higher": "More",
-    "lower": "Less"
+    "lower": "Less",
+    "noun": "people"
   },
   "created": 1699892790488,
-  "updated": 1699892790488
+  "updated": 1701049450935
 }

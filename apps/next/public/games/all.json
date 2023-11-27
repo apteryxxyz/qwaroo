@@ -1,14 +1,40 @@
 [
   {
     "mode": "higher-or-lower",
+    "slug": "countries-by-fertility-rate",
+    "title": "Countries by Fertility Rate",
+    "description": "Guess which country has a higher fertility rate?",
+    "image": "https://www.thoughtco.com/thmb/P7hEFaW1iP-1lio7XXepS4-QYtI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/171234783-58b9d07e3df78c353c38b7e0.jpg",
+    "tags": ["geography"],
+    "seo": {
+      "title": "Higher or Lower: Countries by Fertility Rate",
+      "description": "Embark on a demographic journey! Can you guess which country has a higher fertility rate? Test your knowledge with this engaging Higher or Lower quiz!",
+      "keywords": [
+        "countries by fertility rate",
+        "fertility rate quiz",
+        "world geography",
+        "geography quiz"
+      ]
+    },
+    "strings": {
+      "verb": "has a",
+      "higher": "Higher",
+      "lower": "Lower",
+      "noun": "fertility rate"
+    },
+    "created": 1701047750223,
+    "updated": 1701049441357
+  },
+  {
+    "mode": "higher-or-lower",
     "slug": "countries-by-land-area",
     "title": "Countries by Land Area",
-    "description": "Can you guess which country boasts a larger land area?",
-    "image": "https://www.geospatialworld.net/wp-content/uploads/2020/04/Population-data.jpg",
+    "description": "Guess which country has a larger land area.",
+    "image": "https://www.sketchandcalc.com/wp-content/uploads/2021/01/Land-Perimeter-and-Area.jpg",
     "tags": ["geography"],
     "seo": {
       "title": "Higher or Lower: Countries by Land Area",
-      "description": "Explore the vastness of nations! Can you guess which country claims a larger land area? Test your geography knowledge with this Higher or Lower quiz!",
+      "description": "Embark on a geographical journey! Can you guess which country has a larger land area. Test your knowledge with this engaging Higher or Lower quiz!",
       "keywords": [
         "countries by land area",
         "land area quiz",
@@ -17,25 +43,51 @@
       ]
     },
     "strings": {
-      "verb": "has",
-      "noun": "people",
-      "higher": "More",
-      "lower": "Less",
+      "verb": "has a",
+      "higher": "Higher",
+      "lower": "Lower",
+      "noun": "in land area",
       "suffix": " km²"
     },
     "created": 1699892774511,
-    "updated": 1699892774511
+    "updated": 1701049449944
+  },
+  {
+    "mode": "higher-or-lower",
+    "slug": "countries-by-median-age",
+    "title": "Countries by Median Age",
+    "description": "Determine which country has a higher median age?",
+    "image": "https://www.hindustantimes.com/ht-img/img/2023/04/19/1600x900/The-median-age-of-India-s-population-is-28-2-years_1681931430647.jpg",
+    "tags": ["geography"],
+    "seo": {
+      "title": "Higher or Lower: Countries by Median Age",
+      "description": "Dive into demographic data! Can you determine which country has a higher median age? Expand your knowledge with this Higher or Lower quiz!",
+      "keywords": [
+        "countries by median age",
+        "median age quiz",
+        "world geography",
+        "geography quiz"
+      ]
+    },
+    "strings": {
+      "verb": "has a",
+      "higher": "Higher",
+      "lower": "Lower",
+      "noun": "median age"
+    },
+    "created": 1701045111201,
+    "updated": 1701049450442
   },
   {
     "mode": "higher-or-lower",
     "slug": "countries-by-population",
     "title": "Countries by Population",
-    "description": "Can you guess which country has a higher population?",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdm2zHsJstIyUCGvpJYLFrLU9s8x7EETDCjFGX99s4gz8P-Ra9MLpK-RzjuokMzOz6jL8",
+    "description": "Guess which country has a larger population.",
+    "image": "https://media.istockphoto.com/id/1357524756/photo/big-crowd-of-people-people-gathered-together-in-one-place-top-view-from-drone.jpg?s=612x612&w=0&k=20&c=8rxctYW7JcEelIZx05-UocZ254knephuT8_4VznIEsw=",
     "tags": ["geography"],
     "seo": {
       "title": "Higher or Lower: Countries by Population",
-      "description": "Dive into demographics! Can you predict which country holds a higher population? Challenge yourself with this Higher or Lower quiz and expand your knowledge of global demographics.",
+      "description": "Explore global demographics! Can you guess which country has a larger population. Challenge your knowledge with this Higher or Lower quiz!",
       "keywords": [
         "countries by population",
         "population quiz",
@@ -46,12 +98,39 @@
     },
     "strings": {
       "verb": "has",
-      "noun": "people",
       "higher": "More",
-      "lower": "Less"
+      "lower": "Less",
+      "noun": "people"
     },
     "created": 1699892790488,
-    "updated": 1699892790488
+    "updated": 1701049450935
+  },
+  {
+    "mode": "higher-or-lower",
+    "slug": "countries-by-population-density",
+    "title": "Countries by Population Density",
+    "description": "Figure out which country has a higher population density?",
+    "image": "https://static.boredpanda.com/blog/wp-content/uploads/2016/03/drone-photography-hong-kong-density-andy-yeung-fb.png",
+    "tags": ["geography"],
+    "seo": {
+      "title": "Higher or Lower: Countries by Population Density",
+      "description": "Navigate through population densities! Can you figure out which country has a higher population density? Test your geographical knowledge with this Higher or Lower quiz!",
+      "keywords": [
+        "countries by population density",
+        "population density quiz",
+        "world geography",
+        "geography quiz"
+      ]
+    },
+    "strings": {
+      "verb": "has a",
+      "higher": "Higher",
+      "lower": "Lower",
+      "noun": "population density",
+      "suffix": " ppl/km²"
+    },
+    "created": 1701041617843,
+    "updated": 1701049451428
   },
   {
     "mode": "higher-or-lower",
@@ -73,23 +152,23 @@
     },
     "strings": {
       "verb": "has",
-      "noun": "views",
       "higher": "More",
-      "lower": "Less"
+      "lower": "Less",
+      "noun": "views"
     },
     "created": 1699892859945,
-    "updated": 1699892859945
+    "updated": 1701049454480
   },
   {
     "mode": "higher-or-lower",
     "slug": "gta-online-vehicle-prices",
     "title": "GTA Online Vehicle Prices",
     "description": "Can you guess which GTA Online vehicle demands a higher price?",
-    "image": "https://d.newsweek.com/en/full/907847/gta-online-deluxo.jpg",
+    "image": "https://i.kinja-img.com/image/upload/c_fit,q_60,w_645/b8af477bc10309189eda4edb777eb674.jpg",
     "tags": ["gaming"],
     "seo": {
       "title": "Higher or Lower: GTA Online Vehicle Prices",
-      "description": "Navigate the virtual car market! Can you estimate which GTA Online vehicle commands a higher price? Immerse yourself in the world of Grand Theft Auto with this Higher or Lower quiz!",
+      "description": "Navigate the virtual car market! Can you guess which GTA Online vehicle demands a higher price? Immerse yourself in the world of Grand Theft Auto with this Higher or Lower quiz!",
       "keywords": [
         "grand theft auto",
         "grand theft auto online",
@@ -106,18 +185,18 @@
       "prefix": "$"
     },
     "created": 1699892830885,
-    "updated": 1699892830885
+    "updated": 1701049454796
   },
   {
     "mode": "higher-or-lower",
     "slug": "gta-online-weapon-prices",
     "title": "GTA Online Weapon Prices",
     "description": "Can you guess which GTA Online weapon has a higher price tag?",
-    "image": "https://img.gta5-mods.com/q75/images/coloured-weapon-icons/16124b-weapons_all.png",
+    "image": "https://static.wikia.nocookie.net/gtawiki/images/6/6b/WeaponRack-GTAV.jpg/revision/latest?cb=20140329003005",
     "tags": ["gaming"],
     "seo": {
       "title": "Higher or Lower: GTA Online Weapon Prices",
-      "description": "Arm yourself with knowledge! Guess which GTA Online weapon carries a heftier price tag. Test your knowledge of in-game arsenals with this Higher or Lower quiz!",
+      "description": "Arm yourself with knowledge! Can you guess which GTA Online weapon has a higher price tag? Test your knowledge of in-game arsenals with this Higher or Lower quiz!",
       "keywords": [
         "grand theft auto",
         "grand theft auto online",
@@ -134,7 +213,7 @@
       "prefix": "$"
     },
     "created": 1699892832104,
-    "updated": 1699892832104
+    "updated": 1701049454833
   },
   {
     "mode": "higher-or-lower",
@@ -158,12 +237,12 @@
     },
     "strings": {
       "verb": "has",
-      "noun": "views",
+      "lower": "Less",
       "higher": "More",
-      "lower": "Less"
+      "noun": "views"
     },
     "created": 1699892859945,
-    "updated": 1699984566852
+    "updated": 1701049463340
   },
   {
     "mode": "higher-or-lower",
@@ -179,11 +258,11 @@
     },
     "strings": {
       "verb": "has",
-      "noun": "views",
       "higher": "More",
-      "lower": "Less"
+      "lower": "Less",
+      "noun": "views"
     },
     "created": 1699892859945,
-    "updated": 1699983380304
+    "updated": 1701049466079
   }
 ]
