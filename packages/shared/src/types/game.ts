@@ -39,10 +39,10 @@ export namespace Game {
     mode: Mode.HigherOrLower;
     /** Strings that will appear in-game */
     strings: {
-      verb: string;
-      noun: string;
+      verb?: string;
       higher: string;
       lower: string;
+      noun?: string;
       prefix?: string;
       suffix?: string;
     };

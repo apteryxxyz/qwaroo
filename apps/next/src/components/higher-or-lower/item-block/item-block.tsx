@@ -65,7 +65,9 @@ export function ItemBlock(
         <p className="text-md text-center xl:text-lg">{p.item.caption}</p>
       )}
 
-      <span className="text-center text-lg">{p.game.strings.verb}</span>
+      {p.game.strings.verb && (
+        <span className="text-center text-lg">{p.game.strings.verb}</span>
+      )}
 
       {p.shouldShowValue && (
         <span className="text-center text-4xl font-bold xl:text-7xl">
@@ -97,7 +99,9 @@ export function ItemBlock(
         </div>
       )}
 
-      <span className="text-center text-lg">{p.game.strings.noun}</span>
+      {p.game.strings.noun && (
+        <span className="text-center text-lg">{p.game.strings.noun}</span>
+      )}
 
       <span className="absolute bottom-1 right-1 opacity-30">
         image via{' '}
