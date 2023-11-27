@@ -1,0 +1,28 @@
+{
+  "mode": "higher-or-lower",
+  "slug": "gta-online-vehicle-top-speeds",
+  "title": "GTA Online Vehicle Top Speeds",
+  "description": "Can you guess which GTA Online vehicle has a higher top speed?",
+  "image": "https://www.gameskinny.com/wp-content/uploads/gameskinnyc/g/t/a/gta-online-fastest-cars-70772.jpg?w=1200",
+  "tags": ["gaming"],
+  "seo": {
+    "title": "Higher or Lower: GTA Online Vehicle Top Speeds",
+    "description": "Navigate the virtual car racetrack! Can you guess which GTA Online vehicle has a higher top speed? Immerse yourself in the world of Grand Theft Auto with this Higher or Lower quiz!",
+    "keywords": [
+      "grand theft auto",
+      "grand theft auto online",
+      "vehicle top speeds",
+      "speed compression",
+      "fast vehicles"
+    ]
+  },
+  "strings": {
+    "verb": "has a",
+    "higher": "Higher",
+    "lower": "Lower",
+    "noun": "top speed",
+    "suffix": " mph"
+  },
+  "updated": 1701055969380,
+  "created": 1701055969380
+}

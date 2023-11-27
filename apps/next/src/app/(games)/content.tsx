@@ -37,12 +37,12 @@ export default function HomeContent(p: {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {games.map(
-          (game) =>
-            (!selectedCategory || game.tags.includes(selectedCategory)) && (
-              <GameCard key={game.slug} game={game} />
-            ),
-        )}
+        {games
+          .filter((g) => !selectedCategory || g.tags.includes(selectedCategory))
+          .sort((a, b) => b.created - a.created)
+          .map((game) => (
+            <GameCard key={game.slug} game={game} />
+          ))}
       </div>
     </div>
   );

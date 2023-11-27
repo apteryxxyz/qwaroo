@@ -1,0 +1,3597 @@
+[
+  {
+    "name": "Weaponized Conada",
+    "value": 151,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/weaponized-conada.jpg"
+  },
+  {
+    "name": "Junk Energy Inductor",
+    "value": 45.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/inductor-livery.jpg"
+  },
+  {
+    "name": "Hotring Hellfire",
+    "value": 124.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/hotring-hellfire.jpg"
+  },
+  {
+    "name": "Buffalo EVX",
+    "value": 119,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/buffalo-evx.jpg"
+  },
+  {
+    "name": "Inductor",
+    "value": 45.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/inductor.jpg"
+  },
+  {
+    "name": "La Coureuse",
+    "value": 114.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/la-coureuse.jpg"
+  },
+  {
+    "name": "Brigham",
+    "value": 105.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/brigham.jpg"
+  },
+  {
+    "name": "Streamer216",
+    "value": 143,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/streamer216.jpg"
+  },
+  {
+    "name": "Walton L35",
+    "value": 105.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/walton-l35.jpg"
+  },
+  {
+    "name": "Ratel",
+    "value": 113,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/ratel.jpg"
+  },
+  {
+    "name": "MonstroCiti",
+    "value": 109.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/monstrociti.jpg"
+  },
+  {
+    "name": "Clique Wagon",
+    "value": 91,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/clique-wagon.jpg"
+  },
+  {
+    "name": "Itali GTO Stinger TT",
+    "value": 132,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/stinger-tt.jpg"
+  },
+  {
+    "name": "F-160 Raiju",
+    "value": 232.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/raiju.jpg"
+  },
+  {
+    "name": "Boor",
+    "value": 112.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/boor.jpg"
+  },
+  {
+    "name": "Eudora",
+    "value": 109,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/eudora.jpg"
+  },
+  {
+    "name": "Hotring Everon",
+    "value": 125.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/hotring-everon.jpg"
+  },
+  {
+    "name": "Issi Rally",
+    "value": 116.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/issi-rally.jpg"
+  },
+  {
+    "name": "Virtue",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/virtue.jpg"
+  },
+  {
+    "name": "Panthere",
+    "value": 122.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/panthere.jpg"
+  },
+  {
+    "name": "Broadway",
+    "value": 100,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/broadway.jpg"
+  },
+  {
+    "name": "Powersurge",
+    "value": 130,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/powersurge.jpg"
+  },
+  {
+    "name": "Manchez Scout C (Delivery Bike)",
+    "value": 137.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/manchez-scout-c.jpg"
+  },
+  {
+    "name": "300R",
+    "value": 120,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/300r.jpg"
+  },
+  {
+    "name": "Journey II",
+    "value": 79.25,
+    "image": "https://www.gtabase.com/igallery/8801-8900/gtaonline-journeyii-action-8848-360.jpg"
+  },
+  {
+    "name": "Entity MT",
+    "value": 131.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/entity-mt.jpg"
+  },
+  {
+    "name": "Tulip M-100",
+    "value": 116.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/tulip-m-100.jpg"
+  },
+  {
+    "name": "Surfer Custom",
+    "value": 69.75,
+    "image": "https://www.gtabase.com/igallery/8801-8900/gtaonline-lsdrugwars-artwork-surfercustom-8860-360.jpg"
+  },
+  {
+    "name": "Brickade 6x6 (Acid Lab)",
+    "value": 89.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/brickade-6x6.jpg"
+  },
+  {
+    "name": "Tahoma Coupe",
+    "value": 112.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/tahoma.jpg"
+  },
+  {
+    "name": "Weevil Custom",
+    "value": 137.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/weevil-custom.jpg"
+  },
+  {
+    "name": "10F Widebody",
+    "value": 128,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/10f-custom.jpg"
+  },
+  {
+    "name": "Sentinel Classic Widebody",
+    "value": 127.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/sentinel-classic-widebody.jpg"
+  },
+  {
+    "name": "Brioso 300 Widebody",
+    "value": 96,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/brioso-300-widebody.jpg"
+  },
+  {
+    "name": "Vigero ZX",
+    "value": 125,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/vigero-zx.jpg"
+  },
+  {
+    "name": "SM722",
+    "value": 123.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/sm722.jpg"
+  },
+  {
+    "name": "Ruiner ZZ-8",
+    "value": 115.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/ruiner-zz-8.jpg"
+  },
+  {
+    "name": "Rhinehart",
+    "value": 123,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/rhinehart.jpg"
+  },
+  {
+    "name": "Kanjo SJ",
+    "value": 107.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/kanjo-sj.jpg"
+  },
+  {
+    "name": "LM87",
+    "value": 128.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/lm87.jpg"
+  },
+  {
+    "name": "Torero XO",
+    "value": 131,
+    "image": "https://www.gtabase.com/igallery/8601-8700/gtaonline-summer2022-update-1-8643-360.jpg"
+  },
+  {
+    "name": "Postlude",
+    "value": 103,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/postlude.jpg"
+  },
+  {
+    "name": "Omnis e-GT",
+    "value": 111.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/omnis-e-gt.jpg"
+  },
+  {
+    "name": "Draugur",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/draugur.jpg"
+  },
+  {
+    "name": "Conada",
+    "value": 158.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/conada.jpg"
+  },
+  {
+    "name": "Greenwood",
+    "value": 118,
+    "image": "https://www.gtabase.com/igallery/8701-8800/gtao-thecriminalenterprises-greenwood-8713-360.jpg"
+  },
+  {
+    "name": "10F",
+    "value": 126,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/10f.jpg"
+  },
+  {
+    "name": "Corsita",
+    "value": 131.3,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/corsita.jpg"
+  },
+  {
+    "name": "Weaponized Ignus",
+    "value": 124.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/weaponized-ignus.jpg"
+  },
+  {
+    "name": "Cyclone II",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/cyclone-ii.jpg"
+  },
+  {
+    "name": "Astron Custom",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/astron-custom.jpg"
+  },
+  {
+    "name": "Arbiter GT",
+    "value": 112.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/arbiter-gt.jpg"
+  },
+  {
+    "name": "S95",
+    "value": 115.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/s95.jpg"
+  },
+  {
+    "name": "Youga Custom",
+    "value": 97.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/youga-custom.jpg"
+  },
+  {
+    "name": "Granger 3600LX",
+    "value": 96.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/granger-3600lx.jpg"
+  },
+  {
+    "name": "I-Wagen",
+    "value": 94,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/i-wagen.jpg"
+  },
+  {
+    "name": "Patriot Mil-Spec",
+    "value": 96,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/patriot-mil-spec.jpg"
+  },
+  {
+    "name": "Baller ST",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/baller-st.jpg"
+  },
+  {
+    "name": "Reever",
+    "value": 163,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/reever.jpg"
+  },
+  {
+    "name": "Shinobi",
+    "value": 125.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/shinobi.jpg"
+  },
+  {
+    "name": "Comet S2 Cabrio",
+    "value": 129,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/comet-s2-cabrio.jpg"
+  },
+  {
+    "name": "Zeno",
+    "value": 127.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/zeno.jpg"
+  },
+  {
+    "name": "Buffalo STX",
+    "value": 126.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/buffalo-stx.jpg"
+  },
+  {
+    "name": "Ignus",
+    "value": 124.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/ignus.jpg"
+  },
+  {
+    "name": "Deity",
+    "value": 117.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/deity.jpg"
+  },
+  {
+    "name": "Cinquemila",
+    "value": 121,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/cinquemila.jpg"
+  },
+  {
+    "name": "Astron",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/astron.jpg"
+  },
+  {
+    "name": "Champion",
+    "value": 124.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/champion.jpg"
+  },
+  {
+    "name": "Jubilee",
+    "value": 116.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/jubilee.jpg"
+  },
+  {
+    "name": "Previon",
+    "value": 115.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/previon.jpg"
+  },
+  {
+    "name": "Sultan RS Classic",
+    "value": 117.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/sultan-rs-classic.jpg"
+  },
+  {
+    "name": "Dominator ASP",
+    "value": 119,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/dominator-asp.jpg"
+  },
+  {
+    "name": "Cypher",
+    "value": 113.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/cypher.jpg"
+  },
+  {
+    "name": "Growler",
+    "value": 121.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/growler.jpg"
+  },
+  {
+    "name": "Vectre",
+    "value": 115.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/vectre.jpg"
+  },
+  {
+    "name": "Comet S2",
+    "value": 123,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/comet-s2.jpg"
+  },
+  {
+    "name": "Remus",
+    "value": 115.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/remus.jpg"
+  },
+  {
+    "name": "Jester RR",
+    "value": 125,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/jester-rr.jpg"
+  },
+  {
+    "name": "Tailgater S",
+    "value": 115.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/tailgater-s.jpg"
+  },
+  {
+    "name": "Warrener HKR",
+    "value": 106.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/warrener-hkr.jpg"
+  },
+  {
+    "name": "RT3000",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/rt3000.jpg"
+  },
+  {
+    "name": "ZR350",
+    "value": 117.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/zr350.jpg"
+  },
+  {
+    "name": "Dominator GTT",
+    "value": 115.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/dominator-gtt.jpg"
+  },
+  {
+    "name": "Euros",
+    "value": 116.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/euros.jpg"
+  },
+  {
+    "name": "Futo GTX",
+    "value": 119.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/futo-gtx.jpg"
+  },
+  {
+    "name": "Calico GTF",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/igallery/7401-7500/GTAOnline_Vehicle_CalicoGTF_Action-7483-360.jpg"
+  },
+  {
+    "name": "ZR380 (Arena)",
+    "value": 140.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/zr-380.jpg"
+  },
+  {
+    "name": "Imperator (Arena)",
+    "value": 132.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/imperator.jpg"
+  },
+  {
+    "name": "Scarab (Arena)",
+    "value": 74.3,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/scarab.jpg"
+  },
+  {
+    "name": "Brutus (Arena)",
+    "value": 123.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/brutus.jpg"
+  },
+  {
+    "name": "Cerberus (Arena)",
+    "value": 106.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/cerberus.jpg"
+  },
+  {
+    "name": "Issi (Arena)",
+    "value": 124.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/issi-arena.jpg"
+  },
+  {
+    "name": "Deathbike (Arena)",
+    "value": 150,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/deathbike.jpg"
+  },
+  {
+    "name": "Slamvan (Arena)",
+    "value": 121,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/slamvan-arena.jpg"
+  },
+  {
+    "name": "Sasquatch (Arena)",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/sasquatch.jpg"
+  },
+  {
+    "name": "Bruiser (Arena)",
+    "value": 110.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/bruiser.jpg"
+  },
+  {
+    "name": "Dominator (Arena)",
+    "value": 131,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/dominator-arena.jpg"
+  },
+  {
+    "name": "Impaler (Arena)",
+    "value": 130,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/impaler-arena.jpg"
+  },
+  {
+    "name": "Manchez Scout",
+    "value": 139.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/manchez-scout.jpg"
+  },
+  {
+    "name": "Verus",
+    "value": 84.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/verus.jpg"
+  },
+  {
+    "name": "Brioso 300",
+    "value": 86,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/brioso-300.jpg"
+  },
+  {
+    "name": "Vetir",
+    "value": 62,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/vetir.jpg"
+  },
+  {
+    "name": "Weevil",
+    "value": 102.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/weevil.jpg"
+  },
+  {
+    "name": "Slamtruck",
+    "value": 98.8,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/slamtruck.jpg"
+  },
+  {
+    "name": "Itali RSX",
+    "value": 135.3,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/itali-rsx.jpg"
+  },
+  {
+    "name": "Weaponized Dinghy",
+    "value": 71.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/main/weaponized-dinghy.jpg"
+  },
+  {
+    "name": "Squaddie",
+    "value": 101.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/squaddie.jpg"
+  },
+  {
+    "name": "Veto Modern (Go-Kart)",
+    "value": 76.8,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/veto-modern.jpg"
+  },
+  {
+    "name": "Veto Classic (Go-Kart)",
+    "value": 78.8,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/veto-classic.jpg"
+  },
+  {
+    "name": "Kosatka (Submarine HQ)",
+    "value": 41.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/main/kosatka.jpg"
+  },
+  {
+    "name": "Toreador",
+    "value": 135.25,
+    "image": "https://www.gtabase.com/igallery/7201-7300/GTAOnline_Vehicles_Toreador_Action-7284-360.jpg"
+  },
+  {
+    "name": "Sparrow",
+    "value": 168.75,
+    "image": "https://www.gtabase.com/images/gta-5/properties/kosatka/vehicles/sparrow.jpg"
+  },
+  {
+    "name": "Avisa",
+    "value": 16.8,
+    "image": "https://www.gtabase.com/igallery/7301-7400/GTAOnline_TheCayoPericoHeist_60-7311-360.jpg"
+  },
+  {
+    "name": "Kurtz 31 Patrol Boat",
+    "value": 36.8,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/main/patrol-boat.jpg"
+  },
+  {
+    "name": "Longfin",
+    "value": 122,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/main/longfin.jpg"
+  },
+  {
+    "name": "Annihilator Stealth",
+    "value": 149,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/annihilator-stealth.jpg"
+  },
+  {
+    "name": "RO-86 Alkonost",
+    "value": 167.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/ro-86-alkonost.jpg"
+  },
+  {
+    "name": "Winky",
+    "value": 72,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/winky.jpg"
+  },
+  {
+    "name": "Gauntlet Classic Custom",
+    "value": 125.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/gauntlet-classic-custom.jpg"
+  },
+  {
+    "name": "Yosemite Rancher",
+    "value": 105.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/yosemite-rancher.jpg"
+  },
+  {
+    "name": "Youga Classic 4x4",
+    "value": 95.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/youga-classic-4x4.jpg"
+  },
+  {
+    "name": "Glendale Custom",
+    "value": 112.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/glendale-custom.jpg"
+  },
+  {
+    "name": "Peyote Custom",
+    "value": 111,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/peyote-custom.jpg"
+  },
+  {
+    "name": "Manana Custom",
+    "value": 108.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/manana-custom.jpg"
+  },
+  {
+    "name": "Beater Dukes",
+    "value": 112.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/beater-dukes.jpg"
+  },
+  {
+    "name": "Seminole Frontier",
+    "value": 100,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/seminole-frontier.jpg"
+  },
+  {
+    "name": "Landstalker XL",
+    "value": 100.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/landstalker-xl.jpg"
+  },
+  {
+    "name": "Penumbra FF",
+    "value": 112.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/penumbra-ff.jpg"
+  },
+  {
+    "name": "Club",
+    "value": 112.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/club.jpg"
+  },
+  {
+    "name": "Coquette D10",
+    "value": 130,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/coquette-d10.jpg"
+  },
+  {
+    "name": "Tigon",
+    "value": 125.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/tigon.jpg"
+  },
+  {
+    "name": "DR1 (IndyCar)",
+    "value": 124,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/open-wheel/main/dr1.jpg"
+  },
+  {
+    "name": "BR8 (Formula 1 Car)",
+    "value": 122.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/open-wheel/main/br8.jpg"
+  },
+  {
+    "name": "Zhaba",
+    "value": 62,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/zhaba.jpg"
+  },
+  {
+    "name": "JB 700W",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/jb-700w.jpg"
+  },
+  {
+    "name": "Invade and Persuade RC Tank",
+    "value": 26.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/invade-persuade-tank.jpg"
+  },
+  {
+    "name": "Blista Kanjo",
+    "value": 109.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/blista-kanjo.jpg"
+  },
+  {
+    "name": "Sugoi",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/sugoi.jpg"
+  },
+  {
+    "name": "Drift Yosemite",
+    "value": 108.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/drift-yosemite.jpg"
+  },
+  {
+    "name": "Outlaw",
+    "value": 90.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/outlaw.jpg"
+  },
+  {
+    "name": "Sultan Classic",
+    "value": 116.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/sultan-classic.jpg"
+  },
+  {
+    "name": "Stryder",
+    "value": 101.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/stryder.jpg"
+  },
+  {
+    "name": "PR4 (Formula 1 Car)",
+    "value": 120.5,
+    "image": "https://www.gtabase.com/igallery/6701-6800/GTA5_Vehicles_PR4_Formula1_Action-6704-360.jpg"
+  },
+  {
+    "name": "R88 (Formula 1 Car)",
+    "value": 122,
+    "image": "https://www.gtabase.com/igallery/6701-6800/GTA5_Vehicles_R88_Formula1_Action-6706-360.jpg"
+  },
+  {
+    "name": "V-STR",
+    "value": 126.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/v-str.jpg"
+  },
+  {
+    "name": "Imorgon",
+    "value": 107.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/imorgon.jpg"
+  },
+  {
+    "name": "Furia",
+    "value": 122,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/furia.jpg"
+  },
+  {
+    "name": "Boxville (LSDWP)",
+    "value": 71.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/boxville-lsdwp.jpg"
+  },
+  {
+    "name": "Boxville",
+    "value": 71.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/boxville.jpg"
+  },
+  {
+    "name": "Bugstars Burrito",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/burrito-bugstars.jpg"
+  },
+  {
+    "name": "Rebla GTS",
+    "value": 123.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/rebla-gts.jpg"
+  },
+  {
+    "name": "Komoda",
+    "value": 123,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/komoda.jpg"
+  },
+  {
+    "name": "Asbo",
+    "value": 96.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/asbo.jpg"
+  },
+  {
+    "name": "Retinue Mk II",
+    "value": 120.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/retinue-mk-ii.jpg"
+  },
+  {
+    "name": "Everon",
+    "value": 106.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/everon.jpg"
+  },
+  {
+    "name": "Vagrant",
+    "value": 122.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/vagrant.jpg"
+  },
+  {
+    "name": "Tornado Mariachi",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/tornado-mariachi.jpg"
+  },
+  {
+    "name": "Dubsta 2",
+    "value": 102,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/dubsta-2.jpg"
+  },
+  {
+    "name": "Lost Gang Burrito",
+    "value": 105.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/gang-burrito-lost.jpg"
+  },
+  {
+    "name": "Lost Slamvan",
+    "value": 108,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/slamvan-lost-2.jpg"
+  },
+  {
+    "name": "Peyote Gasser",
+    "value": 118,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/peyote-gasser.jpg"
+  },
+  {
+    "name": "Dynasty",
+    "value": 93.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/dynasty.jpg"
+  },
+  {
+    "name": "Hellion",
+    "value": 103.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/hellion.jpg"
+  },
+  {
+    "name": "Zion Classic",
+    "value": 113.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/zion-classic.jpg"
+  },
+  {
+    "name": "Gauntlet Hellfire",
+    "value": 125.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/gauntlet-hellfire.jpg"
+  },
+  {
+    "name": "Novak",
+    "value": 126,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/novak.jpg"
+  },
+  {
+    "name": "Rampant Rocket Tricycle",
+    "value": 106,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/rampant-rocket.jpg"
+  },
+  {
+    "name": "Zorrusso",
+    "value": 124.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/zorrusso.jpg"
+  },
+  {
+    "name": "Jugular",
+    "value": 126.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/jugular.jpg"
+  },
+  {
+    "name": "Krieger",
+    "value": 127.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/krieger.jpg"
+  },
+  {
+    "name": "Locust",
+    "value": 119.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/locust.jpg"
+  },
+  {
+    "name": "Nebula Turbo",
+    "value": 101,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/nebula-turbo.jpg"
+  },
+  {
+    "name": "Emerus",
+    "value": 127.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/emerus.jpg"
+  },
+  {
+    "name": "Gauntlet Classic",
+    "value": 109.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/gauntlet-classic.jpg"
+  },
+  {
+    "name": "Neo",
+    "value": 125.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/neo.jpg"
+  },
+  {
+    "name": "Caracara 4x4",
+    "value": 103.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/caracara-4x4.jpg"
+  },
+  {
+    "name": "Issi Sport",
+    "value": 114.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/issi-sport.jpg"
+  },
+  {
+    "name": "8F Drafter",
+    "value": 117.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/drafter-8f.jpg"
+  },
+  {
+    "name": "Paragon R (Armored)",
+    "value": 121.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/paragon-r-armored.jpg"
+  },
+  {
+    "name": "Paragon R",
+    "value": 123.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/paragon-r.jpg"
+  },
+  {
+    "name": "S80RR",
+    "value": 123,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/s80rr.jpg"
+  },
+  {
+    "name": "Thrax",
+    "value": 124,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/thrax.jpg"
+  },
+  {
+    "name": "Deveste Eight",
+    "value": 131.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/deveste-eight.jpg"
+  },
+  {
+    "name": "Vamos",
+    "value": 112.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/vamos.jpg"
+  },
+  {
+    "name": "Deviant",
+    "value": 108.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/deviant.jpg"
+  },
+  {
+    "name": "RC Bandito",
+    "value": 60,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/rc-bandito.jpg"
+  },
+  {
+    "name": "Schlagen GT",
+    "value": 125.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/schlagen-gt.jpg"
+  },
+  {
+    "name": "Tulip",
+    "value": 112.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/tulip.jpg"
+  },
+  {
+    "name": "Itali GTO",
+    "value": 127.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/itali-gto.jpg"
+  },
+  {
+    "name": "Clique",
+    "value": 117.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/clique.jpg"
+  },
+  {
+    "name": "Toros",
+    "value": 127.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/toros.jpg"
+  },
+  {
+    "name": "Impaler",
+    "value": 115.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/impaler.jpg"
+  },
+  {
+    "name": "Freecrawler",
+    "value": 99.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/freecrawler.jpg"
+  },
+  {
+    "name": "Menacer",
+    "value": 94.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/menacer.jpg"
+  },
+  {
+    "name": "Scramjet",
+    "value": 137,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/scramjet.jpg"
+  },
+  {
+    "name": "Oppressor Mk II",
+    "value": 127.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/oppressor-mk-ii.jpg"
+  },
+  {
+    "name": "Terrorbyte",
+    "value": 87.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/terrorbyte.jpg"
+  },
+  {
+    "name": "B-11 Strikeforce",
+    "value": 163.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/b-11-strikeforce.jpg"
+  },
+  {
+    "name": "Stafford",
+    "value": 93.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/stafford.jpg"
+  },
+  {
+    "name": "Blimp",
+    "value": 107,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/blimp.jpg"
+  },
+  {
+    "name": "Speedo Custom",
+    "value": 105,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/speedo-custom.jpg"
+  },
+  {
+    "name": "Festival Bus",
+    "value": 59.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/festival-bus.jpg"
+  },
+  {
+    "name": "Patriot Stretch",
+    "value": 96.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/patriot-stretch.jpg"
+  },
+  {
+    "name": "Pounder Custom",
+    "value": 95.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/pounder-custom.jpg"
+  },
+  {
+    "name": "Mule Custom",
+    "value": 76.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/mule-custom.jpg"
+  },
+  {
+    "name": "Swinger",
+    "value": 118.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/swinger.jpg"
+  },
+  {
+    "name": "Clown Van",
+    "value": 94.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/clown-van.jpg"
+  },
+  {
+    "name": "Mixer II",
+    "value": 84.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/mixer-2.jpg"
+  },
+  {
+    "name": "Tipper II (6 wheels)",
+    "value": 73,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/tipper-2.jpg"
+  },
+  {
+    "name": "Cargobob Jetsam",
+    "value": 99.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/cargobob-jetsam.jpg"
+  },
+  {
+    "name": "Dilettante (Patrol)",
+    "value": 88.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/dilettante-patrol.jpg"
+  },
+  {
+    "name": "Seashark Lifeguard",
+    "value": 67,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/seashark-lifeguard.jpg"
+  },
+  {
+    "name": "Jester Classic",
+    "value": 119.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/jester-classic.jpg"
+  },
+  {
+    "name": "Michelli GT",
+    "value": 106.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/michelli-gt.jpg"
+  },
+  {
+    "name": "Cheburek",
+    "value": 108.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/cheburek.jpg"
+  },
+  {
+    "name": "Tyrant",
+    "value": 127,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/tyrant.jpg"
+  },
+  {
+    "name": "Dominator GTX",
+    "value": 108.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/dominator-gtx.jpg"
+  },
+  {
+    "name": "Caddy (Civilian)",
+    "value": 67,
+    "image": "https://www.gtabase.com/igallery/1501-1600/GTAOnline_Bunker_Transportation_1_CaddyUtility-1501-512.jpg"
+  },
+  {
+    "name": "Sea Sparrow",
+    "value": 153.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/sea-sparrow.jpg"
+  },
+  {
+    "name": "Issi Classic",
+    "value": 95.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/issi-classic.jpg"
+  },
+  {
+    "name": "Flash GT",
+    "value": 116.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/flash-gt.jpg"
+  },
+  {
+    "name": "Caracara",
+    "value": 100.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/caracara.jpg"
+  },
+  {
+    "name": "Tezeract",
+    "value": 125.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/tezeract.jpg"
+  },
+  {
+    "name": "Ellie",
+    "value": 106.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/ellie.jpg"
+  },
+  {
+    "name": "GB200",
+    "value": 114.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/gb200.jpg"
+  },
+  {
+    "name": "Taipan",
+    "value": 126.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/taipan.jpg"
+  },
+  {
+    "name": "Entity XXR",
+    "value": 128,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/entity-xxr.jpg"
+  },
+  {
+    "name": "Fagaloa",
+    "value": 87.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/fagaloa.jpg"
+  },
+  {
+    "name": "Hotring Sabre",
+    "value": 121.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/hotring-sabre.jpg"
+  },
+  {
+    "name": "Comet SR",
+    "value": 122,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/comet-sr.jpg"
+  },
+  {
+    "name": "190z",
+    "value": 109.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/190z.jpg"
+  },
+  {
+    "name": "Hustler",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/hustler.jpg"
+  },
+  {
+    "name": "Kamacho",
+    "value": 116.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/kamacho.jpg"
+  },
+  {
+    "name": "Neon",
+    "value": 114,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/neon.jpg"
+  },
+  {
+    "name": "Revolter",
+    "value": 115.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/revolter.jpg"
+  },
+  {
+    "name": "GT500",
+    "value": 110.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/gt500.jpg"
+  },
+  {
+    "name": "Viseris",
+    "value": 124.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/viseris.jpg"
+  },
+  {
+    "name": "Savestra",
+    "value": 117,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/savestra.jpg"
+  },
+  {
+    "name": "Autarch",
+    "value": 125.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/autarch.jpg"
+  },
+  {
+    "name": "Hermes",
+    "value": 117.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/hermes.jpg"
+  },
+  {
+    "name": "Streiter",
+    "value": 111.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/streiter.jpg"
+  },
+  {
+    "name": "Sentinel Classic",
+    "value": 117.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/sentinel-classic.jpg"
+  },
+  {
+    "name": "Avenger",
+    "value": 178.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/avenger-2.jpg"
+  },
+  {
+    "name": "Thruster (Jetpack)",
+    "value": 126,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/thruster-jetpack.jpg"
+  },
+  {
+    "name": "Deluxo",
+    "value": 127.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/deluxo.jpg"
+  },
+  {
+    "name": "Stromberg",
+    "value": 112.75,
+    "image": "https://www.gtabase.com/igallery/6301-6400/GTA5_Stromberg_Online-6379-360.jpg"
+  },
+  {
+    "name": "TM-02 Khanjali Tank",
+    "value": 42,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/tm-02-khanjali.jpg"
+  },
+  {
+    "name": "RCV",
+    "value": 96.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/rcv.jpg"
+  },
+  {
+    "name": "Chernobog",
+    "value": 70.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/chernobog.jpg"
+  },
+  {
+    "name": "Barrage",
+    "value": 108.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/barrage.jpg"
+  },
+  {
+    "name": "Volatol",
+    "value": 165.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/volatol.jpg"
+  },
+  {
+    "name": "Akula",
+    "value": 157.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/akula.jpg"
+  },
+  {
+    "name": "SC1",
+    "value": 120.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/sc1.jpg"
+  },
+  {
+    "name": "Raiden",
+    "value": 113.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/raiden.jpg"
+  },
+  {
+    "name": "Pariah",
+    "value": 136,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/pariah.jpg"
+  },
+  {
+    "name": "Comet Safari",
+    "value": 120,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/comet-safari.jpg"
+  },
+  {
+    "name": "Yosemite",
+    "value": 117,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/yosemite.jpg"
+  },
+  {
+    "name": "Riata",
+    "value": 104,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/riata.jpg"
+  },
+  {
+    "name": "FH-1 Hunter",
+    "value": 141.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/fh-1-hunter.jpg"
+  },
+  {
+    "name": "Cyclone",
+    "value": 116.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/cyclone.jpg"
+  },
+  {
+    "name": "P-45 Nokota",
+    "value": 201,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/p-45-nokota.jpg"
+  },
+  {
+    "name": "Mule (Heist)",
+    "value": 72.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/mule-armored.jpg"
+  },
+  {
+    "name": "Seabreeze",
+    "value": 191.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/seabreeze.jpg"
+  },
+  {
+    "name": "Mobile Operations Center (Trailer)",
+    "value": 88.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/mobile-operations-center.jpg"
+  },
+  {
+    "name": "Police Roadcruiser",
+    "value": 100.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-roadcruiser.jpg"
+  },
+  {
+    "name": "Police Rancher",
+    "value": 89.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-rancher.jpg"
+  },
+  {
+    "name": "Space Docker",
+    "value": 86.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/space-docker.jpg"
+  },
+  {
+    "name": "Vigilante",
+    "value": 147,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/vigilante.jpg"
+  },
+  {
+    "name": "Rapid GT Classic",
+    "value": 119.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/rapid-gt-classic.jpg"
+  },
+  {
+    "name": "RM-10 Bombushka",
+    "value": 84.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/bombushka.jpg"
+  },
+  {
+    "name": "Mogul",
+    "value": 155.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/mogul.jpg"
+  },
+  {
+    "name": "Pyro",
+    "value": 222.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/pyro.jpg"
+  },
+  {
+    "name": "Howard NX-25",
+    "value": 203.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/howard-nx-25.jpg"
+  },
+  {
+    "name": "Cargo Plane",
+    "value": 139.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/cargo-plane.jpg"
+  },
+  {
+    "name": "Youga Classic",
+    "value": 91,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/youga-classic.jpg"
+  },
+  {
+    "name": "Youga",
+    "value": 96.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/youga.jpg"
+  },
+  {
+    "name": "Taco Van",
+    "value": 71,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/taco-van.jpg"
+  },
+  {
+    "name": "Surfer",
+    "value": 67.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/surfer.jpg"
+  },
+  {
+    "name": "Speedo",
+    "value": 101.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/speedo.jpg"
+  },
+  {
+    "name": "Rumpo Custom",
+    "value": 98.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/rumpo-custom.jpg"
+  },
+  {
+    "name": "Rumpo",
+    "value": 99.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/rumpo.jpg"
+  },
+  {
+    "name": "Pony",
+    "value": 90.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/pony.jpg"
+  },
+  {
+    "name": "Paradise",
+    "value": 99.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/paradise.jpg"
+  },
+  {
+    "name": "Minivan Custom",
+    "value": 95.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/minivan-custom.jpg"
+  },
+  {
+    "name": "Minivan",
+    "value": 94.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/minivan.jpg"
+  },
+  {
+    "name": "Journey",
+    "value": 74.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/journey.jpg"
+  },
+  {
+    "name": "Gang Burrito",
+    "value": 105.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/gang-burrito.jpg"
+  },
+  {
+    "name": "Camper",
+    "value": 72.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/camper.jpg"
+  },
+  {
+    "name": "Burrito",
+    "value": 90.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/burrito-lsdwp.jpg"
+  },
+  {
+    "name": "Armored Boxville",
+    "value": 87,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/boxville-armored.jpg"
+  },
+  {
+    "name": "Boxville (Post OP)",
+    "value": 71.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/boxville-heist.jpg"
+  },
+  {
+    "name": "Bobcat XL",
+    "value": 95.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/bobcat-xl.jpg"
+  },
+  {
+    "name": "Bison",
+    "value": 98.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/bison.jpg"
+  },
+  {
+    "name": "Utility Truck (Contender)",
+    "value": 77,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/utility-truck-contender.jpg"
+  },
+  {
+    "name": "Utility Truck (Cherry Picker)",
+    "value": 77,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/utility-truck-cherry-picker.jpg"
+  },
+  {
+    "name": "Utility Truck (Van)",
+    "value": 77,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/utility-truck.jpg"
+  },
+  {
+    "name": "Tractor",
+    "value": 28.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/tractor.jpg"
+  },
+  {
+    "name": "Tow Truck (Large)",
+    "value": 81.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/tow-truck-large.jpg"
+  },
+  {
+    "name": "Tow Truck (Small)",
+    "value": 85.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/tow-truck.jpg"
+  },
+  {
+    "name": "Scrap Truck",
+    "value": 77.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/scrap-truck.jpg"
+  },
+  {
+    "name": "Sadler",
+    "value": 100,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/sadler.jpg"
+  },
+  {
+    "name": "Ripley",
+    "value": 55.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/ripley.jpg"
+  },
+  {
+    "name": "Lawn Mower",
+    "value": 14.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/lawn-mower.jpg"
+  },
+  {
+    "name": "Forklift",
+    "value": 35.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/forklift.jpg"
+  },
+  {
+    "name": "Fieldmaster",
+    "value": 33.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/fieldmaster.jpg"
+  },
+  {
+    "name": "Docktug",
+    "value": 56,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/docktug.jpg"
+  },
+  {
+    "name": "Caddy (Bunker)",
+    "value": 48.25,
+    "image": "https://www.gtabase.com/igallery/1401-1500/GTAOnline_Bunker_Transportation_2_CaddyBunker-1500-512.jpg"
+  },
+  {
+    "name": "Caddy (Golf)",
+    "value": 67,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/caddy.jpg"
+  },
+  {
+    "name": "Airtug",
+    "value": 29.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/airtug.jpg"
+  },
+  {
+    "name": "XLS (Armored)",
+    "value": 108.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/xls-armored.jpg"
+  },
+  {
+    "name": "XLS",
+    "value": 106,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/xls.jpg"
+  },
+  {
+    "name": "Serrano",
+    "value": 101.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/serrano.jpg"
+  },
+  {
+    "name": "Seminole",
+    "value": 97.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/seminole.jpg"
+  },
+  {
+    "name": "Rocoto",
+    "value": 107.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/rocoto.jpg"
+  },
+  {
+    "name": "Radius",
+    "value": 104.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/radius.jpg"
+  },
+  {
+    "name": "Patriot",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/patriot.jpg"
+  },
+  {
+    "name": "Mesa",
+    "value": 95,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/mesa.jpg"
+  },
+  {
+    "name": "Landstalker",
+    "value": 99.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/landstalker.jpg"
+  },
+  {
+    "name": "Huntley S",
+    "value": 108.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/huntley-s.jpg"
+  },
+  {
+    "name": "Habanero",
+    "value": 104.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/habanero.jpg"
+  },
+  {
+    "name": "Gresley",
+    "value": 100.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/gresley.jpg"
+  },
+  {
+    "name": "Granger",
+    "value": 101.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/granger.jpg"
+  },
+  {
+    "name": "FQ 2",
+    "value": 104,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/fq-2.jpg"
+  },
+  {
+    "name": "Dubsta",
+    "value": 102,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/dubsta.jpg"
+  },
+  {
+    "name": "Contender",
+    "value": 109,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/contender.jpg"
+  },
+  {
+    "name": "Cavalcade II",
+    "value": 98,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/cavalcade-2.jpg"
+  },
+  {
+    "name": "Cavalcade",
+    "value": 98,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/cavalcade.jpg"
+  },
+  {
+    "name": "BeeJay XL",
+    "value": 96.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/beejay-xl.jpg"
+  },
+  {
+    "name": "Baller LE LWB (Armored)",
+    "value": 107.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/baller-le-lwb-armored.jpg"
+  },
+  {
+    "name": "Baller LE LWB",
+    "value": 108.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/baller-le-lwb.jpg"
+  },
+  {
+    "name": "Baller LE (Armored)",
+    "value": 108.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/baller-le-armored.jpg"
+  },
+  {
+    "name": "Baller LE",
+    "value": 108.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/baller-le.jpg"
+  },
+  {
+    "name": "Baller II",
+    "value": 108.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/baller-2.jpg"
+  },
+  {
+    "name": "Baller",
+    "value": 100,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/main/baller.jpg"
+  },
+  {
+    "name": "Zentorno",
+    "value": 122,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/zentorno.jpg"
+  },
+  {
+    "name": "XA-21",
+    "value": 122.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/xa-21.jpg"
+  },
+  {
+    "name": "X80 Proto",
+    "value": 127.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/x80-proto.jpg"
+  },
+  {
+    "name": "Voltic",
+    "value": 106,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/voltic.jpg"
+  },
+  {
+    "name": "Visione",
+    "value": 125.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/visione.jpg"
+  },
+  {
+    "name": "Vagner",
+    "value": 126.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/vagner.jpg"
+  },
+  {
+    "name": "Vacca",
+    "value": 120.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/vacca.jpg"
+  },
+  {
+    "name": "Tyrus",
+    "value": 123.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/tyrus.jpg"
+  },
+  {
+    "name": "Turismo R",
+    "value": 121.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/turismo-r.jpg"
+  },
+  {
+    "name": "Tempesta",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/tempesta.jpg"
+  },
+  {
+    "name": "T20",
+    "value": 122.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/t20.jpg"
+  },
+  {
+    "name": "Sultan RS",
+    "value": 117.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/sultan-rs.jpg"
+  },
+  {
+    "name": "Rocket Voltic",
+    "value": 124.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/rocket-voltic.jpg"
+  },
+  {
+    "name": "Reaper",
+    "value": 121.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/reaper.jpg"
+  },
+  {
+    "name": "RE-7B",
+    "value": 123.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/re-7b.jpg"
+  },
+  {
+    "name": "Penetrator",
+    "value": 124,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/penetrator.jpg"
+  },
+  {
+    "name": "Osiris",
+    "value": 122,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/osiris.jpg"
+  },
+  {
+    "name": "Nero Custom",
+    "value": 127.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/nero-custom.jpg"
+  },
+  {
+    "name": "Nero",
+    "value": 126.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/nero.jpg"
+  },
+  {
+    "name": "Itali GTB Custom",
+    "value": 127,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/itali-gtb-custom.jpg"
+  },
+  {
+    "name": "Itali GTB",
+    "value": 126.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/itali-gtb.jpg"
+  },
+  {
+    "name": "Infernus",
+    "value": 117.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/infernus.jpg"
+  },
+  {
+    "name": "GP1",
+    "value": 123.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/gp1.jpg"
+  },
+  {
+    "name": "FMJ",
+    "value": 125,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/fmj.jpg"
+  },
+  {
+    "name": "ETR1",
+    "value": 120.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/etr1.jpg"
+  },
+  {
+    "name": "Entity XF",
+    "value": 121.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/entity-xf.jpg"
+  },
+  {
+    "name": "Cheetah",
+    "value": 120.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/cheetah.jpg"
+  },
+  {
+    "name": "Bullet",
+    "value": 118.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/bullet.jpg"
+  },
+  {
+    "name": "Banshee 900R",
+    "value": 131,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/banshee-900r.jpg"
+  },
+  {
+    "name": "Adder",
+    "value": 124.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/adder.jpg"
+  },
+  {
+    "name": "811",
+    "value": 132.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/main/811.jpg"
+  },
+  {
+    "name": "Z-Type",
+    "value": 126.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/z-type.jpg"
+  },
+  {
+    "name": "Turismo Classic",
+    "value": 120.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/turismo-classic.jpg"
+  },
+  {
+    "name": "Tornado Rat Rod",
+    "value": 98.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/tornado-rat-rod.jpg"
+  },
+  {
+    "name": "Tornado Custom",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/tornado-custom.jpg"
+  },
+  {
+    "name": "Tornado Convertible",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/tornado-convertible.jpg"
+  },
+  {
+    "name": "Tornado",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/tornado.jpg"
+  },
+  {
+    "name": "Torero",
+    "value": 116.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/torero.jpg"
+  },
+  {
+    "name": "Stirling GT",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/stirling-gt.jpg"
+  },
+  {
+    "name": "Stinger GT",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/stinger-gt.jpg"
+  },
+  {
+    "name": "Stinger",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/stinger.jpg"
+  },
+  {
+    "name": "Roosevelt Valor",
+    "value": 98.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/roosevelt-valor.jpg"
+  },
+  {
+    "name": "Roosevelt",
+    "value": 98.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/roosevelt.jpg"
+  },
+  {
+    "name": "Retinue",
+    "value": 116.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/retinue.jpg"
+  },
+  {
+    "name": "Pigalle",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/pigalle.jpg"
+  },
+  {
+    "name": "Peyote",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/peyote.jpg"
+  },
+  {
+    "name": "Monroe",
+    "value": 122,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/monroe.jpg"
+  },
+  {
+    "name": "Manana",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/manana.jpg"
+  },
+  {
+    "name": "Mamba",
+    "value": 117,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/mamba.jpg"
+  },
+  {
+    "name": "JB 700",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/jb-700.jpg"
+  },
+  {
+    "name": "Infernus Classic",
+    "value": 118,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/infernus-classic.jpg"
+  },
+  {
+    "name": "Fränken Stange",
+    "value": 106.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/franken-stange.jpg"
+  },
+  {
+    "name": "Coquette Classic",
+    "value": 118,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/coquette-classic.jpg"
+  },
+  {
+    "name": "Cheetah Classic",
+    "value": 120.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/cheetah-classic.jpg"
+  },
+  {
+    "name": "Casco",
+    "value": 120,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/casco.jpg"
+  },
+  {
+    "name": "Ardent",
+    "value": 117.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports-classic/main/ardent.jpg"
+  },
+  {
+    "name": "Verlierer",
+    "value": 121.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/verlierer.jpg"
+  },
+  {
+    "name": "Tropos Rallye",
+    "value": 119.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/tropos-rallye.jpg"
+  },
+  {
+    "name": "Drift Tampa",
+    "value": 114.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/tampa-drift.jpg"
+  },
+  {
+    "name": "Surano",
+    "value": 121,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/surano.jpg"
+  },
+  {
+    "name": "Sultan",
+    "value": 115.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/sultan.jpg"
+  },
+  {
+    "name": "Specter Custom",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/specter-custom.jpg"
+  },
+  {
+    "name": "Specter",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/specter.jpg"
+  },
+  {
+    "name": "Seven-70",
+    "value": 123.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/seven-70.jpg"
+  },
+  {
+    "name": "Schwartzer",
+    "value": 117,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/schwartzer.jpg"
+  },
+  {
+    "name": "Schafter V12",
+    "value": 124.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/schafter-v12.jpg"
+  },
+  {
+    "name": "Schafter LWB",
+    "value": 109.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/schafter-lwb.jpg"
+  },
+  {
+    "name": "Ruston",
+    "value": 116.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/ruston.jpg"
+  },
+  {
+    "name": "Raptor",
+    "value": 103.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/raptor.jpg"
+  },
+  {
+    "name": "Rapid GT Cabrio",
+    "value": 119.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/rapid-gt-sports.jpg"
+  },
+  {
+    "name": "Rapid GT",
+    "value": 119.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/rapid-gt.jpg"
+  },
+  {
+    "name": "Penumbra",
+    "value": 105.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/penumbra.jpg"
+  },
+  {
+    "name": "Omnis",
+    "value": 112.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/omnis.jpg"
+  },
+  {
+    "name": "Massacro (Racecar)",
+    "value": 121.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/massacro-racecar.jpg"
+  },
+  {
+    "name": "Massacro",
+    "value": 121.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/massacro.jpg"
+  },
+  {
+    "name": "Lynx",
+    "value": 121.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/lynx.jpg"
+  },
+  {
+    "name": "Kuruma (Armored)",
+    "value": 109.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/kuruma-armored.jpg"
+  },
+  {
+    "name": "Kuruma",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/kuruma.jpg"
+  },
+  {
+    "name": "Khamelion",
+    "value": 102.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/khamelion.jpg"
+  },
+  {
+    "name": "Jester (Racecar)",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/jester-racecar.jpg"
+  },
+  {
+    "name": "Jester",
+    "value": 118.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/jester.jpg"
+  },
+  {
+    "name": "Futo",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/futo.jpg"
+  },
+  {
+    "name": "Fusilade",
+    "value": 117.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/fusilade.jpg"
+  },
+  {
+    "name": "Furore GT",
+    "value": 120.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/furore-gt.jpg"
+  },
+  {
+    "name": "Feltzer",
+    "value": 119.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/feltzer.jpg"
+  },
+  {
+    "name": "Elegy RH8",
+    "value": 118.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/elegy-rh8.jpg"
+  },
+  {
+    "name": "Elegy Retro Custom",
+    "value": 115.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/elegy-retro-custom.jpg"
+  },
+  {
+    "name": "Coquette",
+    "value": 119.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/coquette-topless.jpg"
+  },
+  {
+    "name": "Comet Retro Custom",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/comet-retro-custom.jpg"
+  },
+  {
+    "name": "Comet",
+    "value": 119.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/comet.jpg"
+  },
+  {
+    "name": "Carbonizzare",
+    "value": 119.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/carbonizzare.jpg"
+  },
+  {
+    "name": "Sprunk Buffalo",
+    "value": 116,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/buffalo-sprunk.jpg"
+  },
+  {
+    "name": "Buffalo S",
+    "value": 112.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/buffalo-s.jpg"
+  },
+  {
+    "name": "Buffalo",
+    "value": 112.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/buffalo.jpg"
+  },
+  {
+    "name": "Go Go Monkey Blista",
+    "value": 103,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/blista-go-go-monkey.jpg"
+  },
+  {
+    "name": "Blista Compact",
+    "value": 103,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/blista-compact.jpg"
+  },
+  {
+    "name": "Bestia GTS",
+    "value": 118.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/bestia-gts.jpg"
+  },
+  {
+    "name": "Banshee",
+    "value": 117.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/banshee.jpg"
+  },
+  {
+    "name": "Alpha",
+    "value": 117.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/alpha.jpg"
+  },
+  {
+    "name": "9F Cabrio",
+    "value": 119.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/9f-cabrio.jpg"
+  },
+  {
+    "name": "9F",
+    "value": 119.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/9f.jpg"
+  },
+  {
+    "name": "Wastelander",
+    "value": 89.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/wastelander.jpg"
+  },
+  {
+    "name": "Trashmaster",
+    "value": 82.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/trashmaster.jpg"
+  },
+  {
+    "name": "Tour Bus",
+    "value": 65,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/tour-bus.jpg"
+  },
+  {
+    "name": "Taxi",
+    "value": 102,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/taxi.jpg"
+  },
+  {
+    "name": "Rental Shuttle Bus",
+    "value": 65,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/rental-shuttle-bus.jpg"
+  },
+  {
+    "name": "Dune",
+    "value": 91.5,
+    "image": "https://www.gtabase.com/igallery/4201-4300/GTA5_MTLDune_GlobeOil-4232-360.jpg"
+  },
+  {
+    "name": "Dashound",
+    "value": 71.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/dashound.jpg"
+  },
+  {
+    "name": "Bus",
+    "value": 65,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/bus.jpg"
+  },
+  {
+    "name": "Brickade",
+    "value": 83.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/service/main/brickade.jpg"
+  },
+  {
+    "name": "Airport Bus",
+    "value": 65,
+    "image": "https://www.gtabase.com/igallery/5801-5900/GTA5_Airportbus_Story-5808-360.jpg"
+  },
+  {
+    "name": "Washington",
+    "value": 108,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/washington.jpg"
+  },
+  {
+    "name": "Warrener",
+    "value": 103.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/warrener.jpg"
+  },
+  {
+    "name": "Turreted Limo",
+    "value": 89.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/turretted-limo.jpg"
+  },
+  {
+    "name": "Tailgater",
+    "value": 104.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/tailgater.jpg"
+  },
+  {
+    "name": "Surge",
+    "value": 93.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/surge.jpg"
+  },
+  {
+    "name": "Super Diamond",
+    "value": 111.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/super-diamond.jpg"
+  },
+  {
+    "name": "Stretch",
+    "value": 94.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/stretch.jpg"
+  },
+  {
+    "name": "Stratum",
+    "value": 104.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/stratum.jpg"
+  },
+  {
+    "name": "Stanier",
+    "value": 108,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/stanier.jpg"
+  },
+  {
+    "name": "Schafter V12 (Armored)",
+    "value": 123.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/schafter-v12-armored.jpg"
+  },
+  {
+    "name": "Schafter LWB (Armored)",
+    "value": 109.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/schafter-lwb-armored.jpg"
+  },
+  {
+    "name": "Schafter",
+    "value": 110.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/schafter.jpg"
+  },
+  {
+    "name": "Romero Hearse",
+    "value": 89.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/romero-hearse.jpg"
+  },
+  {
+    "name": "Regina",
+    "value": 86.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/regina.jpg"
+  },
+  {
+    "name": "Primo Custom",
+    "value": 103,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/primo-custom.jpg"
+  },
+  {
+    "name": "Primo",
+    "value": 103,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/primo.jpg"
+  },
+  {
+    "name": "Premier",
+    "value": 104.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/premier.jpg"
+  },
+  {
+    "name": "Intruder",
+    "value": 106,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/intruder.jpg"
+  },
+  {
+    "name": "Ingot",
+    "value": 90,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/ingot.jpg"
+  },
+  {
+    "name": "Glendale",
+    "value": 107,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/glendale.jpg"
+  },
+  {
+    "name": "Fugitive",
+    "value": 107.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/fugitive.jpg"
+  },
+  {
+    "name": "Emperor",
+    "value": 90.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/emperor.jpg"
+  },
+  {
+    "name": "Cognoscenti 55 (Armored)",
+    "value": 112.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/cognoscenti-55-armored.jpg"
+  },
+  {
+    "name": "Cognoscenti 55",
+    "value": 112.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/cognoscenti-55.jpg"
+  },
+  {
+    "name": "Cognoscenti (Armored)",
+    "value": 109.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/cognoscenti-armored.jpg"
+  },
+  {
+    "name": "Cognoscenti",
+    "value": 110,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/cognoscenti.jpg"
+  },
+  {
+    "name": "Asterope",
+    "value": 105,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/asterope.jpg"
+  },
+  {
+    "name": "Asea",
+    "value": 104.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/main/asea.jpg"
+  },
+  {
+    "name": "Xero Blimp",
+    "value": 105,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/xero-blimp.jpg"
+  },
+  {
+    "name": "Vestra",
+    "value": 163.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/vestra.jpg"
+  },
+  {
+    "name": "Velum 5-Seater",
+    "value": 139.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/velum-5-seater.jpg"
+  },
+  {
+    "name": "Velum",
+    "value": 139.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/velum.jpg"
+  },
+  {
+    "name": "V-65 Molotok",
+    "value": 207.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/v-65-molotok.jpg"
+  },
+  {
+    "name": "Ultralight",
+    "value": 73.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/ultralight.jpg"
+  },
+  {
+    "name": "Tula",
+    "value": 150,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/tula.jpg"
+  },
+  {
+    "name": "Titan",
+    "value": 133.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/titan.jpg"
+  },
+  {
+    "name": "Shamal",
+    "value": 159,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/shamal.jpg"
+  },
+  {
+    "name": "Rogue",
+    "value": 219.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/rogue.jpg"
+  },
+  {
+    "name": "P-996 LAZER",
+    "value": 195,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/p-996-lazer.jpg"
+  },
+  {
+    "name": "Nimbus",
+    "value": 165,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/nimbus.jpg"
+  },
+  {
+    "name": "Miljet",
+    "value": 161.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/miljet.jpg"
+  },
+  {
+    "name": "Mammatus",
+    "value": 132.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/mammatus.jpg"
+  },
+  {
+    "name": "Mallard",
+    "value": 140.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/mallard.jpg"
+  },
+  {
+    "name": "Luxor Deluxe",
+    "value": 159.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/luxor-deluxe.jpg"
+  },
+  {
+    "name": "Luxor",
+    "value": 159,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/luxor.jpg"
+  },
+  {
+    "name": "LF-22 Starling",
+    "value": 187.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/lf-22-starling.jpg"
+  },
+  {
+    "name": "Jet",
+    "value": 142,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/jet.jpg"
+  },
+  {
+    "name": "Hydra",
+    "value": 209.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/hydra.jpg"
+  },
+  {
+    "name": "Duster",
+    "value": 144,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/duster.jpg"
+  },
+  {
+    "name": "Dodo",
+    "value": 134.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/dodo.jpg"
+  },
+  {
+    "name": "Cuban 800",
+    "value": 142,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/cuban-800.jpg"
+  },
+  {
+    "name": "Besra",
+    "value": 189.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/besra.jpg"
+  },
+  {
+    "name": "Atomic Blimp",
+    "value": 105,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/atomic-blimp.jpg"
+  },
+  {
+    "name": "Alpha-Z1",
+    "value": 201.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/planes/main/alpha-z1.jpg"
+  },
+  {
+    "name": "Trophy Truck",
+    "value": 107,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/trophy-truck.jpg"
+  },
+  {
+    "name": "Liberator",
+    "value": 80.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/the-liberator.jpg"
+  },
+  {
+    "name": "Technical Custom",
+    "value": 101.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/technical-custom.jpg"
+  },
+  {
+    "name": "Technical Aqua",
+    "value": 93,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/technical-aqua.jpg"
+  },
+  {
+    "name": "Technical",
+    "value": 93,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/technical.jpg"
+  },
+  {
+    "name": "Street Blazer",
+    "value": 100,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/street-blazer.jpg"
+  },
+  {
+    "name": "Sandking XL",
+    "value": 99,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/sandking-xl.jpg"
+  },
+  {
+    "name": "Sandking SWB",
+    "value": 99,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/sandking-swb.jpg"
+  },
+  {
+    "name": "Rusty Rebel",
+    "value": 100,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/rebel-rusty.jpg"
+  },
+  {
+    "name": "Rebel",
+    "value": 100,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/rebel.jpg"
+  },
+  {
+    "name": "Rancher XL",
+    "value": 96,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/rancher-xl.jpg"
+  },
+  {
+    "name": "Ramp Buggy",
+    "value": 113,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/ramp-buggy.jpg"
+  },
+  {
+    "name": "Nightshark",
+    "value": 104.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/nightshark.jpg"
+  },
+  {
+    "name": "Mesa (Merryweather)",
+    "value": 99.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/mesa-merryweather.jpg"
+  },
+  {
+    "name": "Marshall",
+    "value": 80.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/marshall.jpg"
+  },
+  {
+    "name": "Kalahari",
+    "value": 90.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/kalahari.jpg"
+  },
+  {
+    "name": "Insurgent Pick-up Custom",
+    "value": 99.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/insurgent-pick-up-custom.jpg"
+  },
+  {
+    "name": "Insurgent Pick-up",
+    "value": 91.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/insurgent-pick-up.jpg"
+  },
+  {
+    "name": "Insurgent",
+    "value": 98.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/insurgent.jpg"
+  },
+  {
+    "name": "Injection",
+    "value": 106.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/injection.jpg"
+  },
+  {
+    "name": "Hot Rod Blazer",
+    "value": 98.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/hot-rod-blazer.jpg"
+  },
+  {
+    "name": "Duneloader",
+    "value": 79.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/duneloader.jpg"
+  },
+  {
+    "name": "Dune FAV",
+    "value": 99.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/dune-fav.jpg"
+  },
+  {
+    "name": "Dune Buggy",
+    "value": 100.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/dune-buggy.jpg"
+  },
+  {
+    "name": "Dubsta 6x6",
+    "value": 103.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/dubsta-6x6.jpg"
+  },
+  {
+    "name": "Desert Raid",
+    "value": 106.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/desert-raid.jpg"
+  },
+  {
+    "name": "Brawler",
+    "value": 117.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/brawler.jpg"
+  },
+  {
+    "name": "Bodhi",
+    "value": 98.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/bodhi.jpg"
+  },
+  {
+    "name": "Blazer Lifeguard",
+    "value": 83.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/blazer-lifeguard.jpg"
+  },
+  {
+    "name": "Blazer Aqua",
+    "value": 98.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/blazer-aqua.jpg"
+  },
+  {
+    "name": "Blazer",
+    "value": 98.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/blazer.jpg"
+  },
+  {
+    "name": "Bifta",
+    "value": 107.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/off-road/main/bifta.jpg"
+  },
+  {
+    "name": "Voodoo Custom",
+    "value": 100.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/voodoo-custom.jpg"
+  },
+  {
+    "name": "Voodoo",
+    "value": 99,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/voodoo.jpg"
+  },
+  {
+    "name": "Virgo Classic Custom",
+    "value": 104,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/virgo-classic-custom-main.jpg"
+  },
+  {
+    "name": "Virgo Classic",
+    "value": 96.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/virgo-classic-main.jpg"
+  },
+  {
+    "name": "Virgo",
+    "value": 97.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/virgo.jpg"
+  },
+  {
+    "name": "Vigero",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/vigero.jpg"
+  },
+  {
+    "name": "Weaponized Tampa",
+    "value": 112.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/tampa-weaponized.jpg"
+  },
+  {
+    "name": "Tampa",
+    "value": 105.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/tampa.jpg"
+  },
+  {
+    "name": "Burger Shot Stallion",
+    "value": 113.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/stallion-burger-shot.jpg"
+  },
+  {
+    "name": "Stallion",
+    "value": 110.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/stallion.jpg"
+  },
+  {
+    "name": "Slamvan Custom",
+    "value": 117.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/slamvan-custom.jpg"
+  },
+  {
+    "name": "Slamvan",
+    "value": 108,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/slamvan.jpg"
+  },
+  {
+    "name": "Sabre Turbo Custom",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/sabre-turbo-custom.jpg"
+  },
+  {
+    "name": "Sabre Turbo",
+    "value": 110.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/sabre-turbo.jpg"
+  },
+  {
+    "name": "Ruiner 2000",
+    "value": 119,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/ruiner-2000.jpg"
+  },
+  {
+    "name": "Ruiner",
+    "value": 118.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/ruiner.jpg"
+  },
+  {
+    "name": "Rat-Truck",
+    "value": 105.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/rat-truck.jpg"
+  },
+  {
+    "name": "Rat-Loader",
+    "value": 102.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/rat-loader.jpg"
+  },
+  {
+    "name": "Picador",
+    "value": 102.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/picador.jpg"
+  },
+  {
+    "name": "Phoenix",
+    "value": 113,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/phoenix.jpg"
+  },
+  {
+    "name": "Nightshade",
+    "value": 104.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/nightshade.jpg"
+  },
+  {
+    "name": "Moonbeam Custom",
+    "value": 102,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/moonbeam-custom.jpg"
+  },
+  {
+    "name": "Moonbeam",
+    "value": 102,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/moonbeam.jpg"
+  },
+  {
+    "name": "Lurcher",
+    "value": 114.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/lurcher.jpg"
+  },
+  {
+    "name": "Hotknife",
+    "value": 109.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/hotknife.jpg"
+  },
+  {
+    "name": "Redwood Gauntlet",
+    "value": 117.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/gauntlet-redwood.jpg"
+  },
+  {
+    "name": "Gauntlet",
+    "value": 113.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/gauntlet.jpg"
+  },
+  {
+    "name": "Faction Custom Donk",
+    "value": 97.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/faction-custom-donk.jpg"
+  },
+  {
+    "name": "Faction Custom",
+    "value": 110.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/faction-custom.jpg"
+  },
+  {
+    "name": "Faction",
+    "value": 110.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/faction.jpg"
+  },
+  {
+    "name": "Dukes",
+    "value": 112.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/dukes.jpg"
+  },
+  {
+    "name": "Duke O'Death",
+    "value": 114.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/duke-o-death.jpg"
+  },
+  {
+    "name": "Pißwasser Dominator",
+    "value": 126.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/dominator-pisswasser.jpg"
+  },
+  {
+    "name": "Dominator",
+    "value": 120.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/dominator.jpg"
+  },
+  {
+    "name": "Coquette BlackFin",
+    "value": 114.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/coquette-blackfin.jpg"
+  },
+  {
+    "name": "Chino Custom",
+    "value": 95.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/chino-custom.jpg"
+  },
+  {
+    "name": "Chino",
+    "value": 94.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/chino.jpg"
+  },
+  {
+    "name": "Buccaneer Custom",
+    "value": 113,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/buccaneer-custom.jpg"
+  },
+  {
+    "name": "Buccaneer",
+    "value": 113,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/buccaneer.jpg"
+  },
+  {
+    "name": "Blade",
+    "value": 109.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/blade.jpg"
+  },
+  {
+    "name": "Zombie Chopper",
+    "value": 113.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/zombie-chopper.jpg"
+  },
+  {
+    "name": "Zombie Bobber",
+    "value": 113.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/zombie-bobber.jpg"
+  },
+  {
+    "name": "Wolfsbane",
+    "value": 101.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/wolfsbane.jpg"
+  },
+  {
+    "name": "Vortex",
+    "value": 115.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/vortex.jpg"
+  },
+  {
+    "name": "Vindicator",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/vindicator.jpg"
+  },
+  {
+    "name": "Vader",
+    "value": 107.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/vader.jpg"
+  },
+  {
+    "name": "Thrust",
+    "value": 118.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/thrust.jpg"
+  },
+  {
+    "name": "Sovereign",
+    "value": 106.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/sovereign.jpg"
+  },
+  {
+    "name": "Shotaro",
+    "value": 123.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/shotaro.jpg"
+  },
+  {
+    "name": "Sanctus",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/sanctus.jpg"
+  },
+  {
+    "name": "Sanchez (Livery)",
+    "value": 119.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/sanchez.jpg"
+  },
+  {
+    "name": "Sanchez",
+    "value": 119.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/sanchez-2.jpg"
+  },
+  {
+    "name": "Ruffian",
+    "value": 127,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/ruffian.jpg"
+  },
+  {
+    "name": "Rat Bike",
+    "value": 123.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/rat-bike.jpg"
+  },
+  {
+    "name": "PCJ 600",
+    "value": 106.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/pcj-600.jpg"
+  },
+  {
+    "name": "Oppressor",
+    "value": 140,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/oppressor.jpg"
+  },
+  {
+    "name": "Nightblade",
+    "value": 114.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/nightblade.jpg"
+  },
+  {
+    "name": "Nemesis",
+    "value": 111.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/nemesis.jpg"
+  },
+  {
+    "name": "Manchez",
+    "value": 113.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/manchez.jpg"
+  },
+  {
+    "name": "Lectro",
+    "value": 109.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/lectro.jpg"
+  },
+  {
+    "name": "Innovation",
+    "value": 110,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/innovation.jpg"
+  },
+  {
+    "name": "Hexer",
+    "value": 104.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/hexer.jpg"
+  },
+  {
+    "name": "Hakuchou Drag Bike",
+    "value": 126.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/hakuchou-drag-bike.jpg"
+  },
+  {
+    "name": "Hakuchou",
+    "value": 134,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/hakuchou.jpg"
+  },
+  {
+    "name": "Gargoyle",
+    "value": 125,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/gargoyle.jpg"
+  },
+  {
+    "name": "FCR 1000 Custom",
+    "value": 112.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/fcr-1000-custom.jpg"
+  },
+  {
+    "name": "FCR 1000",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/fcr-1000.jpg"
+  },
+  {
+    "name": "Faggio Sport",
+    "value": 76.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/faggio-sport.jpg"
+  },
+  {
+    "name": "Faggio Mod",
+    "value": 74.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/faggio-mod.jpg"
+  },
+  {
+    "name": "Faggio",
+    "value": 103.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/faggio.jpg"
+  },
+  {
+    "name": "Esskey",
+    "value": 112.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/esskey.jpg"
+  },
+  {
+    "name": "Enduro",
+    "value": 107.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/enduro.jpg"
+  },
+  {
+    "name": "Double-T",
+    "value": 118,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/double-t.jpg"
+  },
+  {
+    "name": "Diabolus Custom",
+    "value": 115.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/diabolus-custom.jpg"
+  },
+  {
+    "name": "Diabolus",
+    "value": 114.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/diabolus.jpg"
+  },
+  {
+    "name": "Defiler",
+    "value": 117,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/defiler.jpg"
+  },
+  {
+    "name": "Daemon (Custom)",
+    "value": 106.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/daemon-custom.jpg"
+  },
+  {
+    "name": "Daemon (Lost MC)",
+    "value": 107,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/daemon.jpg"
+  },
+  {
+    "name": "Cliffhanger",
+    "value": 124.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/cliffhanger.jpg"
+  },
+  {
+    "name": "Chimera",
+    "value": 103,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/chimera.jpg"
+  },
+  {
+    "name": "Carbon RS",
+    "value": 124.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/carbon-rs.jpg"
+  },
+  {
+    "name": "BF400",
+    "value": 137,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/bf400.jpg"
+  },
+  {
+    "name": "Bati 801RR",
+    "value": 135,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/bati-801rr.jpg"
+  },
+  {
+    "name": "Bati 801",
+    "value": 135,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/bati-801.jpg"
+  },
+  {
+    "name": "Bagger",
+    "value": 98,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/bagger.jpg"
+  },
+  {
+    "name": "Avarus",
+    "value": 107.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/avarus.jpg"
+  },
+  {
+    "name": "Akuma",
+    "value": 121.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/motorcycles/main/akuma.jpg"
+  },
+  {
+    "name": "Rhino Tank",
+    "value": 40.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/rhino-tank.jpg"
+  },
+  {
+    "name": "Half-track",
+    "value": 58.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/half-track.jpg"
+  },
+  {
+    "name": "Crusader",
+    "value": 91.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/crusader.jpg"
+  },
+  {
+    "name": "Barracks Semi",
+    "value": 82.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/barracks-semi.jpg"
+  },
+  {
+    "name": "Barracks",
+    "value": 82.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/barracks.jpg"
+  },
+  {
+    "name": "APC Tank",
+    "value": 63,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/apc.jpg"
+  },
+  {
+    "name": "Anti-Aircraft Trailer",
+    "value": 88.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/military/main/anti-aircraft-trailer.jpg"
+  },
+  {
+    "name": "Tipper (4 wheels)",
+    "value": 70.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/tipper.jpg"
+  },
+  {
+    "name": "Rubble",
+    "value": 77.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/rubble.jpg"
+  },
+  {
+    "name": "Mixer",
+    "value": 82.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/mixer.jpg"
+  },
+  {
+    "name": "Guardian",
+    "value": 100.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/guardian.jpg"
+  },
+  {
+    "name": "Flatbed",
+    "value": 76.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/flatbed.jpg"
+  },
+  {
+    "name": "Dump",
+    "value": 32,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/dump.jpg"
+  },
+  {
+    "name": "Dozer",
+    "value": 11,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/dozer.jpg"
+  },
+  {
+    "name": "Dock Handler",
+    "value": 31.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/dock-handler.jpg"
+  },
+  {
+    "name": "Cutter",
+    "value": 30.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/industrial/main/cutter.jpg"
+  },
+  {
+    "name": "Volatus",
+    "value": 161.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/volatus.jpg"
+  },
+  {
+    "name": "Valkyrie",
+    "value": 145,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/valkyrie.jpg"
+  },
+  {
+    "name": "Swift Deluxe",
+    "value": 157.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/swift-deluxe.jpg"
+  },
+  {
+    "name": "Swift",
+    "value": 156.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/swift.jpg"
+  },
+  {
+    "name": "SuperVolito Carbon",
+    "value": 148.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/super-volito-carbon.jpg"
+  },
+  {
+    "name": "SuperVolito",
+    "value": 148.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/super-volito.jpg"
+  },
+  {
+    "name": "Skylift",
+    "value": 115,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/skylift.jpg"
+  },
+  {
+    "name": "Savage",
+    "value": 144.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/savage.jpg"
+  },
+  {
+    "name": "Police Maverick",
+    "value": 144,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/police-maverick.jpg"
+  },
+  {
+    "name": "Maverick",
+    "value": 140.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/maverick.jpg"
+  },
+  {
+    "name": "Havok",
+    "value": 154.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/havok.jpg"
+  },
+  {
+    "name": "Frogger",
+    "value": 148.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/frogger.jpg"
+  },
+  {
+    "name": "Cargobob",
+    "value": 99.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/cargobob.jpg"
+  },
+  {
+    "name": "Buzzard Attack Chopper",
+    "value": 145,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/buzzard-attack-chopper.jpg"
+  },
+  {
+    "name": "Buzzard",
+    "value": 145,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/buzzard.jpg"
+  },
+  {
+    "name": "Annihilator",
+    "value": 115.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/annihilator.jpg"
+  },
+  {
+    "name": "Unmarked Cruiser",
+    "value": 102.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/unmarked-cruiser.jpg"
+  },
+  {
+    "name": "Sheriff SUV",
+    "value": 96,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/sheriff-suv.jpg"
+  },
+  {
+    "name": "Sheriff Cruiser",
+    "value": 101.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/sheriff-cruiser.jpg"
+  },
+  {
+    "name": "Police Transporter",
+    "value": 90.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-transporter.jpg"
+  },
+  {
+    "name": "Police Riot",
+    "value": 86.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-riot.jpg"
+  },
+  {
+    "name": "Police Prison Bus",
+    "value": 65.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-prison-bus.jpg"
+  },
+  {
+    "name": "Police Cruiser (Interceptor)",
+    "value": 109.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-cruiser-interceptor.jpg"
+  },
+  {
+    "name": "Police Cruiser (Buffalo)",
+    "value": 107.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-cruiser-buffalo.jpg"
+  },
+  {
+    "name": "Police Cruiser",
+    "value": 102.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-cruiser.jpg"
+  },
+  {
+    "name": "Police Bike",
+    "value": 100.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-bike.jpg"
+  },
+  {
+    "name": "Park Ranger",
+    "value": 96,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/park-ranger.jpg"
+  },
+  {
+    "name": "Lifeguard (SUV)",
+    "value": 95.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/lifeguard.jpg"
+  },
+  {
+    "name": "Fire Truck",
+    "value": 96,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/fire-truck.jpg"
+  },
+  {
+    "name": "FIB (Buffalo)",
+    "value": 105.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/fib-buffalo.jpg"
+  },
+  {
+    "name": "FIB (Granger)",
+    "value": 96,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/fib.jpg"
+  },
+  {
+    "name": "Ambulance",
+    "value": 97.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/ambulance.jpg"
+  },
+  {
+    "name": "Whippet Race Bike",
+    "value": 47,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/whippet-race-bike.jpg"
+  },
+  {
+    "name": "Tri-Cycles Race Bike",
+    "value": 47,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/tri-cycles-race-bike.jpg"
+  },
+  {
+    "name": "Scorcher",
+    "value": 38.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/scorcher.jpg"
+  },
+  {
+    "name": "Fixter",
+    "value": 44.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/fixter.jpg"
+  },
+  {
+    "name": "Endurex Race Bike",
+    "value": 47,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/endurex-race-bike.jpg"
+  },
+  {
+    "name": "Cruiser",
+    "value": 33.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/cruiser.jpg"
+  },
+  {
+    "name": "BMX",
+    "value": 35.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/cycles/main/bmx.jpg"
+  },
+  {
+    "name": "Zion Cabrio",
+    "value": 117,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/zion-cabrio.jpg"
+  },
+  {
+    "name": "Zion",
+    "value": 117,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/zion.jpg"
+  },
+  {
+    "name": "Windsor Drop",
+    "value": 118,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/windsor-drop.jpg"
+  },
+  {
+    "name": "Windsor",
+    "value": 118,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/windsor.jpg"
+  },
+  {
+    "name": "Sentinel XS",
+    "value": 117.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/sentinel-xs.jpg"
+  },
+  {
+    "name": "Sentinel",
+    "value": 112,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/sentinel.jpg"
+  },
+  {
+    "name": "Oracle XS",
+    "value": 114,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/oracle-2.jpg"
+  },
+  {
+    "name": "Oracle",
+    "value": 115,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/oracle-1.jpg"
+  },
+  {
+    "name": "Jackal",
+    "value": 113.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/jackal.jpg"
+  },
+  {
+    "name": "Felon GT",
+    "value": 110.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/felon-gt.jpg"
+  },
+  {
+    "name": "Felon",
+    "value": 113.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/felon.jpg"
+  },
+  {
+    "name": "F620",
+    "value": 117.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/f620.jpg"
+  },
+  {
+    "name": "Exemplar",
+    "value": 117.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/exemplar.jpg"
+  },
+  {
+    "name": "Cognoscenti Cabrio",
+    "value": 110,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/main/cognoscenti-cabrio.jpg"
+  },
+  {
+    "name": "Rhapsody",
+    "value": 102.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/rhapsody.jpg"
+  },
+  {
+    "name": "Prairie",
+    "value": 103.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/prairie.jpg"
+  },
+  {
+    "name": "Panto",
+    "value": 100.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/panto.jpg"
+  },
+  {
+    "name": "Issi",
+    "value": 104.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/issi.jpg"
+  },
+  {
+    "name": "Dilettante",
+    "value": 88.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/dilettante.jpg"
+  },
+  {
+    "name": "Brioso R/A",
+    "value": 103.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/brioso.jpg"
+  },
+  {
+    "name": "Blista",
+    "value": 104.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/compacts/main/blista.jpg"
+  },
+  {
+    "name": "Stockade",
+    "value": 83.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/stockade.jpg"
+  },
+  {
+    "name": "Pounder",
+    "value": 85.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/pounder.jpg"
+  },
+  {
+    "name": "Phantom Wedge",
+    "value": 98.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/phantom-wedge.jpg"
+  },
+  {
+    "name": "Phantom Custom",
+    "value": 103.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/phantom-custom.jpg"
+  },
+  {
+    "name": "Phantom",
+    "value": 82.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/phantom.jpg"
+  },
+  {
+    "name": "Packer",
+    "value": 85.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/packer.jpg"
+  },
+  {
+    "name": "Mule",
+    "value": 70.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/mule.jpg"
+  },
+  {
+    "name": "Hauler Custom",
+    "value": 102,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/hauler-custom.jpg"
+  },
+  {
+    "name": "Hauler",
+    "value": 73.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/hauler.jpg"
+  },
+  {
+    "name": "Biff",
+    "value": 83.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/biff.jpg"
+  },
+  {
+    "name": "Benson",
+    "value": 89.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/commercial/main/benson.jpg"
+  },
+  {
+    "name": "Tug",
+    "value": 18.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/tug.jpg"
+  },
+  {
+    "name": "Tropic",
+    "value": 63.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/tropic.jpg"
+  },
+  {
+    "name": "Toro",
+    "value": 50.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/toro.jpg"
+  },
+  {
+    "name": "Suntrap",
+    "value": 51,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/suntrap.jpg"
+  },
+  {
+    "name": "Submersible",
+    "value": 19.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/submersible.jpg"
+  },
+  {
+    "name": "Squalo",
+    "value": 65.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/squalo.jpg"
+  },
+  {
+    "name": "Speeder",
+    "value": 68.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/speeder.jpg"
+  },
+  {
+    "name": "Seashark",
+    "value": 67,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/seashark.jpg"
+  },
+  {
+    "name": "Police Predator",
+    "value": 48.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/police-predator.jpg"
+  },
+  {
+    "name": "Marquis",
+    "value": 26.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/marquis.jpg"
+  },
+  {
+    "name": "Kraken",
+    "value": 20.75,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/kraken.jpg"
+  },
+  {
+    "name": "Jetmax",
+    "value": 70,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/jetmax.jpg"
+  },
+  {
+    "name": "Dinghy (2-seater)",
+    "value": 71.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/dinghy-2-seater.jpg"
+  },
+  {
+    "name": "Dinghy (4-seater)",
+    "value": 71.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/boats/dinghy.jpg"
+  }
+]

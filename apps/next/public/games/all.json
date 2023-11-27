@@ -5,7 +5,9 @@
     "title": "Countries by Fertility Rate",
     "description": "Guess which country has a higher fertility rate?",
     "image": "https://www.thoughtco.com/thmb/P7hEFaW1iP-1lio7XXepS4-QYtI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/171234783-58b9d07e3df78c353c38b7e0.jpg",
-    "tags": ["geography"],
+    "tags": [
+      "geography"
+    ],
     "seo": {
       "title": "Higher or Lower: Countries by Fertility Rate",
       "description": "Embark on a demographic journey! Can you guess which country has a higher fertility rate? Test your knowledge with this engaging Higher or Lower quiz!",
@@ -31,7 +33,9 @@
     "title": "Countries by Land Area",
     "description": "Guess which country has a larger land area.",
     "image": "https://www.sketchandcalc.com/wp-content/uploads/2021/01/Land-Perimeter-and-Area.jpg",
-    "tags": ["geography"],
+    "tags": [
+      "geography"
+    ],
     "seo": {
       "title": "Higher or Lower: Countries by Land Area",
       "description": "Embark on a geographical journey! Can you guess which country has a larger land area. Test your knowledge with this engaging Higher or Lower quiz!",
@@ -58,7 +62,9 @@
     "title": "Countries by Median Age",
     "description": "Determine which country has a higher median age?",
     "image": "https://www.hindustantimes.com/ht-img/img/2023/04/19/1600x900/The-median-age-of-India-s-population-is-28-2-years_1681931430647.jpg",
-    "tags": ["geography"],
+    "tags": [
+      "geography"
+    ],
     "seo": {
       "title": "Higher or Lower: Countries by Median Age",
       "description": "Dive into demographic data! Can you determine which country has a higher median age? Expand your knowledge with this Higher or Lower quiz!",
@@ -84,7 +90,9 @@
     "title": "Countries by Population",
     "description": "Guess which country has a larger population.",
     "image": "https://media.istockphoto.com/id/1357524756/photo/big-crowd-of-people-people-gathered-together-in-one-place-top-view-from-drone.jpg?s=612x612&w=0&k=20&c=8rxctYW7JcEelIZx05-UocZ254knephuT8_4VznIEsw=",
-    "tags": ["geography"],
+    "tags": [
+      "geography"
+    ],
     "seo": {
       "title": "Higher or Lower: Countries by Population",
       "description": "Explore global demographics! Can you guess which country has a larger population. Challenge your knowledge with this Higher or Lower quiz!",
@@ -111,7 +119,9 @@
     "title": "Countries by Population Density",
     "description": "Figure out which country has a higher population density?",
     "image": "https://static.boredpanda.com/blog/wp-content/uploads/2016/03/drone-photography-hong-kong-density-andy-yeung-fb.png",
-    "tags": ["geography"],
+    "tags": [
+      "geography"
+    ],
     "seo": {
       "title": "Higher or Lower: Countries by Population Density",
       "description": "Navigate through population densities! Can you figure out which country has a higher population density? Test your geographical knowledge with this Higher or Lower quiz!",
@@ -138,7 +148,9 @@
     "title": "DarkViperAU Video Views",
     "description": "Which of YouTuber DarkViperAU's videos has more views?",
     "image": "https://yt3.googleusercontent.com/ytc/APkrFKaosfHwK4d9ixmcw4s5AIZ6i9yUZKDbx7stHGPc3A=s176-c-k-c0x00ffffff-no-rj",
-    "tags": ["youtube"],
+    "tags": [
+      "youtube"
+    ],
     "seo": {
       "title": "Higher or Lower: DarkViperAU Video Views",
       "description": "Delve into the world of DarkViperAU! Guess which of the GTA content creator's videos has more views. Test your knowledge of DarkViperAU's YouTube journey in this Higher or Lower quiz!",
@@ -165,7 +177,9 @@
     "title": "GTA Online Vehicle Prices",
     "description": "Can you guess which GTA Online vehicle demands a higher price?",
     "image": "https://i.kinja-img.com/image/upload/c_fit,q_60,w_645/b8af477bc10309189eda4edb777eb674.jpg",
-    "tags": ["gaming"],
+    "tags": [
+      "gaming"
+    ],
     "seo": {
       "title": "Higher or Lower: GTA Online Vehicle Prices",
       "description": "Navigate the virtual car market! Can you guess which GTA Online vehicle demands a higher price? Immerse yourself in the world of Grand Theft Auto with this Higher or Lower quiz!",
@@ -189,11 +203,43 @@
   },
   {
     "mode": "higher-or-lower",
+    "slug": "gta-online-vehicle-top-speeds",
+    "title": "GTA Online Vehicle Top Speeds",
+    "description": "Can you guess which GTA Online vehicle has a higher top speed?",
+    "image": "https://www.gameskinny.com/wp-content/uploads/gameskinnyc/g/t/a/gta-online-fastest-cars-70772.jpg?w=1200",
+    "tags": [
+      "gaming"
+    ],
+    "seo": {
+      "title": "Higher or Lower: GTA Online Vehicle Top Speeds",
+      "description": "Navigate the virtual car racetrack! Can you guess which GTA Online vehicle has a higher top speed? Immerse yourself in the world of Grand Theft Auto with this Higher or Lower quiz!",
+      "keywords": [
+        "grand theft auto",
+        "grand theft auto online",
+        "vehicle top speeds",
+        "speed compression",
+        "fast vehicles"
+      ]
+    },
+    "strings": {
+      "verb": "has a",
+      "higher": "Higher",
+      "lower": "Lower",
+      "noun": "top speed",
+      "prefix": " mph"
+    },
+    "updated": 1701055969380,
+    "created": 1701055969380
+  },
+  {
+    "mode": "higher-or-lower",
     "slug": "gta-online-weapon-prices",
     "title": "GTA Online Weapon Prices",
     "description": "Can you guess which GTA Online weapon has a higher price tag?",
     "image": "https://static.wikia.nocookie.net/gtawiki/images/6/6b/WeaponRack-GTAV.jpg/revision/latest?cb=20140329003005",
-    "tags": ["gaming"],
+    "tags": [
+      "gaming"
+    ],
     "seo": {
       "title": "Higher or Lower: GTA Online Weapon Prices",
       "description": "Arm yourself with knowledge! Can you guess which GTA Online weapon has a higher price tag? Test your knowledge of in-game arsenals with this Higher or Lower quiz!",
@@ -221,7 +267,9 @@
     "title": "JackSucksAtLife Video Views",
     "description": "Which of YouTuber Jack Massey Welsh's videos from across his channels has more views?",
     "image": "https://yt3.googleusercontent.com/h0CPD1yuym7YK97UH---rAawwWVu_kLyGHzUvviMm2Th-wO1_seYVOyosgOB9WynyLiFj-ZH_Q=s176-c-k-c0x00ffffff-no-rj",
-    "tags": ["youtube"],
+    "tags": [
+      "youtube"
+    ],
     "seo": {
       "title": "Higher or Lower: JackSucksAtLife Video Views",
       "description": "Explore JackSucksAtLife's content universe! Can you predict which video from Jack Massey Welsh's channels scored more views? Dive into the world of play buttons and content creation in this Higher or Lower quiz!",
@@ -250,11 +298,17 @@
     "title": "MrBeast Video Views",
     "description": "Which of popular YouTuber MrBeast's videos has more views?",
     "image": "https://yt3.googleusercontent.com/ytc/APkrFKbAfC_5NBQ3CM6Lyd2zXUFbC4mym1GCRhmpIwcMXg=s176-c-k-c0x00ffffff-no-rj",
-    "tags": ["youtube"],
+    "tags": [
+      "youtube"
+    ],
     "seo": {
       "title": "Higher or Lower: MrBeast Video Views",
       "description": "Explore JackSucksAtLife's content universe! Can you predict which video from Jack Massey Welsh's channels scored more views? Dive into the world of play buttons and content creation in this Higher or Lower quiz!",
-      "keywords": ["mrbeast", "youtube", "content creator"]
+      "keywords": [
+        "mrbeast",
+        "youtube",
+        "content creator"
+      ]
     },
     "strings": {
       "verb": "has",

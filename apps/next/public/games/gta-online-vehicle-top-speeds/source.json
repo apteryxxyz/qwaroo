@@ -1,0 +1,7 @@
+{
+  "slug": "gta-base",
+  "jsonId": "1",
+  "namePath": "name",
+  "valuePath": "attr.ct132.value",
+  "imagePath": "thumbnail"
+}
