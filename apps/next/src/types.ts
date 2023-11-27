@@ -12,8 +12,8 @@ export type Params<TParams extends string[]> = TParams extends [
 ]
   ? ParamType<TParam> & Params<TRest>
   : TParams extends [infer TParam extends string]
-  ? ParamType<TParam>
-  : {};
+    ? ParamType<TParam>
+    : {};
 
 export type PageProps<
   TParams extends string[] | undefined = undefined,

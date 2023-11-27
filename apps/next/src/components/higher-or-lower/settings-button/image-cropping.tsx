@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from '../../ui/select';
 
-export function ImageCroppingSetting(p: { slug: string }) {
+export function ImageCroppingSelect(p: { slug: string }) {
   const [{ imageCropping: value }, setSettings] = useSettings(p.slug);
   const setValue = (value: string) =>
     setSettings({ imageCropping: value as never });

@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from '../../ui/select';
 
-export function ImageQualitySetting(p: { slug: string }) {
+export function ImageQualitySelect(p: { slug: string }) {
   const [{ imageQuality: value }, setSettings] = useSettings(p.slug);
   const setValue = (value: string) =>
     setSettings({ imageQuality: value as never });

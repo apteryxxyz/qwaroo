@@ -8,8 +8,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../../ui/sheet';
-import { ImageCroppingSetting } from './image-cropping';
-import { ImageQualitySetting } from './image-quality';
+import { ImageCroppingSelect } from './image-cropping';
+import { ImageQualitySelect } from './image-quality';
 
 export function SettingsButton(p: { slug: string }) {
   return (
@@ -30,8 +30,8 @@ export function SettingsButton(p: { slug: string }) {
         </SheetHeader>
 
         <div className="flex flex-col gap-4 py-4">
-          <ImageCroppingSetting slug={p.slug} />
-          <ImageQualitySetting slug={p.slug} />
+          <ImageCroppingSelect slug={p.slug} />
+          <ImageQualitySelect slug={p.slug} />
         </div>
       </SheetContent>
     </Sheet>
