@@ -7,10 +7,11 @@ import {
   useGames,
   useGameSource,
 } from '@qwaroo/sources';
+import _ from 'lodash';
 
 export default new Command('update')
   .description("Update a game's items")
-  .argument('<slugs>...', 'The slug of the game to update')
+  .argument('<slugs...>', 'The slug of the game to update')
   .action(async (slugs) => {
     if (slugs.length === 0) {
       logger.error('No game slugs provided.');
@@ -38,13 +39,18 @@ export default new Command('update')
 
       spinner.text = `Updating '${game.title}'...`;
 
-      const [, setItems] = await useGameItems(slug);
-      const updated = await updater.fetchItems(game.mode, source as never);
-      await setItems(updated);
+      const [items, setItems] = await useGameItems(slug);
+      const updatedItems = await updater.fetchItems(game.mode, source as never);
 
-      if (!game.created) game.created = Date.now();
-      game.updated = Date.now();
-      await setGame(game);
+      const oldValues = items.map(({ value }) => value);
+      const newValues = updatedItems.map(({ value }) => value);
+
+      if (!_.isEqual(oldValues, newValues)) {
+        await setItems(updatedItems);
+        if (!game.created) game.created = Date.now();
+        game.updated = Date.now();
+        await setGame(game);
+      }
     }
 
     spinner.succeed(

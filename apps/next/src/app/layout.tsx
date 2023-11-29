@@ -1,6 +1,5 @@
 import '@qwaroo/tailwind-config/styles.css';
 import { GeistSans } from 'geist/font/sans';
-import type { Viewport } from 'next/types';
 import { Backdrop } from '@/components/backdrop';
 import {
   ClientProviders,
@@ -10,7 +9,7 @@ import { GoogleAnalytics } from '@/components/google-analytics';
 import { NavigationBar } from '@/components/navigation-bar';
 import type { LayoutProps } from '@/types';
 import { APP } from '@/utilities/constants';
-import { generateMetadata } from './metadata';
+import { generateMetadata, generateViewport } from './metadata';
 
 export const metadata = generateMetadata({
   title: {
@@ -19,13 +18,7 @@ export const metadata = generateMetadata({
   },
 });
 
-export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: APP.THEME_COLOUR },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
-  ],
-};
+export const viewport = generateViewport();
 
 export default function RootLayout(p: LayoutProps) {
   return (

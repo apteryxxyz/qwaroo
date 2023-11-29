@@ -1,7 +1,7 @@
 export type Award = 'Bronze' | 'Silver' | 'Gold' | 'Diamond';
 
 /** Resolve a game score to an award. */
-export function findAward(score: number) {
+export function findAward(score: number): Award | undefined {
   if (score >= 50) return 'Diamond';
   if (score >= 25) return 'Gold';
   if (score >= 10) return 'Silver';

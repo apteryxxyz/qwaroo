@@ -11,7 +11,7 @@ async function getStaticSitemap(): Promise<MetadataRoute.Sitemap> {
     .catch(() => ({ staticRoutes: [] }));
 
   return manifest.staticRoutes
-    .filter((route) => !route.page.split('.')[1])
+    .filter((route) => !route.page.split('.')[1] && !route.page.startsWith('_'))
     .map((route) => ({
       url: absoluteUrl(route.page).toString(),
       lastModified: new Date(),

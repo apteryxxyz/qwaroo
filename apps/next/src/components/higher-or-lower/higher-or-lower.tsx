@@ -217,8 +217,8 @@ export function HigherOrLower(p: {
               guess === Guess.Correct
                 ? '#34D399'
                 : guess === Guess.Wrong
-                  ? '#EF4444'
-                  : '#15181C',
+                ? '#EF4444'
+                : '#15181C',
           }}
         >
           <span className="text-2xl font-bold text-white lg:text-3xl">
