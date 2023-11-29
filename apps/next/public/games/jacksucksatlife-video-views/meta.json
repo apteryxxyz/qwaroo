@@ -4,7 +4,9 @@
   "title": "JackSucksAtLife Video Views",
   "description": "Which of YouTuber Jack Massey Welsh's videos from across his channels has more views?",
   "image": "https://yt3.googleusercontent.com/h0CPD1yuym7YK97UH---rAawwWVu_kLyGHzUvviMm2Th-wO1_seYVOyosgOB9WynyLiFj-ZH_Q=s176-c-k-c0x00ffffff-no-rj",
-  "tags": ["youtube"],
+  "tags": [
+    "youtube"
+  ],
   "seo": {
     "title": "Higher or Lower: JackSucksAtLife Video Views",
     "description": "Explore JackSucksAtLife's content universe! Can you predict which video from Jack Massey Welsh's channels scored more views? Dive into the world of play buttons and content creation in this Higher or Lower quiz!",
@@ -25,5 +27,5 @@
     "noun": "views"
   },
   "created": 1699892859945,
-  "updated": 1701049463340
+  "updated": 1701294477661
 }

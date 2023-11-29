@@ -4,11 +4,17 @@
   "title": "MrBeast Video Views",
   "description": "Which of popular YouTuber MrBeast's videos has more views?",
   "image": "https://yt3.googleusercontent.com/ytc/APkrFKbAfC_5NBQ3CM6Lyd2zXUFbC4mym1GCRhmpIwcMXg=s176-c-k-c0x00ffffff-no-rj",
-  "tags": ["youtube"],
+  "tags": [
+    "youtube"
+  ],
   "seo": {
     "title": "Higher or Lower: MrBeast Video Views",
     "description": "Explore JackSucksAtLife's content universe! Can you predict which video from Jack Massey Welsh's channels scored more views? Dive into the world of play buttons and content creation in this Higher or Lower quiz!",
-    "keywords": ["mrbeast", "youtube", "content creator"]
+    "keywords": [
+      "mrbeast",
+      "youtube",
+      "content creator"
+    ]
   },
   "strings": {
     "verb": "has",
@@ -17,5 +23,5 @@
     "noun": "views"
   },
   "created": 1699892859945,
-  "updated": 1701049466079
+  "updated": 1701294480377
 }
