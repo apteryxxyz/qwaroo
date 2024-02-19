@@ -8,8 +8,11 @@
     "dist"
   ],
   "scripts": {
+    "format": "biome format . --write",
+    "lint": "biome lint .",
+    "check": "tsc --noEmit",
     "build": "tsup",
-    "lint": "eslint src"
+    "dev": "pnpm build --watch"
   },
   "dependencies": {
     "@commander-js/extra-typings": "^11.1.0",
@@ -20,17 +23,10 @@
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@qwaroo/eslint-config": "workspace:^",
     "@qwaroo/tsup-config": "workspace:^",
     "@types/lodash": "^4.14.201",
     "@types/node": "20.8.9",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@qwaroo/eslint-config/base"
-    ]
   }
 }
