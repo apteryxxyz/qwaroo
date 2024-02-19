@@ -1,8 +1,53 @@
 [
   {
+    "name": "Boxville (LSDS)",
+    "value": 71.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/boxville-lsds.jpg"
+  },
+  {
+    "name": "FR36",
+    "value": 121.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/fr36.jpg"
+  },
+  {
+    "name": "Vigero ZX Convertible",
+    "value": 125,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/vigero-zx-convertible.jpg"
+  },
+  {
+    "name": "Impaler LX",
+    "value": 115.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/impaler-lx.jpg"
+  },
+  {
+    "name": "Dominator GT",
+    "value": 123,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/dominator-gt.jpg"
+  },
+  {
+    "name": "Vivanite",
+    "value": 105.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/vivanite.jpg"
+  },
+  {
+    "name": "Asterope GZ",
+    "value": 113.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/asterope-gz.jpg"
+  },
+  {
+    "name": "Aleutian",
+    "value": 113.25,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/aleutian.jpg"
+  },
+  {
+    "name": "Turismo Omaggio",
+    "value": 122.5,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/turismo-omaggio.jpg"
+  },
+  {
     "name": "Weaponized Conada",
     "value": 151,
-    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/weaponized-conada.jpg"
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/weaponized-conada.jpg"
   },
   {
     "name": "Junk Energy Inductor",
@@ -12,12 +57,12 @@
   {
     "name": "Hotring Hellfire",
     "value": 124.25,
-    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/hotring-hellfire.jpg"
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/hotring-hellfire.jpg"
   },
   {
     "name": "Buffalo EVX",
     "value": 119,
-    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/buffalo-evx.jpg"
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/buffalo-evx.jpg"
   },
   {
     "name": "Inductor",
@@ -32,7 +77,7 @@
   {
     "name": "Brigham",
     "value": 105.5,
-    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/brigham.jpg"
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/brigham.jpg"
   },
   {
     "name": "Streamer216",
@@ -3280,17 +3325,17 @@
     "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-prison-bus.jpg"
   },
   {
-    "name": "Police Cruiser (Interceptor)",
+    "name": "Police Interceptor Cruiser",
     "value": 109.25,
     "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-cruiser-interceptor.jpg"
   },
   {
-    "name": "Police Cruiser (Buffalo)",
+    "name": "Police Buffalo Cruiser",
     "value": 107.5,
     "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-cruiser-buffalo.jpg"
   },
   {
-    "name": "Police Cruiser",
+    "name": "Police Stanier LE Cruiser",
     "value": 102.75,
     "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-cruiser.jpg"
   },

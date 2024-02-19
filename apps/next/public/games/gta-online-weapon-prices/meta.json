@@ -4,7 +4,9 @@
   "title": "GTA Online Weapon Prices",
   "description": "Can you guess which GTA Online weapon has a higher price tag?",
   "image": "https://static.wikia.nocookie.net/gtawiki/images/6/6b/WeaponRack-GTAV.jpg/revision/latest?cb=20140329003005",
-  "tags": ["gaming"],
+  "tags": [
+    "gaming"
+  ],
   "seo": {
     "title": "Higher or Lower: GTA Online Weapon Prices",
     "description": "Arm yourself with knowledge! Can you guess which GTA Online weapon has a higher price tag? Test your knowledge of in-game arsenals with this Higher or Lower quiz!",
@@ -24,5 +26,5 @@
     "prefix": "$"
   },
   "created": 1699892832104,
-  "updated": 1701049454833
+  "updated": 1708384820126
 }
