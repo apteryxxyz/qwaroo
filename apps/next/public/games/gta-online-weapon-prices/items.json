@@ -1,5 +1,11 @@
 [
   {
+    "name": "Battle Rifle",
+    "value": 497500,
+    "image": "https://www.gtabase.com/images/gta-5/weapons/assault-rifles/battle-rifle.png",
+    "frame": "fit"
+  },
+  {
     "name": "Tactical SMG",
     "value": 325000,
     "image": "https://www.gtabase.com/images/gta-5/weapons/machine-guns/tactical-smg.png",

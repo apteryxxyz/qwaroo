@@ -1,8 +1,88 @@
 [
   {
+    "name": "Boxville (LSDS)",
+    "value": 475000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/boxville-lsds.jpg"
+  },
+  {
+    "name": "Benson (Cluckin' Bell)",
+    "value": 685000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/truck1.png"
+  },
+  {
+    "name": "Cavalcade XL",
+    "value": 1665000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/suv4.png"
+  },
+  {
+    "name": "Baller ST-D",
+    "value": 1715000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/suv3.png"
+  },
+  {
+    "name": "Terminus",
+    "value": 1877500,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/suv2.png"
+  },
+  {
+    "name": "Dorado",
+    "value": 1375000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/suv1.png"
+  },
+  {
+    "name": "Impaler SZ",
+    "value": 1280000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/car1.png"
+  },
+  {
+    "name": "Police Gauntlet Interceptor",
+    "value": 5420000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/dripfeed-chop-shop/police1.png"
+  },
+  {
+    "name": "FR36",
+    "value": 1610000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/coupes/fr36.jpg"
+  },
+  {
+    "name": "Vigero ZX Convertible",
+    "value": 2295000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/vigero-zx-convertible.jpg"
+  },
+  {
+    "name": "Impaler LX",
+    "value": 1465000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/impaler-lx.jpg"
+  },
+  {
+    "name": "Dominator GT",
+    "value": 2195000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/dominator-gt.jpg"
+  },
+  {
+    "name": "Vivanite",
+    "value": 1605000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/vivanite.jpg"
+  },
+  {
+    "name": "Asterope GZ",
+    "value": 459000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sedans/asterope-gz.jpg"
+  },
+  {
+    "name": "Aleutian",
+    "value": 1835000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/suvs/aleutian.jpg"
+  },
+  {
+    "name": "Turismo Omaggio",
+    "value": 2845000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/super/turismo-omaggio.jpg"
+  },
+  {
     "name": "Weaponized Conada",
     "value": 3385000,
-    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/weaponized-conada.jpg"
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/weaponized-conada.jpg"
   },
   {
     "name": "Junk Energy Inductor",
@@ -12,12 +92,12 @@
   {
     "name": "Hotring Hellfire",
     "value": 1810000,
-    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/hotring-hellfire.jpg"
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/sports/main/hotring-hellfire.jpg"
   },
   {
     "name": "Buffalo EVX",
     "value": 2140000,
-    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/buffalo-evx.jpg"
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/buffalo-evx.jpg"
   },
   {
     "name": "Inductor",
@@ -32,7 +112,7 @@
   {
     "name": "Brigham",
     "value": 1499000,
-    "image": "https://www.gtabase.com/images/gta-5/vehicles/temp/brigham.jpg"
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/muscle/main/brigham.jpg"
   },
   {
     "name": "Streamer216",
@@ -1353,6 +1433,11 @@
     "name": "Bison",
     "value": 30000,
     "image": "https://www.gtabase.com/images/gta-5/vehicles/vans/main/bison.jpg"
+  },
+  {
+    "name": "Tow Truck (Large)",
+    "value": 1100000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/utility/main/tow-truck-large.jpg"
   },
   {
     "name": "Sadler",
@@ -2950,9 +3035,29 @@
     "image": "https://www.gtabase.com/images/gta-5/vehicles/helicopters/main/annihilator.jpg"
   },
   {
+    "name": "Unmarked Cruiser",
+    "value": 3950000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/unmarked-cruiser.jpg"
+  },
+  {
+    "name": "Police Riot",
+    "value": 4800000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-riot.jpg"
+  },
+  {
     "name": "Police Prison Bus",
     "value": 731500,
     "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-prison-bus.jpg"
+  },
+  {
+    "name": "Police Stanier LE Cruiser",
+    "value": 4690000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/police-cruiser.jpg"
+  },
+  {
+    "name": "Park Ranger",
+    "value": 2980000,
+    "image": "https://www.gtabase.com/images/gta-5/vehicles/emergency/main/park-ranger.jpg"
   },
   {
     "name": "Lifeguard (SUV)",

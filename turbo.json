@@ -1,10 +1,37 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
-    "lint": {},
+    "format": {
+      "dependsOn": ["^format"],
+      "inputs": ["src/**"],
+      "outputs": ["src/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "inputs": ["src/**"]
+    },
+    "test": {
+      "dependsOn": ["^test"],
+      "inputs": ["src/**", "test/**"]
+    },
+    "check": {
+      "dependsOn": ["^check"],
+      "inputs": ["src/**", "test/**"]
+    },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "dist/**", "*.d.ts", "*.js"]
+      "inputs": ["src/**"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "everything": {
+      "dependsOn": ["format", "lint", "check", "build", "test"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

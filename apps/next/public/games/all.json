@@ -169,7 +169,7 @@
       "noun": "views"
     },
     "created": 1699892859945,
-    "updated": 1701049454480
+    "updated": 1708384815795
   },
   {
     "mode": "higher-or-lower",
@@ -199,7 +199,7 @@
       "prefix": "$"
     },
     "created": 1699892830885,
-    "updated": 1701049454796
+    "updated": 1708384818284
   },
   {
     "mode": "higher-or-lower",
@@ -226,9 +226,9 @@
       "higher": "Higher",
       "lower": "Lower",
       "noun": "top speed",
-      "prefix": " mph"
+      "suffix": " mph"
     },
-    "updated": 1701055969380,
+    "updated": 1708384818531,
     "created": 1701055969380
   },
   {
@@ -259,14 +259,14 @@
       "prefix": "$"
     },
     "created": 1699892832104,
-    "updated": 1701049454833
+    "updated": 1708384820126
   },
   {
     "mode": "higher-or-lower",
     "slug": "jacksucksatlife-video-views",
     "title": "JackSucksAtLife Video Views",
     "description": "Which of YouTuber Jack Massey Welsh's videos from across his channels has more views?",
-    "image": "https://yt3.googleusercontent.com/h0CPD1yuym7YK97UH---rAawwWVu_kLyGHzUvviMm2Th-wO1_seYVOyosgOB9WynyLiFj-ZH_Q=s176-c-k-c0x00ffffff-no-rj",
+    "image": "https://yt3.googleusercontent.com/zeCF5801GLrS8D7mE4gMDyrLJPMBzc2AmdN_pBnsvIesTU5cbojylFQMXCLWWtc5v3zIzsW1cQ=s176-c-k-c0x00ffffff-no-rj",
     "tags": [
       "youtube"
     ],
@@ -290,7 +290,7 @@
       "noun": "views"
     },
     "created": 1699892859945,
-    "updated": 1701049463340
+    "updated": 1708384828481
   },
   {
     "mode": "higher-or-lower",
@@ -317,6 +317,6 @@
       "noun": "views"
     },
     "created": 1699892859945,
-    "updated": 1701049466079
+    "updated": 1708384831154
   }
 ]
