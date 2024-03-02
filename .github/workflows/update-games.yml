@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  cache-and-install:
+  update:
+    name: Update Game Items
     runs-on: ubuntu-latest
 
     steps:
@@ -55,6 +56,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/games/*
+          git add -A
           git commit -m "Update game items" || echo "No changes to commit"
           git push
