@@ -2,11 +2,7 @@
   "name": "qwaroo",
   "version": "3.0.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "packages/config/*"
-  ],
+  "workspaces": ["apps/*", "packages/*", "packages/config/*"],
   "scripts": {
     "lint": "pnpm turbo --concurrency=50 lint",
     "format": "pnpm turbo --concurrency=50 format",
