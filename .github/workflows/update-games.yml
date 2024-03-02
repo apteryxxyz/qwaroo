@@ -41,10 +41,15 @@ jobs:
         run: pnpm install
 
       - name: Build packages
-        run: pnpm build:packages
+        run: |
+          pnpm build:packages
+          # Need to install again so it can install the scripts package
+          pnpm install
 
       - name: Update games
-        run: cd apps/next && pnpm qwaroo games update all
+        run: |
+          cd apps/next
+          pnpm qwaroo games update all
 
       - name: Commit changes
         run: |
